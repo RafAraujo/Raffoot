@@ -1,0 +1,44 @@
+.card {
+	stroke-width: 0.5px;
+}
+.gold {
+	fill: gold;
+	stroke: darkorange;
+}
+.silver {
+	fill: silver;
+	stroke: black;
+}
+.bronze {
+	fill: rgb(205, 127, 50);
+	stroke: black;
+}
+.card-container .special {
+	fill: lightblue;
+	stroke: blue;
+}
+.card-container text {
+	font-family: "Tahoma";
+	font-weight: bold;
+	text-anchor: middle;
+}
+.card-container text.identification {
+	font-size: 10px;
+}
+.card-container text.overall {
+	font-size: 18px;
+}
+.card-container .energy-container {
+	fill: gray;
+	stroke: black;
+	stroke-width: 0.5px;
+}
+.card-container .energy {
+	fill: lightgreen;
+	stroke: black;
+	stroke-width: 0.5px;
+}
+.selected {
+	stroke: black;
+	stroke-width: 3px;
+}

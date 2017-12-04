@@ -1,0 +1,4 @@
+.badge circle, .badge ellipse, .badge line, .badge rect {
+	stroke: black;
+	stroke-width: 0;
+}

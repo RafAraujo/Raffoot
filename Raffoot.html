@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>SVG</title>
+		<link rel="stylesheet" type="text/css" href="css/badge.css">
+		<link rel="stylesheet" type="text/css" href="css/card.css">
+		<link rel="stylesheet" type="text/css" href="css/field.css">
+	</head>
+	<body>
+		<svg width="620px" height="840px" class="field">
+			<svg width="82%" height="96%" x="14%" y="2%">
+				<rect width="100%" height="100%" class="grass" />
+				
+				<rect width="50%" height="16%" x="25%" y="84%" class="transparent" />
+				<rect width="34%" height="8%" x="33%" y="92%" class="transparent" />
+				<circle cx="50%" cy="88%" r="0.5%" class="ball-mark" />
+				
+				<line x2="100%" y1="50%" y2="50%" />
+				<circle cx="50%" cy="50%" r="10%" class="transparent" />
+				<circle cx="50%" cy="50%" r="0.5%" class="ball-mark" />
+				
+				<rect width="50%" height="16%" x="25%" class="grass" />
+				<rect width="34%" height="8%" x="33%" class="transparent" />
+				<circle cx="50%" cy="12%" r="0.5%" class="ball-mark" />
+			</svg>
+		</svg>		
+		<svg width="100px" height="70px" class="card-container">
+			<rect width="70%" height="100%" x="15%" class="card gold" />
+			<text x="50%" y="1.25em" class="identification">Mbappé</text>
+			<svg width="70%" height="100%" x="15%" y="20%">
+				<text x="50%" y="1.125em" class="overall">83</text>
+				<svg x="30px" y="36%" class="condition">
+					<polygon points="0,2.5 10,0 7.5,10 5,5" fill="yellow" stroke="black" />
+				</svg>
+				<text x="50%" y="65%" class="identification">ST</text>
+				<rect width="100%" height="10%" y="70%" class="energy-container" />
+				<rect width="80%" height="10%" y="70%" class="energy" />
+			</svg>
+			<rect width="70%" height="100%" x="15%" class="transparent selected" />
+		</svg>
+		<svg width="100px" height="100px" class="badge">
+			<circle cx="50%" cy="50%" r="50%" style="fill: black;" />
+			<circle cx="50%" cy="50%" r="49%" style="fill: royalblue;" />
+			<circle cx="50%" cy="50%" r="41%" style="fill: black;" />
+			<circle cx="50%" cy="50%" r="32%" style="fill: darkkhaki;" />
+			<circle cx="50%" cy="50%" r="29%" style="fill: white;" />
+			<circle cx="50%" cy="50%" r="26%" style="fill: darkkhaki;" />
+		</svg>
+		<svg width="100px" height="100px" class="badge">
+			<defs>
+				<pattern id="milanVerticalStripes" width="8%" height="100%" patternUnits="userSpaceOnUse">
+					<rect width="4%" height="100%" style="fill: black;" />
+					<rect width="4%" height="100%" x="4%" style="fill: red;" />
+				</pattern>
+			</defs>
+			<ellipse cx="50%" cy="50%" rx="35%" ry="50%" style="fill: black; " />
+			<ellipse cx="50%" cy="50%" rx="33%" ry="48%" style="fill: red; " />
+			<ellipse cx="50%" cy="50%" rx="26%" ry="41%" style="fill: black;" />
+			<ellipse cx="50%" cy="50%" rx="20%" ry="35%" style="fill: white;" />
+			<circle cx="50%" cy="50%" r="21%" style="fill: url(#milanVerticalStripes); stroke-width: 3px;" />
+		</svg>
+		<svg width="100px" height="100px" class="badge">
+			<defs>
+				<pattern id="juventusVerticalStripes" width="22%" height="100%" patternUnits="userSpaceOnUse">
+					<rect width="11%" height="100%" style="fill: black;" />
+					<rect width="11%" height="100%" x="11%" style="fill: white;" />
+				</pattern>
+			</defs>
+			<ellipse cx="50%" cy="50%" rx="35%" ry="50%" style="fill: black;" />
+			<ellipse cx="50%" cy="50%" rx="32%" ry="47%" style="fill: white;" />
+			<ellipse cx="50%" cy="50%" rx="29%" ry="44%" style="fill: gold;" />
+			<ellipse cx="50%" cy="50%" rx="26%" ry="41%" style="fill: url(#juventusVerticalStripes); stroke: white; stroke-width: 2px;" />
+		</svg>
+	</body>
+</html>
