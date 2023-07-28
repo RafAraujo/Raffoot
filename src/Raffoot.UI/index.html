@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffoot</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+    <div id="app" class="container-fluid" v-cloak>
+        <div class="row mt-3 mb-3">
+            <div class="col">
+                <h1 class="text-center">{{ translator.get("Raffoot") }}</h1>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6 d-grid mx-auto">
+                <button class="btn btn-outline-dark btn-lg" @click="redirect('new-game.html')">
+                    {{ translator.get("New Game").toTitleCase() }}
+                </button>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6 d-grid mx-auto">
+                <button class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#modal-games">{{
+                    translator.get("Load Game").toTitleCase() }}</button></button>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div id="modal-games" class="modal fade" tabindex="-1" aria-labelledby="modal-games-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 id="modal-games-label" class="modal-title fs-5">{{ translator.get("Load Game") }}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col form-group">
+                                <label for="select-games" class="form-label">{{ translator.get("Game") }}</label>
+                                <select id="select-games" class="form-select" @change="getSelectedGame($event)">
+                                    <option></option>
+                                    <option v-for="game in savedGames" :key="game.key" :value="game.key">{{ game.value.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-2 form-label fw-bold">{{ `${translator.get("Club")}:` }}</label>
+                            <div class="col">
+                                <span>{{ selectedGame?.value.clubName }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-2 form-label fw-bold">{{ `${translator.get("Year")}:` }}</label>
+                            <div class="col">
+                                <span>{{ selectedGame?.value.year }}</span>
+                            </div>
+                        </div>
+                        <div class="row" :class="{ 'd-none' : !message.text }">
+                            <div class="col">
+                                <div class="alert alert-dismissible fade show" :class="[`alert-${message.type}`]"
+                                    role="alert">
+                                    {{ message.text }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-4 d-grid">
+                                    <button class="btn btn-primary" :disabled="!selectedGame" @click="loadGame()">
+                                        {{ translator.get("Load Game").toTitleCase() }}
+                                    </button>
+                                </div>
+                                <div class="col-4 d-grid float-end">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                        {{ translator.get("Cancel") }}
+                                    </button>
+                                </div>
+                                <div class="col-4 d-grid float-end">
+                                    <button class="btn btn-danger" :disabled="!selectedGame" @click="deleteGame()">
+                                        {{ translator.get("Delete") }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Raffoot.CrossCutting/ArrayExtensions.js"></script>
+    <script src="../Raffoot.CrossCutting/CanvasHelper.js"></script>
+    <script src="../Raffoot.CrossCutting/DateExtensions.js"></script>
+    <script src="../Raffoot.CrossCutting/ImageHelper.js"></script>
+    <script src="../Raffoot.CrossCutting/Random.js"></script>
+    <script src="../Raffoot.CrossCutting/StringExtensions.js"></script>
+
+    <script src="../Raffoot.Data/ConnectionFactory.js"></script>
+    <script src="../Raffoot.Data/GenericDAO.js"></script>
+
+    <script src="../Raffoot.Domain/Models/Championship.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEdition.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionClub.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionEliminationPhase.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionEliminationPhaseDuel.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionFixture.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionGroup.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionPlayer.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipType.js"></script>
+    <script src="../Raffoot.Domain/Models/Club.js"></script>
+    <script src="../Raffoot.Domain/Models/Country.js"></script>
+    <script src="../Raffoot.Domain/Models/FieldLocalization.js"></script>
+    <script src="../Raffoot.Domain/Models/Formation.js"></script>
+    <script src="../Raffoot.Domain/Models/Game.js"></script>
+    <script src="../Raffoot.Domain/Models/Match.js"></script>
+    <script src="../Raffoot.Domain/Models/MatchClub.js"></script>
+    <script src="../Raffoot.Domain/Models/Player.js"></script>
+    <script src="../Raffoot.Domain/Models/Position.js"></script>
+    <script src="../Raffoot.Domain/Models/Season.js"></script>
+    <script src="../Raffoot.Domain/Models/SeasonDate.js"></script>
+    <script src="../Raffoot.Domain/Models/Squad.js"></script>
+    <script src="../Raffoot.Domain/Models/SquadPlayer.js"></script>
+    <script src="../Raffoot.Domain/Config.js"></script>
+    <script src="../Raffoot.Domain/Context.js"></script>
+    <script src="../Raffoot.Domain/MultiLanguage.js"></script>
+
+    <script src="../Raffoot.Services/ColorManager.js"></script>
+    <script src="../Raffoot.Services/GameFactory.js"></script>
+    <script src="../Raffoot.Services/GameService.js"></script>
+    <script src="../Raffoot.Services/SoFifa23Service.js"></script>
+    <script src="../Raffoot.Services/SoFifaService.js"></script>
+    <script src="../Raffoot.Services/TranslatorService.js"></script>
+
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/vue/vue.global.js"></script>
+</body>
+
+</html>
+
+<script>
+    let gameService = new GameService();
+
+    let RaffootApp = {
+        data() {
+            return {
+                message: { text: "", type: "primary" },
+                savedGames: [],
+                selectedGame: null,
+                translator: new TranslatorService(),
+            }
+        },
+        methods: {
+            getSavedGames: async function () {
+                this.savedGames = await gameService.getSavedGamesWithKeysAsync();
+            },
+            getSelectedGame: async function (event) {
+                this.message.text = "";
+                this.selectedGame = null;
+                let id = event.target.value;
+                let game = id ? this.savedGames.find(g => g.key == id) : null;
+                this.selectedGame = game;
+            },
+            deleteGame: async function () {
+                try {
+                    this.message = { text: this.translator.get('Processing...'), type: 'primary' };
+                    let game = this.selectedGame;
+                    this.selectedGame = null;
+                    await gameService.delete(Vue.toRaw(game));
+                    await this.getSavedGames();
+                    this.message = { text: this.translator.get('Game deleted with success'), type: 'success' };
+                }
+                catch (error) {
+                    console.log(error);
+                    this.error = error;
+                    this.message = { text: error, type: 'danger' };
+                }
+            },
+            loadGame() {
+                if (this.selectedGame) {
+                    let url = `home.html?id=${this.selectedGame.key}`;
+                    this.redirect(url);
+                }
+            },
+            redirect: url => location.href = url,
+        },
+        async mounted() {
+            await this.getSavedGames();
+        }
+    };
+
+    Vue.createApp(RaffootApp).mount('#app');
+</script>

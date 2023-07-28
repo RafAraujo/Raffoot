@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffoot</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="container-fluid" v-if="!gameLoaded">
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        {{ translator.get("Processing...") }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-if="gameLoaded">
+            <header>
+                <nav class="navbar navbar-expand-lg border-bottom border-body"
+                    :class="game.club.foregroundColor == 'white' ? 'bg-light' : 'bg-dark'"
+                    :data-bs-theme="game.club.foregroundColor == 'white' ? 'light' : 'dark'">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="index.html">{{ translator.get("Raffoot") }}</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link" :class="{ 'active' : activeSection == 'matches' }"
+                                        href="#matches" @click="changeSection($event)">
+                                        {{ translator.get("Matches") }}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" :class="{ 'active' : activeSection == 'play' }" href="#play"
+                                        @click="changeSection($event)">
+                                        {{ translator.get("Play") }}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" :class="{ 'active' : activeSection == 'squad' }" href="#squad"
+                                        @click="changeSection($event)">
+                                        {{ translator.get("Squad") }}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" :class="{ 'active' : activeSection == 'calendar' }"
+                                        href="#calendar" @click="changeSection($event)">
+                                        {{ translator.get("Calendar") }}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" :class="{ 'active' : activeSection == 'tables' }" href="#tables"
+                                        @click="changeSection($event)">
+                                        {{ translator.get("Classification Tables") }}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" :class="{ 'active' : activeSection == 'stadium' }"
+                                        href="#stadium" @click="changeSection($event)">
+                                        {{ translator.get("Stadium") }}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" :class="{ 'active' : activeSection == 'finances' }"
+                                        href="#finances" @click="changeSection($event)">
+                                        {{ translator.get("Finances") }}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" :class="{ 'active' : activeSection == 'clubs' }" href="#clubs"
+                                        @click="changeSection($event)">
+                                        {{ translator.get("Clubs") }}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" :class="{ 'active' : activeSection == 'players' }"
+                                        href="#players" @click="changeSection($event)">
+                                        {{ translator.get("Players") }}
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle"
+                                        :class="{ 'active' : ['champions', 'top-scorers', 'ranking'].includes(activeSection) }"
+                                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ translator.get("History") }}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#champions" @click="changeSection($event)">
+                                                {{ translator.get("Champions") }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#top-scorers" @click="changeSection($event)">
+                                                {{ translator.get("Top Scorers") }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#ranking" @click="changeSection($event)">
+                                                {{ translator.get("Ranking") }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <form class="d-flex" role="search">
+                                <input class="form-control me-2" type="search" :placeholder="translator.get('Search')"
+                                    aria-label="Search">
+                                <button class="btn btn-outline-light" type="submit">
+                                    {{ translator.get("Search") }}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <main class="container-fluid">
+                <div class="row mt-2" :class="{ 'd-none' : !message.text }">
+                    <div class="col">
+                        <div class="alert alert-dismissible fade show" :class="[`alert-${message.type}`]" role="alert">
+                            {{ message.text }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <h1 class="fs-3 border-bottom mb-2">{{ game.club.name }}</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <img :src="game.club.getLogoURL()" :alt="game.club.name" :title="game.club.name"
+                            class="img-fluid" style="height: 25%;">
+                    </div>
+                </div>
+            </main>
+            <footer>
+
+            </footer>
+        </div>
+    </div>
+
+    <script src="../Raffoot.CrossCutting/ArrayExtensions.js"></script>
+    <script src="../Raffoot.CrossCutting/CanvasHelper.js"></script>
+    <script src="../Raffoot.CrossCutting/DateExtensions.js"></script>
+    <script src="../Raffoot.CrossCutting/ImageHelper.js"></script>
+    <script src="../Raffoot.CrossCutting/Random.js"></script>
+    <script src="../Raffoot.CrossCutting/StringExtensions.js"></script>
+
+    <script src="../Raffoot.Data/ConnectionFactory.js"></script>
+    <script src="../Raffoot.Data/GenericDAO.js"></script>
+
+    <script src="../Raffoot.Domain/Models/Championship.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEdition.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionClub.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionEliminationPhase.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionEliminationPhaseDuel.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionFixture.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionGroup.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionPlayer.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipType.js"></script>
+    <script src="../Raffoot.Domain/Models/Club.js"></script>
+    <script src="../Raffoot.Domain/Models/Country.js"></script>
+    <script src="../Raffoot.Domain/Models/FieldLocalization.js"></script>
+    <script src="../Raffoot.Domain/Models/Formation.js"></script>
+    <script src="../Raffoot.Domain/Models/Game.js"></script>
+    <script src="../Raffoot.Domain/Models/Match.js"></script>
+    <script src="../Raffoot.Domain/Models/MatchClub.js"></script>
+    <script src="../Raffoot.Domain/Models/Player.js"></script>
+    <script src="../Raffoot.Domain/Models/Position.js"></script>
+    <script src="../Raffoot.Domain/Models/Season.js"></script>
+    <script src="../Raffoot.Domain/Models/SeasonDate.js"></script>
+    <script src="../Raffoot.Domain/Models/Squad.js"></script>
+    <script src="../Raffoot.Domain/Models/SquadPlayer.js"></script>
+    <script src="../Raffoot.Domain/Config.js"></script>
+    <script src="../Raffoot.Domain/Context.js"></script>
+    <script src="../Raffoot.Domain/MultiLanguage.js"></script>
+
+    <script src="../Raffoot.Services/ColorManager.js"></script>
+    <script src="../Raffoot.Services/GameFactory.js"></script>
+    <script src="../Raffoot.Services/GameService.js"></script>
+    <script src="../Raffoot.Services/SoFifa23Service.js"></script>
+    <script src="../Raffoot.Services/SoFifaService.js"></script>
+    <script src="../Raffoot.Services/TranslatorService.js"></script>
+
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/vue/vue.global.js"></script>
+</body>
+
+</html>
+
+<script>
+    let gameService = new GameService();
+
+    let RaffootApp = {
+        data() {
+            return {
+                activeSection: 'play',
+                game: null,
+                gameLoaded: false,
+                message: { text: '', type: 'primary' },
+                translator: new TranslatorService(),
+            }
+        },
+        watch: {
+            clubId(newClubId, oldClubId) {
+                if (newClubId !== oldClubId) {
+                    this.setColors();
+                }
+            }
+        },
+        methods: {
+            changeSection: function (event) {
+                let section = event.target.getAttribute('href').substring(1);
+                setTimeout(() => this.activeSection = section, 1);
+            },
+            loadGame: async function () {
+                const urlParams = new URLSearchParams(location.search);
+                const gameId = parseInt(urlParams.get('id'));
+                this.game = await gameService.loadAsync(gameId);
+            },
+            setColors: function () {
+                let club = this.game.club;
+                document.body.style.backgroundColor = club.backgroundColor;
+                document.body.style.color = club.foregroundColor;
+            }
+        },
+        computed: {
+            clubId() {
+                return this.game?.club.id;
+            },
+        },
+        async created() {
+            await this.loadGame();
+            this.gameLoaded = true;
+        }
+    };
+
+    Vue.createApp(RaffootApp).mount('#app');
+</script>

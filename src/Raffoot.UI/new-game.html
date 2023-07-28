@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffoot</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="container">
+            <div class="row mt-3" v-if="!gameCreated">
+                <div class="col">
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        {{ translator.get("Processing...") }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" v-if="gameCreated">
+            <div class="row mt-3 mb-3">
+                <div class="col text-center">
+                    <h1 class="text-center">{{ translator.get("Raffoot") }}</h1>
+                </div>
+            </div>
+            <div class="row mb-3" :class="{ 'd-none' : !message.text }">
+                <div class="col">
+                    <div class="alert alert-dismissible fade show" :class="[`alert-${message.type}`]" role="alert">
+                        {{ message.text }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+            <form id="form" action="home.html" @submit="startGame($event)">
+                <fieldset>
+                    <legend>{{ translator.get("Choose your club") }}</legend>
+
+                    <div class="row mb-3">
+                        <div class="col form-group">
+                            <label for="country" class="form-label">{{ translator.get("Country") }}</label>
+                            <select id="country" class="form-select" required @change="setCountry($event)">
+                                <option></option>
+                                <option v-for="country in playableCountries" :key="country.id" :value="country.id">
+                                    {{ country.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col form-group">
+                            <label for="club" class="form-label">{{ translator.get("Club") }}</label>
+                            <select id="club" class="form-control" required @change="setClub($event)">
+                                <option></option>
+                                <template v-for="championshipEdition in countryLeagues">
+                                    <optgroup :label="translator.getChampionshipName(championshipEdition.championship)">
+                                        <option v-for="club in championshipEdition.clubs" :key="club.id"
+                                            :value="club.id">
+                                            {{ club.name }}
+                                        </option>
+                                    </optgroup>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col form-group ">
+                            <label for="name" class="form-label">{{ translator.get("Name") }}</label>
+                            <input id="name" type="text" class="form-control" required v-model.lazy="gameName">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="row">
+                    <div class="col-6 col-sm-3 d-grid">
+                        <a href="index.html" class="btn btn-secondary btn-block">{{ translator.get("Back") }}</a>
+                    </div>
+                    <div class="col-6 col-sm-3 d-grid">
+                        <button type="submit" class="btn btn-primary btn-block">{{ translator.get("Start Game")
+                            }}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../Raffoot.CrossCutting/ArrayExtensions.js"></script>
+    <script src="../Raffoot.CrossCutting/CanvasHelper.js"></script>
+    <script src="../Raffoot.CrossCutting/DateExtensions.js"></script>
+    <script src="../Raffoot.CrossCutting/ImageHelper.js"></script>
+    <script src="../Raffoot.CrossCutting/Random.js"></script>
+    <script src="../Raffoot.CrossCutting/StringExtensions.js"></script>
+
+    <script src="../Raffoot.Data/ConnectionFactory.js"></script>
+    <script src="../Raffoot.Data/GenericDAO.js"></script>
+
+    <script src="../Raffoot.Domain/Models/Championship.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEdition.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionClub.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionEliminationPhase.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionEliminationPhaseDuel.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionFixture.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionGroup.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionPlayer.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipType.js"></script>
+    <script src="../Raffoot.Domain/Models/Club.js"></script>
+    <script src="../Raffoot.Domain/Models/Country.js"></script>
+    <script src="../Raffoot.Domain/Models/FieldLocalization.js"></script>
+    <script src="../Raffoot.Domain/Models/Formation.js"></script>
+    <script src="../Raffoot.Domain/Models/Game.js"></script>
+    <script src="../Raffoot.Domain/Models/Match.js"></script>
+    <script src="../Raffoot.Domain/Models/MatchClub.js"></script>
+    <script src="../Raffoot.Domain/Models/Player.js"></script>
+    <script src="../Raffoot.Domain/Models/Position.js"></script>
+    <script src="../Raffoot.Domain/Models/Season.js"></script>
+    <script src="../Raffoot.Domain/Models/SeasonDate.js"></script>
+    <script src="../Raffoot.Domain/Models/Squad.js"></script>
+    <script src="../Raffoot.Domain/Models/SquadPlayer.js"></script>
+    <script src="../Raffoot.Domain/Config.js"></script>
+    <script src="../Raffoot.Domain/Context.js"></script>
+    <script src="../Raffoot.Domain/MultiLanguage.js"></script>
+
+    <script src="../Raffoot.Services/ColorManager.js"></script>
+    <script src="../Raffoot.Services/GameFactory.js"></script>
+    <script src="../Raffoot.Services/GameService.js"></script>
+    <script src="../Raffoot.Services/SoFifa23Service.js"></script>
+    <script src="../Raffoot.Services/SoFifaService.js"></script>
+    <script src="../Raffoot.Services/TranslatorService.js"></script>
+
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/vue/vue.global.js"></script>
+</body>
+
+</html>
+
+<script>
+    let gameService = new GameService();
+
+    let RaffootApp = {
+        data() {
+            return {
+                game: null,
+                gameCreated: false,
+                gameName: '',
+                message: { text: '', type: 'primary' },
+                playableCountries: [],
+                translator: new TranslatorService(),
+            }
+        },
+        methods: {
+            getPlayableCountries() {
+                let countries = 
+                        this.game.championshipEditions
+                        .filter(ce => ce.championship.championshipType.scope === 'national' && ce.championship.championshipType.format === 'league')
+                        .flatMap(ce => ce.championship.countries)
+                        .distinct()
+                        .map(c => ({ id: c.id, name: this.translator.get(c.name) }))
+                        .orderBy('name');
+
+                return countries;
+            },
+            setClub: function (event) {
+                let id = event.target.value;
+                this.game.club = id ? this.game.clubs.find(c => c.id == id) : null;
+            },
+            setCountry: function (event) {
+                let id = event.target.value;
+                this.game.country = id ? this.game.countries.find(c => c.id == id) : null;
+            },
+            startGame: async function (event) {
+                try {
+                    event.preventDefault();
+                    this.game.name = this.gameName;
+                    let id = await gameService.insertAsync(Vue.toRaw(this.game));
+                    this.redirect(`home.html?id=${id}`);
+                }
+                catch (error) {
+                    console.log(error);
+                    this.message = { text: error, type: "danger" };
+                };
+            },
+            redirect: url => location.href = url,
+        },
+        computed: {
+            countryLeagues() {
+                let championshipEditions = [];
+
+                if (this.game) {
+                    championshipEditions = this.game.championshipEditions
+                        .filter(ce => ce.championship.championshipType.scope === 'national' && ce.championship.championshipType.format === 'league' && ce.championship.countries.includes(this.game.country))
+                }
+
+                return championshipEditions;
+            },
+        },
+        mounted() {
+            this.game = gameService.create('');
+            this.playableCountries = this.getPlayableCountries();
+            this.gameCreated = true;
+        }
+    };
+
+    Vue.createApp(RaffootApp).mount('#app');
+</script>
