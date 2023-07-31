@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RaffootLoader.Data;
+using RaffootLoader.Domain.Models;
 using RaffootLoader.Utils;
 using System.Drawing;
 using System.Dynamic;
@@ -77,63 +78,24 @@ namespace RaffootLoader.Services
             }
         }
 
-        public async Task GenerateMultiLanguageFile()
+        public void GenerateMultiLanguageFile()
         {
             try
             {
                 Console.WriteLine("Generating MultiLanguage file...");
 
-                const string PrefixOfContext = "Football - ";
-
+                const string sourceLanguage = "en";
                 const string FileName = "MultiLanguage";
                 var filePath = Path.Combine(_basePath, "Raffoot.Domain", $"{FileName}.js");
 
-                var texts = new List<string>()
-                {
-                    "Age", "Assists", "Audience", "Away",
-                    "Back", "Bronze",
-                    "Calendar", "Cancel", "Capacity", "Category", "Champions", "Classification Tables", "Clear", "Club", "Clubs", "Choose your club", "Contract", "Country", "Creating game...", "Cup",
-                    "Date", "Delete",
-                    "End of Contract", "Energy", "Error", "Expand",
-                    "Final", "Finances", "Formation", "For Sale",
-                    "Game", "Game deleted with success", "Goal", "Goals", "Gold", "Group",
-                    "History", "Home",
-                    "Income",
-                    "League", "Load Game", "Loading game...",
-                    "Market Value", "Match", "Matches",
-                    "Name", "Nationality", "New Game",
-                    "No",
-                    "#Overall",
-                    "Play", "Players", "Position", "Preferred Side", "Processing...",
-                    "Quarter-finals",
-                    "#Raffoot", "Ranking", "Rating", "Round of 16", "Round of 32", "Round of 64",
-                    "Search", "Search Players", "Semifinals", "Silver", "Squad", "Start Game", "Stadium", "Star", "Starting game...", "Supercup",
-                    "Ticket Price", "Top Scorers",
-                    "Wage", "World",
-                    "Year", "Yes"
-                };
+                var languages = Context.Languages;
 
-                var confederations = new[]
-                {
-                    "Argentina", "Brazil", "England", "France", "Germany", "Italy", "Portugal", "Spain",
-                    "BeNe", "British Isles", "Central Europe", "Eastern Europe", "Eurasia", "Scandinavia", "North America", "South America", "Rest of the World",
-                };
-                texts.AddRange(confederations);
-
-                texts.AddRange(confederations.Select(c => $"{c} League"));
-
-                var countries = _context.Countries.OrderBy(c => c.Name);
-                texts.AddRange(countries.Where(c => !texts.Contains(c.Name)).Select(c => c.Name));
-
-                var service = new MicrosoftTranslator();
-
-                var languages = new[] { "pt", "de", "es", "fr", "it", "nl", };
-
-                var tasks = texts
-                    .Select(t => !t.Contains(' ') ? string.Concat(PrefixOfContext, t) : t)
-                    .Select(t => service.Translate(t, languages));
-
-                var translationsResponses = await Task.WhenAll(tasks).ConfigureAwait(false);
+                var translations = _context.Translations.ToList();
+                var englishTranslations = translations
+                    .ToList()
+                    .Where(t => t.Language == translations.Select(t => t.Language).Where(l => l != sourceLanguage).First())
+                    .Select(t => new Translation(t.OriginalText, t.OriginalText, sourceLanguage));
+                translations.AddRange(englishTranslations);
 
                 dynamic json = new ExpandoObject();
 
@@ -142,14 +104,10 @@ namespace RaffootLoader.Services
                     dynamic languageProperty = new ExpandoObject();
                     (json as IDictionary<string, object>).Add(language, languageProperty);
 
-                    var translations = translationsResponses.SelectMany(translationResponses => translationResponses.SelectMany(t => t.Translations)).Where(t => t.To == language).ToList();
-
-                    foreach (var translation in translations.OrderBy(t => t.OriginalText))
+                    foreach (var translation in translations.Where(t => t.Language == language).OrderBy(t => t.OriginalText))
                     {
-                        var originalText = translation.OriginalText.Replace(PrefixOfContext, string.Empty).TrimStart('#');
-                        var translatedText = (translation.OriginalText.StartsWith(PrefixOfContext) ? translation.Text[(translation.Text.IndexOf("- ") + 2)..] : translation.Text).TrimStart('#');
-
-                        (languageProperty as IDictionary<string, object>).Add(originalText, translatedText);
+                        translation.TranslatedText = translation.TranslatedText.WithFirstCharUppercase();
+                        (languageProperty as IDictionary<string, object>).Add(translation.OriginalText, translation.TranslatedText);
                     }
                 }
 
@@ -193,17 +151,16 @@ namespace RaffootLoader.Services
 
                 var clubs = _context.Clubs.OrderBy(c => c.Name);
                 var leagues = _context.Leagues;
+                var progress = 0d;
 
-                foreach (var club in clubs)
+                Parallel.ForEach(clubs, club =>
                 {
                     var mainKitPath = @$"{_imagesFolder}\kits\{club.ExternalId}\1.png";
 
-                    if (File.Exists(mainKitPath))
+                    if (File.Exists(mainKitPath) && OperatingSystem.IsWindows())
                     {
                         using var originalBitmap = BitmapService.ConvertToBitmap(mainKitPath);
-                        var rectangle = CropRectangle(new Rectangle(0, 0, originalBitmap.Width, originalBitmap.Height), 0.65m, 0.25m);
-                        using var bitmap = BitmapService.Crop(originalBitmap, rectangle);
-                        var backColor = BitmapService.GetAverageColor(bitmap);
+                        var backColor = BitmapService.GetAverageColor(originalBitmap);
                         var foreColor = BitmapService.PerceivedBrightness(backColor) > 130 ? Color.Black : Color.White;
 
                         sb.AppendLine(string.Format("\t\tContext.game.clubs.find(c => c.name === \"{0}\" && c.country.name === \"{1}\").setColors('{2}', '{3}');",
@@ -212,8 +169,10 @@ namespace RaffootLoader.Services
                             $"rgb({backColor.R},{backColor.G},{backColor.B})",
                             foreColor.Name.ToLower()));
 
+                        Console.Write("\r{0}%", Math.Round(++progress / clubs.Count() * 100));
                     }
-                }
+                });
+
                 sb.AppendLine("\t}").AppendLine();
 
                 sb.Append('}');

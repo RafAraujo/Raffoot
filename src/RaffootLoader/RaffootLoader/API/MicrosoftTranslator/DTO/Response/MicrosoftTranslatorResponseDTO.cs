@@ -1,15 +1,15 @@
 ﻿using Newtonsoft.Json;
 
-namespace RaffootLoader.DTO.Response
+namespace RaffootLoader.API.MicrosoftTranslator.DTO.Response
 {
     public class MicrosoftTranslatorResponseDTO
     {
 
         [JsonProperty("translations")]
-        public List<TranslationDTO> Translations { get; set; }
+        public List<MicrosoftTranslationDTO> Translations { get; set; }
     }
 
-    public class TranslationDTO
+    public class MicrosoftTranslationDTO
     {
         public string OriginalText { get; set; }
 

@@ -6,11 +6,11 @@ using System.Net;
 
 namespace RaffootLoader.Services
 {
-    public class SoFifaDatabaseService
+    public class SoFifaDataExtractorService
     {
         private const string BaseUrl = "https://sofifa.com/";
 
-        private readonly string _dbName;
+        private readonly Context _context;
 
         private readonly HttpClient _client;
 
@@ -77,68 +77,32 @@ namespace RaffootLoader.Services
         private static readonly List<Player> _players = new();
         private static readonly List<Country> _countries = new();
 
-        public SoFifaDatabaseService(string dbName)
+        public SoFifaDataExtractorService(Context context)
         {
-            _dbName = dbName;
+            _context = context;
+
             _client = new();
+            _client.DefaultRequestHeaders.Add("User-Agent", "C# App");
         }
 
-        public async Task CreateDatabaseIfNotExists()
+        public async Task CreateDatabase()
         {
-            try
+            if (_context.DatabaseExists())
             {
-                if (File.Exists(_dbName))
-                {
-                    Console.WriteLine("Database already exists");
-                }
-                else
-                {
-                    Console.WriteLine("Creating database...");
-
-                    _client.DefaultRequestHeaders.Add("User-Agent", "C# App");
-                    await CreateDatabase().ConfigureAwait(false);
-                }
+                Console.WriteLine("Database already exists");
+                return;
             }
-            catch (Exception ex)
+            else
             {
-                ConsoleUtils.ShowException(ex);
+                Console.WriteLine("Creating database...");
             }
-        }
-
-        public void DropDatabase()
-        {
-            try
-            {
-                Console.WriteLine("Dropping database...");
-
-                if (File.Exists(_dbName))
-                {
-                    File.Move(_dbName, $"{_dbName}.old", true);
-                }
-                File.Delete(_dbName);
-            }
-            catch (Exception ex)
-            {
-                ConsoleUtils.ShowException(ex);
-            }
-        }
-
-        private async Task CreateDatabase()
-        {
-            File.Delete(_dbName);
 
             await GetLeagues().ConfigureAwait(false);
 
-            Save(_leagues);
-            Save(_clubs);
-            Save(_players);
-            Save(_countries.OrderBy(c => c.Name));
-        }
-
-        private void Save<T>(IEnumerable<T> items)
-        {
-            var repository = new Repository<T>(_dbName);
-            repository.InsertMany(items);
+            _context.InsertMany(_leagues);
+            _context.InsertMany(_clubs);
+            _context.InsertMany(_players);
+            _context.InsertMany(_countries.OrderBy(c => c.Name));
         }
 
         private async Task GetLeagues()

@@ -1,6 +1,5 @@
 ﻿using RaffootLoader.Data;
 using RaffootLoader.Utils;
-using System.Threading.Tasks;
 
 namespace RaffootLoader.Services
 {

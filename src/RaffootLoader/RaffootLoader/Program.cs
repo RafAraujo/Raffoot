@@ -1,4 +1,5 @@
-﻿using RaffootLoader.Data;
+﻿using RaffootLoader.API.MicrosoftTranslator;
+using RaffootLoader.Data;
 using RaffootLoader.Enums;
 using RaffootLoader.Services;
 using System.Reflection;
@@ -9,11 +10,11 @@ var consoleAppPath = Assembly.GetExecutingAssembly().Location;
 var basePath = @$"{consoleAppPath}\..\..\..\..\..\..\";
 var imagesPath = Path.Combine(basePath, @"Raffoot.UI\res");
 
-var service = new SoFifaDatabaseService(DbName);
 var context = new Context(DbName);
+var dataExtractor = new SoFifaDataExtractorService(context);
 var imageDownloader = new SoFifaImageDownloaderService(context, imagesPath);
+var translator = new TranslatorService(context, basePath);
 var fileGenerator = new JavaScriptFileGenerator(context, basePath, imagesPath);
-
 
 WriteInstructions();
 
@@ -29,16 +30,19 @@ while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
     switch (option)
     {
         case (int)ProgramOption.DropDatabase:
-            service.DropDatabase();
+            context.DropDatabase();
             break;
         case (int)ProgramOption.CreateDatabase:
-            await service.CreateDatabaseIfNotExists().ConfigureAwait(false);
+            await dataExtractor.CreateDatabase();
             break;
         case (int)ProgramOption.GenerateSoFifaServiceFile:
             fileGenerator.GenerateSoFifaServiceFile();
             break;
-        case (int)ProgramOption.GenerateMultilanguageFile:
-            await fileGenerator.GenerateMultiLanguageFile().ConfigureAwait(false);
+        case (int)ProgramOption.UpdateTranslations:
+            await translator.UpdateTranslations();
+            break;
+        case (int)ProgramOption.GenerateMultiLanguageFile:
+            fileGenerator.GenerateMultiLanguageFile();
             break;
         case (int)ProgramOption.DownloadFlags:
             await imageDownloader.DownloadFlags().ConfigureAwait(false);

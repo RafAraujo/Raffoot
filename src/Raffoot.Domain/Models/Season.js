@@ -53,7 +53,7 @@ class Season {
 
         for (let ce of this.championshipEditions) {
             this._defineChampionshipEditionClubs(ce);
-            let dates = this.seasonDates.filter(sd => sd.championshipType.id === ce.championship.championshipType.id).map(sd => sd.date);
+            const dates = this.seasonDates.filter(sd => sd.championshipType.id === ce.championship.championshipType.id).map(sd => sd.date);
             ce.scheduleMatches(dates.lastItems(ce.championship.dateCount));
         }
     }
@@ -63,9 +63,9 @@ class Season {
     }
 
     _defineChampionshipEditions() {
-        let championships = this.championshipTypes.map(ct => ct.championships).flat();
+        const championships = this.championshipTypes.map(ct => ct.championships).flat();
         for (let championship of championships) {
-            let championshipEdition = ChampionshipEdition.create(championship, this.year);
+            const championshipEdition = ChampionshipEdition.create(championship, this.year);
             this._championshipEditionsIds.push(championshipEdition.id);
         }
     }
@@ -97,8 +97,8 @@ class Season {
     }
 
     _defineCalendar() {
-        let nationalSupercup = ChampionshipType.find('national', 'supercup');
-        let internationalSupercup = ChampionshipType.find('international', 'supercup');
+        const nationalSupercup = ChampionshipType.find('national', 'supercup');
+        const internationalSupercup = ChampionshipType.find('international', 'supercup');
 
         let date = Date.firstSunday(1, this.year);
         this._addSeasonDate(date, nationalSupercup);
@@ -124,8 +124,8 @@ class Season {
     }
 
     _totallyScheduled(championshipType) {
-        let scheduledDates = this.seasonDates.filter(sd => sd.championshipType === championshipType).length;
-        let neededDates = this.championshipEditions
+        const scheduledDates = this.seasonDates.filter(sd => sd.championshipType === championshipType).length;
+        const neededDates = this.championshipEditions
             .filter(ce => ce.championship.championshipType === championshipType)
             .map(ce => ce.championship.dateCount)
             .max();
@@ -134,9 +134,9 @@ class Season {
     }
 
     advanceDate() {
-        let previousDate = this.currentDate;
+        const previousDate = this.currentDate;
         this._currentSeasonDateIndex++;
-        let days = Date.daysDiff(previousDate, this.currentDate);
+        const days = Date.daysDiff(previousDate, this.currentDate);
 
         for (let club of Context.game.clubs) {
             club.squad.rest(days);

@@ -147,7 +147,10 @@
                 <div class="row">
                     <div class="col-3">
                         <img :src="game.club.getLogoURL()" :alt="game.club.name" :title="game.club.name"
-                            class="img-fluid" style="height: 25%;">
+                            class="img-fluid">
+                    </div>
+                    <div class="col">
+                        <p>{{ `${this.translator.get("Division")} ${game.getNationalLeague(this.game.club)?.championship.division}` }}</p>
                     </div>
                 </div>
             </main>

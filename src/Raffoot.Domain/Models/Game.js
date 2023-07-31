@@ -45,6 +45,22 @@ class Game {
         return Season.getById(this._currentSeasonId);
     }
 
+    getCurrentNationalLeagues() {
+        const nationalLeague = ChampionshipType.find('national', 'league');
+        const championshipEditions = this.currentSeason.championshipEditions.filter(ce => ce.championship.championshipType.id === nationalLeague.id);
+        return championshipEditions;
+    }
+
+    getNationalLeague(club) {
+        const nationalLeagues = this.getCurrentNationalLeagues();
+        for (const nationalLeague of nationalLeagues) {
+            if (nationalLeague.clubs.map(c => c.id).includes(club.id)) {
+                return nationalLeague;
+            }
+        }
+        return null;
+    }
+
     newSeason() {
         let year = this.firstYear;
         let championshipTypes = this.championshipTypes;
