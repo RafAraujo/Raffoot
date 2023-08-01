@@ -6,7 +6,7 @@ namespace RaffootLoader.Data
 {
     public class Context : IContext
     {
-        private readonly string _dbName;
+        private readonly string _dbPath;
 
         private IEnumerable<League> _leagues;
         private IEnumerable<Club> _clubs;
@@ -16,22 +16,22 @@ namespace RaffootLoader.Data
 
         public IEnumerable<League> Leagues
         {
-            get => _leagues ??= new Repository<League>(_dbName).GetAll();
+            get => _leagues ??= new Repository<League>(_dbPath).GetAll();
         }
 
         public IEnumerable<Club> Clubs
         {
-            get => _clubs ??= new Repository<Club>(_dbName).GetAll();
+            get => _clubs ??= new Repository<Club>(_dbPath).GetAll();
         }
 
         public IEnumerable<Player> Players
         {
-            get => _players ??= new Repository<Player>(_dbName).GetAll();
+            get => _players ??= new Repository<Player>(_dbPath).GetAll();
         }
 
         public IEnumerable<Country> Countries
         {
-            get => _countries ??= new Repository<Country>(_dbName).GetAll();
+            get => _countries ??= new Repository<Country>(_dbPath).GetAll();
         }
 
         public static IEnumerable<string> Languages
@@ -41,15 +41,15 @@ namespace RaffootLoader.Data
 
         public IEnumerable<Translation> Translations
         {
-            get => _translations is null || !_translations.Any() ? _translations = new Repository<Translation>(_dbName).GetAll() : _translations;
+            get => _translations is null || !_translations.Any() ? _translations = new Repository<Translation>(_dbPath).GetAll() : _translations;
         }
 
         public Context(string dbName)
         {
-            _dbName = dbName;
+            _dbPath = dbName;
         }
 
-        public bool DatabaseExists() => File.Exists(_dbName);
+        public bool DatabaseExists() => File.Exists(_dbPath);
 
         public void DropDatabase()
         {
@@ -57,11 +57,11 @@ namespace RaffootLoader.Data
             {
                 Console.WriteLine("Dropping database...");
 
-                if (File.Exists(_dbName))
+                if (File.Exists(_dbPath))
                 {
-                    File.Move(_dbName, $"{_dbName}.old", true);
+                    File.Move(_dbPath, $"{_dbPath}.old", true);
                 }
-                File.Delete(_dbName);
+                File.Delete(_dbPath);
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace RaffootLoader.Data
 
         public void InsertMany<T>(IEnumerable<T> items)
         {
-            var repository = new Repository<T>(_dbName);
+            var repository = new Repository<T>(_dbPath);
             repository.InsertMany(items);
         }
     }
