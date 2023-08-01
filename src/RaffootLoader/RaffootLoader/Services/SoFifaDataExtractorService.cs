@@ -121,10 +121,11 @@ namespace RaffootLoader.Services
         {
             var clubs = new List<Club>();
 
+            var current = 0;
+
             foreach (var league in leagues)
             {
-                Console.WriteLine("{0}{1} {2}", Environment.NewLine, league.Country, league.Division);
-                Console.WriteLine();
+                ConsoleUtils.ShowProgress(++current, leagues.Count(), $"Clubs: ");
 
                 var url = string.Format("{0}{1}{2}", BaseUrl, "teams/?lg=", league.ExternalId);
                 var doc = await GetHtmlDocument(url);
@@ -150,7 +151,6 @@ namespace RaffootLoader.Services
                     club.Name = div.InnerText;
 
                     clubs.Add(club);
-                    Console.Write("{0}, ", club.Name);
                 }
             }
 
@@ -161,8 +161,13 @@ namespace RaffootLoader.Services
         {
             var players = new List<Player>();
 
+            var current = 0;
+            Console.WriteLine();
+
             foreach (var club in clubs)
             {
+                ConsoleUtils.ShowProgress(++current, clubs.Count(), $"Players: ");
+
                 var url = string.Format("{0}{1}{2}", BaseUrl, "team/", club.ExternalId);
                 var doc = await GetHtmlDocument(url).ConfigureAwait(false);
 

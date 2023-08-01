@@ -71,11 +71,11 @@ static void ConfigureServices(IServiceCollection serviceCollection)
     var consoleAppPath = Assembly.GetExecutingAssembly().Location;
     var basePath = @$"{consoleAppPath}\..\..\..\..\..\..\";
     var dbPath = Path.Combine(basePath, @"RaffootLoader\Raffoot.db");
-    var imagesPath = Path.Combine(basePath, @"Raffoot.UI\res");
+    var imagesPath = Path.Combine(basePath, @"Raffoot.UI\res\");
 
     serviceCollection.AddScoped<IContext, Context>(sp => new Context(dbPath));
     serviceCollection.AddScoped<IDataExtractorService, SoFifaDataExtractorService>();
-    serviceCollection.AddScoped<IImageDownloaderService, SoFifaImageDownloaderService>(sp => new SoFifaImageDownloaderService(sp.GetService<IContext>(), basePath));
+    serviceCollection.AddScoped<IImageDownloaderService, SoFifaImageDownloaderService>(sp => new SoFifaImageDownloaderService(sp.GetService<IContext>(), imagesPath));
     serviceCollection.AddScoped<ITranslatorService, TranslatorService>(sp => new TranslatorService(sp.GetService<IContext>(), basePath));
     serviceCollection.AddScoped<IJavaScriptFileGenerator, JavaScriptFileGenerator>(sp => new JavaScriptFileGenerator(sp.GetService<IContext>(), basePath, imagesPath));
 }

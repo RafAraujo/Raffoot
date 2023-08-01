@@ -14,13 +14,13 @@ namespace RaffootLoader.Services
     {
         private readonly IContext _context;
         private readonly string _basePath;
-        private readonly string _imagesFolder;
+        private readonly string _imagesPath;
 
         public JavaScriptFileGenerator(IContext context, string basePath, string imagesPath)
         {
             _context = context;
             _basePath = basePath;
-            _imagesFolder = imagesPath;
+            _imagesPath = imagesPath;
         }
 
         public void GenerateSoFifaServiceFile()
@@ -153,14 +153,14 @@ namespace RaffootLoader.Services
 
                 var clubs = _context.Clubs.OrderBy(c => c.Name);
                 var leagues = _context.Leagues;
-                var progress = 0d;
+                var current = 0;
 
                 var array = new[] { "--name", "--count" };
 
                 Parallel.ForEach(clubs, club =>
                 {
-                    var logoPath = @$"{_imagesFolder}\clubs\{club.ExternalId}.png";
-                    var mainKitPath = @$"{_imagesFolder}\kits\{club.ExternalId}\1.png";
+                    var logoPath = @$"{_imagesPath}\clubs\{club.ExternalId}.png";
+                    var mainKitPath = @$"{_imagesPath}\kits\{club.ExternalId}\1.png";
 
                     if (File.Exists(mainKitPath) && OperatingSystem.IsWindows())
                     {
@@ -175,7 +175,7 @@ namespace RaffootLoader.Services
                             $"rgb({backColor.R},{backColor.G},{backColor.B})",
                             foreColor.Name.ToLower()));
 
-                        Console.Write("\r{0}%", Math.Round(++progress / clubs.Count() * 100));
+                        ConsoleUtils.ShowProgress(current, clubs.Count());
                     }
                 });
 
