@@ -1,20 +1,20 @@
-﻿using RaffootLoader.API.MicrosoftTranslator;
+﻿using Microsoft.Extensions.DependencyInjection;
 using RaffootLoader.Data;
+using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Enums;
 using RaffootLoader.Services;
+using RaffootLoader.Services.Interfaces;
 using System.Reflection;
 
-const string DbName = "SoFifa.db";
+var serviceCollection = new ServiceCollection();
+ConfigureServices(serviceCollection);
+var serviceProvider = serviceCollection.BuildServiceProvider();
 
-var consoleAppPath = Assembly.GetExecutingAssembly().Location;
-var basePath = @$"{consoleAppPath}\..\..\..\..\..\..\";
-var imagesPath = Path.Combine(basePath, @"Raffoot.UI\res");
-
-var context = new Context(DbName);
-var dataExtractor = new SoFifaDataExtractorService(context);
-var imageDownloader = new SoFifaImageDownloaderService(context, imagesPath);
-var translator = new TranslatorService(context, basePath);
-var fileGenerator = new JavaScriptFileGenerator(context, basePath, imagesPath);
+var context = serviceProvider.GetService<IContext>();
+var dataExtractor = serviceProvider.GetService<IDataExtractorService>();
+var imageDownloader = serviceProvider.GetService<IImageDownloaderService>();
+var translator = serviceProvider.GetService<ITranslatorService>();
+var fileGenerator = serviceProvider.GetService<IJavaScriptFileGenerator>();
 
 WriteInstructions();
 
@@ -27,42 +27,57 @@ while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
         continue;
     }
 
-    switch (option)
+    switch ((ProgramOption)option)
     {
-        case (int)ProgramOption.DropDatabase:
+        case ProgramOption.DropDatabase:
             context.DropDatabase();
             break;
-        case (int)ProgramOption.CreateDatabase:
+        case ProgramOption.CreateDatabase:
             await dataExtractor.CreateDatabase();
             break;
-        case (int)ProgramOption.GenerateSoFifaServiceFile:
+        case ProgramOption.GenerateSoFifaServiceFile:
             fileGenerator.GenerateSoFifaServiceFile();
             break;
-        case (int)ProgramOption.UpdateTranslations:
+        case ProgramOption.UpdateTranslations:
             await translator.UpdateTranslations();
             break;
-        case (int)ProgramOption.GenerateMultiLanguageFile:
+        case ProgramOption.GenerateMultiLanguageFile:
             fileGenerator.GenerateMultiLanguageFile();
             break;
-        case (int)ProgramOption.DownloadFlags:
+        case ProgramOption.DownloadFlags:
             await imageDownloader.DownloadFlags().ConfigureAwait(false);
             break;
-        case (int)ProgramOption.DownloadLogos:
+        case ProgramOption.DownloadLogos:
             await imageDownloader.DownloadLogos().ConfigureAwait(false);
             break;
-        case (int)ProgramOption.DownloadKits:
+        case ProgramOption.DownloadKits:
             await imageDownloader.DownloadKits().ConfigureAwait(false);
             break;
-        case (int)ProgramOption.DownloadPhotos:
+        case ProgramOption.DownloadPhotos:
             await imageDownloader.DownloadPhotos().ConfigureAwait(false);
             break;
-        case (int)ProgramOption.GenerateColorManagerFile:
+        case ProgramOption.GenerateColorManagerFile:
             fileGenerator.GenerateColorManagerFile();
             break;
     }
 
     Console.WriteLine();
     WriteInstructions();
+}
+
+static void ConfigureServices(IServiceCollection serviceCollection)
+{
+    const string DbName = "SoFifa.db";
+
+    var consoleAppPath = Assembly.GetExecutingAssembly().Location;
+    var basePath = @$"{consoleAppPath}\..\..\..\..\..\..\";
+    var imagesPath = Path.Combine(basePath, @"Raffoot.UI\res");
+
+    serviceCollection.AddScoped<IContext, Context>(sp => new Context(DbName));
+    serviceCollection.AddScoped<IDataExtractorService, SoFifaDataExtractorService>();
+    serviceCollection.AddScoped<IImageDownloaderService, SoFifaImageDownloaderService>(sp => new SoFifaImageDownloaderService(sp.GetService<IContext>(), basePath));
+    serviceCollection.AddScoped<ITranslatorService, TranslatorService>(sp => new TranslatorService(sp.GetService<IContext>(), basePath));
+    serviceCollection.AddScoped<IJavaScriptFileGenerator, JavaScriptFileGenerator>(sp => new JavaScriptFileGenerator(sp.GetService<IContext>(), basePath, imagesPath));
 }
 
 static void WriteInstructions()

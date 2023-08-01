@@ -18,7 +18,7 @@ namespace RaffootLoader.Services
             return bitmap;
         }
 
-        public static Color GetAverageColor(Bitmap bitmap)
+        public static Color GetAverageColor(IEnumerable<Bitmap> bitmaps)
         {
             var r = 0;
             var g = 0;
@@ -26,22 +26,25 @@ namespace RaffootLoader.Services
 
             var total = 0;
 
-            for (var i = 0; i < bitmap.Width; i++)
+            foreach (var bitmap in bitmaps)
             {
-                for (int j = 0; j < bitmap.Height; j++)
+                for (var i = 0; i < bitmap.Width; i++)
                 {
-                    var color = bitmap.GetPixel(i, j);
-
-                    if (new[] { color.R, color.G, color.B }.All(c => c == 0))
+                    for (int j = 0; j < bitmap.Height; j++)
                     {
-                        continue;
+                        var color = bitmap.GetPixel(i, j);
+
+                        if (new[] { color.R, color.G, color.B }.All(c => c == 0 || c == 255))
+                        {
+                            continue;
+                        }
+
+                        r += color.R;
+                        g += color.G;
+                        b += color.B;
+
+                        total++;
                     }
-
-                    r += color.R;
-                    g += color.G;
-                    b += color.B;
-
-                    total++;
                 }
             }
 

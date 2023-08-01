@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using RaffootLoader.Data;
+using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Models;
+using RaffootLoader.Services.Interfaces;
 using RaffootLoader.Utils;
 using System.Drawing;
 using System.Dynamic;
@@ -8,13 +10,13 @@ using System.Text;
 
 namespace RaffootLoader.Services
 {
-    public class JavaScriptFileGenerator
+    public class JavaScriptFileGenerator : IJavaScriptFileGenerator
     {
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly string _basePath;
         private readonly string _imagesFolder;
 
-        public JavaScriptFileGenerator(Context context, string basePath, string imagesPath)
+        public JavaScriptFileGenerator(IContext context, string basePath, string imagesPath)
         {
             _context = context;
             _basePath = basePath;
@@ -153,14 +155,18 @@ namespace RaffootLoader.Services
                 var leagues = _context.Leagues;
                 var progress = 0d;
 
+                var array = new[] { "--name", "--count" };
+
                 Parallel.ForEach(clubs, club =>
                 {
+                    var logoPath = @$"{_imagesFolder}\clubs\{club.ExternalId}.png";
                     var mainKitPath = @$"{_imagesFolder}\kits\{club.ExternalId}\1.png";
 
                     if (File.Exists(mainKitPath) && OperatingSystem.IsWindows())
                     {
-                        using var originalBitmap = BitmapService.ConvertToBitmap(mainKitPath);
-                        var backColor = BitmapService.GetAverageColor(originalBitmap);
+                        //using var logoBitmap = BitmapService.ConvertToBitmap(logoPath);
+                        using var mainKitBitmap = BitmapService.ConvertToBitmap(mainKitPath);
+                        var backColor = BitmapService.GetAverageColor(new[] { mainKitBitmap });
                         var foreColor = BitmapService.PerceivedBrightness(backColor) > 130 ? Color.Black : Color.White;
 
                         sb.AppendLine(string.Format("\t\tContext.game.clubs.find(c => c.name === \"{0}\" && c.country.name === \"{1}\").setColors('{2}', '{3}');",

@@ -120,16 +120,13 @@ class GenericDAO {
         });
     }
 
-    async deleteAsync(entity, store = null) {
-        if (store == null)
-            store = entity.constructor.name;
-
+    async deleteAsync(store, id) {
         return new Promise((resolve, reject) => {
 
             let request = this._connection
                 .transaction([store], 'readwrite')
                 .objectStore(store)
-                .delete(entity.id);
+                .delete(id);
 
             request.onsuccess = () => resolve();
 

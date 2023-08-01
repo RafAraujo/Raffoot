@@ -60,9 +60,9 @@ class GameService {
         return game;
     }
 
-    async delete(game) {
+    async delete(id) {
         let dao = await this.getDaoAsync();
-        await dao.deleteAsync(game);
+        await dao.deleteAsync('Game', id);
         ConnectionFactory.closeConnection();
     }
 

@@ -1,9 +1,10 @@
-﻿using RaffootLoader.Domain.Models;
+﻿using RaffootLoader.Data.Interfaces;
+using RaffootLoader.Domain.Models;
 using RaffootLoader.Utils;
 
 namespace RaffootLoader.Data
 {
-    public class Context
+    public class Context : IContext
     {
         private readonly string _dbName;
 

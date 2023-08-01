@@ -1,15 +1,16 @@
-﻿using RaffootLoader.Data;
+﻿using RaffootLoader.Data.Interfaces;
+using RaffootLoader.Services.Interfaces;
 using RaffootLoader.Utils;
 
 namespace RaffootLoader.Services
 {
-    public class SoFifaImageDownloaderService
+    public class SoFifaImageDownloaderService : IImageDownloaderService
     {
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly string _imagesFolder;
         private readonly HttpClient _client;
 
-        public SoFifaImageDownloaderService(Context context, string imagesFolder)
+        public SoFifaImageDownloaderService(IContext context, string imagesFolder)
         {
             _context = context;
             _imagesFolder = imagesFolder;
@@ -62,7 +63,6 @@ namespace RaffootLoader.Services
 
                 foreach (var club in _context.Clubs)
                 {
-
                     var url = club.Logo.Split(' ')[2];
                     var fileName = $"{club.ExternalId}{Path.GetExtension(url)}";
                     var filePath = Path.Combine(_imagesFolder, "clubs", fileName);
@@ -106,15 +106,13 @@ namespace RaffootLoader.Services
                     foreach (var kit in club.Kits)
                     {
                         var url = kit.Split(' ')[2];
-                        var fileName = $"{index}{Path.GetExtension(url)}";
+                        var fileName = $"{index++}{Path.GetExtension(url)}";
                         var filePath = Path.Combine(folderPath, fileName);
 
                         if (!File.Exists(filePath))
                         {
                             tasks.Add(DownloadImage(url, filePath));
                         }
-
-                        index++;
                     }
                 }
 
@@ -180,7 +178,7 @@ namespace RaffootLoader.Services
             Directory.CreateDirectory(folder);
         }
 
-        private async Task DownloadImage(string url, string filePath)
+        public async Task DownloadImage(string url, string filePath)
         {
             using var stream = await _client.GetStreamAsync(url).ConfigureAwait(false);
             using var fileStream = new FileStream(filePath, FileMode.OpenOrCreate);

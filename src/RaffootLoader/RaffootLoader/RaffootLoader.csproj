@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.50" />
     <PackageReference Include="LiteDB" Version="5.0.17" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
   </ItemGroup>

@@ -1,14 +1,15 @@
 ﻿using RaffootLoader.API;
 using RaffootLoader.API.MicrosoftTranslator;
-using RaffootLoader.Data;
+using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Models;
+using RaffootLoader.Services.Interfaces;
 using RaffootLoader.Utils;
 
 namespace RaffootLoader.Services
 {
-    public class TranslatorService
+    public class TranslatorService : ITranslatorService
     {
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly string _basePath;
         private readonly ITranslatorApi _translatorApi;
 
@@ -41,7 +42,7 @@ namespace RaffootLoader.Services
         private const string PrefixOfContext = "Football";
         private const string Separator = " - ";
 
-        public TranslatorService(Context context, string basePath)
+        public TranslatorService(IContext context, string basePath)
         {
             _context = context;
             _basePath = basePath;
