@@ -175,7 +175,7 @@ namespace RaffootLoader.Services
                             $"rgb({backColor.R},{backColor.G},{backColor.B})",
                             foreColor.Name.ToLower()));
 
-                        ConsoleUtils.ShowProgress(current, clubs.Count());
+                        ConsoleUtils.ShowProgress(++current, clubs.Count());
                     }
                 });
 
