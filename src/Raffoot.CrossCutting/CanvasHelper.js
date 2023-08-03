@@ -1,6 +1,27 @@
 class CanvasHelper {
+    static getTextWidth(text, font = null) {
+        const canvas = CanvasHelper.canvas ?? (CanvasHelper.canvas = document.createElement('canvas'));
+        const context = canvas.getContext('2d');
+        context.font = font ?? this.getCanvasFont();
+        const metrics = context.measureText(text);
+        return metrics.width;
+    }
+
+    static getCssStyle(element, prop) {
+        return window.getComputedStyle(element, null).getPropertyValue(prop);
+    }
+
+    static getCanvasFont(el = document.body) {
+        const fontWeight = this.getCssStyle(el, 'font-weight') || 'normal';
+        const fontSize = this.getCssStyle(el, 'font-size') || '16px';
+        const fontFamily = this.getCssStyle(el, 'font-family') || 'Times New Roman';
+
+        return `${fontWeight} ${fontSize} ${fontFamily}`;
+    }
+
+
     static async createFromImageURL(url, width = null, height = null, sx = null, sy = null, sw = null, sh = null, dx = null, dy = null, dw = null, dh = null) {
-        let image = await ImageHelper.create(url);
+        const image = await ImageHelper.create(url);
         return this.createFromImage(image, width = null, height = null, sx = null, sy = null, sw = null, sh = null, dx = null, dy = null, dw = null, dh = null);
     }
 
@@ -16,27 +37,27 @@ class CanvasHelper {
         dw ??= image.naturalWidth;
         dh ??= image.naturalHeight;
 
-        let canvas = document.createElement("canvas");
+        const canvas = document.createElement('canvas');
         canvas.width = width;
         canvas.height = height;
 
-        let ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext('2d');
         ctx.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
 
         return canvas;
     }
 
     static createFromImageCropped(image, newWidthPercentage = 0, newHeightPercentage = 0) {
-        let croppedWidth = image.naturalWidth * newWidthPercentage;
-        let croppedHeight = image.naturalWidth * newHeightPercentage;
+        const croppedWidth = image.naturalWidth * newWidthPercentage;
+        const croppedHeight = image.naturalWidth * newHeightPercentage;
 
-        let width = image.naturalWidth - croppedWidth;
-        let height = image.naturalWidth - croppedHeight;
+        const width = image.naturalWidth - croppedWidth;
+        const height = image.naturalWidth - croppedHeight;
 
-        let sx = croppedWidth / 2;
-        let sy = croppedHeight / 2;
+        const sx = croppedWidth / 2;
+        const sy = croppedHeight / 2;
 
-        let canvas = this.createFromImage(image, width, height, sx, sy);
+        const canvas = this.createFromImage(image, width, height, sx, sy);
         return canvas;
     }
 }

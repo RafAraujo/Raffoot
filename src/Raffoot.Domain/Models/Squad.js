@@ -41,7 +41,7 @@ class Squad {
     }
 
     get starting11() {
-        return this.squadPlayers.filter(sp => sp.fieldLocalization).orderBy('id');
+        return this.squadPlayers.filter(sp => sp.fieldLocalization).orderBy('fieldLocalization.line', 'fieldLocalization.column');
     }
 
     get substitutes() {
@@ -61,9 +61,13 @@ class Squad {
         this.changeFormation(formation);
     }
 
+    getPlayerByFieldLocalizationName(fieldLocalizationName) {
+        return this.starting11.find(sp => sp.fieldLocalization.Name === fieldLocalizationName);
+    }
+
     getBestAvailableSquadPlayerForFieldLocalization(fieldLocalization) {
         let squadPlayers = this.substitutes.filter(sp => sp.player.positions.includes(fieldLocalization.position));
-        return squadPlayers.length > 0 ? squadPlayers.orderBy('-ranking')[0] : null;
+        return squadPlayers.length > 0 ? squadPlayers.orderBy('-player.overall')[0] : null;
     }
 
     getBestAvailableSquadPlayersForPosition(position) {

@@ -9,6 +9,47 @@
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <style>
+        body {
+            cursor: default;
+        }
+
+        .field {
+            background: url('res/grass\ -\ dark.png') repeat;
+            background-size: auto;
+            height: 525px;
+            color: white;
+        }
+
+        .field img {
+            max-width: 3rem;
+            max-height: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .player {
+            width: 20%;
+            max-width: 20%;
+        }
+
+        .player span {
+            white-space: nowrap;
+        }
+
+        .player .overall {
+            left: 70%;
+            top: 30%;
+            z-index: 2;
+        }
+
+        .player .energy {
+            left: 5%;
+            height: 0.25rem;
+            width: 90%;
+        }
+    </style>
 </head>
 
 <body>
@@ -144,15 +185,34 @@
                         <h1 class="fs-3 border-bottom mb-2">{{ game.club.name }}</h1>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-3">
-                        <img :src="game.club.getLogoURL()" :alt="game.club.name" :title="game.club.name"
-                            class="img-fluid">
+                <section id="play">
+                    <div class="row">
+                        <div class="col"></div>
                     </div>
-                    <div class="col">
-                        <p>{{ `${this.translator.get("Division")} ${game.getNationalLeague(this.game.club)?.championship.division}` }}</p>
+                    <div class="row">
+                        <div class="col col-md-6 col-xl-4">
+                            <div class="field position-relative border">
+                                <template v-for="squadPlayer in this.game.club.squad.starting11">
+                                    <div class="player position-absolute text-center"
+                                        :style="{ top: (11 - squadPlayer.fieldLocalization.line) * 7.7 + '%', left: (squadPlayer.fieldLocalization.column) * 20 + '%' }">
+                                        <img :src="squadPlayer.player.getPhotoURL()">
+                                        <div class="energy progress position-relative" :title="squadPlayer.player.energy">
+                                            <div class="progress-bar bg-success" role="progressbar" :aria-valuenow="squadPlayer.player.energy" aria-valuemin="0" aria-valuemax="100" :style="{ width: squadPlayer.player.energy + '%' }"></div>
+                                        </div>
+                                        <div :dir="squadPlayer.fieldLocalization.column < 3 ? 'ltr' : 'rtl'">
+                                            <span class="d-inline-block position-relative">
+                                                {{ squadPlayer.player.surname }}
+                                            </span>
+                                        </div>
+                                        <div class="overall position-absolute">
+                                            {{ squadPlayer.overall }}
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
             </main>
             <footer>
 
@@ -216,6 +276,7 @@
         data() {
             return {
                 activeSection: 'play',
+                canvasHelper: CanvasHelper,
                 game: null,
                 gameLoaded: false,
                 message: { text: '', type: 'primary' },
@@ -253,7 +314,7 @@
         async created() {
             await this.loadGame();
             this.gameLoaded = true;
-        }
+        },
     };
 
     Vue.createApp(RaffootApp).mount('#app');

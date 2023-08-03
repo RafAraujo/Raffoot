@@ -57,7 +57,8 @@ namespace RaffootLoader.Services
 
                         foreach (var player in _context.Players.Where(p => p.ClubId == club.ExternalId))
                         {
-                            sb.AppendLine(string.Format("\t\tPlayer.create(\"{0}\", \"{1}\", [{2}], {3}, {4}, club, {5});",
+                            sb.AppendLine(string.Format("\t\tPlayer.create(\"{0}\", \"{1}\", \"{2}\", [{3}], {4}, {5}, club, {6});",
+                                player.FullName,
                                 player.Name,
                                 player.Country,
                                 string.Join(", ", player.Positions.Select(p => $"'{p}'")),
@@ -154,8 +155,6 @@ namespace RaffootLoader.Services
                 var clubs = _context.Clubs.OrderBy(c => c.Name);
                 var leagues = _context.Leagues;
                 var current = 0;
-
-                var array = new[] { "--name", "--count" };
 
                 Parallel.ForEach(clubs, club =>
                 {

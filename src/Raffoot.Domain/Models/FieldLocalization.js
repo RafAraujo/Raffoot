@@ -19,6 +19,10 @@ class FieldLocalization {
         return Context.game.fieldLocalizations[id - 1];
     }
 
+	static getByName(name) {
+		return Context.game.fieldLocalizations.find(fl => fl.name === name);
+	}
+
     static seed() {
 		FieldLocalization.create('GK', 'GK', 0, 2);
 		FieldLocalization.create('LCB', 'CB', 2, 1);
@@ -70,6 +74,10 @@ class FieldLocalization {
 
 	get isOutOfTheField() {
 		return this.line === null;
+	}
+
+	getStyleLeftTop() {
+
 	}
 
 	calculateDistanceTo(fieldLocalization) {

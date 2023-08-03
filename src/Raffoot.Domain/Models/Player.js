@@ -1,5 +1,6 @@
 class Player {
-    constructor(name, countryId, positionIds, age, overall, clubId, externalId) {
+    constructor(fullName, name, countryId, positionIds, age, overall, clubId, externalId) {
+        this.fullName = fullName;
         this.name = name;
         this._countryId = countryId;
         this._positionIds = positionIds;
@@ -11,10 +12,10 @@ class Player {
         this.goals = 0;
     }
 
-    static create(name, countryName, positionAbbreviations, age, overall, club, externalId) {
+    static create(fullName, name, countryName, positionAbbreviations, age, overall, club, externalId) {
         let country = Context.game.countries.find(c => c.name === countryName);
         let positionIds = positionAbbreviations.map(pa => Context.game.positions.find(p => p.abbreviation === pa).id);
-        let player = new Player(name, country.id, positionIds, age, overall, club.id, externalId);
+        let player = new Player(fullName, name, country.id, positionIds, age, overall, club.id, externalId);
         player.id = Context.game.players.push(player);
         club.addPlayer(player);
         SquadPlayer.create(club.squad, player);
@@ -25,8 +26,28 @@ class Player {
         return Context.game.players[id - 1];
     }
 
+    static getByName(name) {
+        return Context.game.players.find(p => p.name === name);
+    }
+
+    static getByFullName(fullName) {
+        return Context.game.players.find(p => p.fullName === fullName);
+    }
+
     static getCategory(overall) {
         return overall >= 80 ? 'gold' : overall >= 60 ? 'silver' : 'bronze';
+    }
+
+    get surname() {
+        const array = this.name.split(' ');
+        if (array.length > 1 && array[0].endsWith('.')) {
+            array.shift();
+            const name = array.join(' ');
+            return name;
+        }
+        else {
+            return this.name;
+        }
     }
 
     get club() {
