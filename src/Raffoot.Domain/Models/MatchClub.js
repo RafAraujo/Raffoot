@@ -53,24 +53,26 @@ class MatchClub {
         this._goals = value;
     }
 
-    arrangeTeam() {
-        this.matchPlayers = [];
-        this.club.squad.starting11.forEach(sp => this.addMatchPlayer(sp));
-    }
-
-    playersAt(fieldRegion) {
-        return this.matchPlayers.filter(mp => mp.fieldLocalization.position.fieldRegion === fieldRegion);
+    addGoal() {
+        this._goals++;
     }
 
     addMatchPlayer(squadPlayer) {
         this.matchPlayers.push(new MatchPlayer(this, squadPlayer));
     }
 
-    regionOverall(fieldRegion) {
-        return this.playersAt(fieldRegion).map(mp => mp.overall).sum();
+    arrangeTeam() {
+        this.matchPlayers = [];
+        for (let squadPlayer of this.club.squad.starting11) {
+            this.addMatchPlayer(squadPlayer);
+        }
     }
 
-    addGoal() {
-        this._goals++;
+    getPlayersAt(fieldRegion) {
+        return this.matchPlayers.filter(mp => mp.fieldLocalization.position.fieldRegion === fieldRegion);
+    }
+
+    regionOverall(fieldRegion) {
+        return this.getPlayersAt(fieldRegion).map(mp => mp.overall).sum();
     }
 }

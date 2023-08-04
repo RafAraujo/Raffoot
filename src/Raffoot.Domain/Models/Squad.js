@@ -45,7 +45,7 @@ class Squad {
     }
 
     get substitutes() {
-        return this.squadPlayers.filter(sp => !sp.fieldLocalization);
+        return this.squadPlayers.filter(sp => !sp.fieldLocalization).orderBy('player.position.id', 'player.position.id');
     }
 
     get wage() {
@@ -57,7 +57,7 @@ class Squad {
     }
 
     arrange() {
-        let formation = this.getRecommendedFormation();
+        const formation = this.getRecommendedFormation();
         this.changeFormation(formation);
     }
 
@@ -66,8 +66,9 @@ class Squad {
     }
 
     getBestAvailableSquadPlayerForFieldLocalization(fieldLocalization) {
-        let squadPlayers = this.substitutes.filter(sp => sp.player.positions.includes(fieldLocalization.position));
-        return squadPlayers.length > 0 ? squadPlayers.orderBy('-player.overall')[0] : null;
+        const squadPlayers = this.substitutes.filter(sp => sp.player.positions.includes(fieldLocalization.position));
+        const squadPlayer = squadPlayers.length > 0 ? squadPlayers.orderBy('-player.overall')[0] : null;
+        return squadPlayer;
     }
 
     getBestAvailableSquadPlayersForPosition(position) {
@@ -83,10 +84,10 @@ class Squad {
     }
 
     getRecommendedFormation() {
-        let ranking = [];
+        const ranking = [];
 
         for (let formation of Context.game.formations) {
-            let players = this.players.filter(pl => pl.positions.some(pos => formation.positions.includes(pos)));
+            const players = this.players.filter(pl => pl.positions.some(pos => formation.positions.includes(pos)));
             
             ranking.push({
                 formation: formation,
@@ -103,17 +104,19 @@ class Squad {
     }
 
     setAutomaticLineUp() {
-        this.squadPlayers.forEach(sp => sp.fieldLocalization = null);
+        for (let squadPlayer of this.squadPlayers) {
+            squadPlayer.fieldLocalization = null;
+        }
 
         for (let fieldLocalization of this.formation.fieldLocalizations.reverse()) {
-            let ranking = [];
+            const ranking = [];
             let chosenSquadPlayer = this.getBestAvailableSquadPlayerForFieldLocalization(fieldLocalization);
 
             if (chosenSquadPlayer === null) {
                 let squadPlayers = this.getBestAvailableSquadPlayersForPosition(fieldLocalization.position);
 
                 for (let squadPlayer of squadPlayers) {
-                    let playerNearestFieldLocalization = squadPlayer.player.getNearestFieldLocalization(fieldLocalization);
+                    const playerNearestFieldLocalization = squadPlayer.player.getNearestFieldLocalization(fieldLocalization);
 
                     ranking.push({
                         squadPlayer: squadPlayer,
@@ -130,7 +133,7 @@ class Squad {
     }
 
     setSquadPlayerAtFieldLocalization(squadPlayer, fieldLocalization) {
-        let currentSquadPlayer = this.starting11.find(sp => sp.fieldLocalization === fieldLocalization);
+        const currentSquadPlayer = this.starting11.find(sp => sp.fieldLocalization === fieldLocalization);
         if (currentSquadPlayer)
             this.swapRoles(currentSquadPlayer, squadPlayer);
         else
@@ -138,7 +141,7 @@ class Squad {
     }
 
     swapRoles(squadPlayer1, squadPlayer2) {
-        let aux = squadPlayer1.fieldLocalization;
+        const aux = squadPlayer1.fieldLocalization;
         squadPlayer1.fieldLocalization = squadPlayer2.fieldLocalization;
         squadPlayer2.fieldLocalization = aux;
     }

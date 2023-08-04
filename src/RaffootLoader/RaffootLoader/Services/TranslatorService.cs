@@ -17,13 +17,13 @@ namespace RaffootLoader.Services
         {
             "Age", "Assists", "Audience", "Away",
             "Back", "Ball Possession", "Board of Directors", "Bronze",
-            "Calendar", "Cancel", "Capacity", "Category", "Champions", "Classification Tables", "Club", "Clubs", "Choose your club", "Coach", "Contract", "Country", "Creating game...", "Cup",
+            "Calendar", "Cancel", "Capacity", "Category", "Champions", "Champions Cup", "Classification Tables", "Club", "Clubs", "Choose your club", "Coach", "Conference Cup", "Contract", "Country", "Creating game...", "Cup",
             "Date", "Delete", "Division",
             "End of Contract", "Energy", "Error", "Expand",
             "Final", "Finances", "Formation", "For Sale", "Free kick", "Free kick taker",
             "Game", "Game deleted with success", "Goal", "Goals", "Gold", "Group",
             "History", "Home",
-            "Income",
+            "Income", "International Supercup",
             "League", "Load Game", "Loading game...",
             "Market Value", "Matches",
             "Name", "Nationality", "New Game",
@@ -123,6 +123,8 @@ namespace RaffootLoader.Services
 
             texts.AddRange(confederations);
             texts.AddRange(confederations.Select(c => $"{c} League"));
+            texts.AddRange(confederations.Select(c => $"{c} Cup"));
+            texts.AddRange(confederations.Select(c => $"{c} Supercup"));
 
             var countries = _context.Countries.OrderBy(c => c.Name);
             texts.AddRange(countries.Where(c => !texts.Contains(c.Name)).Select(c => c.Name));

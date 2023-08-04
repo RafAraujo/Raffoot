@@ -151,11 +151,11 @@ class Season {
         return this.matches.filter(m => m.date.getTime() === date.getTime());
     }
 
-    getMatchesByClub(club) {
-        return this.matches.filter(m => m.matchClubs.map(mc => mc.club).includes(club)).orderBy('date');;
+    getMatchesByClubId(clubId) {
+        return this.matches.filter(m => m.matchClubs.map(mc => mc.club?.id).includes(clubId)).orderBy('date');;
     }
 
-    nextMatch(club) {
-        return this.getMatchesByClub(club).find(m => m.date >= this.currentDate);
+    getNextMatch(clubId) {
+        return this.getMatchesByClubId(clubId).find(m => m.date >= this.currentDate);
     }
 }

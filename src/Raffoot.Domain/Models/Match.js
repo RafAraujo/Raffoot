@@ -22,12 +22,12 @@ class Match {
         return ChampionshipEdition.getById(this._championshipEditionId);
     }
 
-    get clubs() {
-        return this.matchClubs.map(mc => mc.club);
-    }
-
     get matchClubs() {
         return Context.game.matchClubs.filterByIds(this._matchClubIds);
+    }
+
+    get clubs() {
+        return this.matchClubs.map(mc => mc.club);
     }
 
     get matchClubHome() {
@@ -41,7 +41,7 @@ class Match {
     }
 
     get description() {
-        return `${this.matchClubHome.club.name} x ${this.matchClubAway.club.name}`;
+        return `${this.matchClubHome.club.name} × ${this.matchClubAway.club.name}`;
     }
 
     get income() {
@@ -57,7 +57,7 @@ class Match {
     }
 
     _formattedScore(matchClub1, matchClub2) {
-        return this.finished ? `${matchClub1.goals} x ${matchClub2.goals}` : '';
+        return this.finished ? `${matchClub1.goals} × ${matchClub2.goals}` : '';
     }
 
     addClub(club, situation) {
@@ -65,8 +65,17 @@ class Match {
         this._matchClubIds.push(matchClub.id);
     }
 
-    getGoalsByClub(club) {
-        return this.matchClubs.find(mc => mc.club === club).goals;
+    getGoalsByClubId(clubId) {
+        return this.matchClubs.find(mc => mc.club.id === clubId).goals;
+    }
+
+    getOpponent(clubId) {
+        if (this.clubs.map(c => c.id).includes(clubId)) {
+            return this.clubs.find(c => c.id != clubId);
+        }
+        else {
+            throw new Error('This match does not include the club');
+        }
     }
 
     prepare() {

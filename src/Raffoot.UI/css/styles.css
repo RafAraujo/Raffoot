@@ -4,18 +4,11 @@
 
 body {
     cursor: default;
+    user-select: none;
 }
 
 h1 {
     vertical-align: middle;
-}
-
-.club-title div {
-    vertical-align: middle;
-}
-
-.club-title img {
-    max-height: 4rem;
 }
 
 .field {
@@ -42,7 +35,7 @@ h1 {
 }
 
 .player .overall {
-    left: 75%;
+    left: 5%;
     top: 30%;
     z-index: 2;
 }

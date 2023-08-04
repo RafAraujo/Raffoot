@@ -141,26 +141,52 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div class="club-title border-bottom mb-2">
-                            <div class="d-inline-block me-2">
-                                <img :src="game.club.getLogoURL()">
+                        <div class="club-title border-bottom mb-2" style="margin-top: 1px;">
+                            <div class="d-inline-block align-middle me-2">
+                                <img :src="game.club.getLogoURL()" :alt="game.club.name" :title="game.club.name"
+                                    style="max-height: 4rem;">
                             </div>
-                            <div class="d-inline-block">
+                            <div class="d-inline-block align-middle">
                                 <h1 class="fs-3 m-0">{{ game.club.name }}</h1>
                             </div>
                         </div>
                     </div>
                 </div>
                 <section id="play">
-                    <div class="row">
-                        <div class="col"></div>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <div class="next-match pt-2 pb-2">
+                                <div>
+                                    <div class="d-inline-block align-middle ms-1 me-3">
+                                        <img :src="nextMatch.getOpponent(game.club.id).getLogoURL()"
+                                            style="max-height: 3rem;">
+                                    </div>
+                                    <div class="d-inline-block align-middle">
+                                        <div>
+                                            <h5>{{ nextMatch.description }}</h5>
+                                            <p>
+                                                {{
+                                                translator.getChampionshipName(nextMatch.championshipEdition.championship)
+                                                }}
+                                                <br>
+                                                {{ nextMatch.date.toLocaleDateString() }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-light border" style="min-width: 6rem;">{{
+                                        translator.get("Play") }}</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col col-md-6 col-xl-4">
+                        <div class="col-12 col-md-6 col-xl-4">
                             <div class="field position-relative border">
                                 <template v-for="squadPlayer in this.game.club.squad.starting11">
                                     <div class="player position-absolute text-center"
-                                        :style="{ top: (11 - squadPlayer.fieldLocalization.line) * 7.7 + '%', left: (squadPlayer.fieldLocalization.column) * 20 + '%' }">
+                                        :style="{ top: (11 - squadPlayer.fieldLocalization.line) * 7.6 + '%', left: (squadPlayer.fieldLocalization.column) * 20 + '%' }">
                                         <img :src="squadPlayer.player.getPhotoURL()" :alt="squadPlayer.player.fullName"
                                             :title="squadPlayer.player.fullName" onerror="this.src='res/players/0.svg'">
                                         <div class="energy progress position-relative"
@@ -181,6 +207,28 @@
                                     </div>
                                 </template>
                             </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <table class="table table-hover">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                    <template v-for="squadPlayer in this.game.club.squad.starting11">
+                                        <tr>
+                                            <td>{{ squadPlayer.player.position.abbreviation }}</td>
+                                            <td>{{ squadPlayer.player.surname }}</td>
+                                            <td>{{ squadPlayer.player.overall }}</td>
+                                        </tr>
+                                    </template>
+                                    <template v-for="squadPlayer in this.game.club.squad.substitutes">
+                                        <tr>
+                                            <td>{{ squadPlayer.player.position.abbreviation }}</td>
+                                            <td>{{ squadPlayer.player.surname }}</td>
+                                            <td>{{ squadPlayer.player.overall }}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </section>
@@ -275,12 +323,16 @@
                 let club = this.game.club;
                 document.body.style.backgroundColor = club.backgroundColor;
                 document.body.style.color = club.foregroundColor;
-            }
+            },
+            toRaw: Vue.toRaw,
         },
         computed: {
             clubId() {
                 return this.game?.club.id;
             },
+            nextMatch() {
+                return this.game.currentSeason.getNextMatch(this.game.club.id);
+            }
         },
         async created() {
             await this.loadGame();
