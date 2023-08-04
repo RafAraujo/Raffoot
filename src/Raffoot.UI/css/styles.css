@@ -1,3 +1,54 @@
 [v-cloak] {
     display: none;
 }
+
+body {
+    cursor: default;
+}
+
+h1 {
+    vertical-align: middle;
+}
+
+.club-title div {
+    vertical-align: middle;
+}
+
+.club-title img {
+    max-height: 4rem;
+}
+
+.field {
+    background: url('../res/grass\ -\ dark.png') repeat;
+    background-size: auto;
+    height: 475px;
+    color: white;
+}
+
+.field img {
+    max-width: 3rem;
+    max-height: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.player {
+    width: 20%;
+    max-width: 20%;
+}
+
+.player span {
+    white-space: nowrap;
+}
+
+.player .overall {
+    left: 75%;
+    top: 30%;
+    z-index: 2;
+}
+
+.player .energy {
+    left: 5%;
+    height: 0.25rem;
+    width: 90%;
+}

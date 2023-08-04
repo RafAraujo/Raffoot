@@ -30,7 +30,7 @@ class Country {
         this._clubIds.push(club.id);
     }
 
-    async getFlagURL() {
+    getFlagURL() {
         return `${Config.folders.flagsFolder}/${this.name}.png`;
     }
 }
