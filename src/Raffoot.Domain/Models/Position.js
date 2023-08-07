@@ -7,7 +7,7 @@ class Position {
     }
 
     static create(name, abbreviation, fieldRegion) {
-        let position = new Position(name, abbreviation, fieldRegion);
+        const position = new Position(name, abbreviation, fieldRegion);
         position.id = Context.game.positions.push(position);
         return position;
     }
@@ -18,16 +18,16 @@ class Position {
 
     static seed() {
 		Position.create('Goalkeeper', 'GK', 'goal');
-		Position.create('Center Back', 'CB', 'defense');
+		Position.create('Central Back', 'CB', 'defense');
 		Position.create('Left Back', 'LB', 'defense');
 		Position.create('Right Back', 'RB', 'defense');
 		Position.create('Left Wing Back', 'LWB', 'defense');
 		Position.create('Right Wing Back', 'RWB', 'defense');
-		Position.create('Center Defensive Midfielder', 'CDM', 'midfield');
-		Position.create('Center Midfielder', 'CM', 'midfield');
+		Position.create('Central Defensive Midfielder', 'CDM', 'midfield');
+		Position.create('Central Midfielder', 'CM', 'midfield');
 		Position.create('Left Midfielder', 'LM', 'midfield');
 		Position.create('Right Midfielder', 'RM', 'midfield');
-		Position.create('Center Attacking Midfielder', 'CAM', 'midfield');
+		Position.create('Central Attacking Midfielder', 'CAM', 'midfield');
 		Position.create('Left Wing', 'LW', 'attack');
 		Position.create('Right Wing', 'RW', 'attack');
 		Position.create('Center Forward', 'CF', 'attack');

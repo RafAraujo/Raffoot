@@ -21,8 +21,8 @@ class TranslatorService {
 
     static getLanguage() {
         let availableLanguages = Object.getOwnPropertyNames(MultiLanguage);
-        let browserLanguage = (navigator.language || navigator.userLanguage).substring(0, 2);
-        let language = availableLanguages.find(l => l == browserLanguage) ?? "en";
+        let browserLanguage = navigator.language || navigator.userLanguage;
+        let language = availableLanguages.find(l => l === browserLanguage || browserLanguage.startsWith(l)) ?? "en";
         return language;
     }
 }

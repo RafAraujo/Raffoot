@@ -181,54 +181,74 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12 col-md-6 col-xl-4">
-                            <div class="field position-relative border">
+                    <div class="row mb-2">
+                        <div class="col-12 col-md-6 col-xl-4 mb-2">
+                            <div class="field position-relative border" style="height: 475px"
+                                @click="this.selectedSquadPlayerId = null">
                                 <template v-for="squadPlayer in this.game.club.squad.starting11">
                                     <div class="player position-absolute text-center"
-                                        :style="{ top: (11 - squadPlayer.fieldLocalization.line) * 7.6 + '%', left: (squadPlayer.fieldLocalization.column) * 20 + '%' }">
+                                        :class="{ 'border blink' : squadPlayer.id === this.selectedSquadPlayerId }"
+                                        :data-squad-player-id="squadPlayer.id" @click.stop="clickPlayer($event)"
+                                        :style="{ top: (11 - squadPlayer.fieldLocalization.line) * 7.7 + '%', left: (squadPlayer.fieldLocalization.column) * 20 + '%' }">
+                                        <div>
+                                            <div class="position position-absolute"
+                                                :class="{ 'improvised' : squadPlayer.isImprovised }">
+                                                {{ squadPlayer.fieldLocalization.name }}
+                                            </div>
+                                            <div class="overall position-absolute">
+                                                {{ squadPlayer.overall }}
+                                            </div>
+                                        </div>
                                         <img :src="squadPlayer.player.getPhotoURL()" :alt="squadPlayer.player.fullName"
-                                            :title="squadPlayer.player.fullName" onerror="this.src='res/players/0.svg'">
+                                            :title="squadPlayer.player.fullName" onerror="this.onerror = null; this.src='res/players/0.svg'">
                                         <div class="energy progress position-relative"
-                                            :title="squadPlayer.player.energy">
+                                            :title="`${translator.get('Energy')} ${squadPlayer.player.energy}%`">
                                             <div class="progress-bar bg-success" role="progressbar"
                                                 :aria-valuenow="squadPlayer.player.energy" aria-valuemin="0"
                                                 aria-valuemax="100" :style="{ width: squadPlayer.player.energy + '%' }">
                                             </div>
                                         </div>
                                         <div :dir="squadPlayer.fieldLocalization.column < 3 ? 'ltr' : 'rtl'">
-                                            <span class="d-inline-block position-relative">
+                                            <span class="d-inline-block position-relative text-nowrap">
                                                 {{ squadPlayer.player.surname }}
                                             </span>
-                                        </div>
-                                        <div class="overall position-absolute">
-                                            {{ squadPlayer.overall }}
                                         </div>
                                     </div>
                                 </template>
                             </div>
                         </div>
                         <div class="col-12 col-md-6 col-xl-4">
-                            <table class="table table-hover">
-                                <thead>
-                                </thead>
-                                <tbody>
-                                    <template v-for="squadPlayer in this.game.club.squad.starting11">
-                                        <tr>
-                                            <td>{{ squadPlayer.player.position.abbreviation }}</td>
-                                            <td>{{ squadPlayer.player.surname }}</td>
-                                            <td>{{ squadPlayer.player.overall }}</td>
-                                        </tr>
-                                    </template>
-                                    <template v-for="squadPlayer in this.game.club.squad.substitutes">
-                                        <tr>
-                                            <td>{{ squadPlayer.player.position.abbreviation }}</td>
-                                            <td>{{ squadPlayer.player.surname }}</td>
-                                            <td>{{ squadPlayer.player.overall }}</td>
-                                        </tr>
-                                    </template>
-                                </tbody>
-                            </table>
+                            <div class="bench position-relative border" @click="this.selectedSquadPlayerId = null">
+                                <template v-for="squadPlayer in this.game.club.squad.substitutes">
+                                    <div class="player d-inline-block text-center"
+                                        :class="{ 'border blink' : squadPlayer.id === this.selectedSquadPlayerId }"
+                                        :data-squad-player-id="squadPlayer.id" @click.stop="clickPlayer($event)">
+                                        <div class="position-relative">
+                                            <div class="position position-absolute"
+                                                :class="{ 'improvised' : squadPlayer.isImprovised }">
+                                                {{ squadPlayer.player.position.abbreviation }}
+                                            </div>
+                                            <div class="overall position-absolute">
+                                                {{ squadPlayer.overall }}
+                                            </div>
+                                        </div>
+                                        <img :src="squadPlayer.player.getPhotoURL()" :alt="squadPlayer.player.fullName"
+                                            :title="squadPlayer.player.fullName" onerror="this.src='res/players/0.svg'">
+                                        <div class="energy progress position-relative"
+                                            :title="`${translator.get('Energy')} ${squadPlayer.player.energy}%`">
+                                            <div class="progress-bar bg-success" role="progressbar"
+                                                :aria-valuenow="squadPlayer.player.energy" aria-valuemin="0"
+                                                aria-valuemax="100" :style="{ width: squadPlayer.player.energy + '%' }">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span class="d-inline-block position-relative text-nowrap">
+                                                {{ squadPlayer.player.surname }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -299,6 +319,7 @@
                 game: null,
                 gameLoaded: false,
                 message: { text: '', type: 'primary' },
+                selectedSquadPlayerId: null,
                 translator: new TranslatorService(),
             }
         },
@@ -313,6 +334,19 @@
             changeSection: function (event) {
                 let section = event.target.getAttribute('href').substring(1);
                 setTimeout(() => this.activeSection = section, 1);
+            },
+            clickPlayer: function (event) {
+                const div = event.currentTarget;
+                const squadPlayerId = parseInt(div.getAttribute("data-squad-player-id"));
+                const squadPlayer = SquadPlayer.getById(squadPlayerId);
+                if (this.selectedSquadPlayerId) {
+                    const selectedSquadPlayer = SquadPlayer.getById(this.selectedSquadPlayerId);
+                    this.game.club.squad.swapRoles(selectedSquadPlayer, squadPlayer);
+                    this.selectedSquadPlayerId = null;
+                }
+                else {
+                    this.selectedSquadPlayerId = squadPlayerId;
+                }
             },
             loadGame: async function () {
                 const urlParams = new URLSearchParams(location.search);

@@ -24,14 +24,14 @@ namespace RaffootLoader.Services
             "Game", "Game deleted with success", "Goal", "Goals", "Gold", "Group",
             "History", "Home",
             "Income", "International Supercup",
-            "League", "Load Game", "Loading game...",
+            "League", "Left", "Load Game", "Loading game...",
             "Market Value", "Matches",
             "Name", "Nationality", "New Game",
             "No",
             "Offside", "Overall",
             "Penalty", "penalty taker", "Play", "Players", "Position", "Preferred Side", "Processing...",
             "Quarter-finals",
-            "Raffoot", "Ranking", "Referee", "Renew contract", "Round of 16", "Round of 32", "Round of 64",
+            "Raffoot", "Ranking", "Referee", "Renew contract", "Right", "Round of 16", "Round of 32", "Round of 64",
             "Save Game", "Search", "Search Players", "Semifinals", "Silver", "Squad", "Stadium", "Start Game", "Star", "Starting game...", "Statistics", "Supercup",
             "Ticket Price", "Top Scorers", "Trust",
             "Wage", "World",
@@ -39,7 +39,7 @@ namespace RaffootLoader.Services
         };
         private readonly string[] _fixedTexts = new[] { "BeNe", "Overall", "Raffoot" };
 
-        private const string PrefixOfContext = "Football";
+        private const string PrefixOfContext = "Men's Football";
         private const string Separator = " - ";
 
         public TranslatorService(IContext context, string basePath)
@@ -60,11 +60,11 @@ namespace RaffootLoader.Services
 
                 const string sourceLanguage = "en";
 
-                var languages = new[] { "pt" };
+                var languages = new[] { "pt-BR" };
 
                 var dbTranslations = _context.Translations.Select(t => t.OriginalText);
                 var originalTexts = GetTextsToTranslate();
-                var textsToTranslate = originalTexts.Where(t => !dbTranslations.Contains(t));
+                var textsToTranslate = originalTexts.Where(t => !dbTranslations.Select(dbT => dbT.ToLower()).Contains(t.ToLower()));
                 var textsToTranslateAgain = new List<string>();
                 var fixedTexts = textsToTranslate.Where(t => _fixedTexts.Contains(t));
 
@@ -115,12 +115,20 @@ namespace RaffootLoader.Services
         {
             var texts = _texts.ToList();
 
+            var positions = new[]
+            {
+                "Goalkeeper", "Central Back", "Left Back", "Right Back", "Left Wing Back", "Right Wing Back",
+                "Central Defensive Midfielder", "Left Midfielder", "Right Midfielder", "Central Attacking Midfielder",
+                "Left Wing", "Right Wing", "Center Forward", "Striker"
+            };
+
             var confederations = new[]
             {
                 "Argentina", "Brazil", "England", "France", "Germany", "Italy", "Portugal", "Spain",
                 "BeNe", "British Isles", "Central Europe", "Eastern Europe", "Eurasia", "Scandinavia", "North America", "South America", "Rest of the World",
             };
 
+            texts.AddRange(positions);
             texts.AddRange(confederations);
             texts.AddRange(confederations.Select(c => $"{c} League"));
             texts.AddRange(confederations.Select(c => $"{c} Cup"));

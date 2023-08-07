@@ -7,7 +7,7 @@ class ChampionshipEditionGroup {
     }
 
     static create(championshipEdition, number) {
-        let championshipEditionGroup = new ChampionshipEditionGroup(championshipEdition.id, number);
+        const championshipEditionGroup = new ChampionshipEditionGroup(championshipEdition.id, number);
         championshipEditionGroup.id = Context.game.championshipEditionGroups.push(championshipEditionGroup);
         return championshipEditionGroup;
     }

@@ -10,7 +10,7 @@ class ChampionshipEditionPlayer {
     }
 
     static create(player) {
-        let championshipEditionPlayer = new ChampionshipEditionPlayer(player.id);
+        const championshipEditionPlayer = new ChampionshipEditionPlayer(player.id);
         championshipEditionPlayer.id = Context.game.championshipEditionPlayers.push(championshipEditionPlayer);
         return championshipEditionPlayer;
     }

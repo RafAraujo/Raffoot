@@ -8,7 +8,7 @@ class ChampionshipType {
     }
 
     static create(scope, format, regulation, isTwoLeggedTie) {
-        let championshipType = new ChampionshipType(scope, format, regulation, isTwoLeggedTie);
+        const championshipType = new ChampionshipType(scope, format, regulation, isTwoLeggedTie);
         championshipType.id = Context.game.championshipTypes.push(championshipType);
         return championshipType;
     }

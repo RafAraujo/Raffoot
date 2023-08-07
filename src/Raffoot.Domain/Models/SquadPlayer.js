@@ -1,20 +1,24 @@
 class SquadPlayer {
-    constructor(squadId, playerId) {
+    constructor(squadId, playerId, order) {
         this._squadId = squadId;
         this._playerId = playerId;
         this._fieldLocalizationId = null;
-        this.substitutionIndex = null;
+        this.order = order;
     }
 
     static create(squad, player) {
-        let squadPlayer = new SquadPlayer(squad.id, player.id);
+        const squadPlayer = new SquadPlayer(squad.id, player.id, player.position.id);
         squadPlayer.id = Context.game.squadPlayers.push(squadPlayer);
         squad.addSquadPlayer(squadPlayer);
         return squadPlayer;
     }
 
     static getById(id) {
-        return Context.squadPlayers[id - 1];
+        return Context.game.squadPlayers[id - 1];
+    }
+
+    get category() {
+        return Player.getCategory(this.overall);
     }
 
     get fieldLocalization() {
@@ -26,7 +30,12 @@ class SquadPlayer {
     }
 
     get isImprovised() {
-        return !this.player.positions.some(p => p.fieldLocalization === this.fieldLocalization);
+        if (this.fieldLocalization) {
+            return !this.player.positions.some(p => p.fieldLocalizations.includes(this.fieldLocalization));
+        }
+        else {
+            return false;
+        }
     }
 
     get overall() {

@@ -5,7 +5,7 @@ class ChampionshipEditionFixture {
     }
 
     static create(championshipEdition, number) {
-        let championshipEditionFixture = new ChampionshipEditionFixture(championshipEdition.id, number);
+        const championshipEditionFixture = new ChampionshipEditionFixture(championshipEdition.id, number);
         championshipEditionFixture.id = Context.game.championshipEditionFixtures.push(championshipEditionFixture);
         return championshipEditionFixture;
     }

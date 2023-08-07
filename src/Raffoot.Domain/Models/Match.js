@@ -8,7 +8,7 @@ class Match {
     }
 
     static create(championshipEdition, date) {
-        let match = new Match(date, championshipEdition.id);
+        const match = new Match(date, championshipEdition.id);
         match.id = Context.game.matches.push(match);
         championshipEdition.addMatch(match);
         return match;
@@ -31,12 +31,12 @@ class Match {
     }
 
     get matchClubHome() {
-        let matchClub = this.matchClubs.find(mc => mc.situation === 'home');
+        const matchClub = this.matchClubs.find(mc => mc.situation === 'home');
         return matchClub ? matchClub : this.matchClubs[0];
     }
 
     get matchClubAway() {
-        let matchClub = this.matchClubs.find(mc => mc.situation === 'away');
+        const matchClub = this.matchClubs.find(mc => mc.situation === 'away');
         return matchClub ? matchClub : this.matchClubs[1];
     }
 
@@ -61,7 +61,7 @@ class Match {
     }
 
     addClub(club, situation) {
-        let matchClub = MatchClub.create(this, club, situation);
+        const matchClub = MatchClub.create(this, club, situation);
         this._matchClubIds.push(matchClub.id);
     }
 

@@ -36,7 +36,7 @@ namespace RaffootLoader.Data
 
         public static IEnumerable<string> Languages
         {
-            get => new[] { "de", "en", "es", "fr", "it", "nl", "pt", };
+            get => new[] { "de", "en", "es", "fr", "it", "nl", "pt-BR", };
         }
 
         public IEnumerable<Translation> Translations

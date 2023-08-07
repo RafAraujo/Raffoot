@@ -5,7 +5,7 @@ class Country {
     }
 
     static create(name) {
-        let country = new Country(name);
+        const country = new Country(name);
         country.id = Context.game.countries.push(country);
         return country;
     }

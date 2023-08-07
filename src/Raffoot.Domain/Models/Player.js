@@ -13,9 +13,9 @@ class Player {
     }
 
     static create(fullName, name, countryName, positionAbbreviations, age, overall, club, externalId) {
-        let country = Context.game.countries.find(c => c.name === countryName);
-        let positionIds = positionAbbreviations.map(pa => Context.game.positions.find(p => p.abbreviation === pa).id);
-        let player = new Player(fullName, name, country.id, positionIds, age, overall, club.id, externalId);
+        const country = Context.game.countries.find(c => c.name === countryName);
+        const positionIds = positionAbbreviations.map(pa => Context.game.positions.find(p => p.abbreviation === pa).id);
+        const player = new Player(fullName, name, country.id, positionIds, age, overall, club.id, externalId);
         player.id = Context.game.players.push(player);
         club.addPlayer(player);
         SquadPlayer.create(club.squad, player);
@@ -50,6 +50,10 @@ class Player {
         }
     }
 
+    get category() {
+        return this.getCategory(this.overall);
+    }
+
     get club() {
         return Club.getById(this._clubId);
     }
@@ -67,7 +71,8 @@ class Player {
     }
 
     get positions() {
-        return Context.game.positions.filterByIds(this._positionIds);
+        return [this.position];
+        //return Context.game.positions.filterByIds(this._positionIds);
     }
 
     get idealFieldLocalizations() {
@@ -82,7 +87,7 @@ class Player {
         if (this.positions.includes(fieldLocalization.position))
             return fieldLocalization;
         
-        let results = [];
+        const results = [];
         for (let idealFieldLocalization of this.idealFieldLocalizations) {
             results.push({
                 fieldLocalization: idealFieldLocalization,

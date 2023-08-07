@@ -9,8 +9,8 @@ class Season {
     }
 
     static create(year, championshipTypes) {
-        let championshipTypeIds = championshipTypes.map(ct => ct.id);
-        let season = new Season(year, championshipTypeIds);
+        const championshipTypeIds = championshipTypes.map(ct => ct.id);
+        const season = new Season(year, championshipTypeIds);
         season.id = Context.game.seasons.push(season);
         return season;
     }

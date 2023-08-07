@@ -176,6 +176,7 @@
                 try {
                     event.preventDefault();
                     this.game.name = this.gameName;
+                    this.game.club.squad.setOrder();
                     let id = await gameService.insertAsync(Vue.toRaw(this.game));
                     this.redirect(`home.html?id=${id}`);
                 }

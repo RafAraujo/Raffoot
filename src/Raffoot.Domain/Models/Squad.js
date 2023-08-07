@@ -6,7 +6,7 @@ class Squad {
     }
 
     static create(club) {
-        let squad = new Squad(club.id);
+        const squad = new Squad(club.id);
         squad.id = Context.game.squads.push(squad);
         club.squad = squad;
         return squad;
@@ -41,11 +41,11 @@ class Squad {
     }
 
     get starting11() {
-        return this.squadPlayers.filter(sp => sp.fieldLocalization).orderBy('fieldLocalization.line', 'fieldLocalization.column');
+        return this.squadPlayers.filter(sp => sp.fieldLocalization).orderBy('order', 'player.position.id', '-player.overall');
     }
 
     get substitutes() {
-        return this.squadPlayers.filter(sp => !sp.fieldLocalization).orderBy('player.position.id', 'player.position.id');
+        return this.squadPlayers.filter(sp => !sp.fieldLocalization).orderBy('order', 'player.position.id', '-player.overall');
     }
 
     get wage() {
@@ -132,6 +132,14 @@ class Squad {
         }
     }
 
+    setOrder() {
+        const squadPlayers = this.squadPlayers.orderBy('order', 'player.position.id', '-player.overall')
+        let order = 0;
+        for (let squadPlayer of squadPlayers) {
+            squadPlayer.order = ++order;
+        }
+    }
+
     setSquadPlayerAtFieldLocalization(squadPlayer, fieldLocalization) {
         const currentSquadPlayer = this.starting11.find(sp => sp.fieldLocalization === fieldLocalization);
         if (currentSquadPlayer)
@@ -141,9 +149,13 @@ class Squad {
     }
 
     swapRoles(squadPlayer1, squadPlayer2) {
-        const aux = squadPlayer1.fieldLocalization;
+        const aux = { fieldLocalization: squadPlayer1.fieldLocalization, order: squadPlayer1.order };
+
         squadPlayer1.fieldLocalization = squadPlayer2.fieldLocalization;
-        squadPlayer2.fieldLocalization = aux;
+        squadPlayer2.fieldLocalization = aux.fieldLocalization;
+
+        squadPlayer1.order = squadPlayer2.order;
+        squadPlayer2.order = aux.order;
     }
 
     rest(days) {

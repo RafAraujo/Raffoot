@@ -11,8 +11,8 @@ class Club {
     }
 
     static create(name, countryName, externalId) {
-        let country = Context.game.countries.find(c => c.name === countryName);
-        let club = new Club(name, country.id, externalId);
+        const country = Context.game.countries.find(c => c.name === countryName);
+        const club = new Club(name, country.id, externalId);
         club.id = Context.game.clubs.push(club);
         
         country.addClub(club);

@@ -8,7 +8,7 @@ class MatchClub {
     }
 
     static create(match, club, situation) {
-        let matchClub = new MatchClub(match.id, club.id, situation);
+        const matchClub = new MatchClub(match.id, club.id, situation);
         matchClub.id = Context.game.matchClubs.push(matchClub);
         return matchClub;
     }

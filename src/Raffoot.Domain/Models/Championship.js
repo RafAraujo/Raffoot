@@ -10,7 +10,7 @@ class Championship {
     }
 
     static create(name, championshipType, countryIds, division, clubCount, internationalCupSpots, confederationName) {
-        let championship = new Championship(name, championshipType.id, countryIds, division, clubCount, internationalCupSpots, confederationName);
+        const championship = new Championship(name, championshipType.id, countryIds, division, clubCount, internationalCupSpots, confederationName);
         championship.id = Context.game.championships.push(championship);
         championshipType.addChampionship(championship);
         return championship;
@@ -49,9 +49,9 @@ class Championship {
         ];
 
         for (let confederation of confederations) {
-            let countryIds = confederation.countries.map(countryName => Context.game.countries.find(c => c.name === countryName).id);
-            let clubs = Context.game.clubs.filter(c => countryIds.some(id => c.country.id === id));
-            let cupClubCount = Championship.getCupClubCsount(clubs.length);
+            const countryIds = confederation.countries.map(countryName => Context.game.countries.find(c => c.name === countryName).id);
+            const clubs = Context.game.clubs.filter(c => countryIds.some(id => c.country.id === id));
+            const cupClubCount = Championship.getCupClubCsount(clubs.length);
             Championship.create(`${confederation.name} Cup`, nationalCup, countryIds, null, cupClubCount, null, null);
 
             let clubsWithoutDivision = clubs.length;

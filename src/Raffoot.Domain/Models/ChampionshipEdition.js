@@ -11,7 +11,7 @@ class ChampionshipEdition {
     }
 
     static create(championship, year) {
-        let championshipEdition = new ChampionshipEdition(championship.id, year);
+        const championshipEdition = new ChampionshipEdition(championship.id, year);
         championshipEdition.id = Context.game.championshipEditions.push(championshipEdition);
         return championshipEdition;
     }
@@ -75,7 +75,7 @@ class ChampionshipEdition {
     }
 
     get promotionZonePositions() {
-        let positions = [];
+        const positions = [];
 
         if (this.championship.championshipType.format === 'league' && this.championship.division > 1)
             for (let position = 1; position <= NATIONAL_LEAGUE_PROMOTION_RELEGATION_CLUB_COUNT; position++)
@@ -89,7 +89,7 @@ class ChampionshipEdition {
     }
 
     get relegationZonePositions() {
-        let positions = [];
+        const positions = [];
 
         if (this.championship.championshipType.format === 'league' && this.championship.division < NATIONAL_MAX_DIVISION_COUNT)
             for (let position = this.clubs.length; position > this.clubs.length - NATIONAL_LEAGUE_PROMOTION_RELEGATION_CLUB_COUNT; position--)
@@ -115,7 +115,7 @@ class ChampionshipEdition {
     }
 
     addClub(club) {
-        let championshipEditionClub = ChampionshipEditionClub.create(this, club);
+        const championshipEditionClub = ChampionshipEditionClub.create(this, club);
         this._championshipEditionClubIds.push(championshipEditionClub.id);
     }
 
@@ -149,7 +149,7 @@ class ChampionshipEdition {
             this.championship.clubCount;
 
         while (clubCount >= 2) {
-            let eliminationPhase = ChampionshipEditionEliminationPhase.create(this, clubCount);
+            const eliminationPhase = ChampionshipEditionEliminationPhase.create(this, clubCount);
             this._championshipEditionEliminationPhaseIds.push(eliminationPhase.id);
             clubCount /= 2;
         }
@@ -213,8 +213,8 @@ class ChampionshipEdition {
     }
 
     static genericRoundRobin(championshipEdition, dates, clubs, isTwoLeggedTie) {
-        let matches = [];
-        let rounds = (clubs.length - 1) * (isTwoLeggedTie ? 2 : 1);
+        const matches = [];
+        const rounds = (clubs.length - 1) * (isTwoLeggedTie ? 2 : 1);
 
         for (let i = 0; i < rounds; i++) {
             let date = dates[i];
@@ -237,7 +237,7 @@ class ChampionshipEdition {
     }
 
     continentalCupClassificationZonePositions(continentalCupDivision) {
-        let positions = [];
+        const positions = [];
         let spots = this.championship.country.continentalCupSpots;
 
         if (this.championship.championshipType.format === 'league' && this.championship.division === 1)

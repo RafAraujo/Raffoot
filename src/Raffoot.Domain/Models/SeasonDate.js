@@ -5,7 +5,7 @@ class SeasonDate {
     }
 
     static create(date, championshipType) {
-        let seasonDate = new SeasonDate(date, championshipType.id);
+        const seasonDate = new SeasonDate(date, championshipType.id);
         seasonDate.id = Context.game.seasonDates.push(seasonDate);
         return seasonDate;
     }

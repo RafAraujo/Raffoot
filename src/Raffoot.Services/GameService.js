@@ -1,11 +1,11 @@
 class GameService {
     create(name, year) {
-        let game = GameFactory.create(name, year);
+        const game = GameFactory.create(name, year);
         return game;
     }
 
     async getSavedGamesWithKeysAsync() {
-        let dao = await this.getDaoAsync();
+        const dao = await this.getDaoAsync();
         let games = await dao.getAllWithKeysAsync('Game');
         games = games.map(o => Object.assign(new Game(), o));
         ConnectionFactory.closeConnection();
@@ -13,7 +13,7 @@ class GameService {
     }
 
     async insertAsync(game) {
-        let dao = await this.getDaoAsync();
+        const dao = await this.getDaoAsync();
         let result = await dao.insertManyAsync([game]);
         let id = result[0];
         ConnectionFactory.closeConnection();
@@ -21,7 +21,7 @@ class GameService {
     }
 
     async saveAsync(game) {
-        let dao = await this.getDaoAsync();
+        const dao = await this.getDaoAsync();
         let id = await dao.updateAsync(game);
         ConnectionFactory.closeConnection();
         return id;
@@ -29,8 +29,8 @@ class GameService {
 
     // Mayble load only objects of the current season ?
     async loadAsync(id) {
-        let objects = await this.getSavedGamesWithKeysAsync();
-        let object = objects.find(g => g.key === id);
+        const objects = await this.getSavedGamesWithKeysAsync();
+        const object = objects.find(g => g.key === id);
 
         let game = Object.assign(new Game(), object.value);
         game.seasons = game.seasons.map(o => Object.assign(new Season(), o));

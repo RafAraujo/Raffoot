@@ -72,7 +72,7 @@ class Game {
             year = this.seasons.last().year + 1;
         }
 
-        let season = Season.create(year, championshipTypes);
+        const season = Season.create(year, championshipTypes);
         season.schedule();
         this._currentSeasonId = season.id;
     }

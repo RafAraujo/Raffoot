@@ -12,7 +12,7 @@ class ChampionshipEditionClub {
     }
 
     static create(championshipEdition, club) {
-        let championshipEditionClub = new ChampionshipEditionClub(championshipEdition.id, club.id);
+        const championshipEditionClub = new ChampionshipEditionClub(championshipEdition.id, club.id);
         championshipEditionClub.id = Context.game.championshipEditionClubs.push(championshipEditionClub);
         return championshipEditionClub;
     }

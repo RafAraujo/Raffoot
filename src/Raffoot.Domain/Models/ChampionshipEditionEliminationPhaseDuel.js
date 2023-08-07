@@ -5,7 +5,7 @@ class ChampionshipEditionEliminationPhaseDuel {
     }
 
     static create(championshipEditionEliminationPhase, matches) {
-        let championshipEditionEliminationPhaseDuel = new ChampionshipEditionEliminationPhaseDuel(championshipEditionEliminationPhase.id, matches.map(m => m.id));
+        const championshipEditionEliminationPhaseDuel = new ChampionshipEditionEliminationPhaseDuel(championshipEditionEliminationPhase.id, matches.map(m => m.id));
         championshipEditionEliminationPhaseDuel.id = Context.game.championshipEditionEliminationPhaseDuels.push(championshipEditionEliminationPhaseDuel);
         championshipEditionEliminationPhase.addChampionshipEditionEliminationPhaseDuel(championshipEditionEliminationPhaseDuel);
         return championshipEditionEliminationPhaseDuel;

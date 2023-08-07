@@ -6,8 +6,8 @@ class Formation {
     }
 
     static create(name, fieldLocalizationNames, baseFormation) {
-        let fieldLocalizationIds = fieldLocalizationNames.map(flName => Context.game.fieldLocalizations.find(fl => fl.name === flName.trim()).id);
-        let formation = new Formation(name, fieldLocalizationIds, baseFormation);
+        const fieldLocalizationIds = fieldLocalizationNames.map(flName => Context.game.fieldLocalizations.find(fl => fl.name === flName.trim()).id);
+        const formation = new Formation(name, fieldLocalizationIds, baseFormation);
         formation.id = Context.game.formations.push(formation);
         return formation;
     }

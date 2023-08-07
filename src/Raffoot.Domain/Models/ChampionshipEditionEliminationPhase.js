@@ -72,12 +72,12 @@ class ChampionshipEditionEliminationPhase {
     }
 
     _defineDuels() {
-        let championshipEditionClubs = this.championshipEditionClubs.slice().shuffle();
+        const championshipEditionClubs = this.championshipEditionClubs.slice().shuffle();
         
         for (let i = 0; i < championshipEditionClubs.length; i += 2) {
-            let clubs = championshipEditionClubs.slice(i, i + 2).map(cec => cec.club);
-            let matches = this.matches.slice(i, i + 2);
-            let matchesPerPhase = this.championshipEdition.championship.isTwoLeggedTie ? 2 : 1;
+            const clubs = championshipEditionClubs.slice(i, i + 2).map(cec => cec.club);
+            const matches = this.matches.slice(i, i + 2);
+            const matchesPerPhase = this.championshipEdition.championship.isTwoLeggedTie ? 2 : 1;
 
             for (let j = 0; j < matchesPerPhase; j++) {
                 let match = matches[j];
