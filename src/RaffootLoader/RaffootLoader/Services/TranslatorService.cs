@@ -30,7 +30,7 @@ namespace RaffootLoader.Services
         {
             "age", "assists", "audience", $"{PrefixOfContext}{Separator}Away",
             "back", "ball possession", $"{PrefixOfContext}{Separator}board of directors", "bronze",
-            "calendar", "cancel", "capacity", "category", "champions", "Champions Cup", "classification tables", "club", "clubs", "choose your club", "coach", "Conference Cup", "contract", "country", "creating game...", $"{PrefixOfContext}{Separator}Cup",
+            "calendar", "cancel", "capacity", "category", "champions", "Champions Cup", "classification tables", "club", "clubs", "choose your club", "coach", "CON", "Conference Cup", "contract", "country", "creating game...", $"{PrefixOfContext}{Separator}Cup",
             "date", "delete", "division",
             "end of contract", "energy", "error", "expand",
             "final", "finances", "formation", "for sale", "free kick", "free kick taker",
@@ -40,8 +40,8 @@ namespace RaffootLoader.Services
             "league", "left", "load game", "loading game...",
             "market value", "matches",
             "name", "nationality", "new game", "no",
-            "offside", "Overall",
-            $"{PrefixOfContext}{Separator}penalty", "penalty taker", "play", $"{PrefixOfContext}{Separator}players", "position", "preferred side", "processing...",
+            "offside", "Overall", "OV",
+            $"{PrefixOfContext}{Separator}penalty", "penalty taker", "play", $"{PrefixOfContext}{Separator}players", "position", "POS", "preferred side", "processing...",
             "quarter-finals",
             "Raffoot", "ranking", $"{PrefixOfContext}{Separator}referee", "renew contract", $"{PrefixOfContext}{Separator}right", "round of 16", "round of 32", "round of 64",
             "save game", "search", "search players", "semifinals", "silver", "squad", "stadium", "star", "start game", "starting game...", "statistics", "supercup",
@@ -49,7 +49,7 @@ namespace RaffootLoader.Services
             $"{PrefixOfContext}{Separator}wage", "world",
             "year", "yes"
         };
-        private readonly string[] _fixedTexts = new[] { "BeNe", "Overall", "Raffoot" };
+        private readonly string[] _fixedTexts = new[] { "BeNe", "CON", "Overall", "OV", "POS", "Raffoot" };
 
         private readonly Translation[] _fixedTranslations = new[]
         {
@@ -97,7 +97,7 @@ namespace RaffootLoader.Services
 
                 var dbTranslations = _context.Translations.Select(t => t.OriginalText);
                 var originalTexts = GetTextsToTranslate();
-                var textsToTranslate = originalTexts.Where(t => !dbTranslations.Select(dbT => dbT.ToLower()).Contains(t.ToLower()));
+                var textsToTranslate = originalTexts.Where(t => !dbTranslations.Select(dbT => dbT.ToLower()).Contains(GetTextWithoutPrefix(t.ToLower()))).ToList();
                 var fixedTexts = textsToTranslate.Where(t => _fixedTexts.Contains(t));
 
                 if (fixedTexts.Any())
@@ -106,7 +106,7 @@ namespace RaffootLoader.Services
                     {
                         translations.AddRange(fixedTexts.Select(t => new Translation(t, t, language)));
                     }
-                    textsToTranslate = textsToTranslate.Where(t => !fixedTexts.Contains(t));
+                    textsToTranslate = textsToTranslate.Where(t => !fixedTexts.Contains(t)).ToList();
                 }
 
                 var response = await _translatorApi.Translate(textsToTranslate, languages, sourceLanguage).ConfigureAwait(false);

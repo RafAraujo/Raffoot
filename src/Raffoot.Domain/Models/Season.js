@@ -63,7 +63,7 @@ class Season {
     }
 
     _defineChampionshipEditions() {
-        const championships = this.championshipTypes.map(ct => ct.championships).flat();
+        const championships = this.championshipTypes.flatMap(ct => ct.championships);
         for (let championship of championships) {
             const championshipEdition = ChampionshipEdition.create(championship, this.year);
             this._championshipEditionsIds.push(championshipEdition.id);

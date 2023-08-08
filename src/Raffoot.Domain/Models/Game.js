@@ -66,7 +66,7 @@ class Game {
         let championshipTypes = this.championshipTypes;
 
         if (this.seasons.length === 0) {
-            championshipTypes = championshipTypes.filter(ct => ct.scope === 'national' && ct.format != 'superCup');
+            championshipTypes = championshipTypes.filter(ct => ct.scope === 'national' && ct.format != 'supercup');
         }
         else {
             year = this.seasons.last().year + 1;

@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="gameLoaded" @click="this.selectedSquadPlayerId = null">
+        <div v-if="gameLoaded" @click="selectedSquadPlayerId = null">
             <header>
                 <nav class="navbar navbar-expand-lg border-bottom border-body"
                     :class="game.club.foregroundColor == 'white' ? 'bg-light' : 'bg-dark'"
@@ -65,12 +65,6 @@
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'tables' }" href="#tables"
                                         @click="changeSection($event)">
                                         {{ translator.get("Classification Tables") }}
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" :class="{ 'active' : activeSection == 'stadium' }"
-                                        href="#stadium" @click="changeSection($event)">
-                                        {{ translator.get("Stadium") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -152,7 +146,7 @@
                         </div>
                     </div>
                 </div>
-                <section id="play">
+                <section id="play" :class="{ 'd-none' : activeSection !== 'play' }">
                     <div class="row mb-2">
                         <div class="col">
                             <div class="next-match pt-2 pb-2">
@@ -182,19 +176,20 @@
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-12 col-md-6 col-xl-4 mb-2">
+                        <div class="col col-md-6 col-xl-4 mb-2">
                             <div class="field position-relative border" style="height: 475px">
                                 <template
-                                    v-for="squadPlayer in this.game.club.squad.starting11.orderBy('order', 'player.position.id', '-player.overall')">
+                                    v-for="squadPlayer in game.club.squad.starting11.orderBy('order', 'player.position.id', '-player.overall')">
                                     <div class="player position-absolute text-center"
-                                        :class="{ 'border blink' : squadPlayer.id === this.selectedSquadPlayerId }"
+                                        :class="{ 'border blink' : squadPlayer.id === selectedSquadPlayerId }"
                                         :data-squad-player-id="squadPlayer.id" @click.stop="clickPlayer($event)"
                                         :style="{ top: (11 - squadPlayer.fieldLocalization.line) * 7.7 + '%', left: (squadPlayer.fieldLocalization.column) * 20 + '%' }">
                                         <div>
                                             <div class="position position-absolute"
                                                 :class="{ 'improvised' : squadPlayer.isImprovised }"
                                                 :title="translator.get(squadPlayer.player.position.name)">
-                                                {{ translator.get(squadPlayer.fieldLocalization.position.abbreviation)
+                                                {{
+                                                translator.get(squadPlayer.fieldLocalization.position.abbreviation)
                                                 }}
                                             </div>
                                             <div class="overall position-absolute">
@@ -206,7 +201,8 @@
                                             onerror="this.onerror = null; this.src='res/players/0.svg'">
                                         <div class="energy progress position-relative"
                                             :title="`${translator.get('Energy')} ${squadPlayer.player.energy}%`">
-                                            <div class="progress-bar bg-success" role="progressbar"
+                                            <div class="progress-bar" role="progressbar"
+                                                :class="squadPlayer.player.energy > 75 ? 'bg-success' : squadPlayer.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
                                                 :aria-valuenow="squadPlayer.player.energy" aria-valuemin="0"
                                                 aria-valuemax="100" :style="{ width: squadPlayer.player.energy + '%' }">
                                             </div>
@@ -220,12 +216,12 @@
                                 </template>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 col-xl-4">
+                        <div class="col col-md-6 col-xl-4">
                             <div class="bench position-relative border">
                                 <template
-                                    v-for="squadPlayer in this.game.club.squad.substitutes.orderBy('order', 'player.position.id', '-player.overall')">
+                                    v-for="squadPlayer in game.club.squad.substitutes.orderBy('order', 'player.position.id', '-player.overall')">
                                     <div class="player d-inline-block text-center"
-                                        :class="{ 'border blink' : squadPlayer.id === this.selectedSquadPlayerId }"
+                                        :class="{ 'border blink' : squadPlayer.id === selectedSquadPlayerId }"
                                         :data-squad-player-id="squadPlayer.id" @click.stop="clickPlayer($event)">
                                         <div class="position-relative">
                                             <div class="position position-absolute"
@@ -241,7 +237,8 @@
                                             :title="squadPlayer.player.fullName" onerror="this.src='res/players/0.svg'">
                                         <div class="energy progress position-relative"
                                             :title="`${translator.get('Energy')} ${squadPlayer.player.energy}%`">
-                                            <div class="progress-bar bg-success" role="progressbar"
+                                            <div class="progress-bar" role="progressbar"
+                                                :class="squadPlayer.player.energy > 75 ? 'bg-success' : squadPlayer.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
                                                 :aria-valuenow="squadPlayer.player.energy" aria-valuemin="0"
                                                 aria-valuemax="100" :style="{ width: squadPlayer.player.energy + '%' }">
                                             </div>
@@ -257,6 +254,78 @@
                         </div>
                     </div>
                 </section>
+                <section id="squad" :class="{ 'd-none' : activeSection !== 'squad' }">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <h5>{{ translator.get("Squad") }}</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-xl-9">
+                            <table class="table table-hover table-borderless sortable">
+                                <thead class="table-light">
+                                    <th class="text-center" :title="translator.get('Position')"
+                                        @click="updateSquadOrder('position.id')">
+                                        {{ translator.get("POS") }}
+                                    </th>
+                                    <th class="text-center" @click="updateSquadOrder('surname')">
+                                        {{ translator.get("Name") }}</th>
+                                    <th class="text-center" :title="translator.get('Overall')"
+                                        @click="updateSquadOrder('overall')">
+                                        {{ translator.get("OV") }}
+                                    </th>
+                                    <th class="text-center" @click="updateSquadOrder('age')">
+                                        {{ translator.get("Age") }}
+                                    </th>
+                                    <th class="text-center" @click="updateSquadOrder('energy')">
+                                        {{ translator.get("Energy") }}
+                                    </th>
+                                    <th class="text-center" @click="updateSquadOrder('marketValue')">
+                                        {{ translator.get("Market value") }}
+                                    </th>
+                                    <th class="text-center" @click="updateSquadOrder('wage')">
+                                        {{ translator.get("Wage") }}
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <template
+                                        v-for="player in game.club.squad.players.orderBy(squadOrderColumn, 'position.id', '-overall', 'name')">
+                                        <tr>
+                                            <td class="align-middle text-center fw-bold"
+                                                :class="player.position.fieldRegion"
+                                                :title="translator.get(player.position.name)">
+                                                {{ translator.get(player.position.abbreviation) }}
+                                            </td>
+                                            <td>{{ player.surname }}</td>
+                                            <td class="text-center align-middle pt-0 pb-0">
+                                                <span class="overall" :class="player.category">
+                                                    {{ player.overall }}
+                                                </span>
+                                            </td>
+                                            <td class="text-center"
+                                                :class="player.age < 32 ? 'text-primary' : 'text-danger'">
+                                                {{ player.age }}
+                                            </td>
+                                            <td class="align-middle">
+                                                <div class="energy progress position-relative"
+                                                    :title="`${translator.get('Energy')} ${player.energy}%`">
+                                                    <div class="progress-bar" role="progressbar"
+                                                        :class="player.energy > 75 ? 'bg-success' : player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                        :aria-valuenow="player.energy" aria-valuemin="0"
+                                                        aria-valuemax="100" :style="{ width: player.energy + '%' }">
+                                                        {{ player.energy }}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">{{ player.marketValue.formatCurrency() }}</td>
+                                            <td class="text-end">{{ player.wage.formatCurrency() }}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
             </main>
             <footer>
 
@@ -265,9 +334,8 @@
     </div>
 
     <script src="../Raffoot.CrossCutting/ArrayExtensions.js"></script>
-    <script src="../Raffoot.CrossCutting/CanvasHelper.js"></script>
     <script src="../Raffoot.CrossCutting/DateExtensions.js"></script>
-    <script src="../Raffoot.CrossCutting/ImageHelper.js"></script>
+    <script src="../Raffoot.CrossCutting/NumberExtensions.js"></script>
     <script src="../Raffoot.CrossCutting/Random.js"></script>
     <script src="../Raffoot.CrossCutting/StringExtensions.js"></script>
 
@@ -320,11 +388,11 @@
         data() {
             return {
                 activeSection: 'play',
-                canvasHelper: CanvasHelper,
                 game: null,
                 gameLoaded: false,
                 message: { text: '', type: 'primary' },
                 selectedSquadPlayerId: null,
+                squadOrderColumn: 'position.id',
                 translator: new TranslatorService(),
             }
         },
@@ -336,6 +404,8 @@
             }
         },
         methods: {
+            // Play:
+
             changeSection: function (event) {
                 let section = event.target.getAttribute('href').substring(1);
                 setTimeout(() => this.activeSection = section, 1);
@@ -363,7 +433,11 @@
                 document.body.style.backgroundColor = club.backgroundColor;
                 document.body.style.color = club.foregroundColor;
             },
-            toRaw: Vue.toRaw,
+
+            // Squad:
+            updateSquadOrder: function (column) {
+                this.squadOrderColumn = this.squadOrderColumn === column ? `-${column}` : column;
+            }
         },
         computed: {
             clubId() {

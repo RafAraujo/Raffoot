@@ -21,15 +21,15 @@ h1 {
     }
 }
 
-.field {
-    background: url('../res/grass\ -\ dark.png') repeat;
-    background-size: auto;
+.bench {
+    background-color: rgb(73, 81, 93);
     font-size: small;
     color: white;
 }
 
-.bench {
-    background-color: rgb(73, 81, 93);
+.field {
+    background: url('../res/grass\ -\ dark.png') repeat;
+    background-size: auto;
     font-size: small;
     color: white;
 }
@@ -78,17 +78,44 @@ h1 {
     color: yellow;
 }
 
-.gold {
+.sortable th {
+    cursor: pointer
+}
+
+span.overall {
+    display: inline-block;
+    padding: 2px;
+    text-align: center;
+    width: 2rem;
+}
+
+span.overall.gold {
     background-color: gold;
     color: black;
 }
 
-.silver {
+span.overall.silver {
     background-color: silver;
     color: black;
 }
 
-.bronze {
-    background-color: sienna;
+span.overall.bronze {
+    background-color: #cd7f32;
     color: white;
+}
+
+td.goal {
+    color: #ffc107 !important;
+}
+
+td.defense {
+    color: #007bff !important;
+}
+
+td.midfield {
+    color: #28a745 !important;
+}
+
+td.attack {
+    color: #dc3545 !important;
 }
