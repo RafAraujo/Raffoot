@@ -24,7 +24,12 @@ class Season {
     }
 
     get championshipEditions() {
-        return Context.game.championshipEditions.filter(ce => ce.year == this.year);
+        return Context.game.championshipEditions.filter(ce => ce.year === this.year);
+    }
+
+    get nationalLeagues() {
+        let nationalLeagueId = ChampionshipType.find('national', 'league').id;
+        return this.championshipEditions.filter(ce => ce.championship.championshipType.id === nationalLeagueId);
     }
 
     get seasonDates() {
@@ -69,12 +74,12 @@ class Season {
             this._championshipEditionsIds.push(championshipEdition.id);
         }
     }
-    
+
     _defineChampionshipEditionClubs(championshipEdition) {
         const nationalLeague = ChampionshipType.find('national', 'league');
         const clubCount = championshipEdition.championship.clubCount;
         let eligibleClubs = Context.game.clubs;
-        
+
         if (championshipEdition.championship.countries != null) {
             eligibleClubs = eligibleClubs.filter(club => championshipEdition.championship.countries.some(country => club.country.id === country.id));
 
@@ -145,6 +150,10 @@ class Season {
         }
 
         this.finished = this._currentSeasonDateIndex === this.seasonDates.length;
+    }
+
+    getNationalLeaguesByCountryId(countryId) {
+        return this.nationalLeagues.filter(ce => ce.championship.countries.map(c => c.id).includes(countryId));
     }
 
     getMatchesByDate(date) {

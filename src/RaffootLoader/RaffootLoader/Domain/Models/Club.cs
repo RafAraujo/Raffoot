@@ -12,8 +12,8 @@
 
         public List<string> Kits { get; set; } = new();
 
-        public string BackgroundColor { get; set; } = string.Empty;
+        public string BackgroundColor { get; set; }
 
-        public string ForegroundColor { get; set; } = string.Empty;
+        public string ForegroundColor { get; set; }
     }
 }

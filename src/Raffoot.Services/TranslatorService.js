@@ -13,11 +13,25 @@ class TranslatorService {
         if (translation) {
             return translation;
         }
-        
+
         throw new Error(`Text "${text}" not found`);
     }
 
-    getChampionshipName(championship) {       
+    getAbbreviation(text) {
+        let abbreviation = '';
+        const translation = this.get(text);
+        const array = translation.split(' ');
+
+        for (let word of array) {
+            if (word.length > 2) {
+                abbreviation += word[0].toUpperCase();
+            }
+        }
+
+        return abbreviation;
+    }
+
+    getChampionshipName(championship) {
         const championshipNameWithoutDivision = championship.name.replace(` ${championship.division}`, '');
         const translation = this.get(championshipNameWithoutDivision);
         return championship.division ? `${translation} ${championship.division}` : `${translation}`;

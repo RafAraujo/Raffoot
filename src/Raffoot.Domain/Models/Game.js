@@ -45,16 +45,17 @@ class Game {
         return Season.getById(this._currentSeasonId);
     }
 
-    getCurrentNationalLeagues() {
-        const nationalLeague = ChampionshipType.find('national', 'league');
-        const championshipEditions = this.currentSeason.championshipEditions.filter(ce => ce.championship.championshipType.id === nationalLeague.id);
-        return championshipEditions;
+    getNationalLeagueLastPlayedFixture() {
+        const nationalLeague = this.getNationalLeague();
+        const fixtures = nationalLeague.championshipEditionFixtures.filter(f => f.date < this.currentSeason.currentDate);
+        const lastFixture = fixtures.length ? fixtures.last() : null;
+        return lastFixture;
     }
 
-    getNationalLeague(club) {
-        const nationalLeagues = this.getCurrentNationalLeagues();
-        for (const nationalLeague of nationalLeagues) {
-            if (nationalLeague.clubs.map(c => c.id).includes(club.id)) {
+    getNationalLeague() {
+        const nationalLeagues = this.currentSeason.getNationalLeaguesByCountryId(this.club.country.id);
+        for (let nationalLeague of nationalLeagues) {
+            if (nationalLeague.clubs.map(c => c.id).includes(this.club.id)) {
                 return nationalLeague;
             }
         }

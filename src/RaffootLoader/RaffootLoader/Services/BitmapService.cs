@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Drawing.Imaging;
 using System.Runtime.Versioning;
 
 namespace RaffootLoader.Services
@@ -53,19 +52,6 @@ namespace RaffootLoader.Services
             b /= total;
 
             return Color.FromArgb(r, g, b);
-        }
-
-        public static Bitmap Crop(Image bitmap, Rectangle cropArea)
-        {
-            var bmpImage = new Bitmap(bitmap);
-            return bmpImage.Clone(cropArea, bmpImage.PixelFormat);
-        }
-
-        public static void Save(Bitmap bitmap)
-        {
-            var newBitmap = new Bitmap(bitmap);
-            bitmap.Dispose();
-            newBitmap.Save(@"test.png", ImageFormat.Png);
         }
 
         // https://stackoverflow.com/questions/2241447/make-foregroundcolor-black-or-white-depending-on-background

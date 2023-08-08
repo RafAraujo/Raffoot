@@ -57,7 +57,7 @@
                             <label for="club" class="form-label">{{ translator.get("Club") }}</label>
                             <select id="club" class="form-control" required @change="setClub($event)">
                                 <option></option>
-                                <template v-for="championshipEdition in countryLeagues">
+                                <template v-for="championshipEdition in game.currentSeason.getNationalLeaguesByCountryId(game.country?.id)">
                                     <optgroup :label="translator.getChampionshipName(championshipEdition.championship)">
                                         <option v-for="club in championshipEdition.clubs" :key="club.id"
                                             :value="club.id">
@@ -152,8 +152,8 @@
         },
         methods: {
             getPlayableCountries() {
-                let countries = 
-                        this.game.championshipEditions
+                let countries =
+                    this.game.currentSeason.championshipEditions
                         .filter(ce => ce.championship.championshipType.scope === 'national' && ce.championship.championshipType.format === 'league')
                         .flatMap(ce => ce.championship.countries)
                         .distinct()
@@ -184,18 +184,6 @@
                 };
             },
             redirect: url => location.href = url,
-        },
-        computed: {
-            countryLeagues() {
-                let championshipEditions = [];
-
-                if (this.game) {
-                    championshipEditions = this.game.championshipEditions
-                        .filter(ce => ce.championship.championshipType.scope === 'national' && ce.championship.championshipType.format === 'league' && ce.championship.countries.includes(this.game.country))
-                }
-
-                return championshipEditions;
-            },
         },
         mounted() {
             this.game = gameService.create('');

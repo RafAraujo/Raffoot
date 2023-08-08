@@ -1,6 +1,5 @@
 class Player {
-    constructor(externalId, fullName, name, countryId, positionIds, age, overall, clubId, hasPhoto, star, energy, wage, goals) {
-        this.externalId = externalId;
+    constructor(fullName, name, countryId, positionIds, age, overall, clubId, externalId, hasPhoto, star, energy, wage, goals) {
         this.fullName = fullName;
         this.name = name;
         this._countryId = countryId;
@@ -8,6 +7,7 @@ class Player {
         this.age = age;
         this.overall = overall;
         this._clubId = clubId;
+        this.externalId = externalId;
         this.hasPhoto = hasPhoto;
         this.star = star;
         this.energy = energy;
@@ -15,14 +15,14 @@ class Player {
         this.goals = goals;
     }
 
-    static create(externalId, fullName, name, countryName, positionAbbreviations, age, overall, club, hasPhoto) {
+    static create(fullName, name, countryName, positionAbbreviations, age, overall, club, externalId, hasPhoto) {
         const country = Context.game.countries.find(c => c.name === countryName);
         const positionIds = positionAbbreviations.map(pa => Context.game.positions.find(p => p.abbreviation === pa).id);
         const star = false;
         const energy = 100;
         const wage = this._getBaseWage(overall, false);
         const goals = 0;
-        const player = new Player(externalId, fullName, name, country.id, positionIds, age, overall, club.id, hasPhoto, star, energy, wage, goals);
+        const player = new Player(fullName, name, country.id, positionIds, age, overall, club.id, externalId, hasPhoto, star, energy, wage, goals);
         player.id = Context.game.players.push(player);
         club.addPlayer(player);
         SquadPlayer.create(club.squad, player);

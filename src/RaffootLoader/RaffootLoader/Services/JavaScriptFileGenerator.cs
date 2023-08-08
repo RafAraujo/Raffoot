@@ -51,23 +51,23 @@ namespace RaffootLoader.Services
 
                     foreach (var club in clubs)
                     {
-                        sb.AppendLine(string.Format("\t\tclub = Club.create({0}, \"{1}\", \"{2}\", \"{3}\", \"{4}\");",
-                            club.ExternalId,
+                        sb.AppendLine(string.Format("\t\tclub = Club.create(\"{0}\", \"{1}\", {2}, \"{3}\", \"{4}\");",
                             club.Name,
                             country.Name,
+                            club.ExternalId,
                             club.BackgroundColor,
                             club.ForegroundColor));
 
                         foreach (var player in _context.Players.Where(p => p.ClubId == club.ExternalId))
                         {
-                            sb.AppendLine(string.Format("\t\tPlayer.create({0}, \"{1}\", \"{2}\", \"{3}\", [{4}], {5}, {6}, club, {7});",
-                                player.ExternalId,
+                            sb.AppendLine(string.Format("\t\tPlayer.create(\"{0}\", \"{1}\", \"{2}\", [{3}], {4}, {5}, club, {6}, {7});",
                                 player.FullName,
                                 player.Name,
                                 player.Country,
                                 string.Join(", ", player.Positions.Select(p => $"'{p}'")),
                                 player.Age,
                                 player.Overall,
+                                player.ExternalId,
                                 player.HasPhoto.ToString().ToLower()));
                         }
 

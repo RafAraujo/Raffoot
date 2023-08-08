@@ -34,7 +34,7 @@ namespace RaffootLoader.Services
             "date", "delete", "division", $"{PrefixOfContext}{Separator}draws",
             "end of contract", "energy", "error", "expand",
             "final", "finances", "formation", "for sale", "free kick", "free kick taker",
-            "game", "game deleted with success",  $"{PrefixOfContext}{Separator}goal",  $"{PrefixOfContext}{Separator}goals", "gold", "group",
+            "game", "game deleted with success",  $"{PrefixOfContext}{Separator}goal",  $"{PrefixOfContext}{Separator}goals", $"{PrefixOfContext}{Separator}goals against", $"{PrefixOfContext}{Separator}goals difference", "gold", "group",
             "history", $"{PrefixOfContext}{Separator}home",
             "income", "International Supercup",
             "league", "left", "load game", "loading game...", $"{PrefixOfContext}{Separator}losses",

@@ -356,7 +356,9 @@
                                             <td class="text-center">{{ match.matchClubAway.goals }}</td>
                                             <td class="text-end">{{ match.matchClubAway.club.name }}</td>
                                             <td class="text-center">
-                                                {{ translator.getChampionshipName(match.championshipEdition.championship) }}
+                                                {{
+                                                translator.getChampionshipName(match.championshipEdition.championship)
+                                                }}
                                             </td>
                                             <td class="text-center">{{ match.audience }}</td>
                                             <td class="text-center">{{ match.income }}</td>
@@ -377,30 +379,55 @@
                         <div class="col-xl-9">
                             <table class="table table-hover table-borderless">
                                 <thead class="table-light">
-                                    <th class="text-center">{{ translator.get("Date") }}</th>
-                                    <th class="text-start">{{ translator.get("Home") }}</th>
-                                    <th class="text-center"></th>
-                                    <th class="text-center"></th>
-                                    <th class="text-center"></th>
-                                    <th class="text-end">{{ translator.get("Away") }}</th>
-                                    <th class="text-center">{{ translator.get("Championship") }}</th>
-                                    <th class="text-center">{{ translator.get("Audience") }}</th>
-                                    <th class="text-center">{{ translator.get("Income") }}</th>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center" style="width: 1.5rem;"></th>
+                                    <th class="text-start">{{ translator.get("Club") }}</th>
+                                    <th class="text-center" :title="translator.get('Points')">
+                                        {{ translator.getAbbreviation("Points") }}
+                                    </th>
+                                    <th class="text-center" :title="translator.get('Matches')">
+                                        {{ translator.getAbbreviation("Matches") }}
+                                    </th>
+                                    <th class="text-center" :title="translator.get('Wins')">
+                                        {{ translator.getAbbreviation("Wins") }}
+                                    </th>
+                                    <th class="text-center" :title="translator.get('Draws')">
+                                        {{ translator.getAbbreviation("Draws") }}
+                                    </th>
+                                    <th class="text-center" :title="translator.get('Losses')">
+                                        {{ translator.getAbbreviation("Losses") }}
+                                    </th>
+                                    <th class="text-center" :title="translator.get('Goals')">
+                                        {{ translator.getAbbreviation("Goals") }}
+                                    </th>
+                                    <th class="text-center" :title="translator.get('Goals Against')">
+                                        {{ translator.getAbbreviation("Goals Against") }}
+                                    </th>
+                                    <th class="text-center" :title="translator.get('Goals Difference')">
+                                        {{ translator.getAbbreviation("Goals Difference") }}
+                                    </th>
                                 </thead>
                                 <tbody>
-                                    <template v-for="match in matches">
+                                    <template
+                                        v-for="(championshipEditionClub, index) in selectedChampionshipEdition.table">
                                         <tr>
-                                            <td class="text-center">{{ match.date.toLocaleDateString() }}</td>
-                                            <td class="text-start">{{ match.matchClubHome.club.name }}</td>
-                                            <td class="text-center">{{ match.matchClubHome.goals }}</td>
-                                            <td class="text-center">×</td>
-                                            <td class="text-center">{{ match.matchClubAway.goals }}</td>
-                                            <td class="text-end">{{ match.matchClubAway.club.name }}</td>
-                                            <td class="text-center">
-                                                {{ translator.getChampionshipName(match.championshipEdition.championship) }}
+                                            <td class="text-center">{{ index + 1 }}</td>
+                                            <td>
+                                                <img :src="championshipEditionClub.club.getLogoURL()" style="max-height: 1.5rem;">
                                             </td>
-                                            <td class="text-center">{{ match.audience }}</td>
-                                            <td class="text-center">{{ match.income }}</td>
+                                            <td>
+                                                {{ championshipEditionClub.club.name }}
+                                            </td>
+                                            <td class="text-center">{{ championshipEditionClub.points }}</td>
+                                            <td class="text-center">
+                                                {{ game.getNationalLeagueLastPlayedFixture()?.number ?? 0 }}
+                                            </td>
+                                            <td class="text-center">{{ championshipEditionClub.won }}</td>
+                                            <td class="text-center">{{ championshipEditionClub.drawn }}</td>
+                                            <td class="text-center">{{ championshipEditionClub.lost }}</td>
+                                            <td class="text-center">{{ championshipEditionClub.goalsFor }}</td>
+                                            <td class="text-center">{{ championshipEditionClub.goalsAgainst }}</td>
+                                            <td class="text-center">{{ championshipEditionClub.goalsDifference }}</td>
                                         </tr>
                                     </template>
                                 </tbody>
@@ -469,12 +496,19 @@
         data() {
             return {
                 activeSection: 'play',
+                translator: new TranslatorService(),
+
+                // Play:
                 game: null,
                 gameLoaded: false,
                 message: { text: '', type: 'primary' },
                 selectedSquadPlayerId: null,
+
+                // Squad:
                 squadOrderColumn: 'position.id',
-                translator: new TranslatorService(),
+
+                // Tables:
+                selectedChampionshipEditionId: null,
             }
         },
         watch: {
@@ -486,7 +520,6 @@
         },
         methods: {
             // Play:
-
             changeSection: function (event) {
                 let section = event.target.getAttribute('href').substring(1);
                 setTimeout(() => this.activeSection = section, 1);
@@ -518,7 +551,9 @@
             // Squad:
             updateSquadOrder: function (column) {
                 this.squadOrderColumn = this.squadOrderColumn === column ? `-${column}` : column;
-            }
+            },
+
+            // Tables:
         },
         computed: {
             clubId() {
@@ -532,10 +567,14 @@
             nextMatch() {
                 console.log('nextMatch');
                 return this.game.currentSeason.getNextMatch(this.game.club.id);
+            },
+            selectedChampionshipEdition() {
+                return this.game.currentSeason.championshipEditions.find(ce => ce.id === this.selectedChampionshipEditionId);
             }
         },
         async created() {
             await this.loadGame();
+            this.selectedChampionshipEditionId = this.game.getNationalLeague().id;
             this.gameLoaded = true;
         },
     };
