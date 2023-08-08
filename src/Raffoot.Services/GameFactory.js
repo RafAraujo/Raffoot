@@ -8,13 +8,31 @@ class GameFactory {
 		
 		let t0 = performance.now();
 		SoFifaService.seedCountries();
+		console.log(`SoFifaService.seedCountries() took ${(performance.now() - t0)} milliseconds.`);
+		
+		t0 = performance.now();
 		Position.seed();
+		console.log(`Position.seed() took ${(performance.now() - t0)} milliseconds.`);
+
+		t0 = performance.now();
 		FieldLocalization.seed();
+		console.log(`FieldLocalization.seed() took ${(performance.now() - t0)} milliseconds.`);
+
+		t0 = performance.now();
 		Formation.seed();
+		console.log(`Formation.seed() took ${(performance.now() - t0)} milliseconds.`);
+
+		t0 = performance.now();
 		SoFifaService.seedClubs();
+		console.log(`SoFifaService.seedClubs() took ${(performance.now() - t0)} milliseconds.`);
+
+		t0 = performance.now();
 		ChampionshipType.seed();
+		console.log(`ChampionshipType.seed() took ${(performance.now() - t0)} milliseconds.`);
+
+		t0 = performance.now();
 		Championship.seed();
-		console.log(`GameFactory.create() took ${(performance.now() - t0)} milliseconds.`);
+		console.log(`Championship.seed() took ${(performance.now() - t0)} milliseconds.`);
 		
 		t0 = performance.now();
 		for (let squad of Context.game.squads) {

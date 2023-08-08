@@ -16,21 +16,22 @@ class Position {
         return Context.game.positions[id - 1];
     }
 
+    // https://fifauteam.com/fifa-23-positions-guide/
     static seed() {
 		Position.create('Goalkeeper', 'GK', 'goal');
-		Position.create('Central Back', 'CB', 'defense');
-		Position.create('Left Back', 'LB', 'defense');
-		Position.create('Right Back', 'RB', 'defense');
-		Position.create('Left Wing Back', 'LWB', 'defense');
-		Position.create('Right Wing Back', 'RWB', 'defense');
-		Position.create('Central Defensive Midfielder', 'CDM', 'midfield');
-		Position.create('Central Midfielder', 'CM', 'midfield');
+		Position.create('Centre-Back', 'CB', 'defense');
+		Position.create('Left-Back', 'LB', 'defense');
+		Position.create('Right-Back', 'RB', 'defense');
+		Position.create('Left Wing-Back', 'LWB', 'defense');
+		Position.create('Right Wing-Back', 'RWB', 'defense');
+		Position.create('Defensive Midfielder', 'CDM', 'midfield');
+		Position.create('Centre Midfielder', 'CM', 'midfield');
 		Position.create('Left Midfielder', 'LM', 'midfield');
 		Position.create('Right Midfielder', 'RM', 'midfield');
-		Position.create('Central Attacking Midfielder', 'CAM', 'midfield');
-		Position.create('Left Wing', 'LW', 'attack');
-		Position.create('Right Wing', 'RW', 'attack');
-		Position.create('Center Forward', 'CF', 'attack');
+		Position.create('Attacking Midfielder', 'CAM', 'midfield');
+		Position.create('Left Winger', 'LW', 'attack');
+		Position.create('Right Winger', 'RW', 'attack');
+		Position.create('Centre Forward', 'CF', 'attack');
 		Position.create('Striker', 'ST', 'attack');
 	}
 

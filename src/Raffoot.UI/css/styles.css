@@ -36,7 +36,7 @@ h1 {
 
 .player {
     border-radius: 50%;
-    border-width: medium !important;
+    border-width: 2px !important;
     width: 20%;
     max-width: 20%;
 }

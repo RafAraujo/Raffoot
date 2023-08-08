@@ -41,11 +41,11 @@ class Squad {
     }
 
     get starting11() {
-        return this.squadPlayers.filter(sp => sp.fieldLocalization).orderBy('order', 'player.position.id', '-player.overall');
+        return this.squadPlayers.filter(sp => sp.fieldLocalization);
     }
 
     get substitutes() {
-        return this.squadPlayers.filter(sp => !sp.fieldLocalization).orderBy('order', 'player.position.id', '-player.overall');
+        return this.squadPlayers.filter(sp => !sp.fieldLocalization);
     }
 
     get wage() {

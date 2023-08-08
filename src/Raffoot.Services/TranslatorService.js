@@ -8,9 +8,13 @@ class TranslatorService {
         if (translation) {
             return translation;
         }
-        else {
-            throw new Error(`Text "${text}" not found`);
+
+        translation = this.language[text.withOnlyFirstLetterUpperCase()];
+        if (translation) {
+            return translation;
         }
+        
+        throw new Error(`Text "${text}" not found`);
     }
 
     getChampionshipName(championship) {       

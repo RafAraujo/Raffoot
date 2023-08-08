@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="gameLoaded">
+        <div v-if="gameLoaded" @click="this.selectedSquadPlayerId = null">
             <header>
                 <nav class="navbar navbar-expand-lg border-bottom border-body"
                     :class="game.club.foregroundColor == 'white' ? 'bg-light' : 'bg-dark'"
@@ -183,24 +183,27 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-12 col-md-6 col-xl-4 mb-2">
-                            <div class="field position-relative border" style="height: 475px"
-                                @click="this.selectedSquadPlayerId = null">
-                                <template v-for="squadPlayer in this.game.club.squad.starting11">
+                            <div class="field position-relative border" style="height: 475px">
+                                <template
+                                    v-for="squadPlayer in this.game.club.squad.starting11.orderBy('order', 'player.position.id', '-player.overall')">
                                     <div class="player position-absolute text-center"
                                         :class="{ 'border blink' : squadPlayer.id === this.selectedSquadPlayerId }"
                                         :data-squad-player-id="squadPlayer.id" @click.stop="clickPlayer($event)"
                                         :style="{ top: (11 - squadPlayer.fieldLocalization.line) * 7.7 + '%', left: (squadPlayer.fieldLocalization.column) * 20 + '%' }">
                                         <div>
                                             <div class="position position-absolute"
-                                                :class="{ 'improvised' : squadPlayer.isImprovised }">
-                                                {{ squadPlayer.fieldLocalization.name }}
+                                                :class="{ 'improvised' : squadPlayer.isImprovised }"
+                                                :title="translator.get(squadPlayer.player.position.name)">
+                                                {{ translator.get(squadPlayer.fieldLocalization.position.abbreviation)
+                                                }}
                                             </div>
                                             <div class="overall position-absolute">
                                                 {{ squadPlayer.overall }}
                                             </div>
                                         </div>
                                         <img :src="squadPlayer.player.getPhotoURL()" :alt="squadPlayer.player.fullName"
-                                            :title="squadPlayer.player.fullName" onerror="this.onerror = null; this.src='res/players/0.svg'">
+                                            :title="squadPlayer.player.fullName"
+                                            onerror="this.onerror = null; this.src='res/players/0.svg'">
                                         <div class="energy progress position-relative"
                                             :title="`${translator.get('Energy')} ${squadPlayer.player.energy}%`">
                                             <div class="progress-bar bg-success" role="progressbar"
@@ -218,15 +221,17 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 col-xl-4">
-                            <div class="bench position-relative border" @click="this.selectedSquadPlayerId = null">
-                                <template v-for="squadPlayer in this.game.club.squad.substitutes">
+                            <div class="bench position-relative border">
+                                <template
+                                    v-for="squadPlayer in this.game.club.squad.substitutes.orderBy('order', 'player.position.id', '-player.overall')">
                                     <div class="player d-inline-block text-center"
                                         :class="{ 'border blink' : squadPlayer.id === this.selectedSquadPlayerId }"
                                         :data-squad-player-id="squadPlayer.id" @click.stop="clickPlayer($event)">
                                         <div class="position-relative">
                                             <div class="position position-absolute"
-                                                :class="{ 'improvised' : squadPlayer.isImprovised }">
-                                                {{ squadPlayer.player.position.abbreviation }}
+                                                :class="{ 'improvised' : squadPlayer.isImprovised }"
+                                                :title="translator.get(squadPlayer.player.position.name)">
+                                                {{ translator.get(squadPlayer.player.position.abbreviation) }}
                                             </div>
                                             <div class="overall position-absolute">
                                                 {{ squadPlayer.overall }}
