@@ -1,5 +1,6 @@
 class Player {
-    constructor(fullName, name, countryId, positionIds, age, overall, clubId, externalId, wage) {
+    constructor(externalId, fullName, name, countryId, positionIds, age, overall, clubId, hasPhoto, star, energy, wage, goals) {
+        this.externalId = externalId;
         this.fullName = fullName;
         this.name = name;
         this._countryId = countryId;
@@ -7,19 +8,21 @@ class Player {
         this.age = age;
         this.overall = overall;
         this._clubId = clubId;
-        this.externalId = externalId;
-        this.energy = 100;
-        this.star = false;
+        this.hasPhoto = hasPhoto;
+        this.star = star;
+        this.energy = energy;
         this.wage = wage;
-        this.goals = 0;
+        this.goals = goals;
     }
 
-    static create(fullName, name, countryName, positionAbbreviations, age, overall, club, externalId) {
+    static create(externalId, fullName, name, countryName, positionAbbreviations, age, overall, club, hasPhoto) {
         const country = Context.game.countries.find(c => c.name === countryName);
         const positionIds = positionAbbreviations.map(pa => Context.game.positions.find(p => p.abbreviation === pa).id);
-        const marketValue = this._calculateBaseWage(overall, false);
+        const star = false;
+        const energy = 100;
         const wage = this._getBaseWage(overall, false);
-        const player = new Player(fullName, name, country.id, positionIds, age, overall, club.id, externalId, wage);
+        const goals = 0;
+        const player = new Player(externalId, fullName, name, country.id, positionIds, age, overall, club.id, hasPhoto, star, energy, wage, goals);
         player.id = Context.game.players.push(player);
         club.addPlayer(player);
         SquadPlayer.create(club.squad, player);
@@ -126,6 +129,8 @@ class Player {
     }
 
     getPhotoURL() {
-        return `${Config.folders.photosFolder}/${this.externalId}.png`;
+        const file = this.hasPhoto ? `${this.externalId}.png` : '0.svg';
+        const url = `${Config.folders.photosFolder}/${file}`;
+        return url;
     }
 }

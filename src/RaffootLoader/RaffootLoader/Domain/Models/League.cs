@@ -1,6 +1,6 @@
 ﻿namespace RaffootLoader.Domain.Models
 {
-    public class League
+    public class League : Entity
     {
         public int ExternalId { get; set; }
 

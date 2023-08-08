@@ -5,7 +5,7 @@ using System.Runtime.Versioning;
 namespace RaffootLoader.Services
 {
     [SupportedOSPlatform("windows")]
-    public class BitmapService
+    public static class BitmapService
     {
         public static Bitmap ConvertToBitmap(string file)
         {

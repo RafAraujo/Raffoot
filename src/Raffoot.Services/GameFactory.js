@@ -44,8 +44,6 @@ class GameFactory {
 		Context.game.newSeason();
 		console.log(`newSeason() took ${(performance.now() - t0)} milliseconds.`);
 
-		ColorManager.setClubsColors();
-
 		return Context.game;
 	}
 }

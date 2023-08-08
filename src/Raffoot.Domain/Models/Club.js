@@ -1,18 +1,17 @@
 class Club {
-    constructor(name, countryId, externalId) {
+    constructor(externalId, name, countryId, backgroundColor, foregroundColor) {
         this.name = name;
         this._countryId = countryId;
+        this.backgroundColor = backgroundColor;
+        this.foregroundColor = foregroundColor;
         this.externalId = externalId;
         this._playerIds = [];
         this._squadId = null;
-
-        this.backgroundColor = "";
-        this.foregroundColor = "";
     }
 
-    static create(name, countryName, externalId) {
+    static create(externalId, name, countryName, backgroundColor, foregroundColor) {
         const country = Context.game.countries.find(c => c.name === countryName);
-        const club = new Club(name, country.id, externalId);
+        const club = new Club(externalId, name, country.id, backgroundColor, foregroundColor);
         club.id = Context.game.clubs.push(club);
         
         country.addClub(club);

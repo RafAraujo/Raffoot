@@ -12,15 +12,13 @@ namespace RaffootLoader.Services
 {
     public class JavaScriptFileGenerator : IJavaScriptFileGenerator
     {
+        private readonly ISettingsManager _settings;
         private readonly IContext _context;
-        private readonly string _basePath;
-        private readonly string _imagesPath;
 
-        public JavaScriptFileGenerator(IContext context, string basePath, string imagesPath)
+        public JavaScriptFileGenerator(ISettingsManager settings, IContext context)
         {
+            _settings = settings;
             _context = context;
-            _basePath = basePath;
-            _imagesPath = imagesPath;
         }
 
         public void GenerateSoFifaServiceFile()
@@ -31,7 +29,7 @@ namespace RaffootLoader.Services
 
                 var version = DateTime.Now.ToString("yy");
                 var fileName = $"SoFifa{version}Service";
-                var filePath = Path.Combine(_basePath, "Raffoot.Services", $"{fileName}.js");
+                var filePath = Path.Combine(_settings.BasePath, "Raffoot.Services", $"{fileName}.js");
 
                 var sb = new StringBuilder();
 
@@ -53,18 +51,24 @@ namespace RaffootLoader.Services
 
                     foreach (var club in clubs)
                     {
-                        sb.AppendLine(string.Format("\t\tclub = Club.create(\"{0}\", \"{1}\", {2});", club.Name, country.Name, club.ExternalId));
+                        sb.AppendLine(string.Format("\t\tclub = Club.create({0}, \"{1}\", \"{2}\", \"{3}\", \"{4}\");",
+                            club.ExternalId,
+                            club.Name,
+                            country.Name,
+                            club.BackgroundColor,
+                            club.ForegroundColor));
 
                         foreach (var player in _context.Players.Where(p => p.ClubId == club.ExternalId))
                         {
-                            sb.AppendLine(string.Format("\t\tPlayer.create(\"{0}\", \"{1}\", \"{2}\", [{3}], {4}, {5}, club, {6});",
+                            sb.AppendLine(string.Format("\t\tPlayer.create({0}, \"{1}\", \"{2}\", \"{3}\", [{4}], {5}, {6}, club, {7});",
+                                player.ExternalId,
                                 player.FullName,
                                 player.Name,
                                 player.Country,
                                 string.Join(", ", player.Positions.Select(p => $"'{p}'")),
                                 player.Age,
                                 player.Overall,
-                                player.ExternalId));
+                                player.HasPhoto.ToString().ToLower()));
                         }
 
                         sb.AppendLine();
@@ -89,15 +93,15 @@ namespace RaffootLoader.Services
 
                 const string sourceLanguage = "en";
                 const string FileName = "MultiLanguage";
-                var filePath = Path.Combine(_basePath, "Raffoot.Domain", $"{FileName}.js");
+                var filePath = Path.Combine(_settings.BasePath, "Raffoot.Domain", $"{FileName}.js");
 
                 var languages = Context.Languages;
 
                 var translations = _context.Translations.ToList();
                 var englishTranslations = translations
-                    .ToList()
-                    .Where(t => t.Language == translations.Select(t => t.Language).Where(l => l != sourceLanguage).First())
-                    .Select(t => new Translation(t.OriginalText, t.OriginalText, sourceLanguage));
+                    .Select(t => t.OriginalText).Distinct()
+                    .Select(t => new Translation(t, t, sourceLanguage))
+                    .ToList();
                 translations.AddRange(englishTranslations);
 
                 dynamic json = new ExpandoObject();
@@ -121,66 +125,6 @@ namespace RaffootLoader.Services
                 sb.AppendLine("const MultiLanguage = ");
                 sb.Append(serialized);
                 sb.Append(';');
-
-                File.WriteAllText(filePath, sb.ToString());
-            }
-            catch (Exception ex)
-            {
-                ConsoleUtils.ShowException(ex);
-            }
-        }
-
-        public void GenerateColorManagerFile()
-        {
-            try
-            {
-                if (!OperatingSystem.IsWindows())
-                {
-                    Console.WriteLine("OS is not Windows");
-                    return;
-                }
-
-                Console.WriteLine("Generating ColorManager file...");
-
-                const string FileName = "ColorManager";
-                var filePath = Path.Combine(_basePath, "Raffoot.Services", $"{FileName}.js");
-
-                var service = new BitmapService();
-                var sb = new StringBuilder();
-
-                sb.AppendLine(string.Format("class {0} {{", FileName));
-
-                sb.AppendLine("\tstatic setClubsColors() {");
-
-                var clubs = _context.Clubs.OrderBy(c => c.Name);
-                var leagues = _context.Leagues;
-                var current = 0;
-
-                Parallel.ForEach(clubs, club =>
-                {
-                    var logoPath = @$"{_imagesPath}\clubs\{club.ExternalId}.png";
-                    var mainKitPath = @$"{_imagesPath}\kits\{club.ExternalId}\1.png";
-
-                    if (File.Exists(mainKitPath) && OperatingSystem.IsWindows())
-                    {
-                        //using var logoBitmap = BitmapService.ConvertToBitmap(logoPath);
-                        using var mainKitBitmap = BitmapService.ConvertToBitmap(mainKitPath);
-                        var backColor = BitmapService.GetAverageColor(new[] { mainKitBitmap });
-                        var foreColor = BitmapService.PerceivedBrightness(backColor) > 130 ? Color.Black : Color.White;
-
-                        sb.AppendLine(string.Format("\t\tContext.game.clubs.find(c => c.name === \"{0}\" && c.country.name === \"{1}\").setColors('{2}', '{3}');",
-                            club.Name,
-                            leagues.Single(l => l.ExternalId == club.LeagueId).Country,
-                            $"rgb({backColor.R},{backColor.G},{backColor.B})",
-                            foreColor.Name.ToLower()));
-
-                        ConsoleUtils.ShowProgress(++current, clubs.Count());
-                    }
-                });
-
-                sb.AppendLine("\t}").AppendLine();
-
-                sb.Append('}');
 
                 File.WriteAllText(filePath, sb.ToString());
             }

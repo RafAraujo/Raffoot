@@ -1,9 +1,7 @@
 ﻿namespace RaffootLoader.Domain.Models
 {
-    public class Player
+    public class Player : Entity
     {
-        public int Id { get; set; }
-
         public int ExternalId { get; set; }
 
         public int ClubId { get; set; }
@@ -27,5 +25,7 @@
         public int EndOfContract { get; set; }
 
         public string Photo { get; set; }
+
+        public bool HasPhoto { get; set; }
     }
 }

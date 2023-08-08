@@ -35,15 +35,6 @@ while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
         case ProgramOption.CreateDatabase:
             await dataExtractor.CreateDatabase();
             break;
-        case ProgramOption.GenerateSoFifaServiceFile:
-            fileGenerator.GenerateSoFifaServiceFile();
-            break;
-        case ProgramOption.UpdateTranslations:
-            await translator.UpdateTranslations();
-            break;
-        case ProgramOption.GenerateMultiLanguageFile:
-            fileGenerator.GenerateMultiLanguageFile();
-            break;
         case ProgramOption.DownloadFlags:
             await imageDownloader.DownloadFlags().ConfigureAwait(false);
             break;
@@ -56,8 +47,21 @@ while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
         case ProgramOption.DownloadPhotos:
             await imageDownloader.DownloadPhotos().ConfigureAwait(false);
             break;
-        case ProgramOption.GenerateColorManagerFile:
-            fileGenerator.GenerateColorManagerFile();
+        case ProgramOption.UpdateClubsColors:
+            dataExtractor.UpdateClubsColors();
+            break;
+        case ProgramOption.UpdatePlayerHasPhotoFlag:
+            dataExtractor.UpdatePlayerHasPhotoFlag();
+            break;
+        case ProgramOption.GenerateSoFifaServiceFile:
+            fileGenerator.GenerateSoFifaServiceFile();
+            break;
+
+        case ProgramOption.UpdateTranslations:
+            await translator.UpdateTranslations();
+            break;
+        case ProgramOption.GenerateMultiLanguageFile:
+            fileGenerator.GenerateMultiLanguageFile();
             break;
     }
 
@@ -65,19 +69,22 @@ while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
     WriteInstructions();
 }
 
-static void ConfigureServices(IServiceCollection serviceCollection)
+// https://stackoverflow.com/questions/70628314/injecting-primitive-type-in-constructor-of-generic-type-using-microsoft-di
+static void ConfigureServices(IServiceCollection services)
 {
-
     var consoleAppPath = Assembly.GetExecutingAssembly().Location;
     var basePath = @$"{consoleAppPath}\..\..\..\..\..\..\";
     var dbPath = Path.Combine(basePath, @"RaffootLoader\Raffoot.db");
     var imagesPath = Path.Combine(basePath, @"Raffoot.UI\res\");
 
-    serviceCollection.AddScoped<IContext, Context>(sp => new Context(dbPath));
-    serviceCollection.AddScoped<IDataExtractorService, SoFifaDataExtractorService>();
-    serviceCollection.AddScoped<IImageDownloaderService, SoFifaImageDownloaderService>(sp => new SoFifaImageDownloaderService(sp.GetService<IContext>(), imagesPath));
-    serviceCollection.AddScoped<ITranslatorService, TranslatorService>(sp => new TranslatorService(sp.GetService<IContext>(), basePath));
-    serviceCollection.AddScoped<IJavaScriptFileGenerator, JavaScriptFileGenerator>(sp => new JavaScriptFileGenerator(sp.GetService<IContext>(), basePath, imagesPath));
+    services.AddSingleton<ISettingsManager, SettingsManager>(sp => new SettingsManager(basePath, dbPath, imagesPath));
+
+    services.AddScoped<IContext, Context>();
+    services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+    services.AddScoped<IDataExtractorService, SoFifaDataExtractorService>();
+    services.AddScoped<IImageDownloaderService, SoFifaImageDownloaderService>();
+    services.AddScoped<ITranslatorService, TranslatorService>();
+    services.AddScoped<IJavaScriptFileGenerator, JavaScriptFileGenerator>();
 }
 
 static void WriteInstructions()

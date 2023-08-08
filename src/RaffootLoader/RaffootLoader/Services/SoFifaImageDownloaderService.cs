@@ -1,4 +1,5 @@
 ﻿using RaffootLoader.Data.Interfaces;
+using RaffootLoader.Domain.Models;
 using RaffootLoader.Services.Interfaces;
 using RaffootLoader.Utils;
 
@@ -6,14 +7,14 @@ namespace RaffootLoader.Services
 {
     public class SoFifaImageDownloaderService : IImageDownloaderService
     {
+        private readonly ISettingsManager _settings;
         private readonly IContext _context;
-        private readonly string _imagesFolder;
         private readonly HttpClient _client;
 
-        public SoFifaImageDownloaderService(IContext context, string imagesFolder)
+        public SoFifaImageDownloaderService(ISettingsManager settings, IContext context)
         {
+            _settings = settings;
             _context = context;
-            _imagesFolder = imagesFolder;
             _client = new(new HttpClientHandler { AllowAutoRedirect = false });
         }
 
@@ -30,7 +31,7 @@ namespace RaffootLoader.Services
 
                     var url = country.Flag.Split(' ')[2];
                     var fileName = $"{country.Name}{Path.GetExtension(url)}";
-                    var filePath = Path.Combine(_imagesFolder, "countries", fileName);
+                    var filePath = Path.Combine(_settings.ImagesPath, "countries", fileName);
 
                     if (!File.Exists(filePath))
                     {
@@ -65,7 +66,7 @@ namespace RaffootLoader.Services
                 {
                     var url = club.Logo.Split(' ')[2];
                     var fileName = $"{club.ExternalId}{Path.GetExtension(url)}";
-                    var filePath = Path.Combine(_imagesFolder, "clubs", fileName);
+                    var filePath = Path.Combine(_settings.ImagesPath, "clubs", fileName);
 
                     if (!File.Exists(filePath))
                     {
@@ -100,7 +101,7 @@ namespace RaffootLoader.Services
                 {
                     var index = 1;
 
-                    var folderPath = Path.Combine(_imagesFolder, "kits", club.ExternalId.ToString());
+                    var folderPath = Path.Combine(_settings.ImagesPath, "kits", club.ExternalId.ToString());
                     Directory.CreateDirectory(folderPath);
 
                     foreach (var kit in club.Kits)
@@ -138,23 +139,28 @@ namespace RaffootLoader.Services
             {
                 Console.WriteLine("Downloading photos...");
 
-                var defaultPhoto = Path.Combine(_imagesFolder, "players", "0.svg");
+                var defaultPhotoPath = Path.Combine(_settings.ImagesPath, "players", "0.svg");
 
-                if (!File.Exists(defaultPhoto))
+                if (!File.Exists(defaultPhotoPath))
                 {
-                    tasks.Add(DownloadImage("https://cdn.sofifa.net/player_0.svg", defaultPhoto));
+                    CreateFolder(defaultPhotoPath);
+                    await DownloadImage("https://cdn.sofifa.net/player_0.svg", defaultPhotoPath);
                 }
 
                 foreach (var player in _context.Players)
                 {
                     var url = player.Photo.Split(' ')[2];
                     var fileName = $"{player.ExternalId}{Path.GetExtension(url)}";
-                    var filePath = Path.Combine(_imagesFolder, "players", fileName);
+                    var filePath = Path.Combine(_settings.ImagesPath, "players", fileName);
 
-                    if (!File.Exists(filePath))
+                    if (File.Exists(filePath))
+                    {
+                        player.HasPhoto = true;
+                    }
+                    else
                     {
                         CreateFolder(filePath);
-                        tasks.Add(DownloadImage(url, filePath));
+                        tasks.Add(DownloadPhoto(player, url, filePath));
                     }
                 }
 
@@ -166,6 +172,7 @@ namespace RaffootLoader.Services
             }
             finally
             {
+
                 Console.WriteLine("\tSuccess: {0}", tasks.Count(t => t.IsCompletedSuccessfully));
                 Console.WriteLine("\tFailed: {0}", tasks.Count(t => t.IsFaulted));
                 Console.WriteLine("\tTotal: {0}", tasks.Count);
@@ -178,7 +185,13 @@ namespace RaffootLoader.Services
             Directory.CreateDirectory(folder);
         }
 
-        public async Task DownloadImage(string url, string filePath)
+        private async Task DownloadPhoto(Player player, string url, string filePath)
+        {
+            await DownloadImage(url, filePath);
+            player.HasPhoto = true;
+        }
+
+        private async Task DownloadImage(string url, string filePath)
         {
             using var stream = await _client.GetStreamAsync(url).ConfigureAwait(false);
             using var fileStream = new FileStream(filePath, FileMode.OpenOrCreate);

@@ -45,7 +45,7 @@ class Match {
     }
 
     get income() {
-        return this.audience * Config.stadiumTicketPrice;
+        return this.audience ? this.audience * Config.stadiumTicketPrice : null;
     }
 
     get score() {

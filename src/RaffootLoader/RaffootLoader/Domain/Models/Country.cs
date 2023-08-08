@@ -1,6 +1,6 @@
 ﻿namespace RaffootLoader.Domain.Models
 {
-    public class Country
+    public class Country : Entity
     {
         public string Name { get; set; }
 

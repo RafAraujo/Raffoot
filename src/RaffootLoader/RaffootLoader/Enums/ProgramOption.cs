@@ -4,14 +4,17 @@
     {
         DropDatabase,
         CreateDatabase,
-        GenerateSoFifaServiceFile,
-        UpdateTranslations,
-        GenerateMultiLanguageFile,
         DownloadFlags,
         DownloadLogos,
         DownloadKits,
         DownloadPhotos,
-        GenerateColorManagerFile,
+        UpdateClubsColors,
+        UpdatePlayerHasPhotoFlag,
+        GenerateSoFifaServiceFile,
+
+        UpdateTranslations,
+        GenerateMultiLanguageFile,
+
         Exit = 99
     }
 }

@@ -3,7 +3,9 @@ using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Models;
 using RaffootLoader.Services.Interfaces;
 using RaffootLoader.Utils;
+using System.Drawing;
 using System.Net;
+using System.Text;
 
 namespace RaffootLoader.Services
 {
@@ -11,13 +13,24 @@ namespace RaffootLoader.Services
     {
         private const string BaseUrl = "https://sofifa.com/";
 
+        private readonly ISettingsManager _settings;
         private readonly IContext _context;
+        private readonly IRepository<Club> _clubRepository;
+        private readonly IRepository<Player> _playerRepository;
+
         private readonly HttpClient _client;
         private readonly IList<Country> _countries;
 
-        public SoFifaDataExtractorService(IContext context)
+        public SoFifaDataExtractorService(
+            ISettingsManager settings,
+            IContext context,
+            IRepository<Club> clubRepository,
+            IRepository<Player> playerRepository)
         {
+            _settings = settings;
             _context = context;
+            _clubRepository = clubRepository;
+            _playerRepository = playerRepository;
 
             _client = new();
             _client.DefaultRequestHeaders.Add("User-Agent", "C# App");
@@ -223,7 +236,7 @@ namespace RaffootLoader.Services
             return players;
         }
 
-        private async Task<HtmlDocument> GetHtmlDocument(string url)
+        public async Task<HtmlDocument> GetHtmlDocument(string url)
         {
             HttpResponseMessage message = null;
             HtmlDocument doc = null;
@@ -252,6 +265,78 @@ namespace RaffootLoader.Services
             }
 
             return doc;
+        }
+
+        public void UpdateClubsColors()
+        {
+            try
+            {
+                if (!OperatingSystem.IsWindows())
+                {
+                    Console.WriteLine("OS is not Windows");
+                    return;
+                }
+
+                var sb = new StringBuilder();
+
+                var clubs = new List<Club>();
+                var leagues = _context.Leagues;
+
+                Console.WriteLine("Updating clubs colors...");
+
+                var current = 0;
+
+                Parallel.ForEach(_context.Clubs, club =>
+                {
+                    var logoPath = @$"{_settings.ImagesPath}\clubs\{club.ExternalId}.png";
+                    var mainKitPath = @$"{_settings.ImagesPath}\kits\{club.ExternalId}\1.png";
+
+                    if (File.Exists(mainKitPath) && OperatingSystem.IsWindows())
+                    {
+                        //using var logoBitmap = BitmapService.ConvertToBitmap(logoPath);
+                        using var mainKitBitmap = BitmapService.ConvertToBitmap(mainKitPath);
+                        var backColor = BitmapService.GetAverageColor(new[] { mainKitBitmap });
+                        var foreColor = BitmapService.PerceivedBrightness(backColor) > 130 ? Color.Black : Color.White;
+
+                        club.BackgroundColor = $"rgb({backColor.R},{backColor.G},{backColor.B})";
+                        club.ForegroundColor = foreColor.Name.ToLower();
+
+                        clubs.Add(club);
+
+                        ConsoleUtils.ShowProgress(++current, _context.Clubs.Count(), "Calculating average colors: ");
+                    }
+                });
+
+                Console.WriteLine();
+                current = 0;
+
+                foreach (var club in clubs)
+                {
+                    _clubRepository.Update(club);
+                    ConsoleUtils.ShowProgress(++current, clubs.Count, "Updating database: ");
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsoleUtils.ShowException(ex);
+            }
+        }
+
+        public void UpdatePlayerHasPhotoFlag()
+        {
+            Console.WriteLine();
+            var current = 0;
+
+            foreach (var player in _context.Players)
+            {
+                var url = player.Photo.Split(' ')[2];
+                var fileName = $"{player.ExternalId}{Path.GetExtension(url)}";
+                var filePath = Path.Combine(_settings.ImagesPath, "players", fileName);
+
+                player.HasPhoto = File.Exists(filePath);
+                _playerRepository.Update(player);
+                ConsoleUtils.ShowProgress(++current, _context.Players.Count(), "Updating database: ");
+            }
         }
     }
 }

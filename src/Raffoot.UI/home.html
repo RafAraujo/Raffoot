@@ -176,7 +176,7 @@
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col col-md-6 col-xl-4 mb-2">
+                        <div class="col-md-6 col-xl-4 mb-2">
                             <div class="field position-relative border" style="height: 475px">
                                 <template
                                     v-for="squadPlayer in game.club.squad.starting11.orderBy('order', 'player.position.id', '-player.overall')">
@@ -216,7 +216,7 @@
                                 </template>
                             </div>
                         </div>
-                        <div class="col col-md-6 col-xl-4">
+                        <div class="col-md-6 col-xl-4">
                             <div class="bench position-relative border">
                                 <template
                                     v-for="squadPlayer in game.club.squad.substitutes.orderBy('order', 'player.position.id', '-player.overall')">
@@ -261,12 +261,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col col-xl-9">
+                        <div class="col-xl-9">
                             <table class="table table-hover table-borderless sortable">
                                 <thead class="table-light">
                                     <th class="text-center" :title="translator.get('Position')"
                                         @click="updateSquadOrder('position.id')">
-                                        {{ translator.get("POS") }}
+                                        {{ translator.get("Position").substring(0, 3).toUpperCase() }}
                                     </th>
                                     <th class="text-center" @click="updateSquadOrder('surname')">
                                         {{ translator.get("Name") }}</th>
@@ -326,6 +326,88 @@
                         </div>
                     </div>
                 </section>
+                <section id="calendar" :class="{ 'd-none' : activeSection !== 'calendar' }">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <h5>{{ translator.get("Calendar") }}</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-9">
+                            <table class="table table-hover table-borderless">
+                                <thead class="table-light">
+                                    <th class="text-center">{{ translator.get("Date") }}</th>
+                                    <th class="text-start">{{ translator.get("Home") }}</th>
+                                    <th class="text-center"></th>
+                                    <th class="text-center"></th>
+                                    <th class="text-center"></th>
+                                    <th class="text-end">{{ translator.get("Away") }}</th>
+                                    <th class="text-center">{{ translator.get("Championship") }}</th>
+                                    <th class="text-center">{{ translator.get("Audience") }}</th>
+                                    <th class="text-center">{{ translator.get("Income") }}</th>
+                                </thead>
+                                <tbody>
+                                    <template v-for="match in matches">
+                                        <tr>
+                                            <td class="text-center">{{ match.date.toLocaleDateString() }}</td>
+                                            <td class="text-start">{{ match.matchClubHome.club.name }}</td>
+                                            <td class="text-center">{{ match.matchClubHome.goals }}</td>
+                                            <td class="text-center">×</td>
+                                            <td class="text-center">{{ match.matchClubAway.goals }}</td>
+                                            <td class="text-end">{{ match.matchClubAway.club.name }}</td>
+                                            <td class="text-center">
+                                                {{ translator.getChampionshipName(match.championshipEdition.championship) }}
+                                            </td>
+                                            <td class="text-center">{{ match.audience }}</td>
+                                            <td class="text-center">{{ match.income }}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section id="tables" :class="{ 'd-none' : activeSection !== 'tables' }">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <h5>{{ translator.get("Classification Tables") }}</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-9">
+                            <table class="table table-hover table-borderless">
+                                <thead class="table-light">
+                                    <th class="text-center">{{ translator.get("Date") }}</th>
+                                    <th class="text-start">{{ translator.get("Home") }}</th>
+                                    <th class="text-center"></th>
+                                    <th class="text-center"></th>
+                                    <th class="text-center"></th>
+                                    <th class="text-end">{{ translator.get("Away") }}</th>
+                                    <th class="text-center">{{ translator.get("Championship") }}</th>
+                                    <th class="text-center">{{ translator.get("Audience") }}</th>
+                                    <th class="text-center">{{ translator.get("Income") }}</th>
+                                </thead>
+                                <tbody>
+                                    <template v-for="match in matches">
+                                        <tr>
+                                            <td class="text-center">{{ match.date.toLocaleDateString() }}</td>
+                                            <td class="text-start">{{ match.matchClubHome.club.name }}</td>
+                                            <td class="text-center">{{ match.matchClubHome.goals }}</td>
+                                            <td class="text-center">×</td>
+                                            <td class="text-center">{{ match.matchClubAway.goals }}</td>
+                                            <td class="text-end">{{ match.matchClubAway.club.name }}</td>
+                                            <td class="text-center">
+                                                {{ translator.getChampionshipName(match.championshipEdition.championship) }}
+                                            </td>
+                                            <td class="text-center">{{ match.audience }}</td>
+                                            <td class="text-center">{{ match.income }}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
             </main>
             <footer>
 
@@ -368,7 +450,6 @@
     <script src="../Raffoot.Domain/Context.js"></script>
     <script src="../Raffoot.Domain/MultiLanguage.js"></script>
 
-    <script src="../Raffoot.Services/ColorManager.js"></script>
     <script src="../Raffoot.Services/GameFactory.js"></script>
     <script src="../Raffoot.Services/GameService.js"></script>
     <script src="../Raffoot.Services/SoFifa23Service.js"></script>
@@ -441,9 +522,15 @@
         },
         computed: {
             clubId() {
+                console.log('clubId');
                 return this.game?.club.id;
             },
+            matches() {
+                console.log('matches');
+                return this.game.currentSeason.getMatchesByClubId(this.game.club.id);
+            },
             nextMatch() {
+                console.log('nextMatch');
                 return this.game.currentSeason.getNextMatch(this.game.club.id);
             }
         },

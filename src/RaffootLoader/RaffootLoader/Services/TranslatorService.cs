@@ -9,8 +9,8 @@ namespace RaffootLoader.Services
 {
     public class TranslatorService : ITranslatorService
     {
+        private readonly ISettingsManager _settings;
         private readonly IContext _context;
-        private readonly string _basePath;
         private readonly ITranslatorApi _translatorApi;
 
         private readonly string[] _positions = new[]
@@ -30,26 +30,26 @@ namespace RaffootLoader.Services
         {
             "age", "assists", "audience", $"{PrefixOfContext}{Separator}Away",
             "back", "ball possession", $"{PrefixOfContext}{Separator}board of directors", "bronze",
-            "calendar", "cancel", "capacity", "category", "champions", "Champions Cup", "classification tables", "club", "clubs", "choose your club", "coach", "CON", "Conference Cup", "contract", "country", "creating game...", $"{PrefixOfContext}{Separator}Cup",
-            "date", "delete", "division",
+            "calendar", "cancel", "capacity", "category", "champions", "Champions Cup", "championship", "classification tables", "club", "clubs", "choose your club", "coach", "CON", "Conference Cup", "contract", "country", "creating game...", $"{PrefixOfContext}{Separator}Cup",
+            "date", "delete", "division", $"{PrefixOfContext}{Separator}draws",
             "end of contract", "energy", "error", "expand",
             "final", "finances", "formation", "for sale", "free kick", "free kick taker",
             "game", "game deleted with success",  $"{PrefixOfContext}{Separator}goal",  $"{PrefixOfContext}{Separator}goals", "gold", "group",
             "history", $"{PrefixOfContext}{Separator}home",
             "income", "International Supercup",
-            "league", "left", "load game", "loading game...",
+            "league", "left", "load game", "loading game...", $"{PrefixOfContext}{Separator}losses",
             "market value", "matches",
             "name", "nationality", "new game", "no",
             "offside", "Overall", "OV",
-            $"{PrefixOfContext}{Separator}penalty", "penalty taker", "play", $"{PrefixOfContext}{Separator}players", "position", "POS", "preferred side", "processing...",
+            $"{PrefixOfContext}{Separator}penalty", "penalty taker", "play", $"{PrefixOfContext}{Separator}players", $"{PrefixOfContext}{Separator}points", "position", "POS", "preferred side", "processing...",
             "quarter-finals",
             "Raffoot", "ranking", $"{PrefixOfContext}{Separator}referee", "renew contract", $"{PrefixOfContext}{Separator}right", "round of 16", "round of 32", "round of 64",
             "save game", "search", "search players", "semifinals", "silver", "squad", "stadium", "star", "start game", "starting game...", "statistics", "supercup",
             "ticket price", "top scorers", $"{PrefixOfContext}{Separator}trust",
-            $"{PrefixOfContext}{Separator}wage", "world",
+            $"{PrefixOfContext}{Separator}wage", "wins", "world",
             "year", "yes"
         };
-        private readonly string[] _fixedTexts = new[] { "BeNe", "CON", "Overall", "OV", "POS", "Raffoot" };
+        private readonly string[] _fixedTexts = new[] { "BeNe", "CON", "Overall", "OV", "Raffoot" };
 
         private readonly Translation[] _fixedTranslations = new[]
         {
@@ -75,27 +75,29 @@ namespace RaffootLoader.Services
         private const string PrefixOfContext = "football";
         private const string Separator = " - ";
 
-        public TranslatorService(IContext context, string basePath)
+        public TranslatorService(ISettingsManager settings, IContext context)
         {
+            _settings = settings;
             _context = context;
-            _basePath = basePath;
             _translatorApi = new GoogleTranslator(new HttpClient());
         }
 
         public async Task UpdateTranslations()
         {
-            var translations = _fixedTranslations.ToList();
+            var translations = new List<Translation>();
 
             try
             {
                 const string FileName = "MultiLanguage";
-                var filePath = Path.Combine(_basePath, "Raffoot.Domain", $"{FileName}.js");
+                var filePath = Path.Combine(_settings.BasePath, "Raffoot.Domain", $"{FileName}.js");
 
                 const string sourceLanguage = "en";
 
                 var languages = new[] { "pt-BR" };
 
                 var dbTranslations = _context.Translations.Select(t => t.OriginalText);
+                translations = _fixedTranslations.Where(t => !dbTranslations.Select(dbT => dbT.ToLower()).Contains(t.OriginalText.ToLower())).ToList();
+
                 var originalTexts = GetTextsToTranslate();
                 var textsToTranslate = originalTexts.Where(t => !dbTranslations.Select(dbT => dbT.ToLower()).Contains(GetTextWithoutPrefix(t.ToLower()))).ToList();
                 var fixedTexts = textsToTranslate.Where(t => _fixedTexts.Contains(t));

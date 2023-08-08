@@ -6,32 +6,36 @@ namespace RaffootLoader.Data
 {
     public class Context : IContext
     {
-        private readonly string _dbPath;
+        private readonly ISettingsManager _settingsManager;
+        private readonly IRepository<League> _leagueRepository;
+        private readonly IRepository<Club> _clubRepository;
+        private readonly IRepository<Player> _playerRepository;
+        private readonly IRepository<Country> _countryRepository;
+        private readonly IRepository<Translation> _translationRepository;
 
         private IEnumerable<League> _leagues;
         private IEnumerable<Club> _clubs;
         private IEnumerable<Player> _players;
         private IEnumerable<Country> _countries;
-        private IEnumerable<Translation> _translations;
 
         public IEnumerable<League> Leagues
         {
-            get => _leagues ??= new Repository<League>(_dbPath).GetAll();
+            get => _leagues ??= _leagueRepository.GetAll();
         }
 
         public IEnumerable<Club> Clubs
         {
-            get => _clubs ??= new Repository<Club>(_dbPath).GetAll();
+            get => _clubs ??= _clubRepository.GetAll();
         }
 
         public IEnumerable<Player> Players
         {
-            get => _players ??= new Repository<Player>(_dbPath).GetAll();
+            get => _players ??= _playerRepository.GetAll();
         }
 
         public IEnumerable<Country> Countries
         {
-            get => _countries ??= new Repository<Country>(_dbPath).GetAll();
+            get => _countries ??= _countryRepository.GetAll();
         }
 
         public static IEnumerable<string> Languages
@@ -41,15 +45,26 @@ namespace RaffootLoader.Data
 
         public IEnumerable<Translation> Translations
         {
-            get => _translations is null || !_translations.Any() ? _translations = new Repository<Translation>(_dbPath).GetAll() : _translations;
+            get => _translationRepository.GetAll();
         }
 
-        public Context(string dbName)
+        public Context(
+            ISettingsManager settingsManager,
+            IRepository<League> leagueRepository,
+            IRepository<Club> clubRepository,
+            IRepository<Player> playerRepository,
+            IRepository<Country> countryRepository,
+            IRepository<Translation> translationRepository)
         {
-            _dbPath = dbName;
+            _settingsManager = settingsManager;
+            _leagueRepository = leagueRepository;
+            _clubRepository = clubRepository;
+            _playerRepository = playerRepository;
+            _countryRepository = countryRepository;
+            _translationRepository = translationRepository;
         }
 
-        public bool DatabaseExists() => File.Exists(_dbPath);
+        public bool DatabaseExists() => File.Exists(_settingsManager.DbPath);
 
         public void DropDatabase()
         {
@@ -57,11 +72,11 @@ namespace RaffootLoader.Data
             {
                 Console.WriteLine("Dropping database...");
 
-                if (File.Exists(_dbPath))
+                if (File.Exists(_settingsManager.DbPath))
                 {
-                    File.Move(_dbPath, $"{_dbPath}.old", true);
+                    File.Move(_settingsManager.DbPath, $"{_settingsManager.DbPath}.old", true);
                 }
-                File.Delete(_dbPath);
+                File.Delete(_settingsManager.DbPath);
             }
             catch (Exception ex)
             {
@@ -69,9 +84,9 @@ namespace RaffootLoader.Data
             }
         }
 
-        public void InsertMany<T>(IEnumerable<T> items)
+        public void InsertMany<T>(IEnumerable<T> items) where T : Entity
         {
-            var repository = new Repository<T>(_dbPath);
+            var repository = new Repository<T>(_settingsManager);
             repository.InsertMany(items);
         }
     }

@@ -1,9 +1,7 @@
 ﻿namespace RaffootLoader.Domain.Models
 {
-    public class Translation
+    public class Translation : Entity
     {
-        public int Id { get; set; }
-
         public string OriginalText { get; set; }
 
         public string TranslatedText { get; set; }
