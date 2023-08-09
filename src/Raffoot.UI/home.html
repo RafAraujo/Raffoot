@@ -302,38 +302,36 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <template
+                                    <tr
                                         v-for="player in game.club.squad.players.orderBy(squadOrderColumn, 'position.id', '-overall', 'name')">
-                                        <tr>
-                                            <td class="text-center fw-bold" :class="player.position.fieldRegion"
-                                                :title="translator.get(player.position.name)">
-                                                {{ translator.get(player.position.abbreviation) }}
-                                            </td>
-                                            <td>{{ player.surname }}</td>
-                                            <td class="text-center pt-0 pb-0">
-                                                <span class="overall" :class="player.category">
-                                                    {{ player.overall }}
-                                                </span>
-                                            </td>
-                                            <td class="text-center"
-                                                :class="player.age < 32 ? 'text-primary' : 'text-danger'">
-                                                {{ player.age }}
-                                            </td>
-                                            <td>
-                                                <div class="energy progress position-relative"
-                                                    :title="`${translator.get('Energy')} ${player.energy}%`">
-                                                    <div class="progress-bar" role="progressbar"
-                                                        :class="player.energy > 75 ? 'bg-success' : player.energy > 50 ? 'bg-warning' : 'bg-danger'"
-                                                        :aria-valuenow="player.energy" aria-valuemin="0"
-                                                        aria-valuemax="100" :style="{ width: player.energy + '%' }">
-                                                        {{ player.energy }}
-                                                    </div>
+                                        <td class="text-center fw-bold" :class="player.position.fieldRegion"
+                                            :title="translator.get(player.position.name)">
+                                            {{ translator.get(player.position.abbreviation) }}
+                                        </td>
+                                        <td>{{ player.surname }}</td>
+                                        <td class="text-center pt-0 pb-0">
+                                            <span class="overall" :class="player.category">
+                                                {{ player.overall }}
+                                            </span>
+                                        </td>
+                                        <td class="text-center"
+                                            :class="player.age < 32 ? 'text-primary' : 'text-danger'">
+                                            {{ player.age }}
+                                        </td>
+                                        <td>
+                                            <div class="energy progress position-relative"
+                                                :title="`${translator.get('Energy')} ${player.energy}%`">
+                                                <div class="progress-bar" role="progressbar"
+                                                    :class="player.energy > 75 ? 'bg-success' : player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                    :aria-valuenow="player.energy" aria-valuemin="0" aria-valuemax="100"
+                                                    :style="{ width: player.energy + '%' }">
+                                                    {{ player.energy }}
                                                 </div>
-                                            </td>
-                                            <td class="text-end">{{ player.marketValue.formatCurrency() }}</td>
-                                            <td class="text-end">{{ player.wage.formatCurrency() }}</td>
-                                        </tr>
-                                    </template>
+                                            </div>
+                                        </td>
+                                        <td class="text-end">{{ player.marketValue.formatCurrency() }}</td>
+                                        <td class="text-end">{{ player.wage.formatCurrency() }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -360,23 +358,21 @@
                                     <th class="text-center">{{ translator.get("Income") }}</th>
                                 </thead>
                                 <tbody>
-                                    <template v-for="match in matches">
-                                        <tr>
-                                            <td class="text-center">{{ match.date.toLocaleDateString() }}</td>
-                                            <td class="text-start">{{ match.matchClubHome.club.name }}</td>
-                                            <td class="text-center">{{ match.matchClubHome.goals }}</td>
-                                            <td class="text-center">×</td>
-                                            <td class="text-center">{{ match.matchClubAway.goals }}</td>
-                                            <td class="text-end">{{ match.matchClubAway.club.name }}</td>
-                                            <td class="text-center">
-                                                {{
-                                                translator.getChampionshipName(match.championshipEdition.championship)
-                                                }}
-                                            </td>
-                                            <td class="text-center">{{ match.audience }}</td>
-                                            <td class="text-center">{{ match.income }}</td>
-                                        </tr>
-                                    </template>
+                                    <tr v-for="match in matches">
+                                        <td class="text-center">{{ match.date.toLocaleDateString() }}</td>
+                                        <td class="text-start">{{ match.matchClubHome.club.name }}</td>
+                                        <td class="text-center">{{ match.matchClubHome.goals }}</td>
+                                        <td class="text-center">×</td>
+                                        <td class="text-center">{{ match.matchClubAway.goals }}</td>
+                                        <td class="text-end">{{ match.matchClubAway.club.name }}</td>
+                                        <td class="text-center">
+                                            {{
+                                            translator.getChampionshipName(match.championshipEdition.championship)
+                                            }}
+                                        </td>
+                                        <td class="text-center">{{ match.audience }}</td>
+                                        <td class="text-center">{{ match.income }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -396,10 +392,9 @@
                                 </label>
                                 <select id="select-championships" class="form-select"
                                     @change="selectChampionshipEdition($event)">
-                                    <option
-                                        v-for="championshipEdition in game.currentSeason.championshipEditions
+                                    <option v-for="championshipEdition in game.currentSeason.championshipEditions
                                             .map(ce => ({ id: ce.id, confederationName: ce.championship.confederationName, name: translator.getChampionshipName(ce.championship) }))
-                                            .orderBy('confederationName', 'name')"
+                                            .orderBy('confederationName', 'name')" :key="championshipEdition.id"
                                         :key="championshipEdition.id" :value="championshipEdition.id"
                                         :selected="selectedChampionshipEditionId == championshipEdition.id">
                                         {{ championshipEdition.name }}
@@ -441,32 +436,128 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <template
-                                        v-for="(championshipEditionClub, index) in selectedChampionshipEdition.table">
-                                        <tr>
-                                            <td class="text-center"
-                                                :class="getCssClassForPosition(index + 1, selectedChampionshipEdition)">
-                                                {{ index + 1 }}
-                                            </td>
-                                            <td>
-                                                <img :src="championshipEditionClub.club.getLogoURL()"
-                                                    style="max-height: 1.5rem;">
-                                            </td>
-                                            <td>
-                                                {{ championshipEditionClub.club.name }}
-                                            </td>
-                                            <td class="text-center">{{ championshipEditionClub.points }}</td>
-                                            <td class="text-center">
-                                                {{ game.getNationalLeagueLastPlayedFixture()?.number ?? 0 }}
-                                            </td>
-                                            <td class="text-center">{{ championshipEditionClub.won }}</td>
-                                            <td class="text-center">{{ championshipEditionClub.drawn }}</td>
-                                            <td class="text-center">{{ championshipEditionClub.lost }}</td>
-                                            <td class="text-center">{{ championshipEditionClub.goalsFor }}</td>
-                                            <td class="text-center">{{ championshipEditionClub.goalsAgainst }}</td>
-                                            <td class="text-center">{{ championshipEditionClub.goalsDifference }}</td>
-                                        </tr>
-                                    </template>
+                                    <tr v-for="(championshipEditionClub, index) in selectedChampionshipEdition.table">
+                                        <td class="text-center"
+                                            :class="getCssClassForPosition(index + 1, selectedChampionshipEdition)">
+                                            {{ index + 1 }}
+                                        </td>
+                                        <td>
+                                            <img :src="championshipEditionClub.club.getLogoURL()"
+                                                style="max-height: 1.5rem;">
+                                        </td>
+                                        <td>
+                                            {{ championshipEditionClub.club.name }}
+                                        </td>
+                                        <td class="text-center">{{ championshipEditionClub.points }}</td>
+                                        <td class="text-center">
+                                            {{ game.getNationalLeagueLastPlayedFixture()?.number ?? 0 }}
+                                        </td>
+                                        <td class="text-center">{{ championshipEditionClub.won }}</td>
+                                        <td class="text-center">{{ championshipEditionClub.drawn }}</td>
+                                        <td class="text-center">{{ championshipEditionClub.lost }}</td>
+                                        <td class="text-center">{{ championshipEditionClub.goalsFor }}</td>
+                                        <td class="text-center">{{ championshipEditionClub.goalsAgainst }}</td>
+                                        <td class="text-center">{{ championshipEditionClub.goalsDifference }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section id="finances" :class="{ 'd-none' : activeSection !== 'finances' }">
+
+                </section>
+                <section id="clubs" :class="{ 'd-none' : activeSection !== 'clubs' }">
+                    <div class="row mb-2">
+                        <div class="col-md-4 col-xl-3 mb-3">
+                            <label for="select-country" class="form-label">
+                                {{ translator.get("Country") }}
+                            </label>
+                            <select id="select-country" class="form-select" @change="selectCountry($event)">
+                                <option></option>
+                                <option v-for="country in game.clubs
+                                    .flatMap(c => c.country)
+                                    .distinct()
+                                    .map(c => ({ id: c.id, name: translator.get(c.name) }))
+                                    .orderBy('name')" :key="country.id" :value="country.id"
+                                    :key="country.id" :value="country.id">
+                                    {{ country.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-xl-3">
+                            <label for="select-club" class="form-label">
+                                {{ translator.get("Club") }}
+                            </label>
+                            <select id="select-club" class="form-select" @change="selectClub($event)">
+                                <option></option>
+                                <option v-for="club in game.clubs
+                                    .filter(c => c.country.id === selectedCountryId)
+                                    .orderBy('name')"
+                                    :key="club.id" :value="club.id">
+                                    {{ club.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-9">
+                            <table class="table table-hover table-borderless sortable">
+                                <thead class="table-light">
+                                    <th class="text-center" :title="translator.get('Position')"
+                                        @click="updateClubOrder('position.id')">
+                                        {{ translator.get("Position").substring(0, 3).toUpperCase() }}
+                                    </th>
+                                    <th class="text-center" @click="updateSquadOrder('surname')">
+                                        {{ translator.get("Name") }}</th>
+                                    <th class="text-center" :title="translator.get('Overall')"
+                                        @click="updateClubOrder('overall')">
+                                        {{ translator.get("OV") }}
+                                    </th>
+                                    <th class="text-center" @click="updateClubOrder('age')">
+                                        {{ translator.get("Age") }}
+                                    </th>
+                                    <th class="text-center" @click="updateClubOrder('energy')">
+                                        {{ translator.get("Energy") }}
+                                    </th>
+                                    <th class="text-center" @click="updateClubOrder('marketValue')">
+                                        {{ translator.get("Market Value") }}
+                                    </th>
+                                    <th class="text-center" @click="updateClubOrder('wage')">
+                                        {{ translator.get("Wage") }}
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        v-for="player in selectedClub?.squad.players.orderBy(clubOrderColumn, 'position.id', '-overall', 'name')">
+                                        <td class="text-center fw-bold" :class="player.position.fieldRegion"
+                                            :title="translator.get(player.position.name)">
+                                            {{ translator.get(player.position.abbreviation) }}
+                                        </td>
+                                        <td>{{ player.surname }}</td>
+                                        <td class="text-center pt-0 pb-0">
+                                            <span class="overall" :class="player.category">
+                                                {{ player.overall }}
+                                            </span>
+                                        </td>
+                                        <td class="text-center"
+                                            :class="player.age < 32 ? 'text-primary' : 'text-danger'">
+                                            {{ player.age }}
+                                        </td>
+                                        <td>
+                                            <div class="energy progress position-relative"
+                                                :title="`${translator.get('Energy')} ${player.energy}%`">
+                                                <div class="progress-bar" role="progressbar"
+                                                    :class="player.energy > 75 ? 'bg-success' : player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                    :aria-valuenow="player.energy" aria-valuemin="0" aria-valuemax="100"
+                                                    :style="{ width: player.energy + '%' }">
+                                                    {{ player.energy }}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-end">{{ player.marketValue.formatCurrency() }}</td>
+                                        <td class="text-end">{{ player.wage.formatCurrency() }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -527,8 +618,6 @@
 
         </div>
     </div>
-
-
 
     <script src="../Raffoot.CrossCutting/ArrayExtensions.js"></script>
     <script src="../Raffoot.CrossCutting/DateExtensions.js"></script>
@@ -598,6 +687,11 @@
 
                 // Tables:
                 selectedChampionshipEditionId: null,
+
+                // Clubs:
+                selectedCountryId: null,
+                selectedClubId: null,
+                clubOrderColumn: 'position.id',
             }
         },
         watch: {
@@ -645,6 +739,19 @@
             selectChampionshipEdition: function (event) {
                 this.selectedChampionshipEditionId = parseInt(event.target.value);
             },
+
+            // Clubs:
+            selectCountry: function (event) {
+                this.selectedCountryId = parseInt(event.target.value);
+                this.selectedClubId = null;
+            },
+            selectClub: function (event) {
+                this.selectedClubId = parseInt(event.target.value);
+            },
+            updateClubOrder: function (column) {
+                this.clubOrderColumn = this.clubOrderColumn === column ? `-${column}` : column;
+            },
+
             getCssClassForPosition: function (position, championshipEdition) {
                 if (championshipEdition.getInternationalCupClassificationZonePositions(1).includes(position)) {
                     return 'main-international-cup';
@@ -662,20 +769,20 @@
         },
         computed: {
             clubId() {
-                console.log('clubId');
                 return this.game?.club.id;
             },
             matches() {
-                console.log('matches');
                 return this.game.currentSeason.getMatchesByClubId(this.game.club.id);
             },
             nextMatch() {
-                console.log('nextMatch');
                 return this.game.currentSeason.getNextMatch(this.game.club.id);
             },
             selectedChampionshipEdition() {
                 return this.game.currentSeason.championshipEditions.find(ce => ce.id === this.selectedChampionshipEditionId);
-            }
+            },
+            selectedClub() {
+                return this.game.clubs.find(c => c.id === this.selectedClubId);
+            },
         },
         async created() {
             await this.loadGame();
