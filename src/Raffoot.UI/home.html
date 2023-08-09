@@ -26,8 +26,8 @@
         <div v-if="gameLoaded" @click="selectedSquadPlayerId = null">
             <header>
                 <nav class="navbar navbar-expand-lg border-bottom border-body"
-                    :class="game.club.foregroundColor == 'white' ? 'bg-light' : 'bg-dark'"
-                    :data-bs-theme="game.club.foregroundColor == 'white' ? 'light' : 'dark'">
+                    :class="game.club.foregroundColor == '#000000' ? 'bg-dark' : 'bg-light'"
+                    :data-bs-theme="game.club.foregroundColor == '#000000' ? 'dark' : 'light'">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="index.html">{{ translator.get("Raffoot") }}</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -108,6 +108,20 @@
                                         <li>
                                             <a class="dropdown-item" href="#ranking" @click="changeSection($event)">
                                                 {{ translator.get("Ranking") }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        {{ translator.get("Options") }}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#modal-colors">
+                                                {{ translator.get("Colors") }}
                                             </a>
                                         </li>
                                     </ul>
@@ -281,7 +295,7 @@
                                         {{ translator.get("Energy") }}
                                     </th>
                                     <th class="text-center" @click="updateSquadOrder('marketValue')">
-                                        {{ translator.get("Market value") }}
+                                        {{ translator.get("Market Value") }}
                                     </th>
                                     <th class="text-center" @click="updateSquadOrder('wage')">
                                         {{ translator.get("Wage") }}
@@ -291,13 +305,12 @@
                                     <template
                                         v-for="player in game.club.squad.players.orderBy(squadOrderColumn, 'position.id', '-overall', 'name')">
                                         <tr>
-                                            <td class="align-middle text-center fw-bold"
-                                                :class="player.position.fieldRegion"
+                                            <td class="text-center fw-bold" :class="player.position.fieldRegion"
                                                 :title="translator.get(player.position.name)">
                                                 {{ translator.get(player.position.abbreviation) }}
                                             </td>
                                             <td>{{ player.surname }}</td>
-                                            <td class="text-center align-middle pt-0 pb-0">
+                                            <td class="text-center pt-0 pb-0">
                                                 <span class="overall" :class="player.category">
                                                     {{ player.overall }}
                                                 </span>
@@ -306,7 +319,7 @@
                                                 :class="player.age < 32 ? 'text-primary' : 'text-danger'">
                                                 {{ player.age }}
                                             </td>
-                                            <td class="align-middle">
+                                            <td>
                                                 <div class="energy progress position-relative"
                                                     :title="`${translator.get('Energy')} ${player.energy}%`">
                                                     <div class="progress-bar" role="progressbar"
@@ -375,9 +388,29 @@
                             <h5>{{ translator.get("Classification Tables") }}</h5>
                         </div>
                     </div>
+                    <div class="row mb-2">
+                        <div class="col-md-4 col-xl-3">
+                            <div class="col">
+                                <label for="select-championships" class="form-label">
+                                    {{ translator.get("Championship") }}
+                                </label>
+                                <select id="select-championships" class="form-select"
+                                    @change="selectChampionshipEdition($event)">
+                                    <option
+                                        v-for="championshipEdition in game.currentSeason.championshipEditions
+                                            .map(ce => ({ id: ce.id, confederationName: ce.championship.confederationName, name: translator.getChampionshipName(ce.championship) }))
+                                            .orderBy('confederationName', 'name')"
+                                        :key="championshipEdition.id" :value="championshipEdition.id"
+                                        :selected="selectedChampionshipEditionId == championshipEdition.id">
+                                        {{ championshipEdition.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-xl-9">
-                            <table class="table table-hover table-borderless">
+                            <table class="table table-hover">
                                 <thead class="table-light">
                                     <th class="text-center">#</th>
                                     <th class="text-center" style="width: 1.5rem;"></th>
@@ -411,9 +444,13 @@
                                     <template
                                         v-for="(championshipEditionClub, index) in selectedChampionshipEdition.table">
                                         <tr>
-                                            <td class="text-center">{{ index + 1 }}</td>
+                                            <td class="text-center"
+                                                :class="getCssClassForPosition(index + 1, selectedChampionshipEdition)">
+                                                {{ index + 1 }}
+                                            </td>
                                             <td>
-                                                <img :src="championshipEditionClub.club.getLogoURL()" style="max-height: 1.5rem;">
+                                                <img :src="championshipEditionClub.club.getLogoURL()"
+                                                    style="max-height: 1.5rem;">
                                             </td>
                                             <td>
                                                 {{ championshipEditionClub.club.name }}
@@ -437,10 +474,61 @@
                 </section>
             </main>
             <footer>
-
+                <div class="container-fluid">
+                </div>
             </footer>
+
+            <div class="modal fade" id="modal-colors" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 id="modal-title" class="modal-title fs-5">{{ translator.get("Colors") }}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                :aria-label="translator.get('Close')"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label for="background-color" class="form-label">
+                                        {{ translator.get('Background color') }}</label>
+                                    <input id="background-color" type="color" class="form-control form-control-color"
+                                        @change="colors.backgroundColor = $event.target.value"
+                                        :value="game.club.backgroundColorNew">
+                                </div>
+                                <div class="col-6">
+                                    <label for="foreground-color" class="form-label">
+                                        {{ translator.get('Text color') }}
+                                    </label>
+                                    <input id="foreground-color" type="color" class="form-control form-control-color"
+                                        @change="colors.foregroundColor = $event.target.value"
+                                        :value="game.club.foregroundColorNew">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-outline-dark"
+                                        @click="game.club.resetColors(); colors.backgroundColor = game.club.backgroundColorNew; colors.foregroundColor = game.club.foregroundColorNew">
+                                        {{ translator.get("Reset") }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                {{ translator.get("Close") }}</button>
+                            <button type="button" class="btn btn-primary"
+                                @click="game.club.backgroundColorNew = colors.backgroundColor; game.club.foregroundColorNew = colors.foregroundColor; setColors()">
+                                {{ translator.get("Save Changes") }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+
+
 
     <script src="../Raffoot.CrossCutting/ArrayExtensions.js"></script>
     <script src="../Raffoot.CrossCutting/DateExtensions.js"></script>
@@ -496,6 +584,7 @@
         data() {
             return {
                 activeSection: 'play',
+                colors: { backgroundColor: '', foregroundColor: '' },
                 translator: new TranslatorService(),
 
                 // Play:
@@ -543,9 +632,8 @@
                 this.game = await gameService.loadAsync(gameId);
             },
             setColors: function () {
-                let club = this.game.club;
-                document.body.style.backgroundColor = club.backgroundColor;
-                document.body.style.color = club.foregroundColor;
+                document.body.style.backgroundColor = this.game.club.backgroundColorNew;
+                document.body.style.color = this.game.club.foregroundColorNew;
             },
 
             // Squad:
@@ -554,6 +642,23 @@
             },
 
             // Tables:
+            selectChampionshipEdition: function (event) {
+                this.selectedChampionshipEditionId = parseInt(event.target.value);
+            },
+            getCssClassForPosition: function (position, championshipEdition) {
+                if (championshipEdition.getInternationalCupClassificationZonePositions(1).includes(position)) {
+                    return 'main-international-cup';
+                }
+                else if (championshipEdition.getInternationalCupClassificationZonePositions(2).includes(position)) {
+                    return 'secondary-international-cup';
+                }
+                else if (championshipEdition.getPromotionZonePositions().includes(position)) {
+                    return 'promotion';
+                }
+                else if (championshipEdition.getRelegationZonePositions().includes(position)) {
+                    return 'relegation';
+                }
+            }
         },
         computed: {
             clubId() {
@@ -574,6 +679,7 @@
         },
         async created() {
             await this.loadGame();
+            this.colors = { backgroundColor: this.game.club.backgroundColorNew, foregroundColor: this.game.club.foregroundColorNew };
             this.selectedChampionshipEditionId = this.game.getNationalLeague().id;
             this.gameLoaded = true;
         },

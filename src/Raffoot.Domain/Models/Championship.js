@@ -52,7 +52,7 @@ class Championship {
             const countryIds = confederation.countries.map(countryName => Context.game.countries.find(c => c.name === countryName).id);
             const clubs = Context.game.clubs.filter(c => countryIds.some(id => c.country.id === id));
             const cupClubCount = Championship.getCupClubCsount(clubs.length);
-            Championship.create(`${confederation.name} Cup`, nationalCup, countryIds, null, cupClubCount, null, null);
+            Championship.create(`${confederation.name} Cup`, nationalCup, countryIds, 1, cupClubCount, null, confederation.name);
 
             let clubsWithoutDivision = clubs.length;
             let division = 1;
@@ -63,12 +63,12 @@ class Championship {
                 division++;
             }
 
-            Championship.create(`${confederation.name} Supercup`, nationalSupercup, countryIds, null, 2, null, null);
+            Championship.create(`${confederation.name} Supercup`, nationalSupercup, countryIds, 1, 2, null, null);
         }
 
         Championship.create('Champions Cup', internationalCup, null, 1, Config.internationalCup.clubCount, null);
         Championship.create('Conference Cup', internationalCup, null, 2, Config.internationalCup.clubCount, null);
-        Championship.create('International Supercup', internationalSupercup, null, null, 2, null, null);
+        Championship.create('International Supercup', internationalSupercup, null, 1, 2, null, null);
     }
 
     static getCupClubCsount(clubCount) {
@@ -77,11 +77,6 @@ class Championship {
             count /= 2;
         return count;
     }
-
-    static getDivisionCount(countries) {
-        let clubs = countries.map(c => c.clubs).flat();
-        return Math.min(Math.floor(clubs.length / Config.nationalLeague.clubCount), Config.nationalLeague.maxDivisionCount);
-    }
     
     get championshipType() {
         return ChampionshipType.getById(this._championshipTypeId);
@@ -89,19 +84,6 @@ class Championship {
 
     get countries() {
         return Context.game.countries.filterByIds(this._countryIds);
-    }
-
-    get dateCount() {
-        switch (this.championshipType.regulation) {
-            case 'groups':
-                return this.groupDatesCount + this.getEliminationDatesCount();
-            case 'elimination':
-                return this.getEliminationDatesCount();
-            case 'round-robin':
-                return (this.clubCount - 1) * (this.isTwoLeggedTie ? 2 : 1);
-            default:
-                return 0;
-        }
     }
 
     get groupClubCount() {
@@ -133,6 +115,19 @@ class Championship {
 
     get isTwoLeggedTie() {
         return this.championshipType.isTwoLeggedTie;
+    }
+
+    getDateCount() {
+        switch (this.championshipType.regulation) {
+            case 'groups':
+                return this.groupDatesCount + this.getEliminationDatesCount();
+            case 'elimination':
+                return this.getEliminationDatesCount();
+            case 'round-robin':
+                return (this.clubCount - 1) * (this.isTwoLeggedTie ? 2 : 1);
+            default:
+                return 0;
+        }
     }
 
     getEliminationDatesCount() {

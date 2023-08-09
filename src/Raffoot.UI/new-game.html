@@ -31,7 +31,7 @@
             </div>
             <div class="row mb-3" :class="{ 'd-none' : !message.text }">
                 <div class="col">
-                    <div class="alert alert-dismissible fade show" :class="[`alert-${message.type}`]" role="alert">
+                    <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`" role="alert">
                         {{ message.text }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -42,7 +42,7 @@
                     <legend>{{ translator.get("Choose your club") }}</legend>
 
                     <div class="row mb-3">
-                        <div class="col form-group">
+                        <div class="col">
                             <label for="country" class="form-label">{{ translator.get("Country") }}</label>
                             <select id="country" class="form-select" required @change="setCountry($event)">
                                 <option></option>
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col form-group">
+                        <div class="col">
                             <label for="club" class="form-label">{{ translator.get("Club") }}</label>
                             <select id="club" class="form-control" required @change="setClub($event)">
                                 <option></option>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col form-group ">
+                        <div class="col">
                             <label for="name" class="form-label">{{ translator.get("Name") }}</label>
                             <input id="name" type="text" class="form-control" required v-model.lazy="gameName">
                         </div>
@@ -163,12 +163,12 @@
                 return countries;
             },
             setClub: function (event) {
-                let id = event.target.value;
-                this.game.club = id ? this.game.clubs.find(c => c.id == id) : null;
+                let id = parseInt(event.target.value);
+                this.game.club = id ? this.game.clubs.find(c => c.id === id) : null;
             },
             setCountry: function (event) {
-                let id = event.target.value;
-                this.game.country = id ? this.game.countries.find(c => c.id == id) : null;
+                let id = parseInt(event.target.value);
+                this.game.country = id ? this.game.countries.find(c => c.id === id) : null;
             },
             startGame: async function (event) {
                 try {

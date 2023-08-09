@@ -19,7 +19,7 @@ class ChampionshipEdition {
     static getById(id) {
         return Context.game.championshipEditions[id - 1];
     }
-    
+
     get championship() {
         return Championship.getById(this._championshipId);
     }
@@ -70,32 +70,12 @@ class ChampionshipEdition {
         return `${this.championship.name} ${this.year}`;
     }
 
-    get promotionZoneClubs() {
-        return this.table.take(this.promotionZonePositions.length);
+    get promotionClubCount() {
+        return Math.round(Math.log2(this.championship.clubCount));
     }
 
-    get promotionZonePositions() {
-        const positions = [];
-
-        if (this.championship.championshipType.format === 'league' && this.championship.division > 1)
-            for (let position = 1; position <= NATIONAL_LEAGUE_PROMOTION_RELEGATION_CLUB_COUNT; position++)
-                positions.push(position);
-
-        return positions;
-    }
-
-    get relegationZoneClubs() {
-        return this.table.lastItems(this.relegationZonePositions.length);
-    }
-
-    get relegationZonePositions() {
-        const positions = [];
-
-        if (this.championship.championshipType.format === 'league' && this.championship.division < NATIONAL_MAX_DIVISION_COUNT)
-            for (let position = this.clubs.length; position > this.clubs.length - NATIONAL_LEAGUE_PROMOTION_RELEGATION_CLUB_COUNT; position--)
-                positions.push(position);
-
-        return positions;
+    get relegationClubCount() {
+        return Math.round(Math.log2(this.championship.clubCount));
     }
 
     get table() {
@@ -121,6 +101,56 @@ class ChampionshipEdition {
 
     addMatch(match) {
         this._matchIds.push(match.id);
+    }
+
+    getInternationalCupClassificationZonePositions(cupDivision) {
+        const positions = [];
+        const cupSpots = this.championship.internationalCupSpots;
+
+        if (this.championship.championshipType.format === 'league' && this.championship.division === 1) {
+            for (let position = (cupSpots * (cupDivision - 1)) + 1; position <= cupSpots * cupDivision; position++) {
+                positions.push(position);
+            }
+        }
+
+        return positions;
+    }
+
+    getInternationalCupClassificationZoneClubs(division) {
+        const positions = this.internationalCupClassificationZonePositions(division);
+        return this.table.firstItems(positions.length);
+    }
+
+    getPromotionZonePositions() {
+        const positions = [];
+
+        if (this.championship.championshipType.format === 'league' && this.championship.division > 1) {
+            for (let position = 1; position <= this.relegationClubCount; position++) {
+                positions.push(position);
+            }
+        }
+
+        return positions;
+    }
+
+    getPromotionZoneClubs() {
+        const positions = this.getPromotionZonePositions();
+        return this.table.take(positions.length);
+    }
+
+    getRelegationZonePositions() {
+        let positions = [];
+
+        if (this.championship.championshipType.format === 'league')
+            for (let position = this.clubs.length; position > this.clubs.length - this.promotionClubCount; position--)
+                positions.push(position);
+
+        return positions;
+    }
+
+    getRelegationZoneClubs() {
+        const positions = this.getRelegationZonePositions();
+        return this.table.lastItems(positions.length);
     }
 
     scheduleMatches(dates) {
@@ -172,8 +202,9 @@ class ChampionshipEdition {
     }
 
     _defineChampionshipEditionFixtures() {
-        for (let i = 0; i < this.championship.dateCount; i++) {
-            let fixture = ChampionshipEditionFixture.create(this, i + 1);
+        const dateCount = this.championship.getDateCount();
+        for (let i = 0; i < dateCount; i++) {
+            const fixture = ChampionshipEditionFixture.create(this, i + 1);
             this._championshipEditionFixtureIds.push(fixture.id);
         }
     }

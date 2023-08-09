@@ -3,8 +3,8 @@ class Club {
         this.name = name;
         this._countryId = countryId;
         this.externalId = externalId;
-        this.backgroundColor = backgroundColor;
-        this.foregroundColor = foregroundColor;
+        this.backgroundColorNew = this.backgroundColor = backgroundColor;
+        this.foregroundColorNew = this.foregroundColor = foregroundColor;
         this._playerIds = [];
         this._squadId = null;
     }
@@ -13,12 +13,12 @@ class Club {
         const country = Context.game.countries.find(c => c.name === countryName);
         const club = new Club(name, country.id, externalId, backgroundColor, foregroundColor);
         club.id = Context.game.clubs.push(club);
-        
+
         country.addClub(club);
 
         let squad = Squad.create(club);
         club.squad = squad;
-        
+
         return club;
     }
 
@@ -67,8 +67,8 @@ class Club {
         return urlList;
     }
 
-    setColors(backgroundColor, foregroundColor) {
-        this.backgroundColor = backgroundColor;
-        this.foregroundColor = foregroundColor;
+    resetColors() {
+        this.backgroundColorNew = this.backgroundColor;
+        this.foregroundColorNew = this.foregroundColor;
     }
 }

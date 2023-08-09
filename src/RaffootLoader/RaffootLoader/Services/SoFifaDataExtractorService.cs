@@ -295,11 +295,11 @@ namespace RaffootLoader.Services
                     {
                         //using var logoBitmap = BitmapService.ConvertToBitmap(logoPath);
                         using var mainKitBitmap = BitmapService.ConvertToBitmap(mainKitPath);
-                        var backColor = BitmapService.GetAverageColor(new[] { mainKitBitmap });
-                        var foreColor = BitmapService.PerceivedBrightness(backColor) > 130 ? Color.Black : Color.White;
+                        var backgroundColor = BitmapService.GetAverageColor(new[] { mainKitBitmap });
+                        var foregroundColor = BitmapService.PerceivedBrightness(backgroundColor) > 130 ? Color.Black : Color.White;
 
-                        club.BackgroundColor = $"rgb({backColor.R},{backColor.G},{backColor.B})";
-                        club.ForegroundColor = foreColor.Name.ToLower();
+                        club.BackgroundColor = backgroundColor.ToHexString();
+                        club.ForegroundColor = foregroundColor.ToHexString();
 
                         clubs.Add(club);
 

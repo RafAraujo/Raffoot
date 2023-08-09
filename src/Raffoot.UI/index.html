@@ -41,9 +41,9 @@
                     </div>
                     <div class="modal-body">
                         <div class="row mb-3">
-                            <div class="col form-group">
+                            <div class="col">
                                 <label for="select-games" class="form-label">{{ translator.get("Game") }}</label>
-                                <select id="select-games" class="form-select" @change="getSelectedGame($event)">
+                                <select id="select-games" class="form-select" @change="selectGame($event)">
                                     <option></option>
                                     <option v-for="game in savedGames" :key="game.key" :value="game.key">{{ game.value.name }}
                                     </option>
@@ -162,7 +162,7 @@
             getSavedGames: async function () {
                 this.savedGames = await gameService.getSavedGamesWithKeysAsync();
             },
-            getSelectedGame: async function (event) {
+            selectGame: async function (event) {
                 this.message.text = "";
                 this.selectedGame = null;
                 let id = event.target.value;

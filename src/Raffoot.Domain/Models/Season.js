@@ -56,10 +56,11 @@ class Season {
         this._defineChampionshipEditions();
         this._defineCalendar();
 
-        for (let ce of this.championshipEditions) {
-            this._defineChampionshipEditionClubs(ce);
-            const dates = this.seasonDates.filter(sd => sd.championshipType.id === ce.championship.championshipType.id).map(sd => sd.date);
-            ce.scheduleMatches(dates.lastItems(ce.championship.dateCount));
+        for (let championshipEdition of this.championshipEditions) {
+            this._defineChampionshipEditionClubs(championshipEdition);
+            const dates = this.seasonDates.filter(sd => sd.championshipType.id === championshipEdition.championship.championshipType.id).map(sd => sd.date);
+            const dateCount = championshipEdition.championship.getDateCount();
+            championshipEdition.scheduleMatches(dates.lastItems(dateCount));
         }
     }
 
@@ -112,7 +113,7 @@ class Season {
 
         let championshipTypes = this.championshipTypes.slice();
         let championshipType = null;
-        while (championshipType = championshipTypes.find(ct => !this._totallyScheduled(ct))) {
+        while (championshipType = championshipTypes.find(ct => !this._isTotallyScheduled(ct))) {
             date = date.addDays(date.getDay() === 0 ? 3 : 4);
             if (date.getMonth() === 6)
                 continue;
@@ -128,11 +129,11 @@ class Season {
             this._seasonDateIds.push(SeasonDate.create(date, championshipType).id);
     }
 
-    _totallyScheduled(championshipType) {
+    _isTotallyScheduled(championshipType) {
         const scheduledDates = this.seasonDates.filter(sd => sd.championshipType === championshipType).length;
         const neededDates = this.championshipEditions
             .filter(ce => ce.championship.championshipType === championshipType)
-            .map(ce => ce.championship.dateCount)
+            .map(ce => ce.championship.getDateCount())
             .max();
 
         return scheduledDates === neededDates;

@@ -7,8 +7,12 @@ body {
     user-select: none;
 }
 
-h1 {
+h1, th, td {
     vertical-align: middle;
+}
+
+.modal {
+    color: black;
 }
 
 .blink {
@@ -118,4 +122,19 @@ td.midfield {
 
 td.attack {
     color: #dc3545 !important;
+}
+
+td.main-international-cup {
+    color: blue;
+    font-weight: bold;
+}
+
+td.secondary-international-cup, td.promotion {
+    color: deepskyblue;
+    font-weight: bold;
+}
+
+td.relegation {
+    color: red;
+    font-weight: bold;
 }

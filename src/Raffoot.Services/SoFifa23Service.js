@@ -162,7 +162,7 @@ class SoFifa23Service {
 	static seedClubs() {
 		let club = null;
 
-		club = Club.create("River Plate", "Argentina", 1876, "rgb(192,160,160)", "black");
+		club = Club.create("River Plate", "Argentina", 1876, "#C0A0A0", "#000000");
 		Player.create("Franco Armani", "F. Armani", "Argentina", ['GK'], 35, 79, club, 214584, true);
 		Player.create("Milton Casco", "M. Casco", "Argentina", ['LB', 'RB'], 34, 77, club, 215071, true);
 		Player.create("Leandro González Pirez", "L. González Pirez", "Argentina", ['CB'], 30, 74, club, 199669, true);
@@ -192,7 +192,7 @@ class SoFifa23Service {
 		Player.create("Matías Kranevitter", "M. Kranevitter", "Argentina", ['CDM', 'CM'], 29, 70, club, 214977, false);
 		Player.create("Franco Alfonso", "F. Alfonso", "Argentina", ['CAM', 'CM'], 20, 64, club, 273866, false);
 
-		club = Club.create("Boca Juniors", "Argentina", 1877, "rgb(97,105,114)", "white");
+		club = Club.create("Boca Juniors", "Argentina", 1877, "#616972", "#FFFFFF");
 		Player.create("Sergio Romero", "S. Romero", "Argentina", ['GK'], 35, 76, club, 173373, true);
 		Player.create("Marcelo Weigandt", "M. Weigandt", "Argentina", ['RB'], 22, 72, club, 246263, true);
 		Player.create("Bruno Valdez", "B. Valdez", "Paraguay", ['CB'], 29, 74, club, 228729, true);
@@ -222,7 +222,7 @@ class SoFifa23Service {
 		Player.create("Agustín Sández", "A. Sández", "Argentina", ['LB'], 21, 68, club, 263518, true);
 		Player.create("Sebastián Villa", "S. Villa", "Colombia", ['LW', 'RW'], 26, 78, club, 233959, true);
 
-		club = Club.create("Racing Club", "Argentina", 101085, "rgb(144,179,195)", "black");
+		club = Club.create("Racing Club", "Argentina", 101085, "#90B3C3", "#000000");
 		Player.create("Gabriel Arias", "G. Arias", "Chile", ['GK'], 34, 79, club, 223249, true);
 		Player.create("Facundo Mura", "F. Mura", "Argentina", ['RB', 'LB'], 23, 72, club, 247156, true);
 		Player.create("Leonardo Sigali", "L. Sigali", "Argentina", ['CB'], 35, 78, club, 215135, true);
@@ -252,7 +252,7 @@ class SoFifa23Service {
 		Player.create("Emiliano Saliadarre", "E. Saliadarre", "Argentina", ['ST', 'RW', 'LW'], 20, 61, club, 275278, false);
 		Player.create("Román Fernández", "R. Fernández", "Argentina", ['LW', 'ST'], 16, 60, club, 271029, true);
 
-		club = Club.create("Talleres Córdoba", "Argentina", 112670, "rgb(132,133,139)", "black");
+		club = Club.create("Talleres Córdoba", "Argentina", 112670, "#84858B", "#000000");
 		Player.create("Guido Herrera", "G. Herrera", "Argentina", ['GK'], 30, 74, club, 215251, true);
 		Player.create("Gastón Benavídez", "G. Benavídez", "Argentina", ['RB', 'RWB', 'CB'], 26, 68, club, 261081, true);
 		Player.create("Matías Catalán", "M. Catalán", "Argentina", ['CB', 'RB'], 29, 73, club, 214990, true);
@@ -282,7 +282,7 @@ class SoFifa23Service {
 		Player.create("Tomás Palacios", "T. Palacios", "Argentina", ['CB', 'LB'], 19, 61, club, 268558, false);
 		Player.create("Diego Barrera", "D. Barrera", "Argentina", ['RM', 'RW'], 18, 60, club, 273976, false);
 
-		club = Club.create("Lanús", "Argentina", 110395, "rgb(124,66,77)", "white");
+		club = Club.create("Lanús", "Argentina", 110395, "#7C424D", "#FFFFFF");
 		Player.create("Lucas Acosta", "L. Acosta", "Argentina", ['GK'], 27, 69, club, 220624, true);
 		Player.create("Juan José Cáceres", "J. Cáceres", "Paraguay", ['RB', 'CB'], 22, 68, club, 251613, true);
 		Player.create("Diego Braghieri", "D. Braghieri", "Argentina", ['CB'], 35, 70, club, 215050, true);
@@ -312,7 +312,7 @@ class SoFifa23Service {
 		Player.create("Agustín Rodríguez", "A. Rodríguez", "Argentina", ['CAM', 'LW', 'CF'], 18, 61, club, 262283, false);
 		Player.create("Lautaro Acosta", "L. Acosta", "Argentina", ['LM', 'RM', 'CM'], 34, 73, club, 188268, true);
 
-		club = Club.create("Tigre", "Argentina", 111715, "rgb(72,50,120)", "white");
+		club = Club.create("Tigre", "Argentina", 111715, "#483278", "#FFFFFF");
 		Player.create("Gonzalo Marinelli", "G. Marinelli", "Argentina", ['GK'], 33, 71, club, 188968, true);
 		Player.create("Lucas Blondel", "L. Blondel", "Argentina", ['RB'], 25, 72, club, 238331, true);
 		Player.create("Emanuel Aguilera", "E. Aguilera", "Argentina", ['CB'], 33, 74, club, 223243, false);
@@ -340,7 +340,7 @@ class SoFifa23Service {
 		Player.create("Agustín Baldi", "A. Baldi", "Argentina", ['CDM'], 20, 63, club, 258125, true);
 		Player.create("Gonzalo Flores", "G. Flores", "Argentina", ['ST', 'LW'], 20, 59, club, 266311, true);
 
-		club = Club.create("Argentinos Juniors", "Argentina", 111019, "rgb(203,81,77)", "white");
+		club = Club.create("Argentinos Juniors", "Argentina", 111019, "#CB514D", "#FFFFFF");
 		Player.create("Alexis Martín Arias", "A. Martín Arias", "Argentina", ['GK'], 29, 72, club, 217805, false);
 		Player.create("Kevin Mac Allister", "K. Mac Allister", "Argentina", ['CB', 'RB'], 24, 74, club, 233230, true);
 		Player.create("Miguel Ángel Torrén", "M. Torrén", "Argentina", ['CB'], 33, 73, club, 176920, true);
@@ -369,7 +369,7 @@ class SoFifa23Service {
 		Player.create("Lautaro Ovando", "L. Ovando", "Argentina", ['ST'], 19, 61, club, 264218, true);
 		Player.create("Miguel Acosta", "M. Acosta", "Argentina", ['GK'], 20, 60, club, 269623, true);
 
-		club = Club.create("Estudiantes", "Argentina", 101083, "rgb(205,124,125)", "black");
+		club = Club.create("Estudiantes", "Argentina", 101083, "#CD7C7D", "#000000");
 		Player.create("Mariano Andújar", "M. Andújar", "Argentina", ['GK'], 38, 73, club, 173857, true);
 		Player.create("Leonardo Godoy", "L. Godoy", "Argentina", ['RWB', 'RB'], 27, 75, club, 228415, true);
 		Player.create("Santiago Núñez", "S. Núñez", "Argentina", ['CB'], 22, 68, club, 269934, true);
@@ -398,7 +398,7 @@ class SoFifa23Service {
 		Player.create("Nicolás Palavecino", "N. Palavecino", "Argentina", ['RM', 'CM'], 19, 61, club, 264147, false);
 		Player.create("Axel Atum", "A. Atum", "Argentina", ['RM'], 16, 58, club, 275292, false);
 
-		club = Club.create("Independiente", "Argentina", 110093, "rgb(205,36,36)", "white");
+		club = Club.create("Independiente", "Argentina", 110093, "#CD2424", "#FFFFFF");
 		Player.create("Rodrigo Rey", "R. Rey", "Argentina", ['GK'], 31, 75, club, 215069, true);
 		Player.create("Baltasar Barcia", "B. Barcia", "Uruguay", ['RM', 'RB', 'LM'], 21, 66, club, 264353, false);
 		Player.create("Joaquín Laso", "J. Laso", "Argentina", ['CB', 'RB'], 31, 70, club, 226772, true);
@@ -427,7 +427,7 @@ class SoFifa23Service {
 		Player.create("Santiago Salle", "S. Salle", "Argentina", ['RB', 'RM'], 18, 61, club, 274408, false);
 		Player.create("Justo D'Angelo", "J. D'Angelo", "Argentina", ['CDM'], 21, 60, club, 269717, false);
 
-		club = Club.create("Colón", "Argentina", 110406, "rgb(121,67,64)", "white");
+		club = Club.create("Colón", "Argentina", 110406, "#794340", "#FFFFFF");
 		Player.create("Ignacio Chicco", "I. Chicco", "Argentina", ['GK'], 26, 71, club, 232817, true);
 		Player.create("Eric Meza", "E. Meza", "Argentina", ['RWB', 'RB'], 23, 71, club, 258090, true);
 		Player.create("Facundo Garcés", "F. Garcés", "Argentina", ['CB'], 22, 73, club, 241031, true);
@@ -455,7 +455,7 @@ class SoFifa23Service {
 		Player.create("Stefano Moreyra", "S. Moreyra", "Argentina", ['CDM', 'CM'], 21, 62, club, 271919, false);
 		Player.create("Gonzalo Silva", "G. Silva", "Argentina", ['CM'], 22, 62, club, 273017, false);
 
-		club = Club.create("Godoy Cruz", "Argentina", 111706, "rgb(72,106,176)", "white");
+		club = Club.create("Godoy Cruz", "Argentina", 111706, "#486AB0", "#FFFFFF");
 		Player.create("Diego Rodríguez", "D. Rodríguez", "Argentina", ['GK'], 33, 73, club, 214933, true);
 		Player.create("Lucas Arce", "L. Arce", "Argentina", ['RB', 'RWB'], 24, 70, club, 272844, false);
 		Player.create("Pier Barrios", "P. Barrios", "Argentina", ['CB', 'RB'], 32, 70, club, 199435, false);
@@ -485,7 +485,7 @@ class SoFifa23Service {
 		Player.create("Matías Soria", "M. Soria", "United States", ['GK'], 20, 62, club, 273083, false);
 		Player.create("Nicolás Canela", "N. Canela", "Argentina", ['CB', 'LB'], 18, 61, club, 273920, false);
 
-		club = Club.create("Defensa y Justicia", "Argentina", 111710, "rgb(214,185,62)", "black");
+		club = Club.create("Defensa y Justicia", "Argentina", 111710, "#D6B93E", "#000000");
 		Player.create("Ezequiel Unsain", "E. Unsain", "Argentina", ['GK'], 27, 75, club, 222511, true);
 		Player.create("Agustín Sant'Anna", "A. Sant'Anna", "Uruguay", ['RB'], 24, 70, club, 273034, false);
 		Player.create("Nazareno Colombo", "N. Colombo", "Argentina", ['CB'], 23, 71, club, 252036, true);
@@ -514,7 +514,7 @@ class SoFifa23Service {
 		Player.create("Ezequiel Cannavó", "E. Cannavó", "Argentina", ['CM'], 20, 60, club, 270215, true);
 		Player.create("Francisco Marco", "F. Marco", "Argentina", ['CB'], 19, 60, club, 270216, true);
 
-		club = Club.create("Huracán", "Argentina", 111711, "rgb(203,196,197)", "black");
+		club = Club.create("Huracán", "Argentina", 111711, "#CBC4C5", "#000000");
 		Player.create("Lucas Cháves", "L. Cháves", "Argentina", ['GK'], 26, 72, club, 213272, true);
 		Player.create("Guillermo Soto", "G. Soto", "Chile", ['RB'], 28, 69, club, 242306, true);
 		Player.create("Fernando Tobio", "F. Tobio", "Argentina", ['CB'], 32, 69, club, 213433, true);
@@ -544,7 +544,7 @@ class SoFifa23Service {
 		Player.create("Matías Gómez", "M. Gómez", "Argentina", ['LM'], 18, 63, club, 273965, true);
 		Player.create("Santiago Luján", "S. Luján", "Argentina", ['RM'], 20, 62, club, 273968, true);
 
-		club = Club.create("Vélez Sarsfield", "Argentina", 101088, "rgb(187,189,199)", "black");
+		club = Club.create("Vélez Sarsfield", "Argentina", 101088, "#BBBDC7", "#000000");
 		Player.create("Gastón Gómez", "G. Gómez", "Argentina", ['GK'], 26, 70, club, 235925, true);
 		Player.create("Tomás Guidara", "T. Guidara", "Argentina", ['RB'], 26, 70, club, 237122, true);
 		Player.create("Lautaro Giannetti", "L. Giannetti", "Argentina", ['CB'], 28, 75, club, 215147, true);
@@ -574,7 +574,7 @@ class SoFifa23Service {
 		Player.create("Emmanuel Gómez Riga", "E. Gómez Riga", "Argentina", ['GK'], 20, 63, club, 273986, false);
 		Player.create("Patricio Pernicone", "P. Pernicone", "Argentina", ['CB'], 20, 63, club, 273987, false);
 
-		club = Club.create("San Lorenzo", "Argentina", 1013, "rgb(116,58,93)", "white");
+		club = Club.create("San Lorenzo", "Argentina", 1013, "#743A5D", "#FFFFFF");
 		Player.create("Augusto Batalla", "A. Batalla", "Argentina", ['GK'], 26, 72, club, 227186, true);
 		Player.create("Agustín Giay", "A. Giay", "Argentina", ['RWB', 'RM', 'CM'], 18, 70, club, 268657, false);
 		Player.create("Rafael Pérez", "R. Pérez", "Colombia", ['CB'], 32, 72, club, 214191, true);
@@ -604,7 +604,7 @@ class SoFifa23Service {
 		Player.create("Ezequiel Herrera", "E. Herrera", "Argentina", ['RWB', 'RB', 'CB'], 19, 60, club, 265822, false);
 		Player.create("Matías Hernandez", "M. Hernandez", "Argentina", ['ST'], 17, 60, club, 269500, false);
 
-		club = Club.create("Newell's Old Boys", "Argentina", 110396, "rgb(113,53,52)", "white");
+		club = Club.create("Newell's Old Boys", "Argentina", 110396, "#713534", "#FFFFFF");
 		Player.create("Lucas Hoyos", "L. Hoyos", "Argentina", ['GK'], 33, 73, club, 224348, true);
 		Player.create("Jherson Mosquera", "J. Mosquera", "Colombia", ['RB'], 22, 70, club, 255607, false);
 		Player.create("Gustavo Velázquez", "G. Velázquez", "Paraguay", ['CB'], 31, 72, club, 246696, true);
@@ -634,7 +634,7 @@ class SoFifa23Service {
 		Player.create("Guillermo Balzi", "G. Balzi", "Argentina", ['CM', 'CAM'], 20, 61, club, 263436, true);
 		Player.create("Jeremías Pérez Tica", "J. Pérez Tica", "Argentina", ['ST'], 19, 59, club, 275167, false);
 
-		club = Club.create("Central Cordoba SdE", "Argentina", 112965, "rgb(133,134,137)", "black");
+		club = Club.create("Central Cordoba SdE", "Argentina", 112965, "#858689", "#000000");
 		Player.create("Marcos Ledesma", "M. Ledesma", "Argentina", ['GK'], 25, 69, club, 225858, true);
 		Player.create("Brian Blasi", "B. Blasi", "Argentina", ['RB', 'CB', 'RWB'], 26, 70, club, 231538, true);
 		Player.create("Fabio Pereyra", "F. Pereyra", "Argentina", ['CB'], 32, 71, club, 251138, true);
@@ -664,7 +664,7 @@ class SoFifa23Service {
 		Player.create("Diego Vasquez", "D. Vasquez", "Argentina", ['ST'], 21, 60, club, 275427, false);
 		Player.create("Gino Olguin", "G. Olguin", "Argentina", ['CM'], 22, 58, club, 273013, false);
 
-		club = Club.create("Sarmiento", "Argentina", 112713, "rgb(71,110,99)", "white");
+		club = Club.create("Sarmiento", "Argentina", 112713, "#476E63", "#FFFFFF");
 		Player.create("Sebastián Meza", "S. Meza", "Argentina", ['GK'], 22, 72, club, 258180, true);
 		Player.create("Gonzalo Bettini", "G. Bettini", "Argentina", ['RB', 'RWB'], 28, 68, club, 223240, true);
 		Player.create("Manuel García", "M. García", "Argentina", ['CB', 'CM', 'CDM'], 23, 67, club, 264733, false);
@@ -694,7 +694,7 @@ class SoFifa23Service {
 		Player.create("Gastón Gerzel", "G. Gerzel", "Argentina", ['LM', 'LW'], 22, 63, club, 256503, false);
 		Player.create("Emanuel Hernández", "E. Hernández", "Uruguay", ['CB'], 24, 65, club, 254608, false);
 
-		club = Club.create("Rosario Central", "Argentina", 110580, "rgb(148,149,90)", "black");
+		club = Club.create("Rosario Central", "Argentina", 110580, "#94955A", "#000000");
 		Player.create("Jorge Broun", "J. Broun", "Argentina", ['GK'], 36, 71, club, 216033, true);
 		Player.create("Damián Martínez", "D. Martínez", "Argentina", ['RB'], 32, 71, club, 224104, true);
 		Player.create("Facundo Mallo", "F. Mallo", "Uruguay", ['CB'], 27, 69, club, 248207, false);
@@ -724,7 +724,7 @@ class SoFifa23Service {
 		Player.create("Kevin Silva", "K. Silva", "Argentina", ['CB'], 19, 60, club, 273907, false);
 		Player.create("Juan Cruz Cerrudo", "J. Cerrudo", "Argentina", ['RM', 'LM'], 18, 60, club, 271345, false);
 
-		club = Club.create("Platense", "Argentina", 112689, "rgb(186,185,183)", "black");
+		club = Club.create("Platense", "Argentina", 112689, "#BAB9B7", "#000000");
 		Player.create("Ramiro Macagno", "R. Macagno", "Argentina", ['GK'], 25, 69, club, 231258, true);
 		Player.create("Raúl Alberto Lozano", "R. Lozano", "Argentina", ['RB'], 24, 69, club, 257407, true);
 		Player.create("Miguel Jacquet", "M. Jacquet", "Paraguay", ['CB'], 27, 67, club, 252962, true);
@@ -754,7 +754,7 @@ class SoFifa23Service {
 		Player.create("Federico González", "F. González", "Argentina", ['LW', 'LM'], 21, 60, club, 268337, false);
 		Player.create("Augusto Alcorcel", "A. Alcorcel", "Argentina", ['GK'], 21, 60, club, 269502, false);
 
-		club = Club.create("Banfield", "Argentina", 110404, "rgb(114,137,127)", "black");
+		club = Club.create("Banfield", "Argentina", 110404, "#72897F", "#000000");
 		Player.create("Facundo Cambeses", "F. Cambeses", "Argentina", ['GK'], 25, 66, club, 232645, true);
 		Player.create("Emanuel Coronel", "E. Coronel", "Argentina", ['RB'], 25, 68, club, 242482, true);
 		Player.create("Emanuel Olivera", "E. Olivera", "Argentina", ['CB'], 32, 71, club, 215139, true);
@@ -783,7 +783,7 @@ class SoFifa23Service {
 		Player.create("Matías González", "M. González", "Argentina", ['RM', 'CAM', 'CM'], 20, 60, club, 258080, true);
 		Player.create("Mateo Pérez", "M. Pérez", "Argentina", ['CB'], 20, 60, club, 272459, false);
 
-		club = Club.create("Atlético Tucumán", "Argentina", 111708, "rgb(171,194,210)", "black");
+		club = Club.create("Atlético Tucumán", "Argentina", 111708, "#ABC2D2", "#000000");
 		Player.create("Tomás Marchiori", "T. Marchiori", "Argentina", ['GK'], 27, 66, club, 259273, false);
 		Player.create("Renzo Tesuri", "R. Tesuri", "Argentina", ['RM', 'RWB'], 26, 70, club, 257338, true);
 		Player.create("Marcelo Ortíz", "M. Ortíz", "Argentina", ['CB', 'RB'], 28, 65, club, 241010, true);
@@ -812,7 +812,7 @@ class SoFifa23Service {
 		Player.create("Lucas Naranjo", "L. Naranjo", "Argentina", ['CM'], 20, 60, club, 263687, false);
 		Player.create("Moisés Brandán", "M. Brandán", "Argentina", ['RB'], 21, 59, club, 274978, false);
 
-		club = Club.create("Unión Santa Fe", "Argentina", 111716, "rgb(206,144,144)", "black");
+		club = Club.create("Unión Santa Fe", "Argentina", 111716, "#CE9090", "#000000");
 		Player.create("Santiago Mele", "S. Mele", "Uruguay", ['GK'], 24, 72, club, 259259, true);
 		Player.create("Federico Vera", "F. Vera", "Argentina", ['RB', 'RWB'], 24, 69, club, 259786, true);
 		Player.create("Franco Calderón", "F. Calderón", "Argentina", ['CB'], 24, 70, club, 253951, true);
@@ -842,7 +842,7 @@ class SoFifa23Service {
 		Player.create("Valentino Venetucci", "V. Venetucci", "Argentina", ['LM', 'RM'], 19, 61, club, 275606, false);
 		Player.create("Diego González", "D. González", "Argentina", ['GK'], 19, 61, club, 271970, false);
 
-		club = Club.create("Barracas Central", "Argentina", 113044, "rgb(208,145,145)", "black");
+		club = Club.create("Barracas Central", "Argentina", 113044, "#D09191", "#000000");
 		Player.create("Andrés Desábato", "A. Desábato", "Argentina", ['GK'], 32, 65, club, 261014, false);
 		Player.create("Mauro Peinipil", "M. Peinipil", "Argentina", ['RB', 'RWB', 'RM'], 23, 65, club, 272947, false);
 		Player.create("Nicolas Capraro", "N. Capraro", "Argentina", ['CB'], 24, 64, club, 272945, false);
@@ -872,7 +872,7 @@ class SoFifa23Service {
 		Player.create("Maximiliano Puig", "M. Puig", "Argentina", ['CDM', 'CM'], 21, 59, club, 272313, false);
 		Player.create("Nicolás Tolosa", "N. Tolosa", "Argentina", ['LB'], 21, 58, club, 275093, false);
 
-		club = Club.create("Gimnasia La Plata", "Argentina", 101084, "rgb(184,184,192)", "black");
+		club = Club.create("Gimnasia La Plata", "Argentina", 101084, "#B8B8C0", "#000000");
 		Player.create("Tomás Durso", "T. Durso", "Argentina", ['GK'], 23, 65, club, 240955, true);
 		Player.create("Guillermo Enrique", "G. Enrique", "Argentina", ['RB', 'RM'], 22, 70, club, 265609, false);
 		Player.create("Leonardo Morales", "L. Morales", "Argentina", ['CB'], 31, 73, club, 240640, true);
@@ -902,7 +902,7 @@ class SoFifa23Service {
 		Player.create("Bruno Palazzo", "B. Palazzo", "Argentina", ['CB', 'RB'], 21, 61, club, 261619, false);
 		Player.create("Nahuel Manganelli", "N. Manganelli", "Argentina", ['GK'], 21, 60, club, 258200, false);
 
-		club = Club.create("Arsenal de Sarandi", "Argentina", 110394, "rgb(154,154,173)", "black");
+		club = Club.create("Arsenal de Sarandi", "Argentina", 110394, "#9A9AAD", "#000000");
 		Player.create("Alejandro Medina", "A. Medina", "Argentina", ['GK'], 35, 70, club, 261152, true);
 		Player.create("Lucas Souto", "L. Souto", "Argentina", ['RB', 'RWB', 'LB'], 23, 66, club, 270456, true);
 		Player.create("Néstor Breitenbruch", "N. Breitenbruch", "Argentina", ['RB', 'CB', 'RWB'], 26, 70, club, 224049, true);
@@ -932,7 +932,7 @@ class SoFifa23Service {
 		Player.create("Gonzalo Muscia", "G. Muscia", "Argentina", ['CM'], 22, 61, club, 274084, false);
 		Player.create("Juan Peinipil", "J. Peinipil", "Argentina", ['ST'], 20, 59, club, 273129, false);
 
-		club = Club.create("Aldosivi", "Argentina", 111707, "rgb(128,157,67)", "black");
+		club = Club.create("Aldosivi", "Argentina", 111707, "#809D43", "#000000");
 		Player.create("Luis Ingolotti", "L. Ingolotti", "Argentina", ['GK'], 22, 63, club, 243810, true);
 		Player.create("Rufino Lucero", "R. Lucero", "Argentina", ['RB', 'RWB'], 20, 64, club, 262991, false);
 		Player.create("Mario López Quintana", "M. López Quintana", "Paraguay", ['CB'], 26, 67, club, 225910, true);
@@ -954,7 +954,7 @@ class SoFifa23Service {
 		Player.create("Santiago Laquidain", "S. Laquidain", "Argentina", ['LB', 'CB'], 20, 60, club, 269704, false);
 		Player.create("Valentín Mancini", "V. Mancini", "Argentina", ['LW'], 19, 58, club, 268873, false);
 
-		club = Club.create("Patronato", "Argentina", 110581, "rgb(119,61,66)", "white");
+		club = Club.create("Patronato", "Argentina", 110581, "#773D42", "#FFFFFF");
 		Player.create("Matías Alexis Budiño", "M. Budiño", "Argentina", ['GK'], 26, 59, club, 273096, true);
 		Player.create("Lautaro Geminiani", "L. Geminiani", "Argentina", ['RB', 'LB'], 31, 64, club, 232697, true);
 		Player.create("Sergio Ojeda", "S. Ojeda", "Argentina", ['CB'], 30, 64, club, 214940, true);
@@ -984,7 +984,7 @@ class SoFifa23Service {
 		Player.create("Franco Rivasseau", "F. Rivasseau", "Argentina", ['GK'], 23, 60, club, 258091, true);
 		Player.create("Kevin Damián González", "K. González", "Argentina", ['RM'], 26, 58, club, 273097, true);
 
-		club = Club.create("Salzburg", "Austria", 191, "rgb(208,185,179)", "black");
+		club = Club.create("Salzburg", "Austria", 191, "#D0B9B3", "#000000");
 		Player.create("Philipp Köhn", "P. Köhn", "Switzerland", ['GK'], 24, 71, club, 239364, true);
 		Player.create("Amar Dedić", "A. Dedić", "Bosnia and Herzegovina", ['RB', 'LB'], 19, 68, club, 257345, true);
 		Player.create("Oumar Solet", "O. Solet", "France", ['CB'], 22, 75, club, 242238, true);
@@ -1014,7 +1014,7 @@ class SoFifa23Service {
 		Player.create("Bryan Okoh", "B. Okoh", "Switzerland", ['CB'], 19, 66, club, 263028, true);
 		Player.create("Junior Adamu", "J. Adamu", "Austria", ['ST'], 21, 69, club, 257877, true);
 
-		club = Club.create("LASK Linz", "Austria", 252, "rgb(156,146,122)", "black");
+		club = Club.create("LASK Linz", "Austria", 252, "#9C927A", "#000000");
 		Player.create("Tobias Lawal", "T. Lawal", "Austria", ['GK'], 22, 63, club, 244810, true);
 		Player.create("Filip Stojković", "F. Stojković", "Montenegro", ['RB'], 29, 72, club, 235055, true);
 		Player.create("Philipp Ziereis", "P. Ziereis", "Germany", ['CB'], 29, 70, club, 209196, true);
@@ -1044,7 +1044,7 @@ class SoFifa23Service {
 		Player.create("Tobias Anselm", "T. Anselm", "Austria", ['ST', 'LM'], 22, 64, club, 258510, true);
 		Player.create("Stefan Radulovic", "S. Radulovic", "Austria", ['CM', 'CDM'], 20, 61, club, 258503, false);
 
-		club = Club.create("Sturm Graz", "Austria", 209, "rgb(128,130,136)", "white");
+		club = Club.create("Sturm Graz", "Austria", 209, "#808288", "#FFFFFF");
 		Player.create("Arthur Okonkwo", "A. Okonkwo", "England", ['GK'], 20, 66, club, 246671, true);
 		Player.create("Jusuf Gazibegović", "J. Gazibegović", "Bosnia and Herzegovina", ['RB'], 22, 69, club, 259101, true);
 		Player.create("David Affengruber", "D. Affengruber", "Austria", ['CB'], 21, 69, club, 261264, true);
@@ -1074,7 +1074,7 @@ class SoFifa23Service {
 		Player.create("Paul Komposch", "P. Komposch", "Austria", ['CB'], 21, 59, club, 258806, true);
 		Player.create("Tobias Schützenauer", "T. Schützenauer", "Austria", ['GK'], 25, 64, club, 223868, true);
 
-		club = Club.create("Rapid Wien", "Austria", 254, "rgb(122,152,134)", "black");
+		club = Club.create("Rapid Wien", "Austria", 254, "#7A9886", "#000000");
 		Player.create("Niklas Hedl", "N. Hedl", "Austria", ['GK'], 21, 70, club, 256938, true);
 		Player.create("Denso Kasius", "D. Kasius", "Netherlands", ['RB', 'RM'], 19, 65, club, 267446, true);
 		Player.create("Michael Sollbauer", "M. Sollbauer", "Austria", ['CB'], 32, 66, club, 190592, true);
@@ -1104,7 +1104,7 @@ class SoFifa23Service {
 		Player.create("Lion Schuster", "L. Schuster", "Austria", ['CDM', 'CM'], 21, 64, club, 253462, true);
 		Player.create("Dragoljub Savić", "D. Savić", "Serbia", ['LM', 'RM'], 21, 61, club, 253492, true);
 
-		club = Club.create("Austria Wien", "Austria", 256, "rgb(76,54,113)", "white");
+		club = Club.create("Austria Wien", "Austria", 256, "#4C3671", "#FFFFFF");
 		Player.create("Christian Früchtl", "C. Früchtl", "Germany", ['GK'], 22, 67, club, 235266, true);
 		Player.create("Reinhold Ranftl", "R. Ranftl", "Austria", ['RB', 'RM', 'RWB'], 30, 68, club, 215368, true);
 		Player.create("Johannes Handl", "J. Handl", "Austria", ['CB'], 24, 67, club, 248470, true);
@@ -1134,7 +1134,7 @@ class SoFifa23Service {
 		Player.create("Muharem Huskovic", "M. Huskovic", "Austria", ['ST', 'LM'], 19, 64, club, 263130, true);
 		Player.create("Marko Raguž", "M. Raguž", "Austria", ['ST'], 24, 67, club, 239708, true);
 
-		club = Club.create("Wolfsberger AC", "Austria", 111822, "rgb(190,188,185)", "black");
+		club = Club.create("Wolfsberger AC", "Austria", 111822, "#BEBCB9", "#000000");
 		Player.create("Hendrik Bonmann", "H. Bonmann", "Germany", ['GK'], 28, 66, club, 216518, true);
 		Player.create("Nikolas Veratschnig", "N. Veratschnig", "Austria", ['RWB', 'CM', 'RB'], 19, 65, club, 267862, true);
 		Player.create("Tim Oermann", "T. Oermann", "Germany", ['CB'], 18, 65, club, 270033, true);
@@ -1161,7 +1161,7 @@ class SoFifa23Service {
 		Player.create("Lukas Gütlbauer", "L. Gütlbauer", "Austria", ['GK'], 21, 64, club, 256537, true);
 		Player.create("Fabian Tauchhammer", "F. Tauchhammer", "Austria", ['RB'], 20, 58, club, 244925, true);
 
-		club = Club.create("Ried", "Austria", 780, "rgb(66,87,77)", "white");
+		club = Club.create("Ried", "Austria", 780, "#42574D", "#FFFFFF");
 		Player.create("Samuel Şahin-Radlinger", "S. Şahin-Radlinger", "Austria", ['GK'], 29, 69, club, 193272, true);
 		Player.create("David Ungar", "D. Ungar", "Austria", ['CB', 'RB', 'CDM'], 22, 62, club, 269856, true);
 		Player.create("Marcel Ziegl", "M. Ziegl", "Austria", ['CDM', 'CM', 'CB'], 29, 67, club, 190597, true);
@@ -1191,7 +1191,7 @@ class SoFifa23Service {
 		Player.create("Patrick Moser", "P. Moser", "Austria", ['GK'], 19, 56, club, 261645, true);
 		Player.create("Gontie Junior Diomandé", "G. Diomandé", "Côte d'Ivoire", ['RM'], 19, 56, club, 271437, false);
 
-		club = Club.create("Austria Lustenau", "Austria", 781, "rgb(59,162,97)", "black");
+		club = Club.create("Austria Lustenau", "Austria", 781, "#3BA261", "#000000");
 		Player.create("Domenik Schierl", "D. Schierl", "Austria", ['GK'], 27, 66, club, 223890, true);
 		Player.create("Adriel da Silva", "Adriel", "Brazil", ['CDM', 'CB'], 25, 65, club, 270982, true);
 		Player.create("Jean Hugonet", "J. Hugonet", "France", ['CB'], 22, 66, club, 251519, true);
@@ -1218,7 +1218,7 @@ class SoFifa23Service {
 		Player.create("Cem Türkmen", "C. Türkmen", "Turkey", ['CDM', 'CM'], 20, 64, club, 258899, true);
 		Player.create("Matthias Maak", "M. Maak", "Austria", ['CB'], 30, 63, club, 199770, true);
 
-		club = Club.create("WSG Tirol", "Austria", 15040, "rgb(143,180,171)", "black");
+		club = Club.create("WSG Tirol", "Austria", 15040, "#8FB4AB", "#000000");
 		Player.create("Ferdinand Oswald", "F. Oswald", "Germany", ['GK'], 31, 67, club, 250781, true);
 		Player.create("Felix Bacher", "F. Bacher", "Austria", ['CB', 'RB'], 22, 64, club, 262404, true);
 		Player.create("Raffael Behounek", "R. Behounek", "Austria", ['CB'], 25, 68, club, 252318, true);
@@ -1247,7 +1247,7 @@ class SoFifa23Service {
 		Player.create("Stefan Škrbo", "S. Škrbo", "Austria", ['LM'], 21, 62, club, 263093, true);
 		Player.create("Thomas Geris", "T. Geris", "Austria", ['ST'], 19, 52, club, 271004, true);
 
-		club = Club.create("Hartberg", "Austria", 2017, "rgb(66,92,142)", "white");
+		club = Club.create("Hartberg", "Austria", 2017, "#425C8E", "#FFFFFF");
 		Player.create("Raphael Sallinger", "R. Sallinger", "Austria", ['GK'], 26, 64, club, 228562, true);
 		Player.create("Tobias Kainz", "T. Kainz", "Austria", ['CDM', 'CM', 'RB'], 29, 67, club, 203615, true);
 		Player.create("Thomas Rotter", "T. Rotter", "Austria", ['CB'], 30, 64, club, 244415, true);
@@ -1277,7 +1277,7 @@ class SoFifa23Service {
 		Player.create("Julian Halwachs", "J. Halwachs", "Austria", ['CDM'], 19, 59, club, 274091, false);
 		Player.create("Jürgen Lemmerer", "J. Lemmerer", "Austria", ['ST'], 19, 59, club, 263381, true);
 
-		club = Club.create("Austria Klagenfurt", "Austria", 1787, "rgb(102,47,141)", "white");
+		club = Club.create("Austria Klagenfurt", "Austria", 1787, "#662F8D", "#FFFFFF");
 		Player.create("Phillip Menzel", "P. Menzel", "Germany", ['GK'], 23, 66, club, 235141, true);
 		Player.create("Michael Blauensteiner", "M. Blauensteiner", "Austria", ['RB', 'RWB'], 27, 63, club, 237592, true);
 		Player.create("Kosmas Gkezos", "K. Gkezos", "Greece", ['CDM', 'CB'], 29, 65, club, 262389, true);
@@ -1304,7 +1304,7 @@ class SoFifa23Service {
 		Player.create("David Puntigam", "D. Puntigam", "Austria", ['GK'], 18, 54, club, 263455, true);
 		Player.create("Nicolas Binder", "N. Binder", "Austria", ['ST'], 20, 60, club, 270993, true);
 
-		club = Club.create("Rheindorf Altach", "Austria", 15009, "rgb(180,179,176)", "black");
+		club = Club.create("Rheindorf Altach", "Austria", 15009, "#B4B3B0", "#000000");
 		Player.create("Tino Casali", "T. Casali", "Austria", ['GK'], 26, 65, club, 222024, true);
 		Player.create("Jan Jurcec", "J. Jurcec", "Croatia", ['RWB', 'RM', 'LM'], 21, 64, club, 270911, true);
 		Player.create("Felix Strauss", "F. Strauss", "Austria", ['CB', 'CDM', 'RB'], 21, 64, club, 262792, true);
@@ -1334,7 +1334,7 @@ class SoFifa23Service {
 		Player.create("Dominik Reiter", "D. Reiter", "Austria", ['RM', 'ST', 'CF'], 24, 63, club, 239709, true);
 		Player.create("Emre Yabantas", "E. Yabantas", "Austria", ['RB'], 18, 53, club, 274464, false);
 
-		club = Club.create("Melbourne Victory", "Australia", 111397, "rgb(43,50,59)", "white");
+		club = Club.create("Melbourne Victory", "Australia", 111397, "#2B323B", "#FFFFFF");
 		Player.create("Paul Izzo", "P. Izzo", "Australia", ['GK'], 27, 67, club, 204424, true);
 		Player.create("Jason Geria", "J. Geria", "Australia", ['RB', 'CB'], 29, 65, club, 212511, true);
 		Player.create("Damien Da Silva", "D. Da Silva", "France", ['CB'], 34, 73, club, 179789, true);
@@ -1364,7 +1364,7 @@ class SoFifa23Service {
 		Player.create("Ahmad Taleb", "A. Taleb", "Australia", ['GK'], 19, 49, club, 260522, true);
 		Player.create("Bruce Kamau", "B. Kamau", "Australia", ['RM', 'ST'], 27, 63, club, 225759, false);
 
-		club = Club.create("Melbourne City", "Australia", 112224, "rgb(112,150,179)", "black");
+		club = Club.create("Melbourne City", "Australia", 112224, "#7096B3", "#000000");
 		Player.create("Tom Glover", "T. Glover", "Australia", ['GK'], 24, 63, club, 232110, true);
 		Player.create("Callum Talbot", "C. Talbot", "Australia", ['RB', 'LB'], 21, 62, club, 260004, true);
 		Player.create("Thomas Lam", "T. Lam", "Finland", ['CB', 'CDM'], 28, 67, club, 208018, true);
@@ -1392,7 +1392,7 @@ class SoFifa23Service {
 		Player.create("Sebastian Esposito", "S. Esposito", "Australia", ['CB'], 17, 50, club, 274928, false);
 		Player.create("Richard van der Venne", "R. van der Venne", "Netherlands", ['CM', 'CAM', 'CDM'], 30, 66, club, 255313, true);
 
-		club = Club.create("Western Sydney Wanderers", "Australia", 112427, "rgb(93,44,49)", "white");
+		club = Club.create("Western Sydney Wanderers", "Australia", 112427, "#5D2C31", "#FFFFFF");
 		Player.create("Lawrence Thomas", "L. Thomas", "Australia", ['GK'], 30, 69, club, 203423, true);
 		Player.create("Aidan Simmons", "A. Simmons", "Australia", ['RM', 'RB', 'LM'], 19, 56, club, 272737, false);
 		Player.create("Tomislav Mrčela", "T. Mrčela", "Australia", ['CB'], 31, 67, club, 228887, true);
@@ -1422,7 +1422,7 @@ class SoFifa23Service {
 		Player.create("Marcus Younis", "M. Younis", "Australia", ['RM', 'LM'], 16, 50, club, 273530, false);
 		Player.create("Zac Sapsford", "Z. Sapsford", "Australia", ['ST', 'CAM'], 19, 52, club, 269475, true);
 
-		club = Club.create("Sydney", "Australia", 111400, "rgb(81,139,187)", "black");
+		club = Club.create("Sydney", "Australia", 111400, "#518BBB", "#000000");
 		Player.create("Andrew Redmayne", "A. Redmayne", "Australia", ['GK'], 33, 65, club, 183244, true);
 		Player.create("Rhyan Grant", "R. Grant", "Australia", ['RB'], 31, 69, club, 192241, true);
 		Player.create("Jack Rodwell", "J. Rodwell", "England", ['CB', 'CDM', 'CM'], 31, 68, club, 183465, true);
@@ -1447,7 +1447,7 @@ class SoFifa23Service {
 		Player.create("Adam Le Fondre", "A. Le Fondre", "England", ['ST'], 35, 68, club, 163828, true);
 		Player.create("Alex Parsons", "A. Parsons", "Australia", ['RW', 'LW'], 22, 59, club, 261948, true);
 
-		club = Club.create("Western United", "Australia", 114023, "rgb(46,73,60)", "white");
+		club = Club.create("Western United", "Australia", 114023, "#2E493C", "#FFFFFF");
 		Player.create("Jamie Young", "J. Young", "England", ['GK'], 36, 68, club, 163616, true);
 		Player.create("Josh Risdon", "J. Risdon", "Australia", ['RB'], 29, 70, club, 202678, true);
 		Player.create("Tomoki Imai", "T. Imai", "Japan", ['CB', 'RB'], 31, 66, club, 232596, true);
@@ -1474,7 +1474,7 @@ class SoFifa23Service {
 		Player.create("Ajak Deu", "A. Deu", "South Sudan", ['CB'], 21, 50, club, 263543, true);
 		Player.create("Ben Collins", "B. Collins", "Australia", ['CB'], 22, 50, club, 265533, true);
 
-		club = Club.create("Adelaide United", "Australia", 111393, "rgb(151,44,56)", "white");
+		club = Club.create("Adelaide United", "Australia", 111393, "#972C38", "#FFFFFF");
 		Player.create("Joe Gauci", "J. Gauci", "Australia", ['GK'], 21, 66, club, 243917, true);
 		Player.create("Javier López Rodríguez", "Javi López", "Spain", ['RB'], 36, 71, club, 195361, true);
 		Player.create("Lachlan Barr", "L. Barr", "Australia", ['CB'], 27, 61, club, 240695, true);
@@ -1504,7 +1504,7 @@ class SoFifa23Service {
 		Player.create("Panashe Madanha", "P. Madanha", "Australia", ['RM', 'ST', 'RB'], 17, 55, club, 272708, false);
 		Player.create("George Blackwood", "G. Blackwood", "Australia", ['ST', 'CAM'], 25, 59, club, 225756, true);
 
-		club = Club.create("Central Coast Mariners", "Australia", 111396, "rgb(163,134,64)", "black");
+		club = Club.create("Central Coast Mariners", "Australia", 111396, "#A38640", "#000000");
 		Player.create("Danny Vukovic", "D. Vukovic", "Australia", ['GK'], 37, 68, club, 181481, true);
 		Player.create("Storm Roux", "S. Roux", "New Zealand", ['RB'], 29, 62, club, 213094, true);
 		Player.create("Nectarios Triantis", "N. Triantis", "Australia", ['CB'], 19, 60, club, 270887, true);
@@ -1534,7 +1534,7 @@ class SoFifa23Service {
 		Player.create("Zac Zoricich", "Z. Zoricich", "New Zealand", ['LB', 'RB'], 19, 52, club, 274940, false);
 		Player.create("Miguel Di Pizio", "M. Di Pizio", "Australia", ['CAM', 'LM'], 16, 55, club, 275267, false);
 
-		club = Club.create("Wellington Phoenix", "Australia", 111766, "rgb(145,133,39)", "black");
+		club = Club.create("Wellington Phoenix", "Australia", 111766, "#918527", "#000000");
 		Player.create("Oliver Sail", "O. Sail", "New Zealand", ['GK'], 26, 69, club, 225993, true);
 		Player.create("Callan Elliot", "C. Elliot", "New Zealand", ['RB'], 22, 63, club, 246195, true);
 		Player.create("Scott Wootton", "S. Wootton", "England", ['CB'], 30, 65, club, 203264, true);
@@ -1559,7 +1559,7 @@ class SoFifa23Service {
 		Player.create("Nikko Boxall", "N. Boxall", "New Zealand", ['CB', 'CDM'], 30, 62, club, 242953, false);
 		Player.create("Isaac Hughes", "I. Hughes", "New Zealand", ['CB'], 18, 51, club, 274055, false);
 
-		club = Club.create("Macarthur", "Australia", 114604, "rgb(143,139,113)", "black");
+		club = Club.create("Macarthur", "Australia", 114604, "#8F8B71", "#000000");
 		Player.create("Filip Kurto", "F. Kurto", "Poland", ['GK'], 31, 66, club, 193302, true);
 		Player.create("Jake McGing", "J. McGing", "Australia", ['RB', 'CB'], 28, 61, club, 228889, true);
 		Player.create("Tomislav Uskok", "T. Uskok", "Australia", ['CB'], 31, 64, club, 231634, true);
@@ -1589,7 +1589,7 @@ class SoFifa23Service {
 		Player.create("Ulises Dávila", "U. Dávila", "Mexico", ['CAM', 'RM', 'ST'], 31, 71, club, 190581, true);
 		Player.create("Moudi Najjar", "M. Najjar", "Australia", ['LB', 'LWB', 'LM'], 22, 58, club, 242601, true);
 
-		club = Club.create("Perth Glory", "Australia", 111399, "rgb(98,60,91)", "white");
+		club = Club.create("Perth Glory", "Australia", 111399, "#623C5B", "#FFFFFF");
 		Player.create("Cameron Cook", "C. Cook", "Australia", ['GK'], 20, 57, club, 260538, true);
 		Player.create("Antonee Burke-Gilroy", "A. Burke-Gilroy", "Australia", ['RWB', 'RM'], 24, 60, club, 240632, true);
 		Player.create("Jordan Elsey", "J. Elsey", "Australia", ['CB'], 28, 63, club, 216154, true);
@@ -1619,7 +1619,7 @@ class SoFifa23Service {
 		Player.create("Trent Ostler", "T. Ostler", "Australia", ['ST', 'LM'], 20, 54, club, 260536, true);
 		Player.create("Adrián Sardinero Corpa", "Adrián Sardinero", "Spain", ['LM', 'CM'], 31, 62, club, 195012, true);
 
-		club = Club.create("Brisbane Roar", "Australia", 111395, "rgb(172,79,43)", "white");
+		club = Club.create("Brisbane Roar", "Australia", 111395, "#AC4F2B", "#FFFFFF");
 		Player.create("Jordan Holmes", "J. Holmes", "Australia", ['GK'], 25, 60, club, 231172, true);
 		Player.create("Kai Trewin", "K. Trewin", "Australia", ['CDM', 'CM', 'CB'], 21, 65, club, 252700, true);
 		Player.create("Scott Neville", "S. Neville", "Australia", ['CB', 'RB'], 33, 64, club, 192572, true);
@@ -1645,7 +1645,7 @@ class SoFifa23Service {
 		Player.create("Noah Smith", "N. Smith", "Australia", ['LB', 'LM'], 21, 59, club, 255941, true);
 		Player.create("James Nikolovski", "J. Nikolovski", "Australia", ['CB'], 20, 51, club, 273834, false);
 
-		club = Club.create("Newcastle Jets", "Australia", 111398, "rgb(178,156,115)", "black");
+		club = Club.create("Newcastle Jets", "Australia", 111398, "#B29C73", "#000000");
 		Player.create("Michael Weier", "M. Weier", "Australia", ['GK'], 25, 59, club, 264646, true);
 		Player.create("Carl Jenkinson", "C. Jenkinson", "England", ['RB'], 30, 67, club, 200841, true);
 		Player.create("Matthew Jurman", "M. Jurman", "Australia", ['CB'], 32, 62, club, 192250, true);
@@ -1669,7 +1669,7 @@ class SoFifa23Service {
 		Player.create("Moonib Adus", "M. Adus", "Australia", ['CDM'], 19, 48, club, 272597, false);
 		Player.create("Mohamad Al-Taay", "M. Al-Taay", "Australia", ['CDM'], 22, 55, club, 260176, true);
 
-		club = Club.create("Club Brugge", "Belgium", 231, "rgb(42,82,122)", "white");
+		club = Club.create("Club Brugge", "Belgium", 231, "#2A527A", "#FFFFFF");
 		Player.create("Simon Mignolet", "S. Mignolet", "Belgium", ['GK'], 34, 81, club, 173426, true);
 		Player.create("Clinton Mukoni Mata Pedro Lourenço", "Clinton Mata", "Angola", ['RB', 'CB'], 29, 78, club, 208364, true);
 		Player.create("Brandon Mechele", "B. Mechele", "Belgium", ['CB'], 29, 76, club, 212204, true);
@@ -1699,7 +1699,7 @@ class SoFifa23Service {
 		Player.create("Romeo Vermant", "R. Vermant", "Belgium", ['ST', 'CF'], 18, 63, club, 275051, false);
 		Player.create("Chemsdine Talbi", "C. Talbi", "Belgium", ['RM', 'LM', 'RW'], 17, 64, club, 275048, false);
 
-		club = Club.create("Genk", "Belgium", 673, "rgb(46,89,174)", "white");
+		club = Club.create("Genk", "Belgium", 673, "#2E59AE", "#FFFFFF");
 		Player.create("Maarten Vandevoordt", "M. Vandevoordt", "Belgium", ['GK'], 20, 74, club, 242879, true);
 		Player.create("Daniel Muñoz", "D. Muñoz", "Colombia", ['RB', 'CB'], 26, 77, club, 237646, true);
 		Player.create("Carlos Cuesta", "C. Cuesta", "Colombia", ['CB'], 23, 74, club, 233841, true);
@@ -1729,7 +1729,7 @@ class SoFifa23Service {
 		Player.create("Tuur Rommens", "T. Rommens", "Belgium", ['LB'], 19, 62, club, 274057, false);
 		Player.create("Vic Chambaere", "V. Chambaere", "Belgium", ['GK'], 19, 59, club, 263619, true);
 
-		club = Club.create("Antwerp", "Belgium", 230, "rgb(172,54,58)", "white");
+		club = Club.create("Antwerp", "Belgium", 230, "#AC363A", "#FFFFFF");
 		Player.create("Jean Butez", "J. Butez", "France", ['GK'], 27, 78, club, 225149, true);
 		Player.create("Ritchie De Laet", "R. De Laet", "Belgium", ['RB', 'CB', 'LB'], 33, 72, club, 175932, true);
 		Player.create("Toby Alderweireld", "T. Alderweireld", "Belgium", ['CB'], 33, 82, club, 184087, true);
@@ -1758,7 +1758,7 @@ class SoFifa23Service {
 		Player.create("Laurit Krasniqi", "L. Krasniqi", "Belgium", ['LB'], 20, 61, club, 261642, false);
 		Player.create("Abderahmane Soussi", "A. Soussi", "Belgium", ['LM', 'LW', 'ST'], 19, 56, club, 262549, false);
 
-		club = Club.create("Gent", "Belgium", 674, "rgb(119,131,163)", "white");
+		club = Club.create("Gent", "Belgium", 674, "#7783A3", "#FFFFFF");
 		Player.create("Paul Nardi", "P. Nardi", "France", ['GK'], 28, 73, club, 206218, true);
 		Player.create("Kamil Piątkowski", "K. Piątkowski", "Poland", ['CB', 'RWB'], 22, 71, club, 252018, true);
 		Player.create("Joseph Okumu", "J. Okumu", "Kenya", ['CB'], 25, 73, club, 253073, true);
@@ -1788,7 +1788,7 @@ class SoFifa23Service {
 		Player.create("Cederick Van Daele", "C. Van Daele", "Belgium", ['LB'], 21, 61, club, 259986, false);
 		Player.create("Brian Emo Agbor", "B. Agbor", "Cameroon", ['CDM', 'CB', 'CM'], 21, 60, club, 260961, false);
 
-		club = Club.create("Union Saint-Gilloise", "Belgium", 2014, "rgb(192,156,46)", "black");
+		club = Club.create("Union Saint-Gilloise", "Belgium", 2014, "#C09C2E", "#000000");
 		Player.create("Anthony Moris", "A. Moris", "Luxembourg", ['GK'], 32, 74, club, 184167, true);
 		Player.create("Ross Sykes", "R. Sykes", "England", ['CB'], 23, 68, club, 235572, true);
 		Player.create("Ismaël Kandouss", "I. Kandouss", "Morocco", ['CB'], 24, 71, club, 261663, true);
@@ -1815,7 +1815,7 @@ class SoFifa23Service {
 		Player.create("Joachim Imbrechts", "J. Imbrechts", "Sweden", ['GK'], 20, 59, club, 239594, true);
 		Player.create("Arnaud Dony", "A. Dony", "Belgium", ['LWB', 'LB', 'LM'], 18, 60, club, 267769, true);
 
-		club = Club.create("Anderlecht", "Belgium", 229, "rgb(67,54,111)", "white");
+		club = Club.create("Anderlecht", "Belgium", 229, "#43366F", "#FFFFFF");
 		Player.create("Bart Verbruggen", "B. Verbruggen", "Netherlands", ['GK'], 19, 73, club, 258498, true);
 		Player.create("Michael Murillo", "M. Murillo", "Panama", ['RB', 'RM'], 26, 73, club, 237841, true);
 		Player.create("Zeno Debast", "Z. Debast", "Belgium", ['CB'], 18, 70, club, 254262, true);
@@ -1845,7 +1845,7 @@ class SoFifa23Service {
 		Player.create("Colin Coosemans", "C. Coosemans", "Belgium", ['GK'], 29, 67, club, 200059, true);
 		Player.create("Nilson Angulo", "N. Angulo", "Ecuador", ['CAM', 'ST', 'RM'], 19, 65, club, 264205, true);
 
-		club = Club.create("Mechelen", "Belgium", 110724, "rgb(190,131,55)", "black");
+		club = Club.create("Mechelen", "Belgium", 110724, "#BE8337", "#000000");
 		Player.create("Gaëtan Coucke", "G. Coucke", "Belgium", ['GK'], 23, 69, club, 234903, true);
 		Player.create("Jannes Van Hecke", "J. Van Hecke", "Belgium", ['CM', 'CAM', 'RB'], 20, 63, club, 248772, true);
 		Player.create("David Bates", "D. Bates", "Scotland", ['CB'], 25, 67, club, 235729, true);
@@ -1875,7 +1875,7 @@ class SoFifa23Service {
 		Player.create("Milan Robberechts", "M. Robberechts", "Belgium", ['RW'], 18, 59, club, 263809, true);
 		Player.create("Iebe Swers", "I. Swers", "Belgium", ['RB', 'RM', 'LB'], 25, 67, club, 228354, true);
 
-		club = Club.create("Sporting Charleroi", "Belgium", 670, "rgb(89,88,85)", "white");
+		club = Club.create("Sporting Charleroi", "Belgium", 670, "#595855", "#FFFFFF");
 		Player.create("Hervé Koffi", "H. Koffi", "Burkina Faso", ['GK'], 25, 73, club, 239342, true);
 		Player.create("Stefan Knežević", "S. Knežević", "Switzerland", ['CB'], 25, 68, club, 234817, true);
 		Player.create("Stelios Andreou", "S. Andreou", "Cyprus", ['CB'], 19, 67, club, 262938, true);
@@ -1904,7 +1904,7 @@ class SoFifa23Service {
 		Player.create("Josué Doké", "J. Doké", "Togo", ['ST'], 18, 58, club, 274837, false);
 		Player.create("Adrien Bongiovanni", "A. Bongiovanni", "Belgium", ['CAM', 'ST', 'LM'], 22, 64, club, 235171, false);
 
-		club = Club.create("Cercle Brugge", "Belgium", 1750, "rgb(61,84,66)", "white");
+		club = Club.create("Cercle Brugge", "Belgium", 1750, "#3D5442", "#FFFFFF");
 		Player.create("Radosław Majecki", "R. Majecki", "Poland", ['GK'], 22, 70, club, 235413, true);
 		Player.create("Boris Popovic", "B. Popovic", "Serbia", ['CB'], 22, 65, club, 258687, true);
 		Player.create("Christiaan Ravych", "C. Ravych", "Belgium", ['CB'], 19, 63, club, 268067, true);
@@ -1931,7 +1931,7 @@ class SoFifa23Service {
 		Player.create("Sébastien Bruzzese", "S. Bruzzese", "Belgium", ['GK'], 33, 65, club, 182897, true);
 		Player.create("Xander Martlé", "X. Martlé", "Belgium", ['RM', 'LM', 'CM'], 18, 58, club, 268068, true);
 
-		club = Club.create("Standard Liège", "Belgium", 232, "rgb(180,60,66)", "white");
+		club = Club.create("Standard Liège", "Belgium", 232, "#B43C42", "#FFFFFF");
 		Player.create("Arnaud Bodart", "A. Bodart", "Belgium", ['GK'], 24, 72, club, 237525, true);
 		Player.create("Noë Dussenne", "N. Dussenne", "Belgium", ['CB'], 30, 72, club, 201841, true);
 		Player.create("Merveille Bokadi", "M. Bokadi", "Congo DR", ['CB', 'CDM'], 26, 70, club, 237554, true);
@@ -1961,7 +1961,7 @@ class SoFifa23Service {
 		Player.create("Brahim Ghalidi", "B. Ghalidi", "Belgium", ['LM', 'RM'], 17, 55, club, 268561, true);
 		Player.create("Rayan Berberi", "R. Berberi", "Luxembourg", ['CAM'], 18, 55, club, 272775, false);
 
-		club = Club.create("OH Leuven", "Belgium", 100087, "rgb(205,201,199)", "black");
+		club = Club.create("OH Leuven", "Belgium", 100087, "#CDC9C7", "#000000");
 		Player.create("Valentin Cojocaru", "V. Cojocaru", "Romania", ['GK'], 26, 68, club, 236330, true);
 		Player.create("Louis Patris", "L. Patris", "Belgium", ['RB', 'CB'], 21, 68, club, 261312, true);
 		Player.create("Ewoud Pletinckx", "E. Pletinckx", "Belgium", ['CB'], 21, 67, club, 246157, true);
@@ -1986,7 +1986,7 @@ class SoFifa23Service {
 		Player.create("Emmanuel Toku", "E. Toku", "Ghana", ['CAM'], 21, 68, club, 273895, false);
 		Player.create("Oregan Ravet", "O. Ravet", "Belgium", ['GK'], 20, 59, club, 257791, true);
 
-		club = Club.create("Zulte-Waregem", "Belgium", 15005, "rgb(203,177,177)", "black");
+		club = Club.create("Zulte-Waregem", "Belgium", 15005, "#CBB1B1", "#000000");
 		Player.create("Louis Bostyn", "L. Bostyn", "Belgium", ['GK'], 28, 68, club, 201847, true);
 		Player.create("Karol Fila", "K. Fila", "Poland", ['RB', 'CB', 'RWB'], 24, 68, club, 239635, true);
 		Player.create("Lukas Willen", "L. Willen", "Belgium", ['CB'], 19, 59, club, 268498, true);
@@ -2016,7 +2016,7 @@ class SoFifa23Service {
 		Player.create("Wout De Buyser", "W. De Buyser", "Belgium", ['LWB', 'LB'], 21, 56, club, 260123, true);
 		Player.create("Dylan Demuynck", "D. Demuynck", "Belgium", ['LM', 'LW'], 18, 60, club, 270869, false);
 
-		club = Club.create("Sint-Truiden", "Belgium", 680, "rgb(176,159,73)", "black");
+		club = Club.create("Sint-Truiden", "Belgium", 680, "#B09F49", "#000000");
 		Player.create("Daniel Schmidt", "D. Schmidt", "Japan", ['GK'], 30, 70, club, 237580, true);
 		Player.create("Daiki Hashioka", "D. Hashioka", "Japan", ['RWB', 'RM'], 23, 69, club, 242006, true);
 		Player.create("Matte Smets", "M. Smets", "Belgium", ['CB', 'CDM'], 18, 60, club, 271032, true);
@@ -2042,7 +2042,7 @@ class SoFifa23Service {
 		Player.create("Keo Boets", "K. Boets", "Belgium", ['GK'], 18, 56, club, 272335, false);
 		Player.create("Andréa Librici", "A. Librici", "Belgium", ['CM', 'CDM'], 17, 55, club, 271033, true);
 
-		club = Club.create("Westerlo", "Belgium", 681, "rgb(207,178,40)", "black");
+		club = Club.create("Westerlo", "Belgium", 681, "#CFB228", "#000000");
 		Player.create("Sinan Bolat", "S. Bolat", "Turkey", ['GK'], 33, 72, club, 162220, true);
 		Player.create("Bryan Reynolds", "B. Reynolds", "United States", ['RB', 'LB', 'RM'], 21, 67, club, 242907, true);
 		Player.create("Roman Neustädter", "R. Neustädter", "Russia", ['CB', 'CDM'], 34, 71, club, 186296, true);
@@ -2070,7 +2070,7 @@ class SoFifa23Service {
 		Player.create("Koen Van Langendonck", "K. Van Langendonck", "Belgium", ['GK'], 33, 65, club, 209293, true);
 		Player.create("Kouya Mabea", "K. Mabea", "Côte d'Ivoire", ['LB', 'LM'], 23, 59, club, 271829, false);
 
-		club = Club.create("KV Oostende", "Belgium", 682, "rgb(166,67,61)", "white");
+		club = Club.create("KV Oostende", "Belgium", 682, "#A6433D", "#FFFFFF");
 		Player.create("Guillaume Hubert", "G. Hubert", "Belgium", ['GK'], 28, 69, club, 205386, true);
 		Player.create("Osaze Urhoghide", "O. Urhoghide", "England", ['CB', 'RB'], 21, 64, club, 244674, true);
 		Player.create("Matej Rodin", "M. Rodin", "Croatia", ['CB'], 26, 67, club, 251760, true);
@@ -2100,7 +2100,7 @@ class SoFifa23Service {
 		Player.create("Siebe Wylin", "S. Wylin", "Belgium", ['RWB', 'RM', 'RB'], 19, 63, club, 265391, true);
 		Player.create("Dapo Mebude", "D. Mebude", "Scotland", ['CAM', 'ST'], 20, 59, club, 261513, true);
 
-		club = Club.create("Kortrijk", "Belgium", 100081, "rgb(197,56,61)", "white");
+		club = Club.create("Kortrijk", "Belgium", 100081, "#C5383D", "#FFFFFF");
 		Player.create("Tom Vandenberghe", "T. Vandenberghe", "Belgium", ['GK'], 29, 66, club, 269752, true);
 		Player.create("João Pedro Eira Antunes Silva", "João Silva", "Portugal", ['CB'], 23, 63, club, 270585, false);
 		Player.create("Tsuyoshi Watanabe", "T. Watanabe", "Japan", ['CB', 'CDM'], 25, 69, club, 246826, true);
@@ -2130,7 +2130,7 @@ class SoFifa23Service {
 		Player.create("Nikolas Dyhr", "N. Dyhr", "Denmark", ['LB', 'LWB'], 21, 69, club, 251595, true);
 		Player.create("Eric Ocansey", "E. Ocansey", "Ghana", ['LM', 'RM'], 24, 65, club, 234048, true);
 
-		club = Club.create("AS Eupen", "Belgium", 2013, "rgb(215,215,213)", "black");
+		club = Club.create("AS Eupen", "Belgium", 2013, "#D7D7D5", "#000000");
 		Player.create("Lennart Moser", "L. Moser", "Germany", ['GK'], 22, 67, club, 242068, true);
 		Player.create("Yentl Van Genechten", "Y. Van Genechten", "Belgium", ['RB', 'RWB', 'CB'], 21, 64, club, 263206, true);
 		Player.create("Loïc Bessilé", "L. Bessilé", "Togo", ['CB'], 23, 67, club, 250976, true);
@@ -2160,7 +2160,7 @@ class SoFifa23Service {
 		Player.create("Garissone Innocent", "G. Innocent", "Haiti", ['GK'], 22, 62, club, 243710, true);
 		Player.create("Dario Oger", "D. Oger", "Belgium", ['CM', 'CAM'], 20, 58, club, 270833, true);
 
-		club = Club.create("RFC Seraing", "Belgium", 112695, "rgb(144,62,62)", "white");
+		club = Club.create("RFC Seraing", "Belgium", 112695, "#903E3E", "#FFFFFF");
 		Player.create("Guillaume Dietsch", "G. Dietsch", "France", ['GK'], 21, 67, club, 246740, true);
 		Player.create("Junior Mansoni", "J. Mansoni", "Belgium", ['RWB', 'RB', 'RM'], 26, 65, club, 263075, true);
 		Player.create("Marvin Tshibuabua", "M. Tshibuabua", "France", ['CB'], 20, 62, club, 250800, true);
@@ -2190,7 +2190,7 @@ class SoFifa23Service {
 		Player.create("Noah Serwy", "N. Serwy", "Belgium", ['CF'], 19, 57, club, 263833, true);
 		Player.create("Zakaria Silini", "Z. Silini", "Algeria", ['ST', 'CF'], 18, 55, club, 263834, true);
 
-		club = Club.create("Bolívar", "Bolivia", 110968, "rgb(83,132,185)", "white");
+		club = Club.create("Bolívar", "Bolivia", 110968, "#5384B9", "#FFFFFF");
 		Player.create("Carlos Lampe", "C. Lampe", "Bolivia", ['GK'], 35, 74, club, 196885, true);
 		Player.create("Diego Bejarano", "D. Bejarano", "Bolivia", ['RWB', 'RB', 'CB'], 30, 69, club, 216751, true);
 		Player.create("Bryan Bentaberry", "B. Bentaberry", "Uruguay", ['CB', 'RB', 'LB'], 25, 65, club, 267831, true);
@@ -2213,7 +2213,7 @@ class SoFifa23Service {
 		Player.create("Javier Uzeda", "J. Uzeda", "Bolivia", ['CAM', 'LM'], 19, 61, club, 264663, true);
 		Player.create("José Herrera", "J. Herrera", "Bolivia", ['CDM', 'CM'], 19, 61, club, 256174, true);
 
-		club = Club.create("The Strongest", "Bolivia", 110969, "rgb(107,89,54)", "white");
+		club = Club.create("The Strongest", "Bolivia", 110969, "#6B5936", "#FFFFFF");
 		Player.create("Guillermo Viscarra", "G. Viscarra", "Bolivia", ['GK'], 29, 69, club, 236241, true);
 		Player.create("Saúl Torres", "S. Torres", "Bolivia", ['RB', 'RWB'], 32, 66, club, 247883, true);
 		Player.create("Gonzalo Castillo", "G. Castillo", "Uruguay", ['CB'], 31, 67, club, 253807, true);
@@ -2241,7 +2241,7 @@ class SoFifa23Service {
 		Player.create("Ronald Bustos", "R. Bustos", "Bolivia", ['RB', 'RM'], 18, 62, club, 274342, true);
 		Player.create("Diego Corpus", "D. Corpus", "Bolivia", ['RB'], 18, 64, club, 267970, true);
 
-		club = Club.create("Oriente Petrolero", "Bolivia", 110970, "rgb(159,176,160)", "black");
+		club = Club.create("Oriente Petrolero", "Bolivia", 110970, "#9FB0A0", "#000000");
 		Player.create("Wilson Quiñónez", "W. Quiñónez", "Paraguay", ['GK'], 33, 66, club, 260517, true);
 		Player.create("Fabio Vargas", "F. Vargas", "Bolivia", ['RB'], 18, 54, club, 275286, false);
 		Player.create("Wilfredo Soleto", "W. Soleto", "Bolivia", ['CB', 'RB'], 26, 65, club, 254963, true);
@@ -2273,7 +2273,7 @@ class SoFifa23Service {
 		Player.create("Fabio Rosales", "F. Rosales", "Bolivia", ['GK'], 21, 60, club, 268497, true);
 		Player.create("Tobías Cabrera", "T. Cabrera", "Bolivia", ['ST'], 17, 54, club, 272448, true);
 
-		club = Club.create("Blooming", "Bolivia", 110967, "rgb(83,118,173)", "white");
+		club = Club.create("Blooming", "Bolivia", 110967, "#5376AD", "#FFFFFF");
 		Player.create("Braulio Uraezaña", "B. Uraezaña", "Bolivia", ['GK'], 27, 65, club, 226148, true);
 		Player.create("César Romero", "C. Romero", "Bolivia", ['CB'], 20, 59, club, 274747, true);
 		Player.create("Abraham Cabrera", "A. Cabrera", "Bolivia", ['CB', 'LB'], 31, 62, club, 220539, true);
@@ -2301,7 +2301,7 @@ class SoFifa23Service {
 		Player.create("Fernando Rodríguez Rendón", "F. Rodríguez Rendón", "Bolivia", ['CAM'], 26, 55, club, 273525, true);
 		Player.create("Carlos Jiménez", "C. Jiménez", "Bolivia", ['GK'], 20, 62, club, 254139, true);
 
-		club = Club.create("Palmaflor del Trópico", "Bolivia", 115358, "rgb(215,197,65)", "black");
+		club = Club.create("Palmaflor del Trópico", "Bolivia", 115358, "#D7C541", "#000000");
 		Player.create("Carlos Adorno", "C. Adorno", "Bolivia", ['GK'], 21, 66, club, 256173, true);
 		Player.create("Óscar Baldomar", "Ó. Baldomar", "Bolivia", ['RB', 'CB', 'RWB'], 26, 65, club, 260514, false);
 		Player.create("Ramón Coronel", "R. Coronel", "Paraguay", ['CB', 'RB'], 31, 65, club, 225881, true);
@@ -2327,7 +2327,7 @@ class SoFifa23Service {
 		Player.create("Javier Rojas", "J. Rojas", "Bolivia", ['GK'], 26, 63, club, 251498, true);
 		Player.create("Milton Garzón", "M. Garzón", "Bolivia", ['RM'], 21, 59, club, 255295, true);
 
-		club = Club.create("Guabirá", "Bolivia", 114600, "rgb(186,39,48)", "white");
+		club = Club.create("Guabirá", "Bolivia", 114600, "#BA2730", "#FFFFFF");
 		Player.create("Elder Arauz", "E. Arauz", "Bolivia", ['GK'], 32, 64, club, 255892, true);
 		Player.create("Fran Supayabe", "F. Supayabe", "Bolivia", ['RB'], 26, 67, club, 260271, true);
 		Player.create("Santiago Echeverría", "S. Echeverría", "Argentina", ['CB', 'RB'], 32, 66, club, 226447, true);
@@ -2350,7 +2350,7 @@ class SoFifa23Service {
 		Player.create("Luis Gómez", "L. Gómez", "Bolivia", ['LB'], 18, 52, club, 275287, false);
 		Player.create("Harry Céspedes", "H. Céspedes", "Bolivia", ['LB'], 24, 65, club, 259931, true);
 
-		club = Club.create("Flamengo", "Brazil", 1043, "rgb(126,55,58)", "white");
+		club = Club.create("Flamengo", "Brazil", 1043, "#7E373A", "#FFFFFF");
 		Player.create("Héniton Enaldo Pires Tramontino", "Héniton Pires", "Brazil", ['GK'], 26, 80, club, 230204, false);
 		Player.create("Estevão Danilo Candeira Inácio", "Estevão Candeira", "Brazil", ['RB', 'LB'], 26, 75, club, 230219, false);
 		Player.create("Gérson Adriano Damesio Figueiras", "Gérson Damesio", "Brazil", ['CB'], 30, 74, club, 230327, false);
@@ -2372,7 +2372,7 @@ class SoFifa23Service {
 		Player.create("Marlon Lourival Nideiro Cintra", "Marlon Nideiro", "Brazil", ['CAM'], 26, 73, club, 230482, false);
 		Player.create("Leôncio Roger Lobeiro Cunha", "Leôncio Lobeiro", "Brazil", ['RW', 'RM'], 22, 70, club, 230454, false);
 
-		club = Club.create("Palmeiras", "Brazil", 383, "rgb(55,111,89)", "white");
+		club = Club.create("Palmeiras", "Brazil", 383, "#376F59", "#FFFFFF");
 		Player.create("Lucas Luciano Mantela Patrício", "Lucas Mantela", "Brazil", ['GK'], 22, 82, club, 230182, false);
 		Player.create("Victorio Martin Maia Padilha Jabim", "Victorio Jabim", "Brazil", ['RB', 'RM'], 26, 77, club, 230371, false);
 		Player.create("Guto Ramón Costinho Ribeiro", "Guto Costinho", "Brazil", ['CB'], 34, 73, club, 230282, false);
@@ -2394,7 +2394,7 @@ class SoFifa23Service {
 		Player.create("Antonaldo Luiz Vaz Stein", "Antonaldo Vaz", "Brazil", ['LB'], 22, 71, club, 230248, false);
 		Player.create("Douglas Arthur Armeira Bahia", "Douglas Armeira", "Brazil", ['RB'], 30, 74, club, 236112, false);
 
-		club = Club.create("Atlético Mineiro", "Brazil", 1035, "rgb(118,116,114)", "white");
+		club = Club.create("Atlético Mineiro", "Brazil", 1035, "#767472", "#FFFFFF");
 		Player.create("Frederico Peter Cabral Bardini", "Freder Cabral", "Brazil", ['GK'], 30, 73, club, 230175, false);
 		Player.create("Alessandro L. Baia Marques", "Leander Baia", "Brazil", ['RB', 'RM'], 34, 77, club, 230197, false);
 		Player.create("Antonaldo David Machado Chagas", "Antonaldinho", "Brazil", ['CB'], 34, 76, club, 230280, false);
@@ -2416,7 +2416,7 @@ class SoFifa23Service {
 		Player.create("Alam Cristian Boas Anjos", "Alminho Boas", "Brazil", ['CDM', 'CM', 'CB'], 26, 72, club, 230329, false);
 		Player.create("Jailson Pietro Oliva Chiamulera", "Jailson Oliva", "Brazil", ['RB'], 30, 70, club, 236113, false);
 
-		club = Club.create("Athletico Paranaense", "Brazil", 1039, "rgb(140,52,52)", "white");
+		club = Club.create("Athletico Paranaense", "Brazil", 1039, "#8C3434", "#FFFFFF");
 		Player.create("Fred Marcos Aníbal Dias", "Fred Aníbão", "Brazil", ['GK'], 30, 76, club, 230317, false);
 		Player.create("Duirval Hélton Diniz Cabral", "Duirval Diniz", "Brazil", ['CB', 'RB'], 26, 75, club, 230401, false);
 		Player.create("Josué Durval Chiamulera Vaz", "Josué Chiamulera", "Brazil", ['CB'], 30, 82, club, 230375, false);
@@ -2438,7 +2438,7 @@ class SoFifa23Service {
 		Player.create("Melvin Luan Regalo Sousa", "Melvin Regalito", "Brazil", ['CAM', 'LM', 'CM'], 30, 68, club, 230467, false);
 		Player.create("João Rodolfo Botelho Maia", "Botelhinonsa", "Brazil", ['RB'], 22, 67, club, 230192, false);
 
-		club = Club.create("Internacional", "Brazil", 1048, "rgb(200,59,66)", "white");
+		club = Club.create("Internacional", "Brazil", 1048, "#C83B42", "#FFFFFF");
 		Player.create("Bernard Gabriel Prestão Chaves", "Gabri Prestão", "Brazil", ['GK'], 30, 79, club, 230312, false);
 		Player.create("Adnan Claudiano Vidual Machado", "Adnan Vidual", "Brazil", ['RB'], 30, 79, club, 230216, false);
 		Player.create("A. Zervandro Chiamuloira Paes", "Zervandro", "Brazil", ['CB', 'LB'], 22, 78, club, 230212, false);
@@ -2460,7 +2460,7 @@ class SoFifa23Service {
 		Player.create("Gustavo Patrick Pastor Pombo", "Gustavo Pastinho", "Brazil", ['ST', 'RM'], 30, 67, club, 230288, false);
 		Player.create("Welliton Edson Helmes Junqueira", "Welliton Helmes", "Brazil", ['CAM'], 22, 66, club, 234016, false);
 
-		club = Club.create("Bragantino", "Brazil", 112472, "rgb(212,195,196)", "black");
+		club = Club.create("Bragantino", "Brazil", 112472, "#D4C3C4", "#000000");
 		Player.create("Emelvin William Anjos Rochedo", "Emelvinson", "Brazil", ['GK'], 34, 79, club, 230168, false);
 		Player.create("Hediselton Simão Resende", "Hediselton", "Brazil", ['RB', 'RM', 'CM'], 22, 78, club, 230360, false);
 		Player.create("Rafael Jorgino Cachoira Rebelo", "Rafael Cachoira", "Brazil", ['CB', 'CDM'], 22, 75, club, 230528, false);
@@ -2482,7 +2482,7 @@ class SoFifa23Service {
 		Player.create("Wilson Allan Rosan Dourado", "Wilsson Rosito", "Brazil", ['CAM', 'LM'], 26, 65, club, 230471, false);
 		Player.create("Alan Jonathan Patrício Botelho", "Alson Botelho", "Brazil", ['CDM'], 22, 69, club, 230253, false);
 
-		club = Club.create("Corinthians", "Brazil", 1041, "rgb(206,205,203)", "black");
+		club = Club.create("Corinthians", "Brazil", 1041, "#CECDCB", "#000000");
 		Player.create("Simão Alvin Donatinho Garcia", "Simão Donatinho", "Brazil", ['GK'], 26, 75, club, 230165, false);
 		Player.create("Maikel Renan Catarino Fagundes", "Maikel Catarino", "Brazil", ['RB', 'RM'], 26, 80, club, 230201, false);
 		Player.create("Marcelo Emanuel Morais Silva", "Eminho Moringa", "Brazil", ['CB'], 34, 71, club, 230316, false);
@@ -2504,7 +2504,7 @@ class SoFifa23Service {
 		Player.create("Jadenilson Nuno Baia Paneira", "Jadenilson Baia", "Brazil", ['RWB', 'RB'], 34, 67, club, 230232, false);
 		Player.create("Silas Antonaldo Taffarel Araújo", "Silaldo Taffarel", "Brazil", ['CM'], 30, 67, club, 230351, false);
 
-		club = Club.create("Santos", "Brazil", 1053, "rgb(214,214,213)", "black");
+		club = Club.create("Santos", "Brazil", 1053, "#D6D6D5", "#000000");
 		Player.create("Pierre Tomás Torres De Faria", "Pierrino Faria", "Brazil", ['GK'], 38, 76, club, 230328, false);
 		Player.create("Thomas Nicolas Silva Rangel", "Silvosinho", "Brazil", ['RB', 'RM', 'RWB'], 26, 73, club, 230366, false);
 		Player.create("M. Vanderlei Paulino Kenedy", "Vanderleiton", "Brazil", ['CB'], 22, 72, club, 230407, false);
@@ -2526,7 +2526,7 @@ class SoFifa23Service {
 		Player.create("Claudio Igor Mouria Silva", "Claudio Mouria", "Brazil", ['CAM'], 30, 67, club, 234007, false);
 		Player.create("Luis Benjamin Paes Soares", "Luis Paezinho", "Brazil", ['CB', 'LB'], 26, 65, club, 230214, false);
 
-		club = Club.create("São Paulo", "Brazil", 598, "rgb(189,180,179)", "black");
+		club = Club.create("São Paulo", "Brazil", 598, "#BDB4B3", "#000000");
 		Player.create("André Mikael Milazar Santoso", "André Milazisco", "Brazil", ['GK'], 26, 72, club, 230319, false);
 		Player.create("Maurício Wilson Borghes Caeiro", "Mauri Borgho", "Brazil", ['RB', 'CDM'], 30, 74, club, 230217, false);
 		Player.create("Ailton Jonas Valpaços Salazar", "Ailton Valpaços", "Brazil", ['CB', 'CDM'], 30, 72, club, 230222, false);
@@ -2548,7 +2548,7 @@ class SoFifa23Service {
 		Player.create("Césario Marco Pesso Limberg", "Césario Limberg", "Brazil", ['CB'], 26, 69, club, 230386, false);
 		Player.create("Nosberto Diego Vila Abranches", "Nosberto Vila", "Brazil", ['RB', 'RWB', 'RM'], 26, 69, club, 230205, false);
 
-		club = Club.create("Fluminense", "Brazil", 567, "rgb(111,86,93)", "white");
+		club = Club.create("Fluminense", "Brazil", 567, "#6F565D", "#FFFFFF");
 		Player.create("Kaíque Osvaldo Castro Rodrigues", "Kaíquão Castro", "Brazil", ['GK'], 26, 75, club, 230323, false);
 		Player.create("Hugo Adryan Rubiães Chaves", "Hugo Rubiães", "Brazil", ['CDM', 'RB'], 26, 72, club, 230530, false);
 		Player.create("Vinicius Lúcio Cardenha Caeiro", "Vinicius Cardenha", "Brazil", ['RB', 'CB'], 30, 74, club, 230199, false);
@@ -2570,7 +2570,7 @@ class SoFifa23Service {
 		Player.create("Estevão Danilo Rios Chiamulera", "Estevãtinho", "Brazil", ['CAM'], 30, 66, club, 230268, false);
 		Player.create("Nito Wagner Carbelho Inácio", "Nito Carbelho", "Brazil", ['ST', 'CAM'], 30, 64, club, 236196, false);
 
-		club = Club.create("Botafogo", "Brazil", 517, "rgb(106,106,106)", "white");
+		club = Club.create("Botafogo", "Brazil", 517, "#6A6A6A", "#FFFFFF");
 		Player.create("Adriano Leandro Soares Scitto", "Adrian Scitto", "Brazil", ['GK'], 30, 74, club, 230324, false);
 		Player.create("Samuel Thomas Carvalho Melo", "Carvamelinho", "Brazil", ['RB'], 26, 70, club, 230193, false);
 		Player.create("Roldão Tony Riso Cardenas", "Roldão Riso", "Brazil", ['CDM', 'CB'], 30, 69, club, 230439, false);
@@ -2592,7 +2592,7 @@ class SoFifa23Service {
 		Player.create("Raphael William Doninho Oliveira", "Raphael Doninho", "Brazil", ['CAM'], 22, 64, club, 236168, false);
 		Player.create("Adrián Welliton Rocheira Sá", "Adrián Rocheira", "Brazil", ['CDM'], 26, 63, club, 236143, false);
 
-		club = Club.create("Fortaleza", "Brazil", 111052, "rgb(125,86,116)", "white");
+		club = Club.create("Fortaleza", "Brazil", 111052, "#7D5674", "#FFFFFF");
 		Player.create("Vítor Martín Angulho Fancini", "Vítor Angulho", "Brazil", ['GK'], 26, 70, club, 230169, false);
 		Player.create("Marlon Rômulo Dias Cavalcanti", "Marlinito Dias", "Brazil", ['CDM', 'CB'], 26, 70, club, 230249, false);
 		Player.create("Mardial Sidney Cunha Sousa", "Mardial Cunha", "Brazil", ['CB'], 22, 73, club, 233984, false);
@@ -2614,7 +2614,7 @@ class SoFifa23Service {
 		Player.create("Kaio Jesus Aldair Porto", "Kaio Aldair", "Brazil", ['RB', 'RM'], 30, 68, club, 230357, false);
 		Player.create("Paulo Bernard Schmidt", "Bernard Alemão", "Brazil", ['CDM'], 30, 65, club, 230458, false);
 
-		club = Club.create("América Mineiro", "Brazil", 112001, "rgb(46,99,64)", "white");
+		club = Club.create("América Mineiro", "Brazil", 112001, "#2E6340", "#FFFFFF");
 		Player.create("João Fabrício Bruinheira Salvador", "João Bruinheira", "Brazil", ['GK'], 34, 72, club, 230525, false);
 		Player.create("Lúcio Anselmo Corteijo Salazar", "Lúcio Corteijo", "Brazil", ['RB'], 34, 76, club, 230208, false);
 		Player.create("Emanuel Breno Teixeira Rocha", "Emu Teixeira", "Brazil", ['CB'], 38, 73, club, 230301, false);
@@ -2636,7 +2636,7 @@ class SoFifa23Service {
 		Player.create("Allan Norberto Vasquez Sobrinho", "Vasquão Junior", "Brazil", ['CB', 'CDM'], 34, 64, club, 230416, false);
 		Player.create("Josimar Milton Moura Chissano", "Josi Mouraldo", "Brazil", ['CAM'], 30, 62, club, 230438, false);
 
-		club = Club.create("Goiás", "Brazil", 111042, "rgb(46,76,74)", "white");
+		club = Club.create("Goiás", "Brazil", 111042, "#2E4C4A", "#FFFFFF");
 		Player.create("Jaime Tomás Abravanel Mestres", "Jaim Abra", "Brazil", ['GK'], 30, 73, club, 230170, false);
 		Player.create("Ataúlfo Heitor Anjos Rosan", "Ataúlfo Anjos", "Brazil", ['RB'], 30, 69, club, 230356, false);
 		Player.create("Paulo Mauro Fajarda Macedo", "Paulo Fajarda", "Brazil", ['CB'], 30, 68, club, 230228, false);
@@ -2658,7 +2658,7 @@ class SoFifa23Service {
 		Player.create("Mateus Bernardo Couteira Machado", "Mateus Couteira", "Brazil", ['CB'], 26, 64, club, 230412, false);
 		Player.create("Paulo Fred Mesqueira Serpa", "Paulo Mesqueira", "Brazil", ['CM', 'RB', 'LB'], 34, 68, club, 230363, false);
 
-		club = Club.create("Universidad Católica", "Chile", 110975, "rgb(188,192,198)", "black");
+		club = Club.create("Universidad Católica", "Chile", 110975, "#BCC0C6", "#000000");
 		Player.create("Matías Dituro", "M. Dituro", "Argentina", ['GK'], 35, 75, club, 207935, true);
 		Player.create("Byron Nieto", "B. Nieto", "Chile", ['RB'], 24, 67, club, 247856, true);
 		Player.create("Branco Ampuero", "B. Ampuero", "Chile", ['CB'], 28, 70, club, 225396, true);
@@ -2687,7 +2687,7 @@ class SoFifa23Service {
 		Player.create("Axel Cerda", "A. Cerda", "Chile", ['ST'], 16, 58, club, 275043, false);
 		Player.create("Diego Corral", "D. Corral", "Chile", ['RM', 'RW'], 17, 58, club, 275044, false);
 
-		club = Club.create("Colo-Colo", "Chile", 110980, "rgb(197,193,193)", "black");
+		club = Club.create("Colo-Colo", "Chile", 110980, "#C5C1C1", "#000000");
 		Player.create("Fernando De Paul", "F. De Paul", "Chile", ['GK'], 31, 71, club, 229444, true);
 		Player.create("Maximiliano Falcón", "M. Falcón", "Uruguay", ['CB'], 25, 70, club, 259298, true);
 		Player.create("Ramiro González", "R. González", "Argentina", ['CB'], 31, 67, club, 239590, true);
@@ -2719,7 +2719,7 @@ class SoFifa23Service {
 		Player.create("Jordhy Thompson", "J. Thompson", "Chile", ['LW'], 17, 66, club, 264857, true);
 		Player.create("Matías de los Santos", "M. de los Santos", "Uruguay", ['CB'], 29, 71, club, 239645, true);
 
-		club = Club.create("Ñublense", "Chile", 112585, "rgb(171,55,67)", "white");
+		club = Club.create("Ñublense", "Chile", 112585, "#AB3743", "#FFFFFF");
 		Player.create("Nicola Pérez", "N. Pérez", "Uruguay", ['GK'], 32, 70, club, 263523, false);
 		Player.create("Raimundo Rebolledo", "R. Rebolledo", "Chile", ['RB', 'RM'], 25, 67, club, 228682, true);
 		Player.create("Bernardo Cerezo", "B. Cerezo", "Chile", ['RB', 'CB', 'RM'], 27, 66, club, 216532, false);
@@ -2748,7 +2748,7 @@ class SoFifa23Service {
 		Player.create("Cristián Meza", "C. Meza", "Chile", ['CDM', 'CM'], 18, 56, club, 274582, false);
 		Player.create("Lucas Molina", "L. Molina", "Chile", ['RW'], 16, 56, club, 275053, false);
 
-		club = Club.create("Palestino", "Chile", 111328, "rgb(149,114,109)", "white");
+		club = Club.create("Palestino", "Chile", 111328, "#95726D", "#FFFFFF");
 		Player.create("César Rigamonti", "C. Rigamonti", "Argentina", ['GK'], 35, 69, club, 215250, true);
 		Player.create("Benjamín Rojas", "B. Rojas", "Chile", ['CB', 'RB'], 21, 57, club, 256189, true);
 		Player.create("Antonio Ceza", "A. Ceza", "Chile", ['CB'], 19, 58, club, 263141, true);
@@ -2774,7 +2774,7 @@ class SoFifa23Service {
 		Player.create("Dixon Contreras", "D. Contreras", "Chile", ['GK'], 20, 57, club, 256923, true);
 		Player.create("José Bizama", "J. Bizama", "Chile", ['RB', 'CB'], 28, 66, club, 229713, true);
 
-		club = Club.create("Magallanes", "Chile", 112707, "rgb(141,181,204)", "black");
+		club = Club.create("Magallanes", "Chile", 112707, "#8DB5CC", "#000000");
 		Player.create("Gastón Rodríguez", "G. Rodríguez", "Uruguay", ['GK'], 28, 66, club, 273861, true);
 		Player.create("Marcelo Filla", "M. Filla", "Chile", ['RB'], 24, 64, club, 247435, true);
 		Player.create("Christian Vilches", "C. Vilches", "Chile", ['CB'], 38, 68, club, 214326, true);
@@ -2801,7 +2801,7 @@ class SoFifa23Service {
 		Player.create("Matías Vásquez", "M. Vásquez", "Chile", ['CB', 'RB'], 19, 63, club, 274383, true);
 		Player.create("Andrés Souper", "A. Souper", "Chile", ['CAM', 'CM'], 23, 65, club, 254912, true);
 
-		club = Club.create("Cobresal", "Chile", 110978, "rgb(200,150,140)", "black");
+		club = Club.create("Cobresal", "Chile", 110978, "#C8968C", "#000000");
 		Player.create("Leandro Requena", "L. Requena", "Argentina", ['GK'], 34, 70, club, 251818, true);
 		Player.create("Guillermo Pacheco", "G. Pacheco", "Chile", ['RB'], 33, 65, club, 229445, true);
 		Player.create("Sebastián Silva", "S. Silva", "Chile", ['CB', 'CM'], 30, 64, club, 218938, true);
@@ -2827,7 +2827,7 @@ class SoFifa23Service {
 		Player.create("Francisco Valdés", "F. Valdés", "Chile", ['CM'], 20, 60, club, 261569, true);
 		Player.create("Alejandro Santander", "A. Santander", "Chile", ['GK'], 19, 55, club, 256557, true);
 
-		club = Club.create("Audax Italiano", "Chile", 101097, "rgb(59,118,88)", "white");
+		club = Club.create("Audax Italiano", "Chile", 101097, "#3B7658", "#FFFFFF");
 		Player.create("Tomás Ahumada", "T. Ahumada", "Chile", ['GK'], 21, 60, club, 251016, true);
 		Player.create("Nicolás Fernández", "N. Fernández", "Chile", ['RB', 'RM'], 22, 65, club, 239682, true);
 		Player.create("Carlos Labrín", "C. Labrín", "Chile", ['CB'], 31, 65, club, 206604, true);
@@ -2852,7 +2852,7 @@ class SoFifa23Service {
 		Player.create("Joaquín García", "J. García", "Chile", ['GK'], 23, 56, club, 243629, true);
 		Player.create("Cristóbal Muñoz", "C. Muñoz", "Chile", ['CB'], 22, 59, club, 256558, true);
 
-		club = Club.create("Wuhan Three Towns", "China PR", 116361, "rgb(74,86,133)", "white");
+		club = Club.create("Wuhan Three Towns", "China PR", 116361, "#4A5685", "#FFFFFF");
 		Player.create("Dianzuo Liu", "Liu Dianzuo", "China PR", ['GK'], 32, 69, club, 224702, true);
 		Player.create("Hanwen Deng", "Deng Hanwen", "China PR", ['RB', 'RWB'], 27, 69, club, 237010, true);
 		Player.create("Yiming Liu", "Liu Yiming", "China PR", ['CB'], 27, 65, club, 241334, true);
@@ -2882,7 +2882,7 @@ class SoFifa23Service {
 		Player.create("Xiaoxi Xia", "Xia Xiaoxi", "China PR", ['LM'], 17, 51, club, 269552, true);
 		Player.create("Qianglong Tao", "Tao Qianglong", "China PR", ['RM', 'CM', 'LM'], 20, 53, club, 248376, true);
 
-		club = Club.create("Shanghai Port", "China PR", 112540, "rgb(150,40,55)", "white");
+		club = Club.create("Shanghai Port", "China PR", 112540, "#962837", "#FFFFFF");
 		Player.create("Junling Yan", "Yan Junling", "China PR", ['GK'], 31, 73, club, 224599, true);
 		Player.create("Jin Feng", "Feng Jin", "China PR", ['RWB', 'RM', 'RW'], 28, 62, club, 226197, true);
 		Player.create("Linpeng Zhang", "Zhang Linpeng", "China PR", ['CB', 'RB'], 33, 70, club, 200672, true);
@@ -2912,7 +2912,7 @@ class SoFifa23Service {
 		Player.create("Binbin Chen", "Chen Binbin", "China PR", ['LM', 'LW'], 24, 66, club, 241485, true);
 		Player.create("Wei Chen", "Chen Wei", "China PR", ['GK'], 24, 59, club, 241327, true);
 
-		club = Club.create("Shandong Taishan", "China PR", 111724, "rgb(211,105,58)", "black");
+		club = Club.create("Shandong Taishan", "China PR", 111724, "#D3693A", "#000000");
 		Player.create("Dalei Wang", "Wang Dalei", "China PR", ['GK'], 33, 71, club, 182224, true);
 		Player.create("Tong Wang", "Wang Tong", "China PR", ['RB'], 29, 66, club, 221846, true);
 		Player.create("Ke Shi", "Shi Ke", "China PR", ['CB'], 29, 68, club, 222346, true);
@@ -2942,7 +2942,7 @@ class SoFifa23Service {
 		Player.create("Lisheng Liao", "Liao Lisheng", "China PR", ['CM', 'CDM'], 29, 63, club, 221801, true);
 		Player.create("Jianfei Zhao", "Zhao Jianfei", "China PR", ['CB', 'RB', 'CDM'], 23, 55, club, 245036, true);
 
-		club = Club.create("Beijing Guoan", "China PR", 111768, "rgb(47,70,48)", "white");
+		club = Club.create("Beijing Guoan", "China PR", 111768, "#2F4630", "#FFFFFF");
 		Player.create("Jiaqi Han", "Han Jiaqi", "China PR", ['GK'], 22, 63, club, 253955, true);
 		Player.create("Gang Wang", "Wang Gang", "China PR", ['RB', 'RWB'], 33, 65, club, 199088, true);
 		Player.create("Dabao Yu", "Yu Dabao", "China PR", ['CB', 'ST'], 34, 64, club, 183997, true);
@@ -2972,7 +2972,7 @@ class SoFifa23Service {
 		Player.create("Yujun Ma", "Ma Yujun", "China PR", ['CM'], 19, 47, club, 275173, false);
 		Player.create("Jian Gao", "Gao Jian", "China PR", ['ST'], 20, 49, club, 261891, false);
 
-		club = Club.create("Shanghai Shenhua", "China PR", 110955, "rgb(67,71,126)", "white");
+		club = Club.create("Shanghai Shenhua", "China PR", 110955, "#43477E", "#FFFFFF");
 		Player.create("Zhen Ma", "Ma Zhen", "China PR", ['GK'], 24, 62, club, 250978, true);
 		Player.create("Yougang Xu", "Xu Yougang", "China PR", ['RB'], 26, 59, club, 242415, true);
 		Player.create("Yangyang Jin", "Jin Yangyang", "China PR", ['CB'], 29, 61, club, 225739, true);
@@ -3002,7 +3002,7 @@ class SoFifa23Service {
 		Player.create("Shenglong Jiang", "Jiang Shenglong", "China PR", ['CB', 'CDM', 'CM'], 21, 58, club, 245040, true);
 		Player.create("Haoyang Xu", "Xu Haoyang", "China PR", ['LM', 'RM'], 23, 58, club, 245042, true);
 
-		club = Club.create("Chengdu Rongcheng", "China PR", 116360, "rgb(149,53,62)", "white");
+		club = Club.create("Chengdu Rongcheng", "China PR", 116360, "#95353E", "#FFFFFF");
 		Player.create("Xiaofeng Geng", "Geng Xiaofeng", "China PR", ['GK'], 34, 58, club, 192120, true);
 		Player.create("Miao Tang", "Tang Miao", "China PR", ['RWB', 'CB'], 31, 71, club, 222278, true);
 		Player.create("Richard Windbichler", "R. Windbichler", "Austria", ['CB', 'CDM'], 31, 67, club, 203848, true);
@@ -3032,7 +3032,7 @@ class SoFifa23Service {
 		Player.create("Gong Zhang", "Zhang Gong", "China PR", ['CM', 'CDM', 'LB'], 30, 58, club, 241303, true);
 		Player.create("Mutellip Iminqari", "M. Iminqari", "China PR", ['LW', 'LM'], 18, 56, club, 269484, true);
 
-		club = Club.create("Henan", "China PR", 111779, "rgb(133,48,57)", "white");
+		club = Club.create("Henan", "China PR", 111779, "#853039", "#FFFFFF");
 		Player.create("Guoming Wang", "Wang Guoming", "China PR", ['GK'], 32, 62, club, 226838, true);
 		Player.create("Mawlanyaz Dilmurat", "M. Dilmurat", "China PR", ['RB', 'RM', 'LB'], 24, 62, club, 248752, true);
 		Player.create("Toni Šunjić", "T. Šunjić", "Bosnia and Herzegovina", ['CB'], 33, 73, club, 201343, true);
@@ -3062,7 +3062,7 @@ class SoFifa23Service {
 		Player.create("Keqiang Chen", "Chen Keqiang", "China PR", ['LM', 'CM'], 22, 50, club, 261899, true);
 		Player.create("Junwei Zheng", "Zheng Junwei", "China PR", ['ST'], 18, 48, club, 264021, true);
 
-		club = Club.create("Zhejiang", "China PR", 112163, "rgb(53,105,68)", "white");
+		club = Club.create("Zhejiang", "China PR", 112163, "#356944", "#FFFFFF");
 		Player.create("Bo Zhao", "Zhao Bo", "China PR", ['GK'], 28, 60, club, 269536, true);
 		Player.create("Yu Dong", "Dong Yu", "China PR", ['RB'], 27, 54, club, 222434, true);
 		Player.create("Nokhang Leung", "Leung Nokhang", "Hong Kong", ['CB'], 27, 62, club, 269529, true);
@@ -3092,7 +3092,7 @@ class SoFifa23Service {
 		Player.create("Jie Yin", "Yin Jie", "China PR", ['CM'], 20, 47, club, 269534, true);
 		Player.create("Shengpan Ji", "Ji Shengpan", "China PR", ['RM'], 22, 53, club, 275304, false);
 
-		club = Club.create("Changchun Yatai", "China PR", 111769, "rgb(172,56,67)", "white");
+		club = Club.create("Changchun Yatai", "China PR", 111769, "#AC3843", "#FFFFFF");
 		Player.create("Yake Wu", "Wu Yake", "China PR", ['GK'], 31, 65, club, 221964, true);
 		Player.create("Chengjian Liao", "Liao Chengjian", "China PR", ['RWB', 'RB', 'CM'], 28, 54, club, 224692, true);
 		Player.create("Jinhao Bi", "Bi Jinhao", "China PR", ['CB', 'ST'], 31, 64, club, 224677, true);
@@ -3122,7 +3122,7 @@ class SoFifa23Service {
 		Player.create("Chao Fan", "Fan Chao", "China PR", ['ST'], 18, 48, club, 268932, true);
 		Player.create("Li Zhang", "Zhang Li", "China PR", ['CM', 'CDM'], 32, 58, club, 224673, true);
 
-		club = Club.create("Tianjin Jinmen Tiger", "China PR", 111774, "rgb(196,200,208)", "black");
+		club = Club.create("Tianjin Jinmen Tiger", "China PR", 111774, "#C4C8D0", "#000000");
 		Player.create("Jingqi Fang", "Fang Jingqi", "China PR", ['GK'], 29, 60, club, 221798, true);
 		Player.create("Tian Ming", "Ming Tian", "China PR", ['RB', 'RWB'], 27, 67, club, 247197, true);
 		Player.create("Yang Yu", "Yu Yang", "China PR", ['CB'], 32, 65, club, 191532, true);
@@ -3152,7 +3152,7 @@ class SoFifa23Service {
 		Player.create("Yuefeng Li", "Li Yuefeng", "China PR", ['GK'], 19, 50, club, 269138, true);
 		Player.create("Taoyu Piao", "Piao Taoyu", "China PR", ['CM', 'RM'], 29, 56, club, 250988, true);
 
-		club = Club.create("Cangzhou Mighty Lions", "China PR", 112985, "rgb(46,76,147)", "white");
+		club = Club.create("Cangzhou Mighty Lions", "China PR", 112985, "#2E4C93", "#FFFFFF");
 		Player.create("Puliang Shao", "Shao Puliang", "China PR", ['GK'], 32, 62, club, 221844, true);
 		Player.create("Shihao Piao", "Piao Shihao", "China PR", ['RWB', 'CM'], 30, 64, club, 233719, true);
 		Player.create("Yang Liu", "Liu Yang", "China PR", ['CB'], 31, 61, club, 221852, true);
@@ -3182,7 +3182,7 @@ class SoFifa23Service {
 		Player.create("Kaimu Zheng", "Zheng Kaimu", "China PR", ['CM', 'CDM'], 30, 59, club, 222199, true);
 		Player.create("Qinhan Sun", "Sun Qinhan", "China PR", ['RWB', 'RM'], 22, 50, club, 261921, true);
 
-		club = Club.create("Shenzhen", "China PR", 111773, "rgb(204,109,65)", "black");
+		club = Club.create("Shenzhen", "China PR", 111773, "#CC6D41", "#000000");
 		Player.create("Chunyu Dong", "Dong Chunyu", "China PR", ['GK'], 31, 65, club, 224475, true);
 		Player.create("Ruifeng Huang", "Huang Ruifeng", "China PR", ['CM', 'CDM', 'RWB'], 22, 59, club, 253966, true);
 		Player.create("Boyu Yang", "Yang Boyu", "China PR", ['CB'], 33, 59, club, 222181, true);
@@ -3210,7 +3210,7 @@ class SoFifa23Service {
 		Player.create("Xin Zhou", "Zhou Xin", "China PR", ['CB', 'RB', 'CDM'], 24, 53, club, 243506, false);
 		Player.create("Shahzat Ghojaehmet", "S. Ghojaehmet", "China PR", ['LW', 'LM'], 15, 52, club, 272622, false);
 
-		club = Club.create("Meizhou Hakka", "China PR", 114628, "rgb(144,53,61)", "white");
+		club = Club.create("Meizhou Hakka", "China PR", 114628, "#90353D", "#FFFFFF");
 		Player.create("Yuelei Cheng", "Cheng Yuelei", "China PR", ['GK'], 34, 61, club, 182451, true);
 		Player.create("Tze-nam Yue", "T. Yue", "Hong Kong", ['RB', 'RWB'], 24, 53, club, 271526, false);
 		Player.create("Rade Dugalić", "R. Dugalić", "Serbia", ['CB'], 29, 71, club, 239581, true);
@@ -3240,7 +3240,7 @@ class SoFifa23Service {
 		Player.create("Sijie Zhang", "Zhang Sijie", "China PR", ['CB'], 21, 49, club, 269527, false);
 		Player.create("Wei Wang", "Wang Wei", "China PR", ['RB', 'LB'], 33, 63, club, 238106, true);
 
-		club = Club.create("Dalian Professional", "China PR", 112378, "rgb(47,150,206)", "black");
+		club = Club.create("Dalian Professional", "China PR", 112378, "#2F96CE", "#000000");
 		Player.create("Chong Zhang", "Zhang Chong", "China PR", ['GK'], 34, 61, club, 182474, true);
 		Player.create("Ting Zhu", "Zhu Ting", "China PR", ['RB', 'RM', 'RW'], 36, 58, club, 181964, true);
 		Player.create("Vas Nuñez", "V. Nuñez", "Hong Kong", ['CB'], 26, 68, club, 269516, true);
@@ -3270,7 +3270,7 @@ class SoFifa23Service {
 		Player.create("Zhuoyi Lü", "Lü Zhuoyi", "China PR", ['LB'], 21, 54, club, 269579, true);
 		Player.create("Yu Fei", "Fei Yu", "China PR", ['CM'], 31, 58, club, 247007, true);
 
-		club = Club.create("Wuhan Zall", "China PR", 112541, "rgb(222,140,67)", "black");
+		club = Club.create("Wuhan Zall", "China PR", 112541, "#DE8C43", "#000000");
 		Player.create("ZhenQiang Zhang", "Zhang ZhenQiang", "China PR", ['GK'], 29, 60, club, 222177, true);
 		Player.create("Xiaoyi Cao", "Cao Xiaoyi", "China PR", ['RB'], 19, 51, club, 269049, true);
 		Player.create("Chao Li", "Li Chao", "China PR", ['CB'], 34, 58, club, 226837, true);
@@ -3297,7 +3297,7 @@ class SoFifa23Service {
 		Player.create("Nihat Nihmat", "Nihat Nihmat", "China PR", ['CDM', 'CB'], 19, 47, club, 269062, true);
 		Player.create("Xuan Han", "Han Xuan", "China PR", ['CB', 'RB'], 27, 54, club, 247221, true);
 
-		club = Club.create("Guangzhou", "China PR", 111839, "rgb(168,56,60)", "white");
+		club = Club.create("Guangzhou", "China PR", 111839, "#A8383C", "#FFFFFF");
 		Player.create("Jianzhi Zhang", "Zhang Jianzhi", "China PR", ['GK'], 22, 52, club, 253516, true);
 		Player.create("Shilong Wang", "Wang Shilong", "China PR", ['RB', 'CB'], 21, 55, club, 245024, true);
 		Player.create("Chenglin Zhang", "Zhang Chenglin", "China PR", ['LB', 'CB'], 35, 62, club, 222118, true);
@@ -3326,7 +3326,7 @@ class SoFifa23Service {
 		Player.create("Xinjie He", "He Xinjie", "China PR", ['CDM', 'CM'], 20, 50, club, 269034, true);
 		Player.create("Shengxiong Zheng", "Zheng Shengxiong", "China PR", ['CM', 'CAM', 'LM'], 23, 50, club, 269026, true);
 
-		club = Club.create("Guangzhou City", "China PR", 112429, "rgb(153,172,183)", "black");
+		club = Club.create("Guangzhou City", "China PR", 112429, "#99ACB7", "#000000");
 		Player.create("Yuchen Zhou", "Zhou Yuchen", "China PR", ['GK'], 27, 59, club, 228075, true);
 		Player.create("Jiajun Liao", "Liao Jiajun", "China PR", ['RWB'], 19, 49, club, 269016, true);
 		Player.create("Jinliang Zhang", "Zhang Jinliang", "China PR", ['CB', 'LWB'], 23, 56, club, 258964, true);
@@ -3354,7 +3354,7 @@ class SoFifa23Service {
 		Player.create("Liangkuan Jin", "Jin Liangkuan", "China PR", ['CB'], 20, 47, club, 269013, true);
 		Player.create("Yang Yang", "Yang Yang", "China PR", ['RW', 'RM'], 20, 47, club, 269018, true);
 
-		club = Club.create("Hebei", "China PR", 112978, "rgb(159,54,44)", "white");
+		club = Club.create("Hebei", "China PR", 112978, "#9F362C", "#FFFFFF");
 		Player.create("Hanru Guo", "Guo Hanru", "China PR", ['GK'], 22, 52, club, 261895, true);
 		Player.create("Jing Liu", "Liu Jing", "China PR", ['RB', 'LB'], 25, 53, club, 252395, true);
 		Player.create("Junzhe Zhang", "Zhang Junzhe", "China PR", ['CB', 'RB', 'RWB'], 31, 59, club, 247775, true);
@@ -3381,7 +3381,7 @@ class SoFifa23Service {
 		Player.create("Haoyang Bi", "Bi Haoyang", "China PR", ['LB'], 20, 48, club, 268964, true);
 		Player.create("YongHai Huang", "Huan YongHai", "China PR", ['ST'], 17, 50, club, 272620, false);
 
-		club = Club.create("Atlético Nacional", "Colombia", 101100, "rgb(135,159,145)", "black");
+		club = Club.create("Atlético Nacional", "Colombia", 101100, "#879F91", "#000000");
 		Player.create("Kevin Mier", "K. Mier", "Colombia", ['GK'], 22, 74, club, 261417, true);
 		Player.create("Felipe Román", "F. Román", "Colombia", ['RB'], 26, 73, club, 237242, true);
 		Player.create("Juan Felipe Aguirre", "J. Aguirre", "Colombia", ['CB'], 25, 70, club, 242484, true);
@@ -3413,7 +3413,7 @@ class SoFifa23Service {
 		Player.create("Brahian Palacios", "B. Palacios", "Colombia", ['RM'], 19, 64, club, 271628, true);
 		Player.create("Jaider Asprilla", "J. Asprilla", "Colombia", ['LM'], 19, 63, club, 271631, true);
 
-		club = Club.create("Millonarios", "Colombia", 101105, "rgb(54,77,146)", "white");
+		club = Club.create("Millonarios", "Colombia", 101105, "#364D92", "#FFFFFF");
 		Player.create("Álvaro Montero", "Á. Montero", "Colombia", ['GK'], 27, 76, club, 229541, true);
 		Player.create("Elvis Perlaza", "E. Perlaza", "Colombia", ['RB'], 33, 70, club, 214146, true);
 		Player.create("Andrés Llinás", "A. Llinás", "Colombia", ['CB'], 25, 73, club, 248466, true);
@@ -3445,7 +3445,7 @@ class SoFifa23Service {
 		Player.create("Omar Bertel", "O. Bertel", "Colombia", ['LB'], 25, 70, club, 239681, true);
 		Player.create("Oscar Vanegas", "O. Vanegas", "Colombia", ['CB'], 26, 68, club, 255384, true);
 
-		club = Club.create("Junior", "Colombia", 101101, "rgb(186,130,140)", "black");
+		club = Club.create("Junior", "Colombia", 101101, "#BA828C", "#000000");
 		Player.create("Jefersson Martínez", "J. Martínez", "Colombia", ['GK'], 28, 67, club, 214035, true);
 		Player.create("Walmer Pacheco", "W. Pacheco", "Colombia", ['RB', 'RM'], 27, 70, club, 224995, true);
 		Player.create("Iván Scarpeta", "I. Scarpeta", "Colombia", ['CB', 'LB'], 26, 68, club, 255920, true);
@@ -3470,7 +3470,7 @@ class SoFifa23Service {
 		Player.create("Jhon Vélez", "J. Vélez", "Colombia", ['CM'], 18, 64, club, 273657, true);
 		Player.create("Jordan Barrera", "J. Barrera", "Colombia", ['CAM'], 16, 57, club, 275364, false);
 
-		club = Club.create("Independiente Medellín", "Colombia", 101103, "rgb(132,45,47)", "white");
+		club = Club.create("Independiente Medellín", "Colombia", 101103, "#842D2F", "#FFFFFF");
 		Player.create("Andrés Mosquera", "A. Mosquera", "Colombia", ['GK'], 30, 73, club, 221235, true);
 		Player.create("Jonathan Marulanda", "J. Marulanda", "Colombia", ['RB'], 26, 68, club, 242155, true);
 		Player.create("Víctor Moreno", "V. Moreno", "Colombia", ['CB'], 27, 70, club, 221637, true);
@@ -3499,7 +3499,7 @@ class SoFifa23Service {
 		Player.create("Andrés Alfonso", "A. Alfonso", "Colombia", ['RB'], 17, 56, club, 273589, true);
 		Player.create("Juan David Arizala", "J. Arizala", "Colombia", ['RW'], 16, 60, club, 275647, false);
 
-		club = Club.create("Deportivo Pereira", "Colombia", 112744, "rgb(190,115,44)", "black");
+		club = Club.create("Deportivo Pereira", "Colombia", 112744, "#BE732C", "#000000");
 		Player.create("Aldair Quintana", "A. Quintana", "Colombia", ['GK'], 27, 70, club, 235375, true);
 		Player.create("Juan Quintero", "J. Quintero", "Colombia", ['CB'], 27, 70, club, 221220, true);
 		Player.create("Geisson Perea", "G. Perea", "Colombia", ['CB'], 30, 69, club, 219860, true);
@@ -3529,7 +3529,7 @@ class SoFifa23Service {
 		Player.create("Thomas Gutierrez", "T. Gutierrez", "Venezuela", ['CB'], 22, 62, club, 266246, true);
 		Player.create("Javier Mena", "J. Mena", "Colombia", ['CB'], 16, 53, club, 275240, false);
 
-		club = Club.create("Deportes Tolima", "Colombia", 111722, "rgb(187,116,88)", "black");
+		club = Club.create("Deportes Tolima", "Colombia", 111722, "#BB7458", "#000000");
 		Player.create("Cristian Vargas", "C. Vargas", "Colombia", ['GK'], 32, 69, club, 214583, true);
 		Player.create("Fabián Mosquera", "F. Mosquera", "Colombia", ['CDM', 'CB', 'RB'], 27, 66, club, 236861, true);
 		Player.create("Julián Quiñónes", "J. Quiñónes", "Colombia", ['CB'], 32, 70, club, 214135, true);
@@ -3561,7 +3561,7 @@ class SoFifa23Service {
 		Player.create("Juan David Carabalí", "J. Carabalí", "Colombia", ['ST'], 19, 57, club, 264651, true);
 		Player.create("Juan Rubiano", "J. Rubiano", "Colombia", ['CAM'], 20, 56, club, 264545, false);
 
-		club = Club.create("Rionegro Águilas", "Colombia", 112578, "rgb(195,175,124)", "black");
+		club = Club.create("Rionegro Águilas", "Colombia", 112578, "#C3AF7C", "#000000");
 		Player.create("José Contreras", "J. Contreras", "Venezuela", ['GK'], 27, 70, club, 231596, true);
 		Player.create("Mateo Puerta", "M. Puerta", "Colombia", ['RB'], 25, 71, club, 234352, true);
 		Player.create("Jeisson Quiñones", "J. Quiñones", "Colombia", ['CB'], 24, 71, club, 245781, true);
@@ -3588,7 +3588,7 @@ class SoFifa23Service {
 		Player.create("Royner Benítez", "R. Benítez", "Colombia", ['CM', 'CDM'], 17, 61, club, 274619, false);
 		Player.create("Héctor Arango", "H. Arango", "Colombia", ['GK'], 20, 59, club, 273091, false);
 
-		club = Club.create("Santa Fe", "Colombia", 101104, "rgb(186,89,90)", "white");
+		club = Club.create("Santa Fe", "Colombia", 101104, "#BA595A", "#FFFFFF");
 		Player.create("Juan Espitia", "J. Espitia", "Colombia", ['GK'], 22, 65, club, 259791, true);
 		Player.create("Fabián Viáfara", "F. Viáfara", "Colombia", ['RB'], 30, 69, club, 222430, true);
 		Player.create("José Aja", "J. Aja", "Uruguay", ['CB'], 29, 72, club, 235280, true);
@@ -3617,7 +3617,7 @@ class SoFifa23Service {
 		Player.create("David Ramírez Picsiotti", "D. Ramírez Picsiotti", "Colombia", ['CB'], 20, 64, club, 274341, true);
 		Player.create("Carlos Alberto Moreno", "C. Moreno", "Colombia", ['RB'], 30, 63, club, 274340, true);
 
-		club = Club.create("Dinamo Zagreb", "Croatia", 211, "rgb(56,65,115)", "white");
+		club = Club.create("Dinamo Zagreb", "Croatia", 211, "#384173", "#FFFFFF");
 		Player.create("Dominik Livaković", "D. Livaković", "Croatia", ['GK'], 27, 81, club, 241671, true);
 		Player.create("Stefan Ristovski", "S. Ristovski", "North Macedonia", ['RB', 'CB', 'RM'], 30, 74, club, 205965, true);
 		Player.create("Josip Šutalo", "J. Šutalo", "Croatia", ['CB'], 22, 78, club, 256325, true);
@@ -3646,7 +3646,7 @@ class SoFifa23Service {
 		Player.create("Kévin Théophile-Catherine", "K. Théophile-Catherine", "France", ['CB'], 32, 69, club, 190868, true);
 		Player.create("Boško Šutalo", "B. Šutalo", "Croatia", ['CB'], 22, 72, club, 255891, true);
 
-		club = Club.create("Hajduk Split", "Croatia", 263, "rgb(227,219,220)", "black");
+		club = Club.create("Hajduk Split", "Croatia", 263, "#E3DBDC", "#000000");
 		Player.create("Ivan Lučić", "I. Lučić", "Austria", ['GK'], 27, 67, club, 210347, false);
 		Player.create("Gergő Lovrencsics", "G. Lovrencsics", "Hungary", ['RWB', 'RM', 'LWB'], 33, 67, club, 210129, true);
 		Player.create("Chidozie Awaziem", "C. Awaziem", "Nigeria", ['CB'], 25, 71, club, 232693, true);
@@ -3676,7 +3676,7 @@ class SoFifa23Service {
 		Player.create("Lovre Kalinić", "L. Kalinić", "Croatia", ['GK'], 32, 74, club, 220932, true);
 		Player.create("Josip Elez", "J. Elez", "Croatia", ['CB'], 28, 71, club, 218341, true);
 
-		club = Club.create("APOEL", "Cyprus", 100135, "rgb(149,144,95)", "black");
+		club = Club.create("APOEL", "Cyprus", 100135, "#95905F", "#000000");
 		Player.create("Vid Belec", "V. Belec", "Slovenia", ['GK'], 32, 73, club, 193336, true);
 		Player.create("Issam Chebake", "I. Chebake", "Morocco", ['RB'], 32, 68, club, 223511, true);
 		Player.create("José Ángel Crespo Rincón", "José Crespo", "Spain", ['CB', 'RB', 'LB'], 35, 70, club, 172685, true);
@@ -3704,7 +3704,7 @@ class SoFifa23Service {
 		Player.create("Mateo Sušić", "M. Sušić", "Bosnia and Herzegovina", ['RB'], 31, 69, club, 216281, true);
 		Player.create("Christos Wheeler", "C. Wheeler", "Cyprus", ['LB'], 25, 65, club, 262565, true);
 
-		club = Club.create("Slavia Praha", "Czech Republic", 266, "rgb(211,120,122)", "black");
+		club = Club.create("Slavia Praha", "Czech Republic", 266, "#D3787A", "#000000");
 		Player.create("Ondřej Kolář", "O. Kolář", "Czech Republic", ['GK'], 27, 76, club, 244467, true);
 		Player.create("Lukáš Masopust", "L. Masopust", "Czech Republic", ['RM', 'RB'], 29, 74, club, 243007, true);
 		Player.create("Tomáš Holeš", "T. Holeš", "Czech Republic", ['CDM', 'CB'], 29, 77, club, 251116, true);
@@ -3734,7 +3734,7 @@ class SoFifa23Service {
 		Player.create("Petr Ševčík", "P. Ševčík", "Czech Republic", ['CM', 'RM', 'CDM'], 28, 76, club, 247030, true);
 		Player.create("Ewerton Paixão da Silva", "Ewerton", "Brazil", ['LM', 'RM'], 25, 73, club, 270055, true);
 
-		club = Club.create("Sparta Praha", "Czech Republic", 267, "rgb(136,51,64)", "white");
+		club = Club.create("Sparta Praha", "Czech Republic", 267, "#883340", "#FFFFFF");
 		Player.create("Matěj Kovář", "M. Kovář", "Czech Republic", ['GK'], 22, 72, club, 242948, true);
 		Player.create("Ladislav Krejčí", "L. Krejčí", "Czech Republic", ['CB', 'CDM', 'CM'], 23, 76, club, 252064, true);
 		Player.create("Martin Vitík", "M. Vitík", "Czech Republic", ['CB', 'RB'], 19, 72, club, 259748, true);
@@ -3764,7 +3764,7 @@ class SoFifa23Service {
 		Player.create("Asger Sørensen", "A. Sørensen", "Denmark", ['CB'], 26, 75, club, 221024, true);
 		Player.create("Jakub Jankto", "J. Jankto", "Czech Republic", ['LM', 'CM', 'RM'], 26, 73, club, 226592, true);
 
-		club = Club.create("Viktoria Plzeň", "Czech Republic", 110468, "rgb(138,66,92)", "white");
+		club = Club.create("Viktoria Plzeň", "Czech Republic", 110468, "#8A425C", "#FFFFFF");
 		Player.create("Jindřich Staněk", "J. Staněk", "Czech Republic", ['GK'], 26, 78, club, 221909, true);
 		Player.create("Libor Holík", "L. Holík", "Czech Republic", ['RB', 'LB'], 24, 71, club, 267822, true);
 		Player.create("Lukáš Hejda", "L. Hejda", "Czech Republic", ['CB'], 32, 74, club, 199244, true);
@@ -3790,7 +3790,7 @@ class SoFifa23Service {
 		Player.create("Václav Pilař", "V. Pilař", "Czech Republic", ['LM', 'RM'], 33, 73, club, 199334, true);
 		Player.create("Erik Jirka", "E. Jirka", "Slovakia", ['RM', 'LM'], 24, 69, club, 255699, true);
 
-		club = Club.create("København", "Denmark", 819, "rgb(198,200,204)", "black");
+		club = Club.create("København", "Denmark", 819, "#C6C8CC", "#000000");
 		Player.create("Kamil Grabara", "K. Grabara", "Poland", ['GK'], 23, 74, club, 228383, true);
 		Player.create("Peter Ankersen", "P. Ankersen", "Denmark", ['RB'], 31, 67, club, 208564, true);
 		Player.create("Denis Vavro", "D. Vavro", "Slovakia", ['CB'], 26, 72, club, 240988, true);
@@ -3820,7 +3820,7 @@ class SoFifa23Service {
 		Player.create("Nicolai Boilesen", "N. Boilesen", "Denmark", ['CB'], 30, 72, club, 200108, true);
 		Player.create("Akinkunmi Amoo", "A. Amoo", "Nigeria", ['RW'], 20, 66, club, 258121, true);
 
-		club = Club.create("Brøndby", "Denmark", 269, "rgb(208,177,43)", "black");
+		club = Club.create("Brøndby", "Denmark", 269, "#D0B12B", "#000000");
 		Player.create("Mads Hermansen", "M. Hermansen", "Denmark", ['GK'], 21, 72, club, 246158, true);
 		Player.create("Sebastian S. Sebulonsen", "S. Sebulonsen", "Norway", ['RB'], 22, 66, club, 254638, true);
 		Player.create("Kevin Tshiembe", "K. Tshiembe", "Denmark", ['CB'], 25, 69, club, 238725, true);
@@ -3849,7 +3849,7 @@ class SoFifa23Service {
 		Player.create("Lucas Ziegler", "L. Ziegler", "Denmark", ['GK'], 18, 53, club, 271416, false);
 		Player.create("Oscar Schwartau", "O. Schwartau", "Denmark", ['CAM', 'ST'], 16, 62, club, 269903, false);
 
-		club = Club.create("Midtjylland", "Denmark", 1516, "rgb(52,45,44)", "white");
+		club = Club.create("Midtjylland", "Denmark", 1516, "#342D2C", "#FFFFFF");
 		Player.create("Jonas Lössl", "J. Lössl", "Denmark", ['GK'], 33, 73, club, 172553, true);
 		Player.create("Henrik Dalsgaard", "H. Dalsgaard", "Denmark", ['CB', 'RB'], 32, 70, club, 190633, true);
 		Player.create("Stefan Gartenmann", "S. Gartenmann", "Denmark", ['CB'], 25, 70, club, 229436, true);
@@ -3877,7 +3877,7 @@ class SoFifa23Service {
 		Player.create("Pione Sisto", "P. Sisto", "Denmark", ['LW'], 27, 67, club, 212196, true);
 		Player.create("Astrit Selmani", "A. Selmani", "Kosovo", ['ST'], 25, 68, club, 254281, false);
 
-		club = Club.create("AGF", "Denmark", 271, "rgb(201,189,189)", "black");
+		club = Club.create("AGF", "Denmark", 271, "#C9BDBD", "#000000");
 		Player.create("Jesper Hansen", "J. Hansen", "Denmark", ['GK'], 37, 71, club, 132740, true);
 		Player.create("Tobias Mølgaard", "T. Mølgaard", "Denmark", ['RWB', 'CB'], 25, 69, club, 243886, true);
 		Player.create("Thomas Thiesson Kristensen", "T. Kristensen", "Denmark", ['CB'], 20, 66, club, 261573, true);
@@ -3905,7 +3905,7 @@ class SoFifa23Service {
 		Player.create("Benjamin Hvidt", "B. Hvidt", "Denmark", ['CM', 'CDM'], 22, 61, club, 234096, true);
 		Player.create("Mikkel Kristensen", "M. Kristensen", "Denmark", ['CB', 'LWB'], 15, 54, club, 274678, false);
 
-		club = Club.create("AaB", "Denmark", 820, "rgb(217,129,132)", "black");
+		club = Club.create("AaB", "Denmark", 820, "#D98184", "#000000");
 		Player.create("Nico Mantl", "N. Mantl", "Germany", ['GK'], 22, 69, club, 239816, true);
 		Player.create("Kilian Ludewig", "K. Ludewig", "Germany", ['RB'], 22, 64, club, 243773, true);
 		Player.create("Lars Kramer", "L. Kramer", "Netherlands", ['CB'], 22, 67, club, 241812, true);
@@ -3935,7 +3935,7 @@ class SoFifa23Service {
 		Player.create("Jeppe Pedersen", "J. Pedersen", "Denmark", ['CM'], 21, 56, club, 250912, true);
 		Player.create("Josip Posavec", "J. Posavec", "Croatia", ['GK'], 26, 67, club, 232350, true);
 
-		club = Club.create("Randers", "Denmark", 1786, "rgb(132,176,207)", "black");
+		club = Club.create("Randers", "Denmark", 1786, "#84B0CF", "#000000");
 		Player.create("Patrik Carlgren", "P. Carlgren", "Sweden", ['GK'], 30, 71, club, 216750, true);
 		Player.create("Mikkel Kallesøe", "M. Kallesøe", "Denmark", ['RB', 'RM'], 25, 68, club, 220663, true);
 		Player.create("Hugo Andersson", "H. Andersson", "Sweden", ['CB'], 23, 66, club, 241578, true);
@@ -3961,7 +3961,7 @@ class SoFifa23Service {
 		Player.create("Mustapha Isah", "M. Isah", "Nigeria", ['RM'], 17, 54, club, 272529, false);
 		Player.create("Frederik Lauenborg", "F. Lauenborg", "Denmark", ['CM'], 25, 67, club, 229504, true);
 
-		club = Club.create("Nordsjælland", "Denmark", 1788, "rgb(189,51,47)", "white");
+		club = Club.create("Nordsjælland", "Denmark", 1788, "#BD332F", "#FFFFFF");
 		Player.create("Andreas Hansen", "A. Hansen", "Denmark", ['GK'], 26, 69, club, 210715, true);
 		Player.create("Oliver Villadsen", "O. Villadsen", "Denmark", ['RB', 'RWB'], 20, 70, club, 251908, true);
 		Player.create("Kian Hansen", "K. Hansen", "Denmark", ['CB'], 33, 68, club, 190942, true);
@@ -3989,7 +3989,7 @@ class SoFifa23Service {
 		Player.create("Ben Engdahl", "B. Engdahl", "Sweden", ['RB'], 18, 56, club, 271415, false);
 		Player.create("Kaare Barslund", "K. Barslund", "Denmark", ['CB', 'RB'], 18, 53, club, 271496, false);
 
-		club = Club.create("Silkeborg", "Denmark", 270, "rgb(192,53,57)", "white");
+		club = Club.create("Silkeborg", "Denmark", 270, "#C03539", "#FFFFFF");
 		Player.create("Nicolai Larsen", "N. Larsen", "Denmark", ['GK'], 31, 70, club, 200209, true);
 		Player.create("Oliver Sonne", "O. Sonne", "Denmark", ['RB', 'LB'], 21, 66, club, 262794, true);
 		Player.create("Tobias Salquist", "T. Salquist", "Denmark", ['CB'], 27, 70, club, 227520, true);
@@ -4016,7 +4016,7 @@ class SoFifa23Service {
 		Player.create("Aske Andresen", "A. Andresen", "Denmark", ['GK'], 16, 55, club, 265179, true);
 		Player.create("Asbjørn Bøndergaard", "A. Bøndergaard", "Denmark", ['ST'], 18, 56, club, 275332, false);
 
-		club = Club.create("OB", "Denmark", 272, "rgb(158,163,195)", "black");
+		club = Club.create("OB", "Denmark", 272, "#9EA3C3", "#000000");
 		Player.create("Martin Hansen", "M. Hansen", "Denmark", ['GK'], 32, 68, club, 184040, true);
 		Player.create("Nicholas Mickelson", "N. Mickelson", "Thailand", ['RB', 'LB'], 22, 62, club, 246858, true);
 		Player.create("Bjørn Paulsen", "B. Paulsen", "Denmark", ['CB'], 30, 67, club, 198538, true);
@@ -4045,7 +4045,7 @@ class SoFifa23Service {
 		Player.create("Max Ejdum", "M. Ejdum", "Denmark", ['CM'], 17, 55, club, 271079, true);
 		Player.create("Magnus Nielsen", "M. Nielsen", "Denmark", ['GK'], 17, 53, club, 264789, true);
 
-		club = Club.create("Viborg", "Denmark", 1443, "rgb(43,79,56)", "white");
+		club = Club.create("Viborg", "Denmark", 1443, "#2B4F38", "#FFFFFF");
 		Player.create("Lucas Lund", "L. Lund", "Denmark", ['GK'], 22, 67, club, 256742, true);
 		Player.create("Anton Gaaei", "A. Gaaei", "Denmark", ['RB', 'RW'], 19, 61, club, 269153, true);
 		Player.create("Nicolas Bürgy", "N. Bürgy", "Switzerland", ['CB'], 26, 67, club, 224426, true);
@@ -4073,7 +4073,7 @@ class SoFifa23Service {
 		Player.create("Martin Agnarsson", "M. Agnarsson", "Faroe Islands", ['LB', 'LW'], 18, 55, club, 271815, false);
 		Player.create("Viktor Hjort", "V. Hjort", "Denmark", ['CB'], 17, 53, club, 274911, false);
 
-		club = Club.create("Lyngby", "Denmark", 15001, "rgb(78,90,140)", "white");
+		club = Club.create("Lyngby", "Denmark", 15001, "#4E5A8C", "#FFFFFF");
 		Player.create("Mads Kikkenborg", "M. Kikkenborg", "Denmark", ['GK'], 22, 62, club, 246753, true);
 		Player.create("Tobias Storm", "T. Storm", "Denmark", ['CM', 'RWB', 'CB'], 17, 55, club, 270974, true);
 		Player.create("Pascal Gregor", "P. Gregor", "Denmark", ['CB', 'RWB'], 28, 63, club, 212417, true);
@@ -4101,7 +4101,7 @@ class SoFifa23Service {
 		Player.create("Willy Kumado", "W. Kumado", "Ghana", ['RWB', 'RB'], 19, 55, club, 265734, false);
 		Player.create("Gustav Mortensen", "G. Mortensen", "Denmark", ['LWB'], 18, 54, club, 270973, true);
 
-		club = Club.create("Horsens", "Denmark", 1446, "rgb(169,139,49)", "black");
+		club = Club.create("Horsens", "Denmark", 1446, "#A98B31", "#000000");
 		Player.create("Matej Delač", "M. Delač", "Croatia", ['GK'], 29, 64, club, 195356, true);
 		Player.create("Jacob Buus", "J. Buus", "Denmark", ['RWB', 'LWB'], 25, 64, club, 235140, false);
 		Player.create("James Gomez", "J. Gomez", "Gambia", ['CB'], 20, 65, club, 256855, true);
@@ -4127,7 +4127,7 @@ class SoFifa23Service {
 		Player.create("Andreas Hermansen", "A. Hermansen", "Denmark", ['GK'], 18, 53, club, 272501, false);
 		Player.create("Magnus Isager", "M. Isager", "Denmark", ['CM'], 17, 53, club, 271696, true);
 
-		club = Club.create("Independiente del Valle", "Ecuador", 112908, "rgb(45,46,50)", "white");
+		club = Club.create("Independiente del Valle", "Ecuador", 112908, "#2D2E32", "#FFFFFF");
 		Player.create("Moisés Ramírez", "M. Ramírez", "Ecuador", ['GK'], 21, 75, club, 256161, true);
 		Player.create("Matías Fernández", "M. Fernández", "Chile", ['RWB', 'RM', 'RB'], 26, 70, club, 230118, true);
 		Player.create("Mateo Carabajal", "M. Carabajal", "Argentina", ['CB'], 25, 73, club, 241064, true);
@@ -4154,7 +4154,7 @@ class SoFifa23Service {
 		Player.create("Beder Caicedo", "B. Caicedo", "Ecuador", ['LWB', 'LM', 'LB'], 30, 67, club, 246403, true);
 		Player.create("Alexis Villa", "A. Villa", "Ecuador", ['GK'], 20, 62, club, 274717, true);
 
-		club = Club.create("Barcelona Guayaquil", "Ecuador", 110981, "rgb(213,169,39)", "black");
+		club = Club.create("Barcelona Guayaquil", "Ecuador", 110981, "#D5A927", "#000000");
 		Player.create("Víctor Mendoza", "V. Mendoza", "Ecuador", ['GK'], 27, 66, club, 255994, true);
 		Player.create("Pedro Velasco", "P. Velasco", "Ecuador", ['RB'], 29, 68, club, 236268, true);
 		Player.create("Carlos Rodríguez", "C. Rodríguez", "Uruguay", ['CB'], 32, 70, club, 235258, true);
@@ -4183,7 +4183,7 @@ class SoFifa23Service {
 		Player.create("Ezequiel Emanuele", "E. Emanuele", "Ecuador", ['CM', 'CDM'], 18, 57, club, 268554, true);
 		Player.create("Álvaro Preciado", "Á. Preciado", "Ecuador", ['GK'], 24, 56, club, 256004, false);
 
-		club = Club.create("LDU Quito", "Ecuador", 110986, "rgb(190,190,187)", "black");
+		club = Club.create("LDU Quito", "Ecuador", 110986, "#BEBEBB", "#000000");
 		Player.create("Alexander Domínguez", "A. Domínguez", "Ecuador", ['GK'], 35, 73, club, 199103, true);
 		Player.create("José Quintero", "J. Quintero", "Ecuador", ['RB', 'RM', 'RWB'], 32, 71, club, 231550, true);
 		Player.create("Ricardo Adé", "R. Adé", "Haiti", ['CB'], 32, 72, club, 265610, false);
@@ -4213,7 +4213,7 @@ class SoFifa23Service {
 		Player.create("Brian Heras", "B. Heras", "Ecuador", ['GK'], 27, 66, club, 266214, false);
 		Player.create("Jimmy Mina", "J. Mina", "Ecuador", ['CB'], 23, 61, club, 274459, false);
 
-		club = Club.create("Emelec", "Ecuador", 110984, "rgb(76,90,140)", "white");
+		club = Club.create("Emelec", "Ecuador", 110984, "#4C5A8C", "#FFFFFF");
 		Player.create("Pedro Ortíz", "P. Ortíz", "Ecuador", ['GK'], 32, 73, club, 250797, true);
 		Player.create("Caín Fara", "C. Fara", "Argentina", ['RB', 'CB'], 28, 66, club, 251225, true);
 		Player.create("Aníbal Leguizamón", "A. Leguizamón", "Argentina", ['CB'], 30, 67, club, 251149, true);
@@ -4244,7 +4244,7 @@ class SoFifa23Service {
 		Player.create("Jackson Rodríguez", "J. Rodríguez", "Ecuador", ['LB', 'LM'], 23, 68, club, 255721, true);
 		Player.create("Alexis Zapata", "A. Zapata", "Colombia", ['RM', 'CF'], 27, 69, club, 218743, true);
 
-		club = Club.create("Aucas", "Ecuador", 110987, "rgb(205,166,46)", "black");
+		club = Club.create("Aucas", "Ecuador", 110987, "#CDA62E", "#000000");
 		Player.create("Hernán Galíndez", "H. Galíndez", "Ecuador", ['GK'], 35, 74, club, 253354, true);
 		Player.create("Diego Corozo", "D. Corozo", "Ecuador", ['RB'], 31, 64, club, 253889, true);
 		Player.create("Wilker Ángel", "W. Ángel", "Venezuela", ['CB'], 29, 68, club, 217082, true);
@@ -4276,7 +4276,7 @@ class SoFifa23Service {
 		Player.create("Stiven Plaza", "S. Plaza", "Ecuador", ['ST'], 23, 65, club, 246203, true);
 		Player.create("Johan Lara", "J. Lara", "Ecuador", ['GK'], 23, 61, club, 255812, true);
 
-		club = Club.create("Deportivo Cuenca", "Ecuador", 110982, "rgb(154,73,68)", "white");
+		club = Club.create("Deportivo Cuenca", "Ecuador", 110982, "#9A4944", "#FFFFFF");
 		Player.create("Hamilton Piedra", "H. Piedra", "Ecuador", ['GK'], 29, 70, club, 225678, true);
 		Player.create("Andrés López", "A. López", "Ecuador", ['RB', 'RWB'], 29, 67, club, 253361, false);
 		Player.create("Bruno Duarte", "B. Duarte", "Argentina", ['CB'], 27, 71, club, 273972, false);
@@ -4304,7 +4304,7 @@ class SoFifa23Service {
 		Player.create("Raúl Guerrón", "R. Guerrón", "Ecuador", ['RM', 'RW', 'RWB'], 19, 62, club, 274514, false);
 		Player.create("Eduardo Jiménez", "E. Jiménez", "Ecuador", ['GK'], 22, 57, club, 274748, false);
 
-		club = Club.create("Delfin", "Ecuador", 114580, "rgb(72,82,145)", "white");
+		club = Club.create("Delfin", "Ecuador", 114580, "#485291", "#FFFFFF");
 		Player.create("Dennis Corozo", "D. Corozo", "Ecuador", ['GK'], 34, 61, club, 253849, true);
 		Player.create("Josué Cuero", "J. Cuero", "Ecuador", ['RB'], 21, 64, club, 270573, true);
 		Player.create("Luis Adrián Caicedo", "L. Caicedo", "Ecuador", ['CB'], 24, 69, club, 268070, true);
@@ -4328,7 +4328,7 @@ class SoFifa23Service {
 		Player.create("Cristhian García", "C. García", "Ecuador", ['LB', 'LM'], 19, 64, club, 265668, true);
 		Player.create("Nazareno Jefferson", "N. Jefferson", "Ecuador", ['CB'], 23, 60, club, 275756, false);
 
-		club = Club.create("Manchester City", "England", 10, "rgb(105,153,193)", "black");
+		club = Club.create("Manchester City", "England", 10, "#6999C1", "#000000");
 		Player.create("Ederson Santana de Moraes", "Ederson", "Brazil", ['GK'], 28, 88, club, 210257, true);
 		Player.create("Kyle Walker", "K. Walker", "England", ['RB'], 32, 84, club, 188377, true);
 		Player.create("John Stones", "J. Stones", "England", ['CB', 'RB'], 28, 83, club, 203574, true);
@@ -4356,7 +4356,7 @@ class SoFifa23Service {
 		Player.create("Alex Robertson", "A. Robertson", "Australia", ['CM'], 19, 58, club, 259677, true);
 		Player.create("Cieran Slicker", "C. Slicker", "Scotland", ['GK'], 19, 52, club, 264645, true);
 
-		club = Club.create("Liverpool", "England", 9, "rgb(149,44,47)", "white");
+		club = Club.create("Liverpool", "England", 9, "#952C2F", "#FFFFFF");
 		Player.create("Alisson Ramses Becker", "Alisson", "Brazil", ['GK'], 29, 89, club, 212831, true);
 		Player.create("Trent Alexander-Arnold", "T. Alexander-Arnold", "England", ['RB'], 23, 85, club, 231281, true);
 		Player.create("Ibrahima Konaté", "I. Konaté", "France", ['CB'], 23, 81, club, 237678, true);
@@ -4391,7 +4391,7 @@ class SoFifa23Service {
 		Player.create("Kaide Gordon", "K. Gordon", "England", ['RW', 'LW'], 17, 62, club, 260406, true);
 		Player.create("Billy Koumetio", "B. Koumetio", "France", ['CB'], 19, 63, club, 254588, true);
 
-		club = Club.create("Arsenal", "England", 1, "rgb(167,63,72)", "white");
+		club = Club.create("Arsenal", "England", 1, "#A73F48", "#FFFFFF");
 		Player.create("Aaron Ramsdale", "A. Ramsdale", "England", ['GK'], 24, 83, club, 233934, true);
 		Player.create("Benjamin White", "B. White", "England", ['RB', 'CB'], 24, 80, club, 231936, true);
 		Player.create("William Saliba", "W. Saliba", "France", ['CB'], 21, 83, club, 243715, true);
@@ -4425,7 +4425,7 @@ class SoFifa23Service {
 		Player.create("Salah-Eddine Oulad M'Hand", "S. Oulad M'Hand", "Netherlands", ['CM', 'CAM'], 18, 61, club, 259097, true);
 		Player.create("Reuell Walters", "R. Walters", "England", ['RB', 'CB'], 17, 61, club, 274387, false);
 
-		club = Club.create("Chelsea", "England", 5, "rgb(59,70,114)", "white");
+		club = Club.create("Chelsea", "England", 5, "#3B4672", "#FFFFFF");
 		Player.create("Kepa Arrizabalaga", "Kepa", "Spain", ['GK'], 27, 81, club, 206585, true);
 		Player.create("Reece James", "R. James", "England", ['RWB', 'RB'], 22, 84, club, 238074, true);
 		Player.create("Thiago Emiliano da Silva", "Thiago Silva", "Brazil", ['CB'], 37, 85, club, 164240, true);
@@ -4460,7 +4460,7 @@ class SoFifa23Service {
 		Player.create("Gabriel Slonina", "G. Slonina", "United States", ['GK'], 18, 66, club, 248158, true);
 		Player.create("Omari Hutchinson", "O. Hutchinson", "Jamaica", ['CAM', 'RM'], 18, 64, club, 260145, true);
 
-		club = Club.create("Manchester United", "England", 11, "rgb(188,48,68)", "white");
+		club = Club.create("Manchester United", "England", 11, "#BC3044", "#FFFFFF");
 		Player.create("David De Gea Quintana", "De Gea", "Spain", ['GK'], 31, 87, club, 193080, true);
 		Player.create("Aaron Wan-Bissaka", "A. Wan-Bissaka", "England", ['RB'], 24, 79, club, 229880, true);
 		Player.create("Raphaël Varane", "R. Varane", "France", ['CB'], 29, 85, club, 201535, true);
@@ -4495,7 +4495,7 @@ class SoFifa23Service {
 		Player.create("Tom Heaton", "T. Heaton", "England", ['GK'], 36, 72, club, 163264, true);
 		Player.create("Phil Jones", "P. Jones", "England", ['CB'], 30, 70, club, 194957, true);
 
-		club = Club.create("Tottenham Hotspur", "England", 18, "rgb(227,223,220)", "black");
+		club = Club.create("Tottenham Hotspur", "England", 18, "#E3DFDC", "#000000");
 		Player.create("Hugo Lloris", "H. Lloris", "France", ['GK'], 35, 84, club, 167948, true);
 		Player.create("Pedro Antonio Porro Sauceda", "Pedro Porro", "Spain", ['RWB', 'RM'], 22, 82, club, 243576, true);
 		Player.create("Cristian Romero", "C. Romero", "Argentina", ['CB'], 24, 83, club, 232488, true);
@@ -4525,7 +4525,7 @@ class SoFifa23Service {
 		Player.create("Brandon Austin", "B. Austin", "England", ['GK'], 23, 64, club, 236568, true);
 		Player.create("Jamie Bowden", "J. Bowden", "Republic of Ireland", ['CM', 'CDM'], 20, 63, club, 245907, true);
 
-		club = Club.create("Newcastle United", "England", 13, "rgb(127,133,136)", "black");
+		club = Club.create("Newcastle United", "England", 13, "#7F8588", "#000000");
 		Player.create("Nick Pope", "N. Pope", "England", ['GK'], 30, 83, club, 203841, true);
 		Player.create("Kieran Trippier", "K. Trippier", "England", ['RB'], 31, 84, club, 186345, true);
 		Player.create("Fabian Schär", "F. Schär", "Switzerland", ['CB'], 30, 81, club, 210047, true);
@@ -4560,7 +4560,7 @@ class SoFifa23Service {
 		Player.create("Jamie Miley", "J. Miley", "England", ['CM', 'CDM'], 18, 55, club, 271822, false);
 		Player.create("Lewis Miley", "L. Miley", "England", ['CM', 'CAM', 'LM'], 16, 60, club, 274246, false);
 
-		club = Club.create("Aston Villa", "England", 2, "rgb(102,64,91)", "white");
+		club = Club.create("Aston Villa", "England", 2, "#66405B", "#FFFFFF");
 		Player.create("Emiliano Martínez", "E. Martínez", "Argentina", ['GK'], 29, 85, club, 202811, true);
 		Player.create("Ashley Young", "A. Young", "England", ['LB', 'RB', 'LM'], 36, 76, club, 152908, true);
 		Player.create("Ezri Konsa", "E. Konsa", "England", ['CB'], 24, 79, club, 227678, true);
@@ -4594,7 +4594,7 @@ class SoFifa23Service {
 		Player.create("Kadan Young", "K. Young", "England", ['LW', 'RW'], 16, 58, club, 274348, false);
 		Player.create("Viljami Sinisalo", "V. Sinisalo", "Finland", ['GK'], 20, 58, club, 258928, true);
 
-		club = Club.create("West Ham United", "England", 19, "rgb(126,74,89)", "white");
+		club = Club.create("West Ham United", "England", 19, "#7E4A59", "#FFFFFF");
 		Player.create("Łukasz Fabiański", "Ł. Fabiański", "Poland", ['GK'], 37, 79, club, 164835, true);
 		Player.create("Vladimír Coufal", "V. Coufal", "Czech Republic", ['RB'], 29, 78, club, 244470, true);
 		Player.create("Kurt Zouma", "K. Zouma", "France", ['CB'], 27, 79, club, 204311, true);
@@ -4628,7 +4628,7 @@ class SoFifa23Service {
 		Player.create("Oliver Scarles", "O. Scarles", "England", ['CDM', 'LB'], 16, 58, club, 274102, false);
 		Player.create("Krisztián Hegyi", "K. Hegyi", "Hungary", ['GK'], 19, 53, club, 274104, false);
 
-		club = Club.create("Leicester City", "England", 95, "rgb(66,94,144)", "white");
+		club = Club.create("Leicester City", "England", 95, "#425E90", "#FFFFFF");
 		Player.create("Daniel Iversen", "D. Iversen", "Denmark", ['GK'], 24, 74, club, 228410, true);
 		Player.create("Timothy Castagne", "T. Castagne", "Belgium", ['RB', 'RWB'], 26, 77, club, 222501, true);
 		Player.create("Wout Faes", "W. Faes", "Belgium", ['CB'], 24, 78, club, 235036, true);
@@ -4663,7 +4663,7 @@ class SoFifa23Service {
 		Player.create("Joe Wormleighton", "J. Wormleighton", "England", ['RB'], 18, 58, club, 272369, false);
 		Player.create("Khanya Leshabela", "K. Leshabela", "South Africa", ['CAM', 'CM'], 22, 59, club, 241435, true);
 
-		club = Club.create("Wolverhampton Wanderers", "England", 110, "rgb(218,165,32)", "black");
+		club = Club.create("Wolverhampton Wanderers", "England", 110, "#DAA520", "#000000");
 		Player.create("José Pedro Malheiro de Sá", "José Sá", "Portugal", ['GK'], 29, 80, club, 212442, true);
 		Player.create("Nélson Cabral Semedo", "Nélson Semedo", "Portugal", ['RB', 'RWB'], 28, 78, club, 227928, true);
 		Player.create("Craig Dawson", "C. Dawson", "England", ['CB'], 32, 78, club, 194806, true);
@@ -4698,7 +4698,7 @@ class SoFifa23Service {
 		Player.create("Luke Matheson", "L. Matheson", "England", ['RB', 'RWB'], 19, 59, club, 246002, true);
 		Player.create("Harvey Griffiths", "H. Griffiths", "England", ['CDM', 'CM'], 18, 58, club, 271216, true);
 
-		club = Club.create("Nottingham Forest", "England", 14, "rgb(177,35,36)", "white");
+		club = Club.create("Nottingham Forest", "England", 14, "#B12324", "#FFFFFF");
 		Player.create("Keylor Navas", "K. Navas", "Costa Rica", ['GK'], 35, 86, club, 193041, true);
 		Player.create("Serge Aurier", "S. Aurier", "Côte d'Ivoire", ['RB', 'RWB'], 29, 78, club, 197853, true);
 		Player.create("Joe Worrall", "J. Worrall", "England", ['CB'], 25, 74, club, 230708, true);
@@ -4733,7 +4733,7 @@ class SoFifa23Service {
 		Player.create("Wayne Hennessey", "W. Hennessey", "Wales", ['GK'], 35, 73, club, 170084, true);
 		Player.create("Carlos Miguel Ribeiro Dias", "Cafú", "Portugal", ['CDM', 'CAM'], 29, 68, club, 218623, true);
 
-		club = Club.create("Brighton & Hove Albion", "England", 1808, "rgb(117,146,173)", "black");
+		club = Club.create("Brighton & Hove Albion", "England", 1808, "#7592AD", "#000000");
 		Player.create("Jason Steele", "J. Steele", "England", ['GK'], 31, 69, club, 188836, true);
 		Player.create("Joël Veltman", "J. Veltman", "Netherlands", ['CB', 'RB'], 30, 78, club, 208004, true);
 		Player.create("Adam Webster", "A. Webster", "England", ['CB'], 27, 78, club, 207616, true);
@@ -4763,7 +4763,7 @@ class SoFifa23Service {
 		Player.create("Tom McGill", "T. McGill", "Canada", ['GK'], 22, 58, club, 243588, true);
 		Player.create("Jamie Mullins", "J. Mullins", "Republic of Ireland", ['CAM'], 17, 58, club, 263411, true);
 
-		club = Club.create("Everton", "England", 7, "rgb(48,79,120)", "white");
+		club = Club.create("Everton", "England", 7, "#304F78", "#FFFFFF");
 		Player.create("Jordan Pickford", "J. Pickford", "England", ['GK'], 28, 82, club, 204935, true);
 		Player.create("Séamus Coleman", "S. Coleman", "Republic of Ireland", ['RB', 'RWB'], 33, 75, club, 180216, true);
 		Player.create("Yerry Mina", "Y. Mina", "Colombia", ['CB'], 27, 76, club, 220523, true);
@@ -4793,7 +4793,7 @@ class SoFifa23Service {
 		Player.create("Isaac Price", "I. Price", "Northern Ireland", ['CM'], 18, 55, club, 268630, true);
 		Player.create("Andy Lonergan", "A. Lonergan", "England", ['GK'], 38, 60, club, 118794, true);
 
-		club = Club.create("Crystal Palace", "England", 1799, "rgb(120,65,85)", "white");
+		club = Club.create("Crystal Palace", "England", 1799, "#784155", "#FFFFFF");
 		Player.create("Sam Johnstone", "S. Johnstone", "England", ['GK'], 29, 75, club, 206075, true);
 		Player.create("Joel Ward", "J. Ward", "England", ['RB', 'LB'], 32, 74, club, 186392, true);
 		Player.create("Joachim Andersen", "J. Andersen", "Denmark", ['CB'], 26, 78, club, 224221, true);
@@ -4827,7 +4827,7 @@ class SoFifa23Service {
 		Player.create("Adler Bruno de Nascimento", "Adler Nascimento", "Portugal", ['LM', 'LW'], 17, 54, club, 266544, false);
 		Player.create("Dylan Reid", "D. Reid", "Scotland", ['CDM'], 17, 57, club, 261638, true);
 
-		club = Club.create("Fulham", "England", 144, "rgb(206,204,202)", "black");
+		club = Club.create("Fulham", "England", 144, "#CECCCA", "#000000");
 		Player.create("Bernd Leno", "B. Leno", "Germany", ['GK'], 30, 80, club, 192563, true);
 		Player.create("Kenny Tete", "K. Tete", "Netherlands", ['RB'], 26, 76, club, 216266, true);
 		Player.create("Tosin Adarabioyo", "T. Adarabioyo", "England", ['CB'], 24, 76, club, 222104, true);
@@ -4860,7 +4860,7 @@ class SoFifa23Service {
 		Player.create("Sylvester Jasper", "S. Jasper", "Bulgaria", ['RM', 'LM', 'LW'], 21, 64, club, 255377, true);
 		Player.create("George Wickens", "G. Wickens", "England", ['GK'], 20, 58, club, 258792, true);
 
-		club = Club.create("Leeds United", "England", 8, "rgb(191,191,190)", "black");
+		club = Club.create("Leeds United", "England", 8, "#BFBFBE", "#000000");
 		Player.create("Joel Robles Blázquez", "Joel Robles", "Spain", ['GK'], 32, 74, club, 195668, true);
 		Player.create("Luke Ayling", "L. Ayling", "England", ['RB', 'CB'], 30, 74, club, 186156, true);
 		Player.create("Rasmus Kristensen", "R. Kristensen", "Denmark", ['RB', 'RWB', 'CB'], 24, 75, club, 233301, true);
@@ -4892,7 +4892,7 @@ class SoFifa23Service {
 		Player.create("Diogo Pinheiro Monteiro", "Diogo Monteiro", "Portugal", ['CB'], 17, 56, club, 263734, true);
 		Player.create("Jeremiah Chilokoa-Mullen", "J. Chilokoa-Mullen", "Scotland", ['CB'], 18, 56, club, 261382, false);
 
-		club = Club.create("Southampton", "England", 17, "rgb(183,137,141)", "black");
+		club = Club.create("Southampton", "England", 17, "#B7898D", "#000000");
 		Player.create("Alex McCarthy", "A. McCarthy", "England", ['GK'], 32, 73, club, 189324, true);
 		Player.create("Kyle Walker-Peters", "K. Walker-Peters", "England", ['RB', 'LB'], 25, 78, club, 227927, true);
 		Player.create("Armel Bella Kotchap", "A. Bella Kotchap", "Germany", ['CB'], 20, 74, club, 247497, true);
@@ -4924,7 +4924,7 @@ class SoFifa23Service {
 		Player.create("Juan Larios López", "Juan Larios", "Spain", ['LB'], 18, 60, club, 271669, true);
 		Player.create("Dom Ballard", "D. Ballard", "England", ['ST'], 17, 58, club, 271530, false);
 
-		club = Club.create("Brentford", "England", 1925, "rgb(192,118,121)", "black");
+		club = Club.create("Brentford", "England", 1925, "#C07679", "#000000");
 		Player.create("David Raya Martin", "David Raya", "Spain", ['GK'], 26, 80, club, 220901, true);
 		Player.create("Aaron Hickey", "A. Hickey", "Scotland", ['RWB', 'LB', 'RB'], 20, 75, club, 248808, true);
 		Player.create("Ethan Pinnock", "E. Pinnock", "Jamaica", ['CB'], 29, 78, club, 238717, true);
@@ -4956,7 +4956,7 @@ class SoFifa23Service {
 		Player.create("Daniel Oyegoke", "D. Oyegoke", "England", ['RB', 'CB', 'RWB'], 19, 59, club, 262930, true);
 		Player.create("Michael Olakigbe", "M. Olakigbe", "England", ['LW', 'RW', 'ST'], 18, 59, club, 271173, false);
 
-		club = Club.create("AFC Bournemouth", "England", 1943, "rgb(128,46,50)", "white");
+		club = Club.create("AFC Bournemouth", "England", 1943, "#802E32", "#FFFFFF");
 		Player.create("Norberto Murara Neto", "Neto", "Brazil", ['GK'], 32, 79, club, 194404, true);
 		Player.create("Adam Smith", "A. Smith", "England", ['RB', 'RWB', 'LB'], 31, 74, club, 190885, true);
 		Player.create("Chris Mepham", "C. Mepham", "Wales", ['CB'], 24, 71, club, 233201, true);
@@ -4987,7 +4987,7 @@ class SoFifa23Service {
 		Player.create("Owen Bevan", "O. Bevan", "Wales", ['CB'], 18, 57, club, 271235, false);
 		Player.create("Dominic Sadi", "D. Sadi", "England", ['RM', 'LM'], 18, 57, club, 273587, false);
 
-		club = Club.create("Burnley", "England", 1796, "rgb(119,85,102)", "white");
+		club = Club.create("Burnley", "England", 1796, "#775566", "#FFFFFF");
 		Player.create("Arijanet Murić", "A. Murić", "Kosovo", ['GK'], 23, 75, club, 233164, true);
 		Player.create("Connor Roberts", "C. Roberts", "Wales", ['RB', 'RWB'], 26, 75, club, 225147, true);
 		Player.create("Taylor Harwood-Bellis", "T. Harwood-Bellis", "England", ['CB'], 20, 74, club, 252793, true);
@@ -5019,7 +5019,7 @@ class SoFifa23Service {
 		Player.create("Ne-Jai Tucker", "N. Tucker", "Bermuda", ['RM'], 19, 57, club, 270713, false);
 		Player.create("Lewis Richardson", "L. Richardson", "England", ['ST'], 19, 61, club, 261265, true);
 
-		club = Club.create("Sheffield United", "England", 1794, "rgb(195,125,133)", "black");
+		club = Club.create("Sheffield United", "England", 1794, "#C37D85", "#000000");
 		Player.create("Wes Foderingham", "W. Foderingham", "England", ['GK'], 31, 74, club, 193182, true);
 		Player.create("George Baldock", "G. Baldock", "Greece", ['RWB', 'RB'], 29, 71, club, 200855, true);
 		Player.create("Anel Ahmedhodžić", "A. Ahmedhodžić", "Bosnia and Herzegovina", ['CB'], 23, 74, club, 236524, true);
@@ -5051,7 +5051,7 @@ class SoFifa23Service {
 		Player.create("Frankie Maguire", "F. Maguire", "England", ['CM'], 18, 57, club, 261186, false);
 		Player.create("Antwoine Hackford", "A. Hackford", "England", ['ST'], 18, 60, club, 260192, true);
 
-		club = Club.create("Watford", "England", 1795, "rgb(207,176,33)", "black");
+		club = Club.create("Watford", "England", 1795, "#CFB021", "#000000");
 		Player.create("Daniel Bachmann", "D. Bachmann", "Austria", ['GK'], 27, 72, club, 209532, true);
 		Player.create("Mario Gaspar Pérez Martínez", "Mario Gaspar", "Spain", ['RB'], 31, 73, club, 192789, true);
 		Player.create("Ryan Porteous", "R. Porteous", "Scotland", ['CB'], 23, 71, club, 240439, true);
@@ -5083,7 +5083,7 @@ class SoFifa23Service {
 		Player.create("Tom Dele-Bashiru", "T. Dele-Bashiru", "Nigeria", ['RM', 'CM', 'LM'], 22, 67, club, 233048, true);
 		Player.create("James Morris", "J. Morris", "England", ['LB', 'LWB'], 20, 57, club, 268530, true);
 
-		club = Club.create("Middlesbrough", "England", 12, "rgb(205,67,83)", "white");
+		club = Club.create("Middlesbrough", "England", 12, "#CD4353", "#FFFFFF");
 		Player.create("Zack Steffen", "Z. Steffen", "United States", ['GK'], 27, 76, club, 234777, true);
 		Player.create("Tommy Smith", "T. Smith", "England", ['RB', 'RWB'], 30, 71, club, 203783, true);
 		Player.create("Paddy McNair", "P. McNair", "Northern Ireland", ['CB', 'CM'], 27, 72, club, 213697, true);
@@ -5115,7 +5115,7 @@ class SoFifa23Service {
 		Player.create("Joe Gibson", "J. Gibson", "England", ['RB', 'CM', 'RM'], 20, 52, club, 254553, false);
 		Player.create("Isaac Fletcher", "I. Fletcher", "England", ['CM', 'RM'], 20, 55, club, 266827, false);
 
-		club = Club.create("Norwich City", "England", 1792, "rgb(208,206,64)", "black");
+		club = Club.create("Norwich City", "England", 1792, "#D0CE40", "#000000");
 		Player.create("Angus Gunn", "A. Gunn", "Scotland", ['GK'], 26, 73, club, 216325, true);
 		Player.create("Max Aarons", "M. Aarons", "England", ['RB'], 22, 73, club, 240060, true);
 		Player.create("Andrew Omobamidele", "A. Omobamidele", "Republic of Ireland", ['CB'], 20, 70, club, 261647, true);
@@ -5144,7 +5144,7 @@ class SoFifa23Service {
 		Player.create("Abu Kamara", "A. Kamara", "England", ['ST'], 18, 60, club, 270379, false);
 		Player.create("Jon McCracken", "J. McCracken", "Scotland", ['GK'], 22, 56, club, 242983, true);
 
-		club = Club.create("West Bromwich Albion", "England", 109, "rgb(126,130,144)", "white");
+		club = Club.create("West Bromwich Albion", "England", 109, "#7E8290", "#FFFFFF");
 		Player.create("Alex Palmer", "A. Palmer", "England", ['GK'], 25, 69, club, 223909, true);
 		Player.create("Darnell Furlong", "D. Furlong", "England", ['RB', 'RWB'], 26, 72, club, 223877, true);
 		Player.create("Dara O'Shea", "D. O'Shea", "Republic of Ireland", ['CB', 'RB'], 23, 71, club, 235405, true);
@@ -5176,7 +5176,7 @@ class SoFifa23Service {
 		Player.create("Jamie Andrews", "J. Andrews", "England", ['CM', 'CAM'], 19, 53, club, 273729, false);
 		Player.create("Jovan Malcolm", "J. Malcolm", "England", ['ST', 'RM'], 19, 59, club, 264445, false);
 
-		club = Club.create("Blackburn Rovers", "England", 3, "rgb(138,152,185)", "black");
+		club = Club.create("Blackburn Rovers", "England", 3, "#8A98B9", "#000000");
 		Player.create("Aynsley Pears", "A. Pears", "England", ['GK'], 24, 66, club, 240595, true);
 		Player.create("Joe Rankin-Costello", "J. Rankin-Costello", "England", ['RB', 'RWB', 'LB'], 22, 67, club, 238336, true);
 		Player.create("Hayden Carter", "H. Carter", "England", ['CB', 'RB'], 22, 68, club, 242751, true);
@@ -5208,7 +5208,7 @@ class SoFifa23Service {
 		Player.create("Daniel Pike", "D. Pike", "England", ['RWB', 'RB'], 20, 62, club, 256964, true);
 		Player.create("Jared Harlock", "J. Harlock", "England", ['CM', 'RWB'], 19, 58, club, 259225, false);
 
-		club = Club.create("Coventry City", "England", 1800, "rgb(142,169,187)", "black");
+		club = Club.create("Coventry City", "England", 1800, "#8EA9BB", "#000000");
 		Player.create("Ben Wilson", "B. Wilson", "England", ['GK'], 29, 67, club, 204825, true);
 		Player.create("Brooke Norton-Cuffy", "B. Norton-Cuffy", "England", ['RWB', 'RB', 'RM'], 18, 66, club, 260653, true);
 		Player.create("Luke McNally", "L. McNally", "Republic of Ireland", ['CB'], 22, 71, club, 247395, true);
@@ -5240,7 +5240,7 @@ class SoFifa23Service {
 		Player.create("Cian Tyler", "C. Tyler", "Wales", ['GK'], 20, 54, club, 254293, true);
 		Player.create("Harrison Nee", "H. Nee", "England", ['ST'], 19, 54, club, 262406, true);
 
-		club = Club.create("Preston North End", "England", 1801, "rgb(198,198,202)", "black");
+		club = Club.create("Preston North End", "England", 1801, "#C6C6CA", "#000000");
 		Player.create("Freddie Woodman", "F. Woodman", "England", ['GK'], 25, 75, club, 222514, true);
 		Player.create("Brad Potts", "B. Potts", "England", ['RWB', 'RB'], 27, 70, club, 206653, true);
 		Player.create("Jordan Storey", "J. Storey", "England", ['CB'], 24, 71, club, 235464, true);
@@ -5270,7 +5270,7 @@ class SoFifa23Service {
 		Player.create("Jacob Slater", "J. Slater", "Republic of Ireland", ['LWB', 'LB'], 17, 56, club, 271584, false);
 		Player.create("Kaedyn Kamara", "K. Kamara", "England", ['CM'], 16, 52, club, 272986, false);
 
-		club = Club.create("Stoke City", "England", 1806, "rgb(207,134,137)", "black");
+		club = Club.create("Stoke City", "England", 1806, "#CF8689", "#000000");
 		Player.create("Jack Bonham", "J. Bonham", "Republic of Ireland", ['GK'], 28, 66, club, 202125, true);
 		Player.create("Ki-Jana Hoever", "K. Hoever", "Netherlands", ['RB', 'RWB', 'CB'], 20, 66, club, 246763, true);
 		Player.create("Ben Wilmot", "B. Wilmot", "England", ['CB', 'RB', 'RWB'], 22, 72, club, 238389, true);
@@ -5302,7 +5302,7 @@ class SoFifa23Service {
 		Player.create("Gabby Adebambo", "G. Adebambo", "Republic of Ireland", ['CDM', 'CB', 'LB'], 20, 54, club, 274475, false);
 		Player.create("Tom Edwards", "T. Edwards", "England", ['RB', 'CB', 'RWB'], 23, 68, club, 238319, true);
 
-		club = Club.create("Queens Park Rangers", "England", 15, "rgb(130,158,185)", "black");
+		club = Club.create("Queens Park Rangers", "England", 15, "#829EB9", "#000000");
 		Player.create("Seny Dieng", "S. Dieng", "Senegal", ['GK'], 27, 71, club, 239358, true);
 		Player.create("Ethan Laird", "E. Laird", "England", ['RB', 'RWB'], 20, 71, club, 246159, true);
 		Player.create("Rob Dickie", "R. Dickie", "England", ['CB'], 26, 72, club, 223159, true);
@@ -5334,7 +5334,7 @@ class SoFifa23Service {
 		Player.create("Joe Walsh", "J. Walsh", "England", ['GK'], 20, 55, club, 250804, true);
 		Player.create("Alexander Aoraha", "A. Aoraha", "Iraq", ['CM'], 19, 55, club, 274931, false);
 
-		club = Club.create("Millwall", "England", 97, "rgb(57,61,82)", "white");
+		club = Club.create("Millwall", "England", 97, "#393D52", "#FFFFFF");
 		Player.create("George Long", "G. Long", "England", ['GK'], 28, 70, club, 202199, true);
 		Player.create("Danny McNamara", "D. McNamara", "Republic of Ireland", ['RB', 'RWB'], 23, 71, club, 239443, true);
 		Player.create("Charlie Cresswell", "C. Cresswell", "England", ['CB'], 19, 70, club, 254121, true);
@@ -5363,7 +5363,7 @@ class SoFifa23Service {
 		Player.create("Ryan Sandford", "R. Sandford", "England", ['GK'], 23, 55, club, 233505, true);
 		Player.create("Aidomo Emakhu", "A. Emakhu", "Republic of Ireland", ['ST'], 18, 55, club, 263271, true);
 
-		club = Club.create("Luton Town", "England", 1923, "rgb(184,82,70)", "white");
+		club = Club.create("Luton Town", "England", 1923, "#B85246", "#FFFFFF");
 		Player.create("Ethan Horvath", "E. Horvath", "United States", ['GK'], 27, 72, club, 219736, true);
 		Player.create("Cody Drameh", "C. Drameh", "England", ['RWB', 'RB'], 20, 69, club, 254529, true);
 		Player.create("Tom Lockyer", "T. Lockyer", "Wales", ['CB'], 27, 73, club, 211363, true);
@@ -5393,7 +5393,7 @@ class SoFifa23Service {
 		Player.create("Avan Jones", "A. Jones", "England", ['RWB', 'RB'], 20, 51, club, 257187, true);
 		Player.create("Aribim Pepple", "A. Pepple", "Canada", ['ST'], 19, 57, club, 271325, true);
 
-		club = Club.create("Hull City", "England", 1952, "rgb(120,80,47)", "white");
+		club = Club.create("Hull City", "England", 1952, "#78502F", "#FFFFFF");
 		Player.create("Karl Darlow", "K. Darlow", "England", ['GK'], 31, 74, club, 193331, true);
 		Player.create("Lewie Coyle", "L. Coyle", "England", ['RB'], 26, 67, club, 224099, true);
 		Player.create("Alfie Jones", "A. Jones", "England", ['CB'], 24, 68, club, 236315, true);
@@ -5424,7 +5424,7 @@ class SoFifa23Service {
 		Player.create("Josh Hinds", "J. Hinds", "England", ['ST'], 19, 54, club, 263325, true);
 		Player.create("David Robson", "D. Robson", "Wales", ['GK'], 20, 52, club, 258888, true);
 
-		club = Club.create("Reading", "England", 1793, "rgb(126,144,174)", "black");
+		club = Club.create("Reading", "England", 1793, "#7E90AE", "#000000");
 		Player.create("Joe Lumley", "J. Lumley", "England", ['GK'], 27, 69, club, 217096, true);
 		Player.create("Andy Yiadom", "A. Yiadom", "Ghana", ['RWB', 'CB', 'RB'], 30, 70, club, 208052, true);
 		Player.create("Tom Holmes", "T. Holmes", "England", ['CB'], 22, 68, club, 241411, true);
@@ -5456,7 +5456,7 @@ class SoFifa23Service {
 		Player.create("Coniah Boyce-Clarke", "C. Boyce-Clarke", "Jamaica", ['GK'], 19, 59, club, 250831, true);
 		Player.create("Liam Moore", "L. Moore", "Jamaica", ['CB'], 29, 67, club, 200758, true);
 
-		club = Club.create("Birmingham City", "England", 88, "rgb(54,85,141)", "white");
+		club = Club.create("Birmingham City", "England", 88, "#36558D", "#FFFFFF");
 		Player.create("Neil Etheridge", "N. Etheridge", "Philippines", ['GK'], 32, 69, club, 193186, true);
 		Player.create("Maxime Colin", "M. Colin", "France", ['RWB', 'RB', 'CB'], 30, 70, club, 201136, true);
 		Player.create("Marc Roberts", "M. Roberts", "England", ['CB'], 31, 69, club, 228829, true);
@@ -5488,7 +5488,7 @@ class SoFifa23Service {
 		Player.create("Adan George", "A. George", "England", ['ST'], 19, 52, club, 256811, true);
 		Player.create("Brandon Khela", "B. Khela", "England", ['CM'], 17, 54, club, 270113, true);
 
-		club = Club.create("Sunderland", "England", 106, "rgb(181,117,127)", "black");
+		club = Club.create("Sunderland", "England", 106, "#B5757F", "#000000");
 		Player.create("Anthony Patterson", "A. Patterson", "England", ['GK'], 22, 69, club, 246417, true);
 		Player.create("Trai Hume", "T. Hume", "Northern Ireland", ['RB', 'CB'], 20, 67, club, 266400, true);
 		Player.create("Daniel Ballard", "D. Ballard", "Northern Ireland", ['CB'], 22, 71, club, 243908, true);
@@ -5520,7 +5520,7 @@ class SoFifa23Service {
 		Player.create("Joe Anderson", "J. Anderson", "England", ['CB'], 21, 60, club, 273898, false);
 		Player.create("Max Thompson", "M. Thompson", "England", ['ST'], 20, 59, club, 257254, true);
 
-		club = Club.create("Bristol City", "England", 1919, "rgb(181,70,75)", "white");
+		club = Club.create("Bristol City", "England", 1919, "#B5464B", "#FFFFFF");
 		Player.create("Max O'Leary", "M. O'Leary", "Republic of Ireland", ['GK'], 25, 69, club, 220807, true);
 		Player.create("George Tanner", "G. Tanner", "England", ['RB', 'RWB'], 22, 66, club, 242800, true);
 		Player.create("Zak Vyner", "Z. Vyner", "England", ['CB', 'CDM', 'RB'], 25, 67, club, 225072, true);
@@ -5551,7 +5551,7 @@ class SoFifa23Service {
 		Player.create("Harry Leeson", "H. Leeson", "Wales", ['RB'], 18, 52, club, 275091, false);
 		Player.create("James Taylor", "J. Taylor", "England", ['RB'], 20, 54, club, 270811, true);
 
-		club = Club.create("Huddersfield Town", "England", 1939, "rgb(114,142,177)", "black");
+		club = Club.create("Huddersfield Town", "England", 1939, "#728EB1", "#000000");
 		Player.create("Tomáš Vaclík", "T. Vaclík", "Czech Republic", ['GK'], 33, 76, club, 204120, true);
 		Player.create("Matty Pearson", "M. Pearson", "England", ['CB', 'RB'], 28, 70, club, 208014, true);
 		Player.create("Tom Lees", "T. Lees", "England", ['CB'], 31, 67, club, 193569, true);
@@ -5583,7 +5583,7 @@ class SoFifa23Service {
 		Player.create("Duane Holmes", "D. Holmes", "United States", ['RW', 'CM', 'LW'], 27, 68, club, 213948, true);
 		Player.create("Jordan Smith", "J. Smith", "England", ['GK'], 27, 67, club, 222876, true);
 
-		club = Club.create("Swansea City", "England", 1960, "rgb(202,201,200)", "black");
+		club = Club.create("Swansea City", "England", 1960, "#CAC9C8", "#000000");
 		Player.create("Andy Fisher", "A. Fisher", "England", ['GK'], 24, 65, club, 234260, true);
 		Player.create("Joel Latibeaudiere", "J. Latibeaudiere", "Jamaica", ['CB', 'RWB'], 22, 68, club, 233047, true);
 		Player.create("Ben Cabango", "B. Cabango", "Wales", ['CB'], 22, 70, club, 248687, true);
@@ -5615,7 +5615,7 @@ class SoFifa23Service {
 		Player.create("Liam Smith", "L. Smith", "Scotland", ['RW'], 18, 53, club, 275005, false);
 		Player.create("Lewis Webb", "L. Webb", "Wales", ['GK'], 20, 55, club, 259370, true);
 
-		club = Club.create("Wigan Athletic", "England", 1917, "rgb(114,128,157)", "white");
+		club = Club.create("Wigan Athletic", "England", 1917, "#72809D", "#FFFFFF");
 		Player.create("Ben Amos", "B. Amos", "England", ['GK'], 32, 67, club, 173531, true);
 		Player.create("Tendayi Darikwa", "T. Darikwa", "Zimbabwe", ['RWB', 'RB', 'LB'], 30, 68, club, 200309, true);
 		Player.create("Omar Rekik", "O. Rekik", "Tunisia", ['CB'], 20, 64, club, 258033, true);
@@ -5647,7 +5647,7 @@ class SoFifa23Service {
 		Player.create("Danel Sinani", "D. Sinani", "Luxembourg", ['RM', 'CAM', 'RW'], 25, 69, club, 258626, true);
 		Player.create("Jason Kerr", "J. Kerr", "Scotland", ['CB'], 25, 69, club, 225589, true);
 
-		club = Club.create("Cardiff City", "England", 1961, "rgb(41,74,159)", "white");
+		club = Club.create("Cardiff City", "England", 1961, "#294A9F", "#FFFFFF");
 		Player.create("Ryan Allsop", "R. Allsop", "England", ['GK'], 30, 68, club, 199812, true);
 		Player.create("Jaden Philogene", "J. Philogene", "England", ['RM', 'LM', 'LW'], 20, 68, club, 261336, true);
 		Player.create("Perry Ng", "P. Ng", "England", ['CB', 'RB'], 26, 68, club, 223905, true);
@@ -5679,7 +5679,7 @@ class SoFifa23Service {
 		Player.create("Oliver Denham", "O. Denham", "Wales", ['CB'], 20, 57, club, 264695, true);
 		Player.create("Rohan Luthra", "R. Luthra", "England", ['GK'], 20, 53, club, 269613, true);
 
-		club = Club.create("Rotherham United", "England", 1797, "rgb(171,62,68)", "white");
+		club = Club.create("Rotherham United", "England", 1797, "#AB3E44", "#FFFFFF");
 		Player.create("Viktor Johansson", "V. Johansson", "Sweden", ['GK'], 23, 70, club, 241643, true);
 		Player.create("Lee Peltier", "L. Peltier", "England", ['CB', 'RB'], 35, 66, club, 169575, true);
 		Player.create("Bailey Wright", "B. Wright", "Australia", ['CB'], 29, 68, club, 198810, true);
@@ -5710,7 +5710,7 @@ class SoFifa23Service {
 		Player.create("Robbie Hemfrey", "R. Hemfrey", "Scotland", ['GK'], 20, 51, club, 271994, false);
 		Player.create("Mackenzie Warne", "M. Warne", "England", ['CM'], 18, 48, club, 273078, false);
 
-		club = Club.create("Blackpool", "England", 1926, "rgb(210,93,52)", "white");
+		club = Club.create("Blackpool", "England", 1926, "#D25D34", "#FFFFFF");
 		Player.create("Daniel Grimshaw", "D. Grimshaw", "England", ['GK'], 24, 65, club, 224947, true);
 		Player.create("Callum Connolly", "C. Connolly", "England", ['CDM', 'RB', 'CB'], 24, 67, club, 229605, true);
 		Player.create("Marvin Ekpiteta", "M. Ekpiteta", "England", ['CB'], 26, 69, club, 250810, true);
@@ -5742,7 +5742,7 @@ class SoFifa23Service {
 		Player.create("Beryly Lubala", "B. Lubala", "Congo DR", ['LM'], 24, 63, club, 234241, true);
 		Player.create("Zak Emmerson", "Z. Emmerson", "England", ['CF', 'ST'], 17, 56, club, 256353, false);
 
-		club = Club.create("Sheffield Wednesday", "England", 1807, "rgb(114,127,172)", "white");
+		club = Club.create("Sheffield Wednesday", "England", 1807, "#727FAC", "#FFFFFF");
 		Player.create("Cameron Dawson", "C. Dawson", "England", ['GK'], 26, 66, club, 214088, true);
 		Player.create("Liam Palmer", "L. Palmer", "Scotland", ['RWB', 'CB'], 30, 69, club, 198377, true);
 		Player.create("Dominic Iorfa", "D. Iorfa", "England", ['CB'], 27, 66, club, 218658, true);
@@ -5772,7 +5772,7 @@ class SoFifa23Service {
 		Player.create("George Byers", "G. Byers", "Scotland", ['CM'], 26, 68, club, 224855, true);
 		Player.create("Ben Heneghan", "B. Heneghan", "England", ['CB'], 28, 65, club, 200742, true);
 
-		club = Club.create("Derby County", "England", 91, "rgb(181,180,179)", "black");
+		club = Club.create("Derby County", "England", 91, "#B5B4B3", "#000000");
 		Player.create("Joe Wildsmith", "J. Wildsmith", "England", ['GK'], 26, 68, club, 220944, true);
 		Player.create("Jason Knight", "J. Knight", "Republic of Ireland", ['CAM', 'CM', 'RB'], 21, 69, club, 252376, true);
 		Player.create("Craig Forsyth", "C. Forsyth", "Scotland", ['CB', 'LB'], 33, 67, club, 204353, true);
@@ -5800,7 +5800,7 @@ class SoFifa23Service {
 		Player.create("Darren Robinson", "D. Robinson", "Northern Ireland", ['CM', 'CDM', 'CB'], 17, 54, club, 270593, false);
 		Player.create("Bartosz Cybulski", "B. Cybulski", "Poland", ['ST'], 19, 54, club, 268741, false);
 
-		club = Club.create("Ipswich Town", "England", 94, "rgb(58,69,116)", "white");
+		club = Club.create("Ipswich Town", "England", 94, "#3A4574", "#FFFFFF");
 		Player.create("Christian Walton", "C. Walton", "England", ['GK'], 26, 68, club, 206561, true);
 		Player.create("Harry Clarke", "H. Clarke", "England", ['RB', 'CB'], 21, 67, club, 245729, true);
 		Player.create("Luke Woolfenden", "L. Woolfenden", "England", ['CB'], 23, 68, club, 240500, true);
@@ -5830,7 +5830,7 @@ class SoFifa23Service {
 		Player.create("George Edmundson", "G. Edmundson", "England", ['CB'], 24, 66, club, 228888, true);
 		Player.create("Tyreece John-Jules", "T. John-Jules", "England", ['ST', 'LW'], 21, 64, club, 242710, true);
 
-		club = Club.create("Charlton Athletic", "England", 89, "rgb(180,58,60)", "white");
+		club = Club.create("Charlton Athletic", "England", 89, "#B43A3C", "#FFFFFF");
 		Player.create("Ashley Maynard-Brewer", "A. Maynard-Brewer", "Australia", ['GK'], 23, 64, club, 237205, true);
 		Player.create("Sean Clare", "S. Clare", "England", ['RB', 'CB'], 25, 65, club, 233315, true);
 		Player.create("Michael Hector", "M. Hector", "Jamaica", ['CB'], 29, 70, club, 200138, false);
@@ -5858,7 +5858,7 @@ class SoFifa23Service {
 		Player.create("Nathan Harness", "N. Harness", "England", ['GK'], 22, 53, club, 255054, true);
 		Player.create("Daniel Kanu", "D. Kanu", "England", ['ST'], 17, 54, club, 267941, true);
 
-		club = Club.create("Plymouth Argyle", "England", 1929, "rgb(77,92,86)", "white");
+		club = Club.create("Plymouth Argyle", "England", 1929, "#4D5C56", "#FFFFFF");
 		Player.create("Callum Burton", "C. Burton", "England", ['GK'], 25, 63, club, 222095, true);
 		Player.create("Joe Edwards", "J. Edwards", "England", ['RWB', 'LWB'], 31, 67, club, 192231, true);
 		Player.create("James Wilson", "J. Wilson", "Wales", ['CB'], 33, 67, club, 173734, true);
@@ -5888,7 +5888,7 @@ class SoFifa23Service {
 		Player.create("Conor Grant", "C. Grant", "England", ['LWB'], 27, 65, club, 216790, true);
 		Player.create("Michael Cooper", "M. Cooper", "England", ['GK'], 22, 71, club, 240987, true);
 
-		club = Club.create("Peterborough United", "England", 1938, "rgb(48,97,151)", "white");
+		club = Club.create("Peterborough United", "England", 1938, "#306197", "#FFFFFF");
 		Player.create("Will Norris", "W. Norris", "England", ['GK'], 28, 65, club, 223082, true);
 		Player.create("Nathan Thompson", "N. Thompson", "England", ['RB', 'RWB', 'CB'], 31, 66, club, 192695, true);
 		Player.create("Frankie Kent", "F. Kent", "England", ['CB'], 26, 66, club, 220140, true);
@@ -5914,7 +5914,7 @@ class SoFifa23Service {
 		Player.create("Kai Corbett", "K. Corbett", "England", ['ST'], 19, 56, club, 265606, true);
 		Player.create("Benjamin Mensah", "B. Mensah", "England", ['RB', 'RWB'], 19, 51, club, 260742, true);
 
-		club = Club.create("Bolton Wanderers", "England", 4, "rgb(192,192,190)", "black");
+		club = Club.create("Bolton Wanderers", "England", 4, "#C0C0BE", "#000000");
 		Player.create("James Trafford", "J. Trafford", "England", ['GK'], 19, 68, club, 263063, true);
 		Player.create("Conor Bradley", "C. Bradley", "Northern Ireland", ['RWB'], 18, 68, club, 264298, true);
 		Player.create("Gethin Jones", "G. Jones", "Wales", ['CB', 'RWB'], 26, 64, club, 224447, true);
@@ -5943,7 +5943,7 @@ class SoFifa23Service {
 		Player.create("Jón Daði Böðvarsson", "J. Böðvarsson", "Iceland", ['ST'], 30, 64, club, 212992, true);
 		Player.create("Jack Iredale", "J. Iredale", "Australia", ['LWB', 'CB'], 26, 64, club, 248718, true);
 
-		club = Club.create("Shrewsbury Town", "England", 127, "rgb(115,112,105)", "white");
+		club = Club.create("Shrewsbury Town", "England", 127, "#737069", "#FFFFFF");
 		Player.create("Marko Maroši", "M. Maroši", "Slovakia", ['GK'], 28, 67, club, 221531, true);
 		Player.create("Taylor Moore", "T. Moore", "England", ['CB', 'RWB', 'CM'], 25, 65, club, 226791, true);
 		Player.create("Matthew Pennington", "M. Pennington", "England", ['CB'], 27, 66, club, 216791, true);
@@ -5970,7 +5970,7 @@ class SoFifa23Service {
 		Player.create("Tom Bayliss", "T. Bayliss", "England", ['CAM', 'CM'], 23, 66, club, 239553, true);
 		Player.create("George Nurse", "G. Nurse", "England", ['LWB', 'CB'], 23, 65, club, 241397, true);
 
-		club = Club.create("Barnsley", "England", 1932, "rgb(190,42,57)", "white");
+		club = Club.create("Barnsley", "England", 1932, "#BE2A39", "#FFFFFF");
 		Player.create("Harry Isted", "H. Isted", "England", ['GK'], 25, 63, club, 222503, true);
 		Player.create("Jordan Williams", "J. Williams", "England", ['RWB'], 22, 67, club, 237415, true);
 		Player.create("Bobby Thomas", "B. Thomas", "England", ['CB'], 21, 66, club, 257253, true);
@@ -6000,7 +6000,7 @@ class SoFifa23Service {
 		Player.create("Jordan Helliwell", "J. Helliwell", "England", ['RWB', 'RB'], 20, 55, club, 248494, true);
 		Player.create("Jamie Searle", "J. Searle", "New Zealand", ['GK'], 21, 53, club, 263373, false);
 
-		club = Club.create("Wycombe Wanderers", "England", 1933, "rgb(54,97,130)", "white");
+		club = Club.create("Wycombe Wanderers", "England", 1933, "#366182", "#FFFFFF");
 		Player.create("Max Stryjek", "M. Stryjek", "Poland", ['GK'], 25, 68, club, 224543, true);
 		Player.create("Jason McCarthy", "J. McCarthy", "England", ['RB', 'RWB'], 26, 65, club, 215758, true);
 		Player.create("Chris Forino", "C. Forino", "England", ['CB'], 22, 65, club, 244240, true);
@@ -6029,7 +6029,7 @@ class SoFifa23Service {
 		Player.create("Arnold Matshazi", "A. Matshazi", "England", ['ST'], 18, 53, club, 271431, false);
 		Player.create("Josh Blunkell", "J. Blunkell", "England", ['GK'], 18, 52, club, 271070, true);
 
-		club = Club.create("Oxford United", "England", 1951, "rgb(189,165,103)", "black");
+		club = Club.create("Oxford United", "England", 1951, "#BDA567", "#000000");
 		Player.create("Simon Eastwood", "S. Eastwood", "England", ['GK'], 33, 63, club, 173895, true);
 		Player.create("Sam Long", "S. Long", "England", ['RB', 'CB'], 27, 64, club, 211203, true);
 		Player.create("Elliott Moore", "E. Moore", "England", ['CB'], 25, 65, club, 235263, true);
@@ -6059,7 +6059,7 @@ class SoFifa23Service {
 		Player.create("Teddy Mfuni", "T. Mfuni", "England", ['CB'], 18, 53, club, 273457, false);
 		Player.create("Lewis Bate", "L. Bate", "England", ['CM', 'CDM'], 19, 66, club, 261374, true);
 
-		club = Club.create("Portsmouth", "England", 1790, "rgb(58,93,153)", "white");
+		club = Club.create("Portsmouth", "England", 1790, "#3A5D99", "#FFFFFF");
 		Player.create("Matt Macey", "M. Macey", "England", ['GK'], 27, 67, club, 213407, true);
 		Player.create("Joe Rafferty", "J. Rafferty", "Republic of Ireland", ['RB'], 28, 66, club, 210029, true);
 		Player.create("Di'Shon Bernard", "D. Bernard", "England", ['CB', 'RB'], 21, 68, club, 253034, true);
@@ -6089,7 +6089,7 @@ class SoFifa23Service {
 		Player.create("Harry Jewitt-White", "H. Jewitt-White", "Wales", ['CM', 'CDM'], 18, 53, club, 264030, false);
 		Player.create("Ronan Curtis", "R. Curtis", "Republic of Ireland", ['LM', 'ST'], 26, 65, club, 228111, true);
 
-		club = Club.create("Milton Keynes Dons", "England", 1798, "rgb(186,185,184)", "black");
+		club = Club.create("Milton Keynes Dons", "England", 1798, "#BAB9B8", "#000000");
 		Player.create("Jamie Cumming", "J. Cumming", "England", ['GK'], 22, 66, club, 238070, true);
 		Player.create("Tennai Watson", "T. Watson", "England", ['RWB', 'RB'], 25, 64, club, 224307, true);
 		Player.create("Anthony Stewart", "A. Stewart", "England", ['CB'], 29, 66, club, 203139, true);
@@ -6118,7 +6118,7 @@ class SoFifa23Service {
 		Player.create("Daniel Harvie", "D. Harvie", "Scotland", ['LWB', 'LB'], 23, 65, club, 226514, true);
 		Player.create("Joshua Kayode", "J. Kayode", "Republic of Ireland", ['ST'], 22, 62, club, 240967, true);
 
-		club = Club.create("Fleetwood Town", "England", 112260, "rgb(182,84,90)", "white");
+		club = Club.create("Fleetwood Town", "England", 112260, "#B6545A", "#FFFFFF");
 		Player.create("Jay Lynch", "J. Lynch", "England", ['GK'], 29, 66, club, 207606, true);
 		Player.create("Shaun Rooney", "S. Rooney", "Scotland", ['RB', 'RWB'], 25, 67, club, 256952, true);
 		Player.create("Brendan Wiredu", "B. Wiredu", "England", ['CB', 'CDM', 'CM'], 22, 64, club, 246723, true);
@@ -6148,7 +6148,7 @@ class SoFifa23Service {
 		Player.create("Sam Glenfield", "S. Glenfield", "Northern Ireland", ['ST'], 17, 52, club, 272401, false);
 		Player.create("Sam Bird", "S. Bird", "England", ['CB', 'RB'], 19, 50, club, 262108, true);
 
-		club = Club.create("Exeter City", "England", 143, "rgb(205,107,107)", "black");
+		club = Club.create("Exeter City", "England", 143, "#CD6B6B", "#000000");
 		Player.create("Jamal Blackman", "J. Blackman", "England", ['GK'], 28, 67, club, 204846, true);
 		Player.create("Josh Key", "J. Key", "England", ['RWB', 'CB'], 22, 66, club, 244870, true);
 		Player.create("Pierce Sweeney", "P. Sweeney", "Republic of Ireland", ['CB'], 27, 64, club, 207646, true);
@@ -6178,7 +6178,7 @@ class SoFifa23Service {
 		Player.create("Kyle Taylor", "K. Taylor", "England", ['CM'], 23, 59, club, 239676, true);
 		Player.create("Jevani Brown", "J. Brown", "Jamaica", ['ST', 'CAM'], 27, 67, club, 213434, true);
 
-		club = Club.create("Cheltenham Town", "England", 1936, "rgb(184,46,63)", "white");
+		club = Club.create("Cheltenham Town", "England", 1936, "#B82E3F", "#FFFFFF");
 		Player.create("Luke Southwood", "L. Southwood", "Northern Ireland", ['GK'], 24, 65, club, 235027, true);
 		Player.create("Ryan Jackson", "R. Jackson", "England", ['RWB'], 31, 63, club, 204095, true);
 		Player.create("Seàn Long", "S. Long", "Republic of Ireland", ['CB'], 27, 64, club, 218591, true);
@@ -6203,7 +6203,7 @@ class SoFifa23Service {
 		Player.create("Elkan Baggott", "E. Baggott", "Indonesia", ['CB'], 19, 60, club, 260798, true);
 		Player.create("Dylan Barkers", "D. Barkers", "Netherlands", ['CDM'], 22, 56, club, 263774, true);
 
-		club = Club.create("Lincoln City", "England", 149, "rgb(192,115,123)", "black");
+		club = Club.create("Lincoln City", "England", 149, "#C0737B", "#000000");
 		Player.create("Carl Rushworth", "C. Rushworth", "England", ['GK'], 20, 66, club, 263339, true);
 		Player.create("Lasse Sørensen", "L. Sørensen", "Denmark", ['RWB', 'CDM'], 22, 63, club, 240826, true);
 		Player.create("Regan Poole", "R. Poole", "Wales", ['CB', 'RWB'], 24, 66, club, 225557, true);
@@ -6233,7 +6233,7 @@ class SoFifa23Service {
 		Player.create("Lewis Montsma", "L. Montsma", "Netherlands", ['CB'], 24, 65, club, 257303, true);
 		Player.create("Charles Vernam", "C. Vernam", "England", ['LW', 'LM'], 25, 61, club, 212167, true);
 
-		club = Club.create("Cambridge United", "England", 1944, "rgb(202,131,55)", "black");
+		club = Club.create("Cambridge United", "England", 1944, "#CA8337", "#000000");
 		Player.create("Dimitar Mitov", "D. Mitov", "Bulgaria", ['GK'], 25, 64, club, 225280, true);
 		Player.create("Liam Bennett", "L. Bennett", "England", ['RB', 'RWB'], 20, 64, club, 262713, true);
 		Player.create("Michael Morrison", "M. Morrison", "England", ['CB'], 34, 64, club, 188782, true);
@@ -6263,7 +6263,7 @@ class SoFifa23Service {
 		Player.create("Kai Yearn", "K. Yearn", "England", ['CAM'], 17, 51, club, 266524, false);
 		Player.create("Adam May", "A. May", "England", ['CDM', 'CAM'], 24, 65, club, 228584, true);
 
-		club = Club.create("Forest Green Rovers", "England", 561, "rgb(116,149,63)", "black");
+		club = Club.create("Forest Green Rovers", "England", 561, "#74953F", "#000000");
 		Player.create("Ross Doohan", "R. Doohan", "Scotland", ['GK'], 24, 62, club, 257237, true);
 		Player.create("Udoka Godwin-Malife", "U. Godwin-Malife", "England", ['CB', 'RB'], 22, 63, club, 247073, true);
 		Player.create("Olly Casey", "O. Casey", "England", ['CB'], 21, 62, club, 247350, true);
@@ -6293,7 +6293,7 @@ class SoFifa23Service {
 		Player.create("Tyler Onyango", "T. Onyango", "England", ['CM', 'CAM'], 19, 60, club, 263168, true);
 		Player.create("Jahmari Clarke", "J. Clarke", "Jamaica", ['ST'], 18, 58, club, 264051, true);
 
-		club = Club.create("Morecambe", "England", 357, "rgb(150,64,69)", "white");
+		club = Club.create("Morecambe", "England", 357, "#964045", "#FFFFFF");
 		Player.create("Connor Ripley", "C. Ripley", "England", ['GK'], 29, 66, club, 202770, true);
 		Player.create("Ryan Cooney", "R. Cooney", "England", ['RWB', 'RB'], 22, 64, club, 236923, true);
 		Player.create("Farrend Rawson", "F. Rawson", "England", ['CB'], 25, 63, club, 223852, true);
@@ -6320,7 +6320,7 @@ class SoFifa23Service {
 		Player.create("Cameron Rooney", "C. Rooney", "England", ['CM'], 17, 50, club, 271677, false);
 		Player.create("Courtney Duffus", "C. Duffus", "Republic of Ireland", ['ST'], 26, 57, club, 216794, true);
 
-		club = Club.create("Port Vale", "England", 1928, "rgb(181,181,180)", "black");
+		club = Club.create("Port Vale", "England", 1928, "#B5B5B4", "#000000");
 		Player.create("Aidan Stone", "A. Stone", "England", ['GK'], 22, 62, club, 243594, true);
 		Player.create("David Worrall", "D. Worrall", "England", ['RWB'], 32, 64, club, 179636, true);
 		Player.create("Will Forrester", "W. Forrester", "England", ['CB'], 21, 62, club, 254522, true);
@@ -6348,7 +6348,7 @@ class SoFifa23Service {
 		Player.create("Tommy McDermott", "T. McDermott", "England", ['CAM'], 17, 55, club, 271065, true);
 		Player.create("James Plant", "J. Plant", "England", ['RWB', 'CM'], 18, 51, club, 271126, true);
 
-		club = Club.create("Burton Albion", "England", 15015, "rgb(213,195,37)", "black");
+		club = Club.create("Burton Albion", "England", 15015, "#D5C325", "#000000");
 		Player.create("Craig MacGillivray", "C. MacGillivray", "Scotland", ['GK'], 29, 64, club, 223727, true);
 		Player.create("Deji Oshilaja", "D. Oshilaja", "England", ['CDM', 'CM', 'CB'], 29, 64, club, 204458, true);
 		Player.create("John Brayford", "J. Brayford", "England", ['CB', 'RB', 'RWB'], 34, 64, club, 190247, true);
@@ -6378,7 +6378,7 @@ class SoFifa23Service {
 		Player.create("Terry Taylor", "T. Taylor", "Wales", ['CDM', 'CM'], 21, 66, club, 251592, true);
 		Player.create("Louis Moult", "L. Moult", "England", ['ST'], 30, 62, club, 194925, true);
 
-		club = Club.create("Bristol Rovers", "England", 1962, "rgb(111,126,153)", "white");
+		club = Club.create("Bristol Rovers", "England", 1962, "#6F7E99", "#FFFFFF");
 		Player.create("James Belshaw", "J. Belshaw", "England", ['GK'], 31, 64, club, 257862, true);
 		Player.create("Luca Hoole", "L. Hoole", "Wales", ['RB', 'CB'], 20, 62, club, 258606, true);
 		Player.create("Jarell Quansah", "J. Quansah", "England", ['CB'], 19, 60, club, 273651, false);
@@ -6407,7 +6407,7 @@ class SoFifa23Service {
 		Player.create("Jerry Lawrence", "J. Lawrence", "England", ['CM'], 17, 52, club, 271129, true);
 		Player.create("Jordan Rossiter", "J. Rossiter", "England", ['CDM', 'CM'], 25, 63, club, 221358, true);
 
-		club = Club.create("Accrington Stanley", "England", 110313, "rgb(190,49,63)", "white");
+		club = Club.create("Accrington Stanley", "England", 110313, "#BE313F", "#FFFFFF");
 		Player.create("Lukas Jensen", "L. Jensen", "Denmark", ['GK'], 23, 60, club, 243373, true);
 		Player.create("Mitch Clark", "M. Clark", "Wales", ['RWB', 'RB'], 23, 64, club, 240604, true);
 		Player.create("Michael Nottingham", "M. Nottingham", "Saint Kitts and Nevis", ['CB'], 33, 65, club, 243622, true);
@@ -6437,7 +6437,7 @@ class SoFifa23Service {
 		Player.create("David Morgan", "D. Morgan", "Northern Ireland", ['CM', 'CDM'], 27, 60, club, 210987, true);
 		Player.create("Korede Adedoyin", "K. Adedoyin", "Nigeria", ['ST'], 21, 58, club, 252748, true);
 
-		club = Club.create("Salford City", "England", 113926, "rgb(202,49,52)", "white");
+		club = Club.create("Salford City", "England", 113926, "#CA3134", "#FFFFFF");
 		Player.create("Alex Cairns", "A. Cairns", "England", ['GK'], 29, 63, club, 203215, true);
 		Player.create("Liam Shephard", "L. Shephard", "Wales", ['RB', 'RWB'], 27, 62, club, 216453, true);
 		Player.create("Theo Vassell", "T. Vassell", "England", ['CB'], 25, 64, club, 231481, true);
@@ -6467,7 +6467,7 @@ class SoFifa23Service {
 		Player.create("Joel Torrance", "J. Torrance", "England", ['GK'], 20, 54, club, 264497, false);
 		Player.create("Ashley Eastham", "A. Eastham", "England", ['CB'], 31, 63, club, 194678, true);
 
-		club = Club.create("Stevenage", "England", 361, "rgb(140,59,63)", "white");
+		club = Club.create("Stevenage", "England", 361, "#8C3B3F", "#FFFFFF");
 		Player.create("Thimothée Lo-Tutala", "T. Lo-Tutala", "France", ['GK'], 19, 57, club, 271333, true);
 		Player.create("Luther James-Wildin", "L. James-Wildin", "Antigua and Barbuda", ['RWB', 'RB'], 24, 63, club, 235773, true);
 		Player.create("Dan Sweeney", "D. Sweeney", "England", ['CB'], 28, 65, club, 211217, true);
@@ -6496,7 +6496,7 @@ class SoFifa23Service {
 		Player.create("Taye Ashby-Hammond", "T. Ashby-Hammond", "England", ['GK'], 23, 62, club, 241525, true);
 		Player.create("Elliott List", "E. List", "England", ['ST'], 25, 63, club, 228685, true);
 
-		club = Club.create("Northampton Town", "England", 1930, "rgb(172,147,146)", "black");
+		club = Club.create("Northampton Town", "England", 1930, "#AC9392", "#000000");
 		Player.create("Lee Burge", "L. Burge", "England", ['GK'], 29, 64, club, 203175, true);
 		Player.create("Harvey Lintott", "H. Lintott", "England", ['RB'], 19, 60, club, 260717, true);
 		Player.create("Sam Sherring", "S. Sherring", "England", ['CB'], 22, 62, club, 243765, true);
@@ -6526,7 +6526,7 @@ class SoFifa23Service {
 		Player.create("Ben Fox", "B. Fox", "England", ['CM'], 24, 62, club, 235216, true);
 		Player.create("Jonny Maxted", "J. Maxted", "England", ['GK'], 28, 59, club, 206500, true);
 
-		club = Club.create("Leyton Orient", "England", 1958, "rgb(155,42,46)", "white");
+		club = Club.create("Leyton Orient", "England", 1958, "#9B2A2E", "#FFFFFF");
 		Player.create("Lawrence Vigouroux", "L. Vigouroux", "Chile", ['GK'], 28, 65, club, 213413, true);
 		Player.create("Tom James", "T. James", "Wales", ['RB'], 26, 63, club, 222583, true);
 		Player.create("Omar Beckles", "O. Beckles", "Grenada", ['CB'], 30, 65, club, 194759, true);
@@ -6556,7 +6556,7 @@ class SoFifa23Service {
 		Player.create("Stephen Duke-McKenna", "S. Duke-McKenna", "Guyana", ['RM', 'LM', 'CAM'], 21, 58, club, 242961, true);
 		Player.create("Dan Happe", "D. Happe", "England", ['CB'], 23, 64, club, 238179, true);
 
-		club = Club.create("Gillingham", "England", 1802, "rgb(53,108,169)", "white");
+		club = Club.create("Gillingham", "England", 1802, "#356CA9", "#FFFFFF");
 		Player.create("Glenn Morris", "G. Morris", "England", ['GK'], 38, 62, club, 19541, true);
 		Player.create("Cheye Alexander", "C. Alexander", "England", ['RB'], 27, 60, club, 257478, true);
 		Player.create("Conor Masterson", "C. Masterson", "Republic of Ireland", ['CB'], 23, 63, club, 232102, true);
@@ -6586,7 +6586,7 @@ class SoFifa23Service {
 		Player.create("Scott Kashket", "S. Kashket", "England", ['ST', 'LM'], 26, 60, club, 224770, true);
 		Player.create("Lewis Walker", "L. Walker", "England", ['ST'], 24, 56, club, 235060, true);
 
-		club = Club.create("Walsall", "England", 1803, "rgb(197,43,61)", "white");
+		club = Club.create("Walsall", "England", 1803, "#C52B3D", "#FFFFFF");
 		Player.create("Owen Evans", "O. Evans", "Wales", ['GK'], 25, 62, club, 230893, true);
 		Player.create("Joe Riley", "J. Riley", "England", ['RWB', 'CM'], 25, 63, club, 233114, true);
 		Player.create("Oisín McEntee", "O. McEntee", "Republic of Ireland", ['CB'], 21, 58, club, 253111, true);
@@ -6615,7 +6615,7 @@ class SoFifa23Service {
 		Player.create("Jonas Mukuna", "J. Mukuna", "England", ['LM', 'RM'], 17, 53, club, 271711, false);
 		Player.create("Jack Earing", "J. Earing", "England", ['CDM', 'CM'], 23, 62, club, 240323, true);
 
-		club = Club.create("Bradford City", "England", 1804, "rgb(163,91,55)", "white");
+		club = Club.create("Bradford City", "England", 1804, "#A35B37", "#FFFFFF");
 		Player.create("Harry Lewis", "H. Lewis", "England", ['GK'], 24, 65, club, 222096, true);
 		Player.create("Bradley Halliday", "B. Halliday", "England", ['RB'], 26, 64, club, 219467, true);
 		Player.create("Sam Stubbs", "S. Stubbs", "England", ['CB'], 23, 64, club, 237341, true);
@@ -6645,7 +6645,7 @@ class SoFifa23Service {
 		Player.create("Oscar Threlkeld", "O. Threlkeld", "England", ['RB'], 28, 57, club, 217191, true);
 		Player.create("Heath Richardson", "H. Richardson", "England", ['GK'], 18, 51, club, 269990, true);
 
-		club = Club.create("Barrow", "England", 381, "rgb(127,162,183)", "black");
+		club = Club.create("Barrow", "England", 381, "#7FA2B7", "#000000");
 		Player.create("Paul Farman", "P. Farman", "England", ['GK'], 32, 61, club, 212175, true);
 		Player.create("Tyrell Warren", "T. Warren", "England", ['RB'], 23, 63, club, 237696, true);
 		Player.create("Sam McClelland", "S. McClelland", "Northern Ireland", ['CB', 'RB'], 20, 61, club, 253483, true);
@@ -6669,7 +6669,7 @@ class SoFifa23Service {
 		Player.create("Benni Smales-Braithwaite", "B. Smales-Braithwaite", "England", ['ST'], 20, 54, club, 271237, false);
 		Player.create("Scott Moloney", "S. Moloney", "England", ['GK'], 22, 54, club, 241401, false);
 
-		club = Club.create("Stockport County", "England", 1931, "rgb(45,92,148)", "white");
+		club = Club.create("Stockport County", "England", 1931, "#2D5C94", "#FFFFFF");
 		Player.create("Ben Hinchliffe", "B. Hinchliffe", "England", ['GK'], 34, 62, club, 169798, true);
 		Player.create("Kyle Knoyle", "K. Knoyle", "England", ['RWB', 'RB'], 25, 64, club, 229930, true);
 		Player.create("Akil Wright", "A. Wright", "England", ['CB'], 26, 62, club, 228159, true);
@@ -6698,7 +6698,7 @@ class SoFifa23Service {
 		Player.create("Paddy Madden", "P. Madden", "Republic of Ireland", ['ST'], 32, 64, club, 189808, true);
 		Player.create("Macauley Southam-Hales", "M. Southam-Hales", "Wales", ['RWB'], 26, 60, club, 223940, true);
 
-		club = Club.create("Swindon Town", "England", 1934, "rgb(163,41,51)", "white");
+		club = Club.create("Swindon Town", "England", 1934, "#A32933", "#FFFFFF");
 		Player.create("Sol Brynn", "S. Brynn", "England", ['GK'], 21, 63, club, 242853, true);
 		Player.create("Remeao Hutton", "R. Hutton", "England", ['RB', 'RWB'], 23, 64, club, 240248, true);
 		Player.create("Tom Brewitt", "T. Brewitt", "England", ['CB'], 25, 61, club, 237190, false);
@@ -6728,7 +6728,7 @@ class SoFifa23Service {
 		Player.create("Oscar Massey", "O. Massey", "England", ['LW', 'RW', 'ST'], 18, 53, club, 269794, true);
 		Player.create("Jack Copland", "J. Copland", "England", ['GK'], 17, 51, club, 272707, false);
 
-		club = Club.create("Mansfield Town", "England", 1940, "rgb(184,129,55)", "black");
+		club = Club.create("Mansfield Town", "England", 1940, "#B88137", "#000000");
 		Player.create("Christy Pym", "C. Pym", "England", ['GK'], 27, 61, club, 206555, true);
 		Player.create("Callum Johnson", "C. Johnson", "England", ['RWB', 'RB'], 25, 63, club, 230809, true);
 		Player.create("Alfie Kilgour", "A. Kilgour", "England", ['CB'], 24, 61, club, 231107, true);
@@ -6758,7 +6758,7 @@ class SoFifa23Service {
 		Player.create("Anthony Hartigan", "A. Hartigan", "England", ['CDM'], 22, 62, club, 238177, true);
 		Player.create("Cody Collins", "C. Collins", "England", ['CB'], 17, 53, club, 269606, false);
 
-		club = Club.create("Carlisle United", "England", 1480, "rgb(49,54,73)", "white");
+		club = Club.create("Carlisle United", "England", 1480, "#313649", "#FFFFFF");
 		Player.create("Tomáš Holý", "T. Holý", "Czech Republic", ['GK'], 30, 62, club, 199321, true);
 		Player.create("Joel Senior", "J. Senior", "England", ['RWB'], 23, 57, club, 251006, true);
 		Player.create("Corey Whelan", "C. Whelan", "Republic of Ireland", ['CB'], 24, 60, club, 242007, true);
@@ -6788,7 +6788,7 @@ class SoFifa23Service {
 		Player.create("Fin Back", "F. Back", "England", ['RWB'], 19, 60, club, 263951, true);
 		Player.create("Brennan Dickenson", "B. Dickenson", "England", ['LWB', 'CM', 'LW'], 29, 60, club, 207806, true);
 
-		club = Club.create("Crawley Town", "England", 110890, "rgb(173,53,54)", "white");
+		club = Club.create("Crawley Town", "England", 110890, "#AD3536", "#FFFFFF");
 		Player.create("Corey Addai", "C. Addai", "Jamaica", ['GK'], 24, 57, club, 233215, true);
 		Player.create("Travis Johnson", "T. Johnson", "England", ['RB', 'RWB', 'CB'], 21, 58, club, 244961, true);
 		Player.create("Harry Ransom", "H. Ransom", "England", ['CB'], 22, 55, club, 253997, true);
@@ -6818,7 +6818,7 @@ class SoFifa23Service {
 		Player.create("Jordon Mutch", "J. Mutch", "England", ['CM', 'CDM'], 30, 62, club, 186117, false);
 		Player.create("Ludwig Francillette", "L. Francillette", "France", ['CB'], 23, 61, club, 252933, true);
 
-		club = Club.create("Grimsby Town", "England", 92, "rgb(126,124,123)", "white");
+		club = Club.create("Grimsby Town", "England", 92, "#7E7C7B", "#FFFFFF");
 		Player.create("Max Crocombe", "M. Crocombe", "New Zealand", ['GK'], 28, 62, club, 206566, true);
 		Player.create("Michee Efete", "M. Efete", "Congo DR", ['RB', 'RWB', 'CB'], 25, 59, club, 219816, true);
 		Player.create("Andy Smith", "A. Smith", "England", ['CB'], 20, 61, club, 256482, true);
@@ -6845,7 +6845,7 @@ class SoFifa23Service {
 		Player.create("Owen Gallacher", "O. Gallacher", "Scotland", ['LB'], 23, 57, club, 241458, true);
 		Player.create("Evan Khouri", "E. Khouri", "England", ['LM', 'CM'], 19, 53, club, 261897, true);
 
-		club = Club.create("Harrogate Town", "England", 112222, "rgb(200,158,60)", "black");
+		club = Club.create("Harrogate Town", "England", 112222, "#C89E3C", "#000000");
 		Player.create("Mark Oxley", "M. Oxley", "England", ['GK'], 31, 59, club, 186494, true);
 		Player.create("Toby Sims", "T. Sims", "England", ['RB'], 24, 58, club, 273036, false);
 		Player.create("Anthony O'Connor", "A. O'Connor", "Republic of Ireland", ['CB'], 29, 63, club, 204297, true);
@@ -6872,7 +6872,7 @@ class SoFifa23Service {
 		Player.create("George Horbury", "G. Horbury", "England", ['CM'], 18, 51, club, 269878, true);
 		Player.create("Kayne Ramsay", "K. Ramsay", "England", ['RB', 'RWB'], 21, 62, club, 246137, true);
 
-		club = Club.create("Crewe Alexandra", "England", 121, "rgb(199,45,45)", "white");
+		club = Club.create("Crewe Alexandra", "England", 121, "#C72D2D", "#FFFFFF");
 		Player.create("Tom Booth", "T. Booth", "England", ['GK'], 17, 54, club, 269948, false);
 		Player.create("Kelvin Mellor", "K. Mellor", "England", ['RB'], 31, 59, club, 200286, true);
 		Player.create("Luke Offord", "L. Offord", "England", ['CB'], 22, 62, club, 241828, true);
@@ -6902,7 +6902,7 @@ class SoFifa23Service {
 		Player.create("Ty Webster", "T. Webster", "England", ['CM'], 17, 49, club, 274990, false);
 		Player.create("James Beadle", "J. Beadle", "England", ['GK'], 17, 59, club, 273621, false);
 
-		club = Club.create("Newport County", "England", 112254, "rgb(177,122,50)", "black");
+		club = Club.create("Newport County", "England", 112254, "#B17A32", "#000000");
 		Player.create("Joe Day", "J. Day", "England", ['GK'], 31, 60, club, 203034, true);
 		Player.create("Cameron Norman", "C. Norman", "England", ['RWB'], 26, 64, club, 213151, true);
 		Player.create("Matt Baker", "M. Baker", "Wales", ['CB', 'CM'], 19, 59, club, 271876, false);
@@ -6932,7 +6932,7 @@ class SoFifa23Service {
 		Player.create("Tom Stokes", "T. Stokes", "Wales", ['ST', 'LW'], 17, 51, club, 271517, false);
 		Player.create("Evan Cadwallader", "E. Cadwallader", "Wales", ['CB'], 17, 50, club, 274628, false);
 
-		club = Club.create("AFC Wimbledon", "England", 112259, "rgb(72,106,146)", "white");
+		club = Club.create("AFC Wimbledon", "England", 112259, "#486A92", "#FFFFFF");
 		Player.create("Nik Tzanev", "N. Tzanev", "New Zealand", ['GK'], 25, 62, club, 230971, true);
 		Player.create("Isaac Ogundere", "I. Ogundere", "England", ['RB', 'RWB'], 19, 56, club, 263938, true);
 		Player.create("Will Nightingale", "W. Nightingale", "England", ['CB'], 26, 62, club, 221538, true);
@@ -6962,7 +6962,7 @@ class SoFifa23Service {
 		Player.create("Elliott Bolton", "E. Bolton", "England", ['CM'], 20, 51, club, 258701, true);
 		Player.create("Aron Sasu", "A. Sasu", "Norway", ['ST'], 17, 50, club, 274228, false);
 
-		club = Club.create("Doncaster Rovers", "England", 142, "rgb(196,129,133)", "black");
+		club = Club.create("Doncaster Rovers", "England", 142, "#C48185", "#000000");
 		Player.create("Jonathan Mitchell", "J. Mitchell", "England", ['GK'], 27, 62, club, 216478, true);
 		Player.create("James Brown", "J. Brown", "Republic of Ireland", ['RWB', 'RB'], 24, 60, club, 261277, true);
 		Player.create("Bobby Faulkner", "B. Faulkner", "England", ['CB'], 17, 57, club, 265575, true);
@@ -6992,7 +6992,7 @@ class SoFifa23Service {
 		Player.create("Caolan Lavery", "C. Lavery", "Northern Ireland", ['ST'], 29, 59, club, 211463, false);
 		Player.create("Oliver Younger", "O. Younger", "England", ['CB', 'RB'], 22, 58, club, 243281, true);
 
-		club = Club.create("Colchester United", "England", 1935, "rgb(148,154,191)", "black");
+		club = Club.create("Colchester United", "England", 1935, "#949ABF", "#000000");
 		Player.create("Tom Smith", "T. Smith", "England", ['GK'], 20, 57, club, 273889, false);
 		Player.create("Will Greenidge", "W. Greenidge", "England", ['CB', 'RB', 'RWB'], 20, 55, club, 258516, false);
 		Player.create("Luke Chambers", "L. Chambers", "England", ['CB'], 36, 62, club, 162053, true);
@@ -7022,7 +7022,7 @@ class SoFifa23Service {
 		Player.create("Sam Hornby", "S. Hornby", "England", ['GK'], 27, 59, club, 229393, true);
 		Player.create("Emyr Huws", "E. Huws", "Wales", ['CM', 'CDM'], 28, 60, club, 205163, true);
 
-		club = Club.create("Tranmere Rovers", "England", 15048, "rgb(196,198,198)", "black");
+		club = Club.create("Tranmere Rovers", "England", 15048, "#C4C6C6", "#000000");
 		Player.create("Mateusz Hewelt", "M. Hewelt", "Poland", ['GK'], 25, 58, club, 229345, true);
 		Player.create("Josh Dacres-Cogley", "J. Dacres-Cogley", "England", ['RB', 'RWB'], 26, 65, club, 229073, true);
 		Player.create("Tom Davies", "T. Davies", "England", ['CB'], 30, 63, club, 222947, true);
@@ -7052,7 +7052,7 @@ class SoFifa23Service {
 		Player.create("Max Fisher", "M. Fisher", "England", ['CB'], 18, 52, club, 269394, false);
 		Player.create("Jack Williams", "J. Williams", "England", ['CM'], 19, 50, club, 270004, false);
 
-		club = Club.create("Sutton United", "England", 110799, "rgb(188,154,62)", "black");
+		club = Club.create("Sutton United", "England", 110799, "#BC9A3E", "#000000");
 		Player.create("Jack Rose", "J. Rose", "England", ['GK'], 27, 61, club, 222864, true);
 		Player.create("Joe Kizzi", "J. Kizzi", "England", ['RB'], 29, 63, club, 263386, true);
 		Player.create("Ben Goodliffe", "B. Goodliffe", "England", ['CB'], 23, 63, club, 241891, true);
@@ -7082,7 +7082,7 @@ class SoFifa23Service {
 		Player.create("Roman Charles-Cook", "R. Charles-Cook", "England", ['RB'], 18, 50, club, 270124, true);
 		Player.create("Jonathan Barden", "J. Barden", "England", ['RB'], 29, 57, club, 262367, true);
 
-		club = Club.create("Hartlepool United", "England", 1941, "rgb(137,148,174)", "black");
+		club = Club.create("Hartlepool United", "England", 1941, "#8994AE", "#000000");
 		Player.create("Jakub Stolarczyk", "J. Stolarczyk", "Poland", ['GK'], 21, 59, club, 239772, true);
 		Player.create("Jamie Sterry", "J. Sterry", "England", ['RWB', 'RB'], 26, 62, club, 228368, true);
 		Player.create("Daniel Dodds", "D. Dodds", "England", ['CB', 'RWB'], 21, 55, club, 259283, false);
@@ -7112,7 +7112,7 @@ class SoFifa23Service {
 		Player.create("Louis Stephenson", "L. Stephenson", "England", ['CB'], 16, 49, club, 272420, false);
 		Player.create("Rollin Menayese", "R. Menayese", "Wales", ['CB'], 24, 61, club, 240886, true);
 
-		club = Club.create("Rochdale", "England", 1955, "rgb(56,73,103)", "white");
+		club = Club.create("Rochdale", "England", 1955, "#384967", "#FFFFFF");
 		Player.create("Richard O'Donnell", "R. O'Donnell", "England", ['GK'], 33, 62, club, 182206, true);
 		Player.create("Jimmy Keohane", "J. Keohane", "Republic of Ireland", ['RB', 'CM', 'LWB'], 31, 60, club, 200844, true);
 		Player.create("Max Taylor", "M. Taylor", "England", ['CB'], 22, 61, club, 242801, true);
@@ -7142,7 +7142,7 @@ class SoFifa23Service {
 		Player.create("George Nevett", "G. Nevett", "England", ['CB'], 16, 49, club, 275261, false);
 		Player.create("Daniel Adshead", "D. Adshead", "England", ['CM', 'CDM'], 20, 59, club, 240562, true);
 
-		club = Club.create("Wrexham", "England", 1947, "rgb(189,39,55)", "white");
+		club = Club.create("Wrexham", "England", 1947, "#BD2737", "#FFFFFF");
 		Player.create("Ben Foster", "B. Foster", "England", ['GK'], 39, 73, club, 163155, false);
 		Player.create("Ryan Barnett", "R. Barnett", "England", ['RWB', 'RM'], 22, 60, club, 237036, false);
 		Player.create("Eoghan O'Connell", "E. O'Connell", "Republic of Ireland", ['CB'], 26, 65, club, 221322, true);
@@ -7172,7 +7172,7 @@ class SoFifa23Service {
 		Player.create("Rob Lainton", "R. Lainton", "England", ['GK'], 32, 61, club, 184282, true);
 		Player.create("Aaron Hayden", "A. Hayden", "England", ['CB'], 25, 65, club, 228376, true);
 
-		club = Club.create("HJK", "Finland", 100325, "rgb(158,154,175)", "black");
+		club = Club.create("HJK", "Finland", 100325, "#9E9AAF", "#000000");
 		Player.create("Jesse Öst", "J. Öst", "Finland", ['GK'], 31, 63, club, 272646, false);
 		Player.create("Jukka Raitala", "J. Raitala", "Finland", ['CB', 'LB', 'RB'], 33, 67, club, 194163, true);
 		Player.create("Joona Toivio", "J. Toivio", "Finland", ['CB'], 34, 63, club, 172232, true);
@@ -7201,7 +7201,7 @@ class SoFifa23Service {
 		Player.create("Roope Riski", "R. Riski", "Finland", ['ST'], 30, 66, club, 202893, true);
 		Player.create("Liam Möller", "L. Möller", "Finland", ['CAM', 'RW'], 17, 54, club, 275331, false);
 
-		club = Club.create("Paris Saint Germain", "France", 73, "rgb(100,95,108)", "white");
+		club = Club.create("Paris Saint Germain", "France", 73, "#645F6C", "#FFFFFF");
 		Player.create("Gianluigi Donnarumma", "G. Donnarumma", "Italy", ['GK'], 23, 88, club, 230621, true);
 		Player.create("Nordi Mukiele", "N. Mukiele", "France", ['RB', 'RWB', 'CB'], 24, 79, club, 226166, true);
 		Player.create("Marcos Aoás Corrêa", "Marquinhos", "Brazil", ['CB'], 28, 88, club, 207865, true);
@@ -7230,7 +7230,7 @@ class SoFifa23Service {
 		Player.create("Presnel Kimpembe", "P. Kimpembe", "France", ['CB'], 26, 83, club, 225850, true);
 		Player.create("Achraf Hakimi", "A. Hakimi", "Morocco", ['RB', 'RWB'], 23, 84, club, 235212, true);
 
-		club = Club.create("Olympique de Marseille", "France", 219, "rgb(205,204,206)", "black");
+		club = Club.create("Olympique de Marseille", "France", 219, "#CDCCCE", "#000000");
 		Player.create("Pau López Sabata", "Pau López", "Spain", ['GK'], 27, 80, club, 221087, true);
 		Player.create("Chancel Mbemba", "C. Mbemba", "Congo DR", ['CB'], 27, 80, club, 210897, true);
 		Player.create("Samuel Gigot", "S. Gigot", "France", ['CB'], 28, 78, club, 219581, true);
@@ -7264,7 +7264,7 @@ class SoFifa23Service {
 		Player.create("Azzedine Ounahi", "A. Ounahi", "Morocco", ['CM'], 22, 76, club, 255125, true);
 		Player.create("Amine Harit", "A. Harit", "Morocco", ['LW', 'CF'], 25, 76, club, 232097, true);
 
-		club = Club.create("Olympique Lyonnais", "France", 66, "rgb(193,182,184)", "black");
+		club = Club.create("Olympique Lyonnais", "France", 66, "#C1B6B8", "#000000");
 		Player.create("Anthony Lopes", "A. Lopes", "Portugal", ['GK'], 31, 82, club, 199482, true);
 		Player.create("Saël Kumbedi", "S. Kumbedi", "France", ['RB', 'RWB'], 17, 70, club, 268312, true);
 		Player.create("Dejan Lovren", "D. Lovren", "Croatia", ['CB'], 32, 78, club, 195086, true);
@@ -7294,7 +7294,7 @@ class SoFifa23Service {
 		Player.create("Pathé Mboup", "P. Mboup", "Senegal", ['LW'], 19, 63, club, 271689, false);
 		Player.create("Mathieu Patouillet", "M. Patouillet", "France", ['GK'], 18, 59, club, 275317, false);
 
-		club = Club.create("Monaco", "France", 69, "rgb(190,124,133)", "black");
+		club = Club.create("Monaco", "France", 69, "#BE7C85", "#000000");
 		Player.create("Alexander Nübel", "A. Nübel", "Germany", ['GK'], 25, 78, club, 223885, true);
 		Player.create("Vanderson de Oliveira Campos", "Vanderson", "Brazil", ['RB', 'RM'], 21, 76, club, 263781, true);
 		Player.create("Axel Disasi", "A. Disasi", "France", ['CB'], 24, 79, club, 229942, true);
@@ -7323,7 +7323,7 @@ class SoFifa23Service {
 		Player.create("Yllan Okou", "Y. Okou", "France", ['CB'], 19, 63, club, 271458, true);
 		Player.create("Yann Lienard", "Y. Lienard", "France", ['GK'], 19, 60, club, 271661, true);
 
-		club = Club.create("Rennes", "France", 74, "rgb(194,50,53)", "white");
+		club = Club.create("Rennes", "France", 74, "#C23235", "#FFFFFF");
 		Player.create("Steve Mandanda", "S. Mandanda", "France", ['GK'], 37, 79, club, 163705, true);
 		Player.create("Hamari Traoré", "H. Traoré", "Mali", ['RB'], 30, 80, club, 219789, true);
 		Player.create("Warmed Omari", "W. Omari", "France", ['CB'], 22, 76, club, 256854, true);
@@ -7354,7 +7354,7 @@ class SoFifa23Service {
 		Player.create("Adrien Truffert", "A. Truffert", "France", ['LB'], 20, 76, club, 256769, true);
 		Player.create("Martin Terrier", "M. Terrier", "France", ['LW', 'LM', 'ST'], 25, 81, club, 236786, true);
 
-		club = Club.create("Lens", "France", 64, "rgb(208,144,46)", "black");
+		club = Club.create("Lens", "France", 64, "#D0902E", "#000000");
 		Player.create("Brice Samba", "B. Samba", "France", ['GK'], 28, 80, club, 204883, true);
 		Player.create("Przemysław Frankowski", "P. Frankowski", "Poland", ['RWB', 'LWB'], 27, 78, club, 212138, true);
 		Player.create("Jonathan Gradit", "J. Gradit", "France", ['CB'], 29, 77, club, 221284, true);
@@ -7385,7 +7385,7 @@ class SoFifa23Service {
 		Player.create("Mamadou Camara", "M. Camara", "Senegal", ['CM'], 19, 60, club, 263459, true);
 		Player.create("Wuilker Faríñez", "W. Faríñez", "Venezuela", ['GK'], 24, 71, club, 228736, true);
 
-		club = Club.create("Lille", "France", 65, "rgb(164,63,72)", "white");
+		club = Club.create("Lille", "France", 65, "#A43F48", "#FFFFFF");
 		Player.create("Lucas Chevalier", "L. Chevalier", "France", ['GK'], 20, 77, club, 251752, true);
 		Player.create("Bafodé Diakité", "B. Diakité", "France", ['RB', 'LB', 'CB'], 21, 75, club, 246565, true);
 		Player.create("José Miguel da Rocha Fonte", "José Fonte", "Portugal", ['CB'], 38, 80, club, 171791, true);
@@ -7410,7 +7410,7 @@ class SoFifa23Service {
 		Player.create("Adam Jakubech", "A. Jakubech", "Slovakia", ['GK'], 25, 68, club, 240371, true);
 		Player.create("Tiago Emanuel Embaló Djaló", "Tiago Djaló", "Portugal", ['CB', 'LB', 'RB'], 22, 75, club, 252339, true);
 
-		club = Club.create("Nice", "France", 72, "rgb(78,48,48)", "white");
+		club = Club.create("Nice", "France", 72, "#4E3030", "#FFFFFF");
 		Player.create("Kasper Schmeichel", "K. Schmeichel", "Denmark", ['GK'], 35, 82, club, 163587, true);
 		Player.create("Youcef Atal", "Y. Atal", "Algeria", ['RB', 'RM', 'RWB'], 26, 74, club, 240754, true);
 		Player.create("Jean-Clair Todibo", "J. Todibo", "France", ['CB'], 22, 79, club, 245388, true);
@@ -7438,7 +7438,7 @@ class SoFifa23Service {
 		Player.create("Reda Belahyane", "R. Belahyane", "France", ['CDM'], 18, 60, club, 275163, false);
 		Player.create("Ayoub Amraoui", "A. Amraoui", "Morocco", ['LB'], 18, 67, club, 274550, false);
 
-		club = Club.create("Montpellier", "France", 70, "rgb(74,65,77)", "white");
+		club = Club.create("Montpellier", "France", 70, "#4A414D", "#FFFFFF");
 		Player.create("Benjamin Lecomte", "B. Lecomte", "France", ['GK'], 31, 75, club, 200726, true);
 		Player.create("Falaye Sacko", "F. Sacko", "Mali", ['RB', 'CB'], 27, 75, club, 230147, true);
 		Player.create("Christopher Jullien", "C. Jullien", "France", ['CB'], 29, 74, club, 208615, true);
@@ -7469,7 +7469,7 @@ class SoFifa23Service {
 		Player.create("Matis Carvalho", "Matis Carvalho", "Portugal", ['GK'], 23, 61, club, 246603, true);
 		Player.create("Théo Sainte-Luce", "T. Sainte-Luce", "France", ['LB'], 23, 67, club, 241157, true);
 
-		club = Club.create("Nantes", "France", 71, "rgb(219,190,57)", "black");
+		club = Club.create("Nantes", "France", 71, "#DBBE39", "#000000");
 		Player.create("Alban Lafont", "A. Lafont", "France", ['GK'], 23, 79, club, 231691, true);
 		Player.create("João Victor da Silva Marcelino", "João Victor", "Brazil", ['CB'], 23, 74, club, 258861, true);
 		Player.create("Andrei Girotto", "Andrei Girotto", "Brazil", ['CB', 'CDM'], 30, 76, club, 226515, true);
@@ -7501,7 +7501,7 @@ class SoFifa23Service {
 		Player.create("Samuel Yepie Yepie", "S. Yepie Yepie", "France", ['LM'], 19, 58, club, 270356, true);
 		Player.create("Andy Delort", "A. Delort", "Algeria", ['ST'], 30, 78, club, 193983, true);
 
-		club = Club.create("Strasbourg", "France", 76, "rgb(64,84,149)", "white");
+		club = Club.create("Strasbourg", "France", 76, "#405495", "#FFFFFF");
 		Player.create("Matz Sels", "M. Sels", "Belgium", ['GK'], 30, 79, club, 199641, true);
 		Player.create("Frédéric Guilbert", "F. Guilbert", "France", ['RWB'], 27, 76, club, 227222, true);
 		Player.create("Lucas Perrin", "L. Perrin", "France", ['CB', 'LB'], 23, 74, club, 243449, true);
@@ -7530,7 +7530,7 @@ class SoFifa23Service {
 		Player.create("Antoine Nuss", "A. Nuss", "France", ['RWB'], 18, 59, club, 273534, false);
 		Player.create("Tom Saettel", "T. Saettel", "France", ['LM'], 17, 57, club, 273536, false);
 
-		club = Club.create("Toulouse", "France", 1809, "rgb(188,185,193)", "black");
+		club = Club.create("Toulouse", "France", 1809, "#BCB9C1", "#000000");
 		Player.create("Maxime Dupé", "M. Dupé", "France", ['GK'], 29, 75, club, 204513, true);
 		Player.create("Mikkel Desler", "M. Desler", "Denmark", ['RB', 'RWB'], 27, 72, club, 212170, true);
 		Player.create("Anthony Rouault", "A. Rouault", "France", ['CB'], 21, 73, club, 252512, true);
@@ -7561,7 +7561,7 @@ class SoFifa23Service {
 		Player.create("Thomas Himeur", "T. Himeur", "France", ['GK'], 21, 59, club, 270365, true);
 		Player.create("Rhys Healey", "R. Healey", "England", ['ST'], 27, 73, club, 212994, true);
 
-		club = Club.create("Brest", "France", 378, "rgb(200,55,59)", "white");
+		club = Club.create("Brest", "France", 378, "#C8373B", "#FFFFFF");
 		Player.create("Marco Bizot", "M. Bizot", "Netherlands", ['GK'], 31, 76, club, 200110, true);
 		Player.create("Kenny Lala", "K. Lala", "France", ['RB', 'RWB'], 30, 72, club, 204105, false);
 		Player.create("Brendan Chardonnet", "B. Chardonnet", "France", ['CB'], 27, 74, club, 215410, true);
@@ -7589,7 +7589,7 @@ class SoFifa23Service {
 		Player.create("Grégoire Coudert", "G. Coudert", "France", ['GK'], 23, 60, club, 239203, true);
 		Player.create("Josué Escartin", "J. Escartin", "France", ['CB'], 19, 62, club, 271394, false);
 
-		club = Club.create("Stade de Reims", "France", 379, "rgb(175,78,78)", "white");
+		club = Club.create("Stade de Reims", "France", 379, "#AF4E4E", "#FFFFFF");
 		Player.create("Yehvann Diouf", "Y. Diouf", "France", ['GK'], 22, 76, club, 235633, true);
 		Player.create("Thomas Foket", "T. Foket", "Belgium", ['RB'], 27, 74, club, 208509, true);
 		Player.create("Emmanuel Agbadou", "E. Agbadou", "Côte d'Ivoire", ['CB'], 25, 74, club, 258575, true);
@@ -7615,7 +7615,7 @@ class SoFifa23Service {
 		Player.create("Mohamed Touré", "M. Touré", "Australia", ['ST', 'LM'], 18, 61, club, 255767, true);
 		Player.create("Yaya Dukuly", "Y. Dukuly", "Australia", ['LM', 'RM'], 19, 55, club, 247889, true);
 
-		club = Club.create("Lorient", "France", 217, "rgb(195,101,44)", "white");
+		club = Club.create("Lorient", "France", 217, "#C3652C", "#FFFFFF");
 		Player.create("Yvon Mvogo", "Y. Mvogo", "Switzerland", ['GK'], 28, 77, club, 206003, true);
 		Player.create("Gédéon Kalulu", "G. Kalulu", "Congo DR", ['RB', 'LB'], 24, 72, club, 238391, true);
 		Player.create("Julien Laporte", "J. Laporte", "France", ['CB'], 28, 75, club, 228290, true);
@@ -7643,7 +7643,7 @@ class SoFifa23Service {
 		Player.create("Ayman Kari", "A. Kari", "France", ['CM', 'CDM'], 17, 61, club, 275270, false);
 		Player.create("Teddy Bartouche-Selbonne", "T. Bartouche-Selbonne", "France", ['GK'], 25, 60, club, 255014, true);
 
-		club = Club.create("Troyes", "France", 294, "rgb(50,81,176)", "white");
+		club = Club.create("Troyes", "France", 294, "#3251B0", "#FFFFFF");
 		Player.create("Gauthier Gallon", "G. Gallon", "France", ['GK'], 29, 74, club, 214680, true);
 		Player.create("Thierno Baldé", "T. Baldé", "France", ['RWB', 'RB'], 20, 69, club, 263250, true);
 		Player.create("Erik Palmer-Brown", "E. Palmer-Brown", "United States", ['CB'], 25, 72, club, 219461, true);
@@ -7674,7 +7674,7 @@ class SoFifa23Service {
 		Player.create("Kyliane Dong", "K. Dong", "France", ['ST'], 17, 59, club, 270886, true);
 		Player.create("Renaud Ripart", "R. Ripart", "France", ['RM', 'ST', 'LM'], 29, 73, club, 209430, true);
 
-		club = Club.create("Clermont", "France", 1815, "rgb(147,40,64)", "white");
+		club = Club.create("Clermont", "France", 1815, "#932840", "#FFFFFF");
 		Player.create("Mory Diaw", "M. Diaw", "Senegal", ['GK'], 29, 72, club, 220820, true);
 		Player.create("Jim Allevinah", "J. Allevinah", "Gabon", ['LM', 'RWB', 'RM'], 27, 70, club, 251191, true);
 		Player.create("Alidu Seidu", "A. Seidu", "Ghana", ['CB', 'RB'], 22, 70, club, 257946, true);
@@ -7701,7 +7701,7 @@ class SoFifa23Service {
 		Player.create("Baïla Diallo", "B. Diallo", "Senegal", ['LWB', 'LM'], 21, 58, club, 261153, true);
 		Player.create("Souleymane Cissé", "S. Cissé", "France", ['CB'], 19, 57, club, 270280, true);
 
-		club = Club.create("Auxerre", "France", 57, "rgb(191,194,200)", "black");
+		club = Club.create("Auxerre", "France", 57, "#BFC2C8", "#000000");
 		Player.create("Ionuț Andrei Radu", "I. Radu", "Romania", ['GK'], 25, 72, club, 234102, true);
 		Player.create("Akim Zedadka", "A. Zedadka", "Algeria", ['RB', 'RWB'], 27, 74, club, 223139, true);
 		Player.create("Rayan Raveloson", "R. Raveloson", "Madagascar", ['CDM', 'CM', 'CB'], 25, 70, club, 225853, true);
@@ -7735,7 +7735,7 @@ class SoFifa23Service {
 		Player.create("Sonny Laiton", "S. Laiton", "France", ['GK'], 22, 64, club, 240776, true);
 		Player.create("Vincenzo Cozzella", "V. Cozzella", "Italy", ['GK'], 20, 56, club, 273654, false);
 
-		club = Club.create("Angers SCO", "France", 1530, "rgb(83,81,80)", "white");
+		club = Club.create("Angers SCO", "France", 1530, "#535150", "#FFFFFF");
 		Player.create("Paul Bernardoni", "P. Bernardoni", "France", ['GK'], 25, 74, club, 223898, true);
 		Player.create("Sada Thioub", "S. Thioub", "Senegal", ['RM', 'RWB', 'LM'], 27, 70, club, 226861, true);
 		Player.create("Yan Valery", "Y. Valery", "Tunisia", ['CB', 'RB', 'RWB'], 23, 70, club, 236316, true);
@@ -7767,7 +7767,7 @@ class SoFifa23Service {
 		Player.create("Zinédine Ould Khaled", "Z. Ould Khaled", "France", ['CDM', 'CM'], 22, 64, club, 251912, true);
 		Player.create("Loïs Diony", "L. Diony", "France", ['ST'], 29, 70, club, 212350, true);
 
-		club = Club.create("Ajaccio", "France", 614, "rgb(167,126,129)", "black");
+		club = Club.create("Ajaccio", "France", 614, "#A77E81", "#000000");
 		Player.create("Benjamin Leroy", "B. Leroy", "France", ['GK'], 33, 73, club, 197641, true);
 		Player.create("Mohamed Youssouf", "M. Youssouf", "Comoros", ['RB'], 34, 69, club, 183829, true);
 		Player.create("Oumar Gonzalez", "O. Gonzalez", "Cameroon", ['CB'], 24, 71, club, 230140, true);
@@ -7800,7 +7800,7 @@ class SoFifa23Service {
 		Player.create("Ben Hamed Touré", "B. Touré", "Côte d'Ivoire", ['ST'], 18, 58, club, 275517, false);
 		Player.create("Ghjuvanni Quilichini", "G. Quilichini", "France", ['GK'], 19, 56, club, 263569, true);
 
-		club = Club.create("Saint-Étienne", "France", 1819, "rgb(43,125,92)", "white");
+		club = Club.create("Saint-Étienne", "France", 1819, "#2B7D5C", "#FFFFFF");
 		Player.create("Gautier Larsonneur", "G. Larsonneur", "France", ['GK'], 25, 73, club, 230727, true);
 		Player.create("Mathieu Cafaro", "M. Cafaro", "France", ['LM', 'RM', 'CM'], 25, 72, club, 231236, true);
 		Player.create("Saïdou Sow", "S. Sow", "Guinea", ['CB'], 19, 70, club, 259119, true);
@@ -7832,7 +7832,7 @@ class SoFifa23Service {
 		Player.create("Mathys Saban", "M. Saban", "France", ['LM'], 20, 63, club, 264322, true);
 		Player.create("Gaëtan Charbonnier", "G. Charbonnier", "France", ['ST'], 33, 73, club, 192647, true);
 
-		club = Club.create("Paris", "France", 111817, "rgb(42,46,56)", "white");
+		club = Club.create("Paris", "France", 111817, "#2A2E38", "#FFFFFF");
 		Player.create("Ivan Filipović", "I. Filipović", "Croatia", ['GK'], 27, 66, club, 264424, true);
 		Player.create("Yvann Maçon", "Y. Maçon", "France", ['RB', 'RWB', 'LB'], 23, 72, club, 255523, true);
 		Player.create("Samir Chergui", "S. Chergui", "France", ['CB', 'RB'], 23, 67, club, 248477, true);
@@ -7859,7 +7859,7 @@ class SoFifa23Service {
 		Player.create("Yoan Koré", "Y. Koré", "France", ['RB'], 17, 58, club, 266205, true);
 		Player.create("Téva Gardies", "T. Gardies", "France", ['GK'], 21, 53, club, 271585, false);
 
-		club = Club.create("Sochaux", "France", 226, "rgb(172,169,65)", "black");
+		club = Club.create("Sochaux", "France", 226, "#ACA941", "#000000");
 		Player.create("Maxence Prévot", "M. Prévot", "France", ['GK'], 25, 70, club, 231841, true);
 		Player.create("Julien Faussurier", "J. Faussurier", "France", ['RB', 'RM'], 35, 71, club, 183921, true);
 		Player.create("Ismaël Aaneba", "I. Aaneba", "France", ['CB'], 23, 67, club, 240725, true);
@@ -7888,7 +7888,7 @@ class SoFifa23Service {
 		Player.create("Adrien Delphis", "A. Delphis", "France", ['CM'], 19, 54, club, 263425, true);
 		Player.create("Manu Agro", "M. Agro", "France", ['GK'], 20, 53, club, 271245, true);
 
-		club = Club.create("Bordeaux", "France", 59, "rgb(79,80,85)", "white");
+		club = Club.create("Bordeaux", "France", 59, "#4F5055", "#FFFFFF");
 		Player.create("Gaëtan Poussin", "G. Poussin", "France", ['GK'], 23, 68, club, 240751, true);
 		Player.create("Malcom Bokele", "M. Bokele", "Cameroon", ['RB', 'CB'], 22, 64, club, 262709, true);
 		Player.create("Stian Gregersen", "S. Gregersen", "Norway", ['CB'], 27, 71, club, 216730, true);
@@ -7916,7 +7916,7 @@ class SoFifa23Service {
 		Player.create("Julien Vetro", "J. Vetro", "France", ['ST'], 18, 56, club, 271759, false);
 		Player.create("Davy Rouyard", "D. Rouyard", "France", ['GK'], 22, 60, club, 252241, true);
 
-		club = Club.create("Metz", "France", 68, "rgb(93,41,41)", "white");
+		club = Club.create("Metz", "France", 68, "#5D2929", "#FFFFFF");
 		Player.create("Alexandre Oukidja", "A. Oukidja", "Algeria", ['GK'], 33, 72, club, 176772, true);
 		Player.create("Koffi Kouao", "K. Kouao", "Côte d'Ivoire", ['RB'], 24, 69, club, 239919, true);
 		Player.create("Ismaël Traoré", "I. Traoré", "Côte d'Ivoire", ['CB'], 35, 72, club, 184873, true);
@@ -7944,7 +7944,7 @@ class SoFifa23Service {
 		Player.create("Lilian Raillot", "L. Raillot", "France", ['CDM'], 18, 58, club, 272616, false);
 		Player.create("Marc-Aurèle Caillard", "M. Caillard", "France", ['GK'], 28, 68, club, 211398, true);
 
-		club = Club.create("Caen", "France", 210, "rgb(87,75,104)", "white");
+		club = Club.create("Caen", "France", 210, "#574B68", "#FFFFFF");
 		Player.create("Anthony Mandrea", "A. Mandrea", "Algeria", ['GK'], 25, 70, club, 220833, true);
 		Player.create("Hugo Vandermersch", "H. Vandermersch", "France", ['RWB', 'RB'], 23, 68, club, 252183, true);
 		Player.create("Ibrahim Cissé", "I. Cissé", "France", ['CB'], 26, 68, club, 225532, true);
@@ -7974,7 +7974,7 @@ class SoFifa23Service {
 		Player.create("Noé Lebreton", "N. Lebreton", "France", ['CDM', 'CM'], 18, 54, club, 270931, true);
 		Player.create("Stephen Ewange", "S. Ewange", "Cameroon", ['RWB', 'RM'], 21, 56, club, 269998, false);
 
-		club = Club.create("Le Havre", "France", 1738, "rgb(88,118,139)", "white");
+		club = Club.create("Le Havre", "France", 1738, "#58768B", "#FFFFFF");
 		Player.create("Arthur Desmas", "A. Desmas", "France", ['GK'], 28, 70, club, 229542, true);
 		Player.create("Oualid El Hajjam", "O. El Hajjam", "Morocco", ['RB', 'CB'], 31, 72, club, 234514, true);
 		Player.create("Arouna Sangante", "A. Sangante", "Senegal", ['CB'], 20, 68, club, 262237, true);
@@ -8006,7 +8006,7 @@ class SoFifa23Service {
 		Player.create("Simon Ebonog", "S. Ebonog", "France", ['LM'], 17, 55, club, 271252, true);
 		Player.create("Salifou Soumah", "S. Soumah", "Guinea", ['ST'], 18, 54, club, 270971, false);
 
-		club = Club.create("Nîmes", "France", 224, "rgb(205,56,68)", "white");
+		club = Club.create("Nîmes", "France", 224, "#CD3844", "#FFFFFF");
 		Player.create("Axel Maraval", "A. Maraval", "France", ['GK'], 28, 67, club, 215097, true);
 		Player.create("Ronny Labonne", "R. Labonne", "France", ['RB', 'CM', 'CB'], 24, 62, club, 270364, true);
 		Player.create("Benoît Poulain", "B. Poulain", "France", ['CB'], 34, 65, club, 188727, true);
@@ -8034,7 +8034,7 @@ class SoFifa23Service {
 		Player.create("Mahamadou Doucouré", "M. Doucouré", "Mali", ['ST'], 22, 64, club, 262154, true);
 		Player.create("Amjhad Nazih", "A. Nazih", "France", ['GK'], 20, 62, club, 260587, true);
 
-		club = Club.create("Grenoble Foot 38", "France", 1805, "rgb(60,96,155)", "white");
+		club = Club.create("Grenoble Foot 38", "France", 1805, "#3C609B", "#FFFFFF");
 		Player.create("Brice Maubleu", "B. Maubleu", "France", ['GK'], 32, 69, club, 196316, true);
 		Player.create("Mathys Tourraine", "M. Tourraine", "France", ['RB'], 21, 60, club, 274845, false);
 		Player.create("Adrien Monfray", "A. Monfray", "France", ['CB'], 31, 68, club, 215708, true);
@@ -8064,7 +8064,7 @@ class SoFifa23Service {
 		Player.create("Paul Bourdelle", "P. Bourdelle", "France", ['GK'], 21, 57, club, 256924, true);
 		Player.create("Zinedine Labyad", "Z. Labyad", "France", ['LM', 'RW'], 22, 56, club, 263626, false);
 
-		club = Club.create("Laval", "France", 1814, "rgb(194,104,61)", "white");
+		club = Club.create("Laval", "France", 1814, "#C2683D", "#FFFFFF");
 		Player.create("Alexis Sauvage", "A. Sauvage", "France", ['GK'], 30, 66, club, 204034, true);
 		Player.create("Dembo Sylla", "D. Sylla", "Guinea", ['RWB', 'RM', 'LWB'], 19, 62, club, 271507, true);
 		Player.create("Yasser Baldé", "Y. Baldé", "France", ['CB'], 29, 64, club, 269289, true);
@@ -8096,7 +8096,7 @@ class SoFifa23Service {
 		Player.create("Junior Armando Mendes", "Junior Mendes", "Spain", ['ST', 'LW', 'RW'], 20, 56, club, 272344, false);
 		Player.create("Théo Chatelain", "T. Chatelain", "France", ['GK'], 22, 55, club, 269286, true);
 
-		club = Club.create("Amiens SC", "France", 1816, "rgb(192,189,190)", "black");
+		club = Club.create("Amiens SC", "France", 1816, "#C0BDBE", "#000000");
 		Player.create("Régis Gurtner", "R. Gurtner", "France", ['GK'], 35, 69, club, 176994, true);
 		Player.create("Antoine Leautey", "A. Leautey", "France", ['RW', 'RM', 'RWB'], 26, 70, club, 237198, true);
 		Player.create("Formose Mendy", "F. Mendy", "Senegal", ['CB', 'RWB'], 21, 65, club, 259215, true);
@@ -8123,7 +8123,7 @@ class SoFifa23Service {
 		Player.create("Ibrahim Fofana", "I. Fofana", "Côte d'Ivoire", ['CM'], 18, 55, club, 274440, false);
 		Player.create("Matthieu Rongier", "M. Rongier", "France", ['GK'], 20, 55, club, 264138, true);
 
-		club = Club.create("Guingamp", "France", 62, "rgb(168,38,40)", "white");
+		club = Club.create("Guingamp", "France", 62, "#A82628", "#FFFFFF");
 		Player.create("Enzo Basilio", "E. Basilio", "France", ['GK'], 27, 67, club, 212735, true);
 		Player.create("Maxime Sivis", "M. Sivis", "France", ['RB', 'RWB'], 24, 64, club, 262788, true);
 		Player.create("Matthis Riou", "M. Riou", "France", ['CB'], 21, 63, club, 263344, true);
@@ -8151,7 +8151,7 @@ class SoFifa23Service {
 		Player.create("Jacques Siwe", "J. Siwe", "France", ['ST'], 20, 59, club, 261758, false);
 		Player.create("Melvin Sitti", "M. Sitti", "France", ['CDM', 'CM'], 22, 60, club, 252186, true);
 
-		club = Club.create("Valenciennes", "France", 110456, "rgb(198,57,76)", "white");
+		club = Club.create("Valenciennes", "France", 110456, "#C6394C", "#FFFFFF");
 		Player.create("Lassana Sy", "L. Sy", "France", ['GK'], 18, 57, club, 270977, true);
 		Player.create("Allan Linguet", "A. Linguet", "France", ['RB'], 22, 65, club, 248662, true);
 		Player.create("Jonathan Buatu Mananga", "Buatu", "Angola", ['CB'], 28, 66, club, 209816, true);
@@ -8183,7 +8183,7 @@ class SoFifa23Service {
 		Player.create("Yassine Haouari", "Y. Haouari", "France", ['ST'], 19, 58, club, 262229, false);
 		Player.create("Byani Mpata Lama", "B. Mpata Lama", "France", ['LB'], 18, 57, club, 275482, false);
 
-		club = Club.create("Dijon", "France", 110569, "rgb(171,60,65)", "white");
+		club = Club.create("Dijon", "France", 110569, "#AB3C41", "#FFFFFF");
 		Player.create("Baptiste Reynet", "B. Reynet", "France", ['GK'], 31, 69, club, 204240, true);
 		Player.create("Paul Joly", "P. Joly", "France", ['RB', 'LB'], 22, 65, club, 263417, true);
 		Player.create("Zargo Touré", "Z. Touré", "Senegal", ['CB'], 32, 67, club, 190196, true);
@@ -8215,7 +8215,7 @@ class SoFifa23Service {
 		Player.create("Yanis Chahid", "Y. Chahid", "France", ['CM'], 17, 55, club, 268002, true);
 		Player.create("Rayane El Khamali", "R. El Khamali", "France", ['CAM', 'CM'], 20, 56, club, 270343, true);
 
-		club = Club.create("Niort", "France", 1813, "rgb(54,84,148)", "white");
+		club = Club.create("Niort", "France", 1813, "#365494", "#FFFFFF");
 		Player.create("Mathieu Michel", "M. Michel", "France", ['GK'], 30, 69, club, 209423, true);
 		Player.create("Joris Moutachy", "J. Moutachy", "France", ['RB'], 24, 62, club, 257412, true);
 		Player.create("Guy-Marcelin Kilama", "G. Kilama", "Cameroon", ['CB'], 23, 66, club, 245092, true);
@@ -8247,7 +8247,7 @@ class SoFifa23Service {
 		Player.create("Nacim El Hassani", "N. El Hassani", "France", ['CM'], 22, 59, club, 267977, true);
 		Player.create("Landry Manga", "L. Manga", "Cameroon", ['RM'], 21, 57, club, 273085, false);
 
-		club = Club.create("Annecy", "France", 115494, "rgb(105,36,41)", "white");
+		club = Club.create("Annecy", "France", 115494, "#692429", "#FFFFFF");
 		Player.create("Florian Escales", "F. Escales", "France", ['GK'], 26, 65, club, 232410, true);
 		Player.create("François Lajugie", "F. Lajugie", "France", ['RB', 'CB'], 26, 64, club, 228775, true);
 		Player.create("Kevin Mouanga", "K. Mouanga", "France", ['CB'], 21, 63, club, 247407, true);
@@ -8276,7 +8276,7 @@ class SoFifa23Service {
 		Player.create("Samuel Ntamack", "S. Ntamack", "France", ['ST'], 21, 56, club, 273522, false);
 		Player.create("Tidiane Malbec", "T. Malbec", "France", ['GK'], 20, 59, club, 262708, true);
 
-		club = Club.create("Rodez", "France", 111659, "rgb(138,46,41)", "white");
+		club = Club.create("Rodez", "France", 111659, "#8A2E29", "#FFFFFF");
 		Player.create("Lionel Mpasi", "L. Mpasi", "Congo DR", ['GK'], 27, 65, club, 223150, true);
 		Player.create("Marvin Senaya", "M. Senaya", "France", ['RWB', 'RB', 'LB'], 21, 63, club, 263112, true);
 		Player.create("Bradley Danger", "B. Danger", "France", ['CDM', 'CB'], 24, 66, club, 243412, true);
@@ -8305,7 +8305,7 @@ class SoFifa23Service {
 		Player.create("Noa Savignac", "N. Savignac", "France", ['RM', 'LM'], 19, 59, club, 271068, true);
 		Player.create("Loris Mouyokolo", "L. Mouyokolo", "France", ['CB'], 21, 63, club, 260159, true);
 
-		club = Club.create("Bastia", "France", 58, "rgb(62,72,122)", "white");
+		club = Club.create("Bastia", "France", 58, "#3E487A", "#FFFFFF");
 		Player.create("Johny Placide", "J. Placide", "Haiti", ['GK'], 34, 67, club, 178363, true);
 		Player.create("Kévin Van Den Kerkhof", "K. Van Den Kerkhof", "Algeria", ['RWB', 'RB'], 26, 66, club, 269956, true);
 		Player.create("Dominique Guidi", "D. Guidi", "France", ['CB'], 26, 67, club, 244460, true);
@@ -8332,7 +8332,7 @@ class SoFifa23Service {
 		Player.create("Julien Fabri", "J. Fabri", "France", ['GK'], 28, 61, club, 211358, true);
 		Player.create("Jocelyn Janneh", "J. Janneh", "Sierra Leone", ['CDM'], 19, 56, club, 271010, true);
 
-		club = Club.create("Quevilly Rouen", "France", 112552, "rgb(210,46,46)", "white");
+		club = Club.create("Quevilly Rouen", "France", 112552, "#D22E2E", "#FFFFFF");
 		Player.create("Nicolas Lemaître", "N. Lemaître", "France", ['GK'], 25, 66, club, 228255, true);
 		Player.create("Alpha Sissoko", "A. Sissoko", "France", ['RB', 'LB'], 25, 67, club, 241445, true);
 		Player.create("Syam Ben Youssef", "S. Ben Youssef", "Tunisia", ['CB'], 33, 66, club, 207788, true);
@@ -8361,7 +8361,7 @@ class SoFifa23Service {
 		Player.create("Samy El Khiar", "S. El Khiar", "France", ['CAM'], 21, 54, club, 270620, false);
 		Player.create("Killian Corenthin", "K. Corenthin", "France", ['CM'], 21, 53, club, 270621, false);
 
-		club = Club.create("Pau", "France", 110321, "rgb(173,155,49)", "black");
+		club = Club.create("Pau", "France", 110321, "#AD9B31", "#000000");
 		Player.create("Jérôme Prior", "J. Prior", "France", ['GK'], 26, 70, club, 222411, false);
 		Player.create("Erwin Koffi", "E. Koffi", "Côte d'Ivoire", ['RWB', 'RB'], 27, 67, club, 225685, true);
 		Player.create("Xavier Kouassi", "X. Kouassi", "Côte d'Ivoire", ['CB'], 32, 66, club, 198517, true);
@@ -8392,7 +8392,7 @@ class SoFifa23Service {
 		Player.create("Loïck Lespinasse", "L. Lespinasse", "France", ['ST'], 21, 58, club, 273528, false);
 		Player.create("Paul Méliande", "P. Méliande", "France", ['LM'], 20, 59, club, 258348, true);
 
-		club = Club.create("FC Bayern München", "Germany", 21, "rgb(196,54,55)", "white");
+		club = Club.create("FC Bayern München", "Germany", 21, "#C43637", "#FFFFFF");
 		Player.create("Yann Sommer", "Y. Sommer", "Switzerland", ['GK'], 33, 85, club, 177683, true);
 		Player.create("Benjamin Pavard", "B. Pavard", "France", ['CB', 'RB'], 26, 82, club, 226851, true);
 		Player.create("Dayot Upamecano", "D. Upamecano", "France", ['CB'], 23, 83, club, 229558, true);
@@ -8425,7 +8425,7 @@ class SoFifa23Service {
 		Player.create("Liam Morrison", "L. Morrison", "Scotland", ['CB'], 19, 58, club, 275297, false);
 		Player.create("Aleksandar Pavlovic", "A. Pavlovic", "Germany", ['CDM', 'CM'], 18, 58, club, 275298, false);
 
-		club = Club.create("Borussia Dortmund", "Germany", 22, "rgb(161,138,39)", "black");
+		club = Club.create("Borussia Dortmund", "Germany", 22, "#A18A27", "#000000");
 		Player.create("Gregor Kobel", "G. Kobel", "Switzerland", ['GK'], 24, 86, club, 235073, true);
 		Player.create("Marius Wolf", "M. Wolf", "Germany", ['RB', 'RM'], 27, 77, club, 224425, true);
 		Player.create("Niklas Süle", "N. Süle", "Germany", ['CB', 'RB'], 26, 85, club, 212190, true);
@@ -8460,7 +8460,7 @@ class SoFifa23Service {
 		Player.create("Julien Duranville", "J. Duranville", "Belgium", ['LM', 'ST', 'RM'], 16, 64, club, 262105, false);
 		Player.create("Nnamdi Collins", "N. Collins", "Germany", ['CB'], 18, 62, club, 256500, true);
 
-		club = Club.create("RB Leipzig", "Germany", 112172, "rgb(213,190,189)", "black");
+		club = Club.create("RB Leipzig", "Germany", 112172, "#D5BEBD", "#000000");
 		Player.create("Janis Blaswich", "J. Blaswich", "Germany", ['GK'], 31, 76, club, 204092, true);
 		Player.create("Benjamin Henrichs", "B. Henrichs", "Germany", ['RB', 'RM', 'LB'], 25, 77, club, 228579, true);
 		Player.create("Willi Orban", "W. Orban", "Hungary", ['CB'], 29, 82, club, 204638, true);
@@ -8489,7 +8489,7 @@ class SoFifa23Service {
 		Player.create("Oskar Preil", "O. Preil", "Germany", ['GK'], 18, 56, club, 273461, false);
 		Player.create("Timo Schlieck", "T. Schlieck", "Germany", ['GK'], 16, 57, club, 270965, false);
 
-		club = Club.create("Bayer 04 Leverkusen", "Germany", 32, "rgb(164,53,65)", "white");
+		club = Club.create("Bayer 04 Leverkusen", "Germany", 32, "#A43541", "#FFFFFF");
 		Player.create("Lukáš Hrádecký", "L. Hrádecký", "Finland", ['GK'], 32, 81, club, 190941, true);
 		Player.create("Edmond Tapsoba", "E. Tapsoba", "Burkina Faso", ['CB'], 23, 81, club, 247263, true);
 		Player.create("Jonathan Tah", "J. Tah", "Germany", ['CB'], 26, 80, club, 213331, true);
@@ -8521,7 +8521,7 @@ class SoFifa23Service {
 		Player.create("Madi Monamay", "M. Monamay", "Belgium", ['CB', 'CDM'], 16, 61, club, 272924, false);
 		Player.create("Ayman Aourir", "A. Aourir", "Morocco", ['CAM', 'CF'], 17, 60, club, 273772, false);
 
-		club = Club.create("Eintracht Frankfurt", "Germany", 1824, "rgb(199,198,197)", "black");
+		club = Club.create("Eintracht Frankfurt", "Germany", 1824, "#C7C6C5", "#000000");
 		Player.create("Kevin Trapp", "K. Trapp", "Germany", ['GK'], 31, 86, club, 188943, true);
 		Player.create("Lucas Silva Melo", "Tuta", "Brazil", ['CB'], 22, 76, club, 247182, true);
 		Player.create("Makoto Hasebe", "M. Hasebe", "Japan", ['CB', 'CDM'], 38, 74, club, 181098, true);
@@ -8556,7 +8556,7 @@ class SoFifa23Service {
 		Player.create("Ignacio Ferri Julià", "Nacho Ferri", "Spain", ['ST'], 17, 61, club, 271979, false);
 		Player.create("Dario Ndubuisi Gebuhr", "D. Gebuhr", "Germany", ['CB'], 19, 58, club, 275211, false);
 
-		club = Club.create("Borussia Mönchengladbach", "Germany", 23, "rgb(174,182,177)", "black");
+		club = Club.create("Borussia Mönchengladbach", "Germany", 23, "#AEB6B1", "#000000");
 		Player.create("Jonas Omlin", "J. Omlin", "Switzerland", ['GK'], 28, 80, club, 223550, true);
 		Player.create("Joe Scally", "J. Scally", "United States", ['RB'], 19, 74, club, 243133, true);
 		Player.create("Ko Itakura", "K. Itakura", "Japan", ['CB', 'CDM'], 25, 77, club, 233152, true);
@@ -8591,7 +8591,7 @@ class SoFifa23Service {
 		Player.create("Simon Walde", "S. Walde", "Germany", ['RB'], 17, 61, club, 272882, false);
 		Player.create("Ibrahim Digberekou", "I. Digberekou", "Belgium", ['CB'], 17, 59, club, 275426, false);
 
-		club = Club.create("SC Freiburg", "Germany", 25, "rgb(168,76,79)", "white");
+		club = Club.create("SC Freiburg", "Germany", 25, "#A84C4F", "#FFFFFF");
 		Player.create("Mark Flekken", "M. Flekken", "Netherlands", ['GK'], 29, 81, club, 211738, true);
 		Player.create("Lukas Kübler", "L. Kübler", "Germany", ['RB', 'RWB', 'RM'], 29, 75, club, 208335, true);
 		Player.create("Matthias Ginter", "M. Ginter", "Germany", ['CB'], 28, 83, club, 207862, true);
@@ -8618,7 +8618,7 @@ class SoFifa23Service {
 		Player.create("Kenneth Schmidt", "K. Schmidt", "Germany", ['CB'], 20, 65, club, 262665, true);
 		Player.create("Merlin Röhl", "M. Röhl", "Germany", ['CM', 'CDM', 'RM'], 19, 65, club, 259714, true);
 
-		club = Club.create("TSG Hoffenheim", "Germany", 10029, "rgb(47,82,150)", "white");
+		club = Club.create("TSG Hoffenheim", "Germany", 10029, "#2F5296", "#FFFFFF");
 		Player.create("Oliver Baumann", "O. Baumann", "Germany", ['GK'], 32, 81, club, 193698, true);
 		Player.create("Pavel Kadeřábek", "P. Kadeřábek", "Czech Republic", ['RWB', 'RB', 'RM'], 30, 75, club, 203605, true);
 		Player.create("Ozan Kabak", "O. Kabak", "Turkey", ['CB'], 22, 75, club, 239890, true);
@@ -8653,7 +8653,7 @@ class SoFifa23Service {
 		Player.create("Finn Ole Becker", "F. Becker", "Germany", ['CM'], 22, 70, club, 245097, true);
 		Player.create("Noah König", "N. König", "Germany", ['CB'], 19, 59, club, 264223, false);
 
-		club = Club.create("VfL Wolfsburg", "Germany", 175, "rgb(117,175,91)", "black");
+		club = Club.create("VfL Wolfsburg", "Germany", 175, "#75AF5B", "#000000");
 		Player.create("Koen Casteels", "K. Casteels", "Belgium", ['GK'], 30, 84, club, 192984, true);
 		Player.create("Ridle Baku", "R. Baku", "Germany", ['RB', 'RM'], 24, 79, club, 240709, true);
 		Player.create("Sebastiaan Bornauw", "S. Bornauw", "Belgium", ['CB'], 23, 75, club, 242663, true);
@@ -8684,7 +8684,7 @@ class SoFifa23Service {
 		Player.create("Manuel Braun", "M. Braun", "Germany", ['LB', 'CB', 'LM'], 17, 58, club, 275228, false);
 		Player.create("Max Herrmann", "M. Herrmann", "Germany", ['CAM'], 17, 55, club, 275229, false);
 
-		club = Club.create("FC Union Berlin", "Germany", 1831, "rgb(199,106,106)", "black");
+		club = Club.create("FC Union Berlin", "Germany", 1831, "#C76A6A", "#000000");
 		Player.create("Frederik Rønnow", "F. Rønnow", "Denmark", ['GK'], 29, 77, club, 201269, true);
 		Player.create("Josip Juranović", "J. Juranović", "Croatia", ['RWB', 'LWB'], 26, 77, club, 257771, true);
 		Player.create("Danilho Doekhi", "D. Doekhi", "Netherlands", ['CB'], 24, 76, club, 232658, true);
@@ -8714,7 +8714,7 @@ class SoFifa23Service {
 		Player.create("Kevin Möhwald", "K. Möhwald", "Germany", ['CM', 'CAM'], 28, 70, club, 211818, true);
 		Player.create("Aljoscha Kemlein", "A. Kemlein", "Germany", ['CDM'], 17, 58, club, 271659, false);
 
-		club = Club.create("FSV Mainz 05", "Germany", 169, "rgb(174,44,55)", "white");
+		club = Club.create("FSV Mainz 05", "Germany", 169, "#AE2C37", "#FFFFFF");
 		Player.create("Robin Zentner", "R. Zentner", "Germany", ['GK'], 27, 76, club, 224251, true);
 		Player.create("Danny da Costa", "D. da Costa", "Germany", ['RWB', 'RM'], 28, 74, club, 202429, true);
 		Player.create("Andreas Hanche-Olsen", "A. Hanche-Olsen", "Norway", ['CB'], 25, 73, club, 228518, true);
@@ -8745,7 +8745,7 @@ class SoFifa23Service {
 		Player.create("Philipp Schulz", "P. Schulz", "Germany", ['CDM', 'CB'], 17, 58, club, 268260, true);
 		Player.create("Lucas Laux", "L. Laux", "Germany", ['CB'], 19, 59, club, 275094, false);
 
-		club = Club.create("FC Köln", "Germany", 31, "rgb(198,118,119)", "black");
+		club = Club.create("FC Köln", "Germany", 31, "#C67677", "#000000");
 		Player.create("Marvin Schwäbe", "M. Schwäbe", "Germany", ['GK'], 27, 78, club, 224041, true);
 		Player.create("Benno Schmitz", "B. Schmitz", "Germany", ['RB'], 27, 74, club, 222692, true);
 		Player.create("Timo Hübers", "T. Hübers", "Germany", ['CB'], 25, 77, club, 234727, true);
@@ -8780,7 +8780,7 @@ class SoFifa23Service {
 		Player.create("Joshua Schwirten", "J. Schwirten", "Germany", ['CM', 'CAM'], 20, 58, club, 270935, true);
 		Player.create("Damion Downs", "D. Downs", "United States", ['ST', 'CF'], 17, 62, club, 274944, false);
 
-		club = Club.create("VfB Stuttgart", "Germany", 36, "rgb(218,197,199)", "black");
+		club = Club.create("VfB Stuttgart", "Germany", 36, "#DAC5C7", "#000000");
 		Player.create("Fabian Bredlow", "F. Bredlow", "Germany", ['GK'], 27, 70, club, 223603, true);
 		Player.create("Konstantinos Mavropanos", "K. Mavropanos", "Greece", ['CB', 'RB'], 24, 78, club, 242000, true);
 		Player.create("Dan-Axel Zagadou", "D. Zagadou", "France", ['CB'], 23, 74, club, 238476, true);
@@ -8815,7 +8815,7 @@ class SoFifa23Service {
 		Player.create("Dennis Seimen", "D. Seimen", "Germany", ['GK'], 16, 59, club, 271114, false);
 		Player.create("Ömer Beyaz", "Ö. Beyaz", "Turkey", ['CAM', 'CM'], 18, 64, club, 256306, true);
 
-		club = Club.create("FC Augsburg", "Germany", 100409, "rgb(164,90,88)", "white");
+		club = Club.create("FC Augsburg", "Germany", 100409, "#A45A58", "#FFFFFF");
 		Player.create("Rafał Gikiewicz", "R. Gikiewicz", "Poland", ['GK'], 34, 77, club, 194333, true);
 		Player.create("Robert Gumny", "R. Gumny", "Poland", ['RB', 'CB', 'RM'], 24, 72, club, 233409, true);
 		Player.create("Jeffrey Gouweleeuw", "J. Gouweleeuw", "Netherlands", ['CB'], 30, 75, club, 202201, true);
@@ -8850,7 +8850,7 @@ class SoFifa23Service {
 		Player.create("Daniel Katic", "D. Katic", "Croatia", ['CB'], 19, 60, club, 272850, false);
 		Player.create("Josué Mbila", "J. Mbila", "Germany", ['ST'], 22, 61, club, 272848, false);
 
-		club = Club.create("Hertha BSC", "Germany", 166, "rgb(139,144,161)", "black");
+		club = Club.create("Hertha BSC", "Germany", 166, "#8B90A1", "#000000");
 		Player.create("Oliver Christensen", "O. Christensen", "Denmark", ['GK'], 23, 74, club, 236758, true);
 		Player.create("Jonjoe Kenny", "J. Kenny", "England", ['RB', 'LB'], 25, 74, club, 224263, true);
 		Player.create("Filip Uremović", "F. Uremović", "Croatia", ['CB'], 25, 71, club, 244629, true);
@@ -8885,7 +8885,7 @@ class SoFifa23Service {
 		Player.create("Pascal Klemens", "P. Klemens", "Germany", ['CB'], 17, 59, club, 274735, false);
 		Player.create("Ibrahim Maza", "I. Maza", "Germany", ['CAM'], 16, 59, club, 275029, false);
 
-		club = Club.create("Werder Bremen", "Germany", 38, "rgb(119,159,144)", "black");
+		club = Club.create("Werder Bremen", "Germany", 38, "#779F90", "#000000");
 		Player.create("Jiří Pavlenka", "J. Pavlenka", "Czech Republic", ['GK'], 30, 77, club, 236583, true);
 		Player.create("Mitchell Weiser", "M. Weiser", "Germany", ['RWB', 'RM'], 28, 76, club, 206591, true);
 		Player.create("Miloš Veljković", "M. Veljković", "Serbia", ['CB'], 26, 73, club, 221354, true);
@@ -8916,7 +8916,7 @@ class SoFifa23Service {
 		Player.create("Tim-Justin Dietrich", "T. Dietrich", "Germany", ['LWB', 'CB'], 19, 58, club, 274395, false);
 		Player.create("Leon Opitz", "L. Opitz", "Germany", ['LW', 'LM', 'ST'], 17, 57, club, 274924, false);
 
-		club = Club.create("VfL Bochum 1848", "Germany", 160, "rgb(38,65,94)", "white");
+		club = Club.create("VfL Bochum 1848", "Germany", 160, "#26415E", "#FFFFFF");
 		Player.create("Manuel Riemann", "M. Riemann", "Germany", ['GK'], 33, 77, club, 199339, true);
 		Player.create("Konstantinos Stafylidis", "K. Stafylidis", "Greece", ['LB', 'RB', 'CDM'], 28, 72, club, 202151, true);
 		Player.create("Ivan Ordets", "I. Ordets", "Ukraine", ['CB'], 29, 74, club, 224811, true);
@@ -8947,7 +8947,7 @@ class SoFifa23Service {
 		Player.create("Paul Grave", "P. Grave", "Germany", ['GK'], 21, 55, club, 247656, true);
 		Player.create("Mats Pannewig", "M. Pannewig", "Germany", ['CM', 'CDM', 'CAM'], 17, 60, club, 274617, false);
 
-		club = Club.create("Schalke 04", "Germany", 34, "rgb(49,61,117)", "white");
+		club = Club.create("Schalke 04", "Germany", 34, "#313D75", "#FFFFFF");
 		Player.create("Ralf Fährmann", "R. Fährmann", "Germany", ['GK'], 33, 71, club, 179783, true);
 		Player.create("Cédric Brunner", "C. Brunner", "Switzerland", ['RB', 'CB'], 28, 74, club, 215604, true);
 		Player.create("Sepp van den Berg", "S. van den Berg", "Netherlands", ['CB'], 20, 71, club, 242453, true);
@@ -8982,7 +8982,7 @@ class SoFifa23Service {
 		Player.create("Nassim Boujellab", "N. Boujellab", "Morocco", ['CAM', 'CF', 'CM'], 23, 66, club, 248174, true);
 		Player.create("Michael Langer", "M. Langer", "Austria", ['GK'], 37, 66, club, 107084, true);
 
-		club = Club.create("Hamburger SV", "Germany", 28, "rgb(174,178,183)", "black");
+		club = Club.create("Hamburger SV", "Germany", 28, "#AEB2B7", "#000000");
 		Player.create("Daniel Heuer Fernandes", "D. Heuer Fernandes", "Portugal", ['GK'], 29, 75, club, 212197, true);
 		Player.create("Moritz Heyer", "M. Heyer", "Germany", ['RB', 'CDM', 'CB'], 27, 71, club, 238593, true);
 		Player.create("Jonas David", "J. David", "Germany", ['CB', 'CDM'], 22, 68, club, 244859, true);
@@ -9014,7 +9014,7 @@ class SoFifa23Service {
 		Player.create("Filip Bilbija", "F. Bilbija", "Germany", ['LW', 'RW'], 22, 67, club, 252073, true);
 		Player.create("Nicolas-Bernd Oliveira Kisilowski", "N. Oliveira Kisilowski", "Germany", ['RB', 'LB'], 18, 58, club, 274038, false);
 
-		club = Club.create("Fortuna Düsseldorf", "Germany", 110636, "rgb(147,47,55)", "white");
+		club = Club.create("Fortuna Düsseldorf", "Germany", 110636, "#932F37", "#FFFFFF");
 		Player.create("Florian Kastenmeier", "F. Kastenmeier", "Germany", ['GK'], 25, 69, club, 251292, true);
 		Player.create("Matthias Zimmermann", "M. Zimmermann", "Germany", ['RB'], 30, 71, club, 192567, true);
 		Player.create("André Hoffmann", "A. Hoffmann", "Germany", ['CB'], 29, 72, club, 199779, true);
@@ -9046,7 +9046,7 @@ class SoFifa23Service {
 		Player.create("David Savic", "D. Savic", "Germany", ['RB'], 17, 60, club, 271850, false);
 		Player.create("Marcel Mansfeld", "M. Mansfeld", "Germany", ['ST'], 21, 57, club, 268104, false);
 
-		club = Club.create("Darmstadt 98", "Germany", 110502, "rgb(50,72,115)", "white");
+		club = Club.create("Darmstadt 98", "Germany", 110502, "#324873", "#FFFFFF");
 		Player.create("Marcel Schuhen", "M. Schuhen", "Germany", ['GK'], 29, 74, club, 209987, true);
 		Player.create("Patric Pfeiffer", "P. Pfeiffer", "Germany", ['CB'], 22, 74, club, 241590, true);
 		Player.create("Christoph Zimmermann", "C. Zimmermann", "Germany", ['CB'], 29, 73, club, 239322, true);
@@ -9076,7 +9076,7 @@ class SoFifa23Service {
 		Player.create("Antonis Makatounakis", "A. Makatounakis", "Greece", ['GK'], 18, 55, club, 263576, true);
 		Player.create("Keanan Bennetts", "K. Bennetts", "England", ['LM', 'RM'], 23, 63, club, 241038, true);
 
-		club = Club.create("Kaiserslautern", "Germany", 29, "rgb(169,49,51)", "white");
+		club = Club.create("Kaiserslautern", "Germany", 29, "#A93133", "#FFFFFF");
 		Player.create("Andreas Luthe", "A. Luthe", "Germany", ['GK'], 35, 73, club, 192665, true);
 		Player.create("Jean Zimmer", "J. Zimmer", "Germany", ['RM', 'RB'], 28, 67, club, 216381, true);
 		Player.create("Robin Bormuth", "R. Bormuth", "Germany", ['CB'], 26, 68, club, 233785, true);
@@ -9105,7 +9105,7 @@ class SoFifa23Service {
 		Player.create("Angelos Stavridis", "A. Stavridis", "Germany", ['LM', 'RM'], 18, 55, club, 272880, false);
 		Player.create("Aaron Basenach", "A. Basenach", "Germany", ['CDM', 'CB'], 19, 56, club, 270603, false);
 
-		club = Club.create("Karlsruher SC", "Germany", 1832, "rgb(45,66,124)", "white");
+		club = Club.create("Karlsruher SC", "Germany", 1832, "#2D427C", "#FFFFFF");
 		Player.create("Marius Gersbeck", "M. Gersbeck", "Germany", ['GK'], 27, 71, club, 213573, true);
 		Player.create("Marco Thiede", "M. Thiede", "Germany", ['RB', 'RM'], 30, 68, club, 205463, true);
 		Player.create("Christoph Kobald", "C. Kobald", "Austria", ['CB'], 24, 69, club, 244491, true);
@@ -9136,7 +9136,7 @@ class SoFifa23Service {
 		Player.create("Lazar Mirković", "L. Mirković", "Serbia", ['CB'], 19, 55, club, 262920, true);
 		Player.create("Budu Zivzivadze", "B. Zivzivadze", "Georgia", ['ST'], 28, 66, club, 237633, false);
 
-		club = Club.create("Paderborn", "Germany", 10030, "rgb(49,66,99)", "white");
+		club = Club.create("Paderborn", "Germany", 10030, "#314263", "#FFFFFF");
 		Player.create("Jannik Huth", "J. Huth", "Germany", ['GK'], 28, 71, club, 229692, true);
 		Player.create("Jannis Heuer", "J. Heuer", "Germany", ['CB'], 22, 68, club, 262903, true);
 		Player.create("Maximilian Rohr", "M. Rohr", "Germany", ['CDM', 'CB', 'CM'], 27, 67, club, 251320, true);
@@ -9165,7 +9165,7 @@ class SoFifa23Service {
 		Player.create("Moritz Schulze", "M. Schulze", "Germany", ['GK'], 21, 59, club, 257149, true);
 		Player.create("Dominik Bilogrević", "D. Bilogrević", "Croatia", ['CAM', 'CM'], 23, 59, club, 252694, true);
 
-		club = Club.create("Sandhausen", "Germany", 110178, "rgb(198,197,196)", "black");
+		club = Club.create("Sandhausen", "Germany", 110178, "#C6C5C4", "#000000");
 		Player.create("Patrick Drewes", "P. Drewes", "Germany", ['GK'], 29, 72, club, 210772, true);
 		Player.create("Bashkim Ajdini", "B. Ajdini", "Kosovo", ['RB', 'RM', 'RWB'], 29, 68, club, 222838, true);
 		Player.create("Dario Dumić", "D. Dumić", "Bosnia and Herzegovina", ['CB'], 30, 69, club, 193706, true);
@@ -9197,7 +9197,7 @@ class SoFifa23Service {
 		Player.create("Benedikt Grawe", "B. Grawe", "Germany", ['GK'], 22, 55, club, 256463, true);
 		Player.create("Matěj Pulkrab", "M. Pulkrab", "Czech Republic", ['ST'], 25, 68, club, 246182, true);
 
-		club = Club.create("Heidenheim", "Germany", 111235, "rgb(147,57,84)", "white");
+		club = Club.create("Heidenheim", "Germany", 111235, "#933954", "#FFFFFF");
 		Player.create("Kevin Müller", "K. Müller", "Germany", ['GK'], 31, 71, club, 202873, true);
 		Player.create("Marnon Busch", "M. Busch", "Germany", ['RB'], 27, 71, club, 224980, true);
 		Player.create("Patrick Mainka", "P. Mainka", "Germany", ['CB'], 27, 72, club, 216199, true);
@@ -9227,7 +9227,7 @@ class SoFifa23Service {
 		Player.create("Mert Arslan", "M. Arslan", "Germany", ['CAM'], 18, 59, club, 266642, true);
 		Player.create("Merveille Biankadi", "M. Biankadi", "Germany", ['RM', 'CAM', 'CM'], 27, 66, club, 239703, true);
 
-		club = Club.create("DSC Arminia Bielefeld", "Germany", 159, "rgb(53,77,124)", "white");
+		club = Club.create("DSC Arminia Bielefeld", "Germany", 159, "#354D7C", "#FFFFFF");
 		Player.create("Martin Fraisl", "M. Fraisl", "Austria", ['GK'], 29, 71, club, 227497, true);
 		Player.create("Lukas Klünter", "L. Klünter", "Germany", ['RB', 'CB'], 26, 71, club, 229487, true);
 		Player.create("Frederik Jäkel", "F. Jäkel", "Germany", ['CB'], 21, 68, club, 251451, true);
@@ -9256,7 +9256,7 @@ class SoFifa23Service {
 		Player.create("Armin Gremsl", "A. Gremsl", "Austria", ['GK'], 27, 62, club, 257618, true);
 		Player.create("Nils Hahne", "N. Hahne", "Germany", ['GK'], 18, 56, club, 270139, true);
 
-		club = Club.create("Nürnberg", "Germany", 171, "rgb(83,50,53)", "white");
+		club = Club.create("Nürnberg", "Germany", 171, "#533235", "#FFFFFF");
 		Player.create("Peter Vindahl Jensen", "P. Jensen", "Denmark", ['GK'], 24, 70, club, 231237, true);
 		Player.create("Jens Castrop", "J. Castrop", "Germany", ['RM', 'CAM', 'RB'], 18, 66, club, 264194, true);
 		Player.create("Florian Hübner", "F. Hübner", "Germany", ['CB'], 31, 69, club, 203590, true);
@@ -9288,7 +9288,7 @@ class SoFifa23Service {
 		Player.create("Jan Gyamerah", "J. Gyamerah", "Germany", ['RB', 'LB', 'CB'], 27, 68, club, 216416, true);
 		Player.create("Gustavo Puerta", "G. Puerta", "Colombia", ['CM', 'CDM'], 18, 63, club, 273827, false);
 
-		club = Club.create("Hannover 96", "Germany", 485, "rgb(176,62,64)", "white");
+		club = Club.create("Hannover 96", "Germany", 485, "#B03E40", "#FFFFFF");
 		Player.create("Ron-Robert Zieler", "R. Zieler", "Germany", ['GK'], 33, 74, club, 186148, true);
 		Player.create("Sei Muroya", "S. Muroya", "Japan", ['RB', 'RWB'], 28, 71, club, 233207, true);
 		Player.create("Phil Neumann", "P. Neumann", "Germany", ['CB', 'RB'], 24, 70, club, 236217, true);
@@ -9318,7 +9318,7 @@ class SoFifa23Service {
 		Player.create("Eric Uhlmann", "E. Uhlmann", "Germany", ['CDM', 'CM'], 19, 59, club, 263353, true);
 		Player.create("Yannik Lührs", "Y. Lührs", "Germany", ['CB', 'RB'], 18, 60, club, 272896, false);
 
-		club = Club.create("St. Pauli", "Germany", 110329, "rgb(78,67,58)", "white");
+		club = Club.create("St. Pauli", "Germany", 110329, "#4E433A", "#FFFFFF");
 		Player.create("Nikola Vasilj", "N. Vasilj", "Bosnia and Herzegovina", ['GK'], 26, 70, club, 262956, true);
 		Player.create("Jakov Medić", "J. Medić", "Croatia", ['CB', 'CDM', 'CM'], 23, 70, club, 251288, true);
 		Player.create("Eric Smith", "E. Smith", "Sweden", ['CB', 'CDM'], 25, 69, club, 222369, true);
@@ -9350,7 +9350,7 @@ class SoFifa23Service {
 		Player.create("Marcel Beifus", "M. Beifus", "Germany", ['CB'], 19, 63, club, 263273, true);
 		Player.create("Christopher Avevor", "C. Avevor", "Germany", ['CB'], 30, 65, club, 198856, true);
 
-		club = Club.create("Hansa Rostock", "Germany", 27, "rgb(49,70,110)", "white");
+		club = Club.create("Hansa Rostock", "Germany", 27, "#31466E", "#FFFFFF");
 		Player.create("Markus Kolke", "M. Kolke", "Germany", ['GK'], 31, 71, club, 211946, true);
 		Player.create("Nico Neidhart", "N. Neidhart", "Germany", ['RB', 'LB'], 27, 68, club, 211982, true);
 		Player.create("Ryan Malone", "R. Malone", "United States", ['CB'], 29, 68, club, 257147, true);
@@ -9382,7 +9382,7 @@ class SoFifa23Service {
 		Player.create("Max Hagemoser", "M. Hagemoser", "Germany", ['GK'], 19, 58, club, 269916, true);
 		Player.create("Thomas Meißner", "T. Meißner", "Germany", ['CB'], 31, 66, club, 209491, true);
 
-		club = Club.create("Holstein Kiel", "Germany", 576, "rgb(95,99,137)", "white");
+		club = Club.create("Holstein Kiel", "Germany", 576, "#5F6389", "#FFFFFF");
 		Player.create("Robin Himmelmann", "R. Himmelmann", "Germany", ['GK'], 33, 67, club, 208679, false);
 		Player.create("Timo Becker", "T. Becker", "Germany", ['RB', 'CB', 'RM'], 25, 69, club, 254245, true);
 		Player.create("Hauke Wahl", "H. Wahl", "Germany", ['CB'], 28, 70, club, 230855, true);
@@ -9414,7 +9414,7 @@ class SoFifa23Service {
 		Player.create("Thomas Dähne", "T. Dähne", "Germany", ['GK'], 28, 70, club, 210006, true);
 		Player.create("Hólmbert Aron Friðjónsson", "H. Friðjónsson", "Iceland", ['ST'], 29, 65, club, 220922, true);
 
-		club = Club.create("SpVgg Greuther Fürth", "Germany", 165, "rgb(98,168,131)", "black");
+		club = Club.create("SpVgg Greuther Fürth", "Germany", 165, "#62A883", "#000000");
 		Player.create("Andreas Linde", "A. Linde", "Sweden", ['GK'], 28, 71, club, 207926, true);
 		Player.create("Sebastian Griesbeck", "S. Griesbeck", "Germany", ['CB', 'CDM'], 31, 70, club, 222553, true);
 		Player.create("Damian Michalski", "D. Michalski", "Poland", ['CB'], 24, 68, club, 251764, true);
@@ -9446,7 +9446,7 @@ class SoFifa23Service {
 		Player.create("Devin Angleberger", "D. Angleberger", "Germany", ['CM', 'CDM'], 19, 55, club, 270548, true);
 		Player.create("Natanas Žebrauskas", "N. Žebrauskas", "Lithuania", ['RB'], 20, 55, club, 271763, false);
 
-		club = Club.create("Magdeburg", "Germany", 110588, "rgb(74,117,183)", "white");
+		club = Club.create("Magdeburg", "Germany", 110588, "#4A75B7", "#FFFFFF");
 		Player.create("Dominik Reimann", "D. Reimann", "Germany", ['GK'], 25, 68, club, 228607, true);
 		Player.create("Herbert Bockhorn", "H. Bockhorn", "Uganda", ['RB'], 27, 69, club, 252014, true);
 		Player.create("Cristiano Piccini", "C. Piccini", "Italy", ['CB', 'RB'], 29, 70, club, 201939, true);
@@ -9478,7 +9478,7 @@ class SoFifa23Service {
 		Player.create("Malcolm Cacutalua", "M. Cacutalua", "Germany", ['CB', 'RB'], 27, 65, club, 220878, true);
 		Player.create("Tim Stappmann", "T. Stappmann", "Germany", ['CB', 'RB'], 22, 62, club, 269965, true);
 
-		club = Club.create("Jahn Regensburg", "Germany", 543, "rgb(210,196,191)", "black");
+		club = Club.create("Jahn Regensburg", "Germany", 543, "#D2C4BF", "#000000");
 		Player.create("Jonas Urbig", "J. Urbig", "Germany", ['GK'], 18, 63, club, 263887, true);
 		Player.create("Benedikt Saller", "B. Saller", "Germany", ['RB'], 29, 67, club, 210004, true);
 		Player.create("Steve Breitkreuz", "S. Breitkreuz", "Germany", ['CB', 'RB'], 30, 68, club, 234278, true);
@@ -9509,7 +9509,7 @@ class SoFifa23Service {
 		Player.create("Christian Schmidt", "C. Schmidt", "Germany", ['ST', 'CAM'], 20, 52, club, 271212, false);
 		Player.create("Jannik Graf", "J. Graf", "Germany", ['ST'], 17, 56, club, 274088, false);
 
-		club = Club.create("Eintracht Braunschweig", "Germany", 110500, "rgb(159,152,81)", "black");
+		club = Club.create("Eintracht Braunschweig", "Germany", 110500, "#9F9851", "#000000");
 		Player.create("Ron-Thorben Hoffmann", "R. Hoffmann", "Germany", ['GK'], 23, 66, club, 241859, true);
 		Player.create("Saulo Decarli", "S. Decarli", "Switzerland", ['CB'], 30, 66, club, 213323, true);
 		Player.create("Filip Benković", "F. Benković", "Croatia", ['CB'], 24, 71, club, 244269, true);
@@ -9539,7 +9539,7 @@ class SoFifa23Service {
 		Player.create("Niko Kijewski", "N. Kijewski", "Germany", ['LWB', 'LB', 'LM'], 26, 65, club, 229175, true);
 		Player.create("Fabio Kaufmann", "F. Kaufmann", "Germany", ['ST', 'RM', 'CM'], 29, 64, club, 216260, true);
 
-		club = Club.create("Saarbrücken", "Germany", 523, "rgb(54,58,75)", "white");
+		club = Club.create("Saarbrücken", "Germany", 523, "#363A4B", "#FFFFFF");
 		Player.create("Daniel Batz", "D. Batz", "Germany", ['GK'], 31, 70, club, 199803, true);
 		Player.create("Calogero Rizzuto", "C. Rizzuto", "Germany", ['LWB', 'LM', 'RWB'], 30, 68, club, 234279, true);
 		Player.create("Bjarne Thoelke", "B. Thoelke", "Germany", ['CB'], 30, 66, club, 205096, true);
@@ -9568,7 +9568,7 @@ class SoFifa23Service {
 		Player.create("Julian Bauer", "J. Bauer", "Germany", ['GK'], 22, 56, club, 266383, true);
 		Player.create("Andy Breuer", "A. Breuer", "Germany", ['CM', 'CF', 'CDM'], 16, 52, club, 270839, true);
 
-		club = Club.create("1860 München", "Germany", 33, "rgb(186,195,203)", "black");
+		club = Club.create("1860 München", "Germany", 33, "#BAC3CB", "#000000");
 		Player.create("Marco Hiller", "M. Hiller", "Germany", ['GK'], 25, 68, club, 243778, true);
 		Player.create("Leandro Morgalla", "L. Morgalla", "Germany", ['CB', 'RB'], 17, 65, club, 264377, true);
 		Player.create("Niklas Lang", "N. Lang", "Germany", ['CB', 'RB'], 20, 64, club, 251689, true);
@@ -9598,7 +9598,7 @@ class SoFifa23Service {
 		Player.create("Nathan Wicht", "N. Wicht", "Switzerland", ['CM', 'CAM'], 18, 55, club, 262623, true);
 		Player.create("Mansour Ouro-Tagba", "M. Ouro-Tagba", "United States", ['ST', 'LM'], 17, 59, club, 275274, false);
 
-		club = Club.create("Dynamo Dresden", "Germany", 503, "rgb(186,130,51)", "black");
+		club = Club.create("Dynamo Dresden", "Germany", 503, "#BA8233", "#000000");
 		Player.create("Stefan Drljača", "S. Drljača", "Germany", ['GK'], 23, 65, club, 258864, true);
 		Player.create("Claudio Kammerknecht", "C. Kammerknecht", "Germany", ['CB', 'CDM'], 22, 65, club, 262664, true);
 		Player.create("Jakob Lewald", "J. Lewald", "Germany", ['CB'], 23, 65, club, 262534, true);
@@ -9628,7 +9628,7 @@ class SoFifa23Service {
 		Player.create("Robin Becker", "R. Becker", "Germany", ['RB', 'CB'], 25, 66, club, 229610, true);
 		Player.create("Max Kulke", "M. Kulke", "Germany", ['LB', 'RB', 'CM'], 21, 62, club, 245239, true);
 
-		club = Club.create("Viktoria Köln", "Germany", 110645, "rgb(123,46,50)", "white");
+		club = Club.create("Viktoria Köln", "Germany", 110645, "#7B2E32", "#FFFFFF");
 		Player.create("Ben Voll", "B. Voll", "Germany", ['GK'], 21, 66, club, 251433, true);
 		Player.create("Lars Dietz", "L. Dietz", "Germany", ['CB'], 25, 67, club, 241995, true);
 		Player.create("Michael Schultz", "M. Schultz", "Germany", ['CB'], 29, 66, club, 217841, true);
@@ -9658,7 +9658,7 @@ class SoFifa23Service {
 		Player.create("Luca Marseiler", "L. Marseiler", "Germany", ['LM', 'RM'], 25, 65, club, 240156, true);
 		Player.create("David Kubatta", "D. Kubatta", "Germany", ['CB'], 18, 54, club, 268429, true);
 
-		club = Club.create("Elversberg", "Germany", 580, "rgb(185,184,181)", "black");
+		club = Club.create("Elversberg", "Germany", 580, "#B9B8B5", "#000000");
 		Player.create("Nicolas Kristof", "N. Kristof", "Austria", ['GK'], 22, 66, club, 269301, true);
 		Player.create("Robin Fellhauer", "R. Fellhauer", "Germany", ['RB'], 24, 66, club, 269305, true);
 		Player.create("Carlo Sickinger", "C. Sickinger", "Germany", ['CDM', 'CB'], 24, 64, club, 242525, true);
@@ -9688,7 +9688,7 @@ class SoFifa23Service {
 		Player.create("Sinan Tekerci", "S. Tekerci", "Turkey", ['LM', 'RM'], 28, 61, club, 222774, true);
 		Player.create("David Kercek", "D. Kercek", "Germany", ['GK'], 17, 51, club, 274943, false);
 
-		club = Club.create("Ingolstadt", "Germany", 111239, "rgb(120,40,51)", "white");
+		club = Club.create("Ingolstadt", "Germany", 111239, "#782833", "#FFFFFF");
 		Player.create("Marius Funk", "M. Funk", "Germany", ['GK'], 26, 65, club, 234858, true);
 		Player.create("Marcel Costly", "M. Costly", "Germany", ['RB', 'RM'], 26, 67, club, 241967, true);
 		Player.create("Donald Nduka", "D. Nduka", "Nigeria", ['CB'], 19, 60, club, 274912, false);
@@ -9718,7 +9718,7 @@ class SoFifa23Service {
 		Player.create("David Udogu", "D. Udogu", "Germany", ['RB', 'LB'], 19, 55, club, 273570, false);
 		Player.create("Maximilian Neuberger", "M. Neuberger", "Germany", ['CB', 'RB'], 22, 61, club, 263615, true);
 
-		club = Club.create("Waldhof Mannheim", "Germany", 110532, "rgb(45,65,90)", "white");
+		club = Club.create("Waldhof Mannheim", "Germany", 110532, "#2D415A", "#FFFFFF");
 		Player.create("Jan-Christoph Bartels", "J. Bartels", "Germany", ['GK'], 23, 65, club, 245176, true);
 		Player.create("Laurent Jans", "L. Jans", "Luxembourg", ['RB', 'LB'], 29, 66, club, 206269, true);
 		Player.create("Julian Riedel", "J. Riedel", "Germany", ['CB', 'RB'], 30, 65, club, 201815, true);
@@ -9748,7 +9748,7 @@ class SoFifa23Service {
 		Player.create("Luca Bolay", "L. Bolay", "Germany", ['LB', 'LM'], 19, 55, club, 263138, true);
 		Player.create("Volkan Rona", "V. Rona", "Germany", ['LM'], 21, 54, club, 270908, false);
 
-		club = Club.create("Osnabrück", "Germany", 487, "rgb(106,74,134)", "white");
+		club = Club.create("Osnabrück", "Germany", 487, "#6A4A86", "#FFFFFF");
 		Player.create("Philipp Kühn", "P. Kühn", "Germany", ['GK'], 29, 67, club, 208719, true);
 		Player.create("Omar Haktab Traoré", "O. Traoré", "Germany", ['RB'], 24, 65, club, 257136, true);
 		Player.create("Maxwell Gyamfi", "M. Gyamfi", "Germany", ['CB'], 22, 66, club, 250993, true);
@@ -9777,7 +9777,7 @@ class SoFifa23Service {
 		Player.create("Kevin Wiethaup", "K. Wiethaup", "Germany", ['CAM'], 16, 59, club, 268652, true);
 		Player.create("Yigit Karademir", "Y. Karademir", "Turkey", ['CB'], 18, 57, club, 268651, false);
 
-		club = Club.create("Wehen Wiesbaden", "Germany", 492, "rgb(75,49,50)", "white");
+		club = Club.create("Wehen Wiesbaden", "Germany", 492, "#4B3132", "#FFFFFF");
 		Player.create("Florian Stritzel", "F. Stritzel", "Germany", ['GK'], 28, 65, club, 208776, true);
 		Player.create("Max Reinthaler", "M. Reinthaler", "Italy", ['CB'], 27, 64, club, 224421, true);
 		Player.create("Florian Carstens", "F. Carstens", "Germany", ['CB'], 23, 65, club, 245750, true);
@@ -9807,7 +9807,7 @@ class SoFifa23Service {
 		Player.create("Nassim Elouarti", "N. Elouarti", "Germany", ['CDM', 'LWB'], 17, 53, club, 271936, false);
 		Player.create("Maurizio Robotta", "M. Robotta", "Germany", ['RB'], 17, 54, club, 272354, false);
 
-		club = Club.create("Erzgebirge Aue", "Germany", 506, "rgb(81,64,119)", "white");
+		club = Club.create("Erzgebirge Aue", "Germany", 506, "#514077", "#FFFFFF");
 		Player.create("Martin Männel", "M. Männel", "Germany", ['GK'], 34, 69, club, 182520, true);
 		Player.create("Tim Danhof", "T. Danhof", "Germany", ['RB', 'RM'], 25, 63, club, 269866, true);
 		Player.create("Anthony Barylla", "A. Barylla", "Germany", ['RB', 'CB', 'LB'], 25, 65, club, 239686, true);
@@ -9836,7 +9836,7 @@ class SoFifa23Service {
 		Player.create("Franco Schädlich", "F. Schädlich", "Germany", ['RB'], 18, 57, club, 264400, true);
 		Player.create("Finn Hetzsch", "F. Hetzsch", "Germany", ['LB'], 17, 54, club, 272538, false);
 
-		club = Club.create("Zwickau", "Germany", 110592, "rgb(217,88,92)", "black");
+		club = Club.create("Zwickau", "Germany", 110592, "#D9585C", "#000000");
 		Player.create("Johannes Brinkies", "J. Brinkies", "Germany", ['GK'], 29, 67, club, 204380, true);
 		Player.create("Leonhard von Schroetter", "L. von Schroetter", "Germany", ['RB', 'LB', 'RM'], 23, 63, club, 270115, true);
 		Player.create("Nils Butzen", "N. Butzen", "Germany", ['RB', 'LB', 'CB'], 29, 65, club, 238970, true);
@@ -9866,7 +9866,7 @@ class SoFifa23Service {
 		Player.create("Max Sprang", "M. Sprang", "Germany", ['GK'], 21, 60, club, 239689, true);
 		Player.create("Lucas Hiemann", "L. Hiemann", "Germany", ['GK'], 23, 53, club, 242864, true);
 
-		club = Club.create("Meppen", "Germany", 110597, "rgb(67,101,160)", "white");
+		club = Club.create("Meppen", "Germany", 110597, "#4365A0", "#FFFFFF");
 		Player.create("Erik Domaschke", "E. Domaschke", "Germany", ['GK'], 36, 63, club, 183596, true);
 		Player.create("Max Dombrowka", "M. Dombrowka", "Germany", ['LB', 'CB', 'CM'], 30, 64, club, 238961, true);
 		Player.create("Bruno Gabriel Soares", "Bruno Soares", "Brazil", ['CB'], 33, 63, club, 193220, false);
@@ -9896,7 +9896,7 @@ class SoFifa23Service {
 		Player.create("Steffen Puttkammer", "S. Puttkammer", "Germany", ['CB'], 33, 63, club, 239724, true);
 		Player.create("Johannes Manske", "J. Manske", "Germany", ['ST'], 22, 61, club, 270042, true);
 
-		club = Club.create("Rot-Weiss Essen", "Germany", 526, "rgb(205,189,185)", "black");
+		club = Club.create("Rot-Weiss Essen", "Germany", 526, "#CDBDB9", "#000000");
 		Player.create("Jakob Golz", "J. Golz", "Germany", ['GK'], 23, 63, club, 269269, true);
 		Player.create("Andreas Wiegel", "A. Wiegel", "Germany", ['RB', 'RWB', 'RM'], 30, 65, club, 204388, true);
 		Player.create("José-Enrique Ríos Alonso", "J. Ríos Alonso", "Germany", ['CB'], 21, 64, club, 269315, true);
@@ -9925,7 +9925,7 @@ class SoFifa23Service {
 		Player.create("Felix Wienand", "F. Wienand", "Germany", ['GK'], 20, 60, club, 265750, true);
 		Player.create("Aurel Loubongo-M'Boungou", "A. Loubongo-M'Boungou", "Germany", ['LM', 'RM', 'CF'], 21, 60, club, 252369, true);
 
-		club = Club.create("MSV Duisburg", "Germany", 1825, "rgb(138,136,143)", "black");
+		club = Club.create("MSV Duisburg", "Germany", 1825, "#8A888F", "#000000");
 		Player.create("Vincent Müller", "V. Müller", "Germany", ['GK'], 21, 68, club, 251330, true);
 		Player.create("Joshua Bitter", "J. Bitter", "Germany", ['RB'], 25, 63, club, 234407, true);
 		Player.create("Tobias Fleckstein", "T. Fleckstein", "Germany", ['CB'], 23, 63, club, 244000, true);
@@ -9955,7 +9955,7 @@ class SoFifa23Service {
 		Player.create("Hamza Anhari", "H. Anhari", "Morocco", ['CAM'], 18, 56, club, 269997, true);
 		Player.create("Lukas Raeder", "L. Raeder", "Germany", ['GK'], 28, 63, club, 210019, true);
 
-		club = Club.create("Hallescher FC", "Germany", 110482, "rgb(202,39,48)", "white");
+		club = Club.create("Hallescher FC", "Germany", 110482, "#CA2730", "#FFFFFF");
 		Player.create("Felix Gebhardt", "F. Gebhardt", "Germany", ['GK'], 20, 65, club, 259718, true);
 		Player.create("Niklas Kreuzer", "N. Kreuzer", "Germany", ['RB', 'RM'], 29, 67, club, 225875, true);
 		Player.create("Jonas Nietfeld", "J. Nietfeld", "Germany", ['CB', 'ST'], 28, 65, club, 238642, true);
@@ -9985,7 +9985,7 @@ class SoFifa23Service {
 		Player.create("Lucas Halangk", "L. Halangk", "Germany", ['RB'], 18, 60, club, 264435, true);
 		Player.create("Leon Damer", "L. Damer", "Germany", ['RM'], 22, 64, club, 264439, true);
 
-		club = Club.create("Verl", "Germany", 110501, "rgb(137,132,132)", "black");
+		club = Club.create("Verl", "Germany", 110501, "#898484", "#000000");
 		Player.create("Tim Wiesner", "T. Wiesner", "Germany", ['GK'], 25, 60, club, 229243, true);
 		Player.create("Nico Ochojski", "N. Ochojski", "Germany", ['RB'], 23, 64, club, 244091, true);
 		Player.create("Torge Paetow", "T. Paetow", "Germany", ['CB', 'RB'], 26, 65, club, 238634, true);
@@ -10015,7 +10015,7 @@ class SoFifa23Service {
 		Player.create("Niclas Thiede", "N. Thiede", "Germany", ['GK'], 23, 65, club, 251285, true);
 		Player.create("Luca Stellwagen", "L. Stellwagen", "Germany", ['LB'], 23, 64, club, 258512, true);
 
-		club = Club.create("Borussia Dortmund II", "Germany", 110676, "rgb(161,139,41)", "black");
+		club = Club.create("Borussia Dortmund II", "Germany", 110676, "#A18B29", "#000000");
 		Player.create("Luca Unbehaun", "L. Unbehaun", "Germany", ['GK'], 21, 65, club, 247479, true);
 		Player.create("Can Özkan", "C. Özkan", "Germany", ['CDM', 'CM', 'RB'], 22, 63, club, 242268, true);
 		Player.create("Bjarne Pudel", "B. Pudel", "Germany", ['CB'], 21, 62, club, 269865, true);
@@ -10041,7 +10041,7 @@ class SoFifa23Service {
 		Player.create("Aday Ercan", "A. Ercan", "Germany", ['CDM'], 21, 57, club, 262643, true);
 		Player.create("Samuel Bamba", "S. Bamba", "Germany", ['LM'], 18, 62, club, 264543, false);
 
-		club = Club.create("Freiburg II", "Germany", 110691, "rgb(167,76,80)", "white");
+		club = Club.create("Freiburg II", "Germany", 110691, "#A74C50", "#FFFFFF");
 		Player.create("Niklas Sauter", "N. Sauter", "Germany", ['GK'], 19, 63, club, 263023, true);
 		Player.create("Philipp Treu", "P. Treu", "Germany", ['RB'], 21, 66, club, 262666, true);
 		Player.create("Max Rosenfelder", "M. Rosenfelder", "Germany", ['CB'], 19, 63, club, 263022, true);
@@ -10071,7 +10071,7 @@ class SoFifa23Service {
 		Player.create("Laurin Mack", "L. Mack", "Germany", ['GK'], 18, 53, club, 270106, true);
 		Player.create("Marco Wörner", "M. Wörner", "Germany", ['CAM'], 17, 56, club, 274993, false);
 
-		club = Club.create("VfB Oldenburg", "Germany", 110587, "rgb(57,60,85)", "white");
+		club = Club.create("VfB Oldenburg", "Germany", 110587, "#393C55", "#FFFFFF");
 		Player.create("Felix Dornebusch", "F. Dornebusch", "Germany", ['GK'], 27, 62, club, 219260, false);
 		Player.create("Patrick Möschl", "P. Möschl", "Austria", ['RM', 'LM'], 29, 63, club, 210477, true);
 		Player.create("Marcel Appiah", "M. Appiah", "Germany", ['CB', 'RB'], 34, 63, club, 200158, true);
@@ -10101,7 +10101,7 @@ class SoFifa23Service {
 		Player.create("Kai-Sotirios Kaissis", "K. Kaissis", "Germany", ['CAM', 'CM'], 25, 62, club, 270026, true);
 		Player.create("Christopher Buchtmann", "C. Buchtmann", "Germany", ['CM', 'CAM', 'CDM'], 30, 65, club, 192321, true);
 
-		club = Club.create("Bayreuth", "Germany", 110194, "rgb(222,178,46)", "black");
+		club = Club.create("Bayreuth", "Germany", 110194, "#DEB22E", "#000000");
 		Player.create("Luca Petzold", "L. Petzold", "Germany", ['GK'], 20, 60, club, 270577, true);
 		Player.create("Moritz Heinrich", "M. Heinrich", "Germany", ['RM', 'RB', 'LM'], 24, 62, club, 234942, true);
 		Player.create("Tobias Weber", "T. Weber", "Germany", ['CB', 'RB'], 27, 60, club, 269981, true);
@@ -10130,7 +10130,7 @@ class SoFifa23Service {
 		Player.create("Sebastian Kolbe", "S. Kolbe", "Germany", ['GK'], 26, 63, club, 269833, true);
 		Player.create("Felix Weber", "F. Weber", "Germany", ['CB'], 27, 63, club, 238752, true);
 
-		club = Club.create("AEK Athens", "Greece", 278, "rgb(133,111,44)", "white");
+		club = Club.create("AEK Athens", "Greece", 278, "#856F2C", "#FFFFFF");
 		Player.create("Giorgos Athanasiadis", "G. Athanasiadis", "Greece", ['GK'], 29, 73, club, 252022, true);
 		Player.create("Lazaros Rota", "L. Rota", "Greece", ['RB'], 24, 72, club, 255541, true);
 		Player.create("Domagoj Vida", "D. Vida", "Croatia", ['CB'], 33, 75, club, 199206, true);
@@ -10160,7 +10160,7 @@ class SoFifa23Service {
 		Player.create("Djibril Sidibé", "D. Sidibé", "France", ['RB', 'LB'], 29, 75, club, 201042, true);
 		Player.create("Sergio Araujo", "S. Araujo", "Argentina", ['ST', 'CAM'], 30, 74, club, 198145, true);
 
-		club = Club.create("Panathinaikos", "Greece", 1884, "rgb(123,146,131)", "black");
+		club = Club.create("Panathinaikos", "Greece", 1884, "#7B9283", "#000000");
 		Player.create("Alberto Brignoli", "A. Brignoli", "Italy", ['GK'], 30, 75, club, 210358, true);
 		Player.create("Giannis Kotsiras", "G. Kotsiras", "Greece", ['RB'], 29, 71, club, 262815, true);
 		Player.create("Bart Schenkeveld", "B. Schenkeveld", "Netherlands", ['CB'], 30, 74, club, 198177, true);
@@ -10190,7 +10190,7 @@ class SoFifa23Service {
 		Player.create("Alexis Trouillet", "A. Trouillet", "France", ['CM'], 21, 70, club, 242753, true);
 		Player.create("Aitor Cantalapiedra", "Aitor", "Spain", ['LW', 'RW'], 26, 75, club, 231433, true);
 
-		club = Club.create("PAOK", "Greece", 393, "rgb(139,138,137)", "black");
+		club = Club.create("PAOK", "Greece", 393, "#8B8A89", "#000000");
 		Player.create("Dominik Kotarski", "D. Kotarski", "Croatia", ['GK'], 22, 72, club, 246267, true);
 		Player.create("Joan Sastre Vanrell", "Joan Sastre", "Spain", ['RB', 'LB'], 25, 71, club, 231588, true);
 		Player.create("Sverrir Ingi Ingason", "S. Ingason", "Iceland", ['CB'], 28, 76, club, 221422, true);
@@ -10220,7 +10220,7 @@ class SoFifa23Service {
 		Player.create("André Miguel Lapa Ricardo", "André Ricardo", "Portugal", ['CAM'], 21, 64, club, 264291, true);
 		Player.create("Lefteris Lyratzis", "L. Lyratzis", "Greece", ['RB'], 22, 70, club, 257622, true);
 
-		club = Club.create("Ferencváros", "Hungary", 1874, "rgb(138,153,143)", "black");
+		club = Club.create("Ferencváros", "Hungary", 1874, "#8A998F", "#000000");
 		Player.create("Dénes Dibusz", "D. Dibusz", "Hungary", ['GK'], 31, 75, club, 221610, true);
 		Player.create("Lóránd Pászka", "L. Pászka", "Hungary", ['LB', 'RB'], 26, 67, club, 267632, true);
 		Player.create("Mats Knoester", "M. Knoester", "Netherlands", ['CB'], 23, 69, club, 238040, true);
@@ -10250,7 +10250,7 @@ class SoFifa23Service {
 		Player.create("Ryan Mmaee", "R. Mmaee", "Morocco", ['ST'], 25, 71, club, 228639, true);
 		Player.create("Endre Botka", "E. Botka", "Hungary", ['RB', 'CB'], 27, 70, club, 230718, true);
 
-		club = Club.create("ATK Mohun Bagan", "India", 113146, "rgb(114,103,91)", "white");
+		club = Club.create("ATK Mohun Bagan", "India", 113146, "#72675B", "#FFFFFF");
 		Player.create("Vishal Kaith", "V. Kaith", "India", ['GK'], 25, 58, club, 245164, true);
 		Player.create("Asish Rai", "A. Rai", "India", ['RB'], 23, 59, club, 253704, true);
 		Player.create("Pritam Kotal", "P. Kotal", "India", ['CB', 'RB'], 28, 62, club, 228188, true);
@@ -10280,7 +10280,7 @@ class SoFifa23Service {
 		Player.create("Engson Singh", "E. Singh", "India", ['CAM', 'CM'], 19, 47, club, 259649, true);
 		Player.create("Abhishek Suryavanshi", "A. Suryavanshi", "India", ['CM'], 21, 48, club, 266721, true);
 
-		club = Club.create("Mumbai City", "India", 113300, "rgb(83,136,179)", "white");
+		club = Club.create("Mumbai City", "India", 113300, "#5388B3", "#FFFFFF");
 		Player.create("Phurba Lachenpa", "P. Lachenpa", "India", ['GK'], 24, 56, club, 259729, true);
 		Player.create("Rahul Bheke", "R. Bheke", "India", ['RB', 'CB', 'LB'], 31, 60, club, 248265, true);
 		Player.create("Rostyn Griffiths", "R. Griffiths", "Australia", ['CB', 'CDM'], 34, 65, club, 169479, true);
@@ -10310,7 +10310,7 @@ class SoFifa23Service {
 		Player.create("Ayush Chhikara", "A. Chhikara", "India", ['ST'], 19, 49, club, 273756, false);
 		Player.create("Jackichand Singh", "J. Singh", "India", ['RW'], 30, 55, club, 228198, true);
 
-		club = Club.create("Kerala Blasters", "India", 113299, "rgb(201,185,50)", "black");
+		club = Club.create("Kerala Blasters", "India", 113299, "#C9B932", "#000000");
 		Player.create("Prabhsukhan Gill", "P. Gill", "India", ['GK'], 21, 58, club, 253065, true);
 		Player.create("Harmanjot Khabra", "H. Khabra", "India", ['RB', 'CDM', 'CB'], 33, 60, club, 217232, true);
 		Player.create("Hormipam Ruivah", "H. Ruivah", "India", ['CB'], 21, 58, club, 262048, true);
@@ -10338,7 +10338,7 @@ class SoFifa23Service {
 		Player.create("Nihal Sudeesh", "N. Sudeesh", "India", ['RM'], 21, 51, club, 273878, false);
 		Player.create("Vibin Mohanan", "V. Mohanan", "India", ['CM'], 19, 51, club, 273877, false);
 
-		club = Club.create("Bengaluru", "India", 113302, "rgb(74,68,125)", "white");
+		club = Club.create("Bengaluru", "India", 113302, "#4A447D", "#FFFFFF");
 		Player.create("Gurpreet Singh Sandhu", "G. Singh Sandhu", "India", ['GK'], 30, 62, club, 225213, true);
 		Player.create("Alan Henrique Costa", "Alan Costa", "Brazil", ['CB'], 31, 64, club, 213858, true);
 		Player.create("Sandesh Jhingan", "S. Jhingan", "India", ['CB'], 28, 63, club, 223763, true);
@@ -10367,7 +10367,7 @@ class SoFifa23Service {
 		Player.create("Sharon Padattil", "S. Padattil", "India", ['GK'], 22, 49, club, 265584, true);
 		Player.create("Biswa Darjee", "B. Darjee", "India", ['CM', 'CAM'], 22, 47, club, 265585, true);
 
-		club = Club.create("Hyderabad", "India", 113301, "rgb(188,159,35)", "black");
+		club = Club.create("Hyderabad", "India", 113301, "#BC9F23", "#000000");
 		Player.create("Gurmeet Singh", "G. Singh", "India", ['GK'], 22, 55, club, 260106, true);
 		Player.create("Nikhil Poojary", "N. Poojary", "India", ['RB', 'RW'], 26, 57, club, 248310, true);
 		Player.create("Odei Onaindia Zabala", "Odei", "Spain", ['CB'], 32, 68, club, 251644, true);
@@ -10396,7 +10396,7 @@ class SoFifa23Service {
 		Player.create("Lalbiakhlua Jongte", "L. Jongte", "India", ['GK'], 19, 49, club, 259313, true);
 		Player.create("Lalawmpuia Ralte", "Lalawmpuia", "India", ['ST'], 22, 48, club, 253723, true);
 
-		club = Club.create("Chennaiyin", "India", 113297, "rgb(57,62,140)", "white");
+		club = Club.create("Chennaiyin", "India", 113297, "#393E8C", "#FFFFFF");
 		Player.create("Samik Mitra", "S. Mitra", "India", ['GK'], 21, 50, club, 258556, true);
 		Player.create("Edwin Sydney Vanspaul", "E. Vanspaul", "India", ['CDM', 'RB'], 29, 55, club, 253031, true);
 		Player.create("Fallou Diagne", "F. Diagne", "Senegal", ['CB'], 32, 67, club, 194196, true);
@@ -10426,7 +10426,7 @@ class SoFifa23Service {
 		Player.create("Mohammed Rafique", "M. Rafique", "India", ['RB', 'RM', 'CM'], 31, 56, club, 234507, true);
 		Player.create("Bikash Yumnam", "B. Yumnam", "India", ['CB'], 18, 53, club, 273880, false);
 
-		club = Club.create("Goa", "India", 113298, "rgb(229,105,54)", "black");
+		club = Club.create("Goa", "India", 113298, "#E56936", "#000000");
 		Player.create("Dheeraj Singh Moirangthem", "D. Singh Moirangthem", "India", ['GK'], 21, 57, club, 247626, true);
 		Player.create("Seriton Fernandes", "S. Fernandes", "India", ['RB', 'RWB'], 29, 60, club, 248296, true);
 		Player.create("Fares Arnaout", "F. Arnaout", "Syria", ['CB'], 25, 64, club, 270740, true);
@@ -10454,7 +10454,7 @@ class SoFifa23Service {
 		Player.create("Lesly Rebello", "L. Rebello", "India", ['CB'], 21, 49, club, 271903, true);
 		Player.create("Hmar Pialtu Lalremruata", "HP Lalremruata", "India", ['CAM'], 20, 48, club, 271901, true);
 
-		club = Club.create("East Bengal", "India", 111629, "rgb(201,93,48)", "white");
+		club = Club.create("East Bengal", "India", 111629, "#C95D30", "#FFFFFF");
 		Player.create("Kamaljit Singh", "K. Singh", "India", ['GK'], 26, 54, club, 248301, true);
 		Player.create("Ankit Mukherjee", "A. Mukherjee", "India", ['RB', 'RM'], 25, 52, club, 248247, true);
 		Player.create("Lalchungnunga Lalchungnunga", "Lalchungnunga", "India", ['CB', 'RB', 'LB'], 21, 54, club, 271396, true);
@@ -10483,7 +10483,7 @@ class SoFifa23Service {
 		Player.create("Pawan Kumar", "P. Kumar", "India", ['GK'], 32, 52, club, 248324, true);
 		Player.create("Athul Unnikrishnan", "A. Unnikrishnan", "India", ['RB'], 22, 50, club, 273779, false);
 
-		club = Club.create("Odisha FC", "India", 113257, "rgb(50,46,52)", "white");
+		club = Club.create("Odisha FC", "India", 113257, "#322E34", "#FFFFFF");
 		Player.create("Amrinder Singh", "A. Singh", "India", ['GK'], 29, 60, club, 223760, true);
 		Player.create("Narender Gahlot", "N. Gahlot", "India", ['CB', 'RB', 'LB'], 21, 56, club, 252246, true);
 		Player.create("Osama Malik", "O. Malik", "Australia", ['CB', 'CDM'], 31, 60, club, 192651, true);
@@ -10513,7 +10513,7 @@ class SoFifa23Service {
 		Player.create("Rishabh Dobriyal", "R. Dobriyal", "India", ['ST'], 20, 47, club, 258579, false);
 		Player.create("Karan Amin", "K. Amin", "India", ['RB'], 33, 51, club, 248312, true);
 
-		club = Club.create("Jamshedpur", "India", 114168, "rgb(142,64,74)", "white");
+		club = Club.create("Jamshedpur", "India", 114168, "#8E404A", "#FFFFFF");
 		Player.create("Vishal Yadav", "V. Yadav", "India", ['GK'], 20, 52, club, 259488, true);
 		Player.create("Laldinliana Renthlei", "L. Renthlei", "India", ['RB'], 23, 58, club, 248274, true);
 		Player.create("Pratik Chaudhari", "P. Chaudhari", "India", ['CB'], 32, 56, club, 248313, true);
@@ -10540,7 +10540,7 @@ class SoFifa23Service {
 		Player.create("Nikhil Barla", "N. Barla", "India", ['ST'], 18, 47, club, 273760, false);
 		Player.create("Saphaba Telem", "S. Telem", "India", ['CB'], 19, 47, club, 273759, false);
 
-		club = Club.create("NorthEast United", "India", 113040, "rgb(199,196,197)", "black");
+		club = Club.create("NorthEast United", "India", 113040, "#C7C4C5", "#000000");
 		Player.create("Arindam Bhattacharya", "A. Bhattacharya", "India", ['GK'], 32, 59, club, 193913, true);
 		Player.create("Joe Zoherliana", "J. Zoherliana", "India", ['RB'], 23, 53, club, 256996, true);
 		Player.create("Gaurav Bora", "G. Bora", "India", ['CB', 'CDM'], 23, 53, club, 253670, true);
@@ -10570,7 +10570,7 @@ class SoFifa23Service {
 		Player.create("Gani Nigam", "G. Nigam", "India", ['LW', 'RW', 'ST'], 24, 48, club, 253702, true);
 		Player.create("Alfred Lalroutsang", "A. Lalroutsang", "India", ['RW', 'CAM'], 19, 48, club, 256083, true);
 
-		club = Club.create("Inter", "Italy", 44, "rgb(53,61,94)", "white");
+		club = Club.create("Inter", "Italy", 44, "#353D5E", "#FFFFFF");
 		Player.create("André Onana", "A. Onana", "Cameroon", ['GK'], 26, 83, club, 226753, true);
 		Player.create("Matteo Darmian", "M. Darmian", "Italy", ['RWB', 'RM', 'CB'], 32, 80, club, 184392, true);
 		Player.create("Francesco Acerbi", "F. Acerbi", "Italy", ['CB'], 34, 82, club, 199845, true);
@@ -10599,7 +10599,7 @@ class SoFifa23Service {
 		Player.create("Mattia Zanotti", "M. Zanotti", "Italy", ['RWB', 'RM', 'RB'], 19, 66, club, 271573, true);
 		Player.create("Dalbert Chagas Estevão", "Dalbert", "Brazil", ['LWB', 'LM'], 28, 70, club, 229148, true);
 
-		club = Club.create("Juventus", "Italy", 45, "rgb(148,147,147)", "black");
+		club = Club.create("Juventus", "Italy", 45, "#949393", "#000000");
 		Player.create("Wojciech Szczęsny", "W. Szczęsny", "Poland", ['GK'], 32, 86, club, 186153, true);
 		Player.create("Federico Gatti", "F. Gatti", "Italy", ['CB'], 24, 76, club, 266872, true);
 		Player.create("Gleison Bremer Silva Nascimento", "Bremer", "Brazil", ['CB'], 25, 83, club, 239580, true);
@@ -10631,7 +10631,7 @@ class SoFifa23Service {
 		Player.create("Enzo Barrenechea", "E. Barrenechea", "Argentina", ['CDM', 'CM'], 21, 64, club, 246871, false);
 		Player.create("Tommaso Barbieri", "T. Barbieri", "Italy", ['RB', 'RM'], 19, 62, club, 275162, false);
 
-		club = Club.create("Milan", "Italy", 47, "rgb(84,43,42)", "white");
+		club = Club.create("Milan", "Italy", 47, "#542B2A", "#FFFFFF");
 		Player.create("Mike Maignan", "M. Maignan", "France", ['GK'], 26, 87, club, 215698, true);
 		Player.create("Davide Calabria", "D. Calabria", "Italy", ['RB', 'RWB'], 25, 80, club, 228881, true);
 		Player.create("Simon Kjær", "S. Kjær", "Denmark", ['CB'], 33, 81, club, 179645, true);
@@ -10662,7 +10662,7 @@ class SoFifa23Service {
 		Player.create("Antonio Mirante", "A. Mirante", "Italy", ['GK'], 38, 74, club, 140293, true);
 		Player.create("Devis Vásquez", "D. Vásquez", "Colombia", ['GK'], 24, 71, club, 233189, false);
 
-		club = Club.create("Napoli", "Italy", 48, "rgb(50,106,191)", "white");
+		club = Club.create("Napoli", "Italy", 48, "#326ABF", "#FFFFFF");
 		Player.create("Alex Meret", "A. Meret", "Italy", ['GK'], 25, 81, club, 225116, true);
 		Player.create("Giovanni Di Lorenzo", "G. Di Lorenzo", "Italy", ['RB'], 28, 83, club, 217870, true);
 		Player.create("Amir Rrahmani", "A. Rrahmani", "Kosovo", ['CB'], 28, 80, club, 244263, true);
@@ -10690,7 +10690,7 @@ class SoFifa23Service {
 		Player.create("Diego Demme", "D. Demme", "Germany", ['CDM', 'CM'], 30, 75, club, 202325, true);
 		Player.create("Gianluca Gaetano", "G. Gaetano", "Italy", ['CAM', 'CM'], 22, 71, club, 246877, true);
 
-		club = Club.create("Roma", "Italy", 52, "rgb(152,68,74)", "white");
+		club = Club.create("Roma", "Italy", 52, "#98444A", "#FFFFFF");
 		Player.create("Rui Pedro dos Santos Patrício", "Rui Patrício", "Portugal", ['GK'], 34, 80, club, 178005, true);
 		Player.create("Gianluca Mancini", "G. Mancini", "Italy", ['CB'], 26, 82, club, 229582, true);
 		Player.create("Chris Smalling", "C. Smalling", "England", ['CB'], 32, 83, club, 189881, true);
@@ -10724,7 +10724,7 @@ class SoFifa23Service {
 		Player.create("Filippo Missori", "F. Missori", "Italy", ['RB'], 18, 62, club, 265762, false);
 		Player.create("Ante Ćorić", "A. Ćorić", "Croatia", ['CAM', 'CM'], 25, 68, club, 229594, true);
 
-		club = Club.create("Lazio", "Italy", 46, "rgb(103,201,210)", "black");
+		club = Club.create("Lazio", "Italy", 46, "#67C9D2", "#000000");
 		Player.create("Ivan Provedel", "I. Provedel", "Italy", ['GK'], 28, 79, club, 224987, true);
 		Player.create("Adam Marušić", "A. Marušić", "Montenegro", ['LB', 'RB'], 29, 80, club, 224031, true);
 		Player.create("Nicolò Casale", "N. Casale", "Italy", ['CB'], 24, 78, club, 239770, true);
@@ -10751,7 +10751,7 @@ class SoFifa23Service {
 		Player.create("Mohamed Fares", "M. Fares", "Algeria", ['LW', 'LM'], 26, 71, club, 226356, true);
 		Player.create("Diego Luis Gonzalez Alcaraz", "Gonzalez", "Paraguay", ['LW', 'RW'], 19, 69, club, 273934, false);
 
-		club = Club.create("Fiorentina", "Italy", 110374, "rgb(74,52,95)", "white");
+		club = Club.create("Fiorentina", "Italy", 110374, "#4A345F", "#FFFFFF");
 		Player.create("Pietro Terracciano", "P. Terracciano", "Italy", ['GK'], 32, 79, club, 205812, true);
 		Player.create("Domilson Cordeiro dos Santos", "Dodô", "Brazil", ['RB'], 23, 77, club, 234112, true);
 		Player.create("Nikola Milenković", "N. Milenković", "Serbia", ['CB'], 24, 79, club, 238095, true);
@@ -10779,7 +10779,7 @@ class SoFifa23Service {
 		Player.create("Salvatore Sirigu", "S. Sirigu", "Italy", ['GK'], 35, 76, club, 168435, true);
 		Player.create("Alessandro Bianco", "A. Bianco", "Italy", ['CM'], 19, 65, club, 271477, true);
 
-		club = Club.create("Atalanta", "Italy", 39, "rgb(67,89,105)", "white");
+		club = Club.create("Atalanta", "Italy", 39, "#435969", "#FFFFFF");
 		Player.create("Marco Sportiello", "M. Sportiello", "Italy", ['GK'], 30, 76, club, 216065, true);
 		Player.create("Rafael Tolói", "Rafael Tolói", "Italy", ['CB'], 31, 81, club, 187598, true);
 		Player.create("Berat Djimsiti", "B. Djimsiti", "Albania", ['CB'], 29, 77, club, 208165, true);
@@ -10806,7 +10806,7 @@ class SoFifa23Service {
 		Player.create("Simone Muratore", "S. Muratore", "Italy", ['CM'], 24, 63, club, 257195, true);
 		Player.create("Lukáš Vorlický", "L. Vorlický", "Czech Republic", ['LM', 'CAM'], 20, 60, club, 274452, false);
 
-		club = Club.create("Torino", "Italy", 54, "rgb(118,66,74)", "white");
+		club = Club.create("Torino", "Italy", 54, "#76424A", "#FFFFFF");
 		Player.create("Vanja Milinković-Savić", "V. Milinković-Savić", "Serbia", ['GK'], 25, 76, club, 224836, true);
 		Player.create("Koffi Djidji", "K. Djidji", "Côte d'Ivoire", ['CB'], 29, 73, club, 203884, true);
 		Player.create("Alessandro Buongiorno", "A. Buongiorno", "Italy", ['CB'], 23, 73, club, 243241, true);
@@ -10839,7 +10839,7 @@ class SoFifa23Service {
 		Player.create("Ange Caumenan N'Guessan", "A. N'Guessan", "France", ['CB', 'RB'], 18, 60, club, 273928, false);
 		Player.create("Ali Bina Dembélé", "A. Dembélé", "France", ['RWB', 'RB', 'CB'], 18, 60, club, 273936, false);
 
-		club = Club.create("Udinese", "Italy", 55, "rgb(128,128,127)", "white");
+		club = Club.create("Udinese", "Italy", 55, "#80807F", "#FFFFFF");
 		Player.create("Marco Silvestri", "M. Silvestri", "Italy", ['GK'], 31, 79, club, 190745, true);
 		Player.create("Rodrigo Nascimento França", "Rodrigo Becão", "Brazil", ['CB'], 26, 77, club, 238621, true);
 		Player.create("Jaka Bijol", "J. Bijol", "Slovenia", ['CB', 'CDM'], 23, 75, club, 244238, true);
@@ -10868,7 +10868,7 @@ class SoFifa23Service {
 		Player.create("Vivaldo Semedo", "Vivaldo", "Portugal", ['ST'], 17, 61, club, 273918, false);
 		Player.create("Gerard Deulofeu Lázaro", "Deulofeu", "Spain", ['CF', 'ST'], 28, 81, club, 202477, true);
 
-		club = Club.create("Sassuolo", "Italy", 111974, "rgb(43,105,72)", "white");
+		club = Club.create("Sassuolo", "Italy", 111974, "#2B6948", "#FFFFFF");
 		Player.create("Andrea Consigli", "A. Consigli", "Italy", ['GK'], 35, 80, club, 163489, true);
 		Player.create("Jeremy Toljan", "J. Toljan", "Germany", ['RB'], 27, 72, club, 214622, true);
 		Player.create("Ruan Tressoldi Netto", "Ruan", "Brazil", ['CB'], 23, 68, club, 263785, true);
@@ -10898,7 +10898,7 @@ class SoFifa23Service {
 		Player.create("Filippo Romagna", "F. Romagna", "Italy", ['CB'], 25, 67, club, 226108, true);
 		Player.create("Isaac Karamoko", "I. Karamoko", "France", ['RW'], 20, 63, club, 261729, false);
 
-		club = Club.create("Bologna", "Italy", 189, "rgb(104,55,64)", "white");
+		club = Club.create("Bologna", "Italy", 189, "#683740", "#FFFFFF");
 		Player.create("Łukasz Skorupski", "Ł. Skorupski", "Poland", ['GK'], 31, 77, club, 189908, true);
 		Player.create("Stefan Posch", "S. Posch", "Austria", ['RB', 'CB'], 25, 74, club, 223671, true);
 		Player.create("Adama Soumaoro", "A. Soumaoro", "France", ['CB'], 30, 73, club, 200353, true);
@@ -10930,7 +10930,7 @@ class SoFifa23Service {
 		Player.create("Federico Ravaglia", "F. Ravaglia", "Italy", ['GK'], 22, 65, club, 240657, true);
 		Player.create("Niklas Pyyhtiä", "N. Pyyhtiä", "Finland", ['CM', 'CAM'], 18, 59, club, 274089, false);
 
-		club = Club.create("Monza", "Italy", 111811, "rgb(195,65,72)", "white");
+		club = Club.create("Monza", "Italy", 111811, "#C34148", "#FFFFFF");
 		Player.create("Michele Di Gregorio", "M. Di Gregorio", "Italy", ['GK'], 24, 78, club, 235840, true);
 		Player.create("Luca Caldirola", "L. Caldirola", "Italy", ['CB'], 31, 74, club, 199776, true);
 		Player.create("Pablo Marí Villar", "Pablo Marí", "Spain", ['CB'], 28, 76, club, 206654, true);
@@ -10961,7 +10961,7 @@ class SoFifa23Service {
 		Player.create("Alessandro Sorrentino", "A. Sorrentino", "Italy", ['GK'], 20, 63, club, 271146, false);
 		Player.create("Eugenio Lamanna", "E. Lamanna", "Italy", ['GK'], 32, 66, club, 190769, true);
 
-		club = Club.create("Salernitana", "Italy", 110373, "rgb(87,47,48)", "white");
+		club = Club.create("Salernitana", "Italy", 110373, "#572F30", "#FFFFFF");
 		Player.create("Guillermo Ochoa", "G. Ochoa", "Mexico", ['GK'], 36, 80, club, 140233, true);
 		Player.create("Flavius Daniliuc", "F. Daniliuc", "Austria", ['CB', 'RB'], 21, 74, club, 252017, true);
 		Player.create("Norbert Gyömbér", "N. Gyömbér", "Slovakia", ['CB'], 29, 72, club, 220061, true);
@@ -10991,7 +10991,7 @@ class SoFifa23Service {
 		Player.create("Vincenzo Fiorillo", "V. Fiorillo", "Italy", ['GK'], 32, 68, club, 185172, true);
 		Player.create("Antonio Iervolino", "A. Iervolino", "Italy", ['CM'], 19, 55, club, 271504, true);
 
-		club = Club.create("Hellas Verona", "Italy", 206, "rgb(49,70,106)", "white");
+		club = Club.create("Hellas Verona", "Italy", 206, "#31466A", "#FFFFFF");
 		Player.create("Lorenzo Montipò", "L. Montipò", "Italy", ['GK'], 26, 76, club, 215363, true);
 		Player.create("Federico Ceccherini", "F. Ceccherini", "Italy", ['CB'], 30, 74, club, 210964, true);
 		Player.create("Isak Hien", "I. Hien", "Sweden", ['CB'], 23, 75, club, 260697, true);
@@ -11022,7 +11022,7 @@ class SoFifa23Service {
 		Player.create("Ajdin Hrustić", "A. Hrustić", "Australia", ['CM', 'RM', 'CF'], 25, 71, club, 237647, true);
 		Player.create("Thomas Henry", "T. Henry", "France", ['ST'], 27, 74, club, 231835, true);
 
-		club = Club.create("Empoli", "Italy", 1746, "rgb(51,104,155)", "white");
+		club = Club.create("Empoli", "Italy", 1746, "#33689B", "#FFFFFF");
 		Player.create("Guglielmo Vicario", "G. Vicario", "Italy", ['GK'], 25, 80, club, 240091, true);
 		Player.create("Tyronne Ebuehi", "T. Ebuehi", "Nigeria", ['RB'], 26, 75, club, 224213, true);
 		Player.create("Ardian Ismajli", "A. Ismajli", "Albania", ['CB'], 25, 72, club, 258782, true);
@@ -11052,7 +11052,7 @@ class SoFifa23Service {
 		Player.create("Sebastian Walukiewicz", "S. Walukiewicz", "Poland", ['CB'], 22, 70, club, 243497, true);
 		Player.create("Koni De Winter", "K. De Winter", "Belgium", ['CB', 'RB'], 20, 66, club, 265774, true);
 
-		club = Club.create("Lecce", "Italy", 347, "rgb(199,102,55)", "white");
+		club = Club.create("Lecce", "Italy", 347, "#C76637", "#FFFFFF");
 		Player.create("Wladimiro Falcone", "W. Falcone", "Italy", ['GK'], 27, 76, club, 210676, true);
 		Player.create("Valentin Gendrey", "V. Gendrey", "France", ['RB'], 22, 72, club, 245863, true);
 		Player.create("Samuel Umtiti", "S. Umtiti", "France", ['CB'], 28, 79, club, 205600, true);
@@ -11087,7 +11087,7 @@ class SoFifa23Service {
 		Player.create("Mathis Bruns", "M. Bruns", "Germany", ['CB'], 18, 57, club, 260079, true);
 		Player.create("Ed McJannet", "E. McJannet", "Republic of Ireland", ['CAM', 'CM'], 18, 54, club, 263714, false);
 
-		club = Club.create("Spezia", "Italy", 110741, "rgb(192,193,191)", "black");
+		club = Club.create("Spezia", "Italy", 110741, "#C0C1BF", "#000000");
 		Player.create("Bartłomiej Drągowski", "B. Drągowski", "Poland", ['GK'], 24, 77, club, 215502, true);
 		Player.create("Kelvin Amian", "K. Amian", "France", ['RB', 'RM', 'CB'], 24, 73, club, 231235, true);
 		Player.create("Przemysław Wiśniewski", "P. Wiśniewski", "Poland", ['CB'], 23, 67, club, 243185, true);
@@ -11117,7 +11117,7 @@ class SoFifa23Service {
 		Player.create("Petar Zovko", "P. Zovko", "Bosnia and Herzegovina", ['GK'], 20, 58, club, 264460, true);
 		Player.create("Salvador Ferrer Canals", "Salva Ferrer", "Spain", ['RB', 'RM'], 24, 67, club, 246282, true);
 
-		club = Club.create("Sampdoria", "Italy", 1837, "rgb(63,91,143)", "white");
+		club = Club.create("Sampdoria", "Italy", 1837, "#3F5B8F", "#FFFFFF");
 		Player.create("Nicola Ravaglia", "N. Ravaglia", "Italy", ['GK'], 33, 67, club, 173165, true);
 		Player.create("Bruno Amione", "B. Amione", "Argentina", ['CB'], 20, 70, club, 268679, true);
 		Player.create("Koray Günter", "K. Günter", "Germany", ['CB'], 27, 74, club, 204451, true);
@@ -11149,7 +11149,7 @@ class SoFifa23Service {
 		Player.create("Emirhan İlkhan", "E. İlkhan", "Turkey", ['CM', 'RW', 'CAM'], 18, 64, club, 266257, false);
 		Player.create("Flavio Paoletti", "F. Paoletti", "Italy", ['CM', 'CDM'], 19, 58, club, 274090, false);
 
-		club = Club.create("Cremonese", "Italy", 111434, "rgb(176,77,87)", "white");
+		club = Club.create("Cremonese", "Italy", 111434, "#B04D57", "#FFFFFF");
 		Player.create("Marco Carnesecchi", "M. Carnesecchi", "Italy", ['GK'], 22, 77, club, 252154, true);
 		Player.create("Leonardo Sernicola", "L. Sernicola", "Italy", ['RM', 'RB'], 25, 69, club, 233968, true);
 		Player.create("Vlad Chiricheș", "V. Chiricheș", "Romania", ['CB'], 32, 71, club, 205943, true);
@@ -11178,7 +11178,7 @@ class SoFifa23Service {
 		Player.create("Christian Acella", "C. Acella", "Italy", ['CM'], 19, 60, club, 271478, true);
 		Player.create("Frank Tsadjout", "F. Tsadjout", "Italy", ['ST', 'RW'], 22, 69, club, 253071, true);
 
-		club = Club.create("Genoa", "Italy", 110556, "rgb(119,57,61)", "white");
+		club = Club.create("Genoa", "Italy", 110556, "#77393D", "#FFFFFF");
 		Player.create("Josep Martínez Riera", "Josep Martínez", "Spain", ['GK'], 24, 71, club, 243311, true);
 		Player.create("Mattia Bani", "M. Bani", "Italy", ['CB'], 28, 71, club, 224378, true);
 		Player.create("Alessandro Vogliacco", "A. Vogliacco", "Italy", ['CB'], 23, 68, club, 245566, true);
@@ -11208,7 +11208,7 @@ class SoFifa23Service {
 		Player.create("Denis Drăguș", "D. Drăguș", "Romania", ['ST', 'LM'], 22, 67, club, 245770, true);
 		Player.create("Manolo Portanova", "M. Portanova", "Italy", ['CM', 'CAM'], 22, 69, club, 259331, true);
 
-		club = Club.create("Frosinone", "Italy", 111657, "rgb(166,152,56)", "black");
+		club = Club.create("Frosinone", "Italy", 111657, "#A69838", "#000000");
 		Player.create("Stefano Turati", "S. Turati", "Italy", ['GK'], 20, 70, club, 254502, true);
 		Player.create("Mario Sampirisi", "M. Sampirisi", "Italy", ['RB', 'CB'], 29, 71, club, 206601, true);
 		Player.create("Fabio Lucioni", "F. Lucioni", "Italy", ['CB'], 34, 72, club, 204447, true);
@@ -11238,7 +11238,7 @@ class SoFifa23Service {
 		Player.create("Andrea Oliveri", "A. Oliveri", "Italy", ['RW'], 19, 60, club, 271399, false);
 		Player.create("Giuseppe Marcianò", "G. Marcianò", "Italy", ['GK'], 22, 57, club, 270500, false);
 
-		club = Club.create("Parma", "Italy", 50, "rgb(157,156,154)", "black");
+		club = Club.create("Parma", "Italy", 50, "#9D9C9A", "#000000");
 		Player.create("Gianluigi Buffon", "G. Buffon", "Italy", ['GK'], 44, 77, club, 1179, true);
 		Player.create("Enrico Delprato", "E. Delprato", "Italy", ['RB', 'CB'], 22, 69, club, 252442, true);
 		Player.create("Yordan Osorio", "Y. Osorio", "Venezuela", ['CB'], 28, 70, club, 237297, true);
@@ -11268,7 +11268,7 @@ class SoFifa23Service {
 		Player.create("Vasilis Zagaritis", "V. Zagaritis", "Greece", ['LB', 'LM', 'LWB'], 21, 63, club, 252999, true);
 		Player.create("Vincent Laurini", "V. Laurini", "France", ['RB', 'RM', 'RWB'], 33, 62, club, 210859, true);
 
-		club = Club.create("Cagliari", "Italy", 1842, "rgb(121,50,74)", "white");
+		club = Club.create("Cagliari", "Italy", 1842, "#79324A", "#FFFFFF");
 		Player.create("Boris Radunović", "B. Radunović", "Serbia", ['GK'], 26, 71, club, 231073, true);
 		Player.create("Gabriele Zappa", "G. Zappa", "Italy", ['RB', 'RWB', 'RM'], 22, 70, club, 252964, true);
 		Player.create("Alberto Dossena", "A. Dossena", "Italy", ['CB'], 23, 68, club, 237586, true);
@@ -11297,7 +11297,7 @@ class SoFifa23Service {
 		Player.create("Adam Griger", "A. Griger", "Slovakia", ['ST'], 18, 58, club, 260126, true);
 		Player.create("Giuseppe Ciocci", "G. Ciocci", "Italy", ['GK'], 22, 54, club, 271199, true);
 
-		club = Club.create("Palermo", "Italy", 1843, "rgb(171,127,145)", "black");
+		club = Club.create("Palermo", "Italy", 1843, "#AB7F91", "#000000");
 		Player.create("Mirko Pigliacelli", "M. Pigliacelli", "Italy", ['GK'], 29, 72, club, 205530, true);
 		Player.create("Aleš Matějů", "A. Matějů", "Czech Republic", ['CB', 'RB', 'LB'], 26, 70, club, 240282, true);
 		Player.create("Ionuț Nedelcearu", "I. Nedelcearu", "Romania", ['CB'], 26, 71, club, 242614, true);
@@ -11327,7 +11327,7 @@ class SoFifa23Service {
 		Player.create("Leo Štulac", "L. Štulac", "Slovenia", ['CDM', 'CM'], 27, 71, club, 240095, true);
 		Player.create("Salvatore Elia", "S. Elia", "Italy", ['RM', 'RB'], 23, 68, club, 251762, true);
 
-		club = Club.create("Ascoli", "Italy", 1847, "rgb(126,125,125)", "white");
+		club = Club.create("Ascoli", "Italy", 1847, "#7E7D7D", "#FFFFFF");
 		Player.create("Nicola Leali", "N. Leali", "Italy", ['GK'], 29, 69, club, 201299, true);
 		Player.create("Francesco Donati", "F. Donati", "Italy", ['RB', 'RM'], 21, 64, club, 270474, true);
 		Player.create("Eric Fernando Botteghin", "Eric Botteghin", "Brazil", ['CB'], 34, 72, club, 203888, true);
@@ -11357,7 +11357,7 @@ class SoFifa23Service {
 		Player.create("Luca Bolletta", "L. Bolletta", "Italy", ['GK'], 17, 54, club, 268575, true);
 		Player.create("Filippo Palazzino", "F. Palazzino", "Italy", ['RM', 'RW'], 18, 58, club, 268577, true);
 
-		club = Club.create("Bari 1908", "Italy", 1848, "rgb(204,187,188)", "black");
+		club = Club.create("Bari 1908", "Italy", 1848, "#CCBBBC", "#000000");
 		Player.create("Elia Caprile", "E. Caprile", "Italy", ['GK'], 20, 70, club, 255303, true);
 		Player.create("Raffaele Pucino", "R. Pucino", "Italy", ['RB', 'CB', 'RM'], 31, 69, club, 205691, true);
 		Player.create("Valerio Di Cesare", "V. Di Cesare", "Italy", ['CB'], 39, 69, club, 137786, true);
@@ -11387,7 +11387,7 @@ class SoFifa23Service {
 		Player.create("Emmanuele Matino", "E. Matino", "Italy", ['CB', 'RB'], 23, 52, club, 273916, false);
 		Player.create("Cristian Galano", "C. Galano", "Italy", ['ST', 'CF', 'RW'], 31, 65, club, 203672, true);
 
-		club = Club.create("Pisa", "Italy", 110738, "rgb(44,53,82)", "white");
+		club = Club.create("Pisa", "Italy", 110738, "#2C3552", "#FFFFFF");
 		Player.create("David Nicolás Andrade", "Nicolas", "Brazil", ['GK'], 34, 69, club, 205496, true);
 		Player.create("Hjörtur Hermannsson", "H. Hermannsson", "Iceland", ['CB', 'RB'], 27, 68, club, 208597, true);
 		Player.create("Antonio Caracciolo", "A. Caracciolo", "Italy", ['CB'], 32, 71, club, 199174, true);
@@ -11414,7 +11414,7 @@ class SoFifa23Service {
 		Player.create("Lisandru Tramoni", "L. Tramoni", "France", ['RM', 'CF', 'CAM'], 19, 63, club, 255174, true);
 		Player.create("Johan Guadagno", "J. Guadagno", "Sweden", ['GK'], 19, 55, club, 256609, true);
 
-		club = Club.create("Venezia", "Italy", 205, "rgb(46,46,43)", "white");
+		club = Club.create("Venezia", "Italy", 205, "#2E2E2B", "#FFFFFF");
 		Player.create("Jesse Joronen", "J. Joronen", "Finland", ['GK'], 29, 72, club, 199904, true);
 		Player.create("Antonio Candela", "A. Candela", "Italy", ['RWB', 'RB'], 22, 66, club, 252315, true);
 		Player.create("Petko Hristov", "P. Hristov", "Bulgaria", ['CB'], 23, 68, club, 239998, true);
@@ -11442,7 +11442,7 @@ class SoFifa23Service {
 		Player.create("Andrea Beghetto", "A. Beghetto", "Italy", ['LWB', 'LB', 'LM'], 27, 68, club, 235328, true);
 		Player.create("Mikael Tørset Johnsen", "M. Johnsen", "Norway", ['CAM', 'ST'], 21, 57, club, 248390, false);
 
-		club = Club.create("Como", "Italy", 1745, "rgb(83,140,178)", "black");
+		club = Club.create("Como", "Italy", 1745, "#538CB2", "#000000");
 		Player.create("Alfred Gomis", "A. Gomis", "Senegal", ['GK'], 28, 73, club, 201976, true);
 		Player.create("Cas Odenthal", "C. Odenthal", "Netherlands", ['CB'], 21, 67, club, 262474, true);
 		Player.create("Filippo Scaglia", "F. Scaglia", "Italy", ['CB'], 30, 69, club, 220489, true);
@@ -11472,7 +11472,7 @@ class SoFifa23Service {
 		Player.create("Simone Canestrelli", "S. Canestrelli", "Italy", ['CB'], 21, 63, club, 264480, true);
 		Player.create("Matteo Solini", "M. Solini", "Italy", ['CB'], 29, 66, club, 240626, true);
 
-		club = Club.create("Ternana", "Italy", 570, "rgb(110,90,75)", "white");
+		club = Club.create("Ternana", "Italy", 570, "#6E5A4B", "#FFFFFF");
 		Player.create("Antony Iannarilli", "A. Iannarilli", "Italy", ['GK'], 31, 69, club, 198633, true);
 		Player.create("Valerio Mantovani", "V. Mantovani", "Italy", ['CB', 'RB'], 26, 68, club, 235916, true);
 		Player.create("Salim Diakité", "S. Diakité", "France", ['CB', 'RB', 'RM'], 22, 67, club, 270133, true);
@@ -11499,7 +11499,7 @@ class SoFifa23Service {
 		Player.create("Gabriele Capanni", "G. Capanni", "Italy", ['CF', 'LM'], 21, 56, club, 274061, false);
 		Player.create("Federico Mazzarani", "F. Mazzarani", "Italy", ['CB'], 22, 53, club, 274560, false);
 
-		club = Club.create("Reggina", "Italy", 203, "rgb(108,41,50)", "white");
+		club = Club.create("Reggina", "Italy", 203, "#6C2932", "#FFFFFF");
 		Player.create("Nikita Contini", "N. Contini", "Ukraine", ['GK'], 26, 67, club, 220532, true);
 		Player.create("Giuseppe Loiacono", "G. Loiacono", "Italy", ['CB', 'RB'], 30, 63, club, 239412, true);
 		Player.create("Michele Camporese", "M. Camporese", "Italy", ['CB'], 30, 70, club, 201914, true);
@@ -11528,7 +11528,7 @@ class SoFifa23Service {
 		Player.create("Andrey Galabinov", "A. Galabinov", "Bulgaria", ['ST'], 33, 66, club, 203327, true);
 		Player.create("Joel Obi", "J. Obi", "Nigeria", ['CM', 'LM'], 31, 67, club, 193337, true);
 
-		club = Club.create("Cosenza", "Italy", 112168, "rgb(115,49,59)", "white");
+		club = Club.create("Cosenza", "Italy", 112168, "#73313B", "#FFFFFF");
 		Player.create("Alessandro Micai", "A. Micai", "Italy", ['GK'], 28, 69, club, 224977, true);
 		Player.create("Andrea Rispoli", "A. Rispoli", "Italy", ['RB', 'RM'], 33, 69, club, 189557, true);
 		Player.create("Michele Rigione", "M. Rigione", "Italy", ['CB'], 31, 69, club, 211608, true);
@@ -11558,7 +11558,7 @@ class SoFifa23Service {
 		Player.create("Thomas Prestianni", "T. Prestianni", "Italy", ['CM'], 20, 52, club, 270093, true);
 		Player.create("Salvatore Dario La Vardera", "S. La Vardera", "Italy", ['LB'], 20, 54, club, 270096, true);
 
-		club = Club.create("Südtirol", "Italy", 112494, "rgb(195,191,189)", "black");
+		club = Club.create("Südtirol", "Italy", 112494, "#C3BFBD", "#000000");
 		Player.create("Giacomo Poluzzi", "G. Poluzzi", "Italy", ['GK'], 34, 68, club, 237615, true);
 		Player.create("Marco Curto", "M. Curto", "Italy", ['RB', 'CB'], 23, 67, club, 268762, true);
 		Player.create("Giovanni Zaro", "G. Zaro", "Italy", ['CB'], 28, 69, club, 268754, true);
@@ -11587,7 +11587,7 @@ class SoFifa23Service {
 		Player.create("Shaka Mawuli Eklu", "S. Eklu", "Ghana", ['CM'], 24, 57, club, 237118, true);
 		Player.create("Andrea Giorgini", "A. Giorgini", "Italy", ['CB'], 20, 52, club, 273602, false);
 
-		club = Club.create("SPAL", "Italy", 112791, "rgb(133,168,193)", "black");
+		club = Club.create("SPAL", "Italy", 112791, "#85A8C1", "#000000");
 		Player.create("Enrico Alfonso", "E. Alfonso", "Italy", ['GK'], 34, 67, club, 172837, true);
 		Player.create("Lorenzo Dickmann", "L. Dickmann", "Italy", ['RB', 'RWB', 'RM'], 25, 72, club, 229456, true);
 		Player.create("Matteo Arena", "M. Arena", "Italy", ['CB'], 23, 57, club, 245860, true);
@@ -11617,7 +11617,7 @@ class SoFifa23Service {
 		Player.create("Patryk Peda", "P. Peda", "Poland", ['CB', 'RB'], 20, 62, club, 268860, true);
 		Player.create("Ayoub Abou", "A. Abou", "Morocco", ['CM', 'RM'], 24, 56, club, 243557, false);
 
-		club = Club.create("Benevento", "Italy", 112026, "rgb(175,113,43)", "white");
+		club = Club.create("Benevento", "Italy", 112026, "#AF712B", "#FFFFFF");
 		Player.create("Alberto Paleari", "A. Paleari", "Italy", ['GK'], 29, 70, club, 235740, true);
 		Player.create("Frédéric Veseli", "F. Veseli", "Albania", ['CB', 'RB'], 29, 66, club, 203780, true);
 		Player.create("Maxime Leverbe", "M. Leverbe", "France", ['CB'], 25, 71, club, 240543, true);
@@ -11647,7 +11647,7 @@ class SoFifa23Service {
 		Player.create("Dejan Vokić", "D. Vokić", "Slovenia", ['CM', 'CAM'], 26, 59, club, 244170, true);
 		Player.create("Abdallah Basit", "A. Basit", "Ghana", ['CM', 'CDM'], 22, 52, club, 256280, true);
 
-		club = Club.create("Perugia", "Italy", 199, "rgb(174,52,55)", "white");
+		club = Club.create("Perugia", "Italy", 199, "#AE3437", "#FFFFFF");
 		Player.create("Stefano Gori", "S. Gori", "Italy", ['GK'], 26, 67, club, 225610, true);
 		Player.create("Filippo Sgarbi", "F. Sgarbi", "Italy", ['CB'], 24, 66, club, 244190, true);
 		Player.create("Marcos Curado", "M. Curado", "Argentina", ['CB'], 27, 67, club, 224876, true);
@@ -11677,7 +11677,7 @@ class SoFifa23Service {
 		Player.create("Alessandro Seghetti", "A. Seghetti", "Italy", ['ST'], 18, 56, club, 274682, false);
 		Player.create("Artem Onischenko", "A. Onischenko", "Ukraine", ['CM'], 19, 59, club, 270659, false);
 
-		club = Club.create("Modena", "Italy", 1744, "rgb(204,173,43)", "black");
+		club = Club.create("Modena", "Italy", 1744, "#CCAD2B", "#000000");
 		Player.create("Riccardo Gagno", "R. Gagno", "Italy", ['GK'], 24, 68, club, 230925, true);
 		Player.create("Shady Oukhadda", "S. Oukhadda", "Morocco", ['RB'], 23, 63, club, 268924, true);
 		Player.create("Tommaso Silvestri", "T. Silvestri", "Italy", ['CB'], 30, 65, club, 235336, true);
@@ -11705,7 +11705,7 @@ class SoFifa23Service {
 		Player.create("Francesco Renzetti", "F. Renzetti", "Italy", ['LB', 'LM'], 34, 67, club, 189065, true);
 		Player.create("Edoardo Duca", "E. Duca", "Italy", ['CAM', 'CM'], 25, 62, club, 268926, true);
 
-		club = Club.create("Cittadella", "Italy", 111993, "rgb(159,45,73)", "white");
+		club = Club.create("Cittadella", "Italy", 111993, "#9F2D49", "#FFFFFF");
 		Player.create("Elhan Kastrati", "E. Kastrati", "Albania", ['GK'], 25, 67, club, 233425, true);
 		Player.create("Alessandro Salvi", "A. Salvi", "Italy", ['RB', 'LB', 'RM'], 34, 67, club, 200914, true);
 		Player.create("Romano Perticone", "R. Perticone", "Italy", ['CB'], 35, 65, club, 171721, true);
@@ -11735,7 +11735,7 @@ class SoFifa23Service {
 		Player.create("Vincenzo Ciriello", "V. Ciriello", "Italy", ['CB'], 19, 57, club, 268509, true);
 		Player.create("Enrico Baldini", "E. Baldini", "Italy", ['ST', 'CAM'], 25, 65, club, 226267, true);
 
-		club = Club.create("Brescia", "Italy", 190, "rgb(74,111,159)", "white");
+		club = Club.create("Brescia", "Italy", 190, "#4A6F9F", "#FFFFFF");
 		Player.create("Lorenzo Andrenacci", "L. Andrenacci", "Italy", ['GK'], 27, 65, club, 226259, true);
 		Player.create("Alexander Jallow", "A. Jallow", "Sweden", ['RB'], 24, 65, club, 238286, true);
 		Player.create("Andrea Cistana", "A. Cistana", "Italy", ['CB'], 25, 70, club, 226260, true);
@@ -11765,7 +11765,7 @@ class SoFifa23Service {
 		Player.create("Andrea Papetti", "A. Papetti", "Italy", ['CB'], 19, 65, club, 256308, true);
 		Player.create("Luca Sonzogni", "L. Sonzogni", "Italy", ['GK'], 17, 55, club, 271210, true);
 
-		club = Club.create("Ulsan", "Korea Republic", 1473, "rgb(87,84,105)", "white");
+		club = Club.create("Ulsan", "Korea Republic", 1473, "#575469", "#FFFFFF");
 		Player.create("Hyeon Woo Jo", "Jo Hyeon Woo", "Korea Republic", ['GK'], 30, 73, club, 212432, true);
 		Player.create("Tae Hwan Kim", "Kim Tae Hwan", "Korea Republic", ['RB', 'RWB'], 32, 70, club, 199231, true);
 		Player.create("Seung Hyun Jeong", "Jeong Seung Hyun", "Korea Republic", ['CB'], 28, 72, club, 227790, true);
@@ -11795,7 +11795,7 @@ class SoFifa23Service {
 		Player.create("Chu Young Park", "Park Chu Young", "Korea Republic", ['ST'], 36, 61, club, 165889, true);
 		Player.create("Sung Joon Kim", "Kim Sung Joon", "Korea Republic", ['CM', 'CDM'], 34, 63, club, 191944, true);
 
-		club = Club.create("Jeonbuk Motors", "Korea Republic", 1477, "rgb(58,108,79)", "white");
+		club = Club.create("Jeonbuk Motors", "Korea Republic", 1477, "#3A6C4F", "#FFFFFF");
 		Player.create("Min Ki Jeong", "Jeong Min Ki", "Korea Republic", ['GK'], 26, 62, club, 252427, false);
 		Player.create("Moon Hwan Kim", "Kim Moon Hwan", "Korea Republic", ['RB', 'RWB'], 26, 70, club, 244800, true);
 		Player.create("Jin Sub Park", "Park Jin Sub", "Korea Republic", ['CB', 'CDM'], 26, 69, club, 243673, true);
@@ -11825,7 +11825,7 @@ class SoFifa23Service {
 		Player.create("Seong Ung Maeng", "Maeng Seong Ung", "Korea Republic", ['CM', 'CDM'], 24, 58, club, 252432, true);
 		Player.create("Kyu Min Park", "Park Kyu Min", "Korea Republic", ['RW', 'LW', 'CAM'], 21, 56, club, 267752, true);
 
-		club = Club.create("Incheon United", "Korea Republic", 110765, "rgb(57,70,130)", "white");
+		club = Club.create("Incheon United", "Korea Republic", 110765, "#394682", "#FFFFFF");
 		Player.create("Dong Heon Kim", "Kim Dong Heon", "Korea Republic", ['GK'], 25, 63, club, 252659, true);
 		Player.create("Jun Yub Kim", "Kim Jun Yub", "Korea Republic", ['RWB', 'RB'], 34, 64, club, 202949, true);
 		Player.create("Dong Min Kim", "Kim Dong Min", "Korea Republic", ['CB', 'LB'], 27, 66, club, 238351, true);
@@ -11855,7 +11855,7 @@ class SoFifa23Service {
 		Player.create("Min Seok Kim", "Kim Min Seok", "Korea Republic", ['LW', 'RWB'], 19, 55, club, 260494, true);
 		Player.create("Yun Koo Kang", "Kang Yun Koo", "Korea Republic", ['LWB', 'LB'], 29, 61, club, 245075, true);
 
-		club = Club.create("Suwon", "Korea Republic", 112558, "rgb(112,55,65)", "white");
+		club = Club.create("Suwon", "Korea Republic", 112558, "#703741", "#FFFFFF");
 		Player.create("Dong Geon No", "No Dong Geon", "Korea Republic", ['GK'], 30, 64, club, 221700, true);
 		Player.create("Yong Lee", "Lee Yong", "Korea Republic", ['RB', 'CB'], 35, 66, club, 200577, true);
 		Player.create("Jae Sung Lee", "Lee Jae Sung", "Korea Republic", ['CB'], 33, 64, club, 191814, false);
@@ -11885,7 +11885,7 @@ class SoFifa23Service {
 		Player.create("Ju Yeop Kim", "Kim Ju Yeop", "Korea Republic", ['RB', 'RWB'], 22, 57, club, 252051, true);
 		Player.create("Seon Min Kim", "Kim Seon Min", "Korea Republic", ['CDM', 'CM'], 30, 66, club, 221762, false);
 
-		club = Club.create("Pohang Steelers", "Korea Republic", 1474, "rgb(116,72,64)", "white");
+		club = Club.create("Pohang Steelers", "Korea Republic", 1474, "#744840", "#FFFFFF");
 		Player.create("Pyeong Gook Yun", "Yun Pyeong Gook", "Korea Republic", ['GK'], 30, 67, club, 212915, true);
 		Player.create("Seung Wook Park", "Park Seung Wook", "Korea Republic", ['RB', 'CB', 'LB'], 25, 68, club, 263845, true);
 		Player.create("Chang Rae Ha", "Ha Chang Rae", "Korea Republic", ['CB'], 27, 68, club, 238354, true);
@@ -11915,7 +11915,7 @@ class SoFifa23Service {
 		Player.create("Min Ho Yoon", "Yoon Min Ho", "Korea Republic", ['CAM'], 22, 50, club, 266479, true);
 		Player.create("Geon Woo Park", "Park Geon Woo", "Korea Republic", ['RB'], 20, 50, club, 266476, true);
 
-		club = Club.create("Jeju United", "Korea Republic", 1478, "rgb(235,120,61)", "black");
+		club = Club.create("Jeju United", "Korea Republic", 1478, "#EB783D", "#000000");
 		Player.create("Dong Joon Kim", "Kim Dong Joon", "Korea Republic", ['GK'], 27, 71, club, 232065, true);
 		Player.create("Hyeon Beom Ahn", "An Hyeon Beom", "Korea Republic", ['RWB', 'RB'], 27, 69, club, 227788, true);
 		Player.create("Chai Min Lim", "Lim Chai Min", "Korea Republic", ['CB'], 31, 70, club, 212439, true);
@@ -11945,7 +11945,7 @@ class SoFifa23Service {
 		Player.create("Sung Jin Jeon", "Jeon Sung Jin", "Korea Republic", ['LWB', 'LM'], 20, 53, club, 273809, false);
 		Player.create("Young Joon Choi", "Choi Young Joon", "Korea Republic", ['CDM', 'CM'], 30, 72, club, 205156, true);
 
-		club = Club.create("Seoul", "Korea Republic", 982, "rgb(109,62,61)", "white");
+		club = Club.create("Seoul", "Korea Republic", 982, "#6D3E3D", "#FFFFFF");
 		Player.create("Jong Beom Baek", "Baek Jong Beom", "Korea Republic", ['GK'], 21, 58, club, 252658, true);
 		Player.create("Jin Ya Kim", "Kim Jin Ya", "Korea Republic", ['RB', 'RWB', 'LB'], 24, 66, club, 236586, true);
 		Player.create("Han Beom Lee", "Lee Han Beom", "Korea Republic", ['CB'], 20, 64, club, 261062, true);
@@ -11975,7 +11975,7 @@ class SoFifa23Service {
 		Player.create("Seung Mo Lee", "Lee Seung Mo", "Korea Republic", ['CDM', 'ST'], 24, 64, club, 237101, true);
 		Player.create("Seong Jin Kang", "Kang Seong Jin", "Korea Republic", ['RM', 'RW'], 19, 64, club, 261401, true);
 
-		club = Club.create("Suwon Bluewings", "Korea Republic", 983, "rgb(59,73,162)", "white");
+		club = Club.create("Suwon Bluewings", "Korea Republic", 983, "#3B49A2", "#FFFFFF");
 		Player.create("Hyung Mo Yang", "Yang Hyung Mo", "Korea Republic", ['GK'], 30, 67, club, 222229, true);
 		Player.create("Ho Ik Jang", "Jang Ho Ik", "Korea Republic", ['RB', 'CB'], 28, 67, club, 233457, true);
 		Player.create("Myeong Seok Go", "Go Myeong Seok", "Korea Republic", ['CB', 'RB'], 26, 65, club, 240186, true);
@@ -12005,7 +12005,7 @@ class SoFifa23Service {
 		Player.create("Ju Chan Kim", "Kim Ju Chan", "Korea Republic", ['RW', 'RM'], 18, 54, club, 274022, false);
 		Player.create("Kazuki Kozuka", "K. Kozuka", "Japan", ['CM', 'CAM'], 27, 65, club, 232589, false);
 
-		club = Club.create("Gangwon", "Korea Republic", 112115, "rgb(227,99,70)", "black");
+		club = Club.create("Gangwon", "Korea Republic", 112115, "#E36346", "#000000");
 		Player.create("Sang Hun Yu", "Yu Sang Hun", "Korea Republic", ['GK'], 33, 69, club, 203237, true);
 		Player.create("Jin Ho Kim", "Kim Jin Ho", "Korea Republic", ['RWB'], 22, 61, club, 269093, true);
 		Player.create("Chang Woo Rim", "Rim Chang Woo", "Korea Republic", ['CB', 'RWB', 'RB'], 30, 65, club, 205278, true);
@@ -12035,7 +12035,7 @@ class SoFifa23Service {
 		Player.create("Yago Cariello Ribeiro", "Yago Cariello", "Brazil", ['ST'], 22, 67, club, 270203, true);
 		Player.create("Ki Hwan Kim", "Kim Ki Hwan", "Korea Republic", ['LWB', 'CB'], 22, 55, club, 260394, true);
 
-		club = Club.create("Daegu", "Korea Republic", 2056, "rgb(132,178,198)", "black");
+		club = Club.create("Daegu", "Korea Republic", 2056, "#84B2C6", "#000000");
 		Player.create("Seung Hoon Oh", "Oh Seung Hoon", "Korea Republic", ['GK'], 34, 68, club, 228130, true);
 		Player.create("Jae Won Hwang", "Hwang Jae Won", "Korea Republic", ['RWB', 'CM', 'LWB'], 19, 62, club, 266789, true);
 		Player.create("Jeong Un Hong", "Hong Jeong Un", "Korea Republic", ['CB'], 27, 65, club, 233012, true);
@@ -12065,7 +12065,7 @@ class SoFifa23Service {
 		Player.create("Yong Hui Park", "Park Yong Hui", "Korea Republic", ['RW', 'LW', 'ST'], 20, 51, club, 270319, true);
 		Player.create("Seung Woo Son", "Son Seung Woo", "Korea Republic", ['RWB'], 20, 48, club, 260794, true);
 
-		club = Club.create("Gimcheon Sangmu", "Korea Republic", 2055, "rgb(162,66,75)", "white");
+		club = Club.create("Gimcheon Sangmu", "Korea Republic", 2055, "#A2424B", "#FFFFFF");
 		Player.create("Kyung Gun Mun", "Mun Kyung Gun", "Korea Republic", ['GK'], 27, 62, club, 246436, true);
 		Player.create("You Hyeon Lee", "Lee You Hyeon", "Korea Republic", ['RB', 'RM', 'LB'], 25, 64, club, 238089, true);
 		Player.create("Sang Min Lee", "Lee Sang Min", "Korea Republic", ['CB'], 24, 65, club, 238574, true);
@@ -12095,7 +12095,7 @@ class SoFifa23Service {
 		Player.create("Young Jun Lee", "Lee Young Jun", "Korea Republic", ['ST', 'CAM'], 19, 57, club, 261490, true);
 		Player.create("Byeong Chan Choi", "Choi Byeong Chan", "Korea Republic", ['RW', 'CM', 'RB'], 26, 55, club, 245982, true);
 
-		club = Club.create("Seongnam", "Korea Republic", 981, "rgb(59,59,59)", "white");
+		club = Club.create("Seongnam", "Korea Republic", 981, "#3B3B3B", "#FFFFFF");
 		Player.create("Young Kwang Kim", "Kim Young Kwang", "Korea Republic", ['GK'], 39, 67, club, 136686, true);
 		Player.create("Jae Won Shin", "Shin Jae Won", "Korea Republic", ['ST', 'RWB'], 23, 56, club, 248238, true);
 		Player.create("Sung Wook Jo", "Jo Sung Wook", "Korea Republic", ['CB'], 27, 57, club, 255520, false);
@@ -12125,7 +12125,7 @@ class SoFifa23Service {
 		Player.create("Tae Jun Park", "Park Tae Jun", "Korea Republic", ['CM', 'CDM', 'LM'], 23, 59, club, 243064, false);
 		Player.create("Patrick Flottmann", "P. Flottmann", "Australia", ['CB'], 25, 60, club, 252093, false);
 
-		club = Club.create("Ajax", "Netherlands", 245, "rgb(163,102,112)", "white");
+		club = Club.create("Ajax", "Netherlands", 245, "#A36670", "#FFFFFF");
 		Player.create("Gerónimo Rulli", "G. Rulli", "Argentina", ['GK'], 30, 82, club, 215316, true);
 		Player.create("Devyne Rensch", "D. Rensch", "Netherlands", ['RB', 'LB'], 19, 74, club, 258826, true);
 		Player.create("Jurriën Timber", "J. Timber", "Netherlands", ['CB', 'RB'], 21, 79, club, 251805, true);
@@ -12157,7 +12157,7 @@ class SoFifa23Service {
 		Player.create("Jaydon Banel", "J. Banel", "Netherlands", ['LW', 'ST'], 17, 59, club, 272983, false);
 		Player.create("Naci Ünüvar", "N. Ünüvar", "Turkey", ['LW', 'CAM'], 19, 67, club, 255010, true);
 
-		club = Club.create("PSV", "Netherlands", 247, "rgb(191,138,138)", "black");
+		club = Club.create("PSV", "Netherlands", 247, "#BF8A8A", "#000000");
 		Player.create("Walter Benítez", "W. Benítez", "Argentina", ['GK'], 29, 80, club, 215223, true);
 		Player.create("Jordan Teze", "J. Teze", "Netherlands", ['RB', 'CB'], 22, 76, club, 245211, true);
 		Player.create("André Ramalho Silva", "André Ramalho", "Brazil", ['CB'], 30, 75, club, 210007, true);
@@ -12189,7 +12189,7 @@ class SoFifa23Service {
 		Player.create("Mohamed Nassoh", "M. Nassoh", "Netherlands", ['CAM'], 19, 59, club, 274449, false);
 		Player.create("Tygo Land", "T. Land", "Netherlands", ['CM'], 16, 59, club, 275411, false);
 
-		club = Club.create("Feyenoord", "Netherlands", 246, "rgb(176,120,123)", "black");
+		club = Club.create("Feyenoord", "Netherlands", 246, "#B0787B", "#000000");
 		Player.create("Justin Bijlow", "J. Bijlow", "Netherlands", ['GK'], 24, 78, club, 232229, true);
 		Player.create("Lutsharel Geertruida", "L. Geertruida", "Netherlands", ['RB', 'CB', 'CDM'], 21, 79, club, 241187, true);
 		Player.create("Gernot Trauner", "G. Trauner", "Austria", ['CB'], 30, 79, club, 199813, true);
@@ -12219,7 +12219,7 @@ class SoFifa23Service {
 		Player.create("Tein Troost", "T. Troost", "Netherlands", ['GK'], 20, 58, club, 260169, false);
 		Player.create("Devin Remie", "D. Remie", "Netherlands", ['GK'], 19, 55, club, 264112, true);
 
-		club = Club.create("AZ Alkmaar", "Netherlands", 1906, "rgb(178,44,44)", "white");
+		club = Club.create("AZ Alkmaar", "Netherlands", 1906, "#B22C2C", "#FFFFFF");
 		Player.create("Mathew Ryan", "M. Ryan", "Australia", ['GK'], 30, 78, club, 199005, true);
 		Player.create("Yukinari Sugawara", "Y. Sugawara", "Japan", ['RB', 'RW'], 22, 75, club, 242916, true);
 		Player.create("Sam Beukema", "S. Beukema", "Netherlands", ['CB'], 23, 74, club, 262394, true);
@@ -12251,7 +12251,7 @@ class SoFifa23Service {
 		Player.create("Rome-Jayden Owusu-Oduro", "R. Owusu-Oduro", "Netherlands", ['GK'], 17, 60, club, 272958, false);
 		Player.create("Lewis Schouten", "L. Schouten", "Netherlands", ['CDM', 'CM', 'CB'], 18, 59, club, 274528, false);
 
-		club = Club.create("FC Twente", "Netherlands", 1908, "rgb(218,76,79)", "white");
+		club = Club.create("FC Twente", "Netherlands", 1908, "#DA4C4F", "#FFFFFF");
 		Player.create("Lars Unnerstall", "L. Unnerstall", "Germany", ['GK'], 31, 79, club, 199833, true);
 		Player.create("Joshua Brenet", "J. Brenet", "Netherlands", ['RB', 'LB'], 28, 72, club, 209818, true);
 		Player.create("Julio José Pleguezuelo Selva", "Pleguezuelo", "Spain", ['CB'], 25, 68, club, 222576, true);
@@ -12278,7 +12278,7 @@ class SoFifa23Service {
 		Player.create("Mats Rots", "M. Rots", "Netherlands", ['LB', 'CB'], 16, 57, club, 274834, false);
 		Player.create("Sam Karssies", "S. Karssies", "Netherlands", ['GK'], 19, 57, club, 269232, true);
 
-		club = Club.create("FC Utrecht", "Netherlands", 1903, "rgb(186,133,136)", "black");
+		club = Club.create("FC Utrecht", "Netherlands", 1903, "#BA8588", "#000000");
 		Player.create("Vasilios Barkas", "V. Barkas", "Greece", ['GK'], 28, 71, club, 239272, true);
 		Player.create("Sean Klaiber", "S. Klaiber", "Suriname", ['RB'], 27, 72, club, 219814, true);
 		Player.create("Mike van der Hoorn", "M. van der Hoorn", "Netherlands", ['CB'], 29, 72, club, 207725, true);
@@ -12310,7 +12310,7 @@ class SoFifa23Service {
 		Player.create("Joshua Rawlins", "J. Rawlins", "Australia", ['RB', 'CB'], 18, 60, club, 260533, true);
 		Player.create("Ramon Hendriks", "R. Hendriks", "Netherlands", ['CB'], 20, 66, club, 251829, true);
 
-		club = Club.create("Vitesse", "Netherlands", 1909, "rgb(131,114,46)", "white");
+		club = Club.create("Vitesse", "Netherlands", 1909, "#83722E", "#FFFFFF");
 		Player.create("Kjell Scherpen", "K. Scherpen", "Netherlands", ['GK'], 22, 67, club, 243675, true);
 		Player.create("Carlens Arcus", "C. Arcus", "Haiti", ['RB'], 26, 71, club, 228591, true);
 		Player.create("Ryan Flamingo", "R. Flamingo", "Netherlands", ['CB', 'CDM'], 19, 68, club, 270633, true);
@@ -12340,7 +12340,7 @@ class SoFifa23Service {
 		Player.create("Nigel van Haveren", "N. van Haveren", "Netherlands", ['GK'], 18, 56, club, 264242, true);
 		Player.create("Davy Pröpper", "D. Pröpper", "Netherlands", ['CM', 'CDM'], 30, 72, club, 193158, false);
 
-		club = Club.create("NEC", "Netherlands", 1910, "rgb(169,53,61)", "white");
+		club = Club.create("NEC", "Netherlands", 1910, "#A9353D", "#FFFFFF");
 		Player.create("Jasper Cillessen", "J. Cillessen", "Netherlands", ['GK'], 33, 80, club, 199987, true);
 		Player.create("Bart van Rooij", "B. van Rooij", "Netherlands", ['RB'], 21, 68, club, 262311, true);
 		Player.create("Iván Márquez Álvarez", "Iván Márquez", "Spain", ['CB'], 28, 70, club, 220385, true);
@@ -12369,7 +12369,7 @@ class SoFifa23Service {
 		Player.create("Rijk Janse", "R. Janse", "Netherlands", ['GK'], 20, 57, club, 265747, false);
 		Player.create("Robin Roefs", "R. Roefs", "Netherlands", ['GK'], 19, 57, club, 263798, true);
 
-		club = Club.create("SC Heerenveen", "Netherlands", 1913, "rgb(132,147,191)", "black");
+		club = Club.create("SC Heerenveen", "Netherlands", 1913, "#8493BF", "#000000");
 		Player.create("Xavier Mous", "X. Mous", "Netherlands", ['GK'], 26, 69, club, 223738, true);
 		Player.create("Milan van Ewijk", "M. van Ewijk", "Netherlands", ['RB'], 21, 74, club, 251626, true);
 		Player.create("Syb van Ottele", "S. van Ottele", "Netherlands", ['CB', 'CDM'], 20, 64, club, 260436, true);
@@ -12401,7 +12401,7 @@ class SoFifa23Service {
 		Player.create("Sven van Beek", "S. van Beek", "Netherlands", ['CB'], 27, 71, club, 213000, true);
 		Player.create("Joost van Aken", "J. van Aken", "Netherlands", ['CB'], 28, 67, club, 216271, true);
 
-		club = Club.create("Fortuna Sittard", "Netherlands", 634, "rgb(218,208,36)", "black");
+		club = Club.create("Fortuna Sittard", "Netherlands", 634, "#DAD024", "#000000");
 		Player.create("Ivor Pandur", "I. Pandur", "Croatia", ['GK'], 22, 72, club, 258585, true);
 		Player.create("Ivo Daniel F. Mendonça Pinto", "Ivo Pinto", "Portugal", ['RB', 'CB', 'LB'], 32, 66, club, 197860, true);
 		Player.create("Rodrigo Guth", "Rodrigo Guth", "Brazil", ['CB'], 21, 68, club, 263556, true);
@@ -12431,7 +12431,7 @@ class SoFifa23Service {
 		Player.create("Ferhat Cakir", "F. Cakir", "Belgium", ['LB'], 19, 56, club, 274835, false);
 		Player.create("Thomas Buitink", "T. Buitink", "Netherlands", ['ST', 'CAM'], 22, 67, club, 242528, true);
 
-		club = Club.create("Sparta Rotterdam", "Netherlands", 100646, "rgb(211,131,131)", "black");
+		club = Club.create("Sparta Rotterdam", "Netherlands", 100646, "#D38383", "#000000");
 		Player.create("Nick Olij", "N. Olij", "Netherlands", ['GK'], 26, 73, club, 224241, true);
 		Player.create("Shurandy Sambo", "S. Sambo", "Netherlands", ['RB'], 20, 67, club, 260099, true);
 		Player.create("Bart Vriends", "B. Vriends", "Netherlands", ['CB'], 31, 69, club, 216193, true);
@@ -12463,7 +12463,7 @@ class SoFifa23Service {
 		Player.create("Joey Koorevaar", "J. Koorevaar", "Netherlands", ['GK'], 21, 57, club, 271764, false);
 		Player.create("Dylan van Wageningen", "D. van Wageningen", "Netherlands", ['RB', 'CDM'], 19, 57, club, 274398, false);
 
-		club = Club.create("FC Groningen", "Netherlands", 1915, "rgb(146,176,153)", "black");
+		club = Club.create("FC Groningen", "Netherlands", 1915, "#92B099", "#000000");
 		Player.create("Peter Leeuwenburgh", "P. Leeuwenburgh", "Netherlands", ['GK'], 28, 67, club, 223737, true);
 		Player.create("Liam van Gelderen", "L. van Gelderen", "Netherlands", ['RB'], 21, 65, club, 268117, true);
 		Player.create("Radinio Balker", "R. Balker", "Netherlands", ['CB', 'RB'], 23, 67, club, 262100, true);
@@ -12495,7 +12495,7 @@ class SoFifa23Service {
 		Player.create("Maxim Mariani", "M. Mariani", "Netherlands", ['CB'], 17, 55, club, 272984, false);
 		Player.create("Michael Verrips", "M. Verrips", "Netherlands", ['GK'], 25, 68, club, 231413, true);
 
-		club = Club.create("SC Cambuur", "Netherlands", 647, "rgb(198,190,45)", "black");
+		club = Club.create("SC Cambuur", "Netherlands", 647, "#C6BE2D", "#000000");
 		Player.create("Robbin Ruiter", "R. Ruiter", "Netherlands", ['GK'], 35, 64, club, 189936, true);
 		Player.create("Sai van Wermeskerken", "S. van Wermeskerken", "Japan", ['RB', 'LB'], 28, 66, club, 228704, true);
 		Player.create("Leon Bergsma", "L. Bergsma", "Netherlands", ['CB'], 25, 65, club, 236399, true);
@@ -12527,7 +12527,7 @@ class SoFifa23Service {
 		Player.create("Vincent Pichel", "V. Pichel", "Netherlands", ['CM'], 20, 57, club, 273048, false);
 		Player.create("Brett Minnema", "B. Minnema", "Netherlands", ['GK'], 20, 56, club, 262266, true);
 
-		club = Club.create("FC Emmen", "Netherlands", 100628, "rgb(213,123,131)", "black");
+		club = Club.create("FC Emmen", "Netherlands", 100628, "#D57B83", "#000000");
 		Player.create("Mickey van der Hart", "M. van der Hart", "Netherlands", ['GK'], 28, 67, club, 208782, true);
 		Player.create("Mohamed Bouchouari", "M. Bouchouari", "Belgium", ['RB', 'RM'], 21, 63, club, 260168, false);
 		Player.create("Mike te Wierik", "M. te Wierik", "Netherlands", ['CB', 'RB'], 30, 67, club, 200425, true);
@@ -12559,7 +12559,7 @@ class SoFifa23Service {
 		Player.create("Rui Jorge Monteiro Mendes", "Rui Mendes", "Portugal", ['RM', 'CAM'], 22, 67, club, 269744, true);
 		Player.create("Maikel Kieftenbeld", "M. Kieftenbeld", "Netherlands", ['CDM', 'CM'], 32, 68, club, 199584, true);
 
-		club = Club.create("Go Ahead Eagles", "Netherlands", 100632, "rgb(201,108,42)", "black");
+		club = Club.create("Go Ahead Eagles", "Netherlands", 100632, "#C96C2A", "#000000");
 		Player.create("Jeffrey de Lange", "J. de Lange", "Netherlands", ['GK'], 24, 67, club, 239559, true);
 		Player.create("Mats Deijl", "M. Deijl", "Netherlands", ['RB', 'RM', 'LB'], 24, 66, club, 262790, true);
 		Player.create("Jamal Amofa", "J. Amofa", "Netherlands", ['CB', 'RB'], 23, 66, club, 258549, true);
@@ -12591,7 +12591,7 @@ class SoFifa23Service {
 		Player.create("Lars Groenendijk", "L. Groenendijk", "Netherlands", ['GK'], 17, 54, club, 267833, true);
 		Player.create("Gerrit Nauber", "G. Nauber", "Germany", ['CB'], 30, 67, club, 192559, true);
 
-		club = Club.create("RKC Waalwijk", "Netherlands", 1905, "rgb(208,200,46)", "black");
+		club = Club.create("RKC Waalwijk", "Netherlands", 1905, "#D0C82E", "#000000");
 		Player.create("Etienne Vaessen", "E. Vaessen", "Netherlands", ['GK'], 26, 68, club, 250916, true);
 		Player.create("Julian Lelieveld", "J. Lelieveld", "Netherlands", ['RWB'], 24, 67, club, 229907, true);
 		Player.create("Juriën Gaari", "J. Gaari", "Curacao", ['CB', 'RWB'], 28, 66, club, 250917, true);
@@ -12620,7 +12620,7 @@ class SoFifa23Service {
 		Player.create("Chris-Emmanuel Lokesa", "C. Lokesa", "Belgium", ['CAM'], 17, 59, club, 272977, false);
 		Player.create("Mark Spenkelink", "M. Spenkelink", "Netherlands", ['GK'], 25, 58, club, 236716, true);
 
-		club = Club.create("Excelsior", "Netherlands", 1971, "rgb(62,50,50)", "white");
+		club = Club.create("Excelsior", "Netherlands", 1971, "#3E3232", "#FFFFFF");
 		Player.create("Stijn van Gassel", "S. van Gassel", "Netherlands", ['GK'], 25, 69, club, 269434, true);
 		Player.create("Siebe Horemans", "S. Horemans", "Belgium", ['RB'], 24, 66, club, 235222, true);
 		Player.create("Redouan El Yaakoubi", "R. El Yaakoubi", "Netherlands", ['CB'], 26, 67, club, 269436, true);
@@ -12652,7 +12652,7 @@ class SoFifa23Service {
 		Player.create("Brent Vugts", "B. Vugts", "Netherlands", ['LM'], 20, 59, club, 271422, false);
 		Player.create("Adrian Fein", "A. Fein", "Germany", ['CDM'], 23, 68, club, 244280, true);
 
-		club = Club.create("FC Volendam", "Netherlands", 645, "rgb(175,112,73)", "white");
+		club = Club.create("FC Volendam", "Netherlands", 645, "#AF7049", "#FFFFFF");
 		Player.create("Filip Stanković", "F. Stanković", "Serbia", ['GK'], 20, 68, club, 269271, true);
 		Player.create("Brian Plat", "B. Plat", "Netherlands", ['RWB', 'CB'], 22, 63, club, 269249, true);
 		Player.create("Xavier Mbuyamba", "X. Mbuyamba", "Netherlands", ['CB'], 20, 65, club, 271658, false);
@@ -12684,7 +12684,7 @@ class SoFifa23Service {
 		Player.create("Rob Tol", "R. Tol", "Netherlands", ['RWB'], 18, 57, club, 274498, false);
 		Player.create("Jordi Blom", "J. Blom", "Netherlands", ['RM'], 20, 57, club, 269270, false);
 
-		club = Club.create("Bodø / Glimt", "Norway", 918, "rgb(197,153,78)", "black");
+		club = Club.create("Bodø / Glimt", "Norway", 918, "#C5994E", "#000000");
 		Player.create("Nikita Haikin", "N. Haikin", "Russia", ['GK'], 26, 71, club, 222389, true);
 		Player.create("Brice Wembangomo", "B. Wembangomo", "Norway", ['RB', 'LB'], 25, 70, club, 224793, true);
 		Player.create("Brede Mathias Moe", "B. Moe", "Norway", ['CB'], 30, 71, club, 212938, true);
@@ -12713,7 +12713,7 @@ class SoFifa23Service {
 		Player.create("Lucas Kubr", "L. Kubr", "Czech Republic", ['LB'], 18, 58, club, 273806, false);
 		Player.create("Magnus Brøndbo", "M. Brøndbo", "Norway", ['GK'], 17, 55, club, 273044, false);
 
-		club = Club.create("Molde", "Norway", 417, "rgb(59,84,148)", "white");
+		club = Club.create("Molde", "Norway", 417, "#3B5494", "#FFFFFF");
 		Player.create("Jacob Karlstrøm", "J. Karlstrøm", "Norway", ['GK'], 25, 68, club, 235606, true);
 		Player.create("Martin Linnes", "M. Linnes", "Norway", ['RWB'], 30, 72, club, 198599, true);
 		Player.create("Benjamin Hansen", "B. Hansen", "Denmark", ['CB'], 28, 69, club, 241139, true);
@@ -12743,7 +12743,7 @@ class SoFifa23Service {
 		Player.create("Martin Ellingsen", "M. Ellingsen", "Norway", ['CDM', 'CB'], 27, 66, club, 240677, true);
 		Player.create("Eirik Ulland Andersen", "E. Andersen", "Norway", ['RM', 'LM', 'CAM'], 29, 64, club, 203368, true);
 
-		club = Club.create("Rosenborg", "Norway", 298, "rgb(196,195,194)", "black");
+		club = Club.create("Rosenborg", "Norway", 298, "#C4C3C2", "#000000");
 		Player.create("André Hansen", "A. Hansen", "Norway", ['GK'], 32, 70, club, 190459, true);
 		Player.create("Leo Cornic", "L. Cornic", "Norway", ['RWB'], 21, 63, club, 246291, true);
 		Player.create("Erlend Dahl Reitan", "E. Reitan", "Norway", ['RWB', 'CB'], 24, 69, club, 230836, true);
@@ -12770,7 +12770,7 @@ class SoFifa23Service {
 		Player.create("Adam Andersson", "A. Andersson", "Sweden", ['RWB', 'LWB'], 25, 67, club, 227601, true);
 		Player.create("Noah Jean Holm", "N. Holm", "Norway", ['ST'], 21, 66, club, 258710, true);
 
-		club = Club.create("Lillestrøm", "Norway", 299, "rgb(222,195,32)", "black");
+		club = Club.create("Lillestrøm", "Norway", 299, "#DEC320", "#000000");
 		Player.create("Mads Christiansen", "M. Christiansen", "Norway", ['GK'], 21, 68, club, 240489, true);
 		Player.create("Lars Mogstad Ranger", "L. Ranger", "Norway", ['RWB'], 23, 65, club, 243603, true);
 		Player.create("Espen Bjørnsen Garnås", "E. Garnås", "Norway", ['CB'], 27, 67, club, 261388, true);
@@ -12793,7 +12793,7 @@ class SoFifa23Service {
 		Player.create("Elias Sebastian Solberg", "E. Solberg", "Norway", ['RM'], 18, 58, club, 271679, false);
 		Player.create("Martin Ove Roseth", "M. Roseth", "Norway", ['CB'], 23, 61, club, 235532, false);
 
-		club = Club.create("Viking", "Norway", 300, "rgb(52,55,75)", "white");
+		club = Club.create("Viking", "Norway", 300, "#34374B", "#FFFFFF");
 		Player.create("Patrik Gunnarsson", "P. Gunnarsson", "Iceland", ['GK'], 21, 67, club, 245274, true);
 		Player.create("Sondre Flem Bjørshol", "S. Bjørshol", "Norway", ['RB', 'CB'], 28, 66, club, 246390, true);
 		Player.create("Djibril Thialaw Diop", "D. Diop", "Senegal", ['CB'], 23, 65, club, 271680, false);
@@ -12819,7 +12819,7 @@ class SoFifa23Service {
 		Player.create("Jošt Urbančič", "J. Urbančič", "Slovenia", ['LB'], 21, 59, club, 272970, false);
 		Player.create("Gianni Stensness", "G. Stensness", "Australia", ['CB', 'CDM'], 23, 66, club, 247754, true);
 
-		club = Club.create("Vålerenga", "Norway", 920, "rgb(61,76,163)", "white");
+		club = Club.create("Vålerenga", "Norway", 920, "#3D4CA3", "#FFFFFF");
 		Player.create("Magnus Sjøeng", "M. Sjøeng", "Norway", ['GK'], 20, 64, club, 263877, true);
 		Player.create("Vegar Eggen Hedenstad", "V. Hedenstad", "Norway", ['RB'], 31, 68, club, 186267, true);
 		Player.create("Fredrik Oldrup Jensen", "F. Jensen", "Norway", ['CDM', 'CB'], 29, 67, club, 198811, true);
@@ -12847,7 +12847,7 @@ class SoFifa23Service {
 		Player.create("Aaron Kiil Olsen", "A. Olsen", "Norway", ['CB'], 21, 62, club, 273545, false);
 		Player.create("Henrik Heggheim", "H. Heggheim", "Norway", ['CB'], 21, 66, club, 257072, true);
 
-		club = Club.create("Sarpsborg 08", "Norway", 112199, "rgb(90,108,175)", "white");
+		club = Club.create("Sarpsborg 08", "Norway", 112199, "#5A6CAF", "#FFFFFF");
 		Player.create("Anders Kristiansen", "A. Kristiansen", "Norway", ['GK'], 32, 63, club, 179573, true);
 		Player.create("Eirik Wichne", "E. Wichne", "Norway", ['RB', 'RWB'], 25, 64, club, 228834, true);
 		Player.create("Bjørn Inge Utvik", "B. Utvik", "Norway", ['CB'], 26, 65, club, 213864, true);
@@ -12873,7 +12873,7 @@ class SoFifa23Service {
 		Player.create("Elias Kringberg Haug", "E. Haug", "Norway", ['CB'], 16, 52, club, 271077, false);
 		Player.create("Joachim Thomassen", "J. Thomassen", "Norway", ['LB', 'LWB'], 34, 64, club, 184229, true);
 
-		club = Club.create("Strømsgodset", "Norway", 922, "rgb(54,61,82)", "white");
+		club = Club.create("Strømsgodset", "Norway", 922, "#363D52", "#FFFFFF");
 		Player.create("Viljar Myhra", "V. Myhra", "Norway", ['GK'], 25, 68, club, 220584, true);
 		Player.create("Lars Vilsvik", "L. Vilsvik", "Norway", ['RWB'], 33, 67, club, 197391, true);
 		Player.create("Ari Leifsson", "A. Leifsson", "Iceland", ['CB'], 24, 64, club, 256367, true);
@@ -12901,7 +12901,7 @@ class SoFifa23Service {
 		Player.create("Andreas Heredia-Randen", "A. Heredia-Randen", "Norway", ['CM'], 16, 55, club, 274540, false);
 		Player.create("Andreas Skjold", "A. Skjold", "Norway", ['CAM', 'RW'], 19, 55, club, 268447, true);
 
-		club = Club.create("Tromsø", "Norway", 418, "rgb(194,137,140)", "black");
+		club = Club.create("Tromsø", "Norway", 418, "#C2898C", "#000000");
 		Player.create("Jakob Haugaard", "J. Haugaard", "Denmark", ['GK'], 30, 64, club, 207633, true);
 		Player.create("Niklas Vesterlund", "N. Vesterlund", "Denmark", ['RWB', 'RM', 'LWB'], 23, 64, club, 247330, true);
 		Player.create("Anders Finjord Jenssen", "A. Jenssen", "Norway", ['CB'], 28, 64, club, 247376, true);
@@ -12930,7 +12930,7 @@ class SoFifa23Service {
 		Player.create("Tobias Hafstad", "T. Hafstad", "Norway", ['CM'], 20, 55, club, 261392, true);
 		Player.create("Oskar Opsahl", "O. Opsahl", "Norway", ['LWB', 'LM'], 20, 58, club, 248067, true);
 
-		club = Club.create("Haugesund", "Norway", 1463, "rgb(176,191,204)", "black");
+		club = Club.create("Haugesund", "Norway", 1463, "#B0BFCC", "#000000");
 		Player.create("Egil Selvik", "E. Selvik", "Norway", ['GK'], 24, 65, club, 247611, true);
 		Player.create("Peter Therkildsen", "P. Therkildsen", "Denmark", ['RB', 'RWB', 'CM'], 24, 64, club, 251594, true);
 		Player.create("Anders Bærtelsen", "A. Bærtelsen", "Denmark", ['CB'], 22, 63, club, 243347, true);
@@ -12954,7 +12954,7 @@ class SoFifa23Service {
 		Player.create("Sander Østraat", "S. Østraat", "Norway", ['GK'], 17, 50, club, 273615, false);
 		Player.create("Claus Niyukuri", "C. Niyukuri", "Norway", ['CB'], 22, 58, club, 273614, false);
 
-		club = Club.create("Aalesund", "Norway", 1755, "rgb(197,87,58)", "white");
+		club = Club.create("Aalesund", "Norway", 1755, "#C5573A", "#FFFFFF");
 		Player.create("Sten Michael Grytebust", "S. Grytebust", "Norway", ['GK'], 32, 67, club, 183475, true);
 		Player.create("Alexander Munksgaard", "A. Munksgaard", "Denmark", ['RWB'], 24, 64, club, 229873, true);
 		Player.create("Alexander Juel Andersen", "A. Andersen", "Denmark", ['CB'], 31, 64, club, 205533, true);
@@ -12984,7 +12984,7 @@ class SoFifa23Service {
 		Player.create("Kristoffer S. Ødven", "K. Ødven", "Norway", ['CM'], 20, 55, club, 258094, false);
 		Player.create("Alexander Ammitzbøll", "A. Ammitzbøll", "Denmark", ['ST'], 23, 60, club, 241138, true);
 
-		club = Club.create("HamKam", "Norway", 1756, "rgb(221,228,224)", "black");
+		club = Club.create("HamKam", "Norway", 1756, "#DDE4E0", "#000000");
 		Player.create("Marcus Sandberg", "M. Sandberg", "Sweden", ['GK'], 31, 65, club, 191153, false);
 		Player.create("Jens Martin Gammelby", "J. Gammelby", "Denmark", ['RWB', 'RB'], 27, 66, club, 213835, true);
 		Player.create("Brynjar Ingi Bjarnason", "B. Bjarnason", "Iceland", ['CB'], 22, 64, club, 263658, true);
@@ -13012,7 +13012,7 @@ class SoFifa23Service {
 		Player.create("Julian Dunn", "J. Dunn", "Canada", ['CB'], 21, 61, club, 243216, true);
 		Player.create("Nicholas Hagen", "N. Hagen", "Guatemala", ['GK'], 25, 63, club, 267684, true);
 
-		club = Club.create("Kristiansund", "Norway", 113459, "rgb(67,69,86)", "white");
+		club = Club.create("Kristiansund", "Norway", 113459, "#434556", "#FFFFFF");
 		Player.create("Sean McDermott", "S. McDermott", "Republic of Ireland", ['GK'], 29, 67, club, 202810, true);
 		Player.create("Snorre Strand Nilsen", "S. Nilsen", "Norway", ['RWB', 'RB'], 25, 64, club, 229678, true);
 		Player.create("Sebastian Jarl", "S. Jarl", "Norway", ['CB', 'CDM'], 22, 60, club, 248337, true);
@@ -13036,7 +13036,7 @@ class SoFifa23Service {
 		Player.create("Heine Gikling Bruseth", "H. Bruseth", "Norway", ['CM'], 18, 53, club, 271611, false);
 		Player.create("Leander Næss Alvheim", "L. Alvheim", "Norway", ['ST'], 17, 52, club, 269757, false);
 
-		club = Club.create("Odd", "Norway", 1456, "rgb(200,186,186)", "black");
+		club = Club.create("Odd", "Norway", 1456, "#C8BABA", "#000000");
 		Player.create("Leopold Wahlstedt", "L. Wahlstedt", "Sweden", ['GK'], 22, 68, club, 243158, true);
 		Player.create("Espen Ruud", "E. Ruud", "Norway", ['RB'], 38, 66, club, 148696, true);
 		Player.create("Diogo Tomas", "D. Tomas", "Finland", ['CB'], 24, 64, club, 272598, false);
@@ -13058,7 +13058,7 @@ class SoFifa23Service {
 		Player.create("Casper Glenna Andersen", "C. Andersen", "Norway", ['RB', 'RW'], 17, 54, club, 274831, false);
 		Player.create("Bork Bang-Kittilsen", "B. Bang-Kittilsen", "Norway", ['ST'], 17, 53, club, 275295, false);
 
-		club = Club.create("Sandefjord", "Norway", 1757, "rgb(59,74,157)", "white");
+		club = Club.create("Sandefjord", "Norway", 1757, "#3B4A9D", "#FFFFFF");
 		Player.create("Hugo Keto", "H. Keto", "Finland", ['GK'], 24, 64, club, 225766, true);
 		Player.create("Filip Loftesnes-Bjune", "F. Loftesnes-Bjune", "Norway", ['RB'], 17, 58, club, 268401, true);
 		Player.create("Jesper Taaje", "J. Taaje", "Norway", ['CB'], 24, 64, club, 266659, true);
@@ -13084,7 +13084,7 @@ class SoFifa23Service {
 		Player.create("Wally Njie", "W. Njie", "Norway", ['ST'], 19, 55, club, 271615, false);
 		Player.create("Alf Lukas Noel Grønneberg", "A. Grønneberg", "Norway", ['GK'], 17, 52, club, 275000, false);
 
-		club = Club.create("Jerv", "Norway", 115489, "rgb(224,168,80)", "black");
+		club = Club.create("Jerv", "Norway", 115489, "#E0A850", "#000000");
 		Player.create("Øystein Øvretveit", "Ø. Øvretveit", "Norway", ['GK'], 28, 63, club, 201903, true);
 		Player.create("Torje Wichne", "T. Wichne", "Norway", ['RWB'], 25, 62, club, 266167, true);
 		Player.create("Bendik Kristiansen", "B. Kristiansen", "Norway", ['CB'], 19, 54, club, 267731, true);
@@ -13104,7 +13104,7 @@ class SoFifa23Service {
 		Player.create("Magnus Robert Jørgensen", "M. Jørgensen", "Norway", ['CB'], 24, 56, club, 274345, false);
 		Player.create("Jørgen Engen Kristoffersen", "J. Kristoffersen", "Norway", ['GK'], 25, 56, club, 273749, false);
 
-		club = Club.create("Libertad", "Paraguay", 111008, "rgb(153,153,152)", "black");
+		club = Club.create("Libertad", "Paraguay", 111008, "#999998", "#000000");
 		Player.create("Martín Silva", "M. Silva", "Uruguay", ['GK'], 39, 75, club, 198653, true);
 		Player.create("Iván Piris", "I. Piris", "Paraguay", ['RB', 'LB'], 33, 73, club, 204977, true);
 		Player.create("Diego Viera", "D. Viera", "Paraguay", ['CB'], 31, 73, club, 227550, true);
@@ -13136,7 +13136,7 @@ class SoFifa23Service {
 		Player.create("Bautista Merlini", "B. Merlini", "Argentina", ['LM', 'LW', 'RM'], 26, 74, club, 233372, true);
 		Player.create("Iván Flores", "I. Flores", "Paraguay", ['CB'], 19, 59, club, 268610, true);
 
-		club = Club.create("Olimpia", "Paraguay", 101108, "rgb(172,172,171)", "black");
+		club = Club.create("Olimpia", "Paraguay", 101108, "#ACACAB", "#000000");
 		Player.create("Gastón Olveira", "G. Olveira", "Uruguay", ['GK'], 29, 73, club, 254601, true);
 		Player.create("Víctor Salazar", "V. Salazar", "Argentina", ['RB', 'RWB'], 29, 71, club, 224459, true);
 		Player.create("Luis Zárate", "L. Zárate", "Paraguay", ['CB'], 22, 63, club, 266699, true);
@@ -13168,7 +13168,7 @@ class SoFifa23Service {
 		Player.create("Bruno Recalde", "B. Recalde", "Paraguay", ['LM', 'LW'], 18, 64, club, 271621, true);
 		Player.create("Alex Franco", "A. Franco", "Paraguay", ['RM'], 20, 52, club, 275595, false);
 
-		club = Club.create("Cerro Porteño", "Paraguay", 112716, "rgb(120,62,111)", "white");
+		club = Club.create("Cerro Porteño", "Paraguay", 112716, "#783E6F", "#FFFFFF");
 		Player.create("Jean Paulo Fernandes Filho", "Jean", "Brazil", ['GK'], 26, 75, club, 234999, true);
 		Player.create("Alberto Espínola", "A. Espínola", "Paraguay", ['RB'], 31, 71, club, 253218, true);
 		Player.create("Pedro Álvarez", "P. Álvarez", "Paraguay", ['CB'], 21, 59, club, 275363, false);
@@ -13200,7 +13200,7 @@ class SoFifa23Service {
 		Player.create("Isaías Gavilán", "I. Gavilán", "Paraguay", ['LM', 'RM'], 19, 55, club, 276185, false);
 		Player.create("Rodrigo Delvalle", "R. Delvalle", "Paraguay", ['CB'], 21, 62, club, 260134, true);
 
-		club = Club.create("Guaraní", "Paraguay", 111329, "rgb(112,97,40)", "white");
+		club = Club.create("Guaraní", "Paraguay", 111329, "#706128", "#FFFFFF");
 		Player.create("Rodrigo Muñoz", "R. Muñoz", "Uruguay", ['GK'], 40, 66, club, 218867, true);
 		Player.create("Raúl Cáceres", "R. Cáceres", "Paraguay", ['RB'], 30, 64, club, 255962, true);
 		Player.create("José Moya", "J. Moya", "Colombia", ['CB'], 29, 69, club, 232004, true);
@@ -13232,7 +13232,7 @@ class SoFifa23Service {
 		Player.create("Luis Gilberto Martínez", "L. Martínez", "Paraguay", ['CM'], 22, 62, club, 274564, true);
 		Player.create("Leonardo Rolón", "L. Rolón", "Paraguay", ['ST'], 19, 58, club, 270599, true);
 
-		club = Club.create("Sportivo Ameliano", "Paraguay", 116295, "rgb(153,157,187)", "black");
+		club = Club.create("Sportivo Ameliano", "Paraguay", 116295, "#999DBB", "#000000");
 		Player.create("Joaquín Papaleo", "J. Papaleo", "Argentina", ['GK'], 28, 66, club, 226804, true);
 		Player.create("Walter Cabrera", "W. Cabrera", "Paraguay", ['RB', 'CB'], 32, 64, club, 224801, true);
 		Player.create("Hugo Benítez", "H. Benítez", "Paraguay", ['CB'], 23, 63, club, 273844, true);
@@ -13262,7 +13262,7 @@ class SoFifa23Service {
 		Player.create("Víctor Rojas", "V. Rojas", "Paraguay", ['LB'], 18, 57, club, 274860, false);
 		Player.create("Aldo Galeano", "A. Galeano", "Paraguay", ['GK'], 23, 54, club, 274861, false);
 
-		club = Club.create("General Caballero JLM", "Paraguay", 116007, "rgb(210,68,73)", "white");
+		club = Club.create("General Caballero JLM", "Paraguay", 116007, "#D24449", "#FFFFFF");
 		Player.create("Gustavo Arévalos", "G. Arévalos", "Paraguay", ['GK'], 37, 66, club, 265472, true);
 		Player.create("Juan Saborido", "J. Saborido", "Argentina", ['RB'], 24, 62, club, 274736, true);
 		Player.create("Gustavo Navarro", "G. Navarro", "Paraguay", ['CB'], 25, 68, club, 260022, true);
@@ -13287,7 +13287,7 @@ class SoFifa23Service {
 		Player.create("Carlos Gavilán", "C. Gavilán", "Paraguay", ['CAM', 'ST'], 18, 54, club, 269328, true);
 		Player.create("Marcos Machuca", "M. Machuca", "Paraguay", ['RM', 'LM'], 17, 59, club, 274738, true);
 
-		club = Club.create("Tacuary", "Paraguay", 111004, "rgb(139,136,130)", "black");
+		club = Club.create("Tacuary", "Paraguay", 111004, "#8B8882", "#000000");
 		Player.create("Carlos Servín", "C. Servín", "Paraguay", ['GK'], 35, 69, club, 218175, true);
 		Player.create("Alexis Fernández", "A. Fernández", "Paraguay", ['RB', 'RM'], 25, 65, club, 274500, true);
 		Player.create("Luís Mario Martínez", "L. Martínez", "Paraguay", ['CB'], 18, 61, club, 274495, true);
@@ -13316,7 +13316,7 @@ class SoFifa23Service {
 		Player.create("Marcelino Ñamandú", "M. Ñamandú", "Paraguay", ['CM'], 22, 60, club, 253235, true);
 		Player.create("Nicolás Lugano", "N. Lugano", "Uruguay", ['RB', 'CB'], 22, 56, club, 256457, true);
 
-		club = Club.create("Alianza Lima", "Peru", 111010, "rgb(131,131,146)", "black");
+		club = Club.create("Alianza Lima", "Peru", 111010, "#838392", "#000000");
 		Player.create("Franco Saravia", "F. Saravia", "Peru", ['GK'], 23, 68, club, 256183, false);
 		Player.create("Gino Peruzzi", "G. Peruzzi", "Argentina", ['RB', 'RWB'], 30, 70, club, 215181, true);
 		Player.create("Carlos Zambrano", "C. Zambrano", "Peru", ['CB'], 32, 74, club, 187132, true);
@@ -13347,7 +13347,7 @@ class SoFifa23Service {
 		Player.create("Jorge del Castillo", "J. del Castillo", "Peru", ['CM'], 17, 55, club, 275142, false);
 		Player.create("Luis Navea", "L. Navea", "Peru", ['CM'], 19, 55, club, 275141, false);
 
-		club = Club.create("Sporting Cristal", "Peru", 111013, "rgb(78,166,212)", "black");
+		club = Club.create("Sporting Cristal", "Peru", 111013, "#4EA6D4", "#000000");
 		Player.create("Renato Solís", "R. Solís", "Peru", ['GK'], 24, 67, club, 253629, true);
 		Player.create("Jhilmar Lora", "J. Lora", "Peru", ['RB'], 21, 69, club, 259833, true);
 		Player.create("Gianfranco Chávez", "G. Chávez", "Peru", ['CB', 'RB'], 23, 68, club, 253586, true);
@@ -13378,7 +13378,7 @@ class SoFifa23Service {
 		Player.create("Gabriel Alfaro", "G. Alfaro", "Peru", ['LB'], 19, 58, club, 276043, false);
 		Player.create("Joel Herrera", "J. Herrera", "Peru", ['CM'], 18, 57, club, 276044, false);
 
-		club = Club.create("Universitario", "Peru", 111014, "rgb(186,161,161)", "black");
+		club = Club.create("Universitario", "Peru", 111014, "#BAA1A1", "#000000");
 		Player.create("José Carvallo", "J. Carvallo", "Peru", ['GK'], 36, 72, club, 186655, true);
 		Player.create("Andy Polo", "A. Polo", "Peru", ['RM', 'RWB'], 27, 70, club, 223637, true);
 		Player.create("Aldo Corzo", "A. Corzo", "Peru", ['RB', 'RWB'], 33, 70, club, 196688, true);
@@ -13404,7 +13404,7 @@ class SoFifa23Service {
 		Player.create("Piero Guzmán", "P. Guzmán", "Peru", ['CB'], 22, 63, club, 267393, true);
 		Player.create("José Aamet Calderón", "J. Calderón", "Peru", ['GK'], 24, 60, club, 253837, true);
 
-		club = Club.create("Melgar", "Peru", 111334, "rgb(119,43,46)", "white");
+		club = Club.create("Melgar", "Peru", 111334, "#772B2E", "#FFFFFF");
 		Player.create("Carlos Cáceda", "C. Cáceda", "Peru", ['GK'], 30, 75, club, 234054, true);
 		Player.create("Alec Deneumostier", "A. Deneumostier", "Peru", ['CB'], 23, 70, club, 254176, true);
 		Player.create("Leonel Galeano", "L. Galeano", "Argentina", ['CB'], 30, 68, club, 212208, true);
@@ -13430,7 +13430,7 @@ class SoFifa23Service {
 		Player.create("André Vásquez", "A. Vásquez", "Peru", ['CM', 'CAM'], 19, 59, club, 272686, true);
 		Player.create("Diego Rodríguez", "D. Rodríguez", "Peru", ['RB'], 20, 58, club, 255993, true);
 
-		club = Club.create("Cienciano", "Peru", 111011, "rgb(185,51,49)", "white");
+		club = Club.create("Cienciano", "Peru", 111011, "#B93331", "#FFFFFF");
 		Player.create("Miguel Vargas", "M. Vargas", "Chile", ['GK'], 26, 68, club, 229397, true);
 		Player.create("Luis Garro", "L. Garro", "Peru", ['RB', 'RM'], 25, 67, club, 265740, true);
 		Player.create("Hansell Riojas", "H. Riojas", "Peru", ['CB', 'RB', 'LB'], 30, 67, club, 225702, true);
@@ -13453,7 +13453,7 @@ class SoFifa23Service {
 		Player.create("Lenín Checco", "L. Checco", "Peru", ['CM', 'CDM'], 18, 58, club, 268557, false);
 		Player.create("Rodrigo Rodríguez", "R. Rodríguez", "Peru", ['ST', 'RW'], 19, 60, club, 276039, false);
 
-		club = Club.create("César Vallejo", "Peru", 113029, "rgb(227,101,62)", "black");
+		club = Club.create("César Vallejo", "Peru", 113029, "#E3653E", "#000000");
 		Player.create("Máximo Rabines", "M. Rabines", "Peru", ['GK'], 28, 64, club, 254392, true);
 		Player.create("Carlos Cabello", "C. Cabello", "Peru", ['LB', 'RB'], 24, 66, club, 259611, true);
 		Player.create("Carlos Ascues", "C. Ascues", "Peru", ['CM', 'CDM', 'CB'], 30, 69, club, 212509, true);
@@ -13480,7 +13480,7 @@ class SoFifa23Service {
 		Player.create("Franchesco Flores", "F. Flores", "Peru", ['CAM'], 21, 61, club, 259660, true);
 		Player.create("Sais Santibáñez", "S. Santibáñez", "Peru", ['CB', 'LB'], 18, 59, club, 275145, false);
 
-		club = Club.create("Deportivo Binacional", "Peru", 114582, "rgb(70,137,220)", "black");
+		club = Club.create("Deportivo Binacional", "Peru", 114582, "#4689DC", "#000000");
 		Player.create("Diego Enríquez", "D. Enríquez", "Peru", ['GK'], 20, 67, club, 265786, false);
 		Player.create("Jack Durán", "J. Durán", "Peru", ['RM', 'RW', 'RB'], 30, 66, club, 267603, false);
 		Player.create("Benjamín Villalta", "B. Villalta", "Peru", ['CB', 'RB'], 21, 61, club, 261969, true);
@@ -13503,7 +13503,7 @@ class SoFifa23Service {
 		Player.create("Julio Vizcarra", "J. Vizcarra", "Peru", ['RW'], 19, 60, club, 275157, false);
 		Player.create("Joaquín Revilla", "J. Revilla", "Peru", ['CM'], 17, 53, club, 276126, false);
 
-		club = Club.create("Lech Poznań", "Poland", 873, "rgb(47,73,129)", "white");
+		club = Club.create("Lech Poznań", "Poland", 873, "#2F4981", "#FFFFFF");
 		Player.create("Filip Bednarek", "F. Bednarek", "Poland", ['GK'], 29, 68, club, 208894, true);
 		Player.create("Joel Vieira Pereira", "Joel Pereira", "Portugal", ['RB'], 25, 70, club, 258276, true);
 		Player.create("Filip Dagerstål", "F. Dagerstål", "Sweden", ['CB', 'CDM'], 25, 69, club, 224838, true);
@@ -13533,7 +13533,7 @@ class SoFifa23Service {
 		Player.create("Mikael Ishak", "M. Ishak", "Sweden", ['ST'], 29, 72, club, 206626, true);
 		Player.create("Bartosz Salamon", "B. Salamon", "Poland", ['CB'], 31, 71, club, 189558, true);
 
-		club = Club.create("Legia Warszawa", "Poland", 1871, "rgb(202,202,201)", "black");
+		club = Club.create("Legia Warszawa", "Poland", 1871, "#CACAC9", "#000000");
 		Player.create("Kacper Tobiasz", "K. Tobiasz", "Poland", ['GK'], 19, 66, club, 262251, true);
 		Player.create("Maik Nawrocki", "M. Nawrocki", "Poland", ['CB'], 21, 68, club, 255838, true);
 		Player.create("Artur Jędrzejczyk", "A. Jędrzejczyk", "Poland", ['CB', 'RB'], 34, 70, club, 177790, true);
@@ -13562,7 +13562,7 @@ class SoFifa23Service {
 		Player.create("Jakub Jędrasik", "J. Jędrasik", "Poland", ['CAM', 'LM', 'RM'], 17, 57, club, 273856, false);
 		Player.create("Blaž Kramer", "B. Kramer", "Slovenia", ['ST'], 26, 66, club, 251260, true);
 
-		club = Club.create("Raków Częstochowa", "Poland", 114326, "rgb(125,63,109)", "white");
+		club = Club.create("Raków Częstochowa", "Poland", 114326, "#7D3F6D", "#FFFFFF");
 		Player.create("Vladan Kovacević", "V. Kovacević", "Serbia", ['GK'], 24, 70, club, 263032, true);
 		Player.create("Stratos Svarnas", "S. Svarnas", "Greece", ['CB', 'RWB'], 24, 70, club, 245540, true);
 		Player.create("Zoran Arsenić", "Z. Arsenić", "Croatia", ['CB'], 28, 68, club, 239179, true);
@@ -13589,7 +13589,7 @@ class SoFifa23Service {
 		Player.create("Jakub Rajczykowski", "J. Rajczykowski", "Poland", ['GK'], 17, 52, club, 271100, true);
 		Player.create("Olivier Sukiennicki", "O. Sukiennicki", "Poland", ['LM', 'CM'], 19, 56, club, 264354, false);
 
-		club = Club.create("Pogoń Szczecin", "Poland", 110746, "rgb(70,44,53)", "white");
+		club = Club.create("Pogoń Szczecin", "Poland", 110746, "#462C35", "#FFFFFF");
 		Player.create("Dante Stipica", "D. Stipica", "Croatia", ['GK'], 31, 70, club, 250939, true);
 		Player.create("Linus Egnell Wahlqvist", "L. Wahlqvist", "Sweden", ['RB', 'CB'], 25, 69, club, 213933, true);
 		Player.create("Danijel Lončar", "D. Lončar", "Croatia", ['CB', 'CDM'], 25, 67, club, 274213, false);
@@ -13616,7 +13616,7 @@ class SoFifa23Service {
 		Player.create("Michał Kucharczyk", "M. Kucharczyk", "Poland", ['RM'], 31, 67, club, 201083, true);
 		Player.create("Stanisław Wawrzynowicz", "S. Wawrzynowicz", "Poland", ['CDM'], 23, 59, club, 271097, true);
 
-		club = Club.create("Jagiellonia Białystok", "Poland", 110745, "rgb(194,95,74)", "white");
+		club = Club.create("Jagiellonia Białystok", "Poland", 110745, "#C25F4A", "#FFFFFF");
 		Player.create("Zlatan Alomerović", "Z. Alomerović", "Serbia", ['GK'], 31, 67, club, 208764, true);
 		Player.create("Tomáš Přikryl", "T. Přikryl", "Czech Republic", ['RM', 'RWB'], 29, 67, club, 201129, true);
 		Player.create("Miłosz Matysik", "M. Matysik", "Poland", ['CB', 'CM'], 18, 64, club, 260981, true);
@@ -13646,7 +13646,7 @@ class SoFifa23Service {
 		Player.create("Bartosz Bernatowicz", "B. Bernatowicz", "Poland", ['CDM'], 17, 52, club, 270714, true);
 		Player.create("Kacper Tabiś", "K. Tabiś", "Poland", ['RWB', 'RM'], 22, 60, club, 263257, true);
 
-		club = Club.create("Piast Gliwice", "Poland", 111086, "rgb(115,70,109)", "white");
+		club = Club.create("Piast Gliwice", "Poland", 111086, "#73466D", "#FFFFFF");
 		Player.create("František Plach", "F. Plach", "Slovakia", ['GK'], 30, 69, club, 242514, true);
 		Player.create("Arkadiusz Pyrka", "A. Pyrka", "Poland", ['RM', 'RWB'], 19, 64, club, 257886, true);
 		Player.create("Ariel Mosór", "A. Mosór", "Poland", ['CB'], 19, 66, club, 257339, true);
@@ -13676,7 +13676,7 @@ class SoFifa23Service {
 		Player.create("Tomáš Huk", "T. Huk", "Slovakia", ['CB'], 27, 64, club, 251364, true);
 		Player.create("Tihomir Kostadinov", "T. Kostadinov", "North Macedonia", ['CAM', 'ST'], 26, 63, club, 266112, true);
 
-		club = Club.create("Radomiak Radom", "Poland", 111088, "rgb(53,90,65)", "white");
+		club = Club.create("Radomiak Radom", "Poland", 111088, "#355A41", "#FFFFFF");
 		Player.create("Gabriel Kobylak", "G. Kobylak", "Poland", ['GK'], 20, 63, club, 269707, true);
 		Player.create("Damian Jakubik", "D. Jakubik", "Poland", ['RB'], 32, 65, club, 233006, true);
 		Player.create("Mateusz Cichocki", "M. Cichocki", "Poland", ['CB'], 30, 65, club, 211622, true);
@@ -13705,7 +13705,7 @@ class SoFifa23Service {
 		Player.create("Leândro Rossi Pereira", "Leândro", "Brazil", ['RM'], 33, 66, club, 262685, true);
 		Player.create("Francisco Neto Ramos", "Francisco Ramos", "Portugal", ['CM', 'CDM'], 27, 67, club, 229522, false);
 
-		club = Club.create("Warta Poznań", "Poland", 112511, "rgb(37,85,64)", "white");
+		club = Club.create("Warta Poznań", "Poland", 112511, "#255540", "#FFFFFF");
 		Player.create("Adrian Lis", "A. Lis", "Poland", ['GK'], 30, 65, club, 257640, true);
 		Player.create("Dimitrios Stavropoulos", "D. Stavropoulos", "Greece", ['CB'], 25, 67, club, 268862, true);
 		Player.create("Dawid Szymonowicz", "D. Szymonowicz", "Poland", ['CB'], 26, 67, club, 231941, true);
@@ -13733,7 +13733,7 @@ class SoFifa23Service {
 		Player.create("Volodymyr Kostevych", "V. Kostevych", "Ukraine", ['LWB'], 29, 67, club, 237537, true);
 		Player.create("Bartosz Kieliba", "B. Kieliba", "Poland", ['CB'], 31, 63, club, 257645, true);
 
-		club = Club.create("Cracovia Kraków", "Poland", 110747, "rgb(193,121,123)", "black");
+		club = Club.create("Cracovia Kraków", "Poland", 110747, "#C1797B", "#000000");
 		Player.create("Karol Niemczycki", "K. Niemczycki", "Poland", ['GK'], 22, 64, club, 240170, true);
 		Player.create("David Jablonský", "D. Jablonský", "Czech Republic", ['CB'], 30, 65, club, 193937, true);
 		Player.create("Jakub Jugas", "J. Jugas", "Czech Republic", ['CB'], 30, 65, club, 238940, true);
@@ -13763,7 +13763,7 @@ class SoFifa23Service {
 		Player.create("Mathias Hebo Rasmussen", "M. Rasmussen", "Denmark", ['CM'], 26, 67, club, 223014, true);
 		Player.create("Kamil Pestka", "K. Pestka", "Poland", ['LWB', 'LM'], 23, 67, club, 235303, true);
 
-		club = Club.create("Zagłębie Lubin", "Poland", 110749, "rgb(175,71,41)", "white");
+		club = Club.create("Zagłębie Lubin", "Poland", 110749, "#AF4729", "#FFFFFF");
 		Player.create("Sokratis Dioudis", "S. Dioudis", "Greece", ['GK'], 29, 72, club, 207683, true);
 		Player.create("Bartłomiej Kłudka", "B. Kłudka", "Poland", ['RB'], 20, 62, club, 263244, true);
 		Player.create("Bartosz Kopacz", "B. Kopacz", "Poland", ['CB', 'RB'], 30, 66, club, 201081, true);
@@ -13793,7 +13793,7 @@ class SoFifa23Service {
 		Player.create("Cheikhou Dieng", "C. Dieng", "Senegal", ['ST', 'LM'], 28, 63, club, 227868, true);
 		Player.create("Kacper Lepczyński", "K. Lepczyński", "Poland", ['CB'], 20, 56, club, 263243, true);
 
-		club = Club.create("Górnik Zabrze", "Poland", 420, "rgb(188,187,188)", "black");
+		club = Club.create("Górnik Zabrze", "Poland", 420, "#BCBBBC", "#000000");
 		Player.create("Daniel Bielica", "D. Bielica", "Poland", ['GK'], 23, 64, club, 244256, true);
 		Player.create("Boris Sekulić", "B. Sekulić", "Slovakia", ['RB', 'RWB'], 30, 67, club, 247503, true);
 		Player.create("Emil Bergström", "E. Bergström", "Sweden", ['CB'], 29, 65, club, 202060, true);
@@ -13823,7 +13823,7 @@ class SoFifa23Service {
 		Player.create("Amadej Maroša", "A. Maroša", "Slovenia", ['ST'], 28, 62, club, 271604, false);
 		Player.create("Jakub Pochcioł", "J. Pochcioł", "Poland", ['CDM'], 18, 52, club, 275242, false);
 
-		club = Club.create("Lechia Gdańsk", "Poland", 111091, "rgb(98,142,121)", "black");
+		club = Club.create("Lechia Gdańsk", "Poland", 111091, "#628E79", "#000000");
 		Player.create("Michał Buchalik", "M. Buchalik", "Poland", ['GK'], 33, 62, club, 189013, true);
 		Player.create("Jakub Bartkowski", "J. Bartkowski", "Poland", ['RB'], 30, 66, club, 205975, true);
 		Player.create("Michał Nalepa", "M. Nalepa", "Poland", ['CB'], 29, 64, club, 214884, true);
@@ -13850,7 +13850,7 @@ class SoFifa23Service {
 		Player.create("Bartłomiej Kałduński", "B. Kałduński", "Poland", ['GK'], 17, 51, club, 275280, false);
 		Player.create("Louis Poznański", "L. Poznański", "Germany", ['LB'], 21, 61, club, 258320, false);
 
-		club = Club.create("Śląsk Wrocław", "Poland", 111092, "rgb(46,97,63)", "white");
+		club = Club.create("Śląsk Wrocław", "Poland", 111092, "#2E613F", "#FFFFFF");
 		Player.create("Michał Szromnik", "M. Szromnik", "Poland", ['GK'], 29, 66, club, 201035, true);
 		Player.create("Martin Konczkowski", "M. Konczkowski", "Poland", ['RWB', 'RM', 'RB'], 28, 67, club, 211791, true);
 		Player.create("Diogo Sousa Verdasca", "Verdasca", "Portugal", ['CB'], 25, 65, club, 233413, true);
@@ -13880,7 +13880,7 @@ class SoFifa23Service {
 		Player.create("Oskar Mielcarz", "O. Mielcarz", "Poland", ['GK'], 18, 54, club, 270549, true);
 		Player.create("Patrick Olsen", "P. Olsen", "Denmark", ['CM', 'CDM'], 28, 65, club, 220479, true);
 
-		club = Club.create("Wisła Płock", "Poland", 1569, "rgb(43,79,147)", "white");
+		club = Club.create("Wisła Płock", "Poland", 1569, "#2B4F93", "#FFFFFF");
 		Player.create("Bartłomiej Gradecki", "B. Gradecki", "Poland", ['GK'], 22, 61, club, 242145, true);
 		Player.create("Aleksander Pawlak", "A. Pawlak", "Poland", ['RWB', 'RB'], 20, 61, club, 252532, true);
 		Player.create("Jakub Szymański", "J. Szymański", "Poland", ['CB'], 19, 59, club, 263962, true);
@@ -13910,7 +13910,7 @@ class SoFifa23Service {
 		Player.create("Damian Warchoł", "D. Warchoł", "Poland", ['ST'], 26, 62, club, 257337, true);
 		Player.create("Tomasz Walczak", "T. Walczak", "Poland", ['ST'], 16, 54, club, 270594, true);
 
-		club = Club.create("Widzew Lodz", "Poland", 301, "rgb(145,51,54)", "white");
+		club = Club.create("Widzew Lodz", "Poland", 301, "#913336", "#FFFFFF");
 		Player.create("Henrich Ravas", "H. Ravas", "Slovakia", ['GK'], 24, 65, club, 232131, true);
 		Player.create("Patryk Stępiński", "P. Stępiński", "Poland", ['CB', 'RWB'], 27, 65, club, 211667, true);
 		Player.create("Serafin Szota", "S. Szota", "Poland", ['CB'], 23, 62, club, 240278, true);
@@ -13939,7 +13939,7 @@ class SoFifa23Service {
 		Player.create("Ignacy Dawid", "I. Dawid", "Poland", ['CDM'], 19, 52, club, 275113, false);
 		Player.create("Fábio Alexandre Silva Nunes", "Fábio Nunes", "Portugal", ['LWB', 'LM'], 29, 65, club, 210427, true);
 
-		club = Club.create("Stal Mielec", "Poland", 114004, "rgb(193,195,197)", "black");
+		club = Club.create("Stal Mielec", "Poland", 114004, "#C1C3C5", "#000000");
 		Player.create("Bartosz Mrozek", "B. Mrozek", "Poland", ['GK'], 22, 65, club, 235304, true);
 		Player.create("Fabian Hiszpański", "F. Hiszpański", "Poland", ['RWB', 'RM', 'LWB'], 28, 62, club, 230683, true);
 		Player.create("Kamil Kruk", "K. Kruk", "Poland", ['CB'], 22, 63, club, 256984, true);
@@ -13966,7 +13966,7 @@ class SoFifa23Service {
 		Player.create("Konrad Guca", "K. Guca", "Poland", ['CM'], 18, 51, club, 273853, false);
 		Player.create("Adrian Soboń", "A. Soboń", "Poland", ['CAM'], 19, 56, club, 270938, false);
 
-		club = Club.create("Miedź Legnica", "Poland", 112505, "rgb(49,67,156)", "white");
+		club = Club.create("Miedź Legnica", "Poland", 112505, "#31439C", "#FFFFFF");
 		Player.create("Mateusz Abramowicz", "M. Abramowicz", "Poland", ['GK'], 29, 61, club, 227879, true);
 		Player.create("Levent Gülen", "L. Gülen", "Switzerland", ['CB', 'RB'], 28, 65, club, 208169, true);
 		Player.create("Nemanja Mijušković", "N. Mijušković", "Montenegro", ['CB'], 30, 65, club, 198892, true);
@@ -13994,7 +13994,7 @@ class SoFifa23Service {
 		Player.create("Emmanuel Agbor", "E. Agbor", "Cameroon", ['ST', 'CF'], 19, 58, club, 274960, false);
 		Player.create("Wiktor Bogacz", "W. Bogacz", "Poland", ['ST'], 17, 53, club, 275108, false);
 
-		club = Club.create("Korona Kielce", "Poland", 111083, "rgb(217,102,45)", "black");
+		club = Club.create("Korona Kielce", "Poland", 111083, "#D9662D", "#000000");
 		Player.create("Marcel Zapytowski", "M. Zapytowski", "Poland", ['GK'], 21, 60, club, 244813, true);
 		Player.create("Dominick Zator", "D. Zator", "Canada", ['RB', 'CB'], 27, 63, club, 254294, false);
 		Player.create("Piotr Malarczyk", "P. Malarczyk", "Poland", ['CB'], 30, 62, club, 199684, true);
@@ -14020,7 +14020,7 @@ class SoFifa23Service {
 		Player.create("Dawid Więckowski", "D. Więckowski", "Poland", ['RB'], 20, 57, club, 255771, true);
 		Player.create("Hubert Szulc", "H. Szulc", "Poland", ['ST'], 17, 57, club, 269693, true);
 
-		club = Club.create("Benfica", "Portugal", 234, "rgb(213,46,57)", "white");
+		club = Club.create("Benfica", "Portugal", 234, "#D52E39", "#FFFFFF");
 		Player.create("Odisseas Vlachodimos", "O. Vlachodimos", "Greece", ['GK'], 28, 81, club, 211990, true);
 		Player.create("Alexander Bah", "A. Bah", "Denmark", ['RB'], 24, 79, club, 245235, true);
 		Player.create("António João Tavares Silva", "António Silva", "Portugal", ['CB'], 18, 78, club, 270086, true);
@@ -14046,7 +14046,7 @@ class SoFifa23Service {
 		Player.create("Diego Manuel J. da Silva Moreira", "Diego Moreira", "Portugal", ['LM'], 17, 67, club, 270039, true);
 		Player.create("André Nogueira Gomes", "André Gomes", "Portugal", ['GK'], 17, 63, club, 273998, false);
 
-		club = Club.create("Porto", "Portugal", 236, "rgb(109,128,163)", "white");
+		club = Club.create("Porto", "Portugal", 236, "#6D80A3", "#FFFFFF");
 		Player.create("Diogo Meireles Costa", "Diogo Costa", "Portugal", ['GK'], 22, 82, club, 234577, true);
 		Player.create("João Mário Neto Lopes", "João Mário", "Portugal", ['RB'], 22, 77, club, 257290, true);
 		Player.create("Képler Laveran Lima Ferreira", "Pepe", "Portugal", ['CB'], 39, 81, club, 120533, true);
@@ -14078,7 +14078,7 @@ class SoFifa23Service {
 		Player.create("Bernardo Pereira Folha", "Bernardo Folha", "Portugal", ['CM'], 20, 64, club, 272606, false);
 		Player.create("Vasco José Cardoso Sousa", "Vasco Sousa", "Portugal", ['CAM', 'CM'], 19, 64, club, 274078, false);
 
-		club = Club.create("Sporting CP", "Portugal", 237, "rgb(109,152,133)", "black");
+		club = Club.create("Sporting CP", "Portugal", 237, "#6D9885", "#000000");
 		Player.create("Antonio Adán Garrido", "Adán", "Spain", ['GK'], 35, 80, club, 178086, true);
 		Player.create("Ricardo Sousa Esgaio", "Ricardo Esgaio", "Portugal", ['RWB', 'RB', 'CB'], 29, 75, club, 212213, true);
 		Player.create("Ousmane Diomande", "O. Diomande", "Côte d'Ivoire", ['CB'], 18, 72, club, 270531, false);
@@ -14110,7 +14110,7 @@ class SoFifa23Service {
 		Player.create("Flávio B. J. Nazinho", "Nazinho", "Portugal", ['LWB', 'LB'], 18, 66, club, 261531, true);
 		Player.create("André Filipe Eusébio Paulo", "André Paulo", "Portugal", ['GK'], 25, 65, club, 259067, true);
 
-		club = Club.create("Sporting Braga", "Portugal", 1896, "rgb(200,69,76)", "white");
+		club = Club.create("Sporting Braga", "Portugal", 1896, "#C8454C", "#FFFFFF");
 		Player.create("Matheus Lima Magalhães", "Matheus", "Brazil", ['GK'], 29, 80, club, 208104, true);
 		Player.create("Víctor Gómez Perea", "Víctor Gómez", "Spain", ['RB', 'RWB', 'LB'], 22, 73, club, 245597, true);
 		Player.create("Vítor Tormena de Farias", "Vítor Tormena", "Brazil", ['CB'], 26, 76, club, 246098, true);
@@ -14142,7 +14142,7 @@ class SoFifa23Service {
 		Player.create("Pedro Carvalho Santos", "Pedro Santos", "Portugal", ['CM', 'RW'], 21, 62, club, 273663, false);
 		Player.create("Diogo Fernandes Fonseca", "Diogo Fonseca", "Portugal", ['CB'], 20, 61, club, 274700, false);
 
-		club = Club.create("Gil Vicente", "Portugal", 1888, "rgb(191,48,50)", "white");
+		club = Club.create("Gil Vicente", "Portugal", 1888, "#BF3032", "#FFFFFF");
 		Player.create("Andrew da Silva Ventura", "Andrew", "Brazil", ['GK'], 21, 74, club, 263673, true);
 		Player.create("Rui Filipe Caetano Moura", "Carraça", "Portugal", ['RB', 'RWB', 'RM'], 29, 70, club, 223297, true);
 		Player.create("Tomás Lemos Araújo", "Tomás Araújo", "Portugal", ['CB'], 20, 70, club, 266096, true);
@@ -14170,7 +14170,7 @@ class SoFifa23Service {
 		Player.create("Roan Wilson", "R. Wilson", "Costa Rica", ['CM', 'CAM', 'CDM'], 20, 62, club, 272483, false);
 		Player.create("Marlon Douglas de Sales Silva", "Marlon", "Brazil", ['RM', 'LM', 'RW'], 24, 62, club, 272954, false);
 
-		club = Club.create("Chaves", "Portugal", 518, "rgb(76,82,139)", "white");
+		club = Club.create("Chaves", "Portugal", 518, "#4C528B", "#FFFFFF");
 		Player.create("Paulo Vítor Fagundes dos Anjos", "Paulo Vítor", "Brazil", ['GK'], 33, 75, club, 245783, true);
 		Player.create("Nélson Macedo Monte", "Nélson Monte", "Portugal", ['CB', 'RB'], 26, 72, club, 222598, true);
 		Player.create("Carlos Santos Rodrigues", "Carlos Ponck", "Cape Verde Islands", ['CB'], 27, 69, club, 232459, true);
@@ -14199,7 +14199,7 @@ class SoFifa23Service {
 		Player.create("Gonçalo Pinto", "Gonçalo Pinto", "Portugal", ['GK'], 22, 62, club, 271535, false);
 		Player.create("Eduardo Oliveira Borges", "Edu Borges", "Portugal", ['CB'], 20, 60, club, 270645, true);
 
-		club = Club.create("Estoril", "Portugal", 10020, "rgb(206,167,46)", "black");
+		club = Club.create("Estoril", "Portugal", 10020, "#CEA72E", "#000000");
 		Player.create("Daniel Alexis Leite Figueira", "Daniel Figueira", "Portugal", ['GK'], 23, 73, club, 262417, true);
 		Player.create("Tiago Carvalho Santos", "Tiago Santos", "Portugal", ['RB'], 19, 71, club, 270559, true);
 		Player.create("Pedro Miguel Costa Álvaro", "Pedro Álvaro", "Portugal", ['CB', 'CDM'], 22, 69, club, 251434, true);
@@ -14230,7 +14230,7 @@ class SoFifa23Service {
 		Player.create("Mabrouk Rouai", "M. Rouai", "France", ['CM'], 21, 63, club, 257096, false);
 		Player.create("João Pedro Oliveira", "João Oliveira", "Portugal", ['GK'], 19, 62, club, 270557, true);
 
-		club = Club.create("Portimonense", "Portugal", 10031, "rgb(118,117,117)", "white");
+		club = Club.create("Portimonense", "Portugal", 10031, "#767575", "#FFFFFF");
 		Player.create("Kosuke Nakamura", "K. Nakamura", "Japan", ['GK'], 27, 74, club, 232562, true);
 		Player.create("Fahd Moufi", "F. Moufi", "Morocco", ['RB', 'RWB'], 26, 73, club, 232296, true);
 		Player.create("Pedro Henrique de Oliveira Correia", "Pedrão", "Brazil", ['CB', 'RB'], 25, 70, club, 258356, true);
@@ -14262,7 +14262,7 @@ class SoFifa23Service {
 		Player.create("Bruno Miguel Carapeto dos Reis", "Bruno Reis", "Portugal", ['CM'], 22, 62, club, 242487, false);
 		Player.create("Mateus Oliveira Mendes", "Mateus", "Brazil", ['GK'], 20, 59, club, 273690, false);
 
-		club = Club.create("Casa Pia", "Portugal", 114510, "rgb(50,49,47)", "white");
+		club = Club.create("Casa Pia", "Portugal", 114510, "#32312F", "#FFFFFF");
 		Player.create("Ricardo José Cecília Batista", "Ricardo Batista", "Portugal", ['GK'], 35, 75, club, 157970, true);
 		Player.create("Lucas Soares de Almeida", "Lucas Soares", "Brazil", ['RWB', 'RB'], 24, 69, club, 251891, true);
 		Player.create("Fernando Lopes dos Santos Varela", "Varela", "Cape Verde Islands", ['CB'], 34, 69, club, 178614, true);
@@ -14289,7 +14289,7 @@ class SoFifa23Service {
 		Player.create("Duplexe Tchamba", "D. Tchamba", "Cameroon", ['CB'], 23, 64, club, 240728, true);
 		Player.create("João Victor Donna Bravim", "João Bravim", "Brazil", ['GK'], 24, 61, club, 272854, false);
 
-		club = Club.create("Vitória SC", "Portugal", 1887, "rgb(207,205,202)", "black");
+		club = Club.create("Vitória SC", "Portugal", 1887, "#CFCDCA", "#000000");
 		Player.create("Bruno Miguel Semedo Varela", "Bruno Varela", "Portugal", ['GK'], 27, 72, club, 219754, true);
 		Player.create("Miguel Ângelo Ferreira Magalhães", "Miguel Maga", "Portugal", ['RWB', 'RB'], 19, 69, club, 263653, true);
 		Player.create("André Fonseca Amaro", "André Amaro", "Portugal", ['CB'], 19, 72, club, 260121, true);
@@ -14321,7 +14321,7 @@ class SoFifa23Service {
 		Player.create("João Paulo dos Santos Pereira", "Jota Pereira", "Portugal", ['LW', 'RW'], 19, 60, club, 271021, true);
 		Player.create("Alberto Oliveira Baio", "Alberto Costa", "Portugal", ['RWB', 'RB'], 18, 60, club, 270674, false);
 
-		club = Club.create("Boavista", "Portugal", 1898, "rgb(127,121,120)", "white");
+		club = Club.create("Boavista", "Portugal", 1898, "#7F7978", "#FFFFFF");
 		Player.create("César Bernardo Dutra", "César", "Brazil", ['GK'], 30, 66, club, 206262, true);
 		Player.create("Pedro Jorge Gonçalves Malheiro", "Pedro Malheiro", "Portugal", ['RB', 'RWB'], 21, 71, club, 263810, true);
 		Player.create("Reggie Cannon", "R. Cannon", "United States", ['CB', 'RWB', 'RB'], 24, 72, club, 237000, true);
@@ -14350,7 +14350,7 @@ class SoFifa23Service {
 		Player.create("Bernardo Silva Conceição", "Berna", "Portugal", ['CM'], 18, 60, club, 271284, true);
 		Player.create("Joel Filipe Organista da Silva", "Joel Silva", "Portugal", ['CM'], 19, 60, club, 271289, false);
 
-		club = Club.create("Arouca", "Portugal", 112513, "rgb(205,192,44)", "black");
+		club = Club.create("Arouca", "Portugal", 112513, "#CDC02C", "#000000");
 		Player.create("Ignacio De Arruabarrena", "I. De Arruabarrena", "Uruguay", ['GK'], 25, 74, club, 259872, true);
 		Player.create("Tiago Alexandre de Sousa Esgaio", "Tiago Esgaio", "Portugal", ['RB', 'CB'], 26, 71, club, 251994, true);
 		Player.create("Nino Galović", "N. Galović", "Croatia", ['CB'], 29, 68, club, 247126, true);
@@ -14377,7 +14377,7 @@ class SoFifa23Service {
 		Player.create("Victor Gabriel Moura de Oliveira", "Vitinho", "Brazil", ['CM', 'CDM'], 22, 65, club, 271321, true);
 		Player.create("Yaw Moses", "Y. Moses", "Ghana", ['CM', 'CDM'], 23, 63, club, 262440, true);
 
-		club = Club.create("Famalicão", "Portugal", 112809, "rgb(196,196,196)", "black");
+		club = Club.create("Famalicão", "Portugal", 112809, "#C4C4C4", "#000000");
 		Player.create("Luiz Lúcio Reis Júnior", "Luiz Júnior", "Brazil", ['GK'], 21, 73, club, 258885, true);
 		Player.create("Alexandre Penetra Correia", "Alexandre Penetra", "Portugal", ['RB', 'CB'], 20, 70, club, 264288, true);
 		Player.create("Riccieli da Silva Júnior", "Riccieli", "Brazil", ['CB'], 23, 72, club, 252095, true);
@@ -14408,7 +14408,7 @@ class SoFifa23Service {
 		Player.create("Théo Luis Fonseca", "Théo Fonseca", "Portugal", ['ST', 'RM'], 22, 65, club, 269977, true);
 		Player.create("Gustavo Filipe Azevedo Sá", "Gustavo Sá", "Portugal", ['CM'], 17, 63, club, 271057, true);
 
-		club = Club.create("Vizela", "Portugal", 111539, "rgb(94,162,184)", "black");
+		club = Club.create("Vizela", "Portugal", 111539, "#5EA2B8", "#000000");
 		Player.create("Fabijan Buntić", "F. Buntić", "Croatia", ['GK'], 25, 71, club, 234877, true);
 		Player.create("Igor de Carvalho Julião", "Igor Julião", "Brazil", ['RB'], 27, 69, club, 212367, true);
 		Player.create("Bruno Ricardo Valdez Wilson", "Bruno Wilson", "Portugal", ['CB'], 25, 73, club, 236924, true);
@@ -14437,7 +14437,7 @@ class SoFifa23Service {
 		Player.create("Pedro Ortiz Bernat", "Pedro Ortiz", "Spain", ['CM', 'CAM'], 21, 62, club, 264175, true);
 		Player.create("Hugo Silva Oliveira", "Hugo Oliveira", "Portugal", ['RB'], 20, 60, club, 263623, true);
 
-		club = Club.create("Rio Ave", "Portugal", 744, "rgb(93,147,134)", "black");
+		club = Club.create("Rio Ave", "Portugal", 744, "#5D9386", "#000000");
 		Player.create("Jhonatan Luiz Siqueira", "Jhonatan", "Brazil", ['GK'], 31, 72, club, 230117, true);
 		Player.create("João Pedro Loureiro da Costa", "Costinha", "Portugal", ['RWB', 'RB'], 22, 72, club, 251942, false);
 		Player.create("Renato Pantalon", "R. Pantalon", "Croatia", ['CB'], 24, 68, club, 269487, false);
@@ -14465,7 +14465,7 @@ class SoFifa23Service {
 		Player.create("Jorge Karseladze", "J. Karseladze", "Portugal", ['LWB'], 17, 61, club, 275432, false);
 		Player.create("Lucas Flores de Oliveira", "Lucas Flores", "Brazil", ['GK'], 19, 60, club, 270404, false);
 
-		club = Club.create("Marítimo", "Portugal", 1893, "rgb(110,86,70)", "white");
+		club = Club.create("Marítimo", "Portugal", 1893, "#6E5646", "#FFFFFF");
 		Player.create("Marcelo H. Passos Carné", "Marcelo Carné", "Brazil", ['GK'], 32, 70, club, 198897, false);
 		Player.create("Paulo Sérgio Mota", "Paulinho", "Portugal", ['RB', 'RWB', 'RM'], 30, 69, club, 211014, false);
 		Player.create("Zainadine Chavango Júnior", "Zainadine", "Mozambique", ['CB'], 34, 73, club, 217235, true);
@@ -14497,7 +14497,7 @@ class SoFifa23Service {
 		Player.create("André António Rosário Teles", "André Teles", "Portugal", ['CM', 'CDM'], 25, 63, club, 235787, true);
 		Player.create("Luciano Vega", "L. Vega", "Argentina", ['CAM', 'CM', 'ST'], 23, 63, club, 263671, true);
 
-		club = Club.create("Santa Clara", "Portugal", 1438, "rgb(180,37,37)", "white");
+		club = Club.create("Santa Clara", "Portugal", 1438, "#B42525", "#FFFFFF");
 		Player.create("Gabriel Batista de Souza", "Gabriel Batista", "Brazil", ['GK'], 24, 68, club, 271571, false);
 		Player.create("Pierre Sagna", "P. Sagna", "Senegal", ['RB'], 31, 69, club, 201512, true);
 		Player.create("Ygor Nogueira de Paula", "Ygor Nogueira", "Brazil", ['CB'], 27, 67, club, 225386, false);
@@ -14526,7 +14526,7 @@ class SoFifa23Service {
 		Player.create("Paulo Eduardo Ferreira Godinho", "Paulo Eduardo", "Brazil", ['CB'], 20, 63, club, 271298, true);
 		Player.create("Matheus Nunes Fagundes de Araújo", "Matheus Nunes", "Brazil", ['CAM', 'LB'], 21, 63, club, 271562, false);
 
-		club = Club.create("Paços de Ferreira", "Portugal", 1892, "rgb(216,193,31)", "black");
+		club = Club.create("Paços de Ferreira", "Portugal", 1892, "#D8C11F", "#000000");
 		Player.create("José Carlos Coentrão Marafona", "Marafona", "Portugal", ['GK'], 35, 65, club, 200798, true);
 		Player.create("Juan Delgado", "J. Delgado", "Chile", ['RB', 'RM', 'RW'], 29, 69, club, 214313, true);
 		Player.create("Nuno Miguel Reis Lima", "Nuno Lima", "Portugal", ['CB'], 21, 67, club, 258642, true);
@@ -14555,7 +14555,7 @@ class SoFifa23Service {
 		Player.create("Mauro Meireles Couto", "Mauro Couto", "Portugal", ['LW'], 16, 61, club, 271803, false);
 		Player.create("José Pedro Ferreira Oliveira", "José Oliveira", "Portugal", ['GK'], 20, 60, club, 257492, true);
 
-		club = Club.create("Shamrock Rovers", "Republic of Ireland", 306, "rgb(131,149,134)", "black");
+		club = Club.create("Shamrock Rovers", "Republic of Ireland", 306, "#839586", "#000000");
 		Player.create("Leon Pöhls", "L. Pöhls", "Germany", ['GK'], 25, 58, club, 247434, true);
 		Player.create("Neil Farrugia", "N. Farrugia", "Republic of Ireland", ['RWB', 'LWB'], 23, 65, club, 247001, true);
 		Player.create("Dan Cleary", "D. Cleary", "Republic of Ireland", ['CB'], 26, 63, club, 233056, true);
@@ -14584,7 +14584,7 @@ class SoFifa23Service {
 		Player.create("Aaron Greene", "A. Greene", "Republic of Ireland", ['ST', 'LW'], 32, 60, club, 198543, true);
 		Player.create("Conan Noonan", "C. Noonan", "Republic of Ireland", ['ST'], 19, 52, club, 261876, true);
 
-		club = Club.create("St Patrick's", "Republic of Ireland", 423, "rgb(199,71,80)", "white");
+		club = Club.create("St Patrick's", "Republic of Ireland", 423, "#C74750", "#FFFFFF");
 		Player.create("Dean Lyness", "D. Lyness", "England", ['GK'], 30, 60, club, 183533, true);
 		Player.create("Sam Curtis", "S. Curtis", "Republic of Ireland", ['RB', 'CB'], 16, 61, club, 264514, true);
 		Player.create("Noah Lewis", "N. Lewis", "Netherlands", ['CB'], 21, 60, club, 266463, false);
@@ -14612,7 +14612,7 @@ class SoFifa23Service {
 		Player.create("David Norman Jr.", "D. Norman Jr.", "Canada", ['CB'], 24, 55, club, 242215, false);
 		Player.create("Kian Leavy", "K. Leavy", "Republic of Ireland", ['CM', 'RW', 'LW'], 20, 58, club, 263098, true);
 
-		club = Club.create("Derry City", "Republic of Ireland", 445, "rgb(204,76,79)", "white");
+		club = Club.create("Derry City", "Republic of Ireland", 445, "#CC4C4F", "#FFFFFF");
 		Player.create("Brian Maher", "B. Maher", "Republic of Ireland", ['GK'], 21, 61, club, 242229, true);
 		Player.create("Ronan Boyce", "R. Boyce", "Republic of Ireland", ['RB', 'RWB'], 21, 60, club, 253943, true);
 		Player.create("Shane McEleney", "S. McEleney", "Republic of Ireland", ['CB'], 31, 58, club, 198485, true);
@@ -14642,7 +14642,7 @@ class SoFifa23Service {
 		Player.create("Danny Mullen", "D. Mullen", "Scotland", ['ST'], 27, 63, club, 244321, false);
 		Player.create("Jack Lemoignan", "J. Lemoignan", "Northern Ireland", ['GK'], 21, 49, club, 256413, true);
 
-		club = Club.create("Bohemians", "Republic of Ireland", 305, "rgb(90,54,54)", "white");
+		club = Club.create("Bohemians", "Republic of Ireland", 305, "#5A3636", "#FFFFFF");
 		Player.create("James Talbot", "J. Talbot", "Republic of Ireland", ['GK'], 25, 63, club, 225406, true);
 		Player.create("Keith Buckley", "K. Buckley", "Republic of Ireland", ['CDM', 'RB'], 30, 61, club, 202881, true);
 		Player.create("Krystian Nowak", "K. Nowak", "Poland", ['CB'], 28, 62, club, 211087, true);
@@ -14664,7 +14664,7 @@ class SoFifa23Service {
 		Player.create("Declan McDaid", "D. McDaid", "Scotland", ['LM'], 26, 60, club, 219925, true);
 		Player.create("Danny McGrath", "D. McGrath", "Republic of Ireland", ['CDM'], 16, 51, club, 272878, false);
 
-		club = Club.create("Dundalk", "Republic of Ireland", 837, "rgb(187,184,183)", "black");
+		club = Club.create("Dundalk", "Republic of Ireland", 837, "#BBB8B7", "#000000");
 		Player.create("Nathan Shepperd", "N. Shepperd", "Wales", ['GK'], 21, 63, club, 256359, true);
 		Player.create("Archie Davies", "A. Davies", "England", ['RB'], 23, 61, club, 238117, false);
 		Player.create("Hayden Muller", "H. Muller", "England", ['CB'], 20, 59, club, 262885, false);
@@ -14693,7 +14693,7 @@ class SoFifa23Service {
 		Player.create("John Mountney", "J. Mountney", "Republic of Ireland", ['RB'], 29, 56, club, 207868, true);
 		Player.create("Eoin Kenny", "E. Kenny", "Republic of Ireland", ['CAM'], 16, 50, club, 274826, false);
 
-		club = Club.create("Sligo Rovers", "Republic of Ireland", 563, "rgb(151,48,51)", "white");
+		club = Club.create("Sligo Rovers", "Republic of Ireland", 563, "#973033", "#FFFFFF");
 		Player.create("Luke McNicholas", "L. McNicholas", "Republic of Ireland", ['GK'], 22, 58, club, 247176, true);
 		Player.create("Johan Brannefalk", "J. Brannefalk", "Sweden", ['RB'], 24, 57, club, 242173, true);
 		Player.create("John Mahon", "J. Mahon", "Republic of Ireland", ['CB'], 22, 62, club, 237926, true);
@@ -14719,7 +14719,7 @@ class SoFifa23Service {
 		Player.create("Karl O'Sullivan", "K. O'Sullivan", "Republic of Ireland", ['RM'], 22, 57, club, 242682, true);
 		Player.create("Gary Boylan", "G. Boylan", "Republic of Ireland", ['RB'], 26, 56, club, 221809, true);
 
-		club = Club.create("Shelbourne", "Republic of Ireland", 834, "rgb(210,46,62)", "white");
+		club = Club.create("Shelbourne", "Republic of Ireland", 834, "#D22E3E", "#FFFFFF");
 		Player.create("Conor Kearns", "C. Kearns", "Republic of Ireland", ['GK'], 24, 62, club, 246987, true);
 		Player.create("John Ross Wilson", "J. Wilson", "Republic of Ireland", ['RWB'], 23, 57, club, 241583, true);
 		Player.create("Andrew Quinn", "A. Quinn", "Republic of Ireland", ['CB'], 20, 57, club, 259300, true);
@@ -14746,7 +14746,7 @@ class SoFifa23Service {
 		Player.create("Gavin Hodgins", "G. Hodgins", "Republic of Ireland", ['CM'], 17, 51, club, 270119, true);
 		Player.create("David Toure", "D. Toure", "Republic of Ireland", ['RWB', 'CM'], 17, 52, club, 266211, true);
 
-		club = Club.create("Finn Harps", "Republic of Ireland", 111131, "rgb(50,111,189)", "white");
+		club = Club.create("Finn Harps", "Republic of Ireland", 111131, "#326FBD", "#FFFFFF");
 		Player.create("James McKeown", "J. McKeown", "Republic of Ireland", ['GK'], 32, 61, club, 170280, true);
 		Player.create("Ethan Boyle", "E. Boyle", "Republic of Ireland", ['RB', 'RWB'], 25, 60, club, 233288, true);
 		Player.create("José Carrillo Mancilla", "José Carrillo", "Spain", ['CB'], 27, 57, club, 233461, true);
@@ -14773,7 +14773,7 @@ class SoFifa23Service {
 		Player.create("Nathan Logue", "N. Logue", "Republic of Ireland", ['CM'], 22, 46, club, 262760, true);
 		Player.create("David Webster", "D. Webster", "Republic of Ireland", ['CB'], 32, 59, club, 190033, true);
 
-		club = Club.create("Drogheda United", "Republic of Ireland", 1572, "rgb(155,77,96)", "white");
+		club = Club.create("Drogheda United", "Republic of Ireland", 1572, "#9B4D60", "#FFFFFF");
 		Player.create("Colin McCabe", "C. McCabe", "Republic of Ireland", ['GK'], 25, 55, club, 241542, true);
 		Player.create("Luke Heeney", "L. Heeney", "Republic of Ireland", ['RB', 'CDM'], 23, 57, club, 260881, true);
 		Player.create("Emmanuel Adegboyega", "E. Adegboyega", "Republic of Ireland", ['CB'], 18, 58, club, 272456, false);
@@ -14802,7 +14802,7 @@ class SoFifa23Service {
 		Player.create("Jack Supple", "J. Supple", "Republic of Ireland", ['CDM'], 18, 49, club, 275265, false);
 		Player.create("Callum Warren", "C. Warren", "Republic of Ireland", ['CAM'], 17, 49, club, 275601, false);
 
-		club = Club.create("UCD", "Republic of Ireland", 111132, "rgb(72,135,177)", "white");
+		club = Club.create("UCD", "Republic of Ireland", 111132, "#4887B1", "#FFFFFF");
 		Player.create("Kian Moore", "K. Moore", "Republic of Ireland", ['GK'], 19, 56, club, 267819, true);
 		Player.create("Michael Gallagher", "M. Gallagher", "Republic of Ireland", ['RB', 'CB', 'CDM'], 21, 56, club, 247452, true);
 		Player.create("Jack Keaney", "J. Keaney", "Republic of Ireland", ['CB', 'CDM'], 23, 60, club, 237889, true);
@@ -14832,7 +14832,7 @@ class SoFifa23Service {
 		Player.create("Harry O'Connor", "H. O'Connor", "Republic of Ireland", ['CAM', 'CM', 'RW'], 16, 49, club, 274840, false);
 		Player.create("Divine Izekor", "D. Izekor", "Republic of Ireland", ['ST'], 17, 49, club, 275034, false);
 
-		club = Club.create("FCSB", "Romania", 100761, "rgb(230,59,71)", "white");
+		club = Club.create("FCSB", "Romania", 100761, "#E63B47", "#FFFFFF");
 		Player.create("Ștefan Târnovanu", "Ș. Târnovanu", "Romania", ['GK'], 22, 69, club, 248073, true);
 		Player.create("Deian Sorescu", "D. Sorescu", "Romania", ['RB', 'RM'], 24, 69, club, 246562, true);
 		Player.create("Joyskim Dawa", "J. Dawa", "Cameroon", ['CB'], 26, 65, club, 252675, true);
@@ -14860,7 +14860,7 @@ class SoFifa23Service {
 		Player.create("Sorin Șerban", "S. Șerban", "Romania", ['LB'], 22, 60, club, 252321, true);
 		Player.create("Ionuț Panțîru", "I. Panțîru", "Romania", ['LB'], 26, 64, club, 248075, true);
 
-		club = Club.create("CFR Cluj", "Romania", 110816, "rgb(115,46,45)", "white");
+		club = Club.create("CFR Cluj", "Romania", 110816, "#732E2D", "#FFFFFF");
 		Player.create("Simone Scuffet", "S. Scuffet", "Italy", ['GK'], 26, 71, club, 220048, true);
 		Player.create("Cristian Manea", "C. Manea", "Romania", ['RB'], 24, 69, club, 223229, true);
 		Player.create("Jefferson Yuri de Sousa Matias", "Yuri Matias", "Brazil", ['CB'], 27, 70, club, 258426, true);
@@ -14890,7 +14890,7 @@ class SoFifa23Service {
 		Player.create("Rareș Gal", "R. Gal", "Romania", ['GK'], 21, 55, club, 271164, true);
 		Player.create("Gabriel Debeljuh", "G. Debeljuh", "Croatia", ['ST'], 25, 67, club, 251779, true);
 
-		club = Club.create("Universitatea Craiova", "Romania", 308, "rgb(116,135,165)", "black");
+		club = Club.create("Universitatea Craiova", "Romania", 308, "#7487A5", "#000000");
 		Player.create("Laurențiu Popescu", "L. Popescu", "Romania", ['GK'], 25, 64, club, 248054, true);
 		Player.create("Ștefan Vlădoiu", "Ș. Vlădoiu", "Romania", ['RB', 'RWB'], 23, 66, club, 247949, true);
 		Player.create("Gjoko Zajkov", "G. Zajkov", "North Macedonia", ['CB'], 27, 66, club, 223568, false);
@@ -14918,7 +14918,7 @@ class SoFifa23Service {
 		Player.create("Bogdan Vătăjelu", "B. Vătăjelu", "Romania", ['LB', 'LWB', 'RB'], 29, 69, club, 223354, true);
 		Player.create("Nicușor Bancu", "N. Bancu", "Romania", ['LB', 'LWB', 'LM'], 29, 70, club, 243000, true);
 
-		club = Club.create("Rapid Bucuresti", "Romania", 310, "rgb(131,57,77)", "white");
+		club = Club.create("Rapid Bucuresti", "Romania", 310, "#83394D", "#FFFFFF");
 		Player.create("Horațiu Moldovan", "H. Moldovan", "Romania", ['GK'], 24, 70, club, 251136, true);
 		Player.create("Răzvan Onea", "R. Onea", "Romania", ['RB'], 24, 65, club, 253076, true);
 		Player.create("Cristian Săpunaru", "C. Săpunaru", "Romania", ['CB', 'CDM'], 38, 67, club, 156221, true);
@@ -14948,7 +14948,7 @@ class SoFifa23Service {
 		Player.create("Robert Badescu", "R. Badescu", "Romania", ['CB'], 17, 55, club, 272944, false);
 		Player.create("Claudiu Belu-Iordache", "C. Belu-Iordache", "Romania", ['RB'], 28, 65, club, 248097, true);
 
-		club = Club.create("Sepsi", "Romania", 113378, "rgb(193,96,104)", "white");
+		club = Club.create("Sepsi", "Romania", 113378, "#C16068", "#FFFFFF");
 		Player.create("Roland Niczuly", "R. Niczuly", "Romania", ['GK'], 26, 68, club, 236963, true);
 		Player.create("Radoslav Dimitrov", "R. Dimitrov", "Bulgaria", ['RB'], 33, 65, club, 215563, true);
 		Player.create("Branislav Niňaj", "B. Niňaj", "Slovakia", ['CB'], 28, 67, club, 229065, true);
@@ -14975,7 +14975,7 @@ class SoFifa23Service {
 		Player.create("Hunor Gedő", "H. Gedő", "Romania", ['GK'], 18, 52, club, 268799, true);
 		Player.create("Ákos Nistor", "Á. Nistor", "Romania", ['CAM'], 17, 55, club, 271175, true);
 
-		club = Club.create("SSC Farul", "Romania", 110075, "rgb(46,101,172)", "white");
+		club = Club.create("SSC Farul", "Romania", 110075, "#2E65AC", "#FFFFFF");
 		Player.create("Marian Aioani", "M. Aioani", "Romania", ['GK'], 22, 70, club, 251036, true);
 		Player.create("David Kiki", "D. Kiki", "Benin", ['LB', 'RB'], 28, 67, club, 229543, true);
 		Player.create("Ionuț Larie", "I. Larie", "Romania", ['CB'], 35, 66, club, 247963, true);
@@ -15005,7 +15005,7 @@ class SoFifa23Service {
 		Player.create("Gabriel Dănuleasă", "G. Dănuleasă", "Romania", ['CB'], 19, 56, club, 263492, true);
 		Player.create("Tudor Băluță", "T. Băluță", "Romania", ['CDM', 'CM'], 23, 71, club, 243019, true);
 
-		club = Club.create("U Craiova 1948", "Romania", 115716, "rgb(40,64,136)", "white");
+		club = Club.create("U Craiova 1948", "Romania", 115716, "#284088", "#FFFFFF");
 		Player.create("Ionuț Gurău", "I. Gurău", "Romania", ['GK'], 23, 63, club, 270372, true);
 		Player.create("Radu Negru", "R. Negru", "Romania", ['RB'], 23, 66, club, 262442, true);
 		Player.create("André Lourenço Duarte", "André Duarte", "Portugal", ['CB'], 24, 67, club, 270370, true);
@@ -15035,7 +15035,7 @@ class SoFifa23Service {
 		Player.create("Hristu Sofianu", "H. Sofianu", "Romania", ['CAM'], 18, 51, club, 271189, true);
 		Player.create("Vladislav Blănuță", "V. Blănuță", "Moldova", ['ST'], 20, 57, club, 271704, false);
 
-		club = Club.create("Voluntari", "Romania", 113182, "rgb(90,162,227)", "black");
+		club = Club.create("Voluntari", "Romania", 113182, "#5AA2E3", "#000000");
 		Player.create("Mihai Popa", "M. Popa", "Romania", ['GK'], 21, 66, club, 253688, true);
 		Player.create("Ricardo José Varzim Miranda", "Ricardinho", "Portugal", ['CB', 'RB', 'RWB'], 28, 65, club, 224115, true);
 		Player.create("Patricio Matricardi", "P. Matricardi", "Argentina", ['CB'], 28, 65, club, 217199, true);
@@ -15065,7 +15065,7 @@ class SoFifa23Service {
 		Player.create("Doru Andrei", "D. Andrei", "Romania", ['RM', 'LM', 'CF'], 19, 59, club, 270897, true);
 		Player.create("Alexandru Chilili", "A. Chilili", "Romania", ['CB'], 19, 52, club, 258277, true);
 
-		club = Club.create("UTA Arad", "Romania", 110750, "rgb(214,54,63)", "white");
+		club = Club.create("UTA Arad", "Romania", 110750, "#D6363F", "#FFFFFF");
 		Player.create("Florin Iacob", "F. Iacob", "Romania", ['GK'], 28, 65, club, 257794, true);
 		Player.create("Marko Vukčević", "M. Vukčević", "Montenegro", ['RB'], 29, 65, club, 262817, true);
 		Player.create("Alexandru Benga", "A. Benga", "Romania", ['CB'], 33, 65, club, 242500, true);
@@ -15095,7 +15095,7 @@ class SoFifa23Service {
 		Player.create("Andrei Chindriș", "A. Chindriș", "Romania", ['CB'], 23, 64, club, 248004, true);
 		Player.create("Rareș Pop", "R. Pop", "Romania", ['RM', 'LM'], 17, 61, club, 271172, true);
 
-		club = Club.create("Universitatea Cluj", "Romania", 110751, "rgb(204,201,202)", "black");
+		club = Club.create("Universitatea Cluj", "Romania", 110751, "#CCC9CA", "#000000");
 		Player.create("Andrei Gorcea", "A. Gorcea", "Romania", ['GK'], 20, 60, club, 269406, true);
 		Player.create("Ivan Martić", "I. Martić", "Switzerland", ['RWB', 'RB'], 31, 64, club, 193505, true);
 		Player.create("Andrei Pițian", "A. Pițian", "Romania", ['CB'], 26, 65, club, 248005, true);
@@ -15125,7 +15125,7 @@ class SoFifa23Service {
 		Player.create("Matei Moraru", "M. Moraru", "Romania", ['CM', 'RW'], 16, 50, club, 271182, true);
 		Player.create("Aurelian Păun", "A. Păun", "Romania", ['GK'], 21, 56, club, 260967, true);
 
-		club = Club.create("Hermannstadt", "Romania", 114147, "rgb(202,201,199)", "black");
+		club = Club.create("Hermannstadt", "Romania", 114147, "#CAC9C7", "#000000");
 		Player.create("Karlo Letica", "K. Letica", "Croatia", ['GK'], 25, 68, club, 243538, true);
 		Player.create("Mihai Butean", "M. Butean", "Romania", ['RB'], 25, 66, club, 235318, true);
 		Player.create("Florin Bejan", "F. Bejan", "Romania", ['CB'], 31, 65, club, 232295, true);
@@ -15153,7 +15153,7 @@ class SoFifa23Service {
 		Player.create("Dragoș Iancu", "D. Iancu", "Romania", ['CM', 'CDM'], 19, 54, club, 261646, true);
 		Player.create("Luca Mitrică", "L. Mitrică", "Romania", ['LW', 'CM'], 19, 54, club, 275169, false);
 
-		club = Club.create("Petrolul 52", "Romania", 110078, "rgb(211,192,44)", "black");
+		club = Club.create("Petrolul 52", "Romania", 110078, "#D3C02C", "#000000");
 		Player.create("Octavian Vâlceanu", "O. Vâlceanu", "Romania", ['GK'], 25, 66, club, 251057, true);
 		Player.create("Seniko Doua", "S. Doua", "Côte d'Ivoire", ['RWB', 'RB'], 20, 59, club, 273527, false);
 		Player.create("Paul Papp", "P. Papp", "Romania", ['CB', 'RB'], 32, 66, club, 204211, true);
@@ -15183,7 +15183,7 @@ class SoFifa23Service {
 		Player.create("Ismaël Diomandé", "I. Diomandé", "Côte d'Ivoire", ['CDM', 'CB'], 29, 67, club, 203435, false);
 		Player.create("Sebastian Guiu", "S. Guiu", "Romania", ['ST'], 16, 52, club, 275064, false);
 
-		club = Club.create("Botoşani", "Romania", 110752, "rgb(202,199,201)", "black");
+		club = Club.create("Botoşani", "Romania", 110752, "#CAC7C9", "#000000");
 		Player.create("Eduard Pap", "E. Pap", "Romania", ['GK'], 28, 66, club, 248000, true);
 		Player.create("Charles Petro", "C. Petro", "Malawi", ['RB', 'CDM'], 21, 64, club, 274734, false);
 		Player.create("Gabriel Mutombo", "G. Mutombo", "France", ['CB'], 26, 63, club, 222209, true);
@@ -15213,7 +15213,7 @@ class SoFifa23Service {
 		Player.create("Gabriel David", "G. David", "Romania", ['CDM', 'CM'], 19, 54, club, 268452, true);
 		Player.create("George Dragomir", "G. Dragomir", "Romania", ['RW', 'CAM', 'ST'], 18, 56, club, 256046, true);
 
-		club = Club.create("Chindia Târgovişte", "Romania", 113387, "rgb(176,71,74)", "white");
+		club = Club.create("Chindia Târgovişte", "Romania", 113387, "#B0474A", "#FFFFFF");
 		Player.create("Cătălin Căbuz", "C. Căbuz", "Romania", ['GK'], 26, 66, club, 247976, true);
 		Player.create("Tiberiu Căpușă", "T. Căpușă", "Romania", ['RB'], 24, 65, club, 254289, true);
 		Player.create("Daniel Celea", "D. Celea", "Romania", ['CB'], 26, 65, club, 255192, true);
@@ -15243,7 +15243,7 @@ class SoFifa23Service {
 		Player.create("Alexandru Petre", "A. Petre", "Romania", ['CM'], 17, 51, club, 271153, true);
 		Player.create("Costel Avram", "C. Avram", "Romania", ['CB'], 20, 55, club, 259391, false);
 
-		club = Club.create("Argeş", "Romania", 100759, "rgb(88,59,116)", "white");
+		club = Club.create("Argeş", "Romania", 100759, "#583B74", "#FFFFFF");
 		Player.create("Cătălin Straton", "C. Straton", "Romania", ['GK'], 32, 64, club, 247944, true);
 		Player.create("Antonio Jakolis", "A. Jakolis", "Croatia", ['RB', 'LB', 'RW'], 30, 64, club, 270377, true);
 		Player.create("Grigore Turda", "G. Turda", "Romania", ['CB'], 24, 66, club, 257723, true);
@@ -15273,7 +15273,7 @@ class SoFifa23Service {
 		Player.create("Sebastian Micu", "S. Micu", "Romania", ['GK'], 21, 54, club, 273805, false);
 		Player.create("Enzo Célestine", "E. Célestine", "France", ['ST'], 24, 60, club, 270378, true);
 
-		club = Club.create("Mioveni", "Romania", 113380, "rgb(204,178,84)", "black");
+		club = Club.create("Mioveni", "Romania", 113380, "#CCB254", "#000000");
 		Player.create("Alexandru Greab", "A. Greab", "Romania", ['GK'], 30, 66, club, 248025, true);
 		Player.create("Shaquill Sno", "S. Sno", "Netherlands", ['RB'], 26, 64, club, 256399, true);
 		Player.create("Adrian Scarlatache", "A. Scarlatache", "Romania", ['CB'], 35, 64, club, 165110, true);
@@ -15303,7 +15303,7 @@ class SoFifa23Service {
 		Player.create("Emanuel Dat", "E. Dat", "Romania", ['RM', 'CAM'], 21, 59, club, 248592, true);
 		Player.create("Bogdan Preda", "B. Preda", "Romania", ['GK'], 27, 55, club, 257742, true);
 
-		club = Club.create("Al Nassr", "Saudi Arabia", 112139, "rgb(191,190,107)", "black");
+		club = Club.create("Al Nassr", "Saudi Arabia", 112139, "#BFBE6B", "#000000");
 		Player.create("Nawaf Al Aqidi", "N. Al Aqidi", "Saudi Arabia", ['GK'], 22, 59, club, 255368, true);
 		Player.create("Sultan Al Ghannam", "S. Al Ghannam", "Saudi Arabia", ['RB'], 28, 71, club, 232477, true);
 		Player.create("Abdulelah Al Amri", "A. Al Amri", "Saudi Arabia", ['CB', 'RB'], 25, 70, club, 241197, true);
@@ -15334,7 +15334,7 @@ class SoFifa23Service {
 		Player.create("Meshari Al Nemer", "M. Al Nemer", "Saudi Arabia", ['ST'], 18, 53, club, 272957, false);
 		Player.create("Mohammed Qasem", "M. Qasem", "Saudi Arabia", ['LB'], 27, 64, club, 214923, true);
 
-		club = Club.create("Al Hilal", "Saudi Arabia", 605, "rgb(57,65,151)", "white");
+		club = Club.create("Al Hilal", "Saudi Arabia", 605, "#394197", "#FFFFFF");
 		Player.create("Abdullah Al Mayoof", "A. Al Mayoof", "Saudi Arabia", ['GK'], 35, 69, club, 210140, true);
 		Player.create("Saud Abdulhamid", "S. Abdulhamid", "Saudi Arabia", ['RB', 'CB', 'CDM'], 22, 74, club, 246688, true);
 		Player.create("Hyeon Soo Jang", "Jang Hyeon Soo", "Korea Republic", ['CB'], 30, 74, club, 211005, true);
@@ -15366,7 +15366,7 @@ class SoFifa23Service {
 		Player.create("Muath Faqihi", "M. Faqihi", "Saudi Arabia", ['LB'], 20, 54, club, 272830, false);
 		Player.create("Mohammed Al Khaibari", "M. Al Khaibari", "Saudi Arabia", ['CB'], 20, 52, club, 269932, false);
 
-		club = Club.create("Al Ittihad", "Saudi Arabia", 607, "rgb(127,114,53)", "white");
+		club = Club.create("Al Ittihad", "Saudi Arabia", 607, "#7F7235", "#FFFFFF");
 		Player.create("Marcelo Grohe", "Marcelo Grohe", "Brazil", ['GK'], 35, 76, club, 167959, true);
 		Player.create("Madallah Al Olayan", "M. Al Olayan", "Saudi Arabia", ['RB', 'LB'], 27, 64, club, 211152, true);
 		Player.create("Ahmed Sharahili", "A. Sharahili", "Saudi Arabia", ['CB'], 28, 71, club, 221658, true);
@@ -15396,7 +15396,7 @@ class SoFifa23Service {
 		Player.create("Osama Al Mermish", "O. Al Mermish", "Saudi Arabia", ['GK'], 18, 51, club, 271569, false);
 		Player.create("Abdulkareem Maghrabi", "A. Maghrabi", "Saudi Arabia", ['CM', 'CDM'], 18, 50, club, 274375, false);
 
-		club = Club.create("Al Shabab", "Saudi Arabia", 111674, "rgb(197,192,190)", "black");
+		club = Club.create("Al Shabab", "Saudi Arabia", 111674, "#C5C0BE", "#000000");
 		Player.create("Seung Gyu Kim", "Kim Seung Gyu", "Korea Republic", ['GK'], 31, 73, club, 191655, true);
 		Player.create("Fawaz Al Sagour", "F. Al Sagour", "Saudi Arabia", ['RB'], 26, 67, club, 225087, true);
 		Player.create("Iago Azevedo dos Santos", "Iago", "Brazil", ['CB'], 30, 73, club, 224537, true);
@@ -15426,7 +15426,7 @@ class SoFifa23Service {
 		Player.create("Saad Al Muwallad", "S. Al Muwallad", "Saudi Arabia", ['ST'], 20, 50, club, 266620, true);
 		Player.create("Nasser Al Bishi", "N. Al Bishi", "Saudi Arabia", ['CAM', 'LW'], 20, 52, club, 269894, true);
 
-		club = Club.create("Al Fateh", "Saudi Arabia", 112390, "rgb(45,65,123)", "white");
+		club = Club.create("Al Fateh", "Saudi Arabia", 112390, "#2D417B", "#FFFFFF");
 		Player.create("Jacob Rinne", "J. Rinne", "Sweden", ['GK'], 29, 74, club, 221584, true);
 		Player.create("Ali Al Zubaidi", "A. Al Zubaidi", "Saudi Arabia", ['RB'], 29, 60, club, 210790, true);
 		Player.create("Francisco Vélez Jiménez", "Fran Vélez", "Spain", ['CB'], 31, 72, club, 199738, true);
@@ -15458,7 +15458,7 @@ class SoFifa23Service {
 		Player.create("Abbas Al Hassan", "A. Al Hassan", "Saudi Arabia", ['CDM', 'CM'], 18, 53, club, 260414, false);
 		Player.create("Ahmed Al Julaydan", "A. Al Julaydan", "Saudi Arabia", ['RB'], 18, 51, club, 275128, false);
 
-		club = Club.create("Al Raed", "Saudi Arabia", 112392, "rgb(146,62,66)", "white");
+		club = Club.create("Al Raed", "Saudi Arabia", 112392, "#923E42", "#FFFFFF");
 		Player.create("Silviu Lung", "S. Lung", "Romania", ['GK'], 33, 72, club, 205942, true);
 		Player.create("Mohammed Al Dawsari", "M. Al Dawsari", "Saudi Arabia", ['RB', 'RM'], 22, 62, club, 252421, true);
 		Player.create("Mohammed Salem", "M. Salem", "Saudi Arabia", ['CB', 'RB'], 36, 65, club, 210804, true);
@@ -15489,7 +15489,7 @@ class SoFifa23Service {
 		Player.create("Omar Al Kuraidees", "O. Al Kuraidees", "Saudi Arabia", ['CM'], 20, 49, club, 272889, false);
 		Player.create("Anas Al Zahrani", "A. Al Zahrani", "Saudi Arabia", ['CAM'], 18, 50, club, 274225, false);
 
-		club = Club.create("Al Taawon", "Saudi Arabia", 112393, "rgb(208,186,40)", "black");
+		club = Club.create("Al Taawon", "Saudi Arabia", 112393, "#D0BA28", "#000000");
 		Player.create("Mailson Tenório dos Santos", "Mailson", "Brazil", ['GK'], 25, 69, club, 243830, true);
 		Player.create("Mohammed Al Ghamdi", "M. Al Ghamdi", "Saudi Arabia", ['RB', 'CB'], 28, 59, club, 259359, true);
 		Player.create("Ziyad Al Sahafi", "Z. Al Sahafi", "Saudi Arabia", ['CB'], 28, 64, club, 231821, true);
@@ -15521,7 +15521,7 @@ class SoFifa23Service {
 		Player.create("Rayan Al Johani", "R. Al Johani", "Saudi Arabia", ['ST'], 21, 50, club, 273704, false);
 		Player.create("Abdulrahman Al Mughis", "A. Al Mughis", "Saudi Arabia", ['CDM'], 19, 50, club, 273751, false);
 
-		club = Club.create("Al Ettifaq", "Saudi Arabia", 112096, "rgb(61,129,95)", "white");
+		club = Club.create("Al Ettifaq", "Saudi Arabia", 112096, "#3D815F", "#FFFFFF");
 		Player.create("Paulo Victor Mileo Vidotti", "Paulo Victor", "Brazil", ['GK'], 35, 75, club, 193107, true);
 		Player.create("Saeed Al Muwallad", "S. Al Muwallad", "Saudi Arabia", ['RB'], 31, 66, club, 212039, true);
 		Player.create("Saad Al Mousa", "S. Al Mousa", "Saudi Arabia", ['CB'], 19, 59, club, 263884, true);
@@ -15553,7 +15553,7 @@ class SoFifa23Service {
 		Player.create("Jaber Qarradi", "J. Qarradi", "Saudi Arabia", ['ST'], 20, 50, club, 272979, false);
 		Player.create("Ali Fouad", "A. Fouad", "Saudi Arabia", ['LB', 'CB'], 20, 54, club, 253038, true);
 
-		club = Club.create("Al Wahda", "Saudi Arabia", 112408, "rgb(189,57,59)", "white");
+		club = Club.create("Al Wahda", "Saudi Arabia", 112408, "#BD393B", "#FFFFFF");
 		Player.create("Munir Mohand Mohamedi", "Munir", "Morocco", ['GK'], 33, 73, club, 223573, true);
 		Player.create("Hamad Al Jayzani", "H. Al Jayzani", "Saudi Arabia", ['RB', 'LB'], 29, 60, club, 226181, true);
 		Player.create("Abdullah Al Hafith", "A. Al Hafith", "Saudi Arabia", ['CB'], 29, 64, club, 207716, true);
@@ -15585,7 +15585,7 @@ class SoFifa23Service {
 		Player.create("Abdulrahman Al Hajeri", "A. Al Hajeri", "Saudi Arabia", ['LB', 'CDM'], 26, 56, club, 270626, true);
 		Player.create("Abdulkarim Al Qahtani", "A. Al Qahtani", "Saudi Arabia", ['CAM', 'RM', 'LM'], 29, 59, club, 232680, true);
 
-		club = Club.create("Damac", "Saudi Arabia", 113217, "rgb(179,46,46)", "white");
+		club = Club.create("Damac", "Saudi Arabia", 113217, "#B32E2E", "#FFFFFF");
 		Player.create("Moustapha Zeghba", "M. Zeghba", "Algeria", ['GK'], 31, 74, club, 251511, true);
 		Player.create("Abdullah Hawsawi", "A. Hawsawi", "Saudi Arabia", ['RB', 'RWB'], 26, 60, club, 263152, true);
 		Player.create("Farouk Chafaï", "F. Chafaï", "Algeria", ['CB'], 32, 72, club, 254895, true);
@@ -15616,7 +15616,7 @@ class SoFifa23Service {
 		Player.create("Abdulaziz Al Shahrani", "A. Al Shahrani", "Saudi Arabia", ['CAM', 'RW'], 27, 58, club, 248339, true);
 		Player.create("Fares Al Shahrani", "F. Al Shahrani", "Saudi Arabia", ['CM'], 21, 52, club, 266285, false);
 
-		club = Club.create("Al Feiha", "Saudi Arabia", 113057, "rgb(202,79,42)", "white");
+		club = Club.create("Al Feiha", "Saudi Arabia", 113057, "#CA4F2A", "#FFFFFF");
 		Player.create("Vladimir Stojković", "V. Stojković", "Serbia", ['GK'], 38, 73, club, 167993, true);
 		Player.create("Osama Al Khalaf", "O. Al Khalaf", "Saudi Arabia", ['RB', 'RM'], 25, 62, club, 229922, true);
 		Player.create("Mohammed Al Baqawi", "M. Al Baqawi", "Saudi Arabia", ['RB', 'CB'], 26, 60, club, 239126, true);
@@ -15647,7 +15647,7 @@ class SoFifa23Service {
 		Player.create("Faisal Al Masrahi", "F. Al Masrahi", "Saudi Arabia", ['GK'], 29, 60, club, 228613, true);
 		Player.create("Rashed Al Muwainea", "R. Al Muwainea", "Saudi Arabia", ['GK'], 22, 49, club, 264190, false);
 
-		club = Club.create("Abha", "Saudi Arabia", 113058, "rgb(161,183,201)", "black");
+		club = Club.create("Abha", "Saudi Arabia", 113058, "#A1B7C9", "#000000");
 		Player.create("Devis Epassy", "D. Epassy", "Cameroon", ['GK'], 29, 68, club, 220906, false);
 		Player.create("Fahad Al Jumayah", "F. Al Jumayah", "Saudi Arabia", ['RB', 'RWB', 'RM'], 27, 61, club, 240587, true);
 		Player.create("Saad Natiq", "S. Natiq", "Iraq", ['CB', 'CDM'], 28, 66, club, 270910, false);
@@ -15679,7 +15679,7 @@ class SoFifa23Service {
 		Player.create("Mohammed Al Qahtani", "M. Al Qahtani", "Saudi Arabia", ['LM'], 20, 53, club, 273890, false);
 		Player.create("Aseel Al Harbi", "A. Al Harbi", "Saudi Arabia", ['CDM'], 22, 52, club, 274483, false);
 
-		club = Club.create("Al Tai", "Saudi Arabia", 112572, "rgb(165,170,175)", "black");
+		club = Club.create("Al Tai", "Saudi Arabia", 112572, "#A5AAAF", "#000000");
 		Player.create("Victor Hugo Silva Braga", "Victor Braga", "Brazil", ['GK'], 30, 68, club, 229501, false);
 		Player.create("Collins Fai", "C. Fai", "Cameroon", ['RB', 'RWB'], 29, 70, club, 232183, true);
 		Player.create("Abdulkareem Al Sultan", "A. Al Sultan", "Saudi Arabia", ['CB'], 22, 56, club, 264232, true);
@@ -15711,7 +15711,7 @@ class SoFifa23Service {
 		Player.create("Bader Al Enazi", "B. Al Enazi", "Saudi Arabia", ['GK'], 22, 55, club, 263902, true);
 		Player.create("Ibrahim Al Ali", "I. Al Ali", "Saudi Arabia", ['LB'], 21, 53, club, 271339, true);
 
-		club = Club.create("Al Batin", "Saudi Arabia", 112990, "rgb(98,168,224)", "black");
+		club = Club.create("Al Batin", "Saudi Arabia", 112990, "#62A8E0", "#000000");
 		Player.create("Martín Campaña", "M. Campaña", "Uruguay", ['GK'], 33, 73, club, 225647, true);
 		Player.create("Bassam Al Hurayji", "B. Al Hurayji", "Saudi Arabia", ['CM', 'CB', 'RB'], 22, 54, club, 261190, true);
 		Player.create("Mohammed Naji", "M. Naji", "Saudi Arabia", ['CB', 'RB'], 28, 59, club, 240486, true);
@@ -15743,7 +15743,7 @@ class SoFifa23Service {
 		Player.create("Ibrahim Jamal", "I. Jamal", "Sudan", ['CB'], 19, 48, club, 271586, false);
 		Player.create("Nawaf Al Suhaymi", "N. Al Suhaymi", "Saudi Arabia", ['CAM', 'CM', 'LW'], 27, 53, club, 271131, true);
 
-		club = Club.create("Al Adalah", "Saudi Arabia", 113345, "rgb(194,195,198)", "black");
+		club = Club.create("Al Adalah", "Saudi Arabia", 113345, "#C2C3C6", "#000000");
 		Player.create("Milan Mijatović", "M. Mijatović", "Montenegro", ['GK'], 34, 66, club, 270495, true);
 		Player.create("Boris Godál", "B. Godál", "Slovakia", ['CB'], 35, 66, club, 213359, false);
 		Player.create("Fahad Al Harbi", "F. Al Harbi", "Saudi Arabia", ['CB'], 25, 59, club, 259103, false);
@@ -15775,7 +15775,7 @@ class SoFifa23Service {
 		Player.create("Elyas Al Biladi", "E. Al Biladi", "Saudi Arabia", ['CDM'], 20, 51, club, 270462, true);
 		Player.create("Mohammed Al Biladi", "M. Al Biladi", "Saudi Arabia", ['GK'], 20, 50, club, 270488, false);
 
-		club = Club.create("Al Khaleej", "Saudi Arabia", 112883, "rgb(216,193,37)", "black");
+		club = Club.create("Al Khaleej", "Saudi Arabia", 112883, "#D8C125", "#000000");
 		Player.create("Marwan Al Haidari", "M. Al Haidari", "Saudi Arabia", ['GK'], 26, 57, club, 232673, true);
 		Player.create("Omar Al Owdah", "O. Al Owdah", "Saudi Arabia", ['RB', 'RWB', 'LB'], 23, 59, club, 245737, true);
 		Player.create("Mohammed Khubrani", "M. Khubrani", "Saudi Arabia", ['CB', 'RB'], 28, 63, club, 228624, true);
@@ -15807,7 +15807,7 @@ class SoFifa23Service {
 		Player.create("Qassem Abu Nayan", "Q. Abu Nayan", "Saudi Arabia", ['CM'], 19, 51, club, 270868, true);
 		Player.create("Eyad Al Nasser", "E. Al Nasser", "Saudi Arabia", ['GK'], 19, 51, club, 271069, true);
 
-		club = Club.create("Celtic", "Scotland", 78, "rgb(126,152,132)", "black");
+		club = Club.create("Celtic", "Scotland", 78, "#7E9884", "#000000");
 		Player.create("Joe Hart", "J. Hart", "England", ['GK'], 35, 74, club, 150724, true);
 		Player.create("Alistair Johnston", "A. Johnston", "Canada", ['RB'], 23, 74, club, 256107, true);
 		Player.create("Cameron Carter-Vickers", "C. Carter-Vickers", "United States", ['CB'], 24, 76, club, 228174, true);
@@ -15836,7 +15836,7 @@ class SoFifa23Service {
 		Player.create("Dane Murray", "D. Murray", "Scotland", ['CB'], 19, 61, club, 263561, false);
 		Player.create("Stephen Welsh", "S. Welsh", "Scotland", ['CB'], 22, 69, club, 255573, true);
 
-		club = Club.create("Rangers", "Scotland", 86, "rgb(45,75,157)", "white");
+		club = Club.create("Rangers", "Scotland", 86, "#2D4B9D", "#FFFFFF");
 		Player.create("Allan McGregor", "A. McGregor", "Scotland", ['GK'], 40, 72, club, 49000, true);
 		Player.create("James Tavernier", "J. Tavernier", "England", ['RB'], 30, 78, club, 195479, true);
 		Player.create("Connor Goldson", "C. Goldson", "England", ['CB'], 29, 75, club, 199580, true);
@@ -15866,7 +15866,7 @@ class SoFifa23Service {
 		Player.create("Tom Lawrence", "T. Lawrence", "Wales", ['LW', 'ST', 'CAM'], 28, 73, club, 211513, true);
 		Player.create("Nnamdi Ofoborh", "N. Ofoborh", "Nigeria", ['CDM', 'CM'], 22, 65, club, 243044, true);
 
-		club = Club.create("Hearts", "Scotland", 80, "rgb(83,56,62)", "white");
+		club = Club.create("Hearts", "Scotland", 80, "#53383E", "#FFFFFF");
 		Player.create("Zander Clark", "Z. Clark", "Scotland", ['GK'], 30, 70, club, 204269, true);
 		Player.create("Michael Smith", "M. Smith", "Northern Ireland", ['RB', 'RWB', 'CB'], 33, 66, club, 204445, true);
 		Player.create("Toby Sibbick", "T. Sibbick", "England", ['CB'], 23, 69, club, 236244, true);
@@ -15896,7 +15896,7 @@ class SoFifa23Service {
 		Player.create("Beni Baningime", "B. Baningime", "Congo DR", ['CM', 'CDM'], 23, 70, club, 238062, true);
 		Player.create("Craig Gordon", "C. Gordon", "Scotland", ['GK'], 39, 74, club, 53110, true);
 
-		club = Club.create("Aberdeen", "Scotland", 77, "rgb(145,47,57)", "white");
+		club = Club.create("Aberdeen", "Scotland", 77, "#912F39", "#FFFFFF");
 		Player.create("Kelle Roos", "K. Roos", "Netherlands", ['GK'], 30, 69, club, 211299, true);
 		Player.create("Ross McCrorie", "R. McCrorie", "Scotland", ['CB', 'RB', 'RWB'], 24, 69, club, 234229, true);
 		Player.create("Mattie Pollock", "M. Pollock", "England", ['CB'], 20, 66, club, 246695, true);
@@ -15925,7 +15925,7 @@ class SoFifa23Service {
 		Player.create("Callum Roberts", "C. Roberts", "England", ['RM', 'CAM'], 25, 62, club, 226822, true);
 		Player.create("Patrik Myslovič", "P. Myslovič", "Slovakia", ['CM', 'CAM'], 21, 63, club, 272929, false);
 
-		club = Club.create("Hibernian", "Scotland", 81, "rgb(75,119,90)", "white");
+		club = Club.create("Hibernian", "Scotland", 81, "#4B775A", "#FFFFFF");
 		Player.create("David Marshall", "D. Marshall", "Scotland", ['GK'], 37, 69, club, 140498, true);
 		Player.create("CJ Egan-Riley", "C. Egan-Riley", "England", ['RB', 'CDM', 'CB'], 19, 65, club, 268131, true);
 		Player.create("Will Fish", "W. Fish", "England", ['CB'], 19, 64, club, 256611, true);
@@ -15953,7 +15953,7 @@ class SoFifa23Service {
 		Player.create("Aiden McGeady", "A. McGeady", "Republic of Ireland", ['LM'], 36, 67, club, 155885, true);
 		Player.create("Martin Boyle", "M. Boyle", "Australia", ['RM', 'ST'], 29, 72, club, 211221, true);
 
-		club = Club.create("Kilmarnock", "Scotland", 82, "rgb(83,120,173)", "white");
+		club = Club.create("Kilmarnock", "Scotland", 82, "#5378AD", "#FFFFFF");
 		Player.create("Sam Walker", "S. Walker", "England", ['GK'], 30, 64, club, 200525, true);
 		Player.create("Daniel Armstrong", "D. Armstrong", "Scotland", ['RM', 'RW', 'RWB'], 24, 66, club, 223871, true);
 		Player.create("Lewis Mayo", "L. Mayo", "Scotland", ['CB', 'RB'], 22, 63, club, 261512, true);
@@ -15983,7 +15983,7 @@ class SoFifa23Service {
 		Player.create("Chris Stokes", "C. Stokes", "England", ['CB', 'LB'], 31, 62, club, 227880, true);
 		Player.create("Ben Chrisene", "B. Chrisene", "England", ['LWB', 'LB'], 18, 63, club, 256556, true);
 
-		club = Club.create("Motherwell", "Scotland", 83, "rgb(182,104,58)", "white");
+		club = Club.create("Motherwell", "Scotland", 83, "#B6683A", "#FFFFFF");
 		Player.create("Liam Kelly", "L. Kelly", "Scotland", ['GK'], 26, 67, club, 225203, true);
 		Player.create("Max Johnston", "M. Johnston", "Scotland", ['RWB', 'RB'], 18, 64, club, 258036, true);
 		Player.create("Paul McGinn", "P. McGinn", "Scotland", ['CB', 'RB'], 31, 64, club, 211707, true);
@@ -16013,7 +16013,7 @@ class SoFifa23Service {
 		Player.create("Joseph Efford", "J. Efford", "United States", ['ST', 'RM'], 25, 65, club, 257352, true);
 		Player.create("Jack Aitchison", "J. Aitchison", "Scotland", ['ST', 'CAM'], 22, 62, club, 234099, true);
 
-		club = Club.create("Livingston", "Scotland", 621, "rgb(200,162,37)", "black");
+		club = Club.create("Livingston", "Scotland", 621, "#C8A225", "#000000");
 		Player.create("Shamal George", "S. George", "England", ['GK'], 24, 64, club, 240346, true);
 		Player.create("Nicky Devlin", "N. Devlin", "Scotland", ['RB'], 28, 66, club, 204033, true);
 		Player.create("Jack Fitzwater", "J. Fitzwater", "England", ['CB'], 24, 64, club, 231139, true);
@@ -16040,7 +16040,7 @@ class SoFifa23Service {
 		Player.create("Scott Bitsindou", "S. Bitsindou", "Congo", ['CDM', 'CB'], 26, 55, club, 269144, true);
 		Player.create("Jack Hamilton", "J. Hamilton", "Scotland", ['GK'], 28, 62, club, 211537, true);
 
-		club = Club.create("Ross County", "Scotland", 631, "rgb(79,50,61)", "white");
+		club = Club.create("Ross County", "Scotland", 631, "#4F323D", "#FFFFFF");
 		Player.create("Ross Laidlaw", "R. Laidlaw", "Scotland", ['GK'], 29, 62, club, 238969, true);
 		Player.create("Connor Randall", "C. Randall", "England", ['RB', 'LB'], 26, 64, club, 216299, true);
 		Player.create("Keith Watson", "K. Watson", "Scotland", ['CB', 'RB'], 32, 63, club, 185226, true);
@@ -16067,7 +16067,7 @@ class SoFifa23Service {
 		Player.create("Owura Edwards", "O. Edwards", "England", ['LM', 'RM'], 21, 64, club, 258627, true);
 		Player.create("Jordy Hiwula", "J. Hiwula", "England", ['LM', 'LW', 'ST'], 27, 61, club, 216322, true);
 
-		club = Club.create("Dundee United", "Scotland", 181, "rgb(205,92,40)", "white");
+		club = Club.create("Dundee United", "Scotland", 181, "#CD5C28", "#FFFFFF");
 		Player.create("Mark Birighitti", "M. Birighitti", "Australia", ['GK'], 31, 65, club, 188278, true);
 		Player.create("Kieran Freeman", "K. Freeman", "Scotland", ['RWB', 'RB'], 22, 60, club, 243980, true);
 		Player.create("Loick Ayina", "L. Ayina", "France", ['CB', 'RB'], 19, 57, club, 258375, false);
@@ -16091,7 +16091,7 @@ class SoFifa23Service {
 		Player.create("Ross Graham", "R. Graham", "Scotland", ['CB'], 21, 60, club, 259147, true);
 		Player.create("Peter Pawlett", "P. Pawlett", "Scotland", ['RW', 'CM'], 31, 64, club, 189217, true);
 
-		club = Club.create("St. Johnstone", "Scotland", 100804, "rgb(58,79,151)", "white");
+		club = Club.create("St. Johnstone", "Scotland", 100804, "#3A4F97", "#FFFFFF");
 		Player.create("Remi Matthews", "R. Matthews", "England", ['GK'], 28, 65, club, 203824, true);
 		Player.create("James Brown", "J. Brown", "Malta", ['LWB', 'CB', 'RWB'], 24, 63, club, 236027, true);
 		Player.create("Liam Gordon", "L. Gordon", "Scotland", ['CB'], 26, 67, club, 232668, true);
@@ -16120,7 +16120,7 @@ class SoFifa23Service {
 		Player.create("Chris Kane", "C. Kane", "Scotland", ['ST'], 27, 60, club, 204282, true);
 		Player.create("Callum Booth", "C. Booth", "Scotland", ['LWB'], 31, 64, club, 201078, true);
 
-		club = Club.create("St. Mirren", "Scotland", 100805, "rgb(131,127,126)", "white");
+		club = Club.create("St. Mirren", "Scotland", 100805, "#837F7E", "#FFFFFF");
 		Player.create("Trevor Carson", "T. Carson", "Northern Ireland", ['GK'], 34, 65, club, 166764, true);
 		Player.create("Ryan Strain", "R. Strain", "Australia", ['RWB', 'RB'], 25, 67, club, 241244, true);
 		Player.create("Marcus Fraser", "M. Fraser", "Scotland", ['CB', 'RWB'], 28, 65, club, 211096, true);
@@ -16143,7 +16143,7 @@ class SoFifa23Service {
 		Player.create("Toyosi Olusanya", "T. Olusanya", "England", ['ST', 'LM'], 24, 57, club, 232642, true);
 		Player.create("Richard Tait", "R. Tait", "Scotland", ['RWB', 'LB', 'LWB'], 32, 62, club, 189833, true);
 
-		club = Club.create("Mamelodi Sundowns", "South Africa", 110935, "rgb(212,186,39)", "black");
+		club = Club.create("Mamelodi Sundowns", "South Africa", 110935, "#D4BA27", "#000000");
 		Player.create("Ronwen Williams", "R. Williams", "South Africa", ['GK'], 30, 73, club, 213615, true);
 		Player.create("Thapelo Morena", "T. Morena", "South Africa", ['RB', 'RW', 'RWB'], 28, 70, club, 228206, true);
 		Player.create("Grant Kekana", "G. Kekana", "South Africa", ['CB', 'RB'], 29, 68, club, 270946, true);
@@ -16173,7 +16173,7 @@ class SoFifa23Service {
 		Player.create("Peter Shalulile", "P. Shalulile", "Namibia", ['ST'], 28, 74, club, 270634, true);
 		Player.create("Brian Onyango", "B. Onyango", "Kenya", ['CB'], 27, 68, club, 218243, true);
 
-		club = Club.create("Orlando Pirates", "South Africa", 110930, "rgb(61,54,56)", "white");
+		club = Club.create("Orlando Pirates", "South Africa", 110930, "#3D3638", "#FFFFFF");
 		Player.create("Sipho Chaine", "S. Chaine", "South Africa", ['GK'], 25, 66, club, 271875, false);
 		Player.create("Tapelo Xoki", "T. Xoki", "South Africa", ['CB', 'RB'], 27, 69, club, 269596, true);
 		Player.create("Innocent Maela", "I. Maela", "South Africa", ['LB', 'CB'], 29, 69, club, 239431, true);
@@ -16203,7 +16203,7 @@ class SoFifa23Service {
 		Player.create("Nkosinathi Sibisi", "N. Sibisi", "South Africa", ['CB', 'RB'], 26, 69, club, 269625, true);
 		Player.create("Goodman Mosele", "G. Mosele", "South Africa", ['CM', 'CDM'], 22, 68, club, 263042, true);
 
-		club = Club.create("Kaizer Chiefs", "South Africa", 110929, "rgb(191,136,57)", "black");
+		club = Club.create("Kaizer Chiefs", "South Africa", 110929, "#BF8839", "#000000");
 		Player.create("Brandon Petersen", "B. Petersen", "South Africa", ['GK'], 28, 70, club, 242934, true);
 		Player.create("Siyabonga Ngezana", "S. Ngezana", "South Africa", ['CB', 'RB'], 24, 66, club, 235442, true);
 		Player.create("Zitha Kwinika", "Z. Kwinika", "South Africa", ['CB', 'RB'], 28, 66, club, 224450, true);
@@ -16233,7 +16233,7 @@ class SoFifa23Service {
 		Player.create("Sabelo Radebe", "S. Radebe", "South Africa", ['CM', 'CAM'], 22, 58, club, 260945, true);
 		Player.create("Dillan Solomons", "D. Solomons", "South Africa", ['RB', 'RW', 'RM'], 23, 66, club, 270275, true);
 
-		club = Club.create("Real Madrid", "Spain", 243, "rgb(205,204,203)", "black");
+		club = Club.create("Real Madrid", "Spain", 243, "#CDCCCB", "#000000");
 		Player.create("Thibaut Courtois", "T. Courtois", "Belgium", ['GK'], 30, 90, club, 192119, true);
 		Player.create("Daniel Carvajal Ramos", "Carvajal", "Spain", ['RB'], 30, 84, club, 204963, true);
 		Player.create("Éder Gabriel Militão", "Éder Militão", "Brazil", ['CB'], 24, 85, club, 240130, true);
@@ -16268,7 +16268,7 @@ class SoFifa23Service {
 		Player.create("Álvaro Daniel Rodríguez Muñoz", "Álvaro", "Uruguay", ['ST', 'LW'], 17, 62, club, 272445, true);
 		Player.create("Mario Martín Rielves", "Mario Martín", "Spain", ['CM'], 18, 62, club, 274555, false);
 
-		club = Club.create("Atlético Madrid", "Spain", 240, "rgb(190,129,133)", "black");
+		club = Club.create("Atlético Madrid", "Spain", 240, "#BE8185", "#000000");
 		Player.create("Jan Oblak", "J. Oblak", "Slovenia", ['GK'], 29, 89, club, 200389, true);
 		Player.create("Nahuel Molina", "N. Molina", "Argentina", ['RB', 'RM', 'RWB'], 24, 80, club, 233084, true);
 		Player.create("Axel Witsel", "A. Witsel", "Belgium", ['CDM', 'CM', 'CB'], 33, 79, club, 177413, true);
@@ -16303,7 +16303,7 @@ class SoFifa23Service {
 		Player.create("Diego Vicente Bri Carrazoni", "Diego Bri", "Spain", ['LM', 'RM'], 19, 61, club, 258689, true);
 		Player.create("Sergio Díez Roldán", "Sergio Díez", "Spain", ['RB', 'CB'], 18, 61, club, 271123, false);
 
-		club = Club.create("FC Barcelona", "Spain", 241, "rgb(78,56,84)", "white");
+		club = Club.create("FC Barcelona", "Spain", 241, "#4E3854", "#FFFFFF");
 		Player.create("Marc-André ter Stegen", "M. ter Stegen", "Germany", ['GK'], 30, 88, club, 192448, true);
 		Player.create("Jules Koundé", "J. Koundé", "France", ['RB', 'CB'], 23, 84, club, 241486, true);
 		Player.create("Ronald Araujo", "R. Araujo", "Uruguay", ['CB', 'RB'], 23, 83, club, 253163, true);
@@ -16338,7 +16338,7 @@ class SoFifa23Service {
 		Player.create("Aleix Garrido Cañizares", "Aleix Garrido", "Spain", ['CM'], 18, 62, club, 275126, false);
 		Player.create("Chadi Riad", "C. Riad", "Morocco", ['CB'], 19, 61, club, 258490, false);
 
-		club = Club.create("Sevilla", "Spain", 481, "rgb(221,218,217)", "black");
+		club = Club.create("Sevilla", "Spain", 481, "#DDDAD9", "#000000");
 		Player.create("Marko Dmitrović", "M. Dmitrović", "Serbia", ['GK'], 30, 79, club, 227290, true);
 		Player.create("Gonzalo Montiel", "G. Montiel", "Argentina", ['RB', 'RWB'], 25, 79, club, 231340, true);
 		Player.create("Tanguy Nianzou", "T. Nianzou", "France", ['CB'], 20, 73, club, 252961, true);
@@ -16370,7 +16370,7 @@ class SoFifa23Service {
 		Player.create("Carlos Álvarez Rivera", "Carlos Álvarez", "Spain", ['CAM', 'RM', 'LM'], 18, 61, club, 274209, false);
 		Player.create("Alberto Flores López", "Alberto Flores", "Spain", ['GK'], 18, 61, club, 272427, true);
 
-		club = Club.create("Villarreal", "Spain", 483, "rgb(206,208,34)", "black");
+		club = Club.create("Villarreal", "Spain", 483, "#CED022", "#000000");
 		Player.create("José Manuel Reina Páez", "Pepe Reina", "Spain", ['GK'], 39, 77, club, 24630, true);
 		Player.create("Juan Foyth", "J. Foyth", "Argentina", ['RB', 'CB', 'CDM'], 24, 79, club, 237221, true);
 		Player.create("Aïssa Mandi", "A. Mandi", "Algeria", ['CB', 'RB'], 30, 76, club, 201143, true);
@@ -16395,7 +16395,7 @@ class SoFifa23Service {
 		Player.create("Jorge Cuenca Barreno", "Jorge Cuenca", "Spain", ['CB'], 22, 73, club, 237522, true);
 		Player.create("Ramón Terrats Espacio", "Terrats", "Spain", ['CM', 'CDM', 'CB'], 21, 73, club, 259521, true);
 
-		club = Club.create("Athletic Club", "Spain", 448, "rgb(181,109,113)", "white");
+		club = Club.create("Athletic Club", "Spain", 448, "#B56D71", "#FFFFFF");
 		Player.create("Unai Simón Mendibil", "Unai Simón", "Spain", ['GK'], 25, 83, club, 230869, true);
 		Player.create("Oscar De Marcos Arana", "De Marcos", "Spain", ['RB'], 33, 79, club, 190149, true);
 		Player.create("Daniel Vivian Moreno", "Vivian", "Spain", ['CB'], 22, 78, club, 248550, true);
@@ -16426,7 +16426,7 @@ class SoFifa23Service {
 		Player.create("Jon Sillero Monreal", "Sillero", "Spain", ['CB', 'RB'], 24, 62, club, 241488, true);
 		Player.create("Alejandro Padilla Pérez", "Álex Padilla", "Spain", ['GK'], 18, 62, club, 271034, true);
 
-		club = Club.create("Real Betis", "Spain", 449, "rgb(112,160,131)", "black");
+		club = Club.create("Real Betis", "Spain", 449, "#70A083", "#000000");
 		Player.create("Claudio Bravo", "C. Bravo", "Chile", ['GK'], 39, 79, club, 174543, true);
 		Player.create("Youssouf Sabaly", "Y. Sabaly", "Senegal", ['RB', 'RM'], 29, 77, club, 215699, true);
 		Player.create("Germán Pezzella", "G. Pezzella", "Argentina", ['CB'], 31, 77, club, 193601, true);
@@ -16461,7 +16461,7 @@ class SoFifa23Service {
 		Player.create("Manuel Morillo León", "Manu Morillo", "Spain", ['ST', 'RM', 'LM'], 18, 62, club, 264166, true);
 		Player.create("Francisco Delgado Rojano", "Fran Delgado", "Spain", ['RB', 'RM'], 20, 62, club, 264164, true);
 
-		club = Club.create("Real Sociedad", "Spain", 457, "rgb(135,145,169)", "black");
+		club = Club.create("Real Sociedad", "Spain", 457, "#8791A9", "#000000");
 		Player.create("Alejandro Remiro Gargallo", "Álex Remiro", "Spain", ['GK'], 27, 83, club, 227127, true);
 		Player.create("Andoni Gorosabel Espinosa", "Gorosabel", "Spain", ['RB'], 25, 77, club, 241049, true);
 		Player.create("Igor Zubeldia Elorza", "Zubeldia", "Spain", ['CB'], 25, 79, club, 233738, true);
@@ -16495,7 +16495,7 @@ class SoFifa23Service {
 		Player.create("Unai Marrero Larrañaga", "Unai Marrero", "Spain", ['GK'], 20, 62, club, 265520, true);
 		Player.create("Pablo Marín Tejada", "Pablo Marín", "Spain", ['CAM', 'CM'], 18, 62, club, 272455, false);
 
-		club = Club.create("Getafe", "Spain", 1860, "rgb(43,72,152)", "white");
+		club = Club.create("Getafe", "Spain", 1860, "#2B4898", "#FFFFFF");
 		Player.create("David Soria Solís", "David Soria", "Spain", ['GK'], 29, 82, club, 223952, true);
 		Player.create("Damián Suárez", "D. Suárez", "Uruguay", ['RWB', 'RB', 'RM'], 34, 77, club, 203843, true);
 		Player.create("Dakonam Djené", "D. Djené", "Togo", ['CB', 'CDM'], 30, 78, club, 217940, true);
@@ -16526,7 +16526,7 @@ class SoFifa23Service {
 		Player.create("John Patrick Finn Benoa", "John Patrick", "Spain", ['CAM', 'ST', 'CM'], 18, 60, club, 260195, true);
 		Player.create("Alejandro Rodríguez Lorite", "Alex Rodríguez", "Spain", ['RWB'], 20, 58, club, 264097, true);
 
-		club = Club.create("Celta de Vigo", "Spain", 450, "rgb(117,163,175)", "black");
+		club = Club.create("Celta de Vigo", "Spain", 450, "#75A3AF", "#000000");
 		Player.create("Iván Villar Martínez", "Iván Villar", "Spain", ['GK'], 24, 71, club, 222572, true);
 		Player.create("Hugo Mallo Novegil", "Hugo Mallo", "Spain", ['RB'], 31, 77, club, 194229, true);
 		Player.create("Joseph Aidoo", "J. Aidoo", "Ghana", ['CB'], 26, 79, club, 230021, true);
@@ -16561,7 +16561,7 @@ class SoFifa23Service {
 		Player.create("Hugo Sotelo Gómez", "Hugo Sotelo", "Spain", ['RM'], 18, 59, club, 264095, true);
 		Player.create("Pablo Durán Fernández", "Pablo Durán", "Spain", ['ST'], 21, 59, club, 272453, false);
 
-		club = Club.create("Espanyol", "Spain", 452, "rgb(98,143,195)", "black");
+		club = Club.create("Espanyol", "Spain", 452, "#628FC3", "#000000");
 		Player.create("Fernando Pacheco Flores", "Pacheco", "Spain", ['GK'], 30, 77, club, 209960, true);
 		Player.create("Óscar Gil Regaño", "Óscar Gil", "Spain", ['RB'], 24, 75, club, 246284, true);
 		Player.create("César Montes", "C. Montes", "Mexico", ['CB'], 25, 78, club, 229980, true);
@@ -16596,7 +16596,7 @@ class SoFifa23Service {
 		Player.create("Gregorio Gracia Sánchez", "Gori", "Spain", ['CM', 'CAM'], 20, 64, club, 261680, true);
 		Player.create("Luca Warrick Koleosho", "L. Koleosho", "Italy", ['LM', 'RM'], 17, 64, club, 266041, true);
 
-		club = Club.create("Valencia", "Spain", 461, "rgb(204,203,202)", "black");
+		club = Club.create("Valencia", "Spain", 461, "#CCCBCA", "#000000");
 		Player.create("Giorgi Mamardashvili", "G. Mamardashvili", "Georgia", ['GK'], 21, 79, club, 262621, true);
 		Player.create("Thierry Rendall Correia", "Thierry Correia", "Portugal", ['RB', 'RWB', 'RM'], 23, 76, club, 247832, true);
 		Player.create("Mouctar Diakhaby", "M. Diakhaby", "Guinea", ['CB'], 25, 75, club, 230578, true);
@@ -16631,7 +16631,7 @@ class SoFifa23Service {
 		Player.create("Cristian Rivero Sabater", "Cristian Rivero", "Spain", ['GK'], 24, 68, club, 241179, true);
 		Player.create("Emilio Bernad Sánchez", "Emilio Bernad", "Spain", ['GK'], 22, 65, club, 246281, true);
 
-		club = Club.create("Osasuna", "Spain", 479, "rgb(127,45,53)", "white");
+		club = Club.create("Osasuna", "Spain", 479, "#7F2D35", "#FFFFFF");
 		Player.create("Aitor Fernández", "Aitor", "Spain", ['GK'], 31, 77, club, 193314, true);
 		Player.create("Rubén Peña Jiménez", "Rubén Peña", "Spain", ['RB', 'RM', 'LB'], 30, 76, club, 211241, true);
 		Player.create("Aridane Hernández Umpiérrez", "Aridane", "Spain", ['CB'], 33, 76, club, 189472, true);
@@ -16664,7 +16664,7 @@ class SoFifa23Service {
 		Player.create("Iker Muñoz Cameros", "Iker Muñoz", "Spain", ['CM', 'CDM'], 19, 60, club, 274355, false);
 		Player.create("Marc Llinares Barragán", "Marc Llinares", "Spain", ['LB'], 22, 59, club, 269630, false);
 
-		club = Club.create("Rayo Vallecano", "Spain", 480, "rgb(189,156,154)", "black");
+		club = Club.create("Rayo Vallecano", "Spain", 480, "#BD9C9A", "#000000");
 		Player.create("Stole Dimitrievski", "S. Dimitrievski", "North Macedonia", ['GK'], 28, 80, club, 211348, true);
 		Player.create("Iván Balliu", "I. Balliu", "Albania", ['RB'], 30, 75, club, 203581, true);
 		Player.create("Florian Lejeune", "F. Lejeune", "France", ['CB'], 31, 77, club, 197948, true);
@@ -16695,7 +16695,7 @@ class SoFifa23Service {
 		Player.create("Diego Méndez Molero", "Diego Méndez", "Spain", ['CB', 'CM', 'RB'], 18, 60, club, 272486, true);
 		Player.create("Pablo Muñoz Crespo", "Pablo Muñoz", "Spain", ['CAM'], 18, 61, club, 272356, true);
 
-		club = Club.create("Cádiz", "Spain", 1968, "rgb(218,205,51)", "black");
+		club = Club.create("Cádiz", "Spain", 1968, "#DACD33", "#000000");
 		Player.create("Jeremías Conan Ledesma", "J. Ledesma", "Argentina", ['GK'], 29, 80, club, 219522, true);
 		Player.create("Isaac Carcelén Valencia", "Iza Carcelén", "Spain", ['RB', 'RM'], 29, 73, club, 220348, true);
 		Player.create("Luís Hernández Rodríguez", "Luís Hernández", "Spain", ['CB'], 33, 74, club, 205590, true);
@@ -16730,7 +16730,7 @@ class SoFifa23Service {
 		Player.create("José Antonio Ángel García", "Kikín", "Spain", ['RB'], 19, 62, club, 271687, true);
 		Player.create("Karl Edouard Etta Eyong", "K. Etta Eyong", "Cameroon", ['CDM', 'CM'], 18, 61, club, 271414, true);
 
-		club = Club.create("Mallorca", "Spain", 453, "rgb(133,42,44)", "white");
+		club = Club.create("Mallorca", "Spain", 453, "#852A2C", "#FFFFFF");
 		Player.create("Predrag Rajković", "P. Rajković", "Serbia", ['GK'], 26, 78, club, 241727, true);
 		Player.create("Pablo Maffeo Becerra", "Pablo Maffeo", "Spain", ['RWB', 'LWB'], 24, 78, club, 221342, true);
 		Player.create("Martin Valjent", "M. Valjent", "Slovakia", ['CB'], 26, 76, club, 219585, true);
@@ -16763,7 +16763,7 @@ class SoFifa23Service {
 		Player.create("Jaume Tovar Seguí", "Tovar", "Spain", ['ST'], 23, 62, club, 264852, false);
 		Player.create("Jaime Durán Jiménez", "Jaime Durán", "Spain", ['GK'], 21, 57, club, 270730, false);
 
-		club = Club.create("Real Valladolid", "Spain", 462, "rgb(147,127,145)", "black");
+		club = Club.create("Real Valladolid", "Spain", 462, "#937F91", "#000000");
 		Player.create("Jordi Masip López", "Jordi Masip", "Spain", ['GK'], 33, 76, club, 199575, true);
 		Player.create("Iván Fresneda Corraliza", "Fresneda", "Spain", ['RB'], 17, 69, club, 266253, true);
 		Player.create("Joaquín Fernández Moreno", "Joaquín", "Spain", ['CB', 'CDM'], 26, 75, club, 232132, true);
@@ -16798,7 +16798,7 @@ class SoFifa23Service {
 		Player.create("Enrique Ríos Vega", "Kike Ríos", "Spain", ['CB'], 22, 61, club, 264803, false);
 		Player.create("Babatunde Akinsola", "B. Akinsola", "Nigeria", ['RM', 'LM'], 19, 61, club, 275487, false);
 
-		club = Club.create("Girona", "Spain", 110062, "rgb(185,99,102)", "white");
+		club = Club.create("Girona", "Spain", 110062, "#B96366", "#FFFFFF");
 		Player.create("Paulo Gazzaniga", "P. Gazzaniga", "Argentina", ['GK'], 30, 78, club, 205186, true);
 		Player.create("Arnau Martínez López", "Arnau Martínez", "Spain", ['RB', 'RWB'], 19, 76, club, 260815, true);
 		Player.create("Santiago Bueno", "S. Bueno", "Uruguay", ['CB'], 23, 75, club, 237658, true);
@@ -16830,7 +16830,7 @@ class SoFifa23Service {
 		Player.create("Iker Piedra Blanco", "Iker Piedra", "Spain", ['GK'], 20, 62, club, 262309, false);
 		Player.create("Joel Roca Casals", "Joel Roca", "Spain", ['RM', 'LM', 'CAM'], 17, 62, club, 272718, false);
 
-		club = Club.create("Almería", "Spain", 1861, "rgb(201,103,104)", "black");
+		club = Club.create("Almería", "Spain", 1861, "#C96768", "#000000");
 		Player.create("Fernando Martínez Rubio", "Fernando", "Spain", ['GK'], 32, 76, club, 205288, true);
 		Player.create("Alejandro Pozo Pozo", "Álex Pozo", "Spain", ['RB', 'RM', 'RWB'], 23, 72, club, 235983, true);
 		Player.create("Rodrigo Ely", "Rodrigo Ely", "Brazil", ['CB'], 28, 75, club, 202445, true);
@@ -16861,7 +16861,7 @@ class SoFifa23Service {
 		Player.create("David Vraciu", "D. Vraciu", "Romania", ['CAM', 'CM'], 20, 60, club, 264076, false);
 		Player.create("Marciano Sanca Tchami", "Marciano", "Guinea Bissau", ['ST'], 18, 59, club, 274977, false);
 
-		club = Club.create("Elche", "Spain", 468, "rgb(198,201,196)", "black");
+		club = Club.create("Elche", "Spain", 468, "#C6C9C4", "#000000");
 		Player.create("Edgar Badia Guardiola", "Edgar Badia", "Spain", ['GK'], 30, 79, club, 204234, true);
 		Player.create("Helibelton Palacios", "H. Palacios", "Colombia", ['CB', 'RWB', 'RB'], 29, 74, club, 218981, true);
 		Player.create("Lisandro Magallán", "L. Magallán", "Argentina", ['CB'], 28, 71, club, 211263, true);
@@ -16895,7 +16895,7 @@ class SoFifa23Service {
 		Player.create("Branislav Knežević", "B. Knežević", "Serbia", ['CM', 'CDM'], 20, 57, club, 264637, false);
 		Player.create("Alejandro Alfaro Cascales", "Alfaro", "Spain", ['CM'], 20, 56, club, 272940, false);
 
-		club = Club.create("Levante", "Spain", 1853, "rgb(77,46,65)", "white");
+		club = Club.create("Levante", "Spain", 1853, "#4D2E41", "#FFFFFF");
 		Player.create("Joan Femenías del Salto", "Joan Femenías", "Spain", ['GK'], 25, 67, club, 251944, true);
 		Player.create("Marc Pubill Pagès", "Pubill", "Spain", ['RB', 'RWB'], 19, 68, club, 266039, true);
 		Player.create("Roberto Suárez Pier", "Róber", "Spain", ['CB', 'CDM'], 27, 71, club, 213063, true);
@@ -16923,7 +16923,7 @@ class SoFifa23Service {
 		Player.create("Hugo Redón Almela", "Hugo Redón", "Spain", ['CM', 'CDM'], 19, 60, club, 271610, true);
 		Player.create("Alejandro Primo Hernández", "Álex Primo", "Spain", ['GK'], 17, 58, club, 269146, false);
 
-		club = Club.create("Las Palmas", "Spain", 472, "rgb(214,185,39)", "black");
+		club = Club.create("Las Palmas", "Spain", 472, "#D6B927", "#000000");
 		Player.create("Álvaro Valles Rosa", "Álvaro Valles", "Spain", ['GK'], 24, 72, club, 246657, true);
 		Player.create("José Alejandro Suárez Suárez", "Alex Suárez", "Spain", ['RB', 'CB'], 29, 70, club, 251337, true);
 		Player.create("Saúl Basilio Coco Bassey Oubiña", "Saúl Coco", "Equatorial Guinea", ['CB'], 23, 72, club, 265650, true);
@@ -16955,7 +16955,7 @@ class SoFifa23Service {
 		Player.create("Diego Gutiérrez Chinea", "Diego Guti", "Spain", ['CDM', 'CM'], 21, 62, club, 262320, true);
 		Player.create("Javier Cendón Hernández", "Javi Cendón", "Spain", ['GK'], 21, 60, club, 272428, false);
 
-		club = Club.create("Granada", "Spain", 110832, "rgb(179,106,119)", "white");
+		club = Club.create("Granada", "Spain", 110832, "#B36A77", "#FFFFFF");
 		Player.create("André Filipe M. Ribeiro Ferreira", "André Ferreira", "Portugal", ['GK'], 26, 70, club, 244020, true);
 		Player.create("Joaquín José Marín Ruz", "Quini", "Spain", ['RB', 'LB'], 32, 72, club, 209937, true);
 		Player.create("Miguel Ángel Rubio Lestán", "Miguel Rubio", "Spain", ['CB'], 24, 70, club, 243431, true);
@@ -16987,7 +16987,7 @@ class SoFifa23Service {
 		Player.create("Bryan Zaragoza Martínez", "Bryan", "Spain", ['LM', 'RM', 'CAM'], 20, 65, club, 271916, true);
 		Player.create("Adrián López Garrote", "Adri López", "Spain", ['GK'], 23, 63, club, 241013, true);
 
-		club = Club.create("Deportivo Alavés", "Spain", 463, "rgb(128,145,169)", "black");
+		club = Club.create("Deportivo Alavés", "Spain", 463, "#8091A9", "#000000");
 		Player.create("Antonio Sivera Salvá", "Sivera", "Spain", ['GK'], 25, 71, club, 222464, true);
 		Player.create("Nahuel Tenaglia", "N. Tenaglia", "Argentina", ['RB', 'CB'], 26, 75, club, 240953, true);
 		Player.create("Abdelkabir Abqar", "A. Abqar", "Morocco", ['CB'], 23, 66, club, 245628, true);
@@ -17019,7 +17019,7 @@ class SoFifa23Service {
 		Player.create("Alejandro Balboa Bandeira", "Álex Balboa", "Equatorial Guinea", ['CM', 'CDM'], 21, 60, club, 267959, true);
 		Player.create("Adrián Rodríguez Giménez", "Adrián", "Argentina", ['GK'], 21, 61, club, 253216, true);
 
-		club = Club.create("SD Eibar", "Spain", 467, "rgb(69,54,80)", "white");
+		club = Club.create("SD Eibar", "Spain", 467, "#453650", "#FFFFFF");
 		Player.create("Luca Zidane", "L. Zidane", "France", ['GK'], 24, 70, club, 240311, true);
 		Player.create("Álvaro Tejero Sacristán", "Álvaro Tejero", "Spain", ['RB'], 25, 72, club, 231856, true);
 		Player.create("Frederico André Ferrão Venâncio", "Frederico Venâncio", "Portugal", ['CB'], 29, 73, club, 211107, true);
@@ -17050,7 +17050,7 @@ class SoFifa23Service {
 		Player.create("Gorka San Nicolás Gil", "San Nicolás", "Spain", ['GK'], 21, 58, club, 264185, false);
 		Player.create("Unai Ruiz Almandzo", "Unai Ruiz", "Spain", ['GK'], 22, 57, club, 262502, false);
 
-		club = Club.create("Real Oviedo", "Spain", 110827, "rgb(58,66,98)", "white");
+		club = Club.create("Real Oviedo", "Spain", 110827, "#3A4262", "#FFFFFF");
 		Player.create("Quentin Braat", "Q. Braat", "France", ['GK'], 24, 67, club, 231720, true);
 		Player.create("Lucas Ahijado Quintana", "Lucas Ahijado", "Spain", ['RB', 'LB'], 27, 70, club, 229894, true);
 		Player.create("David Costas Cordal", "David Costas", "Spain", ['CB'], 27, 72, club, 219848, true);
@@ -17082,7 +17082,7 @@ class SoFifa23Service {
 		Player.create("Oier Luengo Redondo", "Oier Luengo", "Spain", ['CB'], 24, 65, club, 263178, true);
 		Player.create("Pelayo González Rey", "Yayo", "Spain", ['CM'], 17, 63, club, 264179, true);
 
-		club = Club.create("FC Cartagena", "Spain", 100851, "rgb(119,118,117)", "white");
+		club = Club.create("FC Cartagena", "Spain", 100851, "#777675", "#FFFFFF");
 		Player.create("Aarón Escandell", "Aarón", "Spain", ['GK'], 26, 71, club, 220383, true);
 		Player.create("Iván Calero Ruiz", "Iván Calero", "Spain", ['RB', 'RM', 'LB'], 27, 67, club, 224305, true);
 		Player.create("Pedro Alcalá Guirado", "Alcalá", "Spain", ['CB'], 33, 71, club, 189709, true);
@@ -17114,7 +17114,7 @@ class SoFifa23Service {
 		Player.create("Carlos Sánchez Jiménez", "Carlos Sánchez", "Spain", ['RB'], 21, 62, club, 270836, false);
 		Player.create("Daniel Albiar Serrano", "Dani Albiar", "Spain", ['CM', 'CDM'], 22, 63, club, 255455, true);
 
-		club = Club.create("Real Zaragoza", "Spain", 244, "rgb(187,189,199)", "black");
+		club = Club.create("Real Zaragoza", "Spain", 244, "#BBBDC7", "#000000");
 		Player.create("Cristian Álvarez", "C. Álvarez", "Argentina", ['GK'], 36, 73, club, 188938, true);
 		Player.create("Francisco Gámez López", "Fran Gámez", "Spain", ['RB'], 30, 70, club, 243756, true);
 		Player.create("Lluís López Mármol", "Lluís López", "Spain", ['CB'], 25, 69, club, 234032, true);
@@ -17146,7 +17146,7 @@ class SoFifa23Service {
 		Player.create("Marcos Luna Luna Ruiz", "Marcos Luna", "Spain", ['RB'], 19, 64, club, 270415, false);
 		Player.create("Pau Sans López", "Pau Sans", "Spain", ['ST'], 17, 64, club, 274212, false);
 
-		club = Club.create("Tenerife", "Spain", 260, "rgb(187,191,200)", "black");
+		club = Club.create("Tenerife", "Spain", 260, "#BBBFC8", "#000000");
 		Player.create("Juan Soriano Oropesa", "Juan Soriano", "Spain", ['GK'], 24, 72, club, 234790, true);
 		Player.create("Jérémy Mellot", "J. Mellot", "France", ['RB', 'LB'], 28, 70, club, 248777, true);
 		Player.create("Sergio González Martínez", "Sergio González", "Spain", ['CB', 'CDM'], 25, 68, club, 246097, true);
@@ -17178,7 +17178,7 @@ class SoFifa23Service {
 		Player.create("Ibraima José Barry Pérez", "Ibra Pérez", "Spain", ['CM', 'CDM'], 20, 62, club, 258454, true);
 		Player.create("Airam Guzmán Castillo", "Cacho", "Spain", ['LM', 'RM'], 20, 62, club, 275023, false);
 
-		club = Club.create("Burgos", "Spain", 10846, "rgb(205,205,204)", "black");
+		club = Club.create("Burgos", "Spain", 10846, "#CDCDCC", "#000000");
 		Player.create("José Antonio Caro Díaz", "Caro", "Spain", ['GK'], 28, 73, club, 234779, true);
 		Player.create("Jesús Areso Blanco", "Areso", "Spain", ['RB', 'RWB'], 22, 67, club, 239614, true);
 		Player.create("Aitor Córdoba Querejeta", "Córdoba", "Spain", ['CB'], 27, 69, club, 262423, true);
@@ -17208,7 +17208,7 @@ class SoFifa23Service {
 		Player.create("Pol Bassa Mora", "Pol Bassa", "Spain", ['LB'], 19, 61, club, 271360, false);
 		Player.create("Saúl del Cerro García", "del Cerro", "Spain", ['CM', 'CDM'], 18, 61, club, 271358, true);
 
-		club = Club.create("Sporting Gijón", "Spain", 459, "rgb(186,106,111)", "white");
+		club = Club.create("Sporting Gijón", "Spain", 459, "#BA6A6F", "#FFFFFF");
 		Player.create("Iván Cuéllar Sacristán", "Iván Cuéllar", "Spain", ['GK'], 38, 69, club, 146952, true);
 		Player.create("Guillermo Rosas Alonso", "Guille Rosas", "Spain", ['RB', 'RWB'], 22, 65, club, 256080, true);
 		Player.create("Carlos Izquierdoz", "C. Izquierdoz", "Argentina", ['CB'], 33, 76, club, 214766, true);
@@ -17240,7 +17240,7 @@ class SoFifa23Service {
 		Player.create("Leonel Miguel", "L. Miguel", "Netherlands", ['CB'], 21, 61, club, 258796, true);
 		Player.create("Florentin Bloch", "F. Bloch", "France", ['GK'], 22, 59, club, 252227, true);
 
-		club = Club.create("Huesca", "Spain", 110839, "rgb(100,56,78)", "white");
+		club = Club.create("Huesca", "Spain", 110839, "#64384E", "#FFFFFF");
 		Player.create("Andrés Eduardo Fernández Moreno", "Andrés Fernández", "Spain", ['GK'], 35, 74, club, 146296, true);
 		Player.create("Andrei Rațiu", "A. Rațiu", "Romania", ['RB', 'RM'], 24, 66, club, 248165, true);
 		Player.create("Rubén Pulido Peñas", "Rubén Pulido", "Spain", ['CB'], 21, 65, club, 258652, true);
@@ -17272,7 +17272,7 @@ class SoFifa23Service {
 		Player.create("David García Hurtado", "David García", "Spain", ['CM'], 18, 61, club, 268263, true);
 		Player.create("Miguel Ángel Sanz Campos", "Miguel Sanz", "Spain", ['GK'], 19, 59, club, 271354, false);
 
-		club = Club.create("Leganés", "Spain", 100888, "rgb(168,188,215)", "black");
+		club = Club.create("Leganés", "Spain", 100888, "#A8BCD7", "#000000");
 		Player.create("Asier Riesgo Unamuno", "Riesgo", "Spain", ['GK'], 38, 66, club, 110974, true);
 		Player.create("Allan-Roméo Nyom", "A. Nyom", "Cameroon", ['CB', 'RB', 'RM'], 34, 73, club, 192667, true);
 		Player.create("Jorge Sáenz de Miera", "Jorge Sáenz", "Spain", ['CB'], 25, 67, club, 225106, true);
@@ -17302,7 +17302,7 @@ class SoFifa23Service {
 		Player.create("Gonzalo Aguilar López", "Lalo Aguilar", "Spain", ['CB'], 20, 61, club, 274358, true);
 		Player.create("Javier Garrido López", "Javi Garrido", "Spain", ['GK'], 18, 59, club, 271490, true);
 
-		club = Club.create("Málaga", "Spain", 573, "rgb(102,161,193)", "black");
+		club = Club.create("Málaga", "Spain", 573, "#66A1C1", "#000000");
 		Player.create("Rubén Yáñez Alabart", "Rubén Yáñez", "Spain", ['GK'], 28, 64, club, 219836, true);
 		Player.create("Julián Javier Delmás Germán", "Delmás", "Spain", ['RB', 'RWB', 'RM'], 27, 66, club, 239010, true);
 		Player.create("Alberto Escassi Oliva", "Escassi", "Spain", ['CB', 'CDM', 'CM'], 33, 66, club, 193909, true);
@@ -17334,7 +17334,7 @@ class SoFifa23Service {
 		Player.create("Moussa Diarra", "M. Diarra", "Mali", ['CB'], 19, 63, club, 263677, true);
 		Player.create("Carlos López Nogueras", "Carlos López", "Spain", ['GK'], 17, 60, club, 271491, true);
 
-		club = Club.create("Albacete", "Spain", 1854, "rgb(196,190,190)", "black");
+		club = Club.create("Albacete", "Spain", 1854, "#C4BEBE", "#000000");
 		Player.create("Diego Altube Suárez", "Altube", "Spain", ['GK'], 22, 64, club, 247411, true);
 		Player.create("Carlos Isaac Muñoz Obejero", "Carlos Isaac", "Spain", ['RB', 'RM'], 24, 67, club, 243080, true);
 		Player.create("Flavien-Enzo Boyomo", "F. Boyomo", "France", ['CB', 'RB'], 20, 67, club, 259066, true);
@@ -17362,7 +17362,7 @@ class SoFifa23Service {
 		Player.create("Raúl Valdés Madrazo", "Raúl Valdés", "Spain", ['GK'], 18, 58, club, 272429, false);
 		Player.create("Tomás Romero Cejudo", "Tommy", "Spain", ['GK'], 19, 57, club, 271489, false);
 
-		club = Club.create("Racing Santander", "Spain", 456, "rgb(198,203,195)", "black");
+		club = Club.create("Racing Santander", "Spain", 456, "#C6CBC3", "#000000");
 		Player.create("Jokin Ezkieta Mendiburu", "Ezkieta", "Spain", ['GK'], 25, 65, club, 225395, true);
 		Player.create("Daniel Fernández Fernández", "Dani Fernández", "Spain", ['RB', 'RM'], 25, 65, club, 252135, true);
 		Player.create("Pol Moreno Sánchez", "Pol Moreno", "Spain", ['CB'], 28, 66, club, 244799, true);
@@ -17394,7 +17394,7 @@ class SoFifa23Service {
 		Player.create("Ayoub Jabbari", "A. Jabbari", "Morocco", ['ST'], 22, 58, club, 258620, true);
 		Player.create("Germán Fernández Hidalgo", "Germán Fernández", "Spain", ['GK'], 21, 58, club, 254004, true);
 
-		club = Club.create("Ponferradina", "Spain", 2023, "rgb(112,119,149)", "white");
+		club = Club.create("Ponferradina", "Spain", 2023, "#707795", "#FFFFFF");
 		Player.create("Amir Abedzadeh", "A. Abedzadeh", "Iran", ['GK'], 29, 69, club, 237419, true);
 		Player.create("Paris Adot Barandiaran", "Paris Adot", "Spain", ['RB'], 32, 68, club, 243553, true);
 		Player.create("Sofian Chakla", "S. Chakla", "Morocco", ['CB'], 28, 68, club, 220388, true);
@@ -17422,7 +17422,7 @@ class SoFifa23Service {
 		Player.create("Raúl Arias Arias", "Raúl Arias", "Spain", ['ST'], 19, 60, club, 271699, true);
 		Player.create("Àlex Baño Canellas", "Àlex Baño", "Spain", ['GK'], 22, 59, club, 271492, false);
 
-		club = Club.create("Mirandés", "Spain", 110069, "rgb(115,46,53)", "white");
+		club = Club.create("Mirandés", "Spain", 110069, "#732E35", "#FFFFFF");
 		Player.create("Alfonso Herrero Peinador", "Alfonso Herrero", "Spain", ['GK'], 28, 68, club, 235312, true);
 		Player.create("Juan Luis Sánchez Velasco", "Juanlu Sánchez", "Spain", ['RM', 'RWB', 'CAM'], 18, 62, club, 264174, true);
 		Player.create("Beñat Prados Díaz", "Beñat Prados", "Spain", ['CM', 'CDM', 'CB'], 21, 66, club, 263617, true);
@@ -17452,7 +17452,7 @@ class SoFifa23Service {
 		Player.create("Salifo Caropitche Mendes", "Caropitche", "Guinea Bissau", ['ST'], 21, 59, club, 271409, false);
 		Player.create("Ramón Juan Ramírez", "Ramón Juan", "Spain", ['GK'], 22, 64, club, 262742, true);
 
-		club = Club.create("Villarreal II", "Spain", 110902, "rgb(206,207,34)", "black");
+		club = Club.create("Villarreal II", "Spain", 110902, "#CECF22", "#000000");
 		Player.create("Iker Álvarez de Eulate", "Iker Álvarez", "Andorra", ['GK'], 20, 66, club, 269641, true);
 		Player.create("Sergio Carreira Vilariño", "Carreira", "Spain", ['RB', 'RWB', 'RM'], 21, 65, club, 252866, true);
 		Player.create("Adrián De La Fuente", "De La Fuente", "Spain", ['CB'], 23, 68, club, 245290, true);
@@ -17483,7 +17483,7 @@ class SoFifa23Service {
 		Player.create("Jorge Pascual Medina", "Jorge Pascual", "Spain", ['ST'], 19, 57, club, 275415, false);
 		Player.create("Jordi Ortega Lluch", "Jordi Ortega", "Spain", ['CM'], 19, 57, club, 271614, true);
 
-		club = Club.create("UD Ibiza", "Spain", 113981, "rgb(101,141,187)", "black");
+		club = Club.create("UD Ibiza", "Spain", 113981, "#658DBB", "#000000");
 		Player.create("Germán Parreño Boix", "Germán Parreño", "Spain", ['GK'], 29, 64, club, 212453, true);
 		Player.create("Francesc Grima Aguilera", "Fran Grima", "Spain", ['RB', 'RM'], 35, 64, club, 198839, true);
 		Player.create("Martín Pascual Castillo", "Martín", "Spain", ['CB', 'CDM'], 22, 64, club, 244919, true);
@@ -17511,7 +17511,7 @@ class SoFifa23Service {
 		Player.create("César Valero Álvarez", "César", "Spain", ['CDM', 'CM'], 21, 61, club, 264128, false);
 		Player.create("Alejandro Sánchez Amador", "Álex Sánchez", "Spain", ['ST', 'LM', 'RM'], 17, 60, club, 275376, false);
 
-		club = Club.create("FC Andorra", "Spain", 114554, "rgb(144,111,102)", "white");
+		club = Club.create("FC Andorra", "Spain", 114554, "#906F66", "#FFFFFF");
 		Player.create("Nicolás Ratti", "N. Ratti", "Argentina", ['GK'], 28, 66, club, 223558, true);
 		Player.create("Adrià Altimira Reynaldos", "Altimira", "Spain", ['RB', 'RM'], 21, 65, club, 269228, true);
 		Player.create("Álex Pastor Carayol", "Álex Pastor", "Spain", ['CB', 'RB'], 22, 64, club, 269227, true);
@@ -17539,7 +17539,7 @@ class SoFifa23Service {
 		Player.create("Marc Vidal Girona", "Marc Vidal", "Spain", ['GK'], 22, 58, club, 264167, true);
 		Player.create("Marc Bombardó Poyato", "Marc Bombardó", "Spain", ['CB'], 16, 56, club, 271955, true);
 
-		club = Club.create("Lugo", "Spain", 110831, "rgb(187,110,112)", "black");
+		club = Club.create("Lugo", "Spain", 110831, "#BB6E70", "#000000");
 		Player.create("Óscar Alexander Whalley Guardado", "Óscar Whalley", "Spain", ['GK'], 28, 72, club, 220433, true);
 		Player.create("Miguel Loureiro Ameijenda", "Loureiro", "Spain", ['RB', 'RWB', 'CB'], 25, 67, club, 239403, true);
 		Player.create("Alberto Rodríguez Martín", "Alberto", "Spain", ['CB'], 29, 65, club, 263725, true);
@@ -17571,7 +17571,7 @@ class SoFifa23Service {
 		Player.create("Pablo López Gallo", "Pablo Castrín", "Spain", ['CB'], 22, 58, club, 271508, false);
 		Player.create("Julen Fernández Díaz", "Julen", "Spain", ['GK'], 23, 58, club, 258548, true);
 
-		club = Club.create("Malmö FF", "Sweden", 320, "rgb(104,167,214)", "black");
+		club = Club.create("Malmö FF", "Sweden", 320, "#68A7D6", "#000000");
 		Player.create("Johan Dahlin", "J. Dahlin", "Sweden", ['GK'], 35, 70, club, 164484, true);
 		Player.create("Joseph Ceesay", "J. Ceesay", "Sweden", ['RM', 'RB'], 24, 66, club, 234358, true);
 		Player.create("Lasse Nielsen", "L. Nielsen", "Denmark", ['CB'], 34, 68, club, 177373, true);
@@ -17601,7 +17601,7 @@ class SoFifa23Service {
 		Player.create("Pontus Jansson", "P. Jansson", "Sweden", ['CB'], 31, 74, club, 194201, true);
 		Player.create("Anders Christiansen", "A. Christiansen", "Denmark", ['CM', 'CAM'], 32, 74, club, 199792, true);
 
-		club = Club.create("Djurgården", "Sweden", 710, "rgb(75,114,143)", "white");
+		club = Club.create("Djurgården", "Sweden", 710, "#4B728F", "#FFFFFF");
 		Player.create("Jacob Widell Zetterström", "J. Zetterström", "Sweden", ['GK'], 23, 69, club, 247022, true);
 		Player.create("Piotr Johansson", "P. Johansson", "Sweden", ['RB'], 27, 68, club, 223907, true);
 		Player.create("Jesper Löfgren", "J. Löfgren", "Sweden", ['CB'], 25, 65, club, 247042, true);
@@ -17630,7 +17630,7 @@ class SoFifa23Service {
 		Player.create("Musa Gurbanli", "M. Gurbanli", "Azerbaijan", ['ST'], 20, 64, club, 276614, false);
 		Player.create("António Félix Vladmiro Etson", "Felix Vá", "Angola", ['RW', 'LW'], 23, 59, club, 276434, false);
 
-		club = Club.create("Häcken", "Sweden", 711, "rgb(105,93,45)", "white");
+		club = Club.create("Häcken", "Sweden", 711, "#695D2D", "#FFFFFF");
 		Player.create("Peter Abrahamsson", "P. Abrahamsson", "Sweden", ['GK'], 33, 69, club, 192201, true);
 		Player.create("Valgeir Lunddal", "V. Lunddal", "Iceland", ['RB', 'LB'], 20, 66, club, 260383, true);
 		Player.create("Simon Sandberg", "S. Sandberg", "Sweden", ['RB', 'CB'], 28, 66, club, 208111, true);
@@ -17660,7 +17660,7 @@ class SoFifa23Service {
 		Player.create("Tobias Sana", "T. Sana", "Sweden", ['LW', 'ST', 'CAM'], 32, 66, club, 191154, true);
 		Player.create("Ali Youssef", "A. Youssef", "Sweden", ['CAM', 'ST'], 21, 61, club, 246467, true);
 
-		club = Club.create("AIK", "Sweden", 433, "rgb(59,58,48)", "white");
+		club = Club.create("AIK", "Sweden", 433, "#3B3A30", "#FFFFFF");
 		Player.create("Kristoffer Nordfeldt", "K. Nordfeldt", "Sweden", ['GK'], 33, 72, club, 192129, true);
 		Player.create("Rui Manuel Muati Modesto", "Rui Modesto", "Portugal", ['RWB'], 22, 65, club, 274270, false);
 		Player.create("Sotirios Papagiannopoulos", "S. Papagiannopoulos", "Sweden", ['CB'], 31, 66, club, 226583, true);
@@ -17689,7 +17689,7 @@ class SoFifa23Service {
 		Player.create("Anton Salétros", "A. Salétros", "Sweden", ['CM', 'CDM'], 26, 68, club, 219951, true);
 		Player.create("Lamine Dabo", "L. Dabo", "Spain", ['CDM'], 18, 53, club, 275067, false);
 
-		club = Club.create("IFK Göteborg", "Sweden", 319, "rgb(106,107,170)", "white");
+		club = Club.create("IFK Göteborg", "Sweden", 319, "#6A6BAA", "#FFFFFF");
 		Player.create("Pontus Dahlberg", "P. Dahlberg", "Sweden", ['GK'], 23, 65, club, 233763, true);
 		Player.create("Emil Salomonsson", "E. Salomonsson", "Sweden", ['RB', 'RM'], 33, 67, club, 191111, true);
 		Player.create("Gustav Svensson", "G. Svensson", "Sweden", ['CDM', 'CM', 'CB'], 35, 69, club, 177448, true);
@@ -17718,7 +17718,7 @@ class SoFifa23Service {
 		Player.create("Arbnor Mucolli", "A. Mucolli", "Albania", ['LM', 'CAM'], 22, 66, club, 243788, false);
 		Player.create("Thomas Santos", "T. Santos", "Denmark", ['RWB', 'RM'], 23, 64, club, 269385, true);
 
-		club = Club.create("Elfsborg", "Sweden", 700, "rgb(197,147,33)", "black");
+		club = Club.create("Elfsborg", "Sweden", 700, "#C59321", "#000000");
 		Player.create("Hakon Valdimarsson", "H. Valdimarsson", "Iceland", ['GK'], 20, 64, club, 264133, true);
 		Player.create("Johan Larsson", "J. Larsson", "Sweden", ['RB'], 32, 71, club, 198455, true);
 		Player.create("Sebastian Holmén", "S. Holmén", "Sweden", ['CB'], 30, 71, club, 209063, true);
@@ -17745,7 +17745,7 @@ class SoFifa23Service {
 		Player.create("Viktor Widell", "V. Widell", "Sweden", ['RB'], 19, 55, club, 270920, true);
 		Player.create("Melker Uppenberg", "M. Uppenberg", "Sweden", ['GK'], 20, 54, club, 274957, false);
 
-		club = Club.create("Hammarby", "Sweden", 708, "rgb(211,218,209)", "black");
+		club = Club.create("Hammarby", "Sweden", 708, "#D3DAD1", "#000000");
 		Player.create("Oliver Dovin", "O. Dovin", "Sweden", ['GK'], 19, 64, club, 255976, true);
 		Player.create("Markus Karlsson", "M. Karlsson", "Sweden", ['RB', 'CB'], 18, 53, club, 275290, false);
 		Player.create("Edvin Kurtulus", "E. Kurtulus", "Sweden", ['CB', 'RB'], 22, 69, club, 259989, true);
@@ -17775,7 +17775,7 @@ class SoFifa23Service {
 		Player.create("Dennis Collander", "D. Collander", "Sweden", ['RW', 'CM'], 20, 61, club, 246920, true);
 		Player.create("Jón Guðni Fjóluson", "J. Fjóluson", "Iceland", ['CB'], 33, 69, club, 203929, true);
 
-		club = Club.create("Norrköping", "Sweden", 702, "rgb(199,201,203)", "black");
+		club = Club.create("Norrköping", "Sweden", 702, "#C7C9CB", "#000000");
 		Player.create("Oscar Jansson", "O. Jansson", "Sweden", ['GK'], 31, 70, club, 190669, true);
 		Player.create("Daniel Eid", "D. Eid", "Norway", ['RB', 'RWB'], 23, 65, club, 266606, true);
 		Player.create("Marco Lund", "M. Lund", "Denmark", ['CB'], 26, 65, club, 229724, true);
@@ -17805,7 +17805,7 @@ class SoFifa23Service {
 		Player.create("Jean Carlos de Brito", "Jean Carlos", "Brazil", ['LB', 'LWB'], 27, 63, club, 244979, true);
 		Player.create("Christopher Telo", "C. Telo", "Sweden", ['LB', 'LWB'], 32, 63, club, 189325, true);
 
-		club = Club.create("Kalmar", "Sweden", 1439, "rgb(224,65,77)", "white");
+		club = Club.create("Kalmar", "Sweden", 1439, "#E0414D", "#FFFFFF");
 		Player.create("Ricardo Schuck Friedrich", "Ricardo Friedrich", "Brazil", ['GK'], 29, 67, club, 242159, true);
 		Player.create("Axel Lindahl", "A. Lindahl", "Sweden", ['RB', 'LM', 'RWB'], 27, 63, club, 259920, true);
 		Player.create("Lars Sætra", "L. Sætra", "Norway", ['CB'], 30, 67, club, 196972, true);
@@ -17832,7 +17832,7 @@ class SoFifa23Service {
 		Player.create("Isak Vidjeskog", "I. Vidjeskog", "Finland", ['CAM', 'CM'], 18, 54, club, 275015, false);
 		Player.create("Arvin Davoudi-Kia", "A. Davoudi-Kia", "Sweden", ['LB'], 16, 51, club, 275314, false);
 
-		club = Club.create("Sirius", "Sweden", 113458, "rgb(64,87,132)", "white");
+		club = Club.create("Sirius", "Sweden", 113458, "#405784", "#FFFFFF");
 		Player.create("Jakob Tånnander", "J. Tånnander", "Sweden", ['GK'], 21, 62, club, 255494, true);
 		Player.create("Aron Bjarnason", "A. Bjarnason", "Iceland", ['RB', 'RW'], 26, 63, club, 260980, true);
 		Player.create("Jakob V. Persson", "J. Persson", "Sweden", ['CB', 'RB'], 21, 61, club, 253369, true);
@@ -17860,7 +17860,7 @@ class SoFifa23Service {
 		Player.create("David Mitov Nilsson", "D. Mitov Nilsson", "North Macedonia", ['GK'], 31, 64, club, 202910, true);
 		Player.create("Filip Olsson", "F. Olsson", "Sweden", ['CM'], 23, 58, club, 266266, true);
 
-		club = Club.create("Degerfors", "Sweden", 113892, "rgb(210,62,66)", "white");
+		club = Club.create("Degerfors", "Sweden", 113892, "#D23E42", "#FFFFFF");
 		Player.create("Jonas Olsson", "J. Olsson", "Sweden", ['GK'], 27, 60, club, 273697, false);
 		Player.create("Elyas Bouzaiene", "E. Bouzaiene", "Sweden", ['RWB', 'RB'], 24, 63, club, 270574, false);
 		Player.create("Gustav Granath", "G. Granath", "Sweden", ['CB'], 25, 62, club, 259916, true);
@@ -17890,7 +17890,7 @@ class SoFifa23Service {
 		Player.create("Filip Järlesand", "F. Järlesand", "Sweden", ['GK'], 18, 53, club, 273086, false);
 		Player.create("Nikola Đurđić", "N. Đurđić", "Serbia", ['ST', 'RW'], 36, 63, club, 198611, true);
 
-		club = Club.create("Värnamo", "Sweden", 112126, "rgb(222,219,220)", "black");
+		club = Club.create("Värnamo", "Sweden", 112126, "#DEDBDC", "#000000");
 		Player.create("Jonathan Rasheed", "J. Rasheed", "Norway", ['GK'], 30, 62, club, 222471, true);
 		Player.create("Victor Larsson", "V. Larsson", "Sweden", ['LB', 'RB', 'CB'], 22, 61, club, 266173, true);
 		Player.create("Victor Eriksson", "V. Eriksson", "Sweden", ['CB'], 21, 65, club, 266337, true);
@@ -17918,7 +17918,7 @@ class SoFifa23Service {
 		Player.create("Johan Kenneryd", "J. Kenneryd", "Sweden", ['CB'], 18, 53, club, 269621, false);
 		Player.create("Pontus Kindberg", "P. Kindberg", "Sweden", ['LB', 'CDM'], 19, 53, club, 246409, true);
 
-		club = Club.create("Varberg BoIS", "Sweden", 113743, "rgb(71,101,83)", "white");
+		club = Club.create("Varberg BoIS", "Sweden", 113743, "#476553", "#FFFFFF");
 		Player.create("Stojan Lukić", "S. Lukić", "Bosnia and Herzegovina", ['GK'], 42, 61, club, 213483, false);
 		Player.create("Leo Jansson", "L. Jansson", "Sweden", ['CB'], 19, 56, club, 272729, false);
 		Player.create("Joakim Lindner", "J. Lindner", "Sweden", ['CB', 'RWB'], 31, 64, club, 202492, true);
@@ -17948,7 +17948,7 @@ class SoFifa23Service {
 		Player.create("Gideon Mensah", "G. Mensah", "Ghana", ['RWB', 'RB'], 21, 62, club, 258243, true);
 		Player.create("Anton Liljenbäck", "A. Liljenbäck", "Sweden", ['RWB', 'RB', 'LWB'], 27, 64, club, 255737, true);
 
-		club = Club.create("Mjällby", "Sweden", 112072, "rgb(230,202,50)", "black");
+		club = Club.create("Mjällby", "Sweden", 112072, "#E6CA32", "#000000");
 		Player.create("Noel Törnqvist", "N. Törnqvist", "Sweden", ['GK'], 20, 59, club, 255900, true);
 		Player.create("Herman Johansson", "H. Johansson", "Sweden", ['RWB', 'RM'], 24, 62, club, 261028, true);
 		Player.create("Noah Eile", "N. Eile", "Sweden", ['CB'], 19, 63, club, 260001, true);
@@ -17978,7 +17978,7 @@ class SoFifa23Service {
 		Player.create("Adam Petersson", "A. Petersson", "Sweden", ['CM'], 21, 58, club, 254518, true);
 		Player.create("Silas Nwankwo", "S. Nwankwo", "Nigeria", ['ST'], 18, 62, club, 267473, true);
 
-		club = Club.create("GIF Sundsvall", "Sweden", 1596, "rgb(47,78,153)", "white");
+		club = Club.create("GIF Sundsvall", "Sweden", 1596, "#2F4E99", "#FFFFFF");
 		Player.create("Oscar Jonsson", "O. Jonsson", "Sweden", ['GK'], 25, 58, club, 228117, true);
 		Player.create("Robert Lundström", "R. Lundström", "Sweden", ['RWB', 'RB'], 32, 66, club, 191105, true);
 		Player.create("Alexander Blomqvist", "A. Blomqvist", "Sweden", ['CB'], 27, 64, club, 212644, true);
@@ -17998,7 +17998,7 @@ class SoFifa23Service {
 		Player.create("Gabriel Fernandes Castro", "Gabriel Castro", "Portugal", ['RB', 'CB'], 21, 57, club, 271398, false);
 		Player.create("Gustav Molin", "G. Molin", "Sweden", ['GK'], 19, 57, club, 266014, true);
 
-		club = Club.create("Helsingborg", "Sweden", 432, "rgb(221,38,44)", "white");
+		club = Club.create("Helsingborg", "Sweden", 432, "#DD262C", "#FFFFFF");
 		Player.create("Kalle Joelsson", "K. Joelsson", "Sweden", ['GK'], 24, 62, club, 228355, true);
 		Player.create("Philip Rejnhold", "P. Rejnhold", "Denmark", ['RB', 'CB'], 26, 61, club, 271286, false);
 		Player.create("Casper Widell", "C. Widell", "Sweden", ['CB'], 19, 62, club, 256892, true);
@@ -18020,7 +18020,7 @@ class SoFifa23Service {
 		Player.create("Victor Göransson", "V. Göransson", "Sweden", ['CM'], 21, 53, club, 266055, true);
 		Player.create("Charlie Weberg", "C. Weberg", "Sweden", ['CB'], 24, 62, club, 246383, true);
 
-		club = Club.create("Young Boys", "Switzerland", 900, "rgb(186,166,63)", "black");
+		club = Club.create("Young Boys", "Switzerland", 900, "#BAA63F", "#000000");
 		Player.create("Anthony Racioppi", "A. Racioppi", "Switzerland", ['GK'], 23, 69, club, 243573, true);
 		Player.create("Lewin Blum", "L. Blum", "Switzerland", ['RB'], 20, 64, club, 267485, true);
 		Player.create("Cédric Zesiger", "C. Zesiger", "Switzerland", ['CB'], 24, 70, club, 236369, true);
@@ -18048,7 +18048,7 @@ class SoFifa23Service {
 		Player.create("Miguel Chaiwa", "M. Chaiwa", "Zambia", ['CDM'], 18, 55, club, 270845, true);
 		Player.create("David von Ballmoos", "D. von Ballmoos", "Switzerland", ['GK'], 27, 74, club, 219244, true);
 
-		club = Club.create("Servette", "Switzerland", 324, "rgb(96,53,62)", "white");
+		club = Club.create("Servette", "Switzerland", 324, "#60353E", "#FFFFFF");
 		Player.create("Jérémy Frick", "J. Frick", "Switzerland", ['GK'], 29, 69, club, 206307, true);
 		Player.create("Kevin Mbabu", "K. Mbabu", "Switzerland", ['RB'], 27, 75, club, 210625, true);
 		Player.create("Steve Rouiller", "S. Rouiller", "Switzerland", ['CB', 'RB'], 31, 69, club, 224821, true);
@@ -18078,7 +18078,7 @@ class SoFifa23Service {
 		Player.create("Samba Lélé Diba", "S. Diba", "Senegal", ['CM', 'CAM'], 18, 52, club, 270849, true);
 		Player.create("Steven Deana", "S. Deana", "Switzerland", ['GK'], 32, 59, club, 190061, true);
 
-		club = Club.create("Basel", "Switzerland", 896, "rgb(130,63,101)", "white");
+		club = Club.create("Basel", "Switzerland", 896, "#823F65", "#FFFFFF");
 		Player.create("Marwin Hitz", "M. Hitz", "Switzerland", ['GK'], 34, 78, club, 190243, true);
 		Player.create("Michael Lang", "M. Lang", "Switzerland", ['RB'], 31, 69, club, 184501, true);
 		Player.create("Andy Pelmard", "A. Pelmard", "France", ['CB', 'LB'], 22, 71, club, 247412, true);
@@ -18107,7 +18107,7 @@ class SoFifa23Service {
 		Player.create("Taulant Xhaka", "T. Xhaka", "Albania", ['CDM'], 31, 70, club, 199504, true);
 		Player.create("Aaron Akalé", "A. Akalé", "France", ['ST'], 17, 54, club, 275440, false);
 
-		club = Club.create("Zürich", "Switzerland", 894, "rgb(196,198,201)", "black");
+		club = Club.create("Zürich", "Switzerland", 894, "#C4C6C9", "#000000");
 		Player.create("Yanick Brecher", "Y. Brecher", "Switzerland", ['GK'], 29, 73, club, 204842, true);
 		Player.create("Lindrit Kamberi", "L. Kamberi", "Switzerland", ['CB'], 22, 65, club, 243025, true);
 		Player.create("Nikola Katić", "N. Katić", "Croatia", ['CB'], 25, 69, club, 244204, true);
@@ -18137,7 +18137,7 @@ class SoFifa23Service {
 		Player.create("Gianni De Nitti", "G. De Nitti", "Switzerland", ['GK'], 19, 55, club, 263070, true);
 		Player.create("Carson Buschman-Dormond", "C. Buschman-Dormond", "Canada", ['ST', 'LW'], 19, 58, club, 263064, true);
 
-		club = Club.create("Sion", "Switzerland", 110770, "rgb(165,55,70)", "white");
+		club = Club.create("Sion", "Switzerland", 110770, "#A53746", "#FFFFFF");
 		Player.create("Alexandros Safarikas", "A. Safarikas", "Greece", ['GK'], 22, 57, club, 263742, true);
 		Player.create("Numa Lavanchy", "N. Lavanchy", "Switzerland", ['RB', 'RWB', 'RM'], 28, 72, club, 199890, true);
 		Player.create("Joël Schmied", "J. Schmied", "Switzerland", ['CB'], 23, 65, club, 258412, true);
@@ -18167,7 +18167,7 @@ class SoFifa23Service {
 		Player.create("Gilles Richard", "G. Richard", "Switzerland", ['CB'], 19, 57, club, 271133, true);
 		Player.create("Heinz Lindner", "H. Lindner", "Austria", ['GK'], 31, 75, club, 193247, true);
 
-		club = Club.create("Grasshopper", "Switzerland", 322, "rgb(130,139,170)", "black");
+		club = Club.create("Grasshopper", "Switzerland", 322, "#828BAA", "#000000");
 		Player.create("André Campos Moreira", "André Moreira", "Portugal", ['GK'], 26, 70, club, 224953, true);
 		Player.create("Bendegúz Bolla", "B. Bolla", "Hungary", ['RWB', 'RB'], 22, 66, club, 263233, true);
 		Player.create("Noah Loosli", "N. Loosli", "Switzerland", ['CB'], 25, 67, club, 228243, true);
@@ -18194,7 +18194,7 @@ class SoFifa23Service {
 		Player.create("Eliseu Mendja Nadjack Cassamá", "Nadjack", "Guinea Bissau", ['RB'], 28, 64, club, 234667, true);
 		Player.create("Georg Margreitter", "G. Margreitter", "Austria", ['CB'], 33, 65, club, 183795, true);
 
-		club = Club.create("Luzern", "Switzerland", 897, "rgb(72,59,82)", "white");
+		club = Club.create("Luzern", "Switzerland", 897, "#483B52", "#FFFFFF");
 		Player.create("Marius Müller", "M. Müller", "Germany", ['GK'], 28, 73, club, 208375, true);
 		Player.create("Severin Ottiger", "S. Ottiger", "Switzerland", ['RB'], 19, 56, club, 270928, true);
 		Player.create("Marco Burch", "M. Burch", "Switzerland", ['CB'], 21, 67, club, 252527, true);
@@ -18224,7 +18224,7 @@ class SoFifa23Service {
 		Player.create("Nando Toggenburger", "N. Toggenburger", "Switzerland", ['ST'], 18, 53, club, 270927, true);
 		Player.create("Mauricio Willimann", "M. Willimann", "Switzerland", ['CB'], 19, 58, club, 275442, false);
 
-		club = Club.create("St. Gallen", "Switzerland", 898, "rgb(50,104,66)", "white");
+		club = Club.create("St. Gallen", "Switzerland", 898, "#326842", "#FFFFFF");
 		Player.create("Lawrence Ati Zigi", "L. Zigi", "Ghana", ['GK'], 25, 74, club, 229956, true);
 		Player.create("Patrick Sutter", "P. Sutter", "Switzerland", ['RB'], 23, 59, club, 263746, true);
 		Player.create("Leonidas Stergiou", "L. Stergiou", "Switzerland", ['CB'], 20, 69, club, 247360, true);
@@ -18254,7 +18254,7 @@ class SoFifa23Service {
 		Player.create("Stefano Guidotti", "S. Guidotti", "Switzerland", ['CM'], 23, 59, club, 239906, true);
 		Player.create("Alessio Besio", "A. Besio", "Switzerland", ['ST'], 18, 57, club, 263748, true);
 
-		club = Club.create("Lugano", "Switzerland", 10032, "rgb(83,70,70)", "white");
+		club = Club.create("Lugano", "Switzerland", 10032, "#534646", "#FFFFFF");
 		Player.create("Amir Saipi", "A. Saipi", "Switzerland", ['GK'], 21, 68, club, 247077, true);
 		Player.create("Allan Arigoni", "A. Arigoni", "Switzerland", ['RB', 'CB'], 23, 63, club, 242759, true);
 		Player.create("Kreshnik Hajrizi", "K. Hajrizi", "Kosovo", ['CB', 'RB'], 23, 61, club, 263740, true);
@@ -18284,7 +18284,7 @@ class SoFifa23Service {
 		Player.create("Chinwendu Johan Nkama", "C. Nkama", "Nigeria", ['CDM'], 24, 59, club, 275441, false);
 		Player.create("Attilio Morosoli", "A. Morosoli", "Switzerland", ['GK'], 17, 52, club, 263741, true);
 
-		club = Club.create("Winterthur", "Switzerland", 1713, "rgb(157,43,44)", "white");
+		club = Club.create("Winterthur", "Switzerland", 1713, "#9D2B2C", "#FFFFFF");
 		Player.create("Markus Kuster", "M. Kuster", "Austria", ['GK'], 28, 64, club, 210476, false);
 		Player.create("Michael Gonçalves", "M. Gonçalves", "Switzerland", ['RB', 'LB'], 27, 60, club, 224292, true);
 		Player.create("Yannick Schmid", "Y. Schmid", "Switzerland", ['CB'], 27, 63, club, 230064, true);
@@ -18313,7 +18313,7 @@ class SoFifa23Service {
 		Player.create("Laurin Vögele", "L. Vögele", "Switzerland", ['RM'], 17, 52, club, 275444, false);
 		Player.create("Timothy Fayulu", "T. Fayulu", "Switzerland", ['GK'], 22, 65, club, 248858, true);
 
-		club = Club.create("Galatasaray", "Turkey", 325, "rgb(157,90,58)", "white");
+		club = Club.create("Galatasaray", "Turkey", 325, "#9D5A3A", "#FFFFFF");
 		Player.create("Fernando Muslera", "F. Muslera", "Uruguay", ['GK'], 36, 80, club, 182494, true);
 		Player.create("Sacha Boey", "S. Boey", "France", ['RB'], 21, 78, club, 248266, true);
 		Player.create("Victor Nelsson", "V. Nelsson", "Denmark", ['CB'], 23, 77, club, 235658, true);
@@ -18344,7 +18344,7 @@ class SoFifa23Service {
 		Player.create("Yusuf Demir", "Y. Demir", "Austria", ['RW', 'CAM', 'RM'], 19, 70, club, 251873, true);
 		Player.create("Özgür Baran Aksaka", "Ö. Aksaka", "Turkey", ['CDM', 'CM'], 19, 62, club, 272678, false);
 
-		club = Club.create("Fenerbahçe", "Turkey", 326, "rgb(139,138,83)", "black");
+		club = Club.create("Fenerbahçe", "Turkey", 326, "#8B8A53", "#000000");
 		Player.create("İrfan Can Eğribayat", "İ. Eğribayat", "Turkey", ['GK'], 24, 69, club, 234341, true);
 		Player.create("Ferdi Kadioglu", "F. Kadioglu", "Turkey", ['RB', 'LB', 'LM'], 22, 76, club, 235152, true);
 		Player.create("Samet Akaydin", "S. Akaydin", "Turkey", ['CB'], 28, 70, club, 263021, true);
@@ -18374,7 +18374,7 @@ class SoFifa23Service {
 		Player.create("Lincoln Oliveira dos Santos", "Lincoln", "Brazil", ['CAM', 'LM', 'LB'], 23, 75, club, 233585, true);
 		Player.create("Altay Bayındır", "A. Bayındır", "Turkey", ['GK'], 24, 77, club, 243647, true);
 
-		club = Club.create("Beşiktaş", "Turkey", 327, "rgb(208,206,205)", "black");
+		club = Club.create("Beşiktaş", "Turkey", 327, "#D0CECD", "#000000");
 		Player.create("Mert Günok", "M. Günok", "Turkey", ['GK'], 33, 75, club, 190113, true);
 		Player.create("Valentin Rosier", "V. Rosier", "France", ['RB', 'RWB'], 25, 77, club, 234730, true);
 		Player.create("Romain Saïss", "R. Saïss", "Morocco", ['CB'], 32, 78, club, 208295, true);
@@ -18403,7 +18403,7 @@ class SoFifa23Service {
 		Player.create("Tayyip Sanuç", "T. Sanuç", "Turkey", ['CB'], 22, 70, club, 242919, true);
 		Player.create("Dele Alli", "D. Alli", "England", ['CM', 'CAM'], 26, 75, club, 211117, true);
 
-		club = Club.create("Trabzonspor", "Turkey", 436, "rgb(112,112,135)", "white");
+		club = Club.create("Trabzonspor", "Turkey", 436, "#707087", "#FFFFFF");
 		Player.create("Uğurcan Çakır", "U. Çakır", "Turkey", ['GK'], 26, 79, club, 226300, true);
 		Player.create("Jens Stryger Larsen", "J. Larsen", "Denmark", ['RB', 'LB'], 31, 74, club, 193133, true);
 		Player.create("Hüseyin Türkmen", "H. Türkmen", "Turkey", ['CB', 'RB'], 24, 67, club, 243244, true);
@@ -18430,7 +18430,7 @@ class SoFifa23Service {
 		Player.create("Taha Altıkardeş", "T. Altıkardeş", "Turkey", ['CB', 'CDM', 'RB'], 18, 60, club, 266794, false);
 		Player.create("Kağan Moradaoğlu", "K. Moradaoğlu", "Turkey", ['GK'], 19, 59, club, 261130, false);
 
-		club = Club.create("İstanbul Başakşehir", "Turkey", 101014, "rgb(217,87,48)", "white");
+		club = Club.create("İstanbul Başakşehir", "Turkey", 101014, "#D95730", "#FFFFFF");
 		Player.create("Muhammed Şengezer", "M. Şengezer", "Turkey", ['GK'], 25, 67, club, 235931, true);
 		Player.create("Ömer Ali Şahiner", "Ö. Şahiner", "Turkey", ['RB', 'RM'], 30, 69, club, 223017, true);
 		Player.create("Leonardo Duarte da Silva", "Léo Duarte", "Brazil", ['CB'], 25, 74, club, 233926, true);
@@ -18458,7 +18458,7 @@ class SoFifa23Service {
 		Player.create("Ayberk Kaygısız", "A. Kaygısız", "Turkey", ['RB'], 17, 59, club, 274552, false);
 		Player.create("Berkay Aydoğmuş", "B. Aydoğmuş", "Turkey", ['CM'], 18, 56, club, 275448, false);
 
-		club = Club.create("Adana Demirspor", "Turkey", 101016, "rgb(57,99,149)", "white");
+		club = Club.create("Adana Demirspor", "Turkey", 101016, "#396395", "#FFFFFF");
 		Player.create("Ertaç Özbir", "E. Özbir", "Turkey", ['GK'], 32, 72, club, 202778, true);
 		Player.create("Jonas Svensson", "J. Svensson", "Norway", ['RB'], 29, 76, club, 198657, true);
 		Player.create("Jovan Manev", "J. Manev", "North Macedonia", ['CB'], 21, 64, club, 270348, false);
@@ -18486,7 +18486,7 @@ class SoFifa23Service {
 		Player.create("Mustafa Kapı", "M. Kapı", "Turkey", ['CM'], 19, 59, club, 240892, true);
 		Player.create("Vedat Karakuş", "V. Karakuş", "Turkey", ['GK'], 24, 59, club, 236252, true);
 
-		club = Club.create("Antalyaspor", "Turkey", 741, "rgb(206,132,133)", "black");
+		club = Club.create("Antalyaspor", "Turkey", 741, "#CE8485", "#000000");
 		Player.create("Helton Brant Aleixo Leite", "Helton Leite", "Brazil", ['GK'], 31, 76, club, 213951, true);
 		Player.create("Bünyamin Balcı", "B. Balcı", "Turkey", ['RB', 'RM', 'RWB'], 22, 68, club, 253463, true);
 		Player.create("Veysel Sarı", "V. Sarı", "Turkey", ['CB'], 33, 67, club, 194077, true);
@@ -18517,7 +18517,7 @@ class SoFifa23Service {
 		Player.create("Cemali Sertel", "C. Sertel", "Turkey", ['LB', 'CB'], 22, 66, club, 247159, true);
 		Player.create("Bálint Szabó", "B. Szabó", "Hungary", ['CAM'], 21, 50, club, 245708, false);
 
-		club = Club.create("Kasımpaşa", "Turkey", 111339, "rgb(105,108,116)", "white");
+		club = Club.create("Kasımpaşa", "Turkey", 111339, "#696C74", "#FFFFFF");
 		Player.create("Günay Güvenç", "G. Güvenç", "Turkey", ['GK'], 30, 74, club, 211908, true);
 		Player.create("Fabiano Josué de Souza Silva", "Fabiano Souza", "Brazil", ['RB', 'RM'], 22, 73, club, 257162, true);
 		Player.create("Ryan Donk", "R. Donk", "Suriname", ['CB', 'CDM'], 36, 72, club, 178255, true);
@@ -18549,7 +18549,7 @@ class SoFifa23Service {
 		Player.create("Tunay Torun", "T. Torun", "Turkey", ['RM', 'CAM', 'LM'], 32, 65, club, 189263, true);
 		Player.create("Daniel Graovac", "D. Graovac", "Bosnia and Herzegovina", ['CB'], 28, 68, club, 236307, true);
 
-		club = Club.create("Alanyaspor", "Turkey", 113142, "rgb(89,83,55)", "white");
+		club = Club.create("Alanyaspor", "Turkey", 113142, "#595337", "#FFFFFF");
 		Player.create("Rúnar Alex Rúnarsson", "R. Rúnarsson", "Iceland", ['GK'], 27, 71, club, 222562, true);
 		Player.create("Fatih Aksoy", "F. Aksoy", "Turkey", ['CB', 'CDM', 'RB'], 24, 68, club, 240908, true);
 		Player.create("Furkan Bayır", "F. Bayır", "Turkey", ['CB'], 22, 62, club, 264000, true);
@@ -18579,7 +18579,7 @@ class SoFifa23Service {
 		Player.create("Cagan Kayra Erciyas", "C. Erciyas", "Turkey", ['CB', 'RB'], 19, 55, club, 267631, false);
 		Player.create("Ahmet Gülay", "A. Gülay", "Turkey", ['LB'], 19, 62, club, 258352, true);
 
-		club = Club.create("Fatih Karagümrük", "Turkey", 111117, "rgb(99,41,48)", "white");
+		club = Club.create("Fatih Karagümrük", "Turkey", 111117, "#632930", "#FFFFFF");
 		Player.create("Batuhan Şen", "B. Şen", "Turkey", ['GK'], 23, 67, club, 237232, true);
 		Player.create("Davide Biraschi", "D. Biraschi", "Italy", ['RB', 'CB'], 27, 70, club, 213938, true);
 		Player.create("Rayyan Baniya", "R. Baniya", "Italy", ['CB'], 23, 63, club, 264284, true);
@@ -18610,7 +18610,7 @@ class SoFifa23Service {
 		Player.create("Efe Tatlı", "E. Tatlı", "Turkey", ['CM', 'CDM'], 19, 63, club, 257822, true);
 		Player.create("Efecan Mızrakcı", "E. Mızrakcı", "Turkey", ['RB'], 18, 56, club, 275447, false);
 
-		club = Club.create("Konyaspor", "Turkey", 101033, "rgb(102,141,128)", "black");
+		club = Club.create("Konyaspor", "Turkey", 101033, "#668D80", "#000000");
 		Player.create("Ibrahim Šehić", "I. Šehić", "Bosnia and Herzegovina", ['GK'], 33, 73, club, 204349, true);
 		Player.create("Ahmet Oğuz", "A. Oğuz", "Turkey", ['RB'], 29, 71, club, 225555, true);
 		Player.create("Adil Demirbağ", "A. Demirbağ", "Turkey", ['CB'], 24, 66, club, 258777, true);
@@ -18639,7 +18639,7 @@ class SoFifa23Service {
 		Player.create("Kahraman Demirtaş", "K. Demirtaş", "Turkey", ['CB', 'LB'], 28, 63, club, 234947, true);
 		Player.create("Niko Rak", "N. Rak", "Croatia", ['CDM', 'CM'], 18, 62, club, 274691, false);
 
-		club = Club.create("Ankaragücü", "Turkey", 101007, "rgb(115,111,59)", "white");
+		club = Club.create("Ankaragücü", "Turkey", 101007, "#736F3B", "#FFFFFF");
 		Player.create("Gökhan Akkan", "G. Akkan", "Turkey", ['GK'], 27, 70, club, 229637, true);
 		Player.create("Kévin Malcuit", "K. Malcuit", "France", ['RB'], 30, 74, club, 198949, true);
 		Player.create("Arda Kızıldağ", "A. Kızıldağ", "Turkey", ['CB', 'RB'], 23, 64, club, 252753, true);
@@ -18667,7 +18667,7 @@ class SoFifa23Service {
 		Player.create("Doğukan Kaya", "D. Kaya", "Turkey", ['GK'], 22, 55, club, 269695, false);
 		Player.create("Gökhan Töre", "G. Töre", "Turkey", ['RM', 'RW'], 30, 67, club, 191032, true);
 
-		club = Club.create("Kayserispor", "Turkey", 101020, "rgb(184,76,45)", "white");
+		club = Club.create("Kayserispor", "Turkey", 101020, "#B84C2D", "#FFFFFF");
 		Player.create("Bilal Bayazit", "B. Bayazit", "Netherlands", ['GK'], 23, 68, club, 240856, true);
 		Player.create("Gökhan Sazdağı", "G. Sazdağı", "Turkey", ['LM', 'ST'], 27, 65, club, 263808, true);
 		Player.create("Majid Hosseini", "M. Hosseini", "Iran", ['CB'], 26, 69, club, 243549, true);
@@ -18693,7 +18693,7 @@ class SoFifa23Service {
 		Player.create("Talha Sarıarslan", "T. Sarıarslan", "Turkey", ['ST'], 18, 57, club, 274549, false);
 		Player.create("Baran Ali Gezek", "B. Gezek", "Turkey", ['CAM'], 16, 54, club, 274548, false);
 
-		club = Club.create("Sivasspor", "Turkey", 101041, "rgb(150,95,94)", "white");
+		club = Club.create("Sivasspor", "Turkey", 101041, "#965F5E", "#FFFFFF");
 		Player.create("Ali Şaşal Vural", "A. Vural", "Turkey", ['GK'], 31, 67, club, 223709, true);
 		Player.create("Murat Paluli", "M. Paluli", "Turkey", ['RB', 'RWB'], 27, 67, club, 252716, true);
 		Player.create("Aaron Appindangoye", "A. Appindangoye", "Gabon", ['CB'], 30, 67, club, 218353, true);
@@ -18724,7 +18724,7 @@ class SoFifa23Service {
 		Player.create("Armin Đerlek", "A. Đerlek", "Serbia", ['CAM', 'RM'], 21, 62, club, 252560, false);
 		Player.create("Emre Gökay", "E. Gökay", "Turkey", ['RM'], 16, 55, club, 275071, false);
 
-		club = Club.create("Hatayspor", "Turkey", 101028, "rgb(166,131,133)", "black");
+		club = Club.create("Hatayspor", "Turkey", 101028, "#A68385", "#000000");
 		Player.create("Erce Kardeşler", "E. Kardeşler", "Turkey", ['GK'], 28, 70, club, 252081, true);
 		Player.create("Kamil Çörekçi", "K. Çörekçi", "Turkey", ['RB', 'RWB'], 30, 71, club, 199683, true);
 		Player.create("Ognjen Vranješ", "O. Vranješ", "Bosnia and Herzegovina", ['CB'], 32, 71, club, 203624, true);
@@ -18746,7 +18746,7 @@ class SoFifa23Service {
 		Player.create("Engin Can Aksoy", "E. Aksoy", "Turkey", ['LB'], 18, 54, club, 272851, false);
 		Player.create("Hasan Alp Kitapçı", "H. Kitapçı", "Turkey", ['CDM', 'CB'], 22, 62, club, 274321, false);
 
-		club = Club.create("Ümraniyespor", "Turkey", 113796, "rgb(160,59,56)", "white");
+		club = Club.create("Ümraniyespor", "Turkey", 113796, "#A03B38", "#FFFFFF");
 		Player.create("Orkun Özdemir", "O. Özdemir", "Turkey", ['GK'], 27, 64, club, 270565, false);
 		Player.create("Strahil Popov", "S. Popov", "Bulgaria", ['RB'], 31, 67, club, 222225, true);
 		Player.create("Tomislav Glumac", "T. Glumac", "Croatia", ['CB'], 31, 66, club, 227512, false);
@@ -18772,7 +18772,7 @@ class SoFifa23Service {
 		Player.create("Fatih Yiğit Şanlıtürk", "F. Şanlıtürk", "Turkey", ['CM', 'CAM'], 19, 61, club, 271243, false);
 		Player.create("Serkan Kırıntılı", "S. Kırıntılı", "Turkey", ['GK'], 37, 64, club, 144172, true);
 
-		club = Club.create("Gaziantep F.K.", "Turkey", 110776, "rgb(123,47,57)", "white");
+		club = Club.create("Gaziantep F.K.", "Turkey", 110776, "#7B2F39", "#FFFFFF");
 		Player.create("Erten Ersu", "E. Ersu", "Turkey", ['GK'], 28, 63, club, 223041, true);
 		Player.create("Vural Bozkapan", "V. Bozkapan", "Turkey", ['RB'], 30, 69, club, 274306, false);
 		Player.create("Barkan Diyar", "B. Diyar", "Turkey", ['CB', 'RB'], 30, 69, club, 274323, false);
@@ -18794,7 +18794,7 @@ class SoFifa23Service {
 		Player.create("Eren Çakır", "E. Çakır", "Turkey", ['CM'], 18, 51, club, 274350, false);
 		Player.create("Ilgar Çabuk", "I. Çabuk", "Turkey", ['CB', 'CDM'], 22, 63, club, 274301, false);
 
-		club = Club.create("İstanbulspor", "Turkey", 746, "rgb(198,172,30)", "black");
+		club = Club.create("İstanbulspor", "Turkey", 746, "#C6AC1E", "#000000");
 		Player.create("David Jensen", "D. Jensen", "Denmark", ['GK'], 30, 68, club, 190947, true);
 		Player.create("Demeaco Duhaney", "D. Duhaney", "England", ['RB', 'RWB'], 23, 63, club, 230068, true);
 		Player.create("Mehmet Yeşil", "M. Yeşil", "Turkey", ['CB'], 24, 65, club, 234254, false);
@@ -18826,7 +18826,7 @@ class SoFifa23Service {
 		Player.create("Michael Ologo Inainfe", "M. Inainfe", "Nigeria", ['CB', 'RB'], 19, 63, club, 269837, false);
 		Player.create("Vefa Temel", "V. Temel", "Turkey", ['CDM', 'CM'], 19, 55, club, 269797, false);
 
-		club = Club.create("Giresunspor", "Turkey", 112120, "rgb(105,139,130)", "white");
+		club = Club.create("Giresunspor", "Turkey", 112120, "#698B82", "#FFFFFF");
 		Player.create("Onurcan Piri", "O. Piri", "Turkey", ['GK'], 27, 66, club, 223174, true);
 		Player.create("Hayrullah Bilazer", "H. Bilazer", "Turkey", ['RB'], 27, 64, club, 262617, true);
 		Player.create("Ramón Arias", "R. Arias", "Uruguay", ['CB'], 29, 69, club, 227549, true);
@@ -18850,7 +18850,7 @@ class SoFifa23Service {
 		Player.create("Kadir Seven", "K. Seven", "Turkey", ['CB'], 19, 56, club, 271470, false);
 		Player.create("Talha Ülvan", "T. Ülvan", "Turkey", ['RB', 'LB'], 21, 57, club, 271228, false);
 
-		club = Club.create("Dynamo Kyiv", "Ukraine", 101047, "rgb(171,179,196)", "black");
+		club = Club.create("Dynamo Kyiv", "Ukraine", 101047, "#ABB3C4", "#000000");
 		Player.create("Ruslan Neshcheret", "R. Neshcheret", "Ukraine", ['GK'], 20, 66, club, 252789, true);
 		Player.create("Oleksandr Karavaev", "O. Karavaev", "Ukraine", ['RM', 'LB', 'RB'], 30, 73, club, 237109, true);
 		Player.create("Denys Popov", "D. Popov", "Ukraine", ['CB'], 23, 73, club, 245132, true);
@@ -18880,7 +18880,7 @@ class SoFifa23Service {
 		Player.create("Anton Bol", "A. Bol", "Ukraine", ['CB'], 19, 58, club, 271545, false);
 		Player.create("Reshat Ramadani", "R. Ramadani", "North Macedonia", ['CDM'], 19, 58, club, 274727, false);
 
-		club = Club.create("Shakhtar Donetsk", "Ukraine", 101059, "rgb(150,86,34)", "white");
+		club = Club.create("Shakhtar Donetsk", "Ukraine", 101059, "#965622", "#FFFFFF");
 		Player.create("Anatoliy Trubin", "A. Trubin", "Ukraine", ['GK'], 20, 72, club, 250753, true);
 		Player.create("Yukhym Konoplia", "Y. Konoplia", "Ukraine", ['RB', 'RWB'], 22, 68, club, 263804, true);
 		Player.create("Valeriy Bondar", "V. Bondar", "Ukraine", ['CB'], 23, 70, club, 248698, true);
@@ -18910,7 +18910,7 @@ class SoFifa23Service {
 		Player.create("Khusrav Toirov", "K. Toirov", "Tajikistan", ['LM'], 17, 62, club, 274723, false);
 		Player.create("Eduard Kozik", "E. Kozik", "Ukraine", ['CB', 'RB'], 19, 59, club, 271547, true);
 
-		club = Club.create("Al Ain", "United Arab Emirates", 111701, "rgb(59,51,67)", "white");
+		club = Club.create("Al Ain", "United Arab Emirates", 111701, "#3B3343", "#FFFFFF");
 		Player.create("Khalid Eissa", "K. Eissa", "United Arab Emirates", ['GK'], 32, 70, club, 247072, true);
 		Player.create("Bandar Al Ahbabi", "B. Al Ahbabi", "United Arab Emirates", ['RB', 'RM'], 31, 71, club, 247671, true);
 		Player.create("Tin Jedvaj", "T. Jedvaj", "Croatia", ['CB', 'RB'], 26, 73, club, 215930, false);
@@ -18939,7 +18939,7 @@ class SoFifa23Service {
 		Player.create("Omar Saeed", "O. Saeed", "United Arab Emirates", ['RB'], 23, 58, club, 269283, false);
 		Player.create("Salem Abdullah", "S. Abdullah", "United Arab Emirates", ['LB'], 23, 57, club, 252424, true);
 
-		club = Club.create("Los Angeles FC", "United States", 112996, "rgb(54,53,51)", "white");
+		club = Club.create("Los Angeles FC", "United States", 112996, "#363533", "#FFFFFF");
 		Player.create("John McCarthy", "J. McCarthy", "United States", ['GK'], 29, 66, club, 227909, true);
 		Player.create("Ryan Hollingshead", "R. Hollingshead", "United States", ['RB', 'LB'], 31, 71, club, 221488, true);
 		Player.create("Denil Maldonado", "D. Maldonado", "Honduras", ['CB', 'RB'], 24, 66, club, 255316, false);
@@ -18970,7 +18970,7 @@ class SoFifa23Service {
 		Player.create("Maxime Crépeau", "M. Crépeau", "Canada", ['GK'], 28, 73, club, 213536, true);
 		Player.create("Eddie Segura", "E. Segura", "Colombia", ['CB'], 25, 69, club, 237245, true);
 
-		club = Club.create("Philadelphia Union", "United States", 112134, "rgb(58,64,64)", "white");
+		club = Club.create("Philadelphia Union", "United States", 112134, "#3A4040", "#FFFFFF");
 		Player.create("Andre Blake", "A. Blake", "Jamaica", ['GK'], 31, 78, club, 216939, true);
 		Player.create("Olivier Mbaizo", "O. Mbaizo", "Cameroon", ['RB'], 24, 68, club, 243235, true);
 		Player.create("Jakob Glesnes", "J. Glesnes", "Norway", ['CB'], 28, 73, club, 233400, true);
@@ -18998,7 +18998,7 @@ class SoFifa23Service {
 		Player.create("Jeremy Rafanello", "J. Rafanello", "United States", ['ST', 'LW', 'CAM'], 22, 54, club, 261333, false);
 		Player.create("Richard Odada", "R. Odada", "Kenya", ['CDM', 'CM'], 21, 52, club, 271308, false);
 
-		club = Club.create("Portland Timbers", "United States", 111140, "rgb(61,86,74)", "white");
+		club = Club.create("Portland Timbers", "United States", 111140, "#3D564A", "#FFFFFF");
 		Player.create("Aljaž Ivačič", "A. Ivačič", "Slovenia", ['GK'], 28, 70, club, 246958, true);
 		Player.create("Eric Miller", "E. Miller", "United States", ['RB', 'CB', 'LB'], 29, 64, club, 221656, true);
 		Player.create("Dario Župarić", "D. Župarić", "Croatia", ['CB'], 30, 68, club, 215823, true);
@@ -19029,7 +19029,7 @@ class SoFifa23Service {
 		Player.create("Hunter Sulte", "H. Sulte", "United States", ['GK'], 20, 55, club, 260743, true);
 		Player.create("Miguel Araujo", "M. Araujo", "Peru", ['CB'], 27, 67, club, 226002, true);
 
-		club = Club.create("Seattle Sounders", "United States", 111144, "rgb(79,127,87)", "white");
+		club = Club.create("Seattle Sounders", "United States", 111144, "#4F7F57", "#FFFFFF");
 		Player.create("Stefan Frei", "S. Frei", "United States", ['GK'], 36, 72, club, 190569, true);
 		Player.create("Alex Roldan", "A. Roldan", "El Salvador", ['RB', 'RM', 'RWB'], 25, 67, club, 242648, true);
 		Player.create("Yeimar Gómez Andrade", "Y. Gómez Andrade", "Colombia", ['CB'], 30, 74, club, 224396, true);
@@ -19060,7 +19060,7 @@ class SoFifa23Service {
 		Player.create("Andrew Thomas", "A. Thomas", "Russia", ['GK'], 23, 57, club, 262530, true);
 		Player.create("Travian Sousa", "T. Sousa", "United States", ['LB'], 20, 54, club, 275686, false);
 
-		club = Club.create("DC United", "United States", 688, "rgb(61,58,58)", "white");
+		club = Club.create("DC United", "United States", 688, "#3D3A3A", "#FFFFFF");
 		Player.create("Tyler Miller", "T. Miller", "United States", ['GK'], 29, 67, club, 231878, true);
 		Player.create("Brendan Hines-Ike", "B. Hines-Ike", "United States", ['CB'], 27, 65, club, 231948, true);
 		Player.create("Steve Birnbaum", "S. Birnbaum", "United States", ['CB'], 31, 68, club, 221621, true);
@@ -19092,7 +19092,7 @@ class SoFifa23Service {
 		Player.create("Martín Rodríguez", "M. Rodríguez", "Chile", ['LM', 'LW', 'ST'], 27, 70, club, 214718, true);
 		Player.create("Erik Hurtado", "E. Hurtado", "United States", ['ST'], 31, 62, club, 212750, true);
 
-		club = Club.create("New England", "United States", 691, "rgb(59,61,78)", "white");
+		club = Club.create("New England", "United States", 691, "#3B3D4E", "#FFFFFF");
 		Player.create("Đorđe Petrović", "Đ. Petrović", "Serbia", ['GK'], 22, 71, club, 269626, true);
 		Player.create("Brandon Bye", "B. Bye", "United States", ['RB'], 26, 71, club, 242554, true);
 		Player.create("Andrew Farrell", "A. Farrell", "United States", ['CB'], 30, 69, club, 212592, true);
@@ -19124,7 +19124,7 @@ class SoFifa23Service {
 		Player.create("Jacob Jackson", "J. Jackson", "United States", ['GK'], 22, 54, club, 267922, true);
 		Player.create("Tomás Chancalay", "T. Chancalay", "Argentina", ['LW', 'RW'], 23, 73, club, 241026, true);
 
-		club = Club.create("Cincinnati", "United States", 113149, "rgb(54,73,117)", "white");
+		club = Club.create("Cincinnati", "United States", 113149, "#364975", "#FFFFFF");
 		Player.create("Roman Celentano", "R. Celentano", "United States", ['GK'], 21, 68, club, 266382, true);
 		Player.create("Alvas Powell", "A. Powell", "Jamaica", ['RB', 'RWB', 'RM'], 27, 66, club, 216346, true);
 		Player.create("Matt Miazga", "M. Miazga", "United States", ['CB'], 26, 73, club, 215565, true);
@@ -19154,7 +19154,7 @@ class SoFifa23Service {
 		Player.create("Bret Halsey", "B. Halsey", "United States", ['RB', 'CM'], 22, 53, club, 261232, true);
 		Player.create("London Aghedo", "L. Aghedo", "United States", ['CB'], 22, 49, club, 276245, false);
 
-		club = Club.create("Minnesota United", "United States", 111138, "rgb(66,67,68)", "white");
+		club = Club.create("Minnesota United", "United States", 111138, "#424344", "#FFFFFF");
 		Player.create("Dayne St. Clair", "D. St. Clair", "Canada", ['GK'], 25, 71, club, 247228, true);
 		Player.create("Zarek Valentin", "Z. Valentin", "Puerto Rico", ['RB'], 30, 65, club, 202076, true);
 		Player.create("Michael Boxall", "M. Boxall", "New Zealand", ['CB'], 33, 69, club, 202170, true);
@@ -19186,7 +19186,7 @@ class SoFifa23Service {
 		Player.create("Emmanuel Iwe", "E. Iwe", "Nigeria", ['LW'], 21, 54, club, 275279, false);
 		Player.create("Fred Emmings", "F. Emmings", "United States", ['GK'], 18, 50, club, 255336, true);
 
-		club = Club.create("Toronto", "United States", 111651, "rgb(87,70,72)", "white");
+		club = Club.create("Toronto", "United States", 111651, "#574648", "#FFFFFF");
 		Player.create("Greg Ranjitsingh", "G. Ranjitsingh", "Trinidad and Tobago", ['GK'], 28, 60, club, 247448, true);
 		Player.create("Richie Laryea", "R. Laryea", "Canada", ['RB', 'LB'], 27, 71, club, 232081, true);
 		Player.create("Matt Hedges", "M. Hedges", "United States", ['CB'], 32, 70, club, 206662, true);
@@ -19218,7 +19218,7 @@ class SoFifa23Service {
 		Player.create("Jordan Faria", "J. Faria", "Canada", ['LM', 'RM'], 22, 55, club, 275469, false);
 		Player.create("Hugo Mbongue", "H. Mbongue", "Canada", ['ST'], 17, 54, club, 272667, false);
 
-		club = Club.create("San Jose Earthquakes", "United States", 111928, "rgb(46,57,83)", "white");
+		club = Club.create("San Jose Earthquakes", "United States", 111928, "#2E3953", "#FFFFFF");
 		Player.create("Daniel de Souza Brito", "Daniel", "Brazil", ['GK'], 28, 70, club, 238604, false);
 		Player.create("Carlos Akapo Martínez", "Akapo", "Equatorial Guinea", ['RB', 'LB'], 29, 74, club, 216605, true);
 		Player.create("Antônio Rodrigues", "Rodrigues", "Brazil", ['CB'], 24, 67, club, 263784, false);
@@ -19249,7 +19249,7 @@ class SoFifa23Service {
 		Player.create("Cameron Cilley", "C. Cilley", "United States", ['CM'], 21, 48, club, 274275, false);
 		Player.create("Daniel Munie", "D. Munie", "United States", ['LB'], 22, 49, club, 274533, false);
 
-		club = Club.create("Columbus Crew", "United States", 687, "rgb(209,187,36)", "black");
+		club = Club.create("Columbus Crew", "United States", 687, "#D1BB24", "#000000");
 		Player.create("Patrick Schulte", "P. Schulte", "United States", ['GK'], 21, 62, club, 266389, true);
 		Player.create("Sean Zawadzki", "S. Zawadzki", "United States", ['CDM', 'CB'], 22, 58, club, 266390, true);
 		Player.create("Steven Moreira", "S. Moreira", "France", ['RB', 'CB', 'RWB'], 27, 70, club, 212401, true);
@@ -19280,7 +19280,7 @@ class SoFifa23Service {
 		Player.create("Will Sands", "W. Sands", "United States", ['LM', 'LB'], 21, 62, club, 266682, true);
 		Player.create("Isaiah Parente", "I. Parente", "United States", ['CAM'], 22, 55, club, 260421, true);
 
-		club = Club.create("Dallas", "United States", 695, "rgb(151,59,84)", "white");
+		club = Club.create("Dallas", "United States", 695, "#973B54", "#FFFFFF");
 		Player.create("Maarten Paes", "M. Paes", "Netherlands", ['GK'], 24, 71, club, 236571, true);
 		Player.create("Geovane de Jesus Rocha", "Geovane Jesus", "Brazil", ['RB', 'RWB'], 20, 58, club, 272825, false);
 		Player.create("Sebastien Ibeagha", "S. Ibeagha", "United States", ['CB'], 30, 64, club, 232332, true);
@@ -19312,7 +19312,7 @@ class SoFifa23Service {
 		Player.create("Eugene Ansah", "E. Ansah", "Ghana", ['ST'], 27, 62, club, 220846, false);
 		Player.create("Dante Sealy", "D. Sealy", "United States", ['LW', 'RW'], 19, 61, club, 247612, true);
 
-		club = Club.create("Sporting KC", "United States", 696, "rgb(129,143,171)", "black");
+		club = Club.create("Sporting KC", "United States", 696, "#818FAB", "#000000");
 		Player.create("Kendall McIntosh", "K. McIntosh", "United States", ['GK'], 28, 61, club, 237201, true);
 		Player.create("Jake Davis", "J. Davis", "United States", ['RB', 'CM'], 20, 53, club, 264390, true);
 		Player.create("Robert Castellanos", "R. Castellanos", "United States", ['CB'], 24, 58, club, 261197, true);
@@ -19344,7 +19344,7 @@ class SoFifa23Service {
 		Player.create("Felipe Gutiérrez", "F. Gutiérrez", "Chile", ['CM', 'CAM'], 31, 71, club, 203796, true);
 		Player.create("Stephen Afrifa", "S. Afrifa", "Canada", ['ST'], 21, 57, club, 275252, false);
 
-		club = Club.create("LA Galaxy", "United States", 697, "rgb(188,187,187)", "black");
+		club = Club.create("LA Galaxy", "United States", 697, "#BCBBBB", "#000000");
 		Player.create("Jonathan Bond", "J. Bond", "England", ['GK'], 29, 68, club, 197928, true);
 		Player.create("Lucas Felipe Calegari", "Calegari", "Brazil", ['RB', 'CDM'], 20, 68, club, 262998, false);
 		Player.create("Kelvin Leerdam", "K. Leerdam", "Suriname", ['RB', 'CB'], 32, 66, club, 193561, true);
@@ -19373,7 +19373,7 @@ class SoFifa23Service {
 		Player.create("Novak Mićović", "N. Mićović", "Serbia", ['GK'], 20, 57, club, 275032, false);
 		Player.create("Jonathan Perez", "J. Perez", "Mexico", ['RM'], 19, 54, club, 256039, true);
 
-		club = Club.create("New York City", "United States", 112828, "rgb(113,132,160)", "white");
+		club = Club.create("New York City", "United States", 112828, "#7184A0", "#FFFFFF");
 		Player.create("Matt Freese", "M. Freese", "United States", ['GK'], 23, 65, club, 247506, true);
 		Player.create("Tayvon Gray", "T. Gray", "United States", ['RB', 'CB'], 19, 65, club, 254492, true);
 		Player.create("Maxime Chanot", "M. Chanot", "Luxembourg", ['CB'], 32, 72, club, 212607, true);
@@ -19401,7 +19401,7 @@ class SoFifa23Service {
 		Player.create("Samuel Owusu", "S. Owusu", "Ghana", ['CB'], 21, 53, club, 266819, false);
 		Player.create("Valentin Castellanos", "V. Castellanos", "Argentina", ['ST'], 23, 77, club, 237712, true);
 
-		club = Club.create("Charlotte", "United States", 114640, "rgb(76,144,188)", "black");
+		club = Club.create("Charlotte", "United States", 114640, "#4C90BC", "#000000");
 		Player.create("Kristijan Kahlina", "K. Kahlina", "Croatia", ['GK'], 29, 65, club, 266282, true);
 		Player.create("Bill Tuiloma", "B. Tuiloma", "New Zealand", ['CB', 'RB'], 27, 68, club, 220886, true);
 		Player.create("Guzmán Corujo", "G. Corujo", "Uruguay", ['CB'], 25, 72, club, 253289, true);
@@ -19433,7 +19433,7 @@ class SoFifa23Service {
 		Player.create("Isaac Walker", "I. Walker", "United States", ['GK'], 21, 53, club, 274910, false);
 		Player.create("Andrew Privett", "A. Privett", "United States", ['CM'], 21, 52, club, 274534, false);
 
-		club = Club.create("Real Salt Lake", "United States", 111065, "rgb(116,58,67)", "white");
+		club = Club.create("Real Salt Lake", "United States", 111065, "#743A43", "#FFFFFF");
 		Player.create("Zac MacMath", "Z. MacMath", "United States", ['GK'], 30, 67, club, 201940, true);
 		Player.create("Bode Hidalgo", "B. Hidalgo", "United States", ['RB'], 20, 56, club, 259039, true);
 		Player.create("Justen Glad", "J. Glad", "United States", ['CB'], 25, 69, club, 222557, true);
@@ -19465,7 +19465,7 @@ class SoFifa23Service {
 		Player.create("Zack Farnsworth", "Z. Farnsworth", "United States", ['LB', 'CB'], 19, 57, club, 263060, true);
 		Player.create("Nelson Palacio", "N. Palacio", "Colombia", ['CM', 'CDM'], 21, 70, club, 264433, true);
 
-		club = Club.create("Orlando City", "United States", 112606, "rgb(70,66,139)", "white");
+		club = Club.create("Orlando City", "United States", 112606, "#46428B", "#FFFFFF");
 		Player.create("Pedro Gallese", "P. Gallese", "Peru", ['GK'], 32, 73, club, 225701, true);
 		Player.create("Kyle Smith", "K. Smith", "United States", ['RB', 'LB'], 30, 66, club, 247356, true);
 		Player.create("Antônio Carlos Cunha Capocasali Jr", "Antônio Carlos", "Brazil", ['CB'], 29, 70, club, 209597, true);
@@ -19496,7 +19496,7 @@ class SoFifa23Service {
 		Player.create("Wilfredo Rivera", "W. Rivera", "Puerto Rico", ['LM'], 18, 54, club, 261585, true);
 		Player.create("Alexander Freeman", "A. Freeman", "United States", ['RB'], 17, 51, club, 267920, true);
 
-		club = Club.create("Nashville SC", "United States", 114162, "rgb(196,193,72)", "black");
+		club = Club.create("Nashville SC", "United States", 114162, "#C4C148", "#000000");
 		Player.create("Joe Willis", "J. Willis", "United States", ['GK'], 33, 71, club, 202215, true);
 		Player.create("Shaquell Moore", "S. Moore", "United States", ['RB', 'RM'], 25, 72, club, 232120, true);
 		Player.create("Walker Zimmerman", "W. Zimmerman", "United States", ['CB'], 29, 76, club, 212591, true);
@@ -19526,7 +19526,7 @@ class SoFifa23Service {
 		Player.create("Ahmed Longmire", "A. Longmire", "United States", ['CB'], 22, 54, club, 271109, true);
 		Player.create("Benjamin Martino", "B. Martino", "United States", ['GK'], 19, 52, club, 275115, false);
 
-		club = Club.create("Inter Miami", "United States", 112893, "rgb(187,151,172)", "black");
+		club = Club.create("Inter Miami", "United States", 112893, "#BB97AC", "#000000");
 		Player.create("Drake Callender", "D. Callender", "United States", ['GK'], 24, 65, club, 254962, true);
 		Player.create("DeAndre Yedlin", "D. Yedlin", "United States", ['RB', 'RWB'], 28, 69, club, 212722, true);
 		Player.create("Sergiy Kryvtsov", "S. Kryvtsov", "Ukraine", ['CB'], 31, 73, club, 206414, true);
@@ -19557,7 +19557,7 @@ class SoFifa23Service {
 		Player.create("Felipe Valencia", "F. Valencia", "United States", ['RM'], 17, 50, club, 260940, true);
 		Player.create("Shanyder Borgelin", "S. Borgelin", "Haiti", ['ST'], 20, 54, club, 274545, false);
 
-		club = Club.create("New York RB", "United States", 689, "rgb(163,51,60)", "white");
+		club = Club.create("New York RB", "United States", 689, "#A3333C", "#FFFFFF");
 		Player.create("Carlos Miguel Coronel", "Carlos Coronel", "Brazil", ['GK'], 25, 73, club, 242084, true);
 		Player.create("Cameron Harper", "C. Harper", "United States", ['RM', 'RB', 'LM'], 20, 64, club, 256426, true);
 		Player.create("Andrés Reyes", "A. Reyes", "Colombia", ['CB'], 22, 70, club, 246048, true);
@@ -19588,7 +19588,7 @@ class SoFifa23Service {
 		Player.create("Serge Ngoma", "S. Ngoma", "United States", ['RM', 'ST'], 16, 58, club, 267796, true);
 		Player.create("Bento Estrela", "B. Estrela", "United States", ['CM', 'CAM'], 16, 54, club, 261022, false);
 
-		club = Club.create("Chicago Fire", "United States", 693, "rgb(47,54,80)", "white");
+		club = Club.create("Chicago Fire", "United States", 693, "#2F3650", "#FFFFFF");
 		Player.create("Chris Brady", "C. Brady", "United States", ['GK'], 18, 62, club, 260982, true);
 		Player.create("Arnaud Souquet", "A. Souquet", "France", ['RB'], 30, 73, club, 193470, true);
 		Player.create("Mauricio Pineda", "M. Pineda", "United States", ['CDM', 'CB'], 24, 65, club, 255273, true);
@@ -19619,7 +19619,7 @@ class SoFifa23Service {
 		Player.create("Missael Rodríguez", "M. Rodríguez", "United States", ['ST'], 19, 50, club, 271049, true);
 		Player.create("Ousmane Doumbia", "O. Doumbia", "Côte d'Ivoire", ['CDM', 'CB'], 30, 72, club, 259245, true);
 
-		club = Club.create("Colorado Rapids", "United States", 694, "rgb(83,52,59)", "white");
+		club = Club.create("Colorado Rapids", "United States", 694, "#53343B", "#FFFFFF");
 		Player.create("William Yarbrough", "W. Yarbrough", "United States", ['GK'], 33, 69, club, 186998, true);
 		Player.create("Keegan Rosenberry", "K. Rosenberry", "United States", ['RB', 'CB', 'RM'], 28, 70, club, 231985, true);
 		Player.create("Andreas Maxsø", "A. Maxsø", "Denmark", ['CB'], 28, 71, club, 212287, true);
@@ -19651,7 +19651,7 @@ class SoFifa23Service {
 		Player.create("Abraham Rodriguez", "A. Rodriguez", "United States", ['GK'], 19, 54, club, 256034, true);
 		Player.create("Max Alves da Silva", "Max", "Brazil", ['CAM', 'CF'], 21, 64, club, 266275, true);
 
-		club = Club.create("Houston Dynamo", "United States", 698, "rgb(184,70,49)", "white");
+		club = Club.create("Houston Dynamo", "United States", 698, "#B84631", "#FFFFFF");
 		Player.create("Steve Clark", "S. Clark", "United States", ['GK'], 36, 70, club, 198355, true);
 		Player.create("Franco Escobar", "F. Escobar", "Argentina", ['RB', 'LB'], 27, 68, club, 222587, true);
 		Player.create("Erik Sviatchenko", "E. Sviatchenko", "Denmark", ['CB'], 30, 74, club, 199745, true);
@@ -19683,7 +19683,7 @@ class SoFifa23Service {
 		Player.create("Charles Auguste", "C. Auguste", "Canada", ['CM', 'CDM'], 22, 57, club, 272866, false);
 		Player.create("Djevencio van der Kust", "D. van der Kust", "Suriname", ['LB'], 21, 67, club, 264248, true);
 
-		club = Club.create("Austin", "United States", 114161, "rgb(41,97,62)", "white");
+		club = Club.create("Austin", "United States", 114161, "#29613E", "#FFFFFF");
 		Player.create("Brad Stuver", "B. Stuver", "United States", ['GK'], 31, 68, club, 213206, true);
 		Player.create("Nick Lima", "N. Lima", "United States", ['RB', 'LB'], 27, 67, club, 236993, true);
 		Player.create("Julio Cascante", "J. Cascante", "Costa Rica", ['CB'], 28, 68, club, 242533, true);
@@ -19714,7 +19714,7 @@ class SoFifa23Service {
 		Player.create("Damian Las", "D. Las", "United States", ['GK'], 20, 52, club, 266726, true);
 		Player.create("Brandan Craig", "B. Craig", "United States", ['CB', 'CDM'], 18, 55, club, 260545, true);
 
-		club = Club.create("Atlanta United", "United States", 112885, "rgb(87,49,50)", "white");
+		club = Club.create("Atlanta United", "United States", 112885, "#573132", "#FFFFFF");
 		Player.create("Brad Guzan", "B. Guzan", "United States", ['GK'], 37, 66, club, 164505, true);
 		Player.create("Ronald Hernández", "R. Hernández", "Venezuela", ['RB', 'RWB', 'RM'], 24, 64, club, 240921, true);
 		Player.create("Juan Sánchez Purata", "J. Sánchez Purata", "Mexico", ['CB'], 24, 68, club, 244448, true);
@@ -19742,7 +19742,7 @@ class SoFifa23Service {
 		Player.create("Osvaldo Alonso", "O. Alonso", "Cuba", ['CDM', 'CM'], 36, 68, club, 190971, true);
 		Player.create("Aiden McFadden", "A. McFadden", "United States", ['RB', 'RWB', 'RM'], 23, 56, club, 269872, false);
 
-		club = Club.create("Vancouver Whitecaps", "United States", 101112, "rgb(183,181,183)", "black");
+		club = Club.create("Vancouver Whitecaps", "United States", 101112, "#B7B5B7", "#000000");
 		Player.create("Yohei Takaoka", "Y. Takaoka", "Japan", ['GK'], 26, 73, club, 244656, false);
 		Player.create("Ryan Raposo", "R. Raposo", "Canada", ['LM', 'RM', 'LB'], 23, 64, club, 255772, true);
 		Player.create("Mathías Laborda", "M. Laborda", "Uruguay", ['CB', 'RB'], 22, 69, club, 253296, true);
@@ -19772,7 +19772,7 @@ class SoFifa23Service {
 		Player.create("Caio Alexandre Sousa e Silva", "Caio Alexandre", "Brazil", ['CM', 'CDM'], 23, 68, club, 258563, true);
 		Player.create("Jean-Claude Ngando", "J. Ngando", "Cameroon", ['CAM', 'CM'], 22, 60, club, 245867, false);
 
-		club = Club.create("CF Montréal", "United States", 111139, "rgb(53,54,55)", "white");
+		club = Club.create("CF Montréal", "United States", 111139, "#353637", "#FFFFFF");
 		Player.create("Jonathan Sirois", "J. Sirois", "Canada", ['GK'], 21, 66, club, 247494, false);
 		Player.create("Joel Waterman", "J. Waterman", "Canada", ['CB'], 26, 67, club, 255956, true);
 		Player.create("Rudy Camacho", "R. Camacho", "France", ['CB', 'CDM'], 31, 69, club, 206485, true);
@@ -19803,7 +19803,7 @@ class SoFifa23Service {
 		Player.create("Ousman Jabang", "O. Jabang", "United States", ['CB', 'CDM'], 21, 55, club, 274646, false);
 		Player.create("Logan Ketterer", "L. Ketterer", "United States", ['GK'], 28, 58, club, 237305, true);
 
-		club = Club.create("Nacional", "Uruguay", 111325, "rgb(216,214,216)", "black");
+		club = Club.create("Nacional", "Uruguay", 111325, "#D8D6D8", "#000000");
 		Player.create("Sergio Rochet", "S. Rochet", "Uruguay", ['GK'], 29, 78, club, 223690, true);
 		Player.create("Leandro Lozano", "L. Lozano", "Uruguay", ['RB', 'RWB', 'LB'], 23, 70, club, 266844, true);
 		Player.create("Fabián Noguera", "F. Noguera", "Argentina", ['CB'], 29, 73, club, 223064, true);
@@ -19833,7 +19833,7 @@ class SoFifa23Service {
 		Player.create("Renzo Sanchez", "R. Sanchez", "Uruguay", ['RW', 'LW', 'CF'], 18, 64, club, 267750, true);
 		Player.create("Juan Manuel Gutiérrez", "J. Gutiérrez", "Uruguay", ['CF', 'CAM', 'ST'], 20, 64, club, 258817, true);
 
-		club = Club.create("Peñarol", "Uruguay", 101110, "rgb(123,109,45)", "white");
+		club = Club.create("Peñarol", "Uruguay", 101110, "#7B6D2D", "#FFFFFF");
 		Player.create("Thiago Cardozo", "T. Cardozo", "Uruguay", ['GK'], 25, 69, club, 253271, true);
 		Player.create("Pedro Milans", "P. Milans", "Uruguay", ['RB', 'RWB'], 20, 68, club, 270854, true);
 		Player.create("Hernán Menosse", "H. Menosse", "Uruguay", ['CB'], 35, 71, club, 216701, true);
@@ -19865,7 +19865,7 @@ class SoFifa23Service {
 		Player.create("Mathías De Ritis", "M. De Ritis", "Uruguay", ['LB'], 19, 65, club, 273709, true);
 		Player.create("Joaquín Ferreira", "J. Ferreira", "Uruguay", ['RB'], 18, 63, club, 273706, true);
 
-		club = Club.create("Liverpool", "Uruguay", 111326, "rgb(56,82,124)", "white");
+		club = Club.create("Liverpool", "Uruguay", 111326, "#38527C", "#FFFFFF");
 		Player.create("Sebastián Britos", "S. Britos", "Uruguay", ['GK'], 34, 67, club, 227154, true);
 		Player.create("Gastón Martirena", "G. Martirena", "Uruguay", ['RB', 'RWB'], 22, 71, club, 255878, true);
 		Player.create("Federico Pereira", "F. Pereira", "Uruguay", ['CB', 'RB'], 22, 72, club, 255874, true);
@@ -19897,7 +19897,7 @@ class SoFifa23Service {
 		Player.create("Facundo Trinidad", "F. Trinidad", "Uruguay", ['LW', 'CAM'], 20, 60, club, 258108, true);
 		Player.create("Francisco Bregante", "F. Bregante", "Uruguay", ['LB'], 18, 56, club, 271905, true);
 
-		club = Club.create("River Plate", "Uruguay", 112184, "rgb(151,129,132)", "black");
+		club = Club.create("River Plate", "Uruguay", 112184, "#978184", "#000000");
 		Player.create("Fabrizio Correa", "F. Correa", "Uruguay", ['GK'], 21, 66, club, 255727, true);
 		Player.create("Agustín Chopitea", "A. Chopitea", "Uruguay", ['RB', 'LB'], 23, 66, club, 266532, true);
 		Player.create("Gonzalo Viera", "G. Viera", "Uruguay", ['CB'], 35, 67, club, 254650, true);
@@ -19926,7 +19926,7 @@ class SoFifa23Service {
 		Player.create("Fabricio Vidal", "F. Vidal", "Uruguay", ['LB'], 19, 59, club, 267930, true);
 		Player.create("Faustino Barone", "F. Barone", "Uruguay", ['ST'], 16, 58, club, 274667, false);
 
-		club = Club.create("Danubio", "Uruguay", 110998, "rgb(155,155,154)", "black");
+		club = Club.create("Danubio", "Uruguay", 110998, "#9B9B9A", "#000000");
 		Player.create("Mauro Goicoechea", "M. Goicoechea", "Uruguay", ['GK'], 34, 69, club, 211327, true);
 		Player.create("Rafael Haller", "R. Haller", "Uruguay", ['RB', 'RM'], 21, 68, club, 272972, true);
 		Player.create("Martín Rea", "M. Rea", "Uruguay", ['CB'], 24, 69, club, 257384, true);
@@ -19957,7 +19957,7 @@ class SoFifa23Service {
 		Player.create("José Río", "J. Río", "Uruguay", ['GK'], 18, 55, club, 275460, false);
 		Player.create("Mateo Argüello", "M. Argüello", "Uruguay", ['RB'], 19, 60, club, 274499, true);
 
-		club = Club.create("Defensor Sporting", "Uruguay", 101109, "rgb(109,86,149)", "white");
+		club = Club.create("Defensor Sporting", "Uruguay", 101109, "#6D5695", "#FFFFFF");
 		Player.create("Matías Dufour", "M. Dufour", "Uruguay", ['GK'], 23, 67, club, 272976, true);
 		Player.create("Juan de Dios Pintado", "J. Pintado", "Uruguay", ['RB'], 24, 67, club, 266171, true);
 		Player.create("Sebastián Boselli", "S. Boselli", "Uruguay", ['RB', 'CB', 'LB'], 18, 66, club, 273850, true);
@@ -19987,7 +19987,7 @@ class SoFifa23Service {
 		Player.create("Mauricio Amaro", "M. Amaro", "Uruguay", ['CDM', 'CM'], 16, 60, club, 274899, true);
 		Player.create("Facundo Bernal", "F. Bernal", "Uruguay", ['CDM', 'CM'], 18, 64, club, 273849, true);
 
-		club = Club.create("Academia Puerto Cabello", "Venezuela", 114611, "rgb(151,90,91)", "white");
+		club = Club.create("Academia Puerto Cabello", "Venezuela", 114611, "#975A5B", "#FFFFFF");
 		Player.create("Luis Romero", "L. Romero", "Venezuela", ['GK'], 31, 68, club, 251773, true);
 		Player.create("Kevin De La Hoz", "K. De La Hoz", "Venezuela", ['RB', 'RM', 'LB'], 23, 65, club, 254646, true);
 		Player.create("Carlos Rivero", "C. Rivero", "Venezuela", ['CB'], 29, 69, club, 209072, true);
@@ -20019,7 +20019,7 @@ class SoFifa23Service {
 		Player.create("Joel Caceres", "J. Caceres", "Venezuela", ['RB', 'CB'], 29, 66, club, 267953, false);
 		Player.create("Jesús Cantillo", "J. Cantillo", "Venezuela", ['CM', 'CAM'], 18, 49, club, 275334, false);
 
-		club = Club.create("Metropolitanos", "Venezuela", 112914, "rgb(75,72,140)", "white");
+		club = Club.create("Metropolitanos", "Venezuela", 112914, "#4B488C", "#FFFFFF");
 		Player.create("Giancarlo Schiavone", "G. Schiavone", "Venezuela", ['GK'], 28, 66, club, 253842, false);
 		Player.create("Jefre Vargas", "J. Vargas", "Venezuela", ['RB'], 27, 67, club, 237534, false);
 		Player.create("Andrés Ferro", "A. Ferro", "Venezuela", ['CB'], 20, 67, club, 253796, false);
@@ -20048,7 +20048,7 @@ class SoFifa23Service {
 		Player.create("Christian Camarillo", "C. Camarillo", "Venezuela", ['CB'], 19, 61, club, 275081, false);
 		Player.create("Jayson Martínez", "J. Martínez", "Venezuela", ['CAM'], 20, 59, club, 272703, false);
 
-		club = Club.create("Caracas", "Venezuela", 110989, "rgb(166,61,47)", "white");
+		club = Club.create("Caracas", "Venezuela", 110989, "#A63D2F", "#FFFFFF");
 		Player.create("Alain Baroja", "A. Baroja", "Venezuela", ['GK'], 32, 70, club, 217095, true);
 		Player.create("Alexander González", "A. González", "Venezuela", ['RB', 'RM'], 29, 69, club, 207876, false);
 		Player.create("Diego Luna", "D. Luna", "Venezuela", ['CB'], 22, 65, club, 272318, false);
@@ -20080,7 +20080,7 @@ class SoFifa23Service {
 		Player.create("Armando Rivas", "A. Rivas", "Venezuela", ['ST'], 19, 53, club, 275038, false);
 		Player.create("Guillermo Guzmán", "G. Guzmán", "Venezuela", ['CB'], 20, 54, club, 275040, false);
 
-		club = Club.create("Deportivo Táchira", "Venezuela", 110990, "rgb(140,119,60)", "white");
+		club = Club.create("Deportivo Táchira", "Venezuela", 110990, "#8C773C", "#FFFFFF");
 		Player.create("Alejandro Araque", "A. Araque", "Venezuela", ['GK'], 26, 68, club, 252123, true);
 		Player.create("Nelson Hernández", "N. Hernández", "Venezuela", ['RB', 'RM', 'LB'], 29, 66, club, 252096, true);
 		Player.create("Jiovany Ramos", "J. Ramos", "Panama", ['CB'], 25, 66, club, 266387, false);
@@ -20111,7 +20111,7 @@ class SoFifa23Service {
 		Player.create("Jesús Valbuena", "J. Valbuena", "Venezuela", ['CM', 'CDM'], 17, 60, club, 271858, false);
 		Player.create("Cristian Cruz", "C. Cruz", "Venezuela", ['LW', 'LM', 'RW'], 20, 61, club, 260059, true);
 
-		club = Club.create("Monagas", "Venezuela", 110993, "rgb(81,66,80)", "white");
+		club = Club.create("Monagas", "Venezuela", 110993, "#514250", "#FFFFFF");
 		Player.create("Orlando Mosquera", "O. Mosquera", "Panama", ['GK'], 27, 66, club, 263976, true);
 		Player.create("Iván Anderson", "I. Anderson", "Panama", ['RB', 'RM'], 24, 66, club, 266713, true);
 		Player.create("Cristopher Rodríguez", "C. Rodríguez", "Venezuela", ['CB'], 24, 67, club, 260054, true);
@@ -20143,7 +20143,7 @@ class SoFifa23Service {
 		Player.create("Orué Chacín", "O. Chacín", "Venezuela", ['GK'], 19, 57, club, 272577, true);
 		Player.create("Joao Silva", "J. Silva", "Venezuela", ['LB', 'RW'], 25, 56, club, 275345, false);
 
-		club = Club.create("Estudiantes Mérida", "Venezuela", 111332, "rgb(190,143,148)", "black");
+		club = Club.create("Estudiantes Mérida", "Venezuela", 111332, "#BE8F94", "#000000");
 		Player.create("Beycker Velásquez", "B. Velásquez", "Venezuela", ['GK'], 25, 67, club, 253839, false);
 		Player.create("Marcel Guaramato", "M. Guaramato", "Venezuela", ['RB'], 28, 68, club, 254672, true);
 		Player.create("Edison Penilla", "E. Penilla", "Venezuela", ['CB', 'RWB', 'RB'], 26, 65, club, 256089, false);

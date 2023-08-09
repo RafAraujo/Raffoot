@@ -15,9 +15,9 @@ namespace RaffootLoader.Services
 
         private readonly string[] _positions = new[]
         {
-            "goalkeeper", "centre-back",  $"{PrefixOfContext}{Separator}left-back",  $"{PrefixOfContext}{Separator}right-back", "left wing-back", "right wing-back",
-            "defensive midfielder", "left midfielder", "centre midfielder", "right midfielder", "attacking midfielder",
-            $"{PrefixOfContext}{Separator}left winger", $"{PrefixOfContext}{Separator}right winger", "centre forward", "striker"
+            "Goalkeeper", "centre-back",  $"{PrefixOfContext}{Separator}left-back",  $"{PrefixOfContext}{Separator}Right-back", "Left wing-back", "Right wing-back",
+            "Defensive midfielder", "Left midfielder", "Centre midfielder", "Right midfielder", "Attacking midfielder",
+            $"{PrefixOfContext}{Separator}Left winger", $"{PrefixOfContext}{Separator}Right winger", "Centre forward", "Striker"
         };
 
         private readonly string[] _confederations = new[]
@@ -28,28 +28,28 @@ namespace RaffootLoader.Services
 
         private readonly string[] _texts = new[]
         {
-            "age", "assists", "audience", $"{PrefixOfContext}{Separator}Away",
-            "back", "ball possession", $"{PrefixOfContext}{Separator}board of directors", "bronze",
-            "calendar", "cancel", "capacity", "category", "champions", "Champions Cup", "championship", "classification tables", "club", "clubs", "choose your club", "coach", "CON", "Conference Cup", "contract", "country", "creating game...", $"{PrefixOfContext}{Separator}Cup",
-            "date", "delete", "division", $"{PrefixOfContext}{Separator}draws",
-            "end of contract", "energy", "error", "expand",
-            "final", "finances", "formation", "for sale", "free kick", "free kick taker",
-            "game", "game deleted with success",  $"{PrefixOfContext}{Separator}goal",  $"{PrefixOfContext}{Separator}goals", $"{PrefixOfContext}{Separator}goals against", $"{PrefixOfContext}{Separator}goals difference", "gold", "group",
-            "history", $"{PrefixOfContext}{Separator}home",
-            "income", "International Supercup",
-            "league", "left", "load game", "loading game...", $"{PrefixOfContext}{Separator}losses",
-            "market value", "matches",
-            "name", "nationality", "new game", "no",
-            "offside", "Overall", "OV",
-            $"{PrefixOfContext}{Separator}penalty", "penalty taker", "play", $"{PrefixOfContext}{Separator}players", $"{PrefixOfContext}{Separator}points", "position", "POS", "preferred side", "processing...",
-            "quarter-finals",
-            "Raffoot", "ranking", $"{PrefixOfContext}{Separator}referee", "renew contract", $"{PrefixOfContext}{Separator}right", "round of 16", "round of 32", "round of 64",
-            "save game", "search", "search players", "semifinals", "silver", "squad", "stadium", "star", "start game", "starting game...", "statistics", "supercup",
-            "ticket price", "top scorers", $"{PrefixOfContext}{Separator}trust",
-            $"{PrefixOfContext}{Separator}wage", "wins", "world",
-            "year", "yes"
+            "Age", "Assists", "Audience", $"{PrefixOfContext}{Separator}Away",
+            "Back", "Background color", "Ball possession", $"{PrefixOfContext}{Separator}Board of Directors", "Bronze",
+            "Calendar", "Cancel", "Capacity", "Category", "Champions", "Champions Cup", "Championship", "Choose your club", "Classification Tables", "Close", "Club", "Clubs", "Coach", "Colors", "CON", "Conference Cup", "Country", "Creating game...", $"{PrefixOfContext}{Separator}Cup",
+            "Date", "Delete", "Division", $"{PrefixOfContext}{Separator}Draws",
+            "End of contract", "Energy", "Error", "Expand",
+            "Final", "Finances", "Formation", "For Sale", "Foul", "Free Kick Taker",
+            "Game", "Game deleted with success",  $"{PrefixOfContext}{Separator}Goal",  $"{PrefixOfContext}{Separator}Goals", $"{PrefixOfContext}{Separator}Goals Against", $"{PrefixOfContext}{Separator}Goals Difference", "Gold", "Group",
+            "History", $"{PrefixOfContext}{Separator}Home",
+            "Income", "International Supercup",
+            "League", "Left", "Load Game", "Loading game...", $"{PrefixOfContext}{Separator}Losses",
+            "Market Value", "Matches",
+            "Name", "Nationality", "New Game", "No",
+            "Offside", "Options", "Overall", "OV",
+            $"{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Players", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
+            "Quarter-finals",
+            "Raffoot", "Ranking", $"{PrefixOfContext}{Separator}Referee", "Reset", $"{PrefixOfContext}{Separator}Right", "Round of 16", "Round of 32", "Round of 64",
+            "Save Changes", "Save Game", "search", "Search Players", "Semifinals", "Silver", "Squad", "Stadium", "Star", "Start Game", "Starting game...", "Statistics", "Supercup",
+            "Text color", "Ticket Price", "Top Scorers", $"{PrefixOfContext}{Separator}Trust",
+            $"{PrefixOfContext}{Separator}Wage", "Wins", "World",
+            "Year", "Yes"
         };
-        private readonly string[] _fixedTexts = new[] { "BeNe", "CON", "Overall", "OV", "Raffoot" };
+        private readonly string[] _fixedTexts = new[] { "BeNe", "CON", "Overall", "OV", "Raffoot", "Reset" };
 
         private readonly Translation[] _fixedTranslations = new[]
         {
@@ -72,7 +72,7 @@ namespace RaffootLoader.Services
             new Translation("ST", "BU", "fr"),      new Translation("ST", "DC", "es"),      new Translation("ST", "ST", "de"),      new Translation("ST", "PL", "pt-PT"),       new Translation("ST", "ATA", "pt-BR"),      new Translation("ST", "ATT", "it"),     new Translation("ST", "SP", "nl"),      new Translation("ST", "N", "pl"),       new Translation("ST", "HU", "cs"),
         };
 
-        private const string PrefixOfContext = "football";
+        private const string PrefixOfContext = "Men's Football";
         private const string Separator = " - ";
 
         public TranslatorService(ISettingsManager settings, IContext context)
@@ -136,9 +136,9 @@ namespace RaffootLoader.Services
 
             texts.AddRange(_positions);
             texts.AddRange(_confederations);
-            texts.AddRange(_confederations.Select(c => $"{c} League"));
-            texts.AddRange(_confederations.Select(c => $"{c} Cup"));
-            texts.AddRange(_confederations.Select(c => $"{c} Supercup"));
+            texts.AddRange(_confederations.Select(c => $"{PrefixOfContext}{Separator}{c} League"));
+            texts.AddRange(_confederations.Select(c => $"{PrefixOfContext}{Separator}{c} Cup"));
+            texts.AddRange(_confederations.Select(c => $"{PrefixOfContext}{Separator}{c} Supercup"));
 
             var countries = _context.Countries.OrderBy(c => c.Name);
             texts.AddRange(countries.Where(c => !texts.Contains(c.Name)).Select(c => $"{PrefixOfContext}{Separator}{c.Name}"));
