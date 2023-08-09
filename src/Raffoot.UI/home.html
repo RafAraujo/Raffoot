@@ -493,7 +493,7 @@
                                         {{ translator.get('Background color') }}</label>
                                     <input id="background-color" type="color" class="form-control form-control-color"
                                         @change="colors.backgroundColor = $event.target.value"
-                                        :value="game.club.backgroundColorNew">
+                                        :value="game.club.backgroundColorCustom">
                                 </div>
                                 <div class="col-6">
                                     <label for="foreground-color" class="form-label">
@@ -501,13 +501,13 @@
                                     </label>
                                     <input id="foreground-color" type="color" class="form-control form-control-color"
                                         @change="colors.foregroundColor = $event.target.value"
-                                        :value="game.club.foregroundColorNew">
+                                        :value="game.club.foregroundColorCustom">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <button class="btn btn-outline-dark"
-                                        @click="game.club.resetColors(); colors.backgroundColor = game.club.backgroundColorNew; colors.foregroundColor = game.club.foregroundColorNew">
+                                        @click="game.club.resetColors(); colors.backgroundColor = game.club.backgroundColorCustom; colors.foregroundColor = game.club.foregroundColorCustom">
                                         {{ translator.get("Reset") }}
                                     </button>
                                 </div>
@@ -517,7 +517,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                 {{ translator.get("Close") }}</button>
                             <button type="button" class="btn btn-primary"
-                                @click="game.club.backgroundColorNew = colors.backgroundColor; game.club.foregroundColorNew = colors.foregroundColor; setColors()">
+                                @click="game.club.backgroundColorCustom = colors.backgroundColor; game.club.foregroundColorCustom = colors.foregroundColor; setColors()">
                                 {{ translator.get("Save Changes") }}
                             </button>
                         </div>
@@ -632,8 +632,8 @@
                 this.game = await gameService.loadAsync(gameId);
             },
             setColors: function () {
-                document.body.style.backgroundColor = this.game.club.backgroundColorNew;
-                document.body.style.color = this.game.club.foregroundColorNew;
+                document.body.style.backgroundColor = this.game.club.backgroundColorCustom;
+                document.body.style.color = this.game.club.foregroundColorCustom;
             },
 
             // Squad:
@@ -679,7 +679,7 @@
         },
         async created() {
             await this.loadGame();
-            this.colors = { backgroundColor: this.game.club.backgroundColorNew, foregroundColor: this.game.club.foregroundColorNew };
+            this.colors = { backgroundColor: this.game.club.backgroundColorCustom, foregroundColor: this.game.club.foregroundColorCustom };
             this.selectedChampionshipEditionId = this.game.getNationalLeague().id;
             this.gameLoaded = true;
         },

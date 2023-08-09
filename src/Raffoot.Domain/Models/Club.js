@@ -3,8 +3,8 @@ class Club {
         this.name = name;
         this._countryId = countryId;
         this.externalId = externalId;
-        this.backgroundColorNew = this.backgroundColor = backgroundColor;
-        this.foregroundColorNew = this.foregroundColor = foregroundColor;
+        this.backgroundColorCustom = this.backgroundColor = backgroundColor;
+        this.foregroundColorCustom = this.foregroundColor = foregroundColor;
         this._playerIds = [];
         this._squadId = null;
     }
@@ -68,7 +68,7 @@ class Club {
     }
 
     resetColors() {
-        this.backgroundColorNew = this.backgroundColor;
-        this.foregroundColorNew = this.foregroundColor;
+        this.backgroundColorCustom = this.backgroundColor;
+        this.foregroundColorCustom = this.foregroundColor;
     }
 }
