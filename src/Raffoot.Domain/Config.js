@@ -31,9 +31,8 @@ const Config = (function () {
             groupQualifiedClubCount: 2
         },
 
-        internationalCup: {
-            clubCount: 32,
-            divisionCount: 2,
+        continentalCup: {
+            maxClubCount: 32,
         },
 
         nationalCup: {

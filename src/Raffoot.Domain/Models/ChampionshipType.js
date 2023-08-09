@@ -21,8 +21,9 @@ class ChampionshipType {
 		ChampionshipType.create('national', 'cup', 'elimination', true);
 		ChampionshipType.create('national', 'league', 'round-robin', true);
 		ChampionshipType.create('national', 'supercup', 'elimination', false);
-		ChampionshipType.create('international', 'cup', 'groups', true);
-		ChampionshipType.create('international', 'supercup', 'elimination', false);
+		ChampionshipType.create('continental', 'cup', 'groups', true);
+		ChampionshipType.create('continental', 'supercup', 'elimination', false);
+		ChampionshipType.create('world', 'cup', 'elimination', false);
 	}
 
     static find(scope, format) {

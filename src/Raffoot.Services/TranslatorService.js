@@ -32,9 +32,24 @@ class TranslatorService {
     }
 
     getChampionshipName(championship) {
-        const championshipNameWithoutDivision = championship.name.replace(` ${championship.division}`, '');
-        const translation = this.get(championshipNameWithoutDivision);
-        return championship.championshipType.format === "league" ? `${translation} ${championship.division}` : `${translation}`;
+        let name = championship.name;
+
+        if (championship.championshipType.scope === 'national') {
+            const cupTranslation = this.get("Cup");
+            const leagueTranslation = this.get("League");
+            const confederationTranslation = this.get(championship.confederation.name);
+
+            name = name.replace(" Cup", ` ${cupTranslation}`);
+            name = name.replace(" League", ` ${leagueTranslation}`);
+            name = name.replace(championship.confederation.name, '');
+
+            return `${confederationTranslation} - ${name}`;
+        }
+        else if (championship.name === 'World Cup') {
+            return translator.get(championship.name);
+        }
+
+        return championship.name;
     }
 
     static getLanguage() {

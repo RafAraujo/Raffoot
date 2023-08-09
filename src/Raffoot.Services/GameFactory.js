@@ -5,11 +5,19 @@ class GameFactory {
 		}
 
 		Context.game = new Game(name, year);
-		
+
 		let t0 = performance.now();
+		Continent.seed();
+		console.log(`Continent.seed() took ${(performance.now() - t0)} milliseconds.`);
+
+		t0 = performance.now();
 		SoFifaService.seedCountries();
 		console.log(`SoFifaService.seedCountries() took ${(performance.now() - t0)} milliseconds.`);
 		
+		t0 = performance.now();
+		Confederation.seed();
+		console.log(`Confederation.seed() took ${(performance.now() - t0)} milliseconds.`);
+
 		t0 = performance.now();
 		Position.seed();
 		console.log(`Position.seed() took ${(performance.now() - t0)} milliseconds.`);

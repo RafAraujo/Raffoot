@@ -103,21 +103,29 @@ class ChampionshipEdition {
         this._matchIds.push(match.id);
     }
 
-    getInternationalCupClassificationZonePositions(cupDivision) {
+    getContinentalCupClassificationZonePositions(continentalCupDivision) {
         const positions = [];
-        const cupSpots = this.championship.internationalCupSpots;
 
-        if (this.championship.championshipType.format === 'league' && this.championship.division === 1) {
-            for (let position = (cupSpots * (cupDivision - 1)) + 1; position <= cupSpots * cupDivision; position++) {
-                positions.push(position);
+        const nationalCup = ChampionshipType.find('national', 'cup');
+        const nationalLeague = ChampionshipType.find('national', 'league');
+
+        if (this.championship.division === 1) {
+            if (this.championship.championshipType.id === nationalLeague.id) {
+                const cupSpots = this.championship.confederation.getContinentalCupSpots(continentalCupDivision);
+                for (let position = (cupSpots * (continentalCupDivision - 1)) + 1; position <= cupSpots * continentalCupDivision; position++) {
+                    positions.push(position);
+                }
+            }
+            else if (this.championship.championshipType.id === nationalCup.id) {
+                return continentalCupDivision === 1 ? 0 : 1;
             }
         }
 
         return positions;
     }
 
-    getInternationalCupClassificationZoneClubs(division) {
-        const positions = this.internationalCupClassificationZonePositions(division);
+    getContinentalCupClassificationZoneClubs(continentalCupDivision) {
+        const positions = this.getContinentalCupClassificationZonePositions(continentalCupDivision);
         return this.table.firstItems(positions.length);
     }
 

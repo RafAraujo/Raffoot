@@ -37,7 +37,9 @@ namespace RaffootLoader.Services
 
                 sb.AppendLine("\tstatic seedCountries() {");
                 foreach (var country in _context.Countries.OrderBy(c => c.Name))
-                    sb.AppendLine(string.Format("\t\tCountry.create(\"{0}\");", country.Name));
+                    sb.AppendLine(string.Format("\t\tCountry.create(\"{0}\", {1});",
+                        country.Name,
+                        string.IsNullOrEmpty(country.Continent) ? "null" : $"\"{country.Continent}\""));
                 sb.AppendLine("\t}").AppendLine();
 
                 sb.AppendLine("\tstatic seedClubs() {");

@@ -33,7 +33,6 @@ class GameService {
         const object = objects.find(g => g.key === id);
 
         let game = Object.assign(new Game(), object.value);
-        game.seasons = game.seasons.map(o => Object.assign(new Season(), o));
         
         game.championships = game.championships.map(o => Object.assign(new Championship(), o));
         game.championshipEditions = game.championshipEditions.map(o => Object.assign(new ChampionshipEdition(), o));
@@ -45,6 +44,8 @@ class GameService {
         game.championshipEditionPlayers = game.championships.map(o => Object.assign(new ChampionshipEditionPlayer(), o));
         game.championshipTypes = game.championshipTypes.map(o => Object.assign(new ChampionshipType(), o));
         game.clubs = game.clubs.map(o => Object.assign(new Club(), o));
+        game.confederations = game.confederations.map(o => Object.assign(new Confederation(), o));
+        game.continents = game.continents.map(o => Object.assign(new Continent(), o));
         game.countries = game.countries.map(o => Object.assign(new Country(), o));
         game.fieldLocalizations = game.fieldLocalizations.map(o => Object.assign(new FieldLocalization(), o));
         game.formations = game.formations.map(o => Object.assign(new Formation(), o));
@@ -52,6 +53,8 @@ class GameService {
         game.matchClubs = game.matchClubs.map(o => Object.assign(new MatchClub(), o));
         game.players = game.players.map(o => Object.assign(new Player(), o));
         game.positions = game.positions.map(o => Object.assign(new Position(), o));
+        game.seasons = game.seasons.map(o => Object.assign(new Season(), o));
+        game.seasonDates = game.seasonDates.map(o => Object.assign(new SeasonDate(), o));
         game.squads = game.squads.map(o => Object.assign(new Squad(), o));
         game.squadPlayers = game.squadPlayers.map(o => Object.assign(new SquadPlayer(), o));
 

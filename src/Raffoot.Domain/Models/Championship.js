@@ -1,18 +1,19 @@
 class Championship {
-    constructor(name, championshipTypeId, countryIds, division, clubCount, internationalCupSpots, confederationName) {
+    constructor(name, championshipTypeId, continentId, confederationId, division, clubCount) {
         this.name = name;
         this._championshipTypeId = championshipTypeId;
-        this._countryIds = countryIds;
+        this._continentId = continentId;
+        this._confederationId = confederationId;
         this.division = division;
         this.clubCount = clubCount;
-        this.internationalCupSpots = internationalCupSpots;
-        this.confederationName = confederationName;
     }
 
-    static create(name, championshipType, countryIds, division, clubCount, internationalCupSpots, confederationName) {
-        const championship = new Championship(name, championshipType.id, countryIds, division, clubCount, internationalCupSpots, confederationName);
+    static create(name, championshipType, continentId, confederationId, division, clubCount) {
+        const championship = new Championship(name, championshipType.id, continentId, confederationId, division, clubCount);
         championship.id = Context.game.championships.push(championship);
+        
         championshipType.addChampionship(championship);
+        
         return championship;
     }
 
@@ -24,54 +25,43 @@ class Championship {
         const nationalCup = ChampionshipType.find('national', 'cup');
         const nationalLeague = ChampionshipType.find('national', 'league');
         const nationalSupercup = ChampionshipType.find('national', 'supercup');
-        const internationalCup = ChampionshipType.find('international', 'cup');
-        const internationalSupercup = ChampionshipType.find('international', 'supercup');
+        const continentalCup = ChampionshipType.find('continental', 'cup');
+        const continentalSupercup = ChampionshipType.find('continental', 'supercup');
+        const worldCup = ChampionshipType.find('world', 'cup');
 
-        const confederations = [
-            { name: 'Argentina', countries: ['Argentina'], cupSpots: 2 },
-            { name: 'Brazil', countries: ['Brazil'], cupSpots: 2 },
-            { name: 'England', countries: ['England'], cupSpots: 3 },
-            { name: 'France', countries: ['France'], cupSpots: 2  },
-            { name: 'Germany', countries: ['Germany'], cupSpots: 3 },
-            { name: 'Italy', countries: ['Italy'], cupSpots: 3 },
-            { name: 'Portugal', countries: ['Portugal'], cupSpots: 2 },
-            { name: 'Spain', countries: ['Spain'], cupSpots: 3 },
-
-            { name: 'BeNe', countries: ['Belgium', 'Netherlands'], cupSpots: 2 },
-            { name: 'British Isles', countries: ['Republic of Ireland', 'Scotland'], cupSpots: 1 },
-            { name: 'Central Europe', countries: ['Austria', 'Czech Republic', 'Switzerland'], cupSpots: 1 },
-            { name: 'Eastern Europe', countries: ['Croatia', 'Poland', 'Romania', 'Ukraine'], cupSpots: 1 },
-            { name: 'Eurasia', countries: ['Cyprus', 'Greece', 'Turkey'], cupSpots: 1 },
-            { name: 'Scandinavia', countries: ['Denmark', 'Finland', 'Norway', 'Sweden'], cupSpots: 1 },
-            { name: 'North America', countries: ['Mexico', 'United States'], cupSpots: 2 },
-            { name: 'South America', countries: ['Bolivia', 'Colombia', 'Ecuador', 'Paraguay', 'Peru', 'Uruguay', 'Venezuela'], cupSpots: 2 },
-            { name: 'Rest of the World', countries: ['Australia', 'China PR', 'India', 'Japan', 'Korea Republic', 'Saudi Arabia', 'South Africa', 'United Arab Emirates'], cupSpots: 1 },
-        ];
+        const confederations = Context.game.confederations;
 
         for (let confederation of confederations) {
-            const countryIds = confederation.countries.map(countryName => Context.game.countries.find(c => c.name === countryName).id);
+            const countryIds = confederation.countries.map(c => Country.getByName(c.name)).map(c => c.id);
             const clubs = Context.game.clubs.filter(c => countryIds.some(id => c.country.id === id));
-            const cupClubCount = Championship.getCupClubCsount(clubs.length);
-            Championship.create(`${confederation.name} Cup`, nationalCup, countryIds, 1, cupClubCount, null, confederation.name);
+            const cupClubCount = Championship.getCupClubCount(clubs.length);
+            Championship.create(`${confederation.name} Cup`, nationalCup, null, confederation.id, 1, cupClubCount);
 
             let clubsWithoutDivision = clubs.length;
             let division = 1;
             while (clubsWithoutDivision >= Config.nationalLeague.minClubCount) {
-                let clubCount = clubsWithoutDivision >= Config.nationalLeague.maxClubCount ? Config.nationalLeague.maxClubCount : clubsWithoutDivision;
+                const clubCount = clubsWithoutDivision >= Config.nationalLeague.maxClubCount ? Config.nationalLeague.maxClubCount : clubsWithoutDivision;
                 clubsWithoutDivision -= clubCount;
-                Championship.create(`${confederation.name} League ${division}`, nationalLeague, countryIds, division, clubCount, confederation.cupSpots, confederation.name);
+                Championship.create(`${confederation.name} League ${division}`, nationalLeague, null, confederation.id, division, clubCount);
                 division++;
             }
 
-            Championship.create(`${confederation.name} Supercup`, nationalSupercup, countryIds, 1, 2, null, null);
+            Championship.create(`${confederation.name} Supercup`, nationalSupercup, countryIds, 1, 2);
         }
 
-        Championship.create('Champions Cup', internationalCup, null, 1, Config.internationalCup.clubCount, null);
-        Championship.create('Conference Cup', internationalCup, null, 2, Config.internationalCup.clubCount, null);
-        Championship.create('International Supercup', internationalSupercup, null, 1, 2, null, null);
+        const continents = Context.game.continents.filter(con => con.countries.flatMap(c => c.clubs).length > 0);
+
+        for (let continent of continents) {
+            for (let division = 1; division <= 2; division++) {
+                Championship.create(continent.getContinentalCupName(division), continentalCup, continent.id, null, division, continent.getContinentalCupSpots(division));
+            }
+            Championship.create(`${continent.name} Supercup`, continentalSupercup, null, null, 1, 2);
+        }
+
+        Championship.create('World Cup', worldCup, null, null, 1, 2);
     }
 
-    static getCupClubCsount(clubCount) {
+    static getCupClubCount(clubCount) {
         let count = Config.nationalCup.maxClubCount;
         while (count > clubCount)
             count /= 2;
@@ -82,8 +72,16 @@ class Championship {
         return ChampionshipType.getById(this._championshipTypeId);
     }
 
+    get confederation() {
+        return Confederation.getById(this._confederationId);
+    }
+
+    get continent() {
+        return Continent.getById(this._continentId);
+    }
+
     get countries() {
-        return Context.game.countries.filterByIds(this._countryIds);
+        return this.confederation.countries;
     }
 
     get groupClubCount() {
@@ -100,10 +98,12 @@ class Championship {
 
     get importance() {
         switch (this.championshipType.scope) {
-            case 'international':
+            case 'world':
+                return 12;
+            case 'continental':
                 return this.division === 1 ? 16 : 8;
             case 'national':
-                return this.championshipType.regulation === 'cup' ? 3 : 5 - this.division;
+                return this.championshipType.regulation === 'cup' ? 5 : 6 - this.division;
             default:
                 return 0;
         }

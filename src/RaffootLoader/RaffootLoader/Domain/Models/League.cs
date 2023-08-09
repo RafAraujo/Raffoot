@@ -8,11 +8,14 @@
 
         public int Division { get; set; }
 
-        public League(int externalId, string country, int division)
+        public Continent Continent { get; set; }
+
+        public League(int externalId, string country, int division, Continent continent)
         {
             ExternalId = externalId;
             Country = country;
             Division = division;
+            Continent = continent;
         }
     }
 }

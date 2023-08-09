@@ -166,8 +166,8 @@
                             <div class="next-match pt-2 pb-2">
                                 <div>
                                     <div class="d-inline-block align-middle ms-1 me-3">
-                                        <img :src="nextMatch.getOpponent(game.club.id).getLogoURL()"
-                                            style="max-height: 3rem;">
+                                        <img :src="nextOpponent.getLogoURL()" :alt="nextOpponent.name"
+                                            :title="nextOpponent.name" style="max-height: 3rem;">
                                     </div>
                                     <div class="d-inline-block align-middle">
                                         <div>
@@ -282,6 +282,7 @@
                                         @click="updateSquadOrder('position.id')">
                                         {{ translator.get("Position").substring(0, 3).toUpperCase() }}
                                     </th>
+                                    <th style="width: 1.5rem;"></th>
                                     <th class="text-center" @click="updateSquadOrder('surname')">
                                         {{ translator.get("Name") }}</th>
                                     <th class="text-center" :title="translator.get('Overall')"
@@ -307,6 +308,11 @@
                                         <td class="text-center fw-bold" :class="player.position.fieldRegion"
                                             :title="translator.get(player.position.name)">
                                             {{ translator.get(player.position.abbreviation) }}
+                                        </td>
+                                        <td>
+                                            <img class="border" :src="player.country.getFlagURL()"
+                                                :title="translator.get(player.country.name)"
+                                                style="max-height: 1.5rem;">
                                         </td>
                                         <td>{{ player.surname }}</td>
                                         <td class="text-center pt-0 pb-0">
@@ -348,11 +354,13 @@
                             <table class="table table-hover table-borderless">
                                 <thead class="table-light">
                                     <th class="text-center">{{ translator.get("Date") }}</th>
-                                    <th class="text-start">{{ translator.get("Home") }}</th>
+                                    <th class="text-end">{{ translator.get("Home") }}</th>
+                                    <th class="text-end" style="width: 1.5rem"></th>
                                     <th class="text-center"></th>
                                     <th class="text-center"></th>
                                     <th class="text-center"></th>
-                                    <th class="text-end">{{ translator.get("Away") }}</th>
+                                    <th class="text-start" style="width: 1.5rem;"></th>
+                                    <th class="text-start">{{ translator.get("Away") }}</th>
                                     <th class="text-center">{{ translator.get("Championship") }}</th>
                                     <th class="text-center">{{ translator.get("Audience") }}</th>
                                     <th class="text-center">{{ translator.get("Income") }}</th>
@@ -360,11 +368,21 @@
                                 <tbody>
                                     <tr v-for="match in matches">
                                         <td class="text-center">{{ match.date.toLocaleDateString() }}</td>
-                                        <td class="text-start">{{ match.matchClubHome.club.name }}</td>
+                                        <td class="text-end">{{ match.matchClubHome.club.name }}</td>
+                                        <td class="text-end">
+                                            <img :src="match.matchClubHome.club.getLogoURL()"
+                                                :alt="match.matchClubHome.club.name"
+                                                :title="match.matchClubHome.club.name" style="max-height: 1.5rem;">
+                                        </td>
                                         <td class="text-center">{{ match.matchClubHome.goals }}</td>
                                         <td class="text-center">×</td>
                                         <td class="text-center">{{ match.matchClubAway.goals }}</td>
-                                        <td class="text-end">{{ match.matchClubAway.club.name }}</td>
+                                        <td class="text-start">
+                                            <img :src="match.matchClubAway.club.getLogoURL()"
+                                                :alt="match.matchClubAway.club.name"
+                                                :title="match.matchClubAway.club.name" style="max-height: 1.5rem;">
+                                        </td>
+                                        <td class="text-start">{{ match.matchClubAway.club.name }}</td>
                                         <td class="text-center">
                                             {{
                                             translator.getChampionshipName(match.championshipEdition.championship)
@@ -443,7 +461,8 @@
                                         </td>
                                         <td>
                                             <img :src="championshipEditionClub.club.getLogoURL()"
-                                                style="max-height: 1.5rem;">
+                                                :alt="championshipEditionClub.club.name"
+                                                :title="championshipEditionClub.club.name" style="max-height: 1.5rem;">
                                         </td>
                                         <td>
                                             {{ championshipEditionClub.club.name }}
@@ -479,8 +498,8 @@
                                     .flatMap(c => c.country)
                                     .distinct()
                                     .map(c => ({ id: c.id, name: translator.get(c.name) }))
-                                    .orderBy('name')" :key="country.id" :value="country.id"
-                                    :key="country.id" :value="country.id">
+                                    .orderBy('name')" :key="country.id" :value="country.id" :key="country.id"
+                                    :value="country.id">
                                     {{ country.name }}
                                 </option>
                             </select>
@@ -493,73 +512,98 @@
                                 <option></option>
                                 <option v-for="club in game.clubs
                                     .filter(c => c.country.id === selectedCountryId)
-                                    .orderBy('name')"
-                                    :key="club.id" :value="club.id">
+                                    .orderBy('name')" :key="club.id" :value="club.id">
                                     {{ club.name }}
                                 </option>
                             </select>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xl-9">
-                            <table class="table table-hover table-borderless sortable">
-                                <thead class="table-light">
-                                    <th class="text-center" :title="translator.get('Position')"
-                                        @click="updateClubOrder('position.id')">
-                                        {{ translator.get("Position").substring(0, 3).toUpperCase() }}
-                                    </th>
-                                    <th class="text-center" @click="updateSquadOrder('surname')">
-                                        {{ translator.get("Name") }}</th>
-                                    <th class="text-center" :title="translator.get('Overall')"
-                                        @click="updateClubOrder('overall')">
-                                        {{ translator.get("OV") }}
-                                    </th>
-                                    <th class="text-center" @click="updateClubOrder('age')">
-                                        {{ translator.get("Age") }}
-                                    </th>
-                                    <th class="text-center" @click="updateClubOrder('energy')">
-                                        {{ translator.get("Energy") }}
-                                    </th>
-                                    <th class="text-center" @click="updateClubOrder('marketValue')">
-                                        {{ translator.get("Market Value") }}
-                                    </th>
-                                    <th class="text-center" @click="updateClubOrder('wage')">
-                                        {{ translator.get("Wage") }}
-                                    </th>
-                                </thead>
-                                <tbody>
-                                    <tr
-                                        v-for="player in selectedClub?.squad.players.orderBy(clubOrderColumn, 'position.id', '-overall', 'name')">
-                                        <td class="text-center fw-bold" :class="player.position.fieldRegion"
-                                            :title="translator.get(player.position.name)">
-                                            {{ translator.get(player.position.abbreviation) }}
-                                        </td>
-                                        <td>{{ player.surname }}</td>
-                                        <td class="text-center pt-0 pb-0">
-                                            <span class="overall" :class="player.category">
-                                                {{ player.overall }}
-                                            </span>
-                                        </td>
-                                        <td class="text-center"
-                                            :class="player.age < 32 ? 'text-primary' : 'text-danger'">
-                                            {{ player.age }}
-                                        </td>
-                                        <td>
-                                            <div class="energy progress position-relative"
-                                                :title="`${translator.get('Energy')} ${player.energy}%`">
-                                                <div class="progress-bar" role="progressbar"
-                                                    :class="player.energy > 75 ? 'bg-success' : player.energy > 50 ? 'bg-warning' : 'bg-danger'"
-                                                    :aria-valuenow="player.energy" aria-valuemin="0" aria-valuemax="100"
-                                                    :style="{ width: player.energy + '%' }">
-                                                    {{ player.energy }}
+                    <div v-if="selectedClub">
+                        <div class="row mb-2">
+                            <div class="col-md-8 col-xl-6 text-center">
+                                <img class="img-fluid" :src="selectedClub.getLogoURL()" :alt="selectedClub.name"
+                                    :title="selectedClub.name">
+                            </div>
+                        </div>
+                        <div class="row-mb-2">
+                            <div class="col-md-8 col-xl-6 text-center">
+                                <div class="row">
+                                    <template v-for="kitURL in selectedClub.getKitsURLs()">
+                                        <div class="col-4">
+                                            <img class="img-fluid" :src="kitURL">
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-9">
+                                <table class="table table-hover table-borderless sortable">
+                                    <thead class="table-light">
+                                        <th class="text-center" :title="translator.get('Position')"
+                                            @click="updateClubOrder('position.id')">
+                                            {{ translator.get("Position").substring(0, 3).toUpperCase() }}
+                                        </th>
+                                        <th style="width: 1.5rem;"></th>
+                                        <th class="text-center" @click="updateSquadOrder('surname')">
+                                            {{ translator.get("Name") }}</th>
+                                        <th class="text-center" :title="translator.get('Overall')"
+                                            @click="updateClubOrder('overall')">
+                                            {{ translator.get("OV") }}
+                                        </th>
+                                        <th class="text-center" @click="updateClubOrder('age')">
+                                            {{ translator.get("Age") }}
+                                        </th>
+                                        <th class="text-center" @click="updateClubOrder('energy')">
+                                            {{ translator.get("Energy") }}
+                                        </th>
+                                        <th class="text-center" @click="updateClubOrder('marketValue')">
+                                            {{ translator.get("Market Value") }}
+                                        </th>
+                                        <th class="text-center" @click="updateClubOrder('wage')">
+                                            {{ translator.get("Wage") }}
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            v-for="player in selectedClub.squad.players.orderBy(clubOrderColumn, 'position.id', '-overall', 'name')">
+                                            <td class="text-center fw-bold" :class="player.position.fieldRegion"
+                                                :title="translator.get(player.position.name)">
+                                                {{ translator.get(player.position.abbreviation) }}
+                                            </td>
+                                            <td>
+                                                <img class="border" :src="player.country.getFlagURL()"
+                                                    :alt="translator.get(player.country.name)"
+                                                    :title="translator.get(player.country.name)"
+                                                    style="max-height: 1.5rem;">
+                                            </td>
+                                            <td>{{ player.surname }}</td>
+                                            <td class="text-center pt-0 pb-0">
+                                                <span class="overall" :class="player.category">
+                                                    {{ player.overall }}
+                                                </span>
+                                            </td>
+                                            <td class="text-center"
+                                                :class="player.age < 32 ? 'text-primary' : 'text-danger'">
+                                                {{ player.age }}
+                                            </td>
+                                            <td>
+                                                <div class="energy progress position-relative"
+                                                    :title="`${translator.get('Energy')} ${player.energy}%`">
+                                                    <div class="progress-bar" role="progressbar"
+                                                        :class="player.energy > 75 ? 'bg-success' : player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                        :aria-valuenow="player.energy" aria-valuemin="0"
+                                                        aria-valuemax="100" :style="{ width: player.energy + '%' }">
+                                                        {{ player.energy }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-end">{{ player.marketValue.formatCurrency() }}</td>
-                                        <td class="text-end">{{ player.wage.formatCurrency() }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                            </td>
+                                            <td class="text-end">{{ player.marketValue.formatCurrency() }}</td>
+                                            <td class="text-end">{{ player.wage.formatCurrency() }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -638,6 +682,8 @@
     <script src="../Raffoot.Domain/Models/ChampionshipEditionPlayer.js"></script>
     <script src="../Raffoot.Domain/Models/ChampionshipType.js"></script>
     <script src="../Raffoot.Domain/Models/Club.js"></script>
+    <script src="../Raffoot.Domain/Models/Confederation.js"></script>
+    <script src="../Raffoot.Domain/Models/Continent.js"></script>
     <script src="../Raffoot.Domain/Models/Country.js"></script>
     <script src="../Raffoot.Domain/Models/FieldLocalization.js"></script>
     <script src="../Raffoot.Domain/Models/Formation.js"></script>
@@ -753,11 +799,11 @@
             },
 
             getCssClassForPosition: function (position, championshipEdition) {
-                if (championshipEdition.getInternationalCupClassificationZonePositions(1).includes(position)) {
-                    return 'main-international-cup';
+                if (championshipEdition.getContinentalCupClassificationZonePositions(1).includes(position)) {
+                    return 'main-continental-cup';
                 }
-                else if (championshipEdition.getInternationalCupClassificationZonePositions(2).includes(position)) {
-                    return 'secondary-international-cup';
+                else if (championshipEdition.getContinentalCupClassificationZonePositions(2).includes(position)) {
+                    return 'secondary-continental-cup';
                 }
                 else if (championshipEdition.getPromotionZonePositions().includes(position)) {
                     return 'promotion';
@@ -776,6 +822,9 @@
             },
             nextMatch() {
                 return this.game.currentSeason.getNextMatch(this.game.club.id);
+            },
+            nextOpponent() {
+                return this.nextMatch.getOpponent(this.game.club.id);
             },
             selectedChampionshipEdition() {
                 return this.game.currentSeason.championshipEditions.find(ce => ce.id === this.selectedChampionshipEditionId);

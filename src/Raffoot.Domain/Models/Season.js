@@ -49,7 +49,7 @@ class Season {
     }
 
     get matches() {
-        return this.championshipEditions.map(ce => ce.matches).flat();
+        return this.championshipEditions.flatMap(ce => ce.matches);
     }
 
     schedule() {
@@ -103,13 +103,7 @@ class Season {
     }
 
     _defineCalendar() {
-        const nationalSupercup = ChampionshipType.find('national', 'supercup');
-        const internationalSupercup = ChampionshipType.find('international', 'supercup');
-
         let date = Date.firstSunday(1, this.year);
-        this._addSeasonDate(date, nationalSupercup);
-        date = date.addDays(3);
-        this._addSeasonDate(date, internationalSupercup);
 
         let championshipTypes = this.championshipTypes.slice();
         let championshipType = null;
@@ -162,7 +156,7 @@ class Season {
     }
 
     getMatchesByClubId(clubId) {
-        return this.matches.filter(m => m.matchClubs.map(mc => mc.club?.id).includes(clubId)).orderBy('date');;
+        return this.matches.filter(m => m.matchClubs.map(mc => mc.club?.id).includes(clubId)).orderBy('date');
     }
 
     getNextMatch(clubId) {

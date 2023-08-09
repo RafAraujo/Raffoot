@@ -1,12 +1,14 @@
 class Country {
-    constructor(name) {
+    constructor(name, continentId) {
         this.name = name;
+        this._continentId = continentId;
         this._clubIds = [];
     }
 
-    static create(name) {
-        const country = new Country(name);
-        country.id = Context.game.countries.push(country);
+    static create(name, continentName) {
+        const continent = Context.game.continents.find(c => c.name === continentName);
+        const country = new Country(name, continent?.id);
+        country.id = Context.game.countries.push(country);        
         return country;
     }
 
@@ -16,6 +18,10 @@ class Country {
 
     static getByName(name) {
         return Context.game.countries.find(c => c.name === name);
+    }
+
+    get continent() {
+        return Continent.getById(this._continentId);
     }
 
     get clubs() {

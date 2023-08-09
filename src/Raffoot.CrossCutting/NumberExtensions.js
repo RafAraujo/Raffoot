@@ -1,6 +1,7 @@
 const _currencyFormatter = new Intl.NumberFormat(undefined, {
     style: "currency",
-    currency: "EUR",
+    currency: "USD",
+    currencyDisplay: 'narrowSymbol',
     maximumFractionDigits: 2,
     roundingIncrement: 5,
 });

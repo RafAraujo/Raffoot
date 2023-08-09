@@ -9,16 +9,7 @@ class Game {
         this._currentSeasonId = null;
         this.year = firstYear;
 
-        this.countries = [];
-        this.positions = [];
-        this.fieldLocalizations = [];
-        this.formations = [];
-        this.clubs = [];
-        this.players = [];
-        this.championshipTypes = [];
         this.championships = [];
-        this.matches = [];
-        this.matchClubs = [];
         this.championshipEditions = [];
         this.championshipEditionClubs = [];
         this.championshipEditionEliminationPhases = [];
@@ -26,6 +17,17 @@ class Game {
         this.championshipEditionFixtures = [];
         this.championshipEditionGroups = [];
         this.championshipEditionPlayers = [];
+        this.championshipTypes = [];
+        this.clubs = [];
+        this.confederations = [];
+        this.continents = [];
+        this.countries = [];
+        this.fieldLocalizations = [];
+        this.formations = [];
+        this.matches = [];
+        this.matchClubs = [];
+        this.players = [];
+        this.positions = [];
         this.seasons = [];
         this.seasonDates = [];
         this.squads = [];
@@ -63,10 +65,11 @@ class Game {
     }
 
     newSeason() {
-        let year = this.firstYear;
+        const year = this.firstYear;
+        const isFirstSeason = this.seasons.length === 0;
         let championshipTypes = this.championshipTypes;
 
-        if (this.seasons.length === 0) {
+        if (isFirstSeason) {
             championshipTypes = championshipTypes.filter(ct => ct.scope === 'national' && ct.format != 'supercup');
         }
         else {

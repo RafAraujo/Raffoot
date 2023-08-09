@@ -1,5 +1,6 @@
 ﻿using HtmlAgilityPack;
 using RaffootLoader.Data.Interfaces;
+using RaffootLoader.Domain;
 using RaffootLoader.Domain.Models;
 using RaffootLoader.Services.Interfaces;
 using RaffootLoader.Utils;
@@ -19,6 +20,8 @@ namespace RaffootLoader.Services
         private readonly IRepository<Player> _playerRepository;
 
         private readonly HttpClient _client;
+
+        private IList<League> _leagues;
         private readonly IList<Country> _countries;
 
         public SoFifaDataExtractorService(
@@ -35,6 +38,7 @@ namespace RaffootLoader.Services
             _client = new();
             _client.DefaultRequestHeaders.Add("User-Agent", "C# App");
 
+            _leagues = new List<League>();
             _countries = new List<Country>();
         }
 
@@ -50,75 +54,78 @@ namespace RaffootLoader.Services
                 Console.WriteLine("Creating database...");
             }
 
-            var leagues = GetLeagues();
-            var clubs = await GetClubs(leagues).ConfigureAwait(false);
+            _leagues = GetLeagues();
+            var clubs = await GetClubs(_leagues).ConfigureAwait(false);
             var players = await GetPlayers(clubs).ConfigureAwait(false);
 
-            _context.InsertMany(leagues);
+            _context.InsertMany(_leagues);
             _context.InsertMany(clubs);
             _context.InsertMany(players);
             _context.InsertMany(_countries.OrderBy(c => c.Name));
         }
 
-        public static IEnumerable<League> GetLeagues()
+        private static IList<League> GetLeagues()
         {
             var leagues = new[]
             {
-                new League(353, "Argentina", 1),
-                new League(80, "Austria", 1),
-                new League(351, "Australia", 1),
-                new League(4, "Belgium", 1),
-                new League(2017, "Bolivia", 1),
-                new League(7, "Brazil", 1),
-                new League(335, "Chile", 1),
-                new League(2012, "China PR", 1),
-                new League(336, "Colombia", 1),
-                new League(317, "Croatia", 1),
-                new League(318, "Cyprus", 1),
-                new League(319, "Czech Republic", 1),
-                new League(1, "Denmark", 1),
-                new League(2018, "Ecuador", 1),
-                new League(13, "England", 1),
-                new League(14, "England", 2),
-                new League(60, "England", 3),
-                new League(61, "England", 4),
-                new League(62, "England", 5),
-                new League(322, "Finland", 1),
-                new League(16, "France", 1),
-                new League(17, "France", 2),
-                new League(19, "Germany", 1),
-                new League(20, "Germany", 2),
-                new League(2076, "Germany", 3),
-                new League(63, "Greece", 1),
-                new League(64, "Hungary", 1),
-                new League(2149, "India", 1),
-                new League(31, "Italy", 1),
-                new League(32, "Italy", 2),
-                new League(349, "Japan", 1),
-                new League(83, "Korea Republic", 1),
-                new League(341, "Mexico", 1),
-                new League(10, "Netherlands", 1),
-                new League(41, "Norway", 1),
-                new League(337, "Paraguay", 1),
-                new League(2020, "Peru", 1),
-                new League(66, "Poland", 1),
-                new League(308, "Portugal", 1),
-                new League(65, "Republic of Ireland", 1),
-                new League(330, "Romania", 1),
-                new League(67, "Russia", 1),
-                new League(350, "Saudi Arabia", 1),
-                new League(50, "Scotland", 1),
-                new League(347, "South Africa", 1),
-                new League(53, "Spain", 1),
-                new League(54, "Spain", 2),
-                new League(56, "Sweden", 1),
-                new League(189, "Switzerland", 1),
-                new League(68, "Turkey", 1),
-                new League(332, "Ukraine", 1),
-                new League(2013, "United Arab Emirates", 1),
-                new League(39, "United States", 1),
-                new League(338, "Uruguay", 1),
-                new League(2019, "Venezuela", 1),
+                new League(347, "South Africa", 1, Continent.Africa),
+
+                new League(353, "Argentina", 1, Continent.America),
+                new League(2017, "Bolivia", 1, Continent.America),
+                new League(7, "Brazil", 1, Continent.America),
+                new League(335, "Chile", 1, Continent.America),
+                new League(336, "Colombia", 1, Continent.America),
+                new League(2018, "Ecuador", 1, Continent.America),
+                new League(39, "United States", 1, Continent.America),
+                new League(338, "Uruguay", 1, Continent.America),
+                new League(2019, "Venezuela", 1, Continent.America),
+                new League(341, "Mexico", 1, Continent.America),
+                new League(337, "Paraguay", 1, Continent.America),
+                new League(2020, "Peru", 1, Continent.America),
+
+                new League(351, "Australia", 1, Continent.Asia),
+                new League(2012, "China PR", 1, Continent.Asia),
+                new League(2149, "India", 1, Continent.Asia),
+                new League(349, "Japan", 1, Continent.Asia),
+                new League(83, "Korea Republic", 1, Continent.Asia),
+                new League(350, "Saudi Arabia", 1, Continent.Asia),
+                new League(2013, "United Arab Emirates", 1, Continent.Asia),
+
+                new League(80, "Austria", 1, Continent.Europe),
+                new League(4, "Belgium", 1, Continent.Europe),
+                new League(317, "Croatia", 1, Continent.Europe),
+                new League(318, "Cyprus", 1, Continent.Europe),
+                new League(319, "Czech Republic", 1, Continent.Europe),
+                new League(1, "Denmark", 1, Continent.Europe),
+                new League(13, "England", 1, Continent.Europe),
+                new League(14, "England", 2, Continent.Europe),
+                new League(60, "England", 3, Continent.Europe),
+                new League(61, "England", 4, Continent.Europe),
+                new League(62, "England", 5, Continent.Europe),
+                new League(322, "Finland", 1, Continent.Europe),
+                new League(16, "France", 1, Continent.Europe),
+                new League(17, "France", 2, Continent.Europe),
+                new League(19, "Germany", 1, Continent.Europe),
+                new League(20, "Germany", 2, Continent.Europe),
+                new League(2076, "Germany", 3, Continent.Europe),
+                new League(63, "Greece", 1, Continent.Europe),
+                new League(64, "Hungary", 1, Continent.Europe),
+                new League(31, "Italy", 1, Continent.Europe),
+                new League(32, "Italy", 2, Continent.Europe),
+                new League(10, "Netherlands", 1, Continent.Europe),
+                new League(41, "Norway", 1, Continent.Europe),
+                new League(66, "Poland", 1, Continent.Europe),
+                new League(308, "Portugal", 1, Continent.Europe),
+                new League(65, "Republic of Ireland", 1, Continent.Europe),
+                new League(330, "Romania", 1, Continent.Europe),
+                new League(67, "Russia", 1, Continent.Europe),
+                new League(50, "Scotland", 1, Continent.Europe),
+                new League(53, "Spain", 1, Continent.Europe),
+                new League(54, "Spain", 2, Continent.Europe),
+                new League(56, "Sweden", 1, Continent.Europe),
+                new League(189, "Switzerland", 1, Continent.Europe),
+                new League(68, "Turkey", 1, Continent.Europe),
+                new League(332, "Ukraine", 1, Continent.Europe),
             };
 
             foreach (var group in leagues.GroupBy(l => l.ExternalId))
@@ -211,7 +218,9 @@ namespace RaffootLoader.Services
                     if (!_countries.Any(c => c.Name == player.Country))
                     {
                         var flag = cells[1].Descendants().First(n => n.Name == "img").GetAttributeValue("data-srcset", default(string));
-                        _countries.Add(new Country(player.Country, flag));
+                        var continent = _leagues.FirstOrDefault(l => l.Country == player.Country)?.Continent;
+                        var country = new Country(player.Country, flag, continent.ToString());
+                        _countries.Add(country);
                     }
 
                     foreach (var linkPosition in cells[1].Descendants().Where(n => n.Name == "a" && n.Attributes.Any(a => a.Name == "rel" && a.Value == "nofollow")))

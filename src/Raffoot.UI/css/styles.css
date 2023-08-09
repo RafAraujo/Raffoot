@@ -124,12 +124,12 @@ td.attack {
     color: #dc3545 !important;
 }
 
-td.main-international-cup {
+td.main-continental-cup {
     color: blue;
     font-weight: bold;
 }
 
-td.secondary-international-cup, td.promotion {
+td.secondary-continental-cup, td.promotion {
     color: deepskyblue;
     font-weight: bold;
 }
