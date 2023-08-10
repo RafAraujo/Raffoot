@@ -111,13 +111,14 @@ class ChampionshipEdition {
 
         if (this.championship.division === 1) {
             if (this.championship.championshipType.id === nationalLeague.id) {
+                const start = continentalCupDivision === 1 ? 1 : this.championship.confederation.getContinentalCupSpots(1) + 1;
                 const cupSpots = this.championship.confederation.getContinentalCupSpots(continentalCupDivision);
-                for (let position = (cupSpots * (continentalCupDivision - 1)) + 1; position <= cupSpots * continentalCupDivision; position++) {
+                for (let position = start; position < start + cupSpots; position++) {
                     positions.push(position);
                 }
             }
             else if (this.championship.championshipType.id === nationalCup.id) {
-                return continentalCupDivision === 1 ? 0 : 1;
+                return continentalCupDivision === 1 ? [] : [1];
             }
         }
 

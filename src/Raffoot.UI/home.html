@@ -209,6 +209,13 @@
                                                         {{ translator.getFormationName(formation) }}
                                                     </option>
                                                 </select>
+                                                <div class="form-check form-check-inline form-switch mt-1">
+                                                    <input id="automatic-selection" class="form-check-input"
+                                                        type="checkbox" v-model="automaticSelection">
+                                                    <label for="automatic-selection" class="form-check-label">
+                                                        {{ translator.get("Automatic selection") }}
+                                                    </label>
+                                                </div>
                                             </div>
                                             <div class="col-md-6 col-xl-4">
                                                 <label for="select-playing-style" class="form-label">
@@ -222,17 +229,6 @@
                                                         {{ translator.get(playingStyle) }}
                                                     </option>
                                                 </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-2">
-                                            <div class="col-md-6 col-xl-4">
-                                                <div class="form-check form-check-inline form-switch">
-                                                    <input id="automatic-selection" class="form-check-input"
-                                                        type="checkbox" v-model="automaticSelection">
-                                                    <label for="automatic-selection" class="form-check-label">
-                                                        {{ translator.get("Automatic selection") }}
-                                                    </label>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
