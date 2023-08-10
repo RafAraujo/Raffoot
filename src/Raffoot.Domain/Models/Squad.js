@@ -1,6 +1,7 @@
 class Squad {
     constructor(clubId) {
         this._clubId = clubId;
+        this.playingStyle = 'balanced';
         this._formationId = null;
         this._squadPlayerIds = [];
     }

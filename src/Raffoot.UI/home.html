@@ -197,16 +197,29 @@
                                     <div class="lineup p-1">
                                         <div class="row mb-2">
                                             <div class="col-md-6 col-xl-4">
-                                                <label for="select-formations" class="form-label">
+                                                <label for="select-formation" class="form-label">
                                                     {{ translator.get("Formation") }}
                                                 </label>
-                                                <select id="select-championships" class="form-select" required
+                                                <select id="select-formation" class="form-select" required
                                                     @change="game.club.squad.changeFormation(game.formations.find(f => f.id == $event.target.value), automaticSelection)">
                                                     <option></option>
                                                     <option v-for="formation in game.formations" :key="formation.id"
                                                         :value="formation.id"
                                                         :selected="game.club.squad.formation?.id == formation?.id">
                                                         {{ translator.getFormationName(formation) }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 col-xl-4">
+                                                <label for="select-playing-style" class="form-label">
+                                                    {{ translator.get("Playing Style") }}
+                                                </label>
+                                                <select id="select-playing-style" class="form-select" required
+                                                    @change="game.club.squad.playingStyle = $event.target.value">
+                                                    <option v-for="playingStyle in playingStyles" :key="playingStyle"
+                                                        :value="playingStyle"
+                                                        :selected="game.club.squad.playingStyle == playingStyle">
+                                                        {{ translator.get(playingStyle) }}
                                                     </option>
                                                 </select>
                                             </div>
@@ -479,10 +492,10 @@
                         <div class="row mb-2">
                             <div class="col-md-4 col-xl-3">
                                 <div class="col">
-                                    <label for="select-championships" class="form-label">
+                                    <label for="select-championship" class="form-label">
                                         {{ translator.get("Championship") }}
                                     </label>
-                                    <select id="select-championships" class="form-select"
+                                    <select id="select-championship" class="form-select"
                                         @change="selectChampionshipEdition($event)">
                                         <option v-for="championshipEdition in game.currentSeason.championshipEditions
                                             .map(ce => ({ id: ce.id, confederationName: ce.championship.confederationName, name: translator.getChampionshipName(ce.championship) }))
@@ -802,6 +815,7 @@
 
                 // Play:
                 automaticSelection: true,
+                playingStyles: Config.playingStyles,
                 selectedSquadPlayerId: null,
 
                 // Squad:

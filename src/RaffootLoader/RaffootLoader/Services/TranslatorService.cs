@@ -28,9 +28,9 @@ namespace RaffootLoader.Services
         private readonly string[] _texts = new[]
         {
             "Age", "Assists", "Attack", "Audience", "Automatic selection", $"{PrefixOfContext}{Separator}Away", "Average",
-            "Back", "Background color", "Ball Possession", $"{PrefixOfContext}{Separator}Board of Directors", "Bronze",
+            "Back", "Background color", $"{PrefixOfContext}{Separator}Balanced", "Ball Possession", $"{PrefixOfContext}{Separator}Board of Directors", "Bronze",
             "Calendar", "Cancel", "Capacity", "Category", "Champions", "Championship", "Choose your club", "Classification Tables", "Close", "Club", "Clubs", "Coach", "Colors", "CON", "Country", "Creating game...", $"{PrefixOfContext}{Separator}Cup",
-            "Date", "Defense", "Delete", "Diamond", "Division", $"{PrefixOfContext}{Separator}Draws",
+            "Date", "Defense", $"{PrefixOfContext}{Separator}Defensive", "Delete", "Diamond", "Division", $"{PrefixOfContext}{Separator}Draws",
             "End of contract", "Energy", "Error", "Expand",
             "False 9", "Final", "Finances", "Flat", "Formation", "For Sale", "Foul", "Free Kick Taker",
             "Game", "Game deleted with success",  $"{PrefixOfContext}{Separator}Goal",  $"{PrefixOfContext}{Separator}Goals", $"{PrefixOfContext}{Separator}Goals Against", $"{PrefixOfContext}{Separator}Goals Difference", "Gold", "Group",
@@ -39,8 +39,8 @@ namespace RaffootLoader.Services
             "League", "Left", $"{PrefixOfContext}{Separator}Lineup", "Load Game", "Loading game...", $"{PrefixOfContext}{Separator}Losses",
             "Market Value", "Matches", "Midfield",
             "Name", "Narrow", "Nationality", "New Game", "No",
-            "Offside", "Options", "Overall", "OV",
-            $"{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Players", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
+            $"{PrefixOfContext}{Separator}Offensive", "Offside", "Options", "Overall", "OV",
+            $"{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Players", "Playing Style", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
             "Quarter-finals",
             "Raffoot", "Ranking", $"{PrefixOfContext}{Separator}Referee", "Reset", $"{PrefixOfContext}{Separator}Right", "Round of 16", "Round of 32", "Round of 64",
             "Save Changes", "Save Game", "Search", "Search Players", "Semifinals", "Silver", "Squad", "Stadium", "Star", "Start Game", "Starting game...", "Statistics", "Supercup",

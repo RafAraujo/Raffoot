@@ -32,10 +32,11 @@ h1, th, td {
 
 .lineup {
     color: white;
-    background-color: rgb(73, 81, 93);
+    background-color: rgb(66, 74, 86);
 }
 
 .bench {
+    background-color: rgb(73, 81, 93);
     font-size: small;
 }
 

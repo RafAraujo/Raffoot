@@ -1,6 +1,6 @@
 ﻿using HtmlAgilityPack;
 using RaffootLoader.Data.Interfaces;
-using RaffootLoader.Domain;
+using RaffootLoader.Domain.Enums;
 using RaffootLoader.Domain.Models;
 using RaffootLoader.Services.Interfaces;
 using RaffootLoader.Utils;

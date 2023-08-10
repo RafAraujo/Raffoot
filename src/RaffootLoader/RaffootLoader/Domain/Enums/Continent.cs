@@ -1,4 +1,4 @@
-﻿namespace RaffootLoader.Domain
+﻿namespace RaffootLoader.Domain.Enums
 {
     public enum Continent
     {

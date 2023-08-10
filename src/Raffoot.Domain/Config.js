@@ -45,6 +45,8 @@ const Config = (function () {
             maxDivisionCount: 4,
         },
 
+        playingStyles: ['defensive', 'balanced', 'offensive'],
+
         stadiumTicketPrice: 40,
     }
 })();
