@@ -114,7 +114,7 @@ class Squad {
     changeFormation(formation, automaticLineup = false) {
         this.clearFieldLocalizations();
         this.formation = formation;
-        if (automaticLineup) {
+        if (formation && automaticLineup) {
             this.setAutomaticLineUp();
         }
     }

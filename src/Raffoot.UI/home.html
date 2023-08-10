@@ -162,180 +162,185 @@
                         </div>
                     </div>
                     <section id="play" :class="{ 'd-none' : activeSection !== 'play' }">
-                        <div class="row mb-2">
-                            <div class="col">
-                                <div class="pt-2 pb-2">
-                                    <div>
-                                        <div class="d-inline-block ms-1 me-3">
-                                            <img :src="nextOpponent.getLogoURL()" :alt="nextOpponent.name"
-                                                :title="nextOpponent.name" style="max-height: 3rem;">
-                                        </div>
-                                        <div class="d-inline-block align-middle">
-                                            <div>
-                                                <h5>{{ nextMatch.description }}</h5>
-                                                <p>
-                                                    {{
-                                                    translator.getChampionshipName(nextMatch.championshipEdition.championship)
-                                                    }}
-                                                    <br>
-                                                    {{ nextMatch.date.toLocaleDateString() }}
-                                                </p>
+                        <form @submit.prevent>
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="pt-2 pb-2">
+                                        <div>
+                                            <div class="d-inline-block ms-1 me-3">
+                                                <img :src="nextOpponent.getLogoURL()" :alt="nextOpponent.name"
+                                                    :title="nextOpponent.name" style="max-height: 3rem;">
+                                            </div>
+                                            <div class="d-inline-block align-middle">
+                                                <div>
+                                                    <h5>{{ nextMatch.description }}</h5>
+                                                    <p>
+                                                        {{
+                                                        translator.getChampionshipName(nextMatch.championshipEdition.championship)
+                                                        }}
+                                                        <br>
+                                                        {{ nextMatch.date.toLocaleDateString() }}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-light border" style="min-width: 6rem;">{{
-                                            translator.get("Play") }}</button>
+                                        <div>
+                                            <button type="submit" class="btn btn-light border" style="min-width: 6rem;">
+                                                {{ translator.get("Play") }}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-xl-8 mb-2">
-                                <div class="lineup p-1">
-                                    <div class="row mb-2">
-                                        <div class="col-md-6 col-xl-4">
-                                            <label for="select-formations" class="form-label">
-                                                {{ translator.get("Formation") }}
-                                            </label>
-                                            <select id="select-championships" class="form-select"
-                                                @change="game.club.squad.changeFormation(game.formations.find(f => f.id == $event.target.value), automaticSelection)">
-                                                <option></option>
-                                                <option v-for="formation in game.formations" :key="formation.id"
-                                                    :value="formation.id"
-                                                    :selected="game.club.squad.formation?.id == formation?.id">
-                                                    {{ translator.getFormationName(formation) }}
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-2">
-                                        <div class="col-md-6 col-xl-4">
-                                            <div class="form-check form-check-inline form-switch">
-                                                <input id="automatic-selection" class="form-check-input" type="checkbox"
-                                                    v-model="automaticSelection">
-                                                <label for="automatic-selection" class="form-check-label">
-                                                    {{ translator.get("Automatic selection") }}
+                            <div class="row mb-2">
+                                <div class="col-xl-8 mb-2">
+                                    <div class="lineup p-1">
+                                        <div class="row mb-2">
+                                            <div class="col-md-6 col-xl-4">
+                                                <label for="select-formations" class="form-label">
+                                                    {{ translator.get("Formation") }}
                                                 </label>
+                                                <select id="select-championships" class="form-select" required
+                                                    @change="game.club.squad.changeFormation(game.formations.find(f => f.id == $event.target.value), automaticSelection)">
+                                                    <option></option>
+                                                    <option v-for="formation in game.formations" :key="formation.id"
+                                                        :value="formation.id"
+                                                        :selected="game.club.squad.formation?.id == formation?.id">
+                                                        {{ translator.getFormationName(formation) }}
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xl-6 mb-2">
-                                            <div class="field position-relative border" style="height: 475px">
-                                                <template v-if="game.club.squad.formation">
-                                                    <template v-for="item in game.club.squad.lineup">
-                                                        <template v-if="item.squadPlayer">
-                                                            <div class="player position-absolute text-center"
-                                                                :class="{ 'border blink' : item.squadPlayer.id === selectedSquadPlayerId }"
-                                                                :data-squad-player-id="item.squadPlayer.id"
-                                                                @click.stop="clickPlayer($event)"
-                                                                :style="{ top: (11 - item.squadPlayer.fieldLocalization.line) * 7.7 + '%', left: (item.squadPlayer.fieldLocalization.column) * 20 + '%' }">
-                                                                <div>
-                                                                    <div class="position position-absolute"
-                                                                        :class="{ 'improvised' : item.squadPlayer.isImprovised }"
-                                                                        :title="translator.get(item.squadPlayer.player.position.name)">
-                                                                        {{
-                                                                        translator.get(item.squadPlayer.fieldLocalization.position.abbreviation)
-                                                                        }}
+                                        <div class="row mb-2">
+                                            <div class="col-md-6 col-xl-4">
+                                                <div class="form-check form-check-inline form-switch">
+                                                    <input id="automatic-selection" class="form-check-input"
+                                                        type="checkbox" v-model="automaticSelection">
+                                                    <label for="automatic-selection" class="form-check-label">
+                                                        {{ translator.get("Automatic selection") }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-6 mb-2">
+                                                <div class="field position-relative border" style="height: 475px">
+                                                    <template v-if="game.club.squad.formation">
+                                                        <template v-for="item in game.club.squad.lineup">
+                                                            <template v-if="item.squadPlayer">
+                                                                <div class="player position-absolute text-center"
+                                                                    :class="{ 'border blink' : item.squadPlayer.id === selectedSquadPlayerId }"
+                                                                    :data-squad-player-id="item.squadPlayer.id"
+                                                                    @click.stop="clickPlayer($event)"
+                                                                    :style="{ top: (11 - item.squadPlayer.fieldLocalization.line) * 7.7 + '%', left: (item.squadPlayer.fieldLocalization.column) * 20 + '%' }">
+                                                                    <div>
+                                                                        <div class="position position-absolute"
+                                                                            :class="{ 'improvised' : item.squadPlayer.isImprovised }"
+                                                                            :title="translator.get(item.squadPlayer.player.position.name)">
+                                                                            {{
+                                                                            translator.get(item.squadPlayer.fieldLocalization.position.abbreviation)
+                                                                            }}
+                                                                        </div>
+                                                                        <div class="overall position-absolute">
+                                                                            {{ item.squadPlayer.overall }}
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="overall position-absolute">
-                                                                        {{ item.squadPlayer.overall }}
-                                                                    </div>
-                                                                </div>
-                                                                <img class="max-size-3-rem"
-                                                                    :src="item.squadPlayer.player.getPhotoURL()"
-                                                                    :alt="item.squadPlayer.player.fullName"
-                                                                    :title="item.squadPlayer.player.fullName"
-                                                                    onerror="this.onerror = null; this.src='res/players/0.svg'">
-                                                                <div class="energy progress position-relative"
-                                                                    :title="`${translator.get('Energy')} ${item.squadPlayer.player.energy}%`">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                        :class="item.squadPlayer.player.energy > 75 ? 'bg-success' : item.squadPlayer.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
-                                                                        :aria-valuenow="item.squadPlayer.player.energy"
-                                                                        aria-valuemin="0" aria-valuemax="100"
-                                                                        :style="{ width: item.squadPlayer.player.energy + '%' }">
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    :dir="item.squadPlayer.fieldLocalization.column < 3 ? 'ltr' : 'rtl'">
-                                                                    <span
-                                                                        class="d-inline-block position-relative text-nowrap">
-                                                                        {{ item.squadPlayer.player.surname }}
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </template>
-                                                        <template v-else>
-                                                            <div>
-                                                                <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
-                                                                    :class="{ 'blink' : selectedSquadPlayerId }"
-                                                                    :data-field-localization-id="item.fieldLocalization.id"
-                                                                    @click.stop="clickFieldLocalization($event)"
-                                                                    :style="{ top: (11 - item.fieldLocalization.line) * 7.7 + '%', left: (item.fieldLocalization.column) * 20 + '%' }">
                                                                     <img class="max-size-3-rem"
-                                                                        :src="game.club.getKitsURLs()[0]"
-                                                                        :alt="translator.get(item.fieldLocalization.position.name)"
-                                                                        :title="translator.get(item.fieldLocalization.position.name)"
+                                                                        :src="item.squadPlayer.player.getPhotoURL()"
+                                                                        :alt="item.squadPlayer.player.fullName"
+                                                                        :title="item.squadPlayer.player.fullName"
                                                                         onerror="this.onerror = null; this.src='res/players/0.svg'">
-                                                                    <span class="fw-bold">
-                                                                        {{
-                                                                        translator.get(item.fieldLocalization.position.abbreviation)
-                                                                        }}
-                                                                    </span>
+                                                                    <div class="energy progress position-relative"
+                                                                        :title="`${translator.get('Energy')} ${item.squadPlayer.player.energy}%`">
+                                                                        <div class="progress-bar" role="progressbar"
+                                                                            :class="item.squadPlayer.player.energy > 75 ? 'bg-success' : item.squadPlayer.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                                            :aria-valuenow="item.squadPlayer.player.energy"
+                                                                            aria-valuemin="0" aria-valuemax="100"
+                                                                            :style="{ width: item.squadPlayer.player.energy + '%' }">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        :dir="item.squadPlayer.fieldLocalization.column < 3 ? 'ltr' : 'rtl'">
+                                                                        <span
+                                                                            class="d-inline-block position-relative text-nowrap">
+                                                                            {{ item.squadPlayer.player.surname }}
+                                                                        </span>
+                                                                    </div>
                                                                 </div>
+                                                            </template>
+                                                            <template v-else>
+                                                                <div>
+                                                                    <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
+                                                                        :class="{ 'opacity-50' : !selectedSquadPlayerId }"
+                                                                        :data-field-localization-id="item.fieldLocalization.id"
+                                                                        @click.stop="clickFieldLocalization($event)"
+                                                                        :style="{ top: (11 - item.fieldLocalization.line) * 7.7 + '%', left: (item.fieldLocalization.column) * 20 + '%' }">
+                                                                        <img class="max-size-3-rem"
+                                                                            :src="game.club.getKitsURLs()[0]"
+                                                                            :alt="translator.get(item.fieldLocalization.position.name)"
+                                                                            :title="translator.get(item.fieldLocalization.position.name)"
+                                                                            onerror="this.onerror = null; this.src='res/players/0.svg'">
+                                                                        <span class="fw-bold">
+                                                                            {{
+                                                                            translator.get(item.fieldLocalization.position.abbreviation)
+                                                                            }}
+                                                                        </span>
+                                                                    </div>
+                                                            </template>
                                                         </template>
                                                     </template>
-                                                </template>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <div class="bench position-relative border pb-5" @click.stop="clickBench($event)">
-                                                <template
-                                                    v-for="squadPlayer in game.club.squad.substitutes.orderBy('order', 'player.position.id', '-player.overall')">
-                                                    <div class="player d-inline-block text-center"
-                                                        :class="{ 'border blink' : squadPlayer.id === selectedSquadPlayerId }"
-                                                        :data-squad-player-id="squadPlayer.id"
-                                                        @click.stop="clickPlayer($event)">
-                                                        <div class="position-relative">
-                                                            <div class="position position-absolute"
-                                                                :class="{ 'improvised' : squadPlayer.isImprovised }"
-                                                                :title="translator.get(squadPlayer.player.position.name)">
-                                                                {{
-                                                                translator.get(squadPlayer.player.position.abbreviation)
-                                                                }}
+                                            <div class="col-xl-6">
+                                                <div class="bench position-relative border pb-5"
+                                                    @click.stop="clickBench($event)">
+                                                    <template
+                                                        v-for="squadPlayer in game.club.squad.substitutes.orderBy('order', 'player.position.id', '-player.overall')">
+                                                        <div class="player d-inline-block text-center"
+                                                            :class="{ 'border blink' : squadPlayer.id === selectedSquadPlayerId }"
+                                                            :data-squad-player-id="squadPlayer.id"
+                                                            @click.stop="clickPlayer($event)">
+                                                            <div class="position-relative">
+                                                                <div class="position position-absolute"
+                                                                    :class="{ 'improvised' : squadPlayer.isImprovised }"
+                                                                    :title="translator.get(squadPlayer.player.position.name)">
+                                                                    {{
+                                                                    translator.get(squadPlayer.player.position.abbreviation)
+                                                                    }}
+                                                                </div>
+                                                                <div class="overall position-absolute">
+                                                                    {{ squadPlayer.overall }}
+                                                                </div>
                                                             </div>
-                                                            <div class="overall position-absolute">
-                                                                {{ squadPlayer.overall }}
+                                                            <img class="max-size-3-rem"
+                                                                :src="squadPlayer.player.getPhotoURL()"
+                                                                :alt="squadPlayer.player.fullName"
+                                                                :title="squadPlayer.player.fullName"
+                                                                onerror="this.src='res/players/0.svg'">
+                                                            <div class="energy progress position-relative"
+                                                                :title="`${translator.get('Energy')} ${squadPlayer.player.energy}%`">
+                                                                <div class="progress-bar" role="progressbar"
+                                                                    :class="squadPlayer.player.energy > 75 ? 'bg-success' : squadPlayer.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                                    :aria-valuenow="squadPlayer.player.energy"
+                                                                    aria-valuemin="0" aria-valuemax="100"
+                                                                    :style="{ width: squadPlayer.player.energy + '%' }">
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <span
+                                                                    class="d-inline-block position-relative text-nowrap">
+                                                                    {{ squadPlayer.player.surname }}
+                                                                </span>
                                                             </div>
                                                         </div>
-                                                        <img class="max-size-3-rem"
-                                                            :src="squadPlayer.player.getPhotoURL()"
-                                                            :alt="squadPlayer.player.fullName"
-                                                            :title="squadPlayer.player.fullName"
-                                                            onerror="this.src='res/players/0.svg'">
-                                                        <div class="energy progress position-relative"
-                                                            :title="`${translator.get('Energy')} ${squadPlayer.player.energy}%`">
-                                                            <div class="progress-bar" role="progressbar"
-                                                                :class="squadPlayer.player.energy > 75 ? 'bg-success' : squadPlayer.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
-                                                                :aria-valuenow="squadPlayer.player.energy"
-                                                                aria-valuemin="0" aria-valuemax="100"
-                                                                :style="{ width: squadPlayer.player.energy + '%' }">
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <span class="d-inline-block position-relative text-nowrap">
-                                                                {{ squadPlayer.player.surname }}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </template>
+                                                    </template>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </section>
                     <section id="squad" :class="{ 'd-none' : activeSection !== 'squad' }">
                         <div class="row mb-2">
@@ -927,6 +932,7 @@
             await this.loadGame();
             this.colors = { backgroundColor: this.game.club.backgroundColorCustom, foregroundColor: this.game.club.foregroundColorCustom };
             this.selectedChampionshipEditionId = this.game.getNationalLeague().id;
+            this.game.club.squad.changeFormation(null);
             this.gameLoaded = true;
         },
     };

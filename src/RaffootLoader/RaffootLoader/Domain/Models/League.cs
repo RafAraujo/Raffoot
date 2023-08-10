@@ -1,4 +1,6 @@
-﻿namespace RaffootLoader.Domain.Models
+﻿using RaffootLoader.Domain.Enums;
+
+namespace RaffootLoader.Domain.Models
 {
     public class League : Entity
     {
