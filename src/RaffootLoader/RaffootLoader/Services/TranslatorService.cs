@@ -15,8 +15,8 @@ namespace RaffootLoader.Services
 
         private readonly string[] _positions = new[]
         {
-            "Goalkeeper", "centre-back",  $"{PrefixOfContext}{Separator}left-back",  $"{PrefixOfContext}{Separator}Right-back", "Left wing-back", "Right wing-back",
-            "Defensive midfielder", "Left midfielder", "Centre midfielder", "Right midfielder", "Attacking midfielder",
+            "Goalkeeper", "centre-back",  $"{PrefixOfContext}{Separator}Left-back",  $"{PrefixOfContext}{Separator}Right-back", "Left wing-back", "Right wing-back",
+            "Defensive midfielder", "Left midfielder", $"{PrefixOfContext}{Separator}Centre midfielder", "Right midfielder", "Attacking midfielder",
             $"{PrefixOfContext}{Separator}Left winger", $"{PrefixOfContext}{Separator}Right winger", "Centre forward", "Striker"
         };
 
@@ -27,25 +27,25 @@ namespace RaffootLoader.Services
 
         private readonly string[] _texts = new[]
         {
-            "Age", "Assists", "Audience", $"{PrefixOfContext}{Separator}Away",
-            "Back", "Background color", "Ball possession", $"{PrefixOfContext}{Separator}Board of Directors", "Bronze",
+            "Age", "Assists", "Attack", "Audience", "Automatic selection", $"{PrefixOfContext}{Separator}Away", "Average",
+            "Back", "Background color", "Ball Possession", $"{PrefixOfContext}{Separator}Board of Directors", "Bronze",
             "Calendar", "Cancel", "Capacity", "Category", "Champions", "Championship", "Choose your club", "Classification Tables", "Close", "Club", "Clubs", "Coach", "Colors", "CON", "Country", "Creating game...", $"{PrefixOfContext}{Separator}Cup",
-            "Date", "Delete", "Division", $"{PrefixOfContext}{Separator}Draws",
+            "Date", "Defense", "Delete", "Diamond", "Division", $"{PrefixOfContext}{Separator}Draws",
             "End of contract", "Energy", "Error", "Expand",
-            "Final", "Finances", "Formation", "For Sale", "Foul", "Free Kick Taker",
+            "False 9", "Final", "Finances", "Flat", "Formation", "For Sale", "Foul", "Free Kick Taker",
             "Game", "Game deleted with success",  $"{PrefixOfContext}{Separator}Goal",  $"{PrefixOfContext}{Separator}Goals", $"{PrefixOfContext}{Separator}Goals Against", $"{PrefixOfContext}{Separator}Goals Difference", "Gold", "Group",
-            "History", $"{PrefixOfContext}{Separator}Home",
+            "History", "Holding", $"{PrefixOfContext}{Separator}Home",
             "Income", "Continental Supercup",
-            "League", "Left", "Load Game", "Loading game...", $"{PrefixOfContext}{Separator}Losses",
-            "Market Value", "Matches",
-            "Name", "Nationality", "New Game", "No",
+            "League", "Left", $"{PrefixOfContext}{Separator}Lineup", "Load Game", "Loading game...", $"{PrefixOfContext}{Separator}Losses",
+            "Market Value", "Matches", "Midfield",
+            "Name", "Narrow", "Nationality", "New Game", "No",
             "Offside", "Options", "Overall", "OV",
             $"{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Players", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
             "Quarter-finals",
             "Raffoot", "Ranking", $"{PrefixOfContext}{Separator}Referee", "Reset", $"{PrefixOfContext}{Separator}Right", "Round of 16", "Round of 32", "Round of 64",
-            "Save Changes", "Save Game", "search", "Search Players", "Semifinals", "Silver", "Squad", "Stadium", "Star", "Start Game", "Starting game...", "Statistics", "Supercup",
-            "Text color", "Ticket Price", "Top Scorers", $"{PrefixOfContext}{Separator}Trust",
-            $"{PrefixOfContext}{Separator}Wage", "Wins", "World", "World Cup",
+            "Save Changes", "Save Game", "Search", "Search Players", "Semifinals", "Silver", "Squad", "Stadium", "Star", "Start Game", "Starting game...", "Statistics", "Supercup",
+            "Text color", "Ticket Price", "Top Scorers", "Total", $"{PrefixOfContext}{Separator}Trust",
+            $"{PrefixOfContext}{Separator}Wage", "Wide", "Wins", "World", "World Cup",
             "Year", "Yes"
         };
         private readonly string[] _fixedTexts = new[] { "CON", "Overall", "OV", "Raffoot", "Reset" };
@@ -98,7 +98,7 @@ namespace RaffootLoader.Services
                 translations = _fixedTranslations.Where(t => !dbTranslations.Select(dbT => dbT.ToLower()).Contains(t.OriginalText.ToLower())).ToList();
 
                 var originalTexts = GetTextsToTranslate();
-                var textsToTranslate = originalTexts.Where(t => !dbTranslations.Select(dbT => dbT.ToLower()).Contains(GetTextWithoutPrefix(t.ToLower()))).ToList();
+                var textsToTranslate = originalTexts.Where(t => !dbTranslations.Select(dbT => dbT.ToLower()).Contains(GetTextWithoutPrefix(t).ToLower())).ToList();
                 var fixedTexts = textsToTranslate.Where(t => _fixedTexts.Contains(t));
 
                 if (fixedTexts.Any())

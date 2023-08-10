@@ -103,10 +103,18 @@ class Season {
     }
 
     _defineCalendar() {
-        let date = Date.firstSunday(1, this.year);
+        const nationalSupercup = ChampionshipType.find('national', 'supercup');
+        const continentalSupercup = ChampionshipType.find('continental', 'supercup');
+        const worldCup = ChampionshipType.find('world', 'cup');
 
-        let championshipTypes = this.championshipTypes.slice();
+        let date = Date.firstSunday(1, this.year);
+        this._addSeasonDate(date, nationalSupercup);
+        date = date.addDays(3);
+        this._addSeasonDate(date, continentalSupercup);
+
+        let championshipTypes = this.championshipTypes.filter(ct => ct.format !== 'supercup' && ct.scope !== 'world');
         let championshipType = null;
+
         while (championshipType = championshipTypes.find(ct => !this._isTotallyScheduled(ct))) {
             date = date.addDays(date.getDay() === 0 ? 3 : 4);
             if (date.getMonth() === 6)
@@ -116,6 +124,7 @@ class Season {
         }
 
         date = date.addDays(date.getDay() === 0 ? 3 : 4);
+        this._addSeasonDate(date, worldCup);
     }
 
     _addSeasonDate(date, championshipType) {
@@ -140,8 +149,9 @@ class Season {
 
         for (let club of Context.game.clubs) {
             club.squad.rest(days);
-            if (this._currentSeasonDateIndex > 0 && this.currentDate.getMonth() > this.previousSeasonDate.date.getMonth())
+            if (this._currentSeasonDateIndex > 0 && this.currentDate.getMonth() > this.previousSeasonDate.date.getMonth()) {
                 club.payWages();
+            }
         }
 
         this.finished = this._currentSeasonDateIndex === this.seasonDates.length;

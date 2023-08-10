@@ -43,10 +43,11 @@ class GameFactory {
 		console.log(`Championship.seed() took ${(performance.now() - t0)} milliseconds.`);
 		
 		t0 = performance.now();
-		for (let squad of Context.game.squads) {
-			squad.arrange();
+		for (let club of Context.game.clubs) {
+			club.squad.arrange();
+			club.receive(club.squad.wage * 9);
 		}
-        console.log(`Squad.arrange() took ${(performance.now() - t0)} milliseconds.`);
+        console.log(`Squad.arrange() took ${(performance.now() - t0)} milliseconds.`);;
 
 		t0 = performance.now();
 		Context.game.newSeason();

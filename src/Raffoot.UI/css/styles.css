@@ -25,20 +25,27 @@ h1, th, td {
     }
 }
 
-.bench {
-    background-color: rgb(73, 81, 93);
-    font-size: small;
+.max-size-3-rem {
+    max-width: 3rem;
+    max-height: 3rem;
+}
+
+.lineup {
     color: white;
+    background-color: rgb(73, 81, 93);
+}
+
+.bench {
+    font-size: small;
 }
 
 .field {
     background: url('../res/grass\ -\ dark.png') repeat;
     background-size: auto;
     font-size: small;
-    color: white;
 }
 
-.player {
+.field-localization, .player {
     border-radius: 50%;
     border-width: 2px !important;
     width: 20%;
@@ -47,12 +54,6 @@ h1, th, td {
 
 .player:hover {
     cursor: pointer;
-}
-
-.player img {
-    max-width: 3rem;
-    max-height: 3rem;
-    position: relative;
 }
 
 .player .position {
@@ -65,10 +66,6 @@ h1, th, td {
     left: 2.5%;
     top: 16px;
     z-index: 1;
-}
-
-.player .overall-name span {
-    border: 1px solid black;
 }
 
 .player .energy {

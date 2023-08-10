@@ -31,6 +31,18 @@ class TranslatorService {
         return abbreviation;
     }
 
+    getFormationName(formation) {
+        let name = formation?.name ?? '';
+
+        const description = formation.name.split(' ').slice(1).join(' ');
+        if (description) {
+            const descriptionTranslation = this.get(description);
+            name = name.replace(description, descriptionTranslation);
+        }
+
+        return name;
+    }
+
     getChampionshipName(championship) {
         let name = championship.name;
 

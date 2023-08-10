@@ -25,11 +25,15 @@ class Squad {
     }
 
     set formation(value) {
-        this._formationId = value.id;
+        this._formationId = value?.id;
     }
 
     get overall() {
         return this.starting11.map(sp => sp.overall).sum();
+    }
+
+    get lineup() {
+        return this._formationId ? this.formation.fieldLocalizations.map(fl => ({ fieldLocalization: fl, squadPlayer: this.getSquadPlayerByFieldLocalizationId(fl.id) })) : null;
     }
 
     get squadPlayers() {
@@ -56,13 +60,22 @@ class Squad {
         this._squadPlayerIds.push(squadPlayer.id);
     }
 
-    arrange() {
-        const formation = this.getRecommendedFormation();
-        this.changeFormation(formation);
+    add(player) {
+        SquadPlayer.create(this, player);
     }
 
-    getPlayerByFieldLocalizationName(fieldLocalizationName) {
-        return this.starting11.find(sp => sp.fieldLocalization.Name === fieldLocalizationName);
+    remove(player) {
+        const squadPlayer = this.squadPlayers.find(sp => sp.player.id === player.id);
+        this._squadPlayerIds.remove(squadPlayer.id);
+    }
+
+    arrange() {
+        const formation = this.getRecommendedFormation();
+        this.changeFormation(formation, true);
+    }
+
+    getSquadPlayerByFieldLocalizationId(fieldLocalizationId) {
+        return this.starting11.find(sp => sp.fieldLocalization.id === fieldLocalizationId);
     }
 
     getBestAvailableSquadPlayerForFieldLocalization(fieldLocalization) {
@@ -98,16 +111,21 @@ class Squad {
         return ranking.orderBy('-overall')[0].formation;
     }
 
-    changeFormation(formation) {
+    changeFormation(formation, automaticLineup = false) {
+        this.clearFieldLocalizations();
         this.formation = formation;
-        this.setAutomaticLineUp();
+        if (automaticLineup) {
+            this.setAutomaticLineUp();
+        }
     }
 
-    setAutomaticLineUp() {
+    clearFieldLocalizations() {
         for (let squadPlayer of this.squadPlayers) {
             squadPlayer.fieldLocalization = null;
         }
+    }
 
+    setAutomaticLineUp() {
         for (let fieldLocalization of this.formation.fieldLocalizations.reverse()) {
             const ranking = [];
             let chosenSquadPlayer = this.getBestAvailableSquadPlayerForFieldLocalization(fieldLocalization);

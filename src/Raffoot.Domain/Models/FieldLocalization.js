@@ -1,30 +1,30 @@
 class FieldLocalization {
-    constructor(name, positionId, line, column) {
-        this.name = name;
-        this._positionId = positionId;
-        this.line = line;
-        this.column = column;
-    }
+	constructor(name, positionId, line, column) {
+		this.name = name;
+		this._positionId = positionId;
+		this.line = line;
+		this.column = column;
+	}
 
-    static create(name, positionAbbreviation, line, column) {
-        const position = Context.game.positions.find(p => p.abbreviation === positionAbbreviation);
-        const fieldLocalization = new FieldLocalization(name, position == null ? null : position.id, line, column);
-        fieldLocalization.id = Context.game.fieldLocalizations.push(fieldLocalization);
-        if (position != null) {
-            position.addFieldLocalization(fieldLocalization);
+	static create(name, positionAbbreviation, line, column) {
+		const position = Context.game.positions.find(p => p.abbreviation === positionAbbreviation);
+		const fieldLocalization = new FieldLocalization(name, position == null ? null : position.id, line, column);
+		fieldLocalization.id = Context.game.fieldLocalizations.push(fieldLocalization);
+		if (position != null) {
+			position.addFieldLocalization(fieldLocalization);
 		}
-        return fieldLocalization;
-    }
+		return fieldLocalization;
+	}
 
-    static getById(id) {
-        return Context.game.fieldLocalizations[id - 1];
-    }
+	static getById(id) {
+		return Context.game.fieldLocalizations[id - 1];
+	}
 
 	static getByName(name) {
 		return Context.game.fieldLocalizations.find(fl => fl.name === name);
 	}
 
-    static seed() {
+	static seed() {
 		FieldLocalization.create('GK', 'GK', 0, 2);
 		FieldLocalization.create('LCB', 'CB', 2, 1);
 		FieldLocalization.create('CB', 'CB', 2, 2);
@@ -73,7 +73,7 @@ class FieldLocalization {
 		return new FieldLocalization(this.position.id, 11 - this.line, this.column === 2 ? 2 : 5 - this.column, this.name);
 	}
 
-	get isOutOfTheField() {
+	get isOffTheField() {
 		return this.line === null;
 	}
 
@@ -81,17 +81,15 @@ class FieldLocalization {
 
 	}
 
+	// https://stackoverflow.com/questions/20916953/get-distance-between-two-points-in-canvas
 	calculateDistanceTo(fieldLocalization) {
-		if (this.isOutOfTheField)
+		if (this.isOffTheField) {
 			return Number.MAX_VALUE;
+		}
 
 		let x = this.line - fieldLocalization.line;
 		let y = this.column - fieldLocalization.column;
-
 		let distance = Math.hypot(x, y);
-		if (this.position !== fieldLocalization.position)
-			distance *= 2;
-		
 		return distance;
 	}
 

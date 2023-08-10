@@ -9,7 +9,9 @@ class SquadPlayer {
     static create(squad, player) {
         const squadPlayer = new SquadPlayer(squad.id, player.id, player.position.id);
         squadPlayer.id = Context.game.squadPlayers.push(squadPlayer);
+        
         squad.addSquadPlayer(squadPlayer);
+        
         return squadPlayer;
     }
 
@@ -55,8 +57,9 @@ class SquadPlayer {
             return this.player.overall;
         }
         else {
-            let playerNearestFieldLocalization = this.player.getNearestFieldLocalization(fieldLocalization);
-            let overall = this.player.overall - (playerNearestFieldLocalization.calculateDistanceTo(fieldLocalization) * 2);
+            const playerNearestFieldLocalization = this.player.getNearestFieldLocalization(fieldLocalization);
+            const distance = playerNearestFieldLocalization.calculateDistanceTo(fieldLocalization);
+            const overall = this.player.overall - (distance * 4);
             return Math.round(overall);
         }
     }

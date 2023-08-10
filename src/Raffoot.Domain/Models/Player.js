@@ -24,8 +24,10 @@ class Player {
         const goals = 0;
         const player = new Player(fullName, name, country.id, positionIds, age, overall, club.id, externalId, hasPhoto, star, energy, wage, goals);
         player.id = Context.game.players.push(player);
+        
         club.addPlayer(player);
         SquadPlayer.create(club.squad, player);
+        
         return player;
     }
 
@@ -114,23 +116,28 @@ class Player {
     }
 
     getNearestFieldLocalization(fieldLocalization) {
-        if (this.positions.includes(fieldLocalization.position))
+        if (this.positions.includes(fieldLocalization.position)) {
             return fieldLocalization;
-        
+        }
+
         const results = [];
         for (let idealFieldLocalization of this.idealFieldLocalizations) {
             results.push({
                 fieldLocalization: idealFieldLocalization,
                 distance: idealFieldLocalization.calculateDistanceTo(fieldLocalization)
             });
-            
-            return results.orderBy('distance')[0].fieldLocalization;
         }
+
+        return results.orderBy('distance')[0].fieldLocalization;
     }
 
     getPhotoURL() {
         const file = this.hasPhoto ? `${this.externalId}.png` : '0.svg';
         const url = `${Config.folders.photosFolder}/${file}`;
         return url;
+    }
+
+    rest(days) {
+        this.energy = Math.min(this.energy + days * 3, 100);
     }
 }

@@ -41,7 +41,7 @@ class Formation {
 
 		Formation.create('4-3-2-1',          ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'LCM', 'CM ', 'RCM', 'LF ', 'RF ', 'ST'], '4-3-3');
 		Formation.create('4-3-3 Attack',     ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'LCM', 'RCM', 'CAM', 'LW ', 'RW ', 'ST'], '4-3-3');
-		Formation.create('4-3-3 Defend',     ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'LDM', 'RDM', 'CM ', 'LW ', 'RW ', 'ST'], '4-3-3');
+		Formation.create('4-3-3 Defense',     ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'LDM', 'RDM', 'CM ', 'LW ', 'RW ', 'ST'], '4-3-3');
 		Formation.create('4-3-3 False 9',    ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'CDM', 'LCM', 'RCM', 'LW ', 'RW ', 'CF'], '4-3-3');
 		Formation.create('4-3-3 Flat',       ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'LCM', 'CM ', 'RCM', 'LW ', 'RW ', 'ST'], '4-3-3');
 		Formation.create('4-3-3 Holding',    ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'CDM', 'LCM', 'RCM', 'LW ', 'RW ', 'ST'], '4-3-3');

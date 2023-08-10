@@ -7,6 +7,8 @@ class Club {
         this.foregroundColorCustom = this.foregroundColor = foregroundColor;
         this._playerIds = [];
         this._squadId = null;
+        this.money = 0;
+        this._trophies = [];
     }
 
     static create(name, countryName, externalId, backgroundColor, foregroundColor) {
@@ -15,10 +17,8 @@ class Club {
         club.id = Context.game.clubs.push(club);
 
         country.addClub(club);
-
-        let squad = Squad.create(club);
-        club.squad = squad;
-
+        Squad.create(club);
+        
         return club;
     }
 
@@ -34,6 +34,10 @@ class Club {
         return Country.getById(this._countryId);
     }
 
+    get overall() {
+        return this.squad.overall;
+    }
+
     get players() {
         return Context.game.players.filterByIds(this._playerIds);
     }
@@ -46,12 +50,16 @@ class Club {
         this._squadId = value.id;
     }
 
-    get overall() {
-        return this.squad.overall;
+    get throphies() {
+        return Context.game.championshipEditions.filterByIds(this._trophies);
     }
 
     addPlayer(player) {
         this._playerIds.push(player.id);
+    }
+
+    addTrophy(championshipEdition) {
+        this._trophies.push(championshipEdition.id);
     }
 
     getLogoURL() {
@@ -65,6 +73,18 @@ class Club {
             urlList.push(url);
         }
         return urlList;
+    }
+
+    pay(amount) {
+        this.money -= amount;
+    }
+    
+    payWages() {
+        this.pay(this.squad.wage);
+    }
+
+    receive(amount) {
+        this.money += amount;
     }
 
     resetColors() {
