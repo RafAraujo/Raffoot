@@ -14,7 +14,7 @@ namespace RaffootLoader.Services
     {
         private const string BaseUrl = "https://sofifa.com/";
 
-        private readonly ISettingsManager _settings;
+        private readonly ISettings _settings;
         private readonly IContext _context;
         private readonly IRepository<Club> _clubRepository;
         private readonly IRepository<Player> _playerRepository;
@@ -25,7 +25,7 @@ namespace RaffootLoader.Services
         private readonly IList<Country> _countries;
 
         public SoFifaDataExtractorService(
-            ISettingsManager settings,
+            ISettings settings,
             IContext context,
             IRepository<Club> clubRepository,
             IRepository<Player> playerRepository)

@@ -7,7 +7,9 @@ body {
     user-select: none;
 }
 
-h1, th, td {
+h1,
+th,
+td {
     vertical-align: middle;
 }
 
@@ -46,7 +48,8 @@ h1, th, td {
     font-size: small;
 }
 
-.field-localization, .player {
+.field-localization,
+.player {
     border-radius: 50%;
     border-width: 2px !important;
     width: 20%;
@@ -127,7 +130,8 @@ td.main-continental-cup {
     font-weight: bold;
 }
 
-td.secondary-continental-cup, td.promotion {
+td.secondary-continental-cup,
+td.promotion {
     color: deepskyblue;
     font-weight: bold;
 }

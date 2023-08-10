@@ -52,7 +52,7 @@ class GameFactory {
 		t0 = performance.now();
 		Context.game.newSeason();
 		console.log(`newSeason() took ${(performance.now() - t0)} milliseconds.`);
-
+		
 		return Context.game;
 	}
 }

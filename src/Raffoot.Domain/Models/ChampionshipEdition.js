@@ -70,14 +70,6 @@ class ChampionshipEdition {
         return `${this.championship.name} ${this.year}`;
     }
 
-    get promotionClubCount() {
-        return Math.round(Math.log2(this.championship.clubCount));
-    }
-
-    get relegationClubCount() {
-        return Math.round(Math.log2(this.championship.clubCount));
-    }
-
     get table() {
         return this.championshipEditionClubs.orderBy('-championshipEditionEliminationPhasesWon', '-points', '-won', '-goalsDifference', '-goalsFor', 'club.name');
     }
@@ -117,8 +109,8 @@ class ChampionshipEdition {
                     positions.push(position);
                 }
             }
-            else if (this.championship.championshipType.id === nationalCup.id) {
-                return continentalCupDivision === 1 ? [] : [1];
+            else if (this.championship.championshipType.id === nationalCup.id && continentalCupDivision === 2) {
+                positions.push(1);
             }
         }
 
@@ -130,11 +122,16 @@ class ChampionshipEdition {
         return this.table.firstItems(positions.length);
     }
 
+    getPromotionClubCount() {
+        return Math.round(Math.log2(this.championship.clubCount));
+    }
+
     getPromotionZonePositions() {
         const positions = [];
 
         if (this.championship.championshipType.format === 'league' && this.championship.division > 1) {
-            for (let position = 1; position <= this.relegationClubCount; position++) {
+            const clubCount = this.getPromotionClubCount();
+            for (let position = 1; position <= clubCount; position++) {
                 positions.push(position);
             }
         }
@@ -147,12 +144,19 @@ class ChampionshipEdition {
         return this.table.take(positions.length);
     }
 
-    getRelegationZonePositions() {
-        let positions = [];
+    getRelegationClubCount() {
+        return Math.round(Math.log2(this.championship.clubCount));
+    }
 
-        if (this.championship.championshipType.format === 'league')
-            for (let position = this.clubs.length; position > this.clubs.length - this.promotionClubCount; position--)
+    getRelegationZonePositions() {
+        const positions = [];
+
+        if (this.championship.championshipType.format === 'league') {
+            const clubCount = this.getPromotionClubCount();
+            for (let position = this.clubs.length; position > this.clubs.length - clubCount; position--) {
                 positions.push(position);
+            }
+        }
 
         return positions;
     }

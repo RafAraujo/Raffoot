@@ -12,10 +12,10 @@ namespace RaffootLoader.Services
 {
     public class JavaScriptFileGenerator : IJavaScriptFileGenerator
     {
-        private readonly ISettingsManager _settings;
+        private readonly ISettings _settings;
         private readonly IContext _context;
 
-        public JavaScriptFileGenerator(ISettingsManager settings, IContext context)
+        public JavaScriptFileGenerator(ISettings settings, IContext context)
         {
             _settings = settings;
             _context = context;

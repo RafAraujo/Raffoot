@@ -12,21 +12,21 @@
 </head>
 
 <body>
-    <div id="app" class="container-fluid" v-cloak>
+    <div id="app" class="container" v-cloak>
         <div class="row mt-3 mb-3">
             <div class="col">
                 <h1 class="text-center">{{ translator.get("Raffoot") }}</h1>
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-6 d-grid mx-auto">
+            <div class="col-9 d-grid mx-auto">
                 <button class="btn btn-outline-dark btn-lg" @click="redirect('new-game.html')">
                     {{ translator.get("New Game").toTitleCase() }}
                 </button>
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-6 d-grid mx-auto">
+            <div class="col-9 d-grid mx-auto">
                 <button class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#modal-games">{{
                     translator.get("Load Game").toTitleCase() }}</button></button>
             </div>
@@ -45,20 +45,21 @@
                                 <label for="select-games" class="form-label">{{ translator.get("Game") }}</label>
                                 <select id="select-games" class="form-select" @change="selectGame($event)">
                                     <option></option>
-                                    <option v-for="game in savedGames" :key="game.key" :value="game.key">{{ game.value.name }}
+                                    <option v-for="game in savedGames" :key="game.key" :value="game.key">{{
+                                        game.value.name }}
                                     </option>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-2 form-label fw-bold">{{ `${translator.get("Club")}:` }}</label>
                             <div class="col">
+                                <label class="form-label me-2 fw-bold">{{ `${translator.get("Club")}:` }}</label>
                                 <span>{{ selectedGame?.value.clubName }}</span>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-2 form-label fw-bold">{{ `${translator.get("Year")}:` }}</label>
                             <div class="col">
+                                <label class="form-label me-2 fw-bold">{{ `${translator.get("Year")}:` }}</label>
                                 <span>{{ selectedGame?.value.year }}</span>
                             </div>
                         </div>
@@ -74,7 +75,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <div class="container-fluid">
+                        <div class="container">
                             <div class="row">
                                 <div class="col-4 d-grid">
                                     <button class="btn btn-primary" :disabled="!selectedGame" @click="loadGame()">

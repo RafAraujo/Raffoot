@@ -7,11 +7,11 @@ namespace RaffootLoader.Services
 {
     public class SoFifaImageDownloaderService : IImageDownloaderService
     {
-        private readonly ISettingsManager _settings;
+        private readonly ISettings _settings;
         private readonly IContext _context;
         private readonly HttpClient _client;
 
-        public SoFifaImageDownloaderService(ISettingsManager settings, IContext context)
+        public SoFifaImageDownloaderService(ISettings settings, IContext context)
         {
             _settings = settings;
             _context = context;

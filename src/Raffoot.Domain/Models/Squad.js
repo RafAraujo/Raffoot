@@ -75,6 +75,12 @@ class Squad {
         this.changeFormation(formation, true);
     }
 
+    clearSettings() {
+        this.setOrder();
+        this.changeFormation(null);
+        this.playingStyle = '';
+    }
+
     getSquadPlayerByFieldLocalizationId(fieldLocalizationId) {
         return this.starting11.find(sp => sp.fieldLocalization.id === fieldLocalizationId);
     }
@@ -90,10 +96,10 @@ class Squad {
 
         if (squadPlayers.length === 0)
             squadPlayers = this.substitutes.filter(sp => sp.player.positions.some(p => sp.fieldLocalization === null && p.fieldRegion === position.fieldRegion));
-        
+
         if (squadPlayers.length === 0)
             squadPlayers = this.substitutes;
-        
+
         return squadPlayers;
     }
 
@@ -102,7 +108,7 @@ class Squad {
 
         for (let formation of Context.game.formations) {
             const players = this.players.filter(pl => pl.positions.some(pos => formation.positions.includes(pos)));
-            
+
             ranking.push({
                 formation: formation,
                 overall: players.map(p => p.overall).sum(),

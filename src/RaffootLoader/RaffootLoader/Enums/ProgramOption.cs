@@ -12,6 +12,7 @@
         UpdatePlayerHasPhotoFlag,
         GenerateSoFifaServiceFile,
 
+        DropTranslations,
         UpdateTranslations,
         GenerateMultiLanguageFile,
 

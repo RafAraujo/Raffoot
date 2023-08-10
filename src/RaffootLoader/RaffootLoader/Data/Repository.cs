@@ -10,7 +10,7 @@ namespace RaffootLoader.Data
 
         public string TableName { get; set; }
 
-        public Repository(ISettingsManager settings)
+        public Repository(ISettings settings)
         {
             _dbPath = settings.DbPath;
         }

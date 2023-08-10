@@ -4,6 +4,13 @@ class GameService {
         return game;
     }
 
+    async getByIdAsync(id) {
+        const dao = await this.getDaoAsync();
+        const game = await dao.getByIdAsync('Game', id);
+        ConnectionFactory.closeConnection();
+        return game;
+    }
+
     async getSavedGamesWithKeysAsync() {
         const dao = await this.getDaoAsync();
         let games = await dao.getAllWithKeysAsync('Game');
@@ -28,11 +35,11 @@ class GameService {
     }
 
     // Mayble load only objects of the current season ?
-    async loadAsync(id) {
-        const objects = await this.getSavedGamesWithKeysAsync();
-        const object = objects.find(g => g.key === id);
+    async loadAsync(id) { 
+        let t0 = performance.now();
 
-        let game = Object.assign(new Game(), object.value);
+        const object = await this.getByIdAsync(id);
+        let game = Object.assign(new Game(), object);
         
         game.championships = game.championships.map(o => Object.assign(new Championship(), o));
         game.championshipEditions = game.championshipEditions.map(o => Object.assign(new ChampionshipEdition(), o));
@@ -59,7 +66,10 @@ class GameService {
         game.squadPlayers = game.squadPlayers.map(o => Object.assign(new SquadPlayer(), o));
 
         Context.game = game;
+        Context.game.club.squad.squadPlayers.orderBy('order').forEach((sp, index) => sp.order = index);
 
+		console.log(`GameService.loadAsync() took ${(performance.now() - t0)} milliseconds.`);
+        
         return game;
     }
 

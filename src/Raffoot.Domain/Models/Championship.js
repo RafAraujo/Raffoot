@@ -63,8 +63,9 @@ class Championship {
 
     static getCupClubCount(clubCount) {
         let count = Config.nationalCup.maxClubCount;
-        while (count > clubCount)
+        while (count > clubCount) {
             count /= 2;
+        }
         return count;
     }
     

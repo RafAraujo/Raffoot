@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <form id="form" action="home.html" @submit="startGame($event)">
+            <form id="form" action="home.html" @submit.prevent="startGame($event)">
                 <fieldset>
                     <legend>{{ translator.get("Choose your club") }}</legend>
 
@@ -175,9 +175,8 @@
             },
             startGame: async function (event) {
                 try {
-                    event.preventDefault();
                     this.game.name = this.gameName;
-                    this.game.club.squad.setOrder();
+                    this.game.club.squad.clearSettings();
                     let id = await gameService.insertAsync(Vue.toRaw(this.game));
                     this.redirect(`home.html?id=${id}`);
                 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using RaffootLoader;
 using RaffootLoader.Data;
 using RaffootLoader.Data.Interfaces;
+using RaffootLoader.Domain.Models;
 using RaffootLoader.Enums;
 using RaffootLoader.Services;
 using RaffootLoader.Services.Interfaces;
@@ -57,6 +59,9 @@ while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
             fileGenerator.GenerateSoFifaServiceFile();
             break;
 
+        case ProgramOption.DropTranslations:
+            context.DropCollection(nameof(Translation));
+            break;
         case ProgramOption.UpdateTranslations:
             await translator.UpdateTranslations();
             break;
@@ -77,7 +82,7 @@ static void ConfigureServices(IServiceCollection services)
     var dbPath = Path.Combine(basePath, @"RaffootLoader\Raffoot.db");
     var imagesPath = Path.Combine(basePath, @"Raffoot.UI\res\");
 
-    services.AddSingleton<ISettingsManager, SettingsManager>(sp => new SettingsManager(basePath, dbPath, imagesPath));
+    services.AddSingleton<ISettings, Settings>(sp => new Settings(basePath, dbPath, imagesPath));
 
     services.AddScoped<IContext, Context>();
     services.AddScoped(typeof(IRepository<>), typeof(Repository<>));

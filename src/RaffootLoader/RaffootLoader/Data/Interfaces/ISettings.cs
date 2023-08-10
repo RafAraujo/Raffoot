@@ -1,6 +1,6 @@
 ﻿namespace RaffootLoader.Data.Interfaces
 {
-    public interface ISettingsManager
+    public interface ISettings
     {
         string BasePath { get; set; }
         string DbPath { get; set; }

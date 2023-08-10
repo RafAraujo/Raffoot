@@ -12,6 +12,7 @@ namespace RaffootLoader.Data.Interfaces
 
         bool DatabaseExists();
         void DropDatabase();
+        bool DropCollection(string name);
         void InsertMany<T>(IEnumerable<T> items) where T : Entity;
     }
 }

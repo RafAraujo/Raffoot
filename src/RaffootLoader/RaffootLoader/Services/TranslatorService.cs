@@ -9,7 +9,7 @@ namespace RaffootLoader.Services
 {
     public class TranslatorService : ITranslatorService
     {
-        private readonly ISettingsManager _settings;
+        private readonly ISettings _settings;
         private readonly IContext _context;
         private readonly ITranslatorApi _translatorApi;
 
@@ -22,14 +22,15 @@ namespace RaffootLoader.Services
 
         private readonly string[] _confederations = new[]
         {
-            "BeNe", "British Isles", "Central Europe", "Eastern Europe", "Eurasia", "Indochina", "Korea-Japan", "Scandinavia", "North America", "South America", "Rest of the World",
+            "Argentina", "Brazil", "Australia", "Saudi Arabia", "England", "France", "Germany", "Italy", "Portugal", "Spain",
+            "BeNe", "British Isles", "Central Europe", "Eastern Europe", "Eurasia", "Indochina", "Korea-Japan", "North America", "Scandinavia", "South America",
         };
 
         private readonly string[] _texts = new[]
         {
             "Age", "Assists", "Attack", "Audience", "Automatic selection", $"{PrefixOfContext}{Separator}Away", "Average",
             "Back", "Background color", $"{PrefixOfContext}{Separator}Balanced", "Ball Possession", $"{PrefixOfContext}{Separator}Board of Directors", "Bronze",
-            "Calendar", "Cancel", "Capacity", "Category", "Champions", "Championship", "Choose your club", "Classification Tables", "Close", "Club", "Clubs", "Coach", "Colors", "CON", "Country", "Creating game...", $"{PrefixOfContext}{Separator}Cup",
+            "Calendar", "Cancel", "Capacity", "Category", "Champions", "Championship", "Championships", "Choose your club", "Classification", "Close", "Club", "Clubs", "Coach", "Colors", "CON", "Country", "Creating game...", $"{PrefixOfContext}{Separator}Cup",
             "Date", "Defense", $"{PrefixOfContext}{Separator}Defensive", "Delete", "Diamond", "Division", $"{PrefixOfContext}{Separator}Draws",
             "End of contract", "Energy", "Error", "Expand",
             "False 9", "Final", "Finances", "Flat", "Formation", "For Sale", "Foul", "Free Kick Taker",
@@ -48,7 +49,7 @@ namespace RaffootLoader.Services
             $"{PrefixOfContext}{Separator}Wage", "Wide", "Wins", "World", "World Cup",
             "Year", "Yes"
         };
-        private readonly string[] _fixedTexts = new[] { "CON", "Overall", "OV", "Raffoot", "Reset" };
+        private readonly string[] _fixedTexts = new[] { "BeNe", "CON", "Overall", "OV", "Raffoot", "Reset" };
 
         private readonly Translation[] _fixedTranslations = new[]
         {
@@ -74,7 +75,7 @@ namespace RaffootLoader.Services
         private const string PrefixOfContext = "Men's Football";
         private const string Separator = " - ";
 
-        public TranslatorService(ISettingsManager settings, IContext context)
+        public TranslatorService(ISettings settings, IContext context)
         {
             _settings = settings;
             _context = context;
@@ -135,7 +136,12 @@ namespace RaffootLoader.Services
 
             texts.AddRange(_positions);
             texts.AddRange(_confederations);
-            texts.AddRange(_context.Countries.Select(c => $"{PrefixOfContext}{Separator}{c.Name}"));
+            texts.AddRange(_confederations.Select(c => $"{PrefixOfContext}{Separator}{c} League"));
+            texts.AddRange(_confederations.Select(c => $"{PrefixOfContext}{Separator}{c} Cup"));
+            texts.AddRange(_confederations.Select(c => $"{PrefixOfContext}{Separator}{c} Supercup"));
+
+            var countries = _context.Countries.OrderBy(c => c.Name);
+            texts.AddRange(countries.Where(c => !texts.Contains(c.Name)).Select(c => $"{PrefixOfContext}{Separator}{c.Name}"));
 
             return texts;
         }

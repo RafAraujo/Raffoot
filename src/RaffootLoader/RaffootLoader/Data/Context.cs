@@ -1,4 +1,5 @@
-﻿using RaffootLoader.Data.Interfaces;
+﻿using LiteDB;
+using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Models;
 using RaffootLoader.Utils;
 
@@ -6,7 +7,7 @@ namespace RaffootLoader.Data
 {
     public class Context : IContext
     {
-        private readonly ISettingsManager _settingsManager;
+        private readonly ISettings _settings;
         private readonly IRepository<League> _leagueRepository;
         private readonly IRepository<Club> _clubRepository;
         private readonly IRepository<Player> _playerRepository;
@@ -49,14 +50,14 @@ namespace RaffootLoader.Data
         }
 
         public Context(
-            ISettingsManager settingsManager,
+            ISettings settings,
             IRepository<League> leagueRepository,
             IRepository<Club> clubRepository,
             IRepository<Player> playerRepository,
             IRepository<Country> countryRepository,
             IRepository<Translation> translationRepository)
         {
-            _settingsManager = settingsManager;
+            _settings = settings;
             _leagueRepository = leagueRepository;
             _clubRepository = clubRepository;
             _playerRepository = playerRepository;
@@ -64,7 +65,7 @@ namespace RaffootLoader.Data
             _translationRepository = translationRepository;
         }
 
-        public bool DatabaseExists() => File.Exists(_settingsManager.DbPath);
+        public bool DatabaseExists() => File.Exists(_settings.DbPath);
 
         public void DropDatabase()
         {
@@ -72,11 +73,11 @@ namespace RaffootLoader.Data
             {
                 Console.WriteLine("Dropping database...");
 
-                if (File.Exists(_settingsManager.DbPath))
+                if (File.Exists(_settings.DbPath))
                 {
-                    File.Move(_settingsManager.DbPath, $"{_settingsManager.DbPath}.old", true);
+                    File.Move(_settings.DbPath, $"{_settings.DbPath}.old", true);
                 }
-                File.Delete(_settingsManager.DbPath);
+                File.Delete(_settings.DbPath);
             }
             catch (Exception ex)
             {
@@ -84,9 +85,15 @@ namespace RaffootLoader.Data
             }
         }
 
+        public bool DropCollection(string name)
+        {
+            using var db = new LiteDatabase(_settings.DbPath);
+            return db.DropCollection(name);
+        }
+
         public void InsertMany<T>(IEnumerable<T> items) where T : Entity
         {
-            var repository = new Repository<T>(_settingsManager);
+            var repository = new Repository<T>(_settings);
             repository.InsertMany(items);
         }
     }

@@ -1,8 +1,8 @@
 ﻿using RaffootLoader.Data.Interfaces;
 
-namespace RaffootLoader.Data
+namespace RaffootLoader
 {
-    public class SettingsManager : ISettingsManager
+    public class Settings : ISettings
     {
         public string BasePath { get; set; }
 
@@ -10,7 +10,7 @@ namespace RaffootLoader.Data
 
         public string ImagesPath { get; set; }
 
-        public SettingsManager(string basePath, string dbPath, string imagesPath)
+        public Settings(string basePath, string dbPath, string imagesPath)
         {
             BasePath = basePath;
             DbPath = dbPath;
