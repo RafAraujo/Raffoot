@@ -23,29 +23,30 @@ namespace RaffootLoader.Services
         private readonly string[] _confederations = new[]
         {
             "Argentina", "Brazil", "Australia", "Saudi Arabia", "England", "France", "Germany", "Italy", "Portugal", "Spain",
-            "BeNe", "British Isles", "Central Europe", "Eastern Europe", "Eurasia", "Indochina", "Korea-Japan", "North America", "Scandinavia", "South America",
+            "BeNe", "British Isles", "Centre Europe", "Eastern Europe", "Eurasia", "Indochina", "Korea-Japan", "North America", "Scandinavia", "South America",
         };
 
         private readonly string[] _texts = new[]
         {
             "Age", "Assists", "Attack", "Audience", "Automatic selection", $"{PrefixOfContext}{Separator}Away", "Average",
             "Back", "Background color", $"{PrefixOfContext}{Separator}Balanced", "Ball Possession", $"{PrefixOfContext}{Separator}Board of Directors", "Bronze",
-            "Calendar", "Cancel", "Capacity", "Category", "Champions", "Championship", "Championships", "Choose your club", "Classification", "Close", "Club", "Clubs", "Coach", "Colors", "CON", "Country", "Creating game...", $"{PrefixOfContext}{Separator}Cup",
+            "Calendar", "Cancel", "Capacity", "Category", "Champions", "Championship", "Championships", "Choose your club", "Classification", "Close", "Club", "Clubs", "Coach", "Colors", "CON", "Continental Supercup", "Country", "Creating game...", $"{PrefixOfContext}{Separator}Cup",
             "Date", "Defense", $"{PrefixOfContext}{Separator}Defensive", "Delete", "Diamond", "Division", $"{PrefixOfContext}{Separator}Draws",
-            "End of contract", "Energy", "Error", "Expand",
+            "End of contract", "Energy", "Error", "Exit Game", "Expand",
             "False 9", "Final", "Finances", "Flat", "Formation", "For Sale", "Foul", "Free Kick Taker",
             "Game", "Game deleted with success",  $"{PrefixOfContext}{Separator}Goal",  $"{PrefixOfContext}{Separator}Goals", $"{PrefixOfContext}{Separator}Goals Against", $"{PrefixOfContext}{Separator}Goals Difference", "Gold", "Group",
             "History", "Holding", $"{PrefixOfContext}{Separator}Home",
-            "Income", "Continental Supercup",
-            "League", "Left", $"{PrefixOfContext}{Separator}Lineup", "Load Game", "Loading game...", $"{PrefixOfContext}{Separator}Losses",
+            "Income", "International",
+            "League", "Left", $"{PrefixOfContext}{Separator}Lineup", "Load Game", "Loading game...", "Logo", $"{PrefixOfContext}{Separator}Losses",
             "Market Value", "Matches", "Midfield",
-            "Name", "Narrow", "Nationality", "New Game", "No",
+            "Name", "Narrow", "National", "Nationality", "New Game", "No",
             $"{PrefixOfContext}{Separator}Offensive", "Offside", "Options", "Overall", "OV",
             $"{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Players", "Playing Style", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
             "Quarter-finals",
             "Raffoot", "Ranking", $"{PrefixOfContext}{Separator}Referee", "Reset", $"{PrefixOfContext}{Separator}Right", "Round of 16", "Round of 32", "Round of 64",
             "Save Changes", "Save Game", "Search", "Search Players", "Semifinals", "Silver", "Squad", "Stadium", "Star", "Start Game", "Starting game...", "Statistics", "Supercup",
-            "Text color", "Ticket Price", "Top Scorers", "Total", $"{PrefixOfContext}{Separator}Trust",
+            "Text color", "Ticket Price", "Top Scorers", "Total", $"{PrefixOfContext}{Separator}Trust", "Type",
+            "Uniform",
             $"{PrefixOfContext}{Separator}Wage", "Wide", "Wins", "World", "World Cup",
             "Year", "Yes"
         };

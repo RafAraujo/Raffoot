@@ -17,13 +17,13 @@ const Config = (function () {
         },
 
         colors: {
-            blue: '#007bff',
-            gray: '#6c757d',
-            green: '#28a745',
-            orange: '#fd7e14',
-            purple: '#6f42c1',
-            red: '#dc3545',
-            yellow: '#ffc107'
+            blue: { hex: '#007bff', class: 'primary' },
+            gray: { hex: '#6c757d', class: 'secondary' },
+            green: { hex: '#28a745', class: 'success' },
+            orange: { hex: '#fd7e14' },
+            purple: { hex: '#6f42c1' },
+            red: { hex: '#dc3545', class: 'danger' },
+            yellow: { hex: '#ffc107', class: 'warning' }
         },
 
         cup: {
@@ -43,6 +43,7 @@ const Config = (function () {
             maxClubCount: 18,
             minClubCount: 8,
             maxDivisionCount: 4,
+            promotionAndRelegationPercentage: 0.2,
         },
 
         playingStyles: ['defensive', 'balanced', 'offensive'],

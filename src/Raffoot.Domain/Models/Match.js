@@ -80,7 +80,7 @@ class Match {
 
     prepare() {
         this.audience = Random.number(this.stadium.capacity);
-        for (let matchClub of this.matchClubs) {
+        for (const matchClub of this.matchClubs) {
             matchClub.goals = 0;
             matchClub.arrangeTeam();
         }

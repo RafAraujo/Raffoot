@@ -6,6 +6,8 @@ class Championship {
         this._confederationId = confederationId;
         this.division = division;
         this.clubCount = clubCount;
+        this.promotionClubCount = 0;
+        this.relegationClubCount = 0;
     }
 
     static create(name, championshipType, continentId, confederationId, division, clubCount) {
@@ -31,7 +33,7 @@ class Championship {
 
         const confederations = Context.game.confederations;
 
-        for (let confederation of confederations) {
+        for (const confederation of confederations) {
             const countryIds = confederation.countries.map(c => Country.getByName(c.name)).map(c => c.id);
             const clubs = Context.game.clubs.filter(c => countryIds.some(id => c.country.id === id));
             const cupClubCount = Championship.getCupClubCount(clubs.length);
@@ -51,7 +53,7 @@ class Championship {
 
         const continents = Context.game.continents.filter(con => con.countries.flatMap(c => c.clubs).length > 0);
 
-        for (let continent of continents) {
+        for (const continent of continents) {
             for (let division = 1; division <= 2; division++) {
                 Championship.create(continent.getContinentalCupName(division), continentalCup, continent.id, null, division, continent.getContinentalCupSpots(division));
             }
@@ -108,6 +110,19 @@ class Championship {
             default:
                 return 0;
         }
+    }
+
+    get isNationalLeague() {
+        const nationalLeague = ChampionshipType.find('national', 'league');
+        return this._championshipTypeId === nationalLeague.id;
+    }
+
+    get maxClubCountForPromotion() {
+        return this.isNationalLeague ? Math.round(this.clubCount * Config.nationalLeague.promotionAndRelegationPercentage) : 0;
+    }
+
+    get maxClubCountForRelegation() {
+        return this.isNationalLeague ? Math.round(this.clubCount * Config.nationalLeague.promotionAndRelegationPercentage) : 0;
     }
 
     get qualifiedClubsByGroupCount() {

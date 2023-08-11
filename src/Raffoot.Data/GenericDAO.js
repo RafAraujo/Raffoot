@@ -26,9 +26,9 @@ class GenericDAO {
 
             let transaction = this._connection.transaction(entities.map(e => e.constructor.name).distinct(), 'readwrite')
 
-            let requests = [];
-            for (let entity of entities) {
-                let request = transaction.objectStore(entity.constructor.name).add(entity);
+            const requests = [];
+            for (const entity of entities) {
+                const request = transaction.objectStore(entity.constructor.name).add(entity);
                 requests.push(request);
             }
 
@@ -37,7 +37,7 @@ class GenericDAO {
         });
     }
 
-    async updateAsync(entity, store = null) {
+    async updateAsync(entity, key, store = null) {
         if (store == null) {
             store = entity.constructor.name;
         }
@@ -46,7 +46,7 @@ class GenericDAO {
             let request = this._connection
                 .transaction([store], 'readwrite')
                 .objectStore(store)
-                .put(entity);
+                .put(entity, key);
 
             request.onsuccess = () => resolve(request.result);
 

@@ -33,7 +33,7 @@ class SquadPlayer {
 
     get isImprovised() {
         if (this.fieldLocalization) {
-            return !this.player.positions.some(p => p.fieldLocalizations.includes(this.fieldLocalization));
+            return this.player.position.id != this.fieldLocalization.position.id;
         }
         else {
             return false;
@@ -53,7 +53,7 @@ class SquadPlayer {
     }
 
     calculateOverallAt(fieldLocalization) {
-        if (this.player.positions.includes(fieldLocalization.position)) {
+        if (this.player.position.id === fieldLocalization.position.id) {
             return this.player.overall;
         }
         else {

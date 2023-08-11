@@ -113,6 +113,7 @@
     <script src="../Raffoot.Domain/Models/Continent.js"></script>
     <script src="../Raffoot.Domain/Models/Country.js"></script>
     <script src="../Raffoot.Domain/Models/FieldLocalization.js"></script>
+    <script src="../Raffoot.Domain/Models/FieldRegion.js"></script>
     <script src="../Raffoot.Domain/Models/Formation.js"></script>
     <script src="../Raffoot.Domain/Models/Game.js"></script>
     <script src="../Raffoot.Domain/Models/Match.js"></script>
@@ -176,7 +177,7 @@
             startGame: async function (event) {
                 try {
                     this.game.name = this.gameName;
-                    this.game.club.squad.clearSettings();
+                    //this.game.club.squad.clearSettings();
                     let id = await gameService.insertAsync(Vue.toRaw(this.game));
                     this.redirect(`home.html?id=${id}`);
                 }

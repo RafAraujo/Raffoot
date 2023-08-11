@@ -23,6 +23,7 @@ class Game {
         this.continents = [];
         this.countries = [];
         this.fieldLocalizations = [];
+        this.fieldRegions = [];
         this.formations = [];
         this.matches = [];
         this.matchClubs = [];
@@ -55,13 +56,9 @@ class Game {
     }
 
     getNationalLeague() {
-        const nationalLeagues = this.currentSeason.getNationalLeaguesByCountryId(this.club.country.id);
-        for (let nationalLeague of nationalLeagues) {
-            if (nationalLeague.clubs.map(c => c.id).includes(this.club.id)) {
-                return nationalLeague;
-            }
-        }
-        return null;
+        const club = this.club;
+        const nationalLeagues = this.currentSeason.getNationalLeaguesByCountryId(club.country.id);
+        return nationalLeagues.find(ce => ce.clubs.map(c => c.id).includes(club.id));
     }
 
     newSeason() {

@@ -24,12 +24,7 @@ class Season {
     }
 
     get championshipEditions() {
-        return Context.game.championshipEditions.filter(ce => ce.year === this.year);
-    }
-
-    get nationalLeagues() {
-        let nationalLeagueId = ChampionshipType.find('national', 'league').id;
-        return this.championshipEditions.filter(ce => ce.championship.championshipType.id === nationalLeagueId);
+        return Context.game.championshipEditions.filterByIds(this._championshipEditionsIds);
     }
 
     get seasonDates() {
@@ -56,7 +51,7 @@ class Season {
         this._defineChampionshipEditions();
         this._defineCalendar();
 
-        for (let championshipEdition of this.championshipEditions) {
+        for (const championshipEdition of this.championshipEditions) {
             this._defineChampionshipEditionClubs(championshipEdition);
             const dates = this.seasonDates.filter(sd => sd.championshipType.id === championshipEdition.championship.championshipType.id).map(sd => sd.date);
             const dateCount = championshipEdition.championship.getDateCount();
@@ -70,7 +65,7 @@ class Season {
 
     _defineChampionshipEditions() {
         const championships = this.championshipTypes.flatMap(ct => ct.championships);
-        for (let championship of championships) {
+        for (const championship of championships) {
             const championshipEdition = ChampionshipEdition.create(championship, this.year);
             this._championshipEditionsIds.push(championshipEdition.id);
         }
@@ -97,7 +92,7 @@ class Season {
         }
 
         const clubs = eligibleClubs.orderBy('-overall').take(clubCount);
-        for (let club of clubs) {
+        for (const club of clubs) {
             championshipEdition.addClub(club);
         }
     }
@@ -147,7 +142,7 @@ class Season {
         this._currentSeasonDateIndex++;
         const days = Date.daysDiff(previousDate, this.currentDate);
 
-        for (let club of Context.game.clubs) {
+        for (const club of Context.game.clubs) {
             club.squad.rest(days);
             if (this._currentSeasonDateIndex > 0 && this.currentDate.getMonth() > this.previousSeasonDate.date.getMonth()) {
                 club.payWages();
@@ -157,8 +152,26 @@ class Season {
         this.finished = this._currentSeasonDateIndex === this.seasonDates.length;
     }
 
+    getInternationalChampionshipEditions() {
+        return this.championshipEditions.filter(ce => !ce.championship.championshipType.scope === 'national');
+    }
+
+    getNationalChampionshipEditions() {
+        return this.championshipEditions.filter(ce => ce.championship.championshipType.scope === 'national');
+    }
+
+    getChampionshipEditionsByConfederationId(confederationId) {
+        const championshipEditions = this.getNationalChampionshipEditions();
+        return championshipEditions.filter(ce => ce.championship.confederation.id === confederationId);
+    }
+
+    getNationalLeagues() {
+        return this.getNationalChampionshipEditions().filter(ce => ce.championship.isNationalLeague);
+    }
+
     getNationalLeaguesByCountryId(countryId) {
-        return this.nationalLeagues.filter(ce => ce.championship.countries.map(c => c.id).includes(countryId));
+        const championshipEditions = this.getNationalLeagues();
+        return championshipEditions.filter(ce => ce.championship.countries.map(c => c.id).includes(countryId));
     }
 
     getMatchesByDate(date) {

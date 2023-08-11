@@ -24,7 +24,7 @@ let ConnectionFactory = (function () {
         }
 
         static createStores(connection, stores, autoIncrement) {
-            for (let store of stores) {
+            for (const store of stores) {
                 if (connection.objectStoreNames.contains(store)) {
                     connection.deleteObjectStore(store);
                 }

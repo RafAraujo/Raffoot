@@ -45,8 +45,8 @@
                                 <label for="select-games" class="form-label">{{ translator.get("Game") }}</label>
                                 <select id="select-games" class="form-select" @change="selectGame($event)">
                                     <option></option>
-                                    <option v-for="game in savedGames" :key="game.key" :value="game.key">{{
-                                        game.value.name }}
+                                    <option v-for="game in savedGames" :key="game.key" :value="game.key">
+                                        {{ game.value.name }}
                                     </option>
                                 </select>
                             </div>
@@ -82,12 +82,12 @@
                                         {{ translator.get("Load Game").toTitleCase() }}
                                     </button>
                                 </div>
-                                <div class="col-4 d-grid float-end">
+                                <div class="col-4 d-grid">
                                     <button class="btn btn-secondary" data-bs-dismiss="modal">
                                         {{ translator.get("Cancel") }}
                                     </button>
                                 </div>
-                                <div class="col-4 d-grid float-end">
+                                <div class="col-4 d-grid">
                                     <button class="btn btn-danger" :disabled="!selectedGame" @click="deleteGame()">
                                         {{ translator.get("Delete") }}
                                     </button>
@@ -123,6 +123,7 @@
     <script src="../Raffoot.Domain/Models/Continent.js"></script>
     <script src="../Raffoot.Domain/Models/Country.js"></script>
     <script src="../Raffoot.Domain/Models/FieldLocalization.js"></script>
+    <script src="../Raffoot.Domain/Models/FieldRegion.js"></script>
     <script src="../Raffoot.Domain/Models/Formation.js"></script>
     <script src="../Raffoot.Domain/Models/Game.js"></script>
     <script src="../Raffoot.Domain/Models/Match.js"></script>
@@ -163,7 +164,7 @@
         },
         methods: {
             getSavedGames: async function () {
-                this.savedGames = await gameService.getSavedGamesWithKeysAsync();
+                this.savedGames = await gameService.getAllAsync();
             },
             selectGame: async function (event) {
                 this.message.text = "";
@@ -174,12 +175,12 @@
             },
             deleteGame: async function () {
                 try {
-                    this.message = { text: this.translator.get('Processing...'), type: 'primary' };
+                    this.message = { text: this.translator.get("Processing..."), type: "primary" };
                     let game = this.selectedGame;
                     this.selectedGame = null;
                     await gameService.delete(game.key);
                     await this.getSavedGames();
-                    this.message = { text: this.translator.get('Game deleted with success'), type: 'success' };
+                    this.message = { text: this.translator.get("Game deleted with success"), type: "success" };
                 }
                 catch (error) {
                     console.log(error);

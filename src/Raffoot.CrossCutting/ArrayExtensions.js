@@ -29,6 +29,17 @@ Array.prototype.getRandomItems = function (count) {
     return this.slice().shuffle().take(count);
 }
 
+Array.prototype.groupBy = function (key) {
+    return this.reduce((acc, currentValue) => {
+        const groupKey = getValue(currentValue, key);
+        if (!acc[groupKey]) {
+            acc[groupKey] = [];
+        }
+        acc[groupKey].push(currentValue);
+        return acc;
+    }, {});
+};
+
 Array.prototype.last = function () {
     return this[this.length - 1];
 }
@@ -37,8 +48,12 @@ Array.prototype.lastItems = function (count) {
     return this.slice(this.length - count);
 }
 
+Array.prototype.min = function () {
+    return this.reduce((acc, currentValue) => Math.min(acc, currentValue));
+}
+
 Array.prototype.max = function () {
-    return this.reduce((a, b) => Math.max(a, b));
+    return this.reduce((acc, currentValue) => Math.max(acc, currentValue));
 }
 
 Array.prototype.orderBy = function () {
@@ -58,8 +73,8 @@ function dynamicSort(properties) {
                 property = property.substr(1);
             }
 
-            let valueA = value(a, property);
-            let valueB = value(b, property);
+            let valueA = getValue(a, property);
+            let valueB = getValue(b, property);
 
             if (typeof valueA === 'string')
                 result = valueA.localeCompare(valueB) * order;
@@ -68,13 +83,13 @@ function dynamicSort(properties) {
         }
 
         return result;
-
-        function value(object, propertyPath) {
-            let value = object;
-            propertyPath.split('.').forEach(p => value = value[p]);
-            return value;
-        }
     }
+}
+
+function getValue(object, propertyPath) {
+    let value = object;
+    propertyPath.split('.').forEach(p => value = value[p]);
+    return value;
 }
 
 Array.prototype.remove = function (item) {
@@ -90,8 +105,8 @@ Array.prototype.rotate = function () {
 
 Array.prototype.shuffle = function () {
     for (let i = this.length - 1; i > 0; i--) {
-        let index = Random.number(i);
-        let aux = this[i];
+        const index = Random.number(i);
+        const aux = this[i];
         this[i] = this[index];
         this[index] = aux;
     }
@@ -99,7 +114,7 @@ Array.prototype.shuffle = function () {
 }
 
 Array.prototype.sum = function () {
-    return this.reduce((a, b) => a + b);
+    return this.reduce((acc, currentValue) => acc + currentValue);
 }
 
 Array.prototype.take = function (count) {

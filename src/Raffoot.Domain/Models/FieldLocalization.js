@@ -60,25 +60,21 @@ class FieldLocalization {
 		return _fieldLocalizations[0];
 	}
 
-	get position() {
-		return Position.getById(this._positionId);
+	get isOffTheField() {
+		return this.line === null;
 	}
 
-	get side() {
-		let sides = ['L', 'L', 'C', 'R', 'R'];
-		return sides[this.column];
+	get position() {
+		return Position.getById(this._positionId);
 	}
 
 	get reverse() {
 		return new FieldLocalization(this.position.id, 11 - this.line, this.column === 2 ? 2 : 5 - this.column, this.name);
 	}
 
-	get isOffTheField() {
-		return this.line === null;
-	}
-
-	getStyleLeftTop() {
-
+	get side() {
+		let sides = ['L', 'L', 'C', 'R', 'R'];
+		return sides[this.column];
 	}
 
 	// https://stackoverflow.com/questions/20916953/get-distance-between-two-points-in-canvas

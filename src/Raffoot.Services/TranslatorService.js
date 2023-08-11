@@ -22,7 +22,7 @@ class TranslatorService {
         const translation = this.get(text);
         const array = translation.split(' ');
 
-        for (let word of array) {
+        for (const word of array) {
             if (word.length > 2) {
                 abbreviation += word[0].toUpperCase();
             }

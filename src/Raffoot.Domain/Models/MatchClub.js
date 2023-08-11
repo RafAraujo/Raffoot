@@ -63,13 +63,13 @@ class MatchClub {
 
     arrangeTeam() {
         this.matchPlayers = [];
-        for (let squadPlayer of this.club.squad.starting11) {
+        for (const squadPlayer of this.club.squad.starting11) {
             this.addMatchPlayer(squadPlayer);
         }
     }
 
     getPlayersAt(fieldRegion) {
-        return this.matchPlayers.filter(mp => mp.fieldLocalization.position.fieldRegion === fieldRegion);
+        return this.matchPlayers.filter(mp => mp.fieldLocalization.position.fieldRegion.id === fieldRegion.id);
     }
 
     regionOverall(fieldRegion) {

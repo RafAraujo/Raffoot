@@ -17,10 +17,10 @@ class Player {
 
     static create(fullName, name, countryName, positionAbbreviations, age, overall, club, externalId, hasPhoto) {
         const country = Context.game.countries.find(c => c.name === countryName);
-        const positionIds = positionAbbreviations.map(pa => Context.game.positions.find(p => p.abbreviation === pa).id);
+        const positionIds = positionAbbreviations.map(pa => Position.getByAbbreviation(pa)).map(p => p.id);
         const star = false;
         const energy = 100;
-        const wage = this._getBaseWage(overall, false);
+        const wage = Player._getBaseWage(overall, false);
         const goals = 0;
         const player = new Player(fullName, name, country.id, positionIds, age, overall, club.id, externalId, hasPhoto, star, energy, wage, goals);
         player.id = Context.game.players.push(player);
@@ -48,7 +48,7 @@ class Player {
     }
 
     static _getBaseWage(overall, star) {
-        return Math.max(this._calculateBaseWage(overall, star), this._getMinimumWage());
+        return Math.max(Player._calculateBaseWage(overall, star), Player._getMinimumWage());
     }
 
     static _getMinimumWage() {
@@ -98,11 +98,6 @@ class Player {
         return Position.getById(this._positionIds[0]);
     }
 
-    get positions() {
-        return [this.position];
-        //return Context.game.positions.filterByIds(this._positionIds);
-    }
-
     get surname() {
         const array = this.name.split(' ');
         if (array.length > 1 && array[0].endsWith('.')) {
@@ -116,12 +111,12 @@ class Player {
     }
 
     getNearestFieldLocalization(fieldLocalization) {
-        if (this.positions.includes(fieldLocalization.position)) {
+        if (this.position.id === fieldLocalization.position.id) {
             return fieldLocalization;
         }
 
         const results = [];
-        for (let idealFieldLocalization of this.idealFieldLocalizations) {
+        for (const idealFieldLocalization of this.idealFieldLocalizations) {
             results.push({
                 fieldLocalization: idealFieldLocalization,
                 distance: idealFieldLocalization.calculateDistanceTo(fieldLocalization)

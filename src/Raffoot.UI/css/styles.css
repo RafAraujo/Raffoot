@@ -17,6 +17,18 @@ td {
     color: black;
 }
 
+.bg-inherit {
+    background-color: inherit;
+}
+
+.color-inherit {
+    color: inherit;
+}
+
+.btn-check + .color-inherit:hover {
+    color: inherit;
+}
+
 .blink {
     animation: blinker 1s linear infinite;
 }
@@ -107,22 +119,6 @@ span.overall.silver {
 span.overall.bronze {
     background-color: #cd7f32;
     color: white;
-}
-
-td.goal {
-    color: #ffc107 !important;
-}
-
-td.defense {
-    color: #007bff !important;
-}
-
-td.midfield {
-    color: #28a745 !important;
-}
-
-td.attack {
-    color: #dc3545 !important;
 }
 
 td.main-continental-cup {

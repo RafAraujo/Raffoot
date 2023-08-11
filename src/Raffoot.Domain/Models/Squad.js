@@ -81,33 +81,34 @@ class Squad {
         this.playingStyle = '';
     }
 
+    getOverallByFieldRegion(fieldRegion) {
+        const players = this.players.filter(p => p.position.fieldRegion.id === fieldRegion.id);
+        return players.map(p => p.overall).sum();
+    }
+
     getSquadPlayerByFieldLocalizationId(fieldLocalizationId) {
         return this.starting11.find(sp => sp.fieldLocalization.id === fieldLocalizationId);
     }
 
     getBestAvailableSquadPlayerForFieldLocalization(fieldLocalization) {
-        const squadPlayers = this.substitutes.filter(sp => sp.player.positions.includes(fieldLocalization.position));
+        const squadPlayers = this.substitutes.filter(sp => sp.player.position.id === fieldLocalization.position.id);
         const squadPlayer = squadPlayers.length > 0 ? squadPlayers.orderBy('-player.overall')[0] : null;
         return squadPlayer;
     }
 
-    getBestAvailableSquadPlayersForPosition(position) {
-        let squadPlayers = this.substitutes.filter(sp => sp.player.positions.includes(position));
+    getBestPlayers(count) {
+        return this.players.orderBy('-overall', 'age').take(count);
+    }
 
-        if (squadPlayers.length === 0)
-            squadPlayers = this.substitutes.filter(sp => sp.player.positions.some(p => sp.fieldLocalization === null && p.fieldRegion === position.fieldRegion));
-
-        if (squadPlayers.length === 0)
-            squadPlayers = this.substitutes;
-
-        return squadPlayers;
+    getBestPlayersWithoutGoalkeeper(count) {
+        return this.players.filter(p => !p.position.isGoalkeeper).orderBy('-overall', 'age').take(count);
     }
 
     getRecommendedFormation() {
         const ranking = [];
 
-        for (let formation of Context.game.formations) {
-            const players = this.players.filter(pl => pl.positions.some(pos => formation.positions.includes(pos)));
+        for (const formation of Context.game.formations) {
+            const players = this.players.filter(pl => formation.positions.map(p => p.id).includes(pl.position.id));
 
             ranking.push({
                 formation: formation,
@@ -127,30 +128,31 @@ class Squad {
     }
 
     clearFieldLocalizations() {
-        for (let squadPlayer of this.squadPlayers) {
+        for (const squadPlayer of this.squadPlayers) {
             squadPlayer.fieldLocalization = null;
         }
     }
 
     setAutomaticLineUp() {
-        for (let fieldLocalization of this.formation.fieldLocalizations.reverse()) {
+        for (const fieldLocalization of this.formation.fieldLocalizations.reverse()) {
             const ranking = [];
             let chosenSquadPlayer = this.getBestAvailableSquadPlayerForFieldLocalization(fieldLocalization);
 
             if (chosenSquadPlayer === null) {
-                let squadPlayers = this.getBestAvailableSquadPlayersForPosition(fieldLocalization.position);
+                let squadPlayers = this.substitutes.filter(sp => sp.player.position.fieldRegion === fieldLocalization.position.fieldRegion);
 
-                for (let squadPlayer of squadPlayers) {
-                    const playerNearestFieldLocalization = squadPlayer.player.getNearestFieldLocalization(fieldLocalization);
+                if (squadPlayers.length === 0) {
+                    squadPlayers = this.substitutes;
+                }
 
+                for (const squadPlayer of squadPlayers) {
                     ranking.push({
                         squadPlayer: squadPlayer,
-                        overall: squadPlayer.calculateOverallAt(fieldLocalization),
-                        distance: playerNearestFieldLocalization.calculateDistanceTo(fieldLocalization)
+                        overall: squadPlayer.calculateOverallAt(fieldLocalization)
                     });
                 }
 
-                chosenSquadPlayer = ranking.orderBy('distance', '-overall', '-squadPlayer.player.energy')[0].squadPlayer;
+                chosenSquadPlayer = ranking.orderBy('-overall', '-squadPlayer.player.energy')[0].squadPlayer;
             }
 
             chosenSquadPlayer.fieldLocalization = fieldLocalization;
@@ -160,7 +162,7 @@ class Squad {
     setOrder() {
         const squadPlayers = this.squadPlayers.orderBy('order', 'player.position.id', '-player.overall')
         let order = 0;
-        for (let squadPlayer of squadPlayers) {
+        for (const squadPlayer of squadPlayers) {
             squadPlayer.order = ++order;
         }
     }

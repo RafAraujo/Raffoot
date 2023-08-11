@@ -122,15 +122,11 @@ class ChampionshipEdition {
         return this.table.firstItems(positions.length);
     }
 
-    getPromotionClubCount() {
-        return Math.round(Math.log2(this.championship.clubCount));
-    }
-
     getPromotionZonePositions() {
         const positions = [];
 
         if (this.championship.championshipType.format === 'league' && this.championship.division > 1) {
-            const clubCount = this.getPromotionClubCount();
+            const clubCount = this.championship.promotionClubCount;
             for (let position = 1; position <= clubCount; position++) {
                 positions.push(position);
             }
@@ -144,15 +140,11 @@ class ChampionshipEdition {
         return this.table.take(positions.length);
     }
 
-    getRelegationClubCount() {
-        return Math.round(Math.log2(this.championship.clubCount));
-    }
-
     getRelegationZonePositions() {
         const positions = [];
 
         if (this.championship.championshipType.format === 'league') {
-            const clubCount = this.getPromotionClubCount();
+            const clubCount = this.championship.relegationClubCount;
             for (let position = this.clubs.length; position > this.clubs.length - clubCount; position--) {
                 positions.push(position);
             }
@@ -201,10 +193,10 @@ class ChampionshipEdition {
     _defineChampionshipEditionGroups() {
         let championshipEditionClubs = this.championshipEditionClubs.slice();
 
-        for (let i = 0; i < this.championship.groupCount; i++) {
+        for (const i = 0; i < this.championship.groupCount; i++) {
             let group = ChampionshipEditionGroup.create(this, i + 1);
 
-            for (let j = 0; j < this.championship.groupClubCount; j++) {
+            for (const j = 0; j < this.championship.groupClubCount; j++) {
                 let championshipEditionClub = championshipEditionClubs.getRandom();
                 group.addChampionshipEditionClub(championshipEditionClub);
                 championshipEditionClubs.remove(championshipEditionClub);
@@ -223,7 +215,7 @@ class ChampionshipEdition {
     }
 
     _scheduleMatchesChampionshipEditionGroups() {
-        for (let group of this.championshipEditionGroups) {
+        for (const group of this.championshipEditionGroups) {
             let matches = ChampionshipEdition.genericRoundRobin(this, this.groupDates, group.clubs, this.championship.isTwoLeggedTie);
             group.addMatches(matches);
         }
@@ -240,9 +232,9 @@ class ChampionshipEdition {
 
             for (let j = 0; j < eliminationPhase.clubCount; j += 2) {
                 for (let k = 0; k < matchesPerPhase; k++) {
-                    let date = this.eliminationPhaseDates[i * matchesPerPhase + k];
+                    const date = this.eliminationPhaseDates[i * matchesPerPhase + k];
 
-                    let match = Match.create(this, date);
+                    const match = Match.create(this, date);
                     eliminationPhase.addMatch(match);
                 }
             }
@@ -261,7 +253,7 @@ class ChampionshipEdition {
         const rounds = (clubs.length - 1) * (isTwoLeggedTie ? 2 : 1);
 
         for (let i = 0; i < rounds; i++) {
-            let date = dates[i];
+            const date = dates[i];
             for (let j = 0; j < clubs.length / 2; j++) {
                 let match = Match.create(championshipEdition, date);
 
@@ -282,11 +274,13 @@ class ChampionshipEdition {
 
     continentalCupClassificationZonePositions(continentalCupDivision) {
         const positions = [];
-        let spots = this.championship.country.continentalCupSpots;
+        const spots = this.championship.country.continentalCupSpots;
 
-        if (this.championship.championshipType.format === 'league' && this.championship.division === 1)
-            for (let position = (spots * (continentalCupDivision - 1)) + 1; position <= spots * continentalCupDivision; position++)
+        if (this.championship.championshipType.format === 'league' && this.championship.division === 1) {
+            for (const position = (spots * (continentalCupDivision - 1)) + 1; position <= spots * continentalCupDivision; position++) {
                 positions.push(position);
+            }
+        }
 
         return positions;
     }

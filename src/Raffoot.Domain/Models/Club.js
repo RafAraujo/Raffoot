@@ -67,9 +67,9 @@ class Club {
     }
 
     getKitsURLs() {
-        let urlList = [];
+        const urlList = [];
         for (let i = 1; i <= 3; i++) {
-            let url = `${Config.folders.kitsFolder}/${this.externalId}/${i}.png`;
+            const url = `${Config.folders.kitsFolder}/${this.externalId}/${i}.png`;
             urlList.push(url);
         }
         return urlList;

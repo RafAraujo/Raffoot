@@ -11,7 +11,7 @@ class GameService {
         return game;
     }
 
-    async getSavedGamesWithKeysAsync() {
+    async getAllAsync() {
         const dao = await this.getDaoAsync();
         let games = await dao.getAllWithKeysAsync('Game');
         games = games.map(o => Object.assign(new Game(), o));
@@ -29,9 +29,8 @@ class GameService {
 
     async saveAsync(game) {
         const dao = await this.getDaoAsync();
-        let id = await dao.updateAsync(game);
+        await dao.updateAsync(game, game.id);
         ConnectionFactory.closeConnection();
-        return id;
     }
 
     // Mayble load only objects of the current season ?
@@ -39,7 +38,8 @@ class GameService {
         let t0 = performance.now();
 
         const object = await this.getByIdAsync(id);
-        let game = Object.assign(new Game(), object);
+        const game = Object.assign(new Game(), object);
+        game.id = id;
         
         game.championships = game.championships.map(o => Object.assign(new Championship(), o));
         game.championshipEditions = game.championshipEditions.map(o => Object.assign(new ChampionshipEdition(), o));
@@ -55,6 +55,7 @@ class GameService {
         game.continents = game.continents.map(o => Object.assign(new Continent(), o));
         game.countries = game.countries.map(o => Object.assign(new Country(), o));
         game.fieldLocalizations = game.fieldLocalizations.map(o => Object.assign(new FieldLocalization(), o));
+        game.fieldRegions = game.fieldRegions.map(o => Object.assign(new FieldRegion(), o));
         game.formations = game.formations.map(o => Object.assign(new Formation(), o));
         game.matches = game.matches.map(o => Object.assign(new Match(), o));
         game.matchClubs = game.matchClubs.map(o => Object.assign(new MatchClub(), o));
@@ -66,7 +67,6 @@ class GameService {
         game.squadPlayers = game.squadPlayers.map(o => Object.assign(new SquadPlayer(), o));
 
         Context.game = game;
-        Context.game.club.squad.squadPlayers.orderBy('order').forEach((sp, index) => sp.order = index);
 
 		console.log(`GameService.loadAsync() took ${(performance.now() - t0)} milliseconds.`);
         
