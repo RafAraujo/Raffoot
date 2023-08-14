@@ -47,6 +47,59 @@ class Season {
         return this.championshipEditions.flatMap(ce => ce.matches);
     }
 
+    advanceDate() {
+        const previousDate = this.currentDate;
+        this._currentSeasonDateIndex++;
+        const days = Date.daysDiff(previousDate, this.currentDate);
+
+        for (const club of Context.game.clubs) {
+            club.squad.rest(days);
+            if (this._currentSeasonDateIndex > 0 && this.currentDate.getMonth() > this.previousSeasonDate.date.getMonth()) {
+                club.payWages();
+            }
+        }
+
+        this.finished = this._currentSeasonDateIndex === this.seasonDates.length;
+    }
+
+    getInternationalChampionshipEditions() {
+        return this.championshipEditions.filter(ce => !ce.championship.championshipType.scope === 'national');
+    }
+
+    getNationalChampionshipEditions() {
+        return this.championshipEditions.filter(ce => ce.championship.championshipType.scope === 'national');
+    }
+
+    getChampionshipEditionsByConfederationId(confederationId) {
+        const championshipEditions = this.getNationalChampionshipEditions();
+        return championshipEditions.filter(ce => ce.championship.confederation.id === confederationId);
+    }
+
+    getCurrentMatches() {
+        return this.getMatchesByDate(this.currentDate);
+    }
+
+    getNationalLeagues() {
+        return this.getNationalChampionshipEditions().filter(ce => ce.championship.isNationalLeague);
+    }
+
+    getNationalLeaguesByCountryId(countryId) {
+        const championshipEditions = this.getNationalLeagues();
+        return championshipEditions.filter(ce => ce.championship.countries.map(c => c.id).includes(countryId));
+    }
+
+    getMatchesByDate(date) {
+        return this.matches.filter(m => m.date.getTime() === date.getTime());
+    }
+
+    getMatchesByClubId(clubId) {
+        return this.matches.filter(m => m.matchClubs.map(mc => mc.club?.id).includes(clubId)).orderBy('date');
+    }
+
+    getNextMatch(clubId) {
+        return this.getMatchesByClubId(clubId).find(m => m.date >= this.currentDate);
+    }
+
     schedule() {
         this._defineChampionshipEditions();
         this._defineCalendar();
@@ -59,8 +112,34 @@ class Season {
         }
     }
 
-    mainContinentalCup(confederation) {
-        return this._championshipEditions.find(c => c.championship.confederation === confederation && c.championship.division === 1);
+    _addSeasonDate(date, championshipType) {
+        if (this.championshipTypes.includes(championshipType))
+            this._seasonDateIds.push(SeasonDate.create(date, championshipType).id);
+    }
+
+    _defineCalendar() {
+        const nationalSupercup = ChampionshipType.find('national', 'supercup');
+        const continentalSupercup = ChampionshipType.find('continental', 'supercup');
+        const worldCup = ChampionshipType.find('world', 'cup');
+
+        let date = Date.firstSunday(1, this.year);
+        this._addSeasonDate(date, nationalSupercup);
+        date = date.addDays(3);
+        this._addSeasonDate(date, continentalSupercup);
+
+        let championshipTypes = this.championshipTypes.filter(ct => ct.format !== 'supercup' && ct.scope !== 'world');
+        let championshipType = null;
+
+        while (championshipType = championshipTypes.find(ct => !this._isTotallyScheduled(ct))) {
+            date = date.addDays(date.getDay() === 0 ? 3 : 4);
+            if (date.getMonth() === 6)
+                continue;
+            this._addSeasonDate(date, championshipType);
+            championshipTypes.rotate();
+        }
+
+        date = date.addDays(date.getDay() === 0 ? 3 : 4);
+        this._addSeasonDate(date, worldCup);
     }
 
     _defineChampionshipEditions() {
@@ -97,36 +176,6 @@ class Season {
         }
     }
 
-    _defineCalendar() {
-        const nationalSupercup = ChampionshipType.find('national', 'supercup');
-        const continentalSupercup = ChampionshipType.find('continental', 'supercup');
-        const worldCup = ChampionshipType.find('world', 'cup');
-
-        let date = Date.firstSunday(1, this.year);
-        this._addSeasonDate(date, nationalSupercup);
-        date = date.addDays(3);
-        this._addSeasonDate(date, continentalSupercup);
-
-        let championshipTypes = this.championshipTypes.filter(ct => ct.format !== 'supercup' && ct.scope !== 'world');
-        let championshipType = null;
-
-        while (championshipType = championshipTypes.find(ct => !this._isTotallyScheduled(ct))) {
-            date = date.addDays(date.getDay() === 0 ? 3 : 4);
-            if (date.getMonth() === 6)
-                continue;
-            this._addSeasonDate(date, championshipType);
-            championshipTypes.rotate();
-        }
-
-        date = date.addDays(date.getDay() === 0 ? 3 : 4);
-        this._addSeasonDate(date, worldCup);
-    }
-
-    _addSeasonDate(date, championshipType) {
-        if (this.championshipTypes.includes(championshipType))
-            this._seasonDateIds.push(SeasonDate.create(date, championshipType).id);
-    }
-
     _isTotallyScheduled(championshipType) {
         const scheduledDates = this.seasonDates.filter(sd => sd.championshipType === championshipType).length;
         const neededDates = this.championshipEditions
@@ -135,54 +184,5 @@ class Season {
             .max();
 
         return scheduledDates === neededDates;
-    }
-
-    advanceDate() {
-        const previousDate = this.currentDate;
-        this._currentSeasonDateIndex++;
-        const days = Date.daysDiff(previousDate, this.currentDate);
-
-        for (const club of Context.game.clubs) {
-            club.squad.rest(days);
-            if (this._currentSeasonDateIndex > 0 && this.currentDate.getMonth() > this.previousSeasonDate.date.getMonth()) {
-                club.payWages();
-            }
-        }
-
-        this.finished = this._currentSeasonDateIndex === this.seasonDates.length;
-    }
-
-    getInternationalChampionshipEditions() {
-        return this.championshipEditions.filter(ce => !ce.championship.championshipType.scope === 'national');
-    }
-
-    getNationalChampionshipEditions() {
-        return this.championshipEditions.filter(ce => ce.championship.championshipType.scope === 'national');
-    }
-
-    getChampionshipEditionsByConfederationId(confederationId) {
-        const championshipEditions = this.getNationalChampionshipEditions();
-        return championshipEditions.filter(ce => ce.championship.confederation.id === confederationId);
-    }
-
-    getNationalLeagues() {
-        return this.getNationalChampionshipEditions().filter(ce => ce.championship.isNationalLeague);
-    }
-
-    getNationalLeaguesByCountryId(countryId) {
-        const championshipEditions = this.getNationalLeagues();
-        return championshipEditions.filter(ce => ce.championship.countries.map(c => c.id).includes(countryId));
-    }
-
-    getMatchesByDate(date) {
-        return this.matches.filter(m => m.date.getTime() === date.getTime());
-    }
-
-    getMatchesByClubId(clubId) {
-        return this.matches.filter(m => m.matchClubs.map(mc => mc.club?.id).includes(clubId)).orderBy('date');
-    }
-
-    getNextMatch(clubId) {
-        return this.getMatchesByClubId(clubId).find(m => m.date >= this.currentDate);
     }
 }

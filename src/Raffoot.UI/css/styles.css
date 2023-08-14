@@ -25,7 +25,7 @@ td {
     color: inherit;
 }
 
-.btn-check + .color-inherit:hover {
+.btn-check+.color-inherit:hover {
     color: inherit;
 }
 
@@ -62,12 +62,13 @@ td {
 
 .field-localization,
 .player {
-    border-radius: 50%;
+    border-radius: 20%;
     border-width: 2px !important;
     width: 20%;
     max-width: 20%;
 }
 
+.field-localization,
 .player:hover {
     cursor: pointer;
 }

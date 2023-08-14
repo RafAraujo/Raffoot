@@ -31,7 +31,7 @@
                     :class="game.club.foregroundColor == '#000000' ? 'bg-dark' : 'bg-light'"
                     :data-bs-theme="game.club.foregroundColor == '#000000' ? 'dark' : 'light'">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">{{ translator.get("Raffoot") }}</a>
+                        <a class="navbar-brand" href="index.html">{{ translator.get("Raffoot") }}</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -148,7 +148,9 @@
                             <form class="d-flex" role="search">
                                 <input class="form-control me-2" type="search" :placeholder="translator.get('Search')"
                                     aria-label="Search">
-                                <button class="btn btn-outline-light" type="submit">
+                                <button class="btn"
+                                    :class="game.club.foregroundColor == '#000000' ? 'btn-outline-light' : 'btn-outline-dark'"
+                                    type="submit">
                                     {{ translator.get("Search") }}
                                 </button>
                             </form>
@@ -183,7 +185,7 @@
                         <form @submit.prevent>
                             <div class="row mb-2">
                                 <div class="col">
-                                    <div class="pt-2 pb-2">
+                                    <div class="pb-2">
                                         <div>
                                             <div class="d-inline-block ms-1 me-3">
                                                 <img :src="nextOpponent.getLogoURL()" :alt="nextOpponent.name"
@@ -237,7 +239,7 @@
                                                 </select>
                                                 <div class="form-check form-check-inline form-switch mt-1">
                                                     <input id="automatic-selection" class="form-check-input"
-                                                        type="checkbox" v-model="automaticSelection">
+                                                        type="checkbox" v-model.lazy="automaticSelection">
                                                     <label for="automatic-selection" class="form-check-label">
                                                         {{ translator.get("Automatic selection") }}
                                                     </label>
@@ -265,10 +267,13 @@
                                                         <template v-for="item in game.club.squad.lineup">
                                                             <template v-if="item.squadPlayer">
                                                                 <div class="player position-absolute text-center"
-                                                                    :class="{ 'border blink' : item.squadPlayer.id === selectedSquadPlayerId }"
-                                                                    :data-squad-player-id="item.squadPlayer.id"
-                                                                    @click.stop="clickPlayer($event)"
-                                                                    :style="{ top: (11 - item.squadPlayer.fieldLocalization.line) * 7.7 + '%', left: (item.squadPlayer.fieldLocalization.column) * 20 + '%' }">
+                                                                    @click.stop="changePlayers(item.squadPlayer.id)"
+                                                                    draggable="true"
+                                                                    @dragstart="selectedSquadPlayerId = item.squadPlayer.id"
+                                                                    @dragover.prevent
+                                                                    @drop="changePlayers(item.squadPlayer.id)"
+                                                                    :style="{ top: (11 - item.squadPlayer.fieldLocalization.line) * 7.7 + '%', left: (item.squadPlayer.fieldLocalization.column) * 20 + '%' }"
+                                                                    :class="{ 'border blink' : item.squadPlayer.id === selectedSquadPlayerId }">
                                                                     <div>
                                                                         <div class="position position-absolute"
                                                                             :class="{ 'improvised' : item.squadPlayer.isImprovised }"
@@ -307,9 +312,9 @@
                                                             <template v-else>
                                                                 <div>
                                                                     <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
-                                                                        :class="{ 'opacity-50' : !selectedSquadPlayerId }"
-                                                                        :data-field-localization-id="item.fieldLocalization.id"
-                                                                        @click.stop="clickFieldLocalization($event)"
+                                                                        @click.stop="movePlayerToField(item.fieldLocalization.id)"
+                                                                        @dragover.prevent
+                                                                        @drop="movePlayerToField(item.fieldLocalization.id)"
                                                                         :style="{ top: (11 - item.fieldLocalization.line) * 7.7 + '%', left: (item.fieldLocalization.column) * 20 + '%' }">
                                                                         <img class="max-size-3-rem"
                                                                             :src="game.club.getKitsURLs()[0]"
@@ -329,13 +334,15 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="bench position-relative border pb-5"
-                                                    @click.stop="clickBench($event)">
+                                                    @drop="movePlayerToBench()" @dragover.prevent
+                                                    @click.stop="movePlayerToBench()">
                                                     <template
                                                         v-for="squadPlayer in game.club.squad.substitutes.orderBy('order', 'player.position.id', '-player.overall')">
                                                         <div class="player d-inline-block text-center"
-                                                            :class="{ 'border blink' : squadPlayer.id === selectedSquadPlayerId }"
-                                                            :data-squad-player-id="squadPlayer.id"
-                                                            @click.stop="clickPlayer($event)">
+                                                            @click.stop="changePlayers(squadPlayer.id)" draggable="true"
+                                                            @dragstart="selectedSquadPlayerId = squadPlayer.id"
+                                                            @drop="changePlayers(squadPlayer.id)" @dragover.prevent
+                                                            :class="{ 'border blink' : squadPlayer.id === selectedSquadPlayerId }">
                                                             <div class="position-relative">
                                                                 <div class="position position-absolute"
                                                                     :class="{ 'improvised' : squadPlayer.isImprovised }"
@@ -537,7 +544,7 @@
                                     {{ translator.get("Championship") }}
                                 </label>
                                 <select id="select-championship" class="form-select"
-                                    v-model="selectedChampionshipEditionId">
+                                    v-model.lazy="selectedChampionshipEditionId">
                                     <option></option>
                                     <template v-if="nationalChampionshipsSelected">
                                         <template
@@ -558,7 +565,6 @@
                                         </template>
                                     </template>
                                     <template v-else>
-                                        <option></option>
                                         <option v-for="championshipEdition in game.currentSeason.getInternationalChampionshipEditions()
                                             .map(ce => ({
                                                 id: ce.id,
@@ -920,7 +926,9 @@
                 game: null,
                 gameLoaded: false,
                 message: { text: '', type: 'primary' },
+                modal: { title: '', message: '', methodOk: function () { } },
                 translator: translator,
+                window: window,
 
                 // Play:
                 automaticSelection: true,
@@ -949,34 +957,23 @@
         methods: {
             changeSection: function (event) {
                 event.preventDefault();
-                let section = event.target.getAttribute("href").substring(1);
+                let section = event.target.getAttribute('href').substring(1);
                 setTimeout(() => this.activeSection = section, 1);
 
-                const collapseElement = document.querySelector(".navbar-collapse.collapse")
-                if (collapseElement.classList.contains("show")) {
+                const collapseElement = document.querySelector('.navbar-collapse.collapse')
+                if (collapseElement.classList.contains('show')) {
                     const collapse = new bootstrap.Collapse(collapseElement);
                 }
             },
             async save() {
-                this.message = { text: this.translator.get("Processing..."), type: "primary" };
+                this.message = { text: this.translator.get('Processing...'), type: 'primary' };
                 await gameService.saveAsync(Vue.toRaw(this.game));
                 this.message.text = "";
             },
 
             // Play:
-            clickFieldLocalization: function (event) {
-                const div = event.currentTarget;
-                const fieldLocalizationId = parseInt(div.getAttribute("data-field-localization-id"));
-                if (this.selectedSquadPlayerId) {
-                    const fieldLocalization = FieldLocalization.getById(fieldLocalizationId);
-                    this.selectedSquadPlayer.fieldLocalization = fieldLocalization;
-                    this.selectedSquadPlayerId = null;
-                }
-            },
-            clickPlayer: function (event) {
-                const div = event.currentTarget;
-                const squadPlayerId = parseInt(div.getAttribute("data-squad-player-id"));
-                const squadPlayer = SquadPlayer.getById(squadPlayerId);
+            changePlayers: function (squadPlayerId) {
+                const squadPlayer = SquadPlayer.getById(parseInt(squadPlayerId));
                 if (this.selectedSquadPlayerId) {
                     this.game.club.squad.swapRoles(this.selectedSquadPlayer, squadPlayer);
                     this.selectedSquadPlayerId = null;
@@ -985,7 +982,14 @@
                     this.selectedSquadPlayerId = squadPlayerId;
                 }
             },
-            clickBench: function (event) {
+            movePlayerToField: function (fieldLocalizationId) {
+                const fieldLocalization = FieldLocalization.getById(parseInt(fieldLocalizationId));
+                if (this.selectedSquadPlayerId) {
+                    this.selectedSquadPlayer.fieldLocalization = fieldLocalization;
+                    this.selectedSquadPlayerId = null;
+                }
+            },
+            movePlayerToBench: function () {
                 if (this.selectedSquadPlayerId && this.selectedSquadPlayer.fieldLocalization) {
                     const order = this.game.club.squad.squadPlayers.map(sp => sp.order).max() + 1;
                     this.selectedSquadPlayer.fieldLocalization = null;

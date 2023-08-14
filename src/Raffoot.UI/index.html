@@ -156,7 +156,7 @@
     let RaffootApp = {
         data() {
             return {
-                message: { text: "", type: "primary" },
+                message: { text: '', type: 'primary' },
                 savedGames: [],
                 selectedGame: null,
                 translator: new TranslatorService(),
@@ -175,12 +175,12 @@
             },
             deleteGame: async function () {
                 try {
-                    this.message = { text: this.translator.get("Processing..."), type: "primary" };
+                    this.message = { text: this.translator.get('Processing...'), type: 'primary' };
                     let game = this.selectedGame;
                     this.selectedGame = null;
                     await gameService.delete(game.key);
                     await this.getSavedGames();
-                    this.message = { text: this.translator.get("Game deleted with success"), type: "success" };
+                    this.message = { text: this.translator.get('Game deleted with success'), type: 'success' };
                 }
                 catch (error) {
                     console.log(error);
