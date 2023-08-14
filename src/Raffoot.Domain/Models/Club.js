@@ -3,12 +3,16 @@ class Club {
         this.name = name;
         this._countryId = countryId;
         this.externalId = externalId;
-        this.backgroundColorCustom = this.backgroundColor = backgroundColor;
-        this.foregroundColorCustom = this.foregroundColor = foregroundColor;
         this._playerIds = [];
         this._squadId = null;
         this.money = 0;
         this._trophies = [];
+        this.colors = {
+            background: backgroundColor,
+            backgroundCustom: backgroundColor,
+            foreground: foregroundColor,
+            foregroundCustom: foregroundColor
+        };
     }
 
     static create(name, countryName, externalId, backgroundColor, foregroundColor) {
@@ -88,7 +92,7 @@ class Club {
     }
 
     resetColors() {
-        this.backgroundColorCustom = this.backgroundColor;
-        this.foregroundColorCustom = this.foregroundColor;
+        this.colors.backgroundCustom = this.colors.background;
+        this.colors.foregroundCustom = this.colors.foreground;
     }
 }

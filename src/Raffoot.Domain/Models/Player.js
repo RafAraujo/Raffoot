@@ -12,7 +12,7 @@ class Player {
         this.star = star;
         this.energy = energy;
         this.wage = wage;
-        this.goals = goals;
+        this.stats = { matches: 0, goals: 0, assists: 0, grades: 0 };
     }
 
     static create(fullName, name, countryName, positionAbbreviations, age, overall, club, externalId, hasPhoto) {
@@ -21,8 +21,7 @@ class Player {
         const star = false;
         const energy = 100;
         const wage = Player._getBaseWage(overall, false);
-        const goals = 0;
-        const player = new Player(fullName, name, country.id, positionIds, age, overall, club.id, externalId, hasPhoto, star, energy, wage, goals);
+        const player = new Player(fullName, name, country.id, positionIds, age, overall, club.id, externalId, hasPhoto, star, energy, wage);
         player.id = Context.game.players.push(player);
         
         club.addPlayer(player);
@@ -68,6 +67,10 @@ class Player {
         let factor = 0.05;
         let value = reference + (multiplier * factor * reference);
         return value;
+    }
+
+    get averageGrade() {
+        return this.stats.matches > 0 ? this.stats.grades / this.stats.matches : null;
     }
 
     get category() {

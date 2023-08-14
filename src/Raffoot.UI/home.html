@@ -181,6 +181,37 @@
                             </div>
                         </div>
                     </section>
+                    <section id="matches" :class="{ 'd-none' : activeSection !== 'matches' }">
+                        <div class="row">
+                            <div class="col">
+                                <div class="table-responsive">
+                                    <table class="table small border">
+                                        <thead>
+                                            <th colspan="4" class="text-center">
+                                                {{
+                                                translator.getChampionshipName(game.currentSeason.getCurrentMatches()[0].championshipEdition.championship)
+                                                }}
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="match in game.currentSeason.getCurrentMatches()">
+                                                <td class="text-center p-0" style="width: 40%; height: 45px"
+                                                    :style="{ backgroundColor: match.matchClubHome.club.colors.backgroundCustom, color: match.matchClubHome.club.colors.foregroundCustom }">
+                                                    {{ match.matchClubHome.club.name }}
+                                                </td>
+                                                <td class="text-center border">{{ match.matchClubHome.club.goals }}</td>
+                                                <td class="text-center border">{{ match.matchClubAway.club.goals }}</td>
+                                                <td class="text-center p-0" style="width: 40%; height: 45px"
+                                                    :style="{ backgroundColor: match.matchClubAway.club.colors.backgroundCustom, color: match.matchClubAway.club.colors.foregroundCustom }">
+                                                    {{ match.matchClubAway.club.name }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                     <section id="play" :class="{ 'd-none' : activeSection !== 'play' }">
                         <form @submit.prevent>
                             <div class="row mb-2">
@@ -333,7 +364,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <div class="bench position-relative border pb-5"
+                                                <div class="bench position-relative border"
+                                                    :class="{ 'pb-5' : game.club.squad.substitutes.length % 5 === 0 }"
                                                     @click.stop="movePlayerToBench()" @drop="movePlayerToBench()"
                                                     @dragover.prevent>
                                                     <template
@@ -492,7 +524,7 @@
                                             <th class="text-center">{{ translator.get("Income") }}</th>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="match in matches">
+                                            <tr v-for="match in game.getClubMatches()">
                                                 <td class="text-center">{{ match.date.toLocaleDateString() }}</td>
                                                 <td class="text-end">{{ match.matchClubHome.club.name }}</td>
                                                 <td class="text-end">
@@ -657,7 +689,7 @@
                                                     </td>
                                                     <td class="text-center">{{ championshipEditionClub.points }}</td>
                                                     <td class="text-center">
-                                                        {{ game.getNationalLeagueLastPlayedFixture()?.number ?? 0 }}
+                                                        {{ game.getClubNationalLeagueLastPlayedFixture()?.number ?? 0 }}
                                                     </td>
                                                     <td class="text-center">{{ championshipEditionClub.won }}</td>
                                                     <td class="text-center">{{ championshipEditionClub.drawn }}</td>
@@ -939,7 +971,9 @@
                                             <table class="table table-hover table-borderless sortable">
                                                 <caption class="color-inherit">
                                                     {{ translator.get("Showing {0} of {1}")
-                                                    .format(filteredPlayers.length < pageSize ? filteredPlayers.length : pageSize, filteredPlayers.length) }}</caption>
+                                                    .format((filteredPlayers.length < pageSize ? filteredPlayers.length
+                                                        : pageSize).toLocaleString(),
+                                                        filteredPlayers.length.toLocaleString()) }}</caption>
                                                 <thead class="table-light">
                                                     <th class="text-center" :title="translator.get('Position')"
                                                         @click="updatePlayerOrderForPlayersSection('positionId')">
@@ -972,6 +1006,17 @@
                                                         @click="updatePlayerOrderForPlayersSection('wage')">
                                                         {{ translator.get("Wage") }}
                                                     </th>
+                                                    <th class="text-center" :title="('{0} ({1}/{2})'.format(
+                                                            translator.get('Matches'),
+                                                            translator.get('Goals'),
+                                                            translator.get('Assists')))">
+                                                        {{
+                                                        "{0} ({1}/{2})".format(
+                                                        translator.getAbbreviation("Matches"),
+                                                        translator.getAbbreviation("Goals"),
+                                                        translator.getAbbreviation("Assists"))
+                                                        }}
+                                                    </th>
                                                 </thead>
                                                 <tbody>
                                                     <tr
@@ -1002,7 +1047,15 @@
                                                         </td>
                                                         <td class="text-end">{{ player.marketValue.formatCurrency() }}
                                                         </td>
-                                                        <td class="text-end">{{ player.wage.formatCurrency() }}</td>
+                                                        <td class="text-center">{{ player.wage.formatCurrency() }}</td>
+                                                        <td class="text-center">
+                                                            {{
+                                                            "{0} ({1}/{2})".format(
+                                                            player.stats.matches.toLocaleString(),
+                                                            player.stats.goals.toLocaleString(),
+                                                            player.stats.assists.toLocaleString())
+                                                            }}
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -1040,22 +1093,22 @@
                                     <label for="background-color" class="form-label">
                                         {{ translator.get('Background color') }}</label>
                                     <input id="background-color" type="color" class="form-control form-control-color"
-                                        @change="colors.backgroundColor = $event.target.value"
-                                        :value="game.club.backgroundColorCustom">
+                                        @change="colors.background = $event.target.value"
+                                        :value="game.club.colors.backgroundCustom">
                                 </div>
                                 <div class="col-6">
                                     <label for="foreground-color" class="form-label">
                                         {{ translator.get('Text color') }}
                                     </label>
                                     <input id="foreground-color" type="color" class="form-control form-control-color"
-                                        @change="colors.foregroundColor = $event.target.value"
-                                        :value="game.club.foregroundColorCustom">
+                                        @change="colors.foreground = $event.target.value"
+                                        :value="game.club.colors.foregroundCustom">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <button class="btn btn-outline-dark"
-                                        @click="game.club.resetColors(); colors = { backgroundColor: game.club.backgroundColorCustom, foregroundColor: game.club.foregroundColorCustom }">
+                                        @click="game.club.resetColors(); colors = { background: game.club.colors.backgroundCustom, foreground: game.club.colors.foregroundCustom }">
                                         {{ translator.get("Reset") }}
                                     </button>
                                 </div>
@@ -1071,7 +1124,7 @@
                                     </div>
                                     <div class="col-6 col-md-5 d-grid">
                                         <button type="button" class="btn btn-primary"
-                                            @click="game.club.backgroundColorCustom = colors.backgroundColor; game.club.foregroundColorCustom = colors.foregroundColor; setColors()">
+                                            @click="game.club.colors.backgroundCustom = colors.background; game.club.colors.foregroundCustom = colors.foreground; setColors()">
                                             {{ translator.get("Save Changes") }}
                                         </button>
                                     </div>
@@ -1145,7 +1198,7 @@
         data() {
             return {
                 activeSection: 'play',
-                colors: { backgroundColor: '', foregroundColor: '' },
+                colors: { background: '', foreground: '' },
                 config: Config,
                 game: null,
                 gameLoaded: false,
@@ -1246,8 +1299,8 @@
                 this.game = await gameService.loadAsync(gameId);
             },
             setColors: function () {
-                document.body.style.backgroundColor = this.game.club.backgroundColorCustom;
-                document.body.style.color = this.game.club.foregroundColorCustom;
+                document.body.style.backgroundColor = this.game.club.colors.backgroundCustom;
+                document.body.style.color = this.game.club.colors.foregroundCustom;
             },
 
             // Squad:
@@ -1334,11 +1387,8 @@
             clubId() {
                 return this.game?.club.id;
             },
-            matches() {
-                return this.game.currentSeason.getMatchesByClubId(this.game.club.id);
-            },
             nextMatch() {
-                return this.game.currentSeason.getNextMatch(this.game.club.id);
+                return this.game.getClubNextMatch();
             },
             nextOpponent() {
                 return this.nextMatch.getOpponent(this.game.club.id);
@@ -1355,8 +1405,8 @@
         },
         async created() {
             await this.loadGame();
-            this.colors = { backgroundColor: this.game.club.backgroundColorCustom, foregroundColor: this.game.club.foregroundColorCustom };
-            this.selectedChampionshipEditionId = this.game.getNationalLeague().id;
+            this.colors = { background: this.game.club.colors.backgroundCustom, foreground: this.game.club.foregroundCustom };
+            this.selectedChampionshipEditionId = this.game.getClubNationalLeague().id;
             this.gameLoaded = true;
         },
     };

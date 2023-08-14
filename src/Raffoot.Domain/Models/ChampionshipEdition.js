@@ -240,8 +240,9 @@ class ChampionshipEdition {
             }
         }
 
-        if (this.championship.championshipType.regulation === 'elimination')
+        if (this.championship.championshipType.regulation === 'elimination') {
             eliminationPhases[0].qualify(this.championshipEditionClubs);
+        }
     }
 
     _scheduleMatchesRoundRobin() {
