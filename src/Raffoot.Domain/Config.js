@@ -9,6 +9,7 @@ const Config = (function () {
         files: {
             defaultPlayerPhoto: `${ResourcesFolder}/players/0.svg`,
         },
+
         folders: {
             flagsFolder: `${ResourcesFolder}/countries`,
             kitsFolder: `${ResourcesFolder}/kits`,
@@ -44,6 +45,15 @@ const Config = (function () {
             minClubCount: 8,
             maxDivisionCount: 4,
             promotionAndRelegationPercentage: 0.2,
+        },
+
+        pageSize: 50,
+
+        player: {
+            minAge: 15,
+            maxAge: 45,
+            minOverall: 1,
+            maxOverall: 99,
         },
 
         playingStyles: ['defensive', 'balanced', 'offensive'],

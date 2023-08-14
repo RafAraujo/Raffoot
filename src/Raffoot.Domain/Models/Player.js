@@ -67,7 +67,7 @@ class Player {
         let multiplier = 32 - age;
         let factor = 0.05;
         let value = reference + (multiplier * factor * reference);
-        return parseFloat(value.toFixed(2));
+        return value;
     }
 
     get category() {
@@ -94,8 +94,12 @@ class Player {
         return Player._calculateMarketValue(this.overall, this.star, this.age);
     }
 
+    get positionId() {
+        return this._positionIds[0];
+    }
+
     get position() {
-        return Position.getById(this._positionIds[0]);
+        return Position.getById(this.positionId);
     }
 
     get surname() {

@@ -10,7 +10,7 @@
 *.userosscache
 *.sln.docstates
 src/Raffoot.UI/res/kits
-src/Raffoot.UI/res/players
+src/Raffoot.UI/res/players/*.png
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

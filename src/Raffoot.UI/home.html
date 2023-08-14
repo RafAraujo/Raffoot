@@ -163,7 +163,7 @@
                     <section id="general">
                         <div class="row mt-2" :class="{ 'd-none' : !message.text }">
                             <div class="col">
-                                <div class="alert alert-dismissible fade show" :class="[`alert-${message.type}`]"
+                                <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`"
                                     role="alert">
                                     {{ message.text }}
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
@@ -263,85 +263,83 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-2">
                                                 <div class="field position-relative border" style="height: 475px">
-                                                    <template v-if="game.club.squad.formation">
-                                                        <template v-for="item in game.club.squad.lineup">
-                                                            <template v-if="item.squadPlayer">
-                                                                <div class="player position-absolute text-center"
-                                                                    @click.stop="changePlayers(item.squadPlayer.id)"
+                                                    <template v-if="game.club.squad.formation"
+                                                        v-for="item in game.club.squad.lineup">
+                                                        <template v-if="item.squadPlayer">
+                                                            <div class="player position-absolute text-center"
+                                                                @click.stop="changePlayers(item.squadPlayer.id)"
+                                                                :style="{ top: (11 - item.squadPlayer.fieldLocalization.line) * 7.7 + '%', left: (item.squadPlayer.fieldLocalization.column) * 20 + '%' }"
+                                                                :class="{ 'border blink' : item.squadPlayer.id === selectedSquadPlayerId }">
+                                                                <div>
+                                                                    <div class="position position-absolute"
+                                                                        :class="{ 'improvised' : item.squadPlayer.isImprovised }"
+                                                                        :title="translator.get(item.squadPlayer.player.position.name)">
+                                                                        {{
+                                                                        translator.get(item.squadPlayer.fieldLocalization.position.abbreviation)
+                                                                        }}
+                                                                    </div>
+                                                                    <div class="overall position-absolute">
+                                                                        {{ item.squadPlayer.overall }}
+                                                                    </div>
+                                                                </div>
+                                                                <img class="max-size-3-rem"
+                                                                    :src="item.squadPlayer.player.getPhotoURL()"
+                                                                    :alt="item.squadPlayer.player.fullName"
+                                                                    :title="item.squadPlayer.player.fullName"
+                                                                    onerror="this.onerror = null; this.src='res/players/0.svg'"
                                                                     draggable="true"
                                                                     @dragstart="selectedSquadPlayerId = item.squadPlayer.id"
                                                                     @dragover.prevent
-                                                                    @drop="changePlayers(item.squadPlayer.id)"
-                                                                    :style="{ top: (11 - item.squadPlayer.fieldLocalization.line) * 7.7 + '%', left: (item.squadPlayer.fieldLocalization.column) * 20 + '%' }"
-                                                                    :class="{ 'border blink' : item.squadPlayer.id === selectedSquadPlayerId }">
-                                                                    <div>
-                                                                        <div class="position position-absolute"
-                                                                            :class="{ 'improvised' : item.squadPlayer.isImprovised }"
-                                                                            :title="translator.get(item.squadPlayer.player.position.name)">
-                                                                            {{
-                                                                            translator.get(item.squadPlayer.fieldLocalization.position.abbreviation)
-                                                                            }}
-                                                                        </div>
-                                                                        <div class="overall position-absolute">
-                                                                            {{ item.squadPlayer.overall }}
-                                                                        </div>
-                                                                    </div>
-                                                                    <img class="max-size-3-rem"
-                                                                        :src="item.squadPlayer.player.getPhotoURL()"
-                                                                        :alt="item.squadPlayer.player.fullName"
-                                                                        :title="item.squadPlayer.player.fullName"
-                                                                        onerror="this.onerror = null; this.src='res/players/0.svg'">
-                                                                    <div class="energy progress position-relative"
-                                                                        :title="`${translator.get('Energy')} ${item.squadPlayer.player.energy}%`">
-                                                                        <div class="progress-bar" role="progressbar"
-                                                                            :class="item.squadPlayer.player.energy > 75 ? 'bg-success' : item.squadPlayer.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
-                                                                            :aria-valuenow="item.squadPlayer.player.energy"
-                                                                            aria-valuemin="0" aria-valuemax="100"
-                                                                            :style="{ width: item.squadPlayer.player.energy + '%' }">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div
-                                                                        :dir="item.squadPlayer.fieldLocalization.column < 3 ? 'ltr' : 'rtl'">
-                                                                        <span
-                                                                            class="d-inline-block position-relative text-nowrap">
-                                                                            {{ item.squadPlayer.player.surname }}
-                                                                        </span>
+                                                                    @drop="changePlayers(item.squadPlayer.id)">
+                                                                <div class="energy progress position-relative"
+                                                                    :title="`${translator.get('Energy')} ${item.squadPlayer.player.energy}%`">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        :class="item.squadPlayer.player.energy > 75 ? 'bg-success' : item.squadPlayer.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                                        :aria-valuenow="item.squadPlayer.player.energy"
+                                                                        aria-valuemin="0" aria-valuemax="100"
+                                                                        :style="{ width: item.squadPlayer.player.energy + '%' }">
                                                                     </div>
                                                                 </div>
-                                                            </template>
-                                                            <template v-else>
-                                                                <div>
-                                                                    <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
-                                                                        @click.stop="movePlayerToField(item.fieldLocalization.id)"
+                                                                <div
+                                                                    :dir="item.squadPlayer.fieldLocalization.column < 3 ? 'ltr' : 'rtl'">
+                                                                    <span
+                                                                        class="d-inline-block position-relative text-nowrap">
+                                                                        {{ item.squadPlayer.player.surname }}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </template>
+                                                        <template v-else>
+                                                            <div>
+                                                                <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
+                                                                    @click.stop="movePlayerToField(item.fieldLocalization.id)"
+                                                                    :style="{ top: (11 - item.fieldLocalization.line) * 7.7 + '%', left: (item.fieldLocalization.column) * 20 + '%' }">
+                                                                    <img class="max-size-3-rem"
+                                                                        :src="game.club.getKitsURLs()[0]"
+                                                                        :alt="translator.get(item.fieldLocalization.position.name)"
+                                                                        :title="translator.get(item.fieldLocalization.position.name)"
+                                                                        onerror="this.onerror = null; this.src='res/players/0.svg'"
+                                                                        @dragstart="$event.dataTransfer.effectAllowed = 'none'"
                                                                         @dragover.prevent
-                                                                        @drop="movePlayerToField(item.fieldLocalization.id)"
-                                                                        :style="{ top: (11 - item.fieldLocalization.line) * 7.7 + '%', left: (item.fieldLocalization.column) * 20 + '%' }">
-                                                                        <img class="max-size-3-rem"
-                                                                            :src="game.club.getKitsURLs()[0]"
-                                                                            :alt="translator.get(item.fieldLocalization.position.name)"
-                                                                            :title="translator.get(item.fieldLocalization.position.name)"
-                                                                            onerror="this.onerror = null; this.src='res/players/0.svg'">
-                                                                        <span class="fw-bold">
-                                                                            {{
-                                                                            translator.get(item.fieldLocalization.position.abbreviation)
-                                                                            }}
-                                                                        </span>
-                                                                    </div>
-                                                            </template>
+                                                                        @drop="movePlayerToField(item.fieldLocalization.id)">
+                                                                    <span class="fw-bold">
+                                                                        {{
+                                                                        translator.get(item.fieldLocalization.position.abbreviation)
+                                                                        }}
+                                                                    </span>
+                                                                </div>
                                                         </template>
                                                     </template>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="bench position-relative border pb-5"
-                                                    @drop="movePlayerToBench()" @dragover.prevent
-                                                    @click.stop="movePlayerToBench()">
+                                                    @click.stop="movePlayerToBench()" @drop="movePlayerToBench()"
+                                                    @dragover.prevent>
                                                     <template
-                                                        v-for="squadPlayer in game.club.squad.substitutes.orderBy('order', 'player.position.id', '-player.overall')">
+                                                        v-for="squadPlayer in game.club.squad.substitutes.orderBy('order', 'positionId', '-player.overall')">
                                                         <div class="player d-inline-block text-center"
-                                                            @click.stop="changePlayers(squadPlayer.id)" draggable="true"
-                                                            @dragstart="selectedSquadPlayerId = squadPlayer.id"
-                                                            @drop="changePlayers(squadPlayer.id)" @dragover.prevent
+                                                            @click.stop="changePlayers(squadPlayer.id)"
                                                             :class="{ 'border blink' : squadPlayer.id === selectedSquadPlayerId }">
                                                             <div class="position-relative">
                                                                 <div class="position position-absolute"
@@ -359,7 +357,9 @@
                                                                 :src="squadPlayer.player.getPhotoURL()"
                                                                 :alt="squadPlayer.player.fullName"
                                                                 :title="squadPlayer.player.fullName"
-                                                                onerror="this.src='res/players/0.svg'">
+                                                                onerror="this.src='res/players/0.svg'" draggable="true"
+                                                                @dragstart="selectedSquadPlayerId = squadPlayer.id"
+                                                                @drop="changePlayers(squadPlayer.id)" @dragover.prevent>
                                                             <div class="energy progress position-relative"
                                                                 :title="`${translator.get('Energy')} ${squadPlayer.player.energy}%`">
                                                                 <div class="progress-bar" role="progressbar"
@@ -397,32 +397,37 @@
                                     <table class="table table-hover table-borderless sortable caption-top">
                                         <thead class="table-light">
                                             <th class="text-center" :title="translator.get('Position')"
-                                                @click="updateSquadOrder('position.id')">
+                                                @click="updatePlayerOrderForSquadSection('positionId')">
                                                 {{ translator.get("Position").substring(0, 3).toUpperCase() }}
                                             </th>
-                                            <th style="width: 1.5rem;"></th>
-                                            <th class="text-center" @click="updateSquadOrder('surname')">
-                                                {{ translator.get("Name") }}</th>
+                                            <th style="width: 1.5rem;"
+                                                @click="updatePlayerOrderForSquadSection('country.name')">
+                                            </th>
+                                            <th class="text-center"
+                                                @click="updatePlayerOrderForSquadSection('surname')">
+                                                {{ translator.get("Name") }}
+                                            </th>
                                             <th class="text-center" :title="translator.get('Overall')"
-                                                @click="updateSquadOrder('overall')">
+                                                @click="updatePlayerOrderForSquadSection('overall')">
                                                 {{ translator.get("OV") }}
                                             </th>
-                                            <th class="text-center" @click="updateSquadOrder('age')">
+                                            <th class="text-center" @click="updatePlayerOrderForSquadSection('age')">
                                                 {{ translator.get("Age") }}
                                             </th>
-                                            <th class="text-center" @click="updateSquadOrder('energy')">
+                                            <th class="text-center" @click="updatePlayerOrderForSquadSection('energy')">
                                                 {{ translator.get("Energy") }}
                                             </th>
-                                            <th class="text-center" @click="updateSquadOrder('marketValue')">
+                                            <th class="text-center"
+                                                @click="updatePlayerOrderForSquadSection('marketValue')">
                                                 {{ translator.get("Market Value") }}
                                             </th>
-                                            <th class="text-center" @click="updateSquadOrder('wage')">
+                                            <th class="text-center" @click="updatePlayerOrderForSquadSection('wage')">
                                                 {{ translator.get("Wage") }}
                                             </th>
                                         </thead>
                                         <tbody>
                                             <tr
-                                                v-for="player in game.club.squad.players.orderBy(squadOrderColumn, 'position.id', '-overall', 'name')">
+                                                v-for="player in game.club.squad.players.orderBy(squadOrderColumn, 'positionId', '-overall', 'name')">
                                                 <td class="text-center fw-bold"
                                                     :class="`text-${config.colors[player.position.fieldRegion.color].class}`"
                                                     :title="translator.get(player.position.name)">
@@ -523,19 +528,21 @@
                     <section id="championships" :class="{ 'd-none' : activeSection !== 'championships' }">
                         <div class="row mb-2">
                             <div class="col">
-                                <input id="championship-national" type="radio" class="btn-check"
-                                    name="championship-type" autocomplete="off" checked>
-                                <label for="championship-national" class="btn btn bg-inherit color-inherit me-2"
-                                    @click="nationalChampionshipsSelected = true; selectedChampionshipEditionId = null">
-                                    {{ translator.get("National") }}
-                                </label>
+                                <div class="p-1" style="background-color: rgb(73, 81, 93);">
+                                    <input id="championship-national" type="radio" class="btn-check"
+                                        name="championship-type" autocomplete="off" checked>
+                                    <label for="championship-national" class="btn btn-outline-light me-2"
+                                        @click="nationalChampionshipsSelected = true; selectedChampionshipEditionId = null">
+                                        {{ translator.get("National") }}
+                                    </label>
 
-                                <input id="championship-international" type="radio" class="btn-check"
-                                    name="championship-type" autocomplete="off">
-                                <label for="championship-international" class="btn btn bg-inherit color-inherit me-2"
-                                    @click="nationalChampionshipsSelected = false; selectedChampionshipEditionId = null">
-                                    {{ translator.get("International") }}
-                                </label>
+                                    <input id="championship-international" type="radio" class="btn-check"
+                                        name="championship-type" autocomplete="off">
+                                    <label for="championship-international" class="btn btn-outline-light me-2"
+                                        @click="nationalChampionshipsSelected = false; selectedChampionshipEditionId = null">
+                                        {{ translator.get("International") }}
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -583,11 +590,29 @@
                         <div class="row">
                             <div class="col">
                                 <template v-if="selectedChampionshipEdition">
-                                    <div class="table-responsive">
+                                    <ul class="nav nav-tabs bg-gray">
+                                        <li class="nav-item">
+                                            <a class="nav-link link-dark" aria-current="page" href="#"
+                                                :class="{ 'active' : activeTab === 'classification' }"
+                                                @click.prevent="activeTab = 'classification'">
+                                                {{ translator.get("Classification") }}
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link link-dark" href="#"
+                                                :class="{ 'active' : activeTab === 'classification-top-scorers' }"
+                                                @click.prevent="activeTab = 'classification-top-scorers'">
+                                                {{ translator.get("Top Scorers") }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="table-responsive"
+                                        :class="{ 'd-none' : activeTab !== 'classification' }">
                                         <table class="table table-hover">
                                             <thead class="table-light">
                                                 <th class="text-center">#</th>
-                                                <th class="text-center" style="width: 1.5rem;"></th>
+                                                <th class="text-center" style="width: 1.5rem;">
+                                                </th>
                                                 <th class="text-start">{{ translator.get("Club") }}</th>
                                                 <th class="text-center" :title="translator.get('Points')">
                                                     {{ translator.getAbbreviation("Points") }}
@@ -646,6 +671,8 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    </div>
+                                    <div class="table-responsive" :class="{ 'd-none' : activeTab !== 'top-scorers' }">
                                     </div>
                                 </template>
                             </div>
@@ -729,33 +756,42 @@
                                             </caption>
                                             <thead class="table-light">
                                                 <th class="text-center" :title="translator.get('Position')"
-                                                    @click="updateClubOrder('position.id')">
+                                                    @click="updatePlayerOrderForClubsSection('positionId')">
                                                     {{ translator.get("Position").substring(0, 3).toUpperCase() }}
                                                 </th>
-                                                <th style="width: 1.5rem;"></th>
-                                                <th class="text-center" @click="updateClubOrder('surname')">
-                                                    {{ translator.get("Name") }}</th>
+                                                <th style="width: 1.5rem;"
+                                                    @click="updatePlayerOrderForClubsSection('positionId')">
+                                                </th>
+                                                <th class="text-center"
+                                                    @click="updatePlayerOrderForClubsSection('surname')">
+                                                    {{ translator.get("Name") }}
+                                                </th>
                                                 <th class="text-center" :title="translator.get('Overall')"
-                                                    @click="updateClubOrder('overall')">
+                                                    @click="updatePlayerOrderForClubsSection('overall')">
                                                     {{ translator.get("OV") }}
                                                 </th>
-                                                <th class="text-center" @click="updateClubOrder('age')">
+                                                <th class="text-center"
+                                                    @click="updatePlayerOrderForClubsSection('age')">
                                                     {{ translator.get("Age") }}
                                                 </th>
-                                                <th class="text-center" @click="updateClubOrder('energy')">
+                                                <th class="text-center"
+                                                    @click="updatePlayerOrderForClubsSection('energy')">
                                                     {{ translator.get("Energy") }}
                                                 </th>
-                                                <th class="text-center" @click="updateClubOrder('marketValue')">
+                                                <th class="text-center"
+                                                    @click="updatePlayerOrderForClubsSection('marketValue')">
                                                     {{ translator.get("Market Value") }}
                                                 </th>
-                                                <th class="text-center" @click="updateClubOrder('wage')">
+                                                <th class="text-center"
+                                                    @click="updatePlayerOrderForClubsSection('wage')">
                                                     {{ translator.get("Wage") }}
                                                 </th>
                                             </thead>
                                             <tbody>
                                                 <tr
-                                                    v-for="player in selectedClub.squad.players.orderBy(clubOrderColumn, 'position.id', '-overall', 'name')">
-                                                    <td class="text-center fw-bold" :class="player.position.fieldRegion"
+                                                    v-for="player in selectedClub.squad.players.orderBy(clubsOrderColumn, 'positionId', '-overall', 'name')">
+                                                    <td class="text-center fw-bold"
+                                                        :class="`text-${config.colors[player.position.fieldRegion.color].class}`"
                                                         :title="translator.get(player.position.name)">
                                                         {{ translator.get(player.position.abbreviation) }}
                                                     </td>
@@ -796,6 +832,194 @@
                                 </div>
                             </div>
                         </div>
+                    </section>
+                    <section id="players" :class="{ 'd-none' : activeSection !== 'players' }">
+                        <form @submit.prevent="searchPlayers()">
+                            <fieldset>
+                                <legend>{{ translator.get("Search Players") }}</legend>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label for="name" class="form-label">{{ translator.get("Name") }}</label>
+                                        <input id="name" type="text" class="form-control"
+                                            v-model.lazy="playerFilter.name">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="nationality" class="form-label">
+                                            {{ translator.get("Nationality") }}
+                                        </label>
+                                        <select id="nationality" class="form-select"
+                                            v-model.lazy="playerFilter.countryId">
+                                            <option></option>
+                                            <option
+                                                v-for="country in game.countries.map(c => ({ id: c.id, name: c.name })).orderBy('name')"
+                                                :key="country.id" :value="country.id">
+                                                {{ country.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label for="field-region">{{ translator.get("Sector") }}</label>
+                                        <select id="field-region" class="form-select"
+                                            v-model.lazy="playerFilter.fieldRegionId">
+                                            <option></option>
+                                            <option v-for="fieldRegion in game.fieldRegions" :key="fieldRegion.id"
+                                                :value="fieldRegion.id">
+                                                {{ translator.get(fieldRegion.name) }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="position">{{ translator.get("Position") }}</label>
+                                        <select id="position" class="form-select"
+                                            v-model.lazy="playerFilter.positionId">
+                                            <option></option>
+                                            <option v-for="position in game.positions" :key="position.id"
+                                                :value="position.id">
+                                                {{
+                                                `${translator.get(position.abbreviation)} -
+                                                ${translator.get(position.name)}`
+                                                }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-3">
+                                        <label for="minimumAge" class="form-label">
+                                            {{ `${translator.get("Age")} (${translator.get("Minimum")})` }}
+                                        </label>
+                                        <input id="minimumAge" type="number" class="form-control"
+                                            :min="config.player.minAge" :max="config.player.maxAge"
+                                            v-model.lazy="playerFilter.age.minimum">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="maximumAge" class="form-label">
+                                            {{ `${translator.get("Age")} (${translator.get("Maximum")})` }}
+                                        </label>
+                                        <input id="maximumAge" type="number" class="form-control"
+                                            :min="config.player.minAge" :max="config.player.maxAge"
+                                            v-model.lazy="playerFilter.age.maximum">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="minimumOverall" class="form-label">
+                                            {{ `${translator.get("Overall")} (${translator.get("Minimum")})` }}
+                                        </label>
+                                        <input id="minimumOverall" type="number" class="form-control"
+                                            :min="config.player.minOverall" :max="config.player.maxOverall"
+                                            v-model.lazy="playerFilter.overall.minimum">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="maximumOverall" class="form-label">
+                                            {{ `${translator.get("Overall")} (${translator.get("Maximum")})` }}
+                                        </label>
+                                        <input id="maximumOverall" type="number" class="form-control"
+                                            :min="config.player.minOverall" :max="config.player.maxOverall"
+                                            v-model.lazy="playerFilter.overall.maximum">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="row mb-3">
+                                <div class="col-6 col-md-3 d-grid">
+                                    <button type="button" class="btn btn-secondary border" @click="resetPlayerFilter()">
+                                        {{ translator.get("Reset") }}
+                                    </button>
+                                </div>
+                                <div class="col-6 col-md-3 d-grid">
+                                    <button type="submit" class="btn btn-primary border">
+                                        {{ translator.get("Search") }}
+                                    </button>
+                                </div>
+                            </div>
+                            <template v-if="this.filteredPlayers.length">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-borderless sortable">
+                                                <caption class="color-inherit">
+                                                    {{ translator.get("Showing {0} of {1}")
+                                                    .format(filteredPlayers.length < pageSize ? filteredPlayers.length : pageSize, filteredPlayers.length) }}</caption>
+                                                <thead class="table-light">
+                                                    <th class="text-center" :title="translator.get('Position')"
+                                                        @click="updatePlayerOrderForPlayersSection('positionId')">
+                                                        {{ translator.get("Position").substring(0, 3).toUpperCase() }}
+                                                    </th>
+                                                    <th style="width: 1.5rem;"
+                                                        @click="updatePlayerOrderForPlayersSection('country.name')">
+                                                    </th>
+                                                    <th class="text-center"
+                                                        @click="updatePlayerOrderForPlayersSection('surname')">
+                                                        {{ translator.get("Name") }}
+                                                    </th>
+                                                    <th class="text-center"
+                                                        @click="updatePlayerOrderForPlayersSection('club.name')">
+                                                        {{ translator.get("Club") }}
+                                                    </th>
+                                                    <th class="text-center" :title="translator.get('Overall')"
+                                                        @click="updatePlayerOrderForPlayersSection('overall')">
+                                                        {{ translator.get("OV") }}
+                                                    </th>
+                                                    <th class="text-center"
+                                                        @click="updatePlayerOrderForPlayersSection('age')">
+                                                        {{ translator.get("Age") }}
+                                                    </th>
+                                                    <th class="text-center"
+                                                        @click="updatePlayerOrderForPlayersSection('marketValue')">
+                                                        {{ translator.get("Market Value") }}
+                                                    </th>
+                                                    <th class="text-center"
+                                                        @click="updatePlayerOrderForPlayersSection('wage')">
+                                                        {{ translator.get("Wage") }}
+                                                    </th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr
+                                                        v-for="player in filteredPlayers
+                                                        .take(pageSize)
+                                                        .orderBy(this.playersOrderColumn, 'positionId', '-overall', 'name')">
+                                                        <td class="text-center fw-bold"
+                                                            :class="`text-${config.colors[player.position.fieldRegion.color].class}`"
+                                                            :title="translator.get(player.position.name)">
+                                                            {{ translator.get(player.position.abbreviation) }}
+                                                        </td>
+                                                        <td>
+                                                            <img class="border" :src="player.country.getFlagURL()"
+                                                                :alt="translator.get(player.country.name)"
+                                                                :title="translator.get(player.country.name)"
+                                                                style="max-height: 1.5rem;">
+                                                        </td>
+                                                        <td>{{ player.surname }}</td>
+                                                        <td>{{ player.club.name }}</td>
+                                                        <td class="text-center pt-0 pb-0">
+                                                            <span class="overall" :class="player.category">
+                                                                {{ player.overall }}
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-center"
+                                                            :class="player.age < 32 ? 'text-primary' : 'text-danger'">
+                                                            {{ player.age }}
+                                                        </td>
+                                                        <td class="text-end">{{ player.marketValue.formatCurrency() }}
+                                                        </td>
+                                                        <td class="text-end">{{ player.wage.formatCurrency() }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <button type="button" class="btn btn-primary btn-sm border"
+                                            @click="pageSize += config.pageSize"
+                                            :disabled="pageSize >= filteredPlayers.length">
+                                            {{ translator.get("Load more") }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </template>
+                        </form>
                     </section>
                 </main>
                 <footer>
@@ -908,7 +1132,7 @@
     <script src="../Raffoot.Services/TranslatorService.js"></script>
 
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="js/vue/vue.global.prod.js"></script>
+    <script src="js/vue/vue.global.js"></script>
 </body>
 
 </html>
@@ -927,24 +1151,43 @@
                 gameLoaded: false,
                 message: { text: '', type: 'primary' },
                 modal: { title: '', message: '', methodOk: function () { } },
+                pageSize: Config.pageSize,
                 translator: translator,
-                window: window,
 
                 // Play:
                 automaticSelection: true,
                 selectedSquadPlayerId: null,
 
                 // Squad:
-                squadOrderColumn: 'position.id',
+                squadOrderColumn: 'positionId',
 
                 // Championships:
+                activeTab: 'classification',
                 nationalChampionshipsSelected: true,
                 selectedChampionshipEditionId: null,
 
                 // Clubs:
                 selectedCountryId: null,
                 selectedClubId: null,
-                clubOrderColumn: 'position.id',
+                clubsOrderColumn: 'positionId',
+
+                // Players:
+                filteredPlayers: [],
+                playerFilter: {
+                    name: '',
+                    countryId: null,
+                    fieldRegionId: null,
+                    positionId: null,
+                    age: {
+                        minimum: Config.player.minAge,
+                        maximum: Config.player.maxAge,
+                    },
+                    overall: {
+                        minimum: Config.player.minOverall,
+                        maximum: Config.player.maxOverall,
+                    }
+                },
+                playersOrderColumn: 'positionId',
             }
         },
         watch: {
@@ -957,7 +1200,7 @@
         methods: {
             changeSection: function (event) {
                 event.preventDefault();
-                let section = event.target.getAttribute('href').substring(1);
+                const section = event.target.getAttribute('href').substring(1);
                 setTimeout(() => this.activeSection = section, 1);
 
                 const collapseElement = document.querySelector('.navbar-collapse.collapse')
@@ -1008,7 +1251,7 @@
             },
 
             // Squad:
-            updateSquadOrder: function (column) {
+            updatePlayerOrderForSquadSection: function (column) {
                 this.squadOrderColumn = this.squadOrderColumn === column ? `-${column}` : column;
             },
 
@@ -1022,8 +1265,8 @@
             selectClub: function (event) {
                 this.selectedClubId = parseInt(event.target.value);
             },
-            updateClubOrder: function (column) {
-                this.clubOrderColumn = this.clubOrderColumn === column ? `-${column}` : column;
+            updatePlayerOrderForClubsSection: function (column) {
+                this.clubsOrderColumn = this.clubsOrderColumn === column ? `-${column}` : column;
             },
 
             getCssClassForPosition: function (position, championshipEdition) {
@@ -1039,7 +1282,53 @@
                 else if (championshipEdition.getRelegationZonePositions().includes(position)) {
                     return 'relegation';
                 }
-            }
+            },
+
+            // Players:
+            resetPlayerFilter: function () {
+                this.playerFilter = {
+                    name: '',
+                    countryId: null,
+                    fieldRegionId: null,
+                    positionId: null,
+                    age: {
+                        minimum: Config.player.minAge,
+                        maximum: Config.player.maxAge,
+                    },
+                    overall: {
+                        minimum: Config.player.minOverall,
+                        maximum: Config.player.maxOverall,
+                    }
+                };
+                this.filteredPlayers = [];
+            },
+            searchPlayers: function () {
+                this.pageSize = Config.pageSize;
+
+                let players = this.game.players.filter(p => p.fullName.includes(this.playerFilter.name));
+
+                players = players.filter(p => p.age >= this.playerFilter.age.minimum && p.age <= this.playerFilter.age.maximum);
+                players = players.filter(p => p.overall >= this.playerFilter.overall.minimum && p.age <= this.playerFilter.overall.maximum);
+
+                if (this.playerFilter.countryId) {
+                    players = players.filter(p => p.country.id === this.playerFilter.countryId);
+                }
+
+                if (this.playerFilter.fieldRegionId) {
+                    players = players.filter(p => p.position.fieldRegion.id === this.playerFilter.fieldRegionId);
+                }
+
+                if (this.playerFilter.positionId) {
+                    players = players.filter(p => p.position.id === this.playerFilter.positionId);
+                }
+
+                players = players.orderBy('positionId', '-overall', 'name');
+
+                this.filteredPlayers = players;
+            },
+            updatePlayerOrderForPlayersSection: function (column) {
+                this.playersOrderColumn = this.playersOrderColumn === column ? `-${column}` : column;
+            },
         },
         computed: {
             clubId() {

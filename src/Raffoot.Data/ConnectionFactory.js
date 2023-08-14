@@ -23,12 +23,12 @@ let ConnectionFactory = (function () {
             });
         }
 
-        static createStores(connection, stores, autoIncrement) {
+        static createStores(connection, stores, autoIncrement = true) {
             for (const store of stores) {
                 if (connection.objectStoreNames.contains(store)) {
                     connection.deleteObjectStore(store);
                 }
-                connection.createObjectStore(store, { autoIncrement: true });
+                connection.createObjectStore(store, { autoIncrement: autoIncrement });
             }
         }
 

@@ -37,14 +37,14 @@
                     </div>
                 </div>
             </div>
-            <form id="form" action="home.html" @submit.prevent="startGame($event)">
+            <form id="form" action="home.html" @submit.prevent="startGame()">
                 <fieldset>
                     <legend>{{ translator.get("Choose your club") }}</legend>
 
                     <div class="row mb-3">
                         <div class="col">
                             <label for="country" class="form-label">{{ translator.get("Country") }}</label>
-                            <select id="country" class="form-select" required @change="setCountry($event)">
+                            <select id="country" class="form-select" required @change="game.country = game.countries.find(c => c.id === parseInt($event.target.value))">
                                 <option></option>
                                 <option v-for="country in playableCountries" :key="country.id" :value="country.id">
                                     {{ country.name }}
@@ -55,7 +55,7 @@
                     <div class="row mb-3">
                         <div class="col">
                             <label for="club" class="form-label">{{ translator.get("Club") }}</label>
-                            <select id="club" class="form-control" required @change="setClub($event)">
+                            <select id="club" class="form-control" required @change="game.club = game.clubs.find(c => c.id === parseInt($event.target.value))">
                                 <option></option>
                                 <template v-for="championshipEdition in game.currentSeason.getNationalLeaguesByCountryId(game.country?.id)">
                                     <optgroup :label="translator.getChampionshipName(championshipEdition.championship)">
@@ -166,17 +166,10 @@
 
                 return countries;
             },
-            setClub: function (event) {
-                let id = parseInt(event.target.value);
-                this.game.club = id ? this.game.clubs.find(c => c.id === id) : null;
-            },
-            setCountry: function (event) {
-                let id = parseInt(event.target.value);
-                this.game.country = id ? this.game.countries.find(c => c.id === id) : null;
-            },
-            startGame: async function (event) {
+            startGame: async function () {
                 try {
                     this.game.name = this.gameName;
+                    this.game.club.squad.setOrder();
                     //this.game.club.squad.clearSettings();
                     let id = await gameService.insertAsync(Vue.toRaw(this.game));
                     this.redirect(`home.html?id=${id}`);

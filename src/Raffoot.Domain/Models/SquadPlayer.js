@@ -59,7 +59,8 @@ class SquadPlayer {
         else {
             const playerNearestFieldLocalization = this.player.getNearestFieldLocalization(fieldLocalization);
             const distance = playerNearestFieldLocalization.calculateDistanceTo(fieldLocalization);
-            const overall = this.player.overall - (distance * 4);
+            const factor = playerNearestFieldLocalization.position.fieldRegion.id === fieldLocalization.position.fieldRegion.id ? 3 : 4;
+            const overall = this.player.overall - (distance * factor);
             return Math.round(overall);
         }
     }

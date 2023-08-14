@@ -76,7 +76,6 @@ class Squad {
     }
 
     clearSettings() {
-        this.setOrder();
         this.changeFormation(null);
         this.playingStyle = '';
     }
@@ -160,19 +159,23 @@ class Squad {
     }
 
     setOrder() {
-        const squadPlayers = this.squadPlayers.orderBy('order', 'player.position.id', '-player.overall')
         let order = 0;
-        for (const squadPlayer of squadPlayers) {
+        for (const squadPlayer of this.starting11) {
+            squadPlayer.order = ++order;
+        }
+        for (const squadPlayer of this.substitutes.orderBy('order', 'player.position.id', '-player.overall')) {
             squadPlayer.order = ++order;
         }
     }
 
     setSquadPlayerAtFieldLocalization(squadPlayer, fieldLocalization) {
         const currentSquadPlayer = this.starting11.find(sp => sp.fieldLocalization === fieldLocalization);
-        if (currentSquadPlayer)
+        if (currentSquadPlayer) {
             this.swapRoles(currentSquadPlayer, squadPlayer);
-        else
+        }
+        else {
             squadPlayer.fieldLocalization = fieldLocalization;
+        }
     }
 
     swapRoles(squadPlayer1, squadPlayer2) {

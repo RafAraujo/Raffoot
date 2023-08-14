@@ -17,6 +17,10 @@ td {
     color: black;
 }
 
+.bg-gray {
+    background-color: lightgray;
+}
+
 .bg-inherit {
     background-color: inherit;
 }
