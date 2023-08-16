@@ -28,7 +28,7 @@
         <div v-if="gameLoaded" @click="selectedSquadPlayerId = null">
             <header>
                 <nav class="navbar navbar-expand-xl border-bottom border-body"
-                    :class="game.club.foregroundColor == '#000000' ? 'bg-dark' : 'bg-light'"
+                    :class="[activeSection === 'matches' ? 'd-none' : '', game.club.foregroundColor == '#000000' ? 'bg-dark' : 'bg-light']"
                     :data-bs-theme="game.club.foregroundColor == '#000000' ? 'dark' : 'light'">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="index.html">{{ translator.get("Raffoot") }}</a>
@@ -135,6 +135,11 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a class="dropdown-item" href="#" @click="toggleFullscreen()">
+                                                {{ translator.get("Full screen") }}
+                                            </a>
+                                        </li>
+                                        <li>
                                             <hr class="dropdown-divider">
                                         </li>
                                         <li>
@@ -171,7 +176,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" :class="{ 'd-none' : activeSection === 'matches' }">
                             <div class="col">
                                 <div class="d-flex align-items-center border-bottom mt-1 mb-2">
                                     <img class="me-2" :src="game.club.getLogoURL()" :alt="game.club.name"
@@ -182,26 +187,146 @@
                         </div>
                     </section>
                     <section id="matches" :class="{ 'd-none' : activeSection !== 'matches' }">
+                        <div class="sticky-top bg-matches">
+                            <div style="height: 10px;">&nbsp;</div>
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="progress" role="progressbar" :aria-label="translator.get('Time')"
+                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                        style="border-radius: 0; height: 1.5rem;">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success border"
+                                            style="width: 75%;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="col text-center">
+                                    <span class="fw-bold text-warning">
+                                        {{
+                                        translator.getChampionshipName(game.currentSeason.getCurrentMatches()[0].championshipEdition.championship)
+                                        }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div v-if="currentMatch" class="row">
+                                <div class="col">
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless border mb-0">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center fs-5 p-0 border"
+                                                        style="width: 42%; height: 60px;"
+                                                        :style="{ backgroundColor: currentMatch.matchClubHome.club.colors.backgroundCustom, color: currentMatch.matchClubHome.club.colors.foregroundCustom }">
+                                                        <div>
+                                                            <img :src="currentMatch.matchClubHome.club.getLogoURL()"
+                                                                :alt="currentMatch.matchClubHome.club.name"
+                                                                :title="currentMatch.matchClubHome.club.name"
+                                                                style="max-height: 4rem;">
+                                                        </div>
+                                                        <div>{{ currentMatch.matchClubHome.club.name }}</div>
+                                                    </td>
+                                                    <td class="text-center fs-5 p-0 border"
+                                                        style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
+                                                        {{ currentMatch.matchClubHome.club.goals }}
+                                                    </td>
+                                                    <td class="text-center fs-5 p-0 border"
+                                                        style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
+                                                        {{ currentMatch.matchClubAway.club.goals }}
+                                                    </td>
+                                                    <td class="text-center fs-5 p-0 border" style="width: 42%;"
+                                                        :style="{ backgroundColor: currentMatch.matchClubAway.club.colors.backgroundCustom, color: currentMatch.matchClubAway.club.colors.foregroundCustom }">
+                                                        <div>
+                                                            <img :src="currentMatch.matchClubAway.club.getLogoURL()"
+                                                                :alt="currentMatch.matchClubAway.club.name"
+                                                                :title="currentMatch.matchClubAway.club.name"
+                                                                style="max-height: 4rem;">
+                                                        </div>
+                                                        <div>{{ currentMatch.matchClubAway.club.name }}</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center table-dark" colspan="4">
+                                                       {{ `0' - ${translator.get("Start of the match")}` }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-borderless table-hover small bg-matches mb-0"
+                                            style="border: 1px solid; border-width: 0px 1px 1px 1px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center p-0">50%</td>
+                                                    <td class="text-center p-0">
+                                                        {{ translator.get("Ball Possession") }}
+                                                    </td>
+                                                    <td class="text-center p-0">50%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center p-0">0</td>
+                                                    <td class="text-center p-0">
+                                                        {{ translator.get("Shots on goal") }}
+                                                    </td>
+                                                    <td class="text-center p-0">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center p-0">0</td>
+                                                    <td class="text-center p-0">
+                                                        {{ translator.get("Passes") }}
+                                                    </td>
+                                                    <td class="text-center p-0">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center p-0">0</td>
+                                                    <td class="text-center p-0">
+                                                        {{ translator.get("Tackles") }}
+                                                    </td>
+                                                    <td class="text-center p-0">0</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <div class="table-responsive">
                                     <table class="table small border">
-                                        <thead>
-                                            <th colspan="4" class="text-center">
-                                                {{
-                                                translator.getChampionshipName(game.currentSeason.getCurrentMatches()[0].championshipEdition.championship)
-                                                }}
-                                            </th>
-                                        </thead>
                                         <tbody>
                                             <tr v-for="match in game.currentSeason.getCurrentMatches()">
-                                                <td class="text-center p-0" style="width: 40%; height: 45px"
+                                                <td class="text-end p-0"
+                                                    :style="{ backgroundColor: match.matchClubHome.club.colors.backgroundCustom, color: match.matchClubHome.club.colors.foregroundCustom }">
+                                                    <img class="ms-1 me-1" :src="match.matchClubHome.club.getLogoURL()"
+                                                        :alt="match.matchClubHome.club.name"
+                                                        :title="match.matchClubHome.club.name"
+                                                        style="max-height: 1.5rem;">
+                                                </td>
+                                                <td class="text-start p-0" style="width: 34%; height: 43px;"
                                                     :style="{ backgroundColor: match.matchClubHome.club.colors.backgroundCustom, color: match.matchClubHome.club.colors.foregroundCustom }">
                                                     {{ match.matchClubHome.club.name }}
                                                 </td>
-                                                <td class="text-center border">{{ match.matchClubHome.club.goals }}</td>
-                                                <td class="text-center border">{{ match.matchClubAway.club.goals }}</td>
-                                                <td class="text-center p-0" style="width: 40%; height: 45px"
+                                                <td class="text-center p-0 border"
+                                                    style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
+                                                    {{ match.matchClubHome.club.goals }}
+                                                </td>
+                                                <td class="text-center p-0 border"
+                                                    style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
+                                                    {{ match.matchClubAway.club.goals }}
+                                                </td>
+                                                <td class="text-end p-0"
+                                                    :style="{ backgroundColor: match.matchClubAway.club.colors.backgroundCustom, color: match.matchClubAway.club.colors.foregroundCustom }">
+                                                    <img class="ms-1 me-1" :src="match.matchClubAway.club.getLogoURL()"
+                                                        :alt="match.matchClubAway.club.name"
+                                                        :title="match.matchClubAway.club.name"
+                                                        style="max-height: 1.5rem;">
+                                                </td>
+                                                <td class="text-start p-0" style="width: 34%;"
                                                     :style="{ backgroundColor: match.matchClubAway.club.colors.backgroundCustom, color: match.matchClubAway.club.colors.foregroundCustom }">
                                                     {{ match.matchClubAway.club.name }}
                                                 </td>
@@ -304,7 +429,7 @@
                                                                 <div>
                                                                     <div class="position position-absolute"
                                                                         :class="{ 'improvised' : item.squadPlayer.isImprovised }"
-                                                                        :title="translator.get(item.squadPlayer.player.position.name)">
+                                                                        :title="translator.get(item.squadPlayer.fieldLocalization.position.name)">
                                                                         {{
                                                                         translator.get(item.squadPlayer.fieldLocalization.position.abbreviation)
                                                                         }}
@@ -513,7 +638,7 @@
                                         <thead class="table-light">
                                             <th class="text-center">{{ translator.get("Date") }}</th>
                                             <th class="text-end">{{ translator.get("Home") }}</th>
-                                            <th class="text-end" style="width: 1.5rem"></th>
+                                            <th class="text-end" style="width: 1.5rem;"></th>
                                             <th class="text-center"></th>
                                             <th class="text-center"></th>
                                             <th class="text-center"></th>
@@ -691,14 +816,23 @@
                                                     <td class="text-center">
                                                         {{ game.getClubNationalLeagueLastPlayedFixture()?.number ?? 0 }}
                                                     </td>
-                                                    <td class="text-center">{{ championshipEditionClub.won }}</td>
-                                                    <td class="text-center">{{ championshipEditionClub.drawn }}</td>
-                                                    <td class="text-center">{{ championshipEditionClub.lost }}</td>
-                                                    <td class="text-center">{{ championshipEditionClub.goalsFor }}</td>
-                                                    <td class="text-center">{{ championshipEditionClub.goalsAgainst }}
+                                                    <td class="text-center">
+                                                        {{ championshipEditionClub.won }}
                                                     </td>
-                                                    <td class="text-center">{{ championshipEditionClub.goalsDifference
-                                                        }}
+                                                    <td class="text-center">
+                                                        {{ championshipEditionClub.drawn }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ championshipEditionClub.lost }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ championshipEditionClub.goalsFor }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ championshipEditionClub.goalsAgainst }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ championshipEditionClub.goalsDifference }}
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -1191,6 +1325,8 @@
 </html>
 
 <script>
+    "use strict";
+
     const gameService = new GameService();
     const translator = new TranslatorService();
 
@@ -1244,6 +1380,11 @@
             }
         },
         watch: {
+            activeSection(newActiveSection, oldActiveSection) {
+                if ([newActiveSection, oldActiveSection].some(s => s === 'matches')) {
+                    this.setColors();
+                }
+            },
             clubId(newClubId, oldClubId) {
                 if (newClubId !== oldClubId) {
                     this.setColors();
@@ -1265,6 +1406,14 @@
                 this.message = { text: this.translator.get('Processing...'), type: 'primary' };
                 await gameService.saveAsync(Vue.toRaw(this.game));
                 this.message.text = "";
+            },
+            toggleFullscreen() {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                }
+                else {
+                    document.documentElement.requestFullscreen();
+                }
             },
 
             // Play:
@@ -1299,8 +1448,8 @@
                 this.game = await gameService.loadAsync(gameId);
             },
             setColors: function () {
-                document.body.style.backgroundColor = this.game.club.colors.backgroundCustom;
-                document.body.style.color = this.game.club.colors.foregroundCustom;
+                document.body.style.backgroundColor = this.activeSection === 'matches' ? 'rgb(27, 70, 38)' : this.game.club.colors.backgroundCustom;
+                document.body.style.color = this.activeSection === 'matches' ? 'white' : this.game.club.colors.foregroundCustom;
             },
 
             // Squad:
@@ -1387,20 +1536,23 @@
             clubId() {
                 return this.game?.club.id;
             },
+            currentMatch() {
+                return this.game.getClubCurrentMatch();
+            },
             nextMatch() {
                 return this.game.getClubNextMatch();
             },
             nextOpponent() {
                 return this.nextMatch.getOpponent(this.game.club.id);
             },
-            selectedSquadPlayer() {
-                return SquadPlayer.getById(this.selectedSquadPlayerId);
-            },
             selectedChampionshipEdition() {
                 return this.game.currentSeason.championshipEditions.find(ce => ce.id === this.selectedChampionshipEditionId);
             },
             selectedClub() {
                 return this.game.clubs.find(c => c.id === this.selectedClubId);
+            },
+            selectedSquadPlayer() {
+                return SquadPlayer.getById(this.selectedSquadPlayerId);
             },
         },
         async created() {

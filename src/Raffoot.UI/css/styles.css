@@ -21,15 +21,21 @@ td {
     background-color: lightgray;
 }
 
-.bg-inherit {
+.bg-inherit,
+.table.bg-inherit *,
+.table> :not(caption)>*>*.bg-inherit {
     background-color: inherit;
 }
 
-.color-inherit {
-    color: inherit;
+.bg-matches,
+.table.bg-matches *,
+.table> :not(caption)>*>*.bg-matches {
+    color: white;
+    background-color: rgb(27, 70, 38);
 }
 
-.btn-check+.color-inherit:hover {
+.color-inherit,
+.color-inherit:hover {
     color: inherit;
 }
 

@@ -32,22 +32,22 @@ namespace RaffootLoader.Services
             "Back", "Background color", $"{PrefixOfContext}{Separator}Balanced", "Ball Possession", $"{PrefixOfContext}{Separator}Board of Directors", "Bronze",
             "Calendar", "Cancel", "Capacity", "Category", "Champions", "Championship", "Championships", "Choose your club", "Clear", "Classification", "Close", "Club", "Clubs", "Coach", "Colors", "CON", "Continental Supercup", "Country", "Creating game...", $"{PrefixOfContext}{Separator}Cup",
             "Date", "Defense", $"{PrefixOfContext}{Separator}Defensive", "Delete", "Diamond", "Division", $"{PrefixOfContext}{Separator}Draws",
-            "End of contract", "Energy", "Error", "Exit Game", "Expand",
-            "False 9", "Final", "Finances", "Flat", "Formation", "For Sale", "Foul", "Free Kick Taker",
+            "End of contract", "End of the match", "Energy", "Error", "Exit Game", "Expand",
+            "False 9", "Final", "Finances", "Flat", "Formation", "For Sale", "Foul", "Free Kick Taker", "Full screen",
             "Game", "Game deleted with success",  $"{PrefixOfContext}{Separator}Goal",  $"{PrefixOfContext}{Separator}Goals", $"{PrefixOfContext}{Separator}Goals against", $"{PrefixOfContext}{Separator}goals difference", "Gold", "Group",
             "History", "Holding", $"{PrefixOfContext}{Separator}Home",
             "Income", "International",
-            "League", "Left", $"{PrefixOfContext}{Separator}Lineup", "Load Game", "Loading game...", "Load more", "Logo", $"{PrefixOfContext}{Separator}Losses",
+            "League", "Left", $"{PrefixOfContext}{Separator}Lineup", "Load Game", "Loading game...", "Logo", $"{PrefixOfContext}{Separator}Losses",
             "Market Value", "Matches", $"{PrefixOfContext}{Separator}Maximum", "Midfield", $"{PrefixOfContext}{Separator}Minimum",
             "Name", "Narrow", "National", "Nationality", "New Game", "No",
             $"{PrefixOfContext}{Separator}Offensive", "Offside", "Options", "Overall", "OV",
-            $"{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Players", "Playing Style", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
+            $"{PrefixOfContext}{Separator}Passes", "{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Players", "Playing Style", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
             "Quarter-finals",
             "Raffoot", "Ranking", $"{PrefixOfContext}{Separator}Referee", "Reset", $"{PrefixOfContext}{Separator}Right", "Round of 16", "Round of 32", "Round of 64",
-            "Save Changes", "Save Game", "Search", "Search Players", "Sector", "Semifinals", "Showing {0} of {1}", "Silver", "Squad", "Stadium", "Star", "Start Game", "Starting game...", "Statistics", "Supercup",
-            "Text color", "Ticket Price", "Top Scorers", "Total", $"{PrefixOfContext}{Separator}Trust", "Type",
+            "Save Changes", "Save Game", "Search", "Search Players", "Sector", "Semifinals", "Shots on goal", "Showing {0} of {1}", "Silver", "Squad", "Stadium", "Star", "Start Game", "Starting game...", "Start of the match", "Statistics", "Supercup",
+            $"{PrefixOfContext}{Separator}Tackles", "Text color", "Ticket Price", "Time", "Top Scorers", "Total", $"{PrefixOfContext}{Separator}Trust", "Type",
             "Uniform",
-            $"{PrefixOfContext}{Separator}Wage", "Wide", "Wins", "World", "World Cup",
+            $"{PrefixOfContext}{Separator}Wage", "Wide", "Window mode", "Wins", "World", "World Cup",
             "Year", "Yes"
         };
         private readonly string[] _fixedTexts = new[] { "BeNe", "CON", "Overall", "OV", "Raffoot", "Reset" };
@@ -71,6 +71,16 @@ namespace RaffootLoader.Services
             new Translation("CF", "AT", "fr"),      new Translation("CF", "SD", "es"),      new Translation("CF", "MS", "de"),      new Translation("CF", "AC", "pt-PT"),       new Translation("CF", "SA", "pt-BR"),       new Translation("CF", "AT", "it"),      new Translation("CF", "CA", "nl"),      new Translation("CF", "SN", "pl"),      new Translation("CF", "SU", "cs"),
             new Translation("LF", "AVG", "fr"),     new Translation("LF", "SDI", "es"),     new Translation("LF", "LS", "de"),      new Translation("LF", "AE", "pt-PT"),       new Translation("LF", "MAE", "pt-BR"),      new Translation("LF", "ATS", "it"),     new Translation("LF", "LV", "nl"),      new Translation("LF", "LN", "pl"),      new Translation("LF", "LU", "cs"),
             new Translation("ST", "BU", "fr"),      new Translation("ST", "DC", "es"),      new Translation("ST", "ST", "de"),      new Translation("ST", "PL", "pt-PT"),       new Translation("ST", "ATA", "pt-BR"),      new Translation("ST", "ATT", "it"),     new Translation("ST", "SP", "nl"),      new Translation("ST", "N", "pl"),       new Translation("ST", "HU", "cs"),
+
+            new Translation("Left wing-back", "Ala-esquerdo", "pt-BR"),
+            new Translation("Right wing-back", "Ala-direito", "pt-BR"),
+            new Translation("Left midfielder", "Meia-esquerda", "pt-BR"),
+            new Translation("Right midfielder", "Meia-direita", "pt-BR"),
+            new Translation("Left winger", "Ponta-esquerda", "pt-BR"),
+            new Translation("Right winger", "Ponta-direita", "pt-BR"),
+
+            new Translation("Squad", "Elenco", "pt-BR"),
+            new Translation("Tackles", "Desarmes", "pt-BR"),
         };
 
         private const string PrefixOfContext = "Men's Football";
@@ -117,8 +127,13 @@ namespace RaffootLoader.Services
                 foreach (var translation in response)
                 {
                     var originalText = GetTextWithoutPrefix(translation.OriginalText).WithFirstCharUppercase();
-                    var translatedText = (translation.TranslatedText.Contains(Separator) ? translation.TranslatedText[(translation.TranslatedText.IndexOf(Separator) + Separator.Length)..] : translation.TranslatedText).WithFirstCharUppercase();
-                    translations.Add(new Translation(originalText, translatedText, translation.Language));
+                    var fixedTranslation = _fixedTranslations.SingleOrDefault(t => t.OriginalText == originalText && t.Language == translation.Language);
+
+                    if (fixedTranslation == null)
+                    {
+                        var translatedText = (translation.TranslatedText.Contains(Separator) ? translation.TranslatedText[(translation.TranslatedText.IndexOf(Separator) + Separator.Length)..] : translation.TranslatedText).WithFirstCharUppercase();
+                        translations.Add(new Translation(originalText, translatedText, translation.Language));
+                    }
                 }
 
                 _context.InsertMany(translations);

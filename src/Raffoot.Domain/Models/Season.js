@@ -75,6 +75,10 @@ class Season {
         return championshipEditions.filter(ce => ce.championship.confederation.id === confederationId);
     }
 
+    getCurrentChampionshipEditions() {
+        return this.getChampionshipEditionsByDate(this.currentDate);
+    }
+
     getCurrentMatches() {
         return this.getMatchesByDate(this.currentDate);
     }
@@ -86,6 +90,10 @@ class Season {
     getNationalLeaguesByCountryId(countryId) {
         const championshipEditions = this.getNationalLeagues();
         return championshipEditions.filter(ce => ce.championship.countries.map(c => c.id).includes(countryId));
+    }
+
+    getChampionshipEditionsByDate(date) {
+        return this.getMatchesByDate(date).map(m => m.championshipEdition).distinct();
     }
 
     getMatchesByDate(date) {
@@ -127,13 +135,16 @@ class Season {
         date = date.addDays(3);
         this._addSeasonDate(date, continentalSupercup);
 
-        let championshipTypes = this.championshipTypes.filter(ct => ct.format !== 'supercup' && ct.scope !== 'world');
+        const championshipTypes = this.championshipTypes.filter(ct => ct.format !== 'supercup' && ct.scope !== 'world');
         let championshipType = null;
 
         while (championshipType = championshipTypes.find(ct => !this._isTotallyScheduled(ct))) {
             date = date.addDays(date.getDay() === 0 ? 3 : 4);
-            if (date.getMonth() === 6)
+            
+            if (date.getMonth() === 6) {
                 continue;
+            }
+            
             this._addSeasonDate(date, championshipType);
             championshipTypes.rotate();
         }

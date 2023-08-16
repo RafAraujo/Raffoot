@@ -10,6 +10,10 @@ Number.prototype.formatCurrency = function () {
     return _currencyFormatter.format(this);
 }
 
+Number.prototype.formatPercentage = function (minimumFractionDigits = 0) {
+    return this.toLocaleString(undefined, { style: 'percent', minimumFractionDigits });
+}
+
 Number.prototype.isEven = function() {
     return this % 2 == 0;
 }
