@@ -95,6 +95,10 @@ class ChampionshipEdition {
         this._matchIds.push(match.id);
     }
 
+    getClubPosition(club) {
+        return this.table.map(cec => cec.club.id).indexOf(club.id) + 1;
+    }
+
     getContinentalCupClassificationZonePositions(continentalCupDivision) {
         const positions = [];
 

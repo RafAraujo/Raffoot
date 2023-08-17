@@ -83,6 +83,10 @@ class Season {
         return this.getMatchesByDate(this.currentDate);
     }
 
+    getCurrentMatchesByChampionshipEditionId(championshipEditionId) {
+        return this.getMatchesByDate(this.currentDate).filter(m => m.championshipEditionId === championshipEditionId);
+    }
+
     getNationalLeagues() {
         return this.getNationalChampionshipEditions().filter(ce => ce.championship.isNationalLeague);
     }
@@ -140,7 +144,7 @@ class Season {
 
         while (championshipType = championshipTypes.find(ct => !this._isTotallyScheduled(ct))) {
             date = date.addDays(date.getDay() === 0 ? 3 : 4);
-            
+
             if (date.getMonth() === 6) {
                 continue;
             }

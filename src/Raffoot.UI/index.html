@@ -8,6 +8,8 @@
     <title>Raffoot</title>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/solid.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
@@ -21,14 +23,17 @@
         <div class="row mb-3">
             <div class="col-9 d-grid mx-auto">
                 <button class="btn btn-outline-dark btn-lg" @click="redirect('new-game.html')">
-                    {{ translator.get("New Game").toTitleCase() }}
+                    <i class="fa-solid fa-plus"></i>
+                    {{ translator.get("New Game") }}
                 </button>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-9 d-grid mx-auto">
-                <button class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#modal-games">{{
-                    translator.get("Load Game").toTitleCase() }}</button></button>
+                <button class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#modal-games">
+                    <i class="fa-solid fa-folder-open"></i>
+                    {{ translator.get("Load Game") }}
+                </button>
             </div>
         </div>
         <!-- Modal -->
@@ -75,25 +80,18 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-4 d-grid">
-                                    <button class="btn btn-primary" :disabled="!selectedGame" @click="loadGame()">
-                                        {{ translator.get("Load Game").toTitleCase() }}
-                                    </button>
-                                </div>
-                                <div class="col-4 d-grid">
-                                    <button class="btn btn-secondary" data-bs-dismiss="modal">
-                                        {{ translator.get("Cancel") }}
-                                    </button>
-                                </div>
-                                <div class="col-4 d-grid">
-                                    <button class="btn btn-danger" :disabled="!selectedGame" @click="deleteGame()">
-                                        {{ translator.get("Delete") }}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <button class="btn btn-primary" :disabled="!selectedGame" @click="loadGame()">
+                            <i class="fa-solid fa-folder-open"></i>
+                            {{ translator.get("Load") }}
+                        </button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                            {{ translator.get("Cancel") }}
+                        </button>
+                        <button class="btn btn-danger" :disabled="!selectedGame" @click="deleteGame()">
+                            <i class="fa-solid fa-trash-can"></i>
+                            {{ translator.get("Delete") }}
+                        </button>
                     </div>
                 </div>
             </div>
@@ -152,7 +150,7 @@
 
 <script>
     "use strict";
-    
+
     let gameService = new GameService();
 
     let RaffootApp = {

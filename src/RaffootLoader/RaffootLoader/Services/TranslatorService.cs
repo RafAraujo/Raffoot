@@ -28,7 +28,7 @@ namespace RaffootLoader.Services
 
         private readonly string[] _texts = new[]
         {
-            "Age", "Assists", "Attack", "Audience", "Automatic selection", $"{PrefixOfContext}{Separator}Away", "Average",
+            "Advance", "Age", "Assists", "Attack", "Audience", "Automatic selection", $"{PrefixOfContext}{Separator}Away", "Average",
             "Back", "Background color", $"{PrefixOfContext}{Separator}Balanced", "Ball Possession", $"{PrefixOfContext}{Separator}Board of Directors", "Bronze",
             "Calendar", "Cancel", "Capacity", "Category", "Champions", "Championship", "Championships", "Choose your club", "Clear", "Classification", "Close", "Club", "Clubs", "Coach", "Colors", "CON", "Continental Supercup", "Country", "Creating game...", $"{PrefixOfContext}{Separator}Cup",
             "Date", "Defense", $"{PrefixOfContext}{Separator}Defensive", "Delete", "Diamond", "Division", $"{PrefixOfContext}{Separator}Draws",
@@ -37,14 +37,14 @@ namespace RaffootLoader.Services
             "Game", "Game deleted with success",  $"{PrefixOfContext}{Separator}Goal",  $"{PrefixOfContext}{Separator}Goals", $"{PrefixOfContext}{Separator}Goals against", $"{PrefixOfContext}{Separator}goals difference", "Gold", "Group",
             "History", "Holding", $"{PrefixOfContext}{Separator}Home",
             "Income", "International",
-            "League", "Left", $"{PrefixOfContext}{Separator}Lineup", "Load Game", "Loading game...", "Logo", $"{PrefixOfContext}{Separator}Losses",
-            "Market Value", "Matches", $"{PrefixOfContext}{Separator}Maximum", "Midfield", $"{PrefixOfContext}{Separator}Minimum",
+            "League", "Left", $"{PrefixOfContext}{Separator}Lineup", "Load", "Load Game", "Load more", "Loading game...", "Logo", $"{PrefixOfContext}{Separator}Losses",
+            "Market Value", "Matches", $"{PrefixOfContext}{Separator}Maximum", "Midfield", $"{PrefixOfContext}{Separator}Minimum", "Money",
             "Name", "Narrow", "National", "Nationality", "New Game", "No",
             $"{PrefixOfContext}{Separator}Offensive", "Offside", "Options", "Overall", "OV",
             $"{PrefixOfContext}{Separator}Passes", "{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Players", "Playing Style", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
             "Quarter-finals",
             "Raffoot", "Ranking", $"{PrefixOfContext}{Separator}Referee", "Reset", $"{PrefixOfContext}{Separator}Right", "Round of 16", "Round of 32", "Round of 64",
-            "Save Changes", "Save Game", "Search", "Search Players", "Sector", "Semifinals", "Shots on goal", "Showing {0} of {1}", "Silver", "Squad", "Stadium", "Star", "Start Game", "Starting game...", "Start of the match", "Statistics", "Supercup",
+            "Save Changes", "Save Game", "Search", "Search Players", "Sector", "Semifinals", "Shots on goal", "Showing {0} of {1}", "Silver", "Squad", "Stadium", "Standings", "Star", "Start Game", "Starting game...", "Start of the match", "Statistics", "Supercup", $"{PrefixOfContext}{Separator}Supporters",
             $"{PrefixOfContext}{Separator}Tackles", "Text color", "Ticket Price", "Time", "Top Scorers", "Total", $"{PrefixOfContext}{Separator}Trust", "Type",
             "Uniform",
             $"{PrefixOfContext}{Separator}Wage", "Wide", "Window mode", "Wins", "World", "World Cup",
@@ -79,6 +79,7 @@ namespace RaffootLoader.Services
             new Translation("Left winger", "Ponta-esquerda", "pt-BR"),
             new Translation("Right winger", "Ponta-direita", "pt-BR"),
 
+            new Translation("Standings", "Tabelas", "pt-BR"),
             new Translation("Squad", "Elenco", "pt-BR"),
             new Translation("Tackles", "Desarmes", "pt-BR"),
         };

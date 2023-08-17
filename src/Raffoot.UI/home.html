@@ -8,6 +8,8 @@
     <title>Raffoot</title>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/solid.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
@@ -28,8 +30,7 @@
         <div v-if="gameLoaded" @click="selectedSquadPlayerId = null">
             <header>
                 <nav class="navbar navbar-expand-xl border-bottom border-body"
-                    :class="[activeSection === 'matches' ? 'd-none' : '', game.club.foregroundColor == '#000000' ? 'bg-dark' : 'bg-light']"
-                    :data-bs-theme="game.club.foregroundColor == '#000000' ? 'dark' : 'light'">
+                    :class="[activeSection === 'matches' ? 'd-none' : '', `bg-${theme}`]" :data-bs-theme="this.theme">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="index.html">{{ translator.get("Raffoot") }}</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -48,42 +49,49 @@
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'play' }" href="#play"
                                         @click="changeSection($event)">
+                                        <i class="fa-solid fa-play"></i>
                                         {{ translator.get("Play") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'squad' }" href="#squad"
                                         @click="changeSection($event)">
+                                        <i class="fa-solid fa-people-group"></i>
                                         {{ translator.get("Squad") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'calendar' }"
                                         href="#calendar" @click="changeSection($event)">
+                                        <i class="fa-solid fa-calendar-days"></i>
                                         {{ translator.get("Calendar") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" :class="{ 'active' : activeSection == 'championships' }"
-                                        href="#championships" @click="changeSection($event)">
-                                        {{ translator.get("Championships") }}
+                                    <a class="nav-link" :class="{ 'active' : activeSection == 'standings' }"
+                                        href="#standings" @click="changeSection($event)">
+                                        <i class="fa-solid fa-table-list"></i>
+                                        {{ translator.get("Standings") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'finances' }"
                                         href="#finances" @click="changeSection($event)">
+                                        <i class="fa-solid fa-dollar-sign"></i>
                                         {{ translator.get("Finances") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'clubs' }" href="#clubs"
                                         @click="changeSection($event)">
+                                        <i class="fa-solid fa-shield-halved"></i>
                                         {{ translator.get("Clubs") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'players' }"
                                         href="#players" @click="changeSection($event)">
+                                        <i class="fa-solid fa-user"></i>
                                         {{ translator.get("Players") }}
                                     </a>
                                 </li>
@@ -91,16 +99,19 @@
                                     <a class="nav-link dropdown-toggle"
                                         :class="{ 'active' : ['champions', 'top-scorers', 'ranking'].includes(activeSection) }"
                                         href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-book"></i>
                                         {{ translator.get("History") }}
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="#champions" @click="changeSection($event)">
+                                                <i class="fa-solid fa-trophy"></i>
                                                 {{ translator.get("Champions") }}
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="#top-scorers" @click="changeSection($event)">
+                                                <i class="fa-solid fa-futbol"></i>
                                                 {{ translator.get("Top Scorers") }}
                                             </a>
                                         </li>
@@ -109,6 +120,7 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="#ranking" @click="changeSection($event)">
+                                                <i class="fa-solid fa-ranking-star"></i>
                                                 {{ translator.get("Ranking") }}
                                             </a>
                                         </li>
@@ -117,11 +129,13 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
+                                        <i class="fa-solid fa-gear"></i>
                                         {{ translator.get("Options") }}
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="#" @click="save()">
+                                                <i class="fa-solid fa-floppy-disk"></i>
                                                 {{ translator.get("Save Game") }}
                                             </a>
                                         </li>
@@ -131,11 +145,13 @@
                                         <li>
                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                 data-bs-target="#modal-colors">
+                                                <i class="fa-solid fa-palette"></i>
                                                 {{ translator.get("Colors") }}
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="#" @click="toggleFullscreen()">
+                                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
                                                 {{ translator.get("Full screen") }}
                                             </a>
                                         </li>
@@ -144,17 +160,18 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="index.html">
+                                                <i class="fa-solid fa-power-off"></i>
                                                 {{ translator.get("Exit Game") }}
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                             </ul>
-                            <form class="d-flex" role="search">
+                            <form @submit.prevent class="d-flex" role="search">
                                 <input class="form-control me-2" type="search" :placeholder="translator.get('Search')"
                                     aria-label="Search">
                                 <button class="btn"
-                                    :class="game.club.foregroundColor == '#000000' ? 'btn-outline-light' : 'btn-outline-dark'"
+                                    :class="this.theme === 'dark' ? 'btn-outline-light' : 'btn-outline-dark'"
                                     type="submit">
                                     {{ translator.get("Search") }}
                                 </button>
@@ -200,175 +217,248 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-1">
-                                <div class="col text-center">
-                                    <span class="fw-bold text-warning">
-                                        {{
-                                        translator.getChampionshipName(game.currentSeason.getCurrentMatches()[0].championshipEdition.championship)
-                                        }}
-                                    </span>
-                                </div>
-                            </div>
-                            <div v-if="currentMatch" class="row">
-                                <div class="col">
-                                    <div class="table-responsive">
-                                        <table class="table table-borderless border mb-0">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-center fs-5 p-0 border"
-                                                        style="width: 42%; height: 60px;"
-                                                        :style="{ backgroundColor: currentMatch.matchClubHome.club.colors.backgroundCustom, color: currentMatch.matchClubHome.club.colors.foregroundCustom }">
-                                                        <div>
-                                                            <img :src="currentMatch.matchClubHome.club.getLogoURL()"
-                                                                :alt="currentMatch.matchClubHome.club.name"
-                                                                :title="currentMatch.matchClubHome.club.name"
-                                                                style="max-height: 4rem;">
-                                                        </div>
-                                                        <div>{{ currentMatch.matchClubHome.club.name }}</div>
-                                                    </td>
-                                                    <td class="text-center fs-5 p-0 border"
-                                                        style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
-                                                        {{ currentMatch.matchClubHome.club.goals }}
-                                                    </td>
-                                                    <td class="text-center fs-5 p-0 border"
-                                                        style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
-                                                        {{ currentMatch.matchClubAway.club.goals }}
-                                                    </td>
-                                                    <td class="text-center fs-5 p-0 border" style="width: 42%;"
-                                                        :style="{ backgroundColor: currentMatch.matchClubAway.club.colors.backgroundCustom, color: currentMatch.matchClubAway.club.colors.foregroundCustom }">
-                                                        <div>
-                                                            <img :src="currentMatch.matchClubAway.club.getLogoURL()"
-                                                                :alt="currentMatch.matchClubAway.club.name"
-                                                                :title="currentMatch.matchClubAway.club.name"
-                                                                style="max-height: 4rem;">
-                                                        </div>
-                                                        <div>{{ currentMatch.matchClubAway.club.name }}</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center table-dark" colspan="4">
-                                                       {{ `0' - ${translator.get("Start of the match")}` }}
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <table class="table table-borderless table-hover small bg-matches mb-0"
-                                            style="border: 1px solid; border-width: 0px 1px 1px 1px;">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-center p-0">50%</td>
-                                                    <td class="text-center p-0">
-                                                        {{ translator.get("Ball Possession") }}
-                                                    </td>
-                                                    <td class="text-center p-0">50%</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center p-0">0</td>
-                                                    <td class="text-center p-0">
-                                                        {{ translator.get("Shots on goal") }}
-                                                    </td>
-                                                    <td class="text-center p-0">0</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center p-0">0</td>
-                                                    <td class="text-center p-0">
-                                                        {{ translator.get("Passes") }}
-                                                    </td>
-                                                    <td class="text-center p-0">0</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center p-0">0</td>
-                                                    <td class="text-center p-0">
-                                                        {{ translator.get("Tackles") }}
-                                                    </td>
-                                                    <td class="text-center p-0">0</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                            <template v-if="currentMatch">
+                                <div class="row mb-1">
+                                    <div class="col text-center">
+                                        <span class="fw-bold text-warning">
+                                            {{
+                                            translator.getChampionshipName(currentMatch.championshipEdition.championship)
+                                            }}
+                                        </span>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless border mb-0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center fs-5 p-0 border"
+                                                            style="width: 42%; height: 60px;"
+                                                            :style="{ backgroundColor: currentMatch.matchClubHome.club.colors.backgroundCustom, color: currentMatch.matchClubHome.club.colors.foregroundCustom }">
+                                                            <div>
+                                                                <img :src="currentMatch.matchClubHome.club.getLogoURL()"
+                                                                    :alt="currentMatch.matchClubHome.club.name"
+                                                                    :title="currentMatch.matchClubHome.club.name"
+                                                                    style="max-height: 4rem;">
+                                                            </div>
+                                                            <div>{{ currentMatch.matchClubHome.club.name }}</div>
+                                                        </td>
+                                                        <td class="text-center fs-5 p-0 border"
+                                                            style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
+                                                            {{ currentMatch.matchClubHome.club.goals }}
+                                                        </td>
+                                                        <td class="text-center fs-5 p-0 border"
+                                                            style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
+                                                            {{ currentMatch.matchClubAway.club.goals }}
+                                                        </td>
+                                                        <td class="text-center fs-5 p-0 border" style="width: 42%;"
+                                                            :style="{ backgroundColor: currentMatch.matchClubAway.club.colors.backgroundCustom, color: currentMatch.matchClubAway.club.colors.foregroundCustom }">
+                                                            <div>
+                                                                <img :src="currentMatch.matchClubAway.club.getLogoURL()"
+                                                                    :alt="currentMatch.matchClubAway.club.name"
+                                                                    :title="currentMatch.matchClubAway.club.name"
+                                                                    style="max-height: 4rem;">
+                                                            </div>
+                                                            <div>{{ currentMatch.matchClubAway.club.name }}</div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center table-dark" colspan="4">
+                                                            {{ `0' - ${translator.get("Start of the match")}` }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table class="table table-borderless table-hover small bg-matches mb-0"
+                                                style="border: 1px solid; border-width: 0px 1px 1px 1px;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center p-0">50%</td>
+                                                        <td class="text-center p-0">
+                                                            {{ translator.get("Ball Possession") }}
+                                                        </td>
+                                                        <td class="text-center p-0">50%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center p-0">0</td>
+                                                        <td class="text-center p-0">
+                                                            {{ translator.get("Shots on goal") }}
+                                                        </td>
+                                                        <td class="text-center p-0">0</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center p-0">0</td>
+                                                        <td class="text-center p-0">
+                                                            {{ translator.get("Passes") }}
+                                                        </td>
+                                                        <td class="text-center p-0">0</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center p-0">0</td>
+                                                        <td class="text-center p-0">
+                                                            {{ translator.get("Tackles") }}
+                                                        </td>
+                                                        <td class="text-center p-0">0</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
                             <div class="row">
                                 <div class="col">
                                     &nbsp;
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="table-responsive">
-                                    <table class="table small border">
-                                        <tbody>
-                                            <tr v-for="match in game.currentSeason.getCurrentMatches()">
-                                                <td class="text-end p-0"
-                                                    :style="{ backgroundColor: match.matchClubHome.club.colors.backgroundCustom, color: match.matchClubHome.club.colors.foregroundCustom }">
-                                                    <img class="ms-1 me-1" :src="match.matchClubHome.club.getLogoURL()"
-                                                        :alt="match.matchClubHome.club.name"
-                                                        :title="match.matchClubHome.club.name"
-                                                        style="max-height: 1.5rem;">
-                                                </td>
-                                                <td class="text-start p-0" style="width: 34%; height: 43px;"
-                                                    :style="{ backgroundColor: match.matchClubHome.club.colors.backgroundCustom, color: match.matchClubHome.club.colors.foregroundCustom }">
-                                                    {{ match.matchClubHome.club.name }}
-                                                </td>
-                                                <td class="text-center p-0 border"
-                                                    style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
-                                                    {{ match.matchClubHome.club.goals }}
-                                                </td>
-                                                <td class="text-center p-0 border"
-                                                    style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
-                                                    {{ match.matchClubAway.club.goals }}
-                                                </td>
-                                                <td class="text-end p-0"
-                                                    :style="{ backgroundColor: match.matchClubAway.club.colors.backgroundCustom, color: match.matchClubAway.club.colors.foregroundCustom }">
-                                                    <img class="ms-1 me-1" :src="match.matchClubAway.club.getLogoURL()"
-                                                        :alt="match.matchClubAway.club.name"
-                                                        :title="match.matchClubAway.club.name"
-                                                        style="max-height: 1.5rem;">
-                                                </td>
-                                                <td class="text-start p-0" style="width: 34%;"
-                                                    :style="{ backgroundColor: match.matchClubAway.club.colors.backgroundCustom, color: match.matchClubAway.club.colors.foregroundCustom }">
-                                                    {{ match.matchClubAway.club.name }}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        <div v-for="championshipEdition in game.currentSeason.getCurrentChampionshipEditions()">
+                            <div class="row mb-1">
+                                <div class="col text-center">
+                                    <span class="fw-bold text-warning">
+                                        {{
+                                        translator.getChampionshipName(championshipEdition.championship)
+                                        }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="table-responsive">
+                                        <table class="table small border">
+                                            <tbody>
+                                                <tr
+                                                    v-for="match in game.currentSeason.getCurrentMatchesByChampionshipEditionId(championshipEdition.championshipEditionId)">
+                                                    <td class="text-end p-0"
+                                                        :style="{ backgroundColor: match.matchClubHome.club.colors.backgroundCustom, color: match.matchClubHome.club.colors.foregroundCustom }">
+                                                        <img class="ms-1 me-1"
+                                                            :src="match.matchClubHome.club.getLogoURL()"
+                                                            :alt="match.matchClubHome.club.name"
+                                                            :title="match.matchClubHome.club.name"
+                                                            style="max-height: 1.5rem;">
+                                                    </td>
+                                                    <td class="text-start p-0" style="width: 34%; height: 43px;"
+                                                        :style="{ backgroundColor: match.matchClubHome.club.colors.backgroundCustom, color: match.matchClubHome.club.colors.foregroundCustom }">
+                                                        {{ match.matchClubHome.club.name }}
+                                                    </td>
+                                                    <td class="text-center p-0 border"
+                                                        style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
+                                                        {{ match.matchClubHome.club.goals }}
+                                                    </td>
+                                                    <td class="text-center p-0 border"
+                                                        style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
+                                                        {{ match.matchClubAway.club.goals }}
+                                                    </td>
+                                                    <td class="text-end p-0"
+                                                        :style="{ backgroundColor: match.matchClubAway.club.colors.backgroundCustom, color: match.matchClubAway.club.colors.foregroundCustom }">
+                                                        <img class="ms-1 me-1"
+                                                            :src="match.matchClubAway.club.getLogoURL()"
+                                                            :alt="match.matchClubAway.club.name"
+                                                            :title="match.matchClubAway.club.name"
+                                                            style="max-height: 1.5rem;">
+                                                    </td>
+                                                    <td class="text-start p-0" style="width: 34%;"
+                                                        :style="{ backgroundColor: match.matchClubAway.club.colors.backgroundCustom, color: match.matchClubAway.club.colors.foregroundCustom }">
+                                                        {{ match.matchClubAway.club.name }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </section>
                     <section id="play" :class="{ 'd-none' : activeSection !== 'play' }">
-                        <form @submit.prevent>
-                            <div class="row mb-2">
+                        <form @submit.prevent="advanceDate()">
+                            <div class="row">
                                 <div class="col">
-                                    <div class="pb-2">
-                                        <div>
-                                            <div class="d-inline-block ms-1 me-3">
-                                                <img :src="nextOpponent.getLogoURL()" :alt="nextOpponent.name"
-                                                    :title="nextOpponent.name" style="max-height: 3rem;">
-                                            </div>
-                                            <div class="d-inline-block align-middle">
-                                                <div>
-                                                    <h5>{{ nextMatch.description }}</h5>
-                                                    <p>
-                                                        {{
-                                                        translator.getChampionshipName(nextMatch.championshipEdition.championship)
-                                                        }}
-                                                        <br>
-                                                        {{ nextMatch.date.toLocaleDateString() }}
-                                                    </p>
+                                    <h3 class="m-0 fs-5 text-end">{{ game.currentSeason.currentDate.toLocaleDateString() }}</h3>
+                                </div>
+                            </div>
+                            <div class="row small">
+                                <div class="col">
+                                    <p class="m-0">
+                                        <i class="fa-solid fa-sack-dollar me-2"></i>
+                                        <span>{{ game.club.money.formatCurrency() }}</span>
+                                    </p>
+                                    <p class="m-0">
+                                        <i class="fa-solid fa-flag me-2"></i>
+                                        <span>
+                                            {{
+                                            `${translator.getChampionshipName(nationalLeague.championship)}
+                                            - ${translator.get("Position")}
+                                            #${nationalLeague.getClubPosition(game.club)}`
+                                            }}
+                                        </span>
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-6 col-md-3">
+                                            <span>
+                                                {{
+                                                `${translator.get("Trust")} ${translator.get("Board of Directors")}:`
+                                                }}
+                                            </span>
+                                            <div class="progress border border-dark"
+                                                :title="`${translator.get('Board of Directors')} ${game.club.trust.boardOfDirectors}%`">
+                                                <div class="progress-bar bg-dark" role="progressbar"
+                                                    :aria-valuenow="game.club.trust.boardOfDirectors" aria-valuemin="0"
+                                                    aria-valuemax="100"
+                                                    :style="{ width: game.club.trust.boardOfDirectors + '%' }">
+                                                    {{ `${game.club.trust.boardOfDirectors}%` }}
                                                 </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <button type="submit" class="btn btn-light border" style="min-width: 6rem;">
-                                                {{ translator.get("Play") }}
-                                            </button>
+                                        <div class="col-6 col-md-3">
+                                            <span>
+                                                {{
+                                                `${translator.get("Trust")} ${translator.get("Supporters")}:`
+                                                }}
+                                            </span>
+                                            <div class="progress border border-dark"
+                                                :title="`${translator.get('Supporters')} ${game.club.trust.supporters}%`">
+                                                <div class="progress-bar bg-dark" role="progressbar"
+                                                    :aria-valuenow="game.club.trust.supporters" aria-valuemin="0"
+                                                    aria-valuemax="100"
+                                                    :style="{ width: game.club.trust.supporters + '%' }">
+                                                    {{ `${game.club.trust.supporters}%` }}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-2">
+                            <hr>
+                            <div v-if="currentMatch" class="row mb-3">
+                                <div class="col">
+                                    <div class="d-inline-block me-3">
+                                        <img :src="currentOpponent.getLogoURL()" :alt="currentOpponent.name"
+                                            :title="currentOpponent.name" style="max-height: 3rem;">
+                                    </div>
+                                    <div class="d-inline-block align-middle">
+                                        <p class="m-0 fw-bold">
+                                            {{ currentMatch.description }}
+                                        </p>
+                                        <p class="m-0">
+                                            {{
+                                            translator.getChampionshipName(currentMatch.championshipEdition.championship)
+                                            }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div>
+                                        <button type="submit" class="btn btn-light border">
+                                            <i class="fa-solid fa-right-long"></i>
+                                            {{ translator.get("Advance") }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col">
                                     <div class="lineup p-1">
                                         <div class="row mb-2">
@@ -545,7 +635,7 @@
                     <section id="squad" :class="{ 'd-none' : activeSection !== 'squad' }">
                         <div class="row mb-2">
                             <div class="col">
-                                <h5>{{ translator.get("Squad") }}</h5>
+                                <h2 class="fs-5">{{ translator.get("Squad") }}</h2>
                             </div>
                         </div>
                         <div class="row">
@@ -628,7 +718,7 @@
                     <section id="calendar" :class="{ 'd-none' : activeSection !== 'calendar' }">
                         <div class="row mb-2">
                             <div class="col">
-                                <h5>{{ translator.get("Calendar") }}</h5>
+                                <h2 class="fs-5">{{ translator.get("Calendar") }}</h2>
                             </div>
                         </div>
                         <div class="row">
@@ -682,24 +772,25 @@
                             </div>
                         </div>
                     </section>
-                    <section id="championships" :class="{ 'd-none' : activeSection !== 'championships' }">
+                    <section id="standings" :class="{ 'd-none' : activeSection !== 'standings' }">
                         <div class="row mb-2">
                             <div class="col">
-                                <div class="p-1" style="background-color: rgb(73, 81, 93);">
-                                    <input id="championship-national" type="radio" class="btn-check"
-                                        name="championship-type" autocomplete="off" checked>
-                                    <label for="championship-national" class="btn btn-outline-light me-2"
-                                        @click="nationalChampionshipsSelected = true; selectedChampionshipEditionId = null">
-                                        {{ translator.get("National") }}
-                                    </label>
+                                <input id="championship-national" type="radio" class="btn-check"
+                                    name="championship-type" autocomplete="off" checked>
+                                <label for="championship-national" class="btn border me-2" :class="`btn-${this.theme}`"
+                                    @click=" nationalChampionshipsSelected = true; selectedChampionshipEditionId = null">
+                                    <i class="fa-solid fa-flag"></i>
+                                    {{ translator.get("National") }}
+                                </label>
 
-                                    <input id="championship-international" type="radio" class="btn-check"
-                                        name="championship-type" autocomplete="off">
-                                    <label for="championship-international" class="btn btn-outline-light me-2"
-                                        @click="nationalChampionshipsSelected = false; selectedChampionshipEditionId = null">
-                                        {{ translator.get("International") }}
-                                    </label>
-                                </div>
+                                <input id="championship-international" type="radio" class="btn-check"
+                                    name="championship-type" autocomplete="off">
+                                <label for="championship-international" class="btn border me-2"
+                                    :class="`btn-${this.theme}`"
+                                    @click="nationalChampionshipsSelected = false; selectedChampionshipEditionId = null">
+                                    <i class="fa-solid fa-earth-americas"></i>
+                                    {{ translator.get("International") }}
+                                </label>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -814,7 +905,9 @@
                                                     </td>
                                                     <td class="text-center">{{ championshipEditionClub.points }}</td>
                                                     <td class="text-center">
-                                                        {{ game.getClubNationalLeagueLastPlayedFixture()?.number ?? 0 }}
+                                                        {{
+                                                        game.getNationalLeagueLastPlayedFixture(nationalLeague)?.number
+                                                        ?? 0 }}
                                                     </td>
                                                     <td class="text-center">
                                                         {{ championshipEditionClub.won }}
@@ -847,7 +940,7 @@
                     <section id="finances" :class="{ 'd-none' : activeSection !== 'finances' }">
                         <div class="row mb-2">
                             <div class="col">
-                                <h5>{{ translator.get("Finances") }}</h5>
+                                <h2 class="fs-5">{{ translator.get("Finances") }}</h2>
                             </div>
                         </div>
                     </section>
@@ -897,19 +990,16 @@
                             <div class="row-mb-2">
                                 <div class="col text-center">
                                     <div class="row">
-                                        <template v-for="(kitURL, index) in selectedClub.getKitsURLs()">
-                                            <div class="col-4">
-                                                <figure class="figure">
-                                                    <img class="figure-img img-fluid rounded" :src="kitURL"
-                                                        :alt="translator.get('Uniform')"
-                                                        :title="translator.get('Uniform')">
-                                                    <figcaption class="figure-caption color-inherit">
-                                                        {{ index === 0 ? translator.get("Home") : index === 1 ?
-                                                        translator.get("Away") : translator.get("Goalkeeper") }}
-                                                    </figcaption>
-                                                </figure>
-                                            </div>
-                                        </template>
+                                        <div v-for="(kitURL, index) in selectedClub.getKitsURLs()" class="col-4">
+                                            <figure class="figure">
+                                                <img class="figure-img img-fluid rounded" :src="kitURL"
+                                                    :alt="translator.get('Uniform')" :title="translator.get('Uniform')">
+                                                <figcaption class="figure-caption color-inherit">
+                                                    {{ index === 0 ? translator.get("Home") : index === 1 ?
+                                                    translator.get("Away") : translator.get("Goalkeeper") }}
+                                                </figcaption>
+                                            </figure>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1089,11 +1179,13 @@
                             <div class="row mb-3">
                                 <div class="col-6 col-md-3 d-grid">
                                     <button type="button" class="btn btn-secondary border" @click="resetPlayerFilter()">
+                                        <i class="fa-solid fa-rotate-left"></i>
                                         {{ translator.get("Reset") }}
                                     </button>
                                 </div>
                                 <div class="col-6 col-md-3 d-grid">
                                     <button type="submit" class="btn btn-primary border">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
                                         {{ translator.get("Search") }}
                                     </button>
                                 </div>
@@ -1201,6 +1293,7 @@
                                         <button type="button" class="btn btn-primary btn-sm border"
                                             @click="pageSize += config.pageSize"
                                             :disabled="pageSize >= filteredPlayers.length">
+                                            <i class="fa-solid fa-plus"></i>
                                             {{ translator.get("Load more") }}
                                         </button>
                                     </div>
@@ -1243,27 +1336,22 @@
                                 <div class="col">
                                     <button class="btn btn-outline-dark"
                                         @click="game.club.resetColors(); colors = { background: game.club.colors.backgroundCustom, foreground: game.club.colors.foregroundCustom }">
+                                        <i class="fa-solid fa-rotate-left"></i>
                                         {{ translator.get("Reset") }}
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-6 col-md-5 offset-md-2 d-grid">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                            {{ translator.get("Cancel") }}
-                                        </button>
-                                    </div>
-                                    <div class="col-6 col-md-5 d-grid">
-                                        <button type="button" class="btn btn-primary"
-                                            @click="game.club.colors.backgroundCustom = colors.background; game.club.colors.foregroundCustom = colors.foreground; setColors()">
-                                            {{ translator.get("Save Changes") }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="fa-solid fa-xmark"></i>
+                                {{ translator.get("Cancel") }}
+                            </button>
+                            <button type="button" class="btn btn-primary"
+                                @click="game.club.colors.backgroundCustom = colors.background; game.club.colors.foregroundCustom = colors.foreground; setColors()">
+                                <i class="fa-solid fa-floppy-disk"></i>
+                                {{ translator.get("Save Changes") }}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1341,6 +1429,7 @@
                 message: { text: '', type: 'primary' },
                 modal: { title: '', message: '', methodOk: function () { } },
                 pageSize: Config.pageSize,
+                theme: 'dark',
                 translator: translator,
 
                 // Play:
@@ -1350,7 +1439,7 @@
                 // Squad:
                 squadOrderColumn: 'positionId',
 
-                // Championships:
+                // Standings:
                 activeTab: 'classification',
                 nationalChampionshipsSelected: true,
                 selectedChampionshipEditionId: null,
@@ -1392,9 +1481,12 @@
             }
         },
         methods: {
+            advanceDate: function() {
+                alert('Teste');
+            },
             changeSection: function (event) {
                 event.preventDefault();
-                const section = event.target.getAttribute('href').substring(1);
+                const section = event.currentTarget.getAttribute('href').substring(1);
                 setTimeout(() => this.activeSection = section, 1);
 
                 const collapseElement = document.querySelector('.navbar-collapse.collapse')
@@ -1450,6 +1542,7 @@
             setColors: function () {
                 document.body.style.backgroundColor = this.activeSection === 'matches' ? 'rgb(27, 70, 38)' : this.game.club.colors.backgroundCustom;
                 document.body.style.color = this.activeSection === 'matches' ? 'white' : this.game.club.colors.foregroundCustom;
+                this.theme = this.game.club.colors.foregroundCustom === '#000000' ? 'dark' : 'light';
             },
 
             // Squad:
@@ -1457,7 +1550,7 @@
                 this.squadOrderColumn = this.squadOrderColumn === column ? `-${column}` : column;
             },
 
-            // Championships:
+            // Standings:
 
             // Clubs:
             selectCountry: function (event) {
@@ -1539,11 +1632,11 @@
             currentMatch() {
                 return this.game.getClubCurrentMatch();
             },
-            nextMatch() {
-                return this.game.getClubNextMatch();
+            currentOpponent() {
+                return this.currentMatch.getOpponent(this.game.club.id);
             },
-            nextOpponent() {
-                return this.nextMatch.getOpponent(this.game.club.id);
+            nationalLeague() {
+                return this.game.getClubNationalLeague();
             },
             selectedChampionshipEdition() {
                 return this.game.currentSeason.championshipEditions.find(ce => ce.id === this.selectedChampionshipEditionId);
@@ -1558,7 +1651,7 @@
         async created() {
             await this.loadGame();
             this.colors = { background: this.game.club.colors.backgroundCustom, foreground: this.game.club.foregroundCustom };
-            this.selectedChampionshipEditionId = this.game.getClubNationalLeague().id;
+            this.selectedChampionshipEditionId = this.nationalLeague.id;
             this.gameLoaded = true;
         },
     };

@@ -65,8 +65,7 @@ class Game {
         return this.currentSeason.getNextMatch(this.club.id);
     }
 
-    getClubNationalLeagueLastPlayedFixture() {
-        const nationalLeague = this.getClubNationalLeague();
+    getNationalLeagueLastPlayedFixture(nationalLeague) {
         const fixtures = nationalLeague.championshipEditionFixtures.filter(f => f.date < this.currentSeason.currentDate);
         const lastFixture = fixtures.length ? fixtures.last() : null;
         return lastFixture;

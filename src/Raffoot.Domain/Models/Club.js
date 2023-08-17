@@ -6,13 +6,17 @@ class Club {
         this._playerIds = [];
         this._squadId = null;
         this.money = 0;
-        this._trophies = [];
         this.colors = {
             background: backgroundColor,
             backgroundCustom: backgroundColor,
             foreground: foregroundColor,
             foregroundCustom: foregroundColor
         };
+        this.trust = {
+            boardOfDirectors: 80,
+            supporters: 80
+        };
+        this._trophies = [];
     }
 
     static create(name, countryName, externalId, backgroundColor, foregroundColor) {

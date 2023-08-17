@@ -8,6 +8,8 @@
     <title>Raffoot</title>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/solid.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
@@ -44,7 +46,8 @@
                     <div class="row mb-3">
                         <div class="col">
                             <label for="country" class="form-label">{{ translator.get("Country") }}</label>
-                            <select id="country" class="form-select" required @change="game.country = game.countries.find(c => c.id === parseInt($event.target.value))">
+                            <select id="country" class="form-select" required
+                                @change="game.country = game.countries.find(c => c.id === parseInt($event.target.value))">
                                 <option></option>
                                 <option v-for="country in playableCountries" :key="country.id" :value="country.id">
                                     {{ country.name }}
@@ -55,9 +58,11 @@
                     <div class="row mb-3">
                         <div class="col">
                             <label for="club" class="form-label">{{ translator.get("Club") }}</label>
-                            <select id="club" class="form-control" required @change="game.club = game.clubs.find(c => c.id === parseInt($event.target.value))">
+                            <select id="club" class="form-control" required
+                                @change="game.club = game.clubs.find(c => c.id === parseInt($event.target.value))">
                                 <option></option>
-                                <template v-for="championshipEdition in game.currentSeason.getNationalLeaguesByCountryId(game.country?.id)">
+                                <template
+                                    v-for="championshipEdition in game.currentSeason.getNationalLeaguesByCountryId(game.country?.id)">
                                     <optgroup :label="translator.getChampionshipName(championshipEdition.championship)">
                                         <option v-for="club in championshipEdition.clubs" :key="club.id"
                                             :value="club.id">
@@ -78,10 +83,14 @@
 
                 <div class="row">
                     <div class="col-6 col-sm-3 d-grid">
-                        <a href="index.html" class="btn btn-secondary">{{ translator.get("Back") }}</a>
+                        <a href="index.html" class="btn btn-secondary">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            {{ translator.get("Back") }}
+                        </a>
                     </div>
                     <div class="col-6 col-sm-3 d-grid">
                         <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-play"></i>
                             {{ translator.get("Start Game") }}
                         </button>
                     </div>
@@ -142,7 +151,7 @@
 
 <script>
     "use strict";
-    
+
     let gameService = new GameService();
 
     let RaffootApp = {
