@@ -6,7 +6,6 @@ class ChampionshipEdition {
         this._championshipEditionPlayerIds = [];
         this._championshipEditionEliminationPhaseIds = [];
         this._championshipEditionFixtureIds = [];
-        this._championshipEditionPlayerIds = [];
         this.dates = [];
         this._matchIds = [];
     }
@@ -96,8 +95,8 @@ class ChampionshipEdition {
         this._championshipEditionClubIds.push(championshipEditionClub.id);
     }
 
-    addChampionshipEditionPlayer() {
-        this._championshipEditionPlayerIds.push(this.championshipEditionPlayers.id);
+    addChampionshipEditionPlayer(championshipEditionPlayer) {
+        this._championshipEditionPlayerIds.push(championshipEditionPlayer.id);
     }
 
     addMatch(match) {

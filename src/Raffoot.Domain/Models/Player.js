@@ -92,11 +92,19 @@ class Player {
     }
 
     get isImprovised() {
-        return this.fieldLocalization ? this._positionId != this.fieldLocalization.position.id : false;
+        return this.isOnField ? this._positionId != this.fieldLocalization.position.id : false;
     }
 
     get isInjured() {
         return Object.hasOwn(this, 'injury');
+    }
+
+    get isOnBench() {
+        return !this.fieldLocalization;
+    }
+
+    get isOnField() {
+        return this.fieldLocalization;
     }
 
     get marketValue() {
@@ -168,11 +176,6 @@ class Player {
         const file = this.hasPhoto ? `${this.externalId}.png` : '0.svg';
         const url = `${Config.folders.photosFolder}/${file}`;
         return url;
-    }
-
-    isAvailable(match) {
-        const championshipEditionPlayer = match?.championshipEdition.championshipEditionPlayers.find(cep => cep.player.id === this.id);
-        return !this.isInjured && (!championshipEditionPlayer?.isSuspended ?? true);
     }
 
     recover() {

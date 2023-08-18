@@ -124,22 +124,32 @@ td.relegation {
     color: black;
 }
 
-.player .position {
-    left: 2.5%;
-    top: 30px;
+.player img {
     z-index: 1;
+}
+
+.player .cards {
+    top: 0px;
+    z-index: 0;
 }
 
 .player .overall {
     left: 2.5%;
     top: 16px;
-    z-index: 1;
+    z-index: 2;
+}
+
+.player .position {
+    left: 2.5%;
+    top: 30px;
+    z-index: 2;
 }
 
 .player .energy {
     left: 2.5%;
     height: 0.25rem;
     width: 95%;
+    z-index: 1;
 }
 
 .player .improvised {
@@ -152,4 +162,11 @@ td.relegation {
 
 .sortable th {
     cursor: pointer
+}
+
+.red-card {
+    background-color: red;
+    display: inline-block;
+    width: 1em;
+    padding: 0;
 }

@@ -26,6 +26,10 @@ class ChampionshipEditionPlayer {
     get championshipEdition() {
         return ChampionshipEdition.getById(this._championshipEditionId);
     }
+    
+    get isAvailable() {
+        return !this.player.isInjured && !this.isSuspended;
+    }
 
     get player() {
         return Player.getById(this._playerId);

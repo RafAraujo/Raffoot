@@ -48,11 +48,7 @@ class Club {
     }
 
     get goalkeeper() {
-        return this.starting11.find(p => p.position.isGoalkeeper);
-    }
-
-    get lineup() {
-        return this._formationId ? this.formation.fieldLocalizations.map(fl => ({ fieldLocalization: fl, player: this.getPlayerByFieldLocalizationId(fl.id) })) : null;
+        return this.playersOnField.find(p => p.position.isGoalkeeper);
     }
 
     get overall() {
@@ -63,16 +59,16 @@ class Club {
         return Context.game.players.filterByIds(this._playerIds);
     }
 
+    get playersOnBench() {
+        return this.players.filter(p => p.isOnBench);
+    }
+
+    get playersOnField() {
+        return this.players.filter(p => p.isOnField);
+    }
+
     get playerWages() {
-        return this.players.map(sp => sp.wage).sum();
-    }
-
-    get starting11() {
-        return this.players.filter(sp => sp.fieldLocalization);
-    }
-
-    get substitutes() {
-        return this.players.filter(sp => !sp.fieldLocalization);
+        return this.players.map(p => p.wage).sum();
     }
 
     get throphies() {
@@ -107,6 +103,14 @@ class Club {
         this.playingStyle = '';
     }
 
+    getEmptyFieldLocalizations() {
+        return this._formationId ? this.formation.fieldLocalizations.filter(fl => !this.getPlayerByFieldLocalization(fl)) : null;
+    }
+
+    getLineup(championshipEdition) {
+        return this.players.map(p => ({ player: p, championshipEditionPlayer: championshipEdition.championshipEditionPlayers.find(cep => cep.player.id === p.id) }));
+    }
+
     getRegionOverall(fieldRegion) {
         return this.getPlayersAt(fieldRegion).map(mp => mp.overall).sum();
     }
@@ -117,15 +121,15 @@ class Club {
     }
 
     getPlayersAt(fieldRegion) {
-        return this.starting11.filter(p => p.fieldLocalization.position.fieldRegion === fieldRegion);
+        return this.playersOnField.filter(p => p.fieldLocalization.position.fieldRegion === fieldRegion);
     }
 
-    getPlayerByFieldLocalizationId(fieldLocalizationId) {
-        return this.starting11.find(sp => sp.fieldLocalization.id === fieldLocalizationId);
+    getPlayerByFieldLocalization(fieldLocalization) {
+        return this.playersOnField.find(sp => sp.fieldLocalization.id === fieldLocalization.id);
     }
 
     getBestAvailablePlayerForFieldLocalization(fieldLocalization) {
-        const players = this.substitutes.filter(p => p.position.id === fieldLocalization.position.id);
+        const players = this.playersOnBench.filter(p => p.position.id === fieldLocalization.position.id);
         const player = players.length > 0 ? players.orderBy('-baseOverall')[0] : null;
         return player;
     }
@@ -167,16 +171,25 @@ class Club {
         return ranking.orderBy('-overall')[0].formation;
     }
 
+    movePlayerToBench(player) {
+        player.fieldLocalization = null;
+        player.order = this.players.map(p => p.order).max() + 1;
+    }
+
+    movePlayerToField(player, fieldLocalization) {
+        player.fieldLocalization = fieldLocalization;
+    }
+
     setAutomaticLineUp() {
         for (const fieldLocalization of this.formation.fieldLocalizations.reverse()) {
             const ranking = [];
             let chosenPlayer = this.getBestAvailablePlayerForFieldLocalization(fieldLocalization);
 
             if (chosenPlayer === null) {
-                let players = this.substitutes.filter(p => p.position.fieldRegion === fieldLocalization.position.fieldRegion);
+                let players = this.playersOnBench.filter(p => p.position.fieldRegion === fieldLocalization.position.fieldRegion);
 
                 if (players.length === 0) {
-                    players = this.substitutes;
+                    players = this.playersOnBench;
                 }
 
                 for (const player of players) {
@@ -195,10 +208,10 @@ class Club {
 
     setOrder() {
         let order = 0;
-        for (const player of this.starting11) {
+        for (const player of this.playersOnField) {
             player.order = ++order;
         }
-        for (const player of this.substitutes.orderBy('order', 'position.id', '-baseOverall')) {
+        for (const player of this.playersOnBench.orderBy('order', 'position.id', '-baseOverall')) {
             player.order = ++order;
         }
     }
@@ -220,7 +233,7 @@ class Club {
     pay(amount) {
         this.money -= amount;
     }
-    
+
     payWages() {
         this.pay(this.playerWages);
     }

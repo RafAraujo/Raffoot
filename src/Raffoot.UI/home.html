@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raffoot</title>
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome/css/solid.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -507,127 +507,144 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-2">
                                                 <div class="field position-relative border" style="height: 475px">
-                                                    <template v-if="game.club.formation"
-                                                        v-for="item in game.club.lineup">
-                                                        <template v-if="item.player">
-                                                            <div class="player position-absolute text-center"
-                                                                @click.stop="changePlayers(item.player.id)"
-                                                                :style="{ top: (11 - item.player.fieldLocalization.line) * 7.7 + '%', left: (item.player.fieldLocalization.column) * 20 + '%' }"
-                                                                :class="{ 'border blink' : item.player.id === selectedPlayerId }">
-                                                                <div>
-                                                                    <div class="position position-absolute"
-                                                                        :class="{ 'improvised' : item.player.isImprovised }"
-                                                                        :title="translator.get(item.player.fieldLocalization.position.name)">
-                                                                        {{
-                                                                        translator.get(item.player.fieldLocalization.position.abbreviation)
-                                                                        }}
-                                                                    </div>
-                                                                    <div class="overall position-absolute">
-                                                                        <template v-if="item.player.isInjured">
-                                                                            <i class="fa-solid fa-plus text-danger"
-                                                                                :title="getInjuryMessage(item.player)"></i>
-                                                                        </template>
-                                                                        <template v-else>
-                                                                            {{ item.player.overall }}
-                                                                        </template>
-                                                                    </div>
-                                                                </div>
-                                                                <img class="max-size-3-rem"
-                                                                    :class="{ 'opacity-25' : !item.player.isAvailable(game.currentMatch) }"
-                                                                    :src="item.player.getPhotoURL()"
-                                                                    :alt="item.player.name" :title="item.player.name"
-                                                                    onerror="this.onerror = null; this.src='res/players/0.svg'"
-                                                                    draggable="true"
-                                                                    @dragstart="selectedPlayerId = item.player.id"
-                                                                    @dragover.prevent
-                                                                    @drop="changePlayers(item.player.id)">
-                                                                <div class="energy progress position-relative"
-                                                                    :title="`${translator.get('Energy')} ${item.player.energy}%`">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                        :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
-                                                                        :aria-valuenow="item.player.energy"
-                                                                        aria-valuemin="0" aria-valuemax="100"
-                                                                        :style="{ width: item.player.energy + '%' }">
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    :dir="item.player.fieldLocalization.column < 3 ? 'ltr' : 'rtl'">
-                                                                    <span
-                                                                        class="d-inline-block position-relative text-nowrap">
-                                                                        {{ item.player.surname }}
-                                                                    </span>
+                                                    <template v-for="item in lineup.filter(i => i.player.isOnField)">
+                                                        <div class="player position-absolute text-center"
+                                                            @click.stop="changePlayers(item.player.id)"
+                                                            :style="{ top: (11 - item.player.fieldLocalization.line) * 7.7 + '%', left: (item.player.fieldLocalization.column) * 20 + '%' }"
+                                                            :class="{ 'border blink' : item.player.id === selectedPlayerId }">
+                                                            <div class="overall position-absolute">
+                                                                <template v-if="item.player.isInjured">
+                                                                    <i class="fa-solid fa-truck-medical fa-lg"
+                                                                        :title="getInjuryMessage(item.player)"></i>
+                                                                </template>
+                                                                <template v-else>
+                                                                    {{ item.player.overall }}
+                                                                </template>
+                                                            </div>
+                                                            <div class="position position-absolute"
+                                                                :class="{ 'improvised' : item.player.isImprovised }"
+                                                                :title="translator.get(item.player.fieldLocalization.position.name)">
+                                                                {{
+                                                                translator.get(item.player.fieldLocalization.position.abbreviation)
+                                                                }}
+                                                            </div>
+                                                            <img class="position-relative max-size-3-rem"
+                                                                :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
+                                                                :src="item.player.getPhotoURL()" :alt="item.player.name"
+                                                                :title="item.player.name"
+                                                                onerror="this.onerror = null; this.src='res/players/0.svg'"
+                                                                draggable="true"
+                                                                @dragstart="dragStart($event, item.player.id)"
+                                                                @dragover.prevent
+                                                                @drop="drop($event); changePlayers(item.player.id)">
+                                                            <div class="cards position-absolute w-100 text-end">
+                                                                <i v-if="item.championshipEditionPlayer?.redCard"
+                                                                    class="fa-solid fa-square fa-lg text-danger me-1"
+                                                                    :title="translator.get('Suspended')">
+                                                                </i>
+                                                                <i v-else
+                                                                    v-for="index in item.championshipEditionPlayer?.yellowCards"
+                                                                    class="fa-solid fa-square fa-lg text-warning me-1"
+                                                                    :title="translator.get('Suspended')">
+                                                                </i>
+                                                            </div>
+                                                            <div class="energy progress position-relative"
+                                                                :title="`${translator.get('Energy')} ${item.player.energy}%`">
+                                                                <div class="progress-bar" role="progressbar"
+                                                                    :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                                    :aria-valuenow="item.player.energy"
+                                                                    aria-valuemin="0" aria-valuemax="100"
+                                                                    :style="{ width: item.player.energy + '%' }">
                                                                 </div>
                                                             </div>
-                                                        </template>
-                                                        <template v-else>
-                                                            <div>
-                                                                <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
-                                                                    @click.stop="movePlayerToField(item.fieldLocalization.id)"
-                                                                    :style="{ top: (11 - item.fieldLocalization.line) * 7.7 + '%', left: (item.fieldLocalization.column) * 20 + '%' }">
-                                                                    <img class="max-size-3-rem"
-                                                                        :src="game.club.getKitsURLs()[0]"
-                                                                        :alt="translator.get(item.fieldLocalization.position.name)"
-                                                                        :title="translator.get(item.fieldLocalization.position.name)"
-                                                                        onerror="this.onerror = null; this.src='res/players/0.svg'"
-                                                                        @dragstart="$event.dataTransfer.effectAllowed = 'none'"
-                                                                        @dragover.prevent
-                                                                        @drop="movePlayerToField(item.fieldLocalization.id)">
-                                                                    <span class="fw-bold">
-                                                                        {{
-                                                                        translator.get(item.fieldLocalization.position.abbreviation)
-                                                                        }}
-                                                                    </span>
-                                                                </div>
-                                                        </template>
+                                                            <div
+                                                                :dir="item.player.fieldLocalization.column < 3 ? 'ltr' : 'rtl'">
+                                                                <span
+                                                                    class="d-inline-block position-relative text-nowrap">
+                                                                    {{ item.player.surname }}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                    <template
+                                                        v-for="fieldLocalization in game.club.getEmptyFieldLocalizations()">
+                                                        <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
+                                                            @click.stop="movePlayerToField(fieldLocalization.id)"
+                                                            :style="{ top: (11 - fieldLocalization.line) * 7.7 + '%', left: (fieldLocalization.column) * 20 + '%' }">
+                                                            <img class="max-size-3-rem"
+                                                                :src="game.club.getKitsURLs()[0]"
+                                                                :alt="translator.get(fieldLocalization.position.name)"
+                                                                :title="translator.get(fieldLocalization.position.name)"
+                                                                onerror="this.onerror = null; this.src='res/players/0.svg'"
+                                                                @dragstart="$event.dataTransfer.effectAllowed = 'none'"
+                                                                @dragover.prevent
+                                                                @drop="drop($event); movePlayerToField(fieldLocalization.id)">
+                                                            <span class="fw-bold">
+                                                                {{
+                                                                translator.get(fieldLocalization.position.abbreviation)
+                                                                }}
+                                                            </span>
+                                                        </div>
                                                     </template>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="bench position-relative border"
-                                                    :class="{ 'pb-5' : game.club.substitutes.length % 5 === 0 }"
-                                                    @click.stop="movePlayerToBench()" @drop="movePlayerToBench()"
-                                                    @dragover.prevent>
+                                                    :class="{ 'pb-5' : game.club.playersOnBench.length % 5 === 0 }"
+                                                    @click.stop="movePlayerToBench()"
+                                                    @drop="drop($event); movePlayerToBench()" @dragover.prevent>
                                                     <template
-                                                        v-for="player in game.club.substitutes.orderBy('order', 'position.id', '-overall')">
-                                                        <div class="player d-inline-block text-center"
-                                                            @click.stop="changePlayers(player.id)"
-                                                            :class="{ 'border blink' : player.id === selectedPlayerId }">
-                                                            <div class="position-relative">
-                                                                <div class="position position-absolute"
-                                                                    :class="{ 'improvised' : player.isImprovised }"
-                                                                    :title="translator.get(player.position.name)">
-                                                                    {{
-                                                                    translator.get(player.position.abbreviation)
-                                                                    }}
-                                                                </div>
-                                                                <div class="overall position-absolute">
-                                                                    <template v-if="player.isInjured">
-                                                                        <i class="fa-solid fa-plus text-danger"></i>
-                                                                    </template>
-                                                                    <template v-else>
-                                                                        {{ player.overall }}
-                                                                    </template>
-                                                                </div>
+                                                        v-for="item in lineup.filter(i => i.player.isOnBench).orderBy('player.order', 'player.position.id', '-player.overall')">
+                                                        <div class="player d-inline-block position-relative text-center"
+                                                            @click.stop="changePlayers(item.player.id)"
+                                                            :class="{ 'border blink' : item.player.id === selectedPlayerId }">
+                                                            <div class="overall position-absolute">
+                                                                <template v-if="item.player.isInjured">
+                                                                    <i class="fa-solid fa-truck-medical fa-lg"
+                                                                        :title="getInjuryMessage(item.player)"></i>
+                                                                </template>
+                                                                <template v-else>
+                                                                    {{ item.player.overall }}
+                                                                </template>
                                                             </div>
-                                                            <img class="max-size-3-rem" :src="player.getPhotoURL()"
-                                                                :class="{ 'opacity-25' : !player.isAvailable(game.currentMatch) }"
-                                                                :alt="player.name" :title="player.name"
+                                                            <div class="position position-absolute"
+                                                                :title="translator.get(item.player.position.name)">
+                                                                {{
+                                                                translator.get(item.player.position.abbreviation)
+                                                                }}
+                                                            </div>
+                                                            <div class="cards position-absolute w-100 text-end">
+                                                                <i v-if="item.championshipEditionPlayer?.redCard"
+                                                                    class="fa-solid fa-square fa-lg text-danger me-1"
+                                                                    :title="translator.get('Suspended')">
+                                                                </i>
+                                                                <i v-else
+                                                                    v-for="index in item.championshipEditionPlayer?.yellowCards"
+                                                                    class="fa-solid fa-square fa-lg text-warning me-1"
+                                                                    :title="translator.get('Suspended')">
+                                                                </i>
+                                                            </div>
+                                                            <img class="max-size-3-rem"
+                                                                :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
+                                                                :src="item.player.getPhotoURL()" :alt="item.player.name"
+                                                                :title="item.player.name"
                                                                 onerror="this.src='res/players/0.svg'" draggable="true"
-                                                                @dragstart="selectedPlayerId = player.id"
-                                                                @drop="changePlayers(player.id)" @dragover.prevent>
+                                                                @dragstart="dragStart($event, item.player.id)"
+                                                                @drop="drop($event); changePlayers(item.player.id)"
+                                                                @dragover.prevent>
                                                             <div class="energy progress position-relative"
-                                                                :title="`${translator.get('Energy')} ${player.energy}%`">
+                                                                :title="`${translator.get('Energy')} ${item.player.energy}%`">
                                                                 <div class="progress-bar" role="progressbar"
-                                                                    :class="player.energy > 75 ? 'bg-success' : player.energy > 50 ? 'bg-warning' : 'bg-danger'"
-                                                                    :aria-valuenow="player.energy" aria-valuemin="0"
-                                                                    aria-valuemax="100"
-                                                                    :style="{ width: player.energy + '%' }">
+                                                                    :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                                    :aria-valuenow="item.player.energy"
+                                                                    aria-valuemin="0" aria-valuemax="100"
+                                                                    :style="{ width: item.player.energy + '%' }">
                                                                 </div>
                                                             </div>
                                                             <div>
                                                                 <span
                                                                     class="d-inline-block position-relative text-nowrap">
-                                                                    {{ player.surname }}
+                                                                    {{ item.player.surname }}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -693,7 +710,13 @@
                                                         :title="translator.get(player.country.name)"
                                                         style="max-height: 1.5rem;">
                                                 </td>
-                                                <td>{{ player.surname }}</td>
+                                                <td>
+                                                    <span>{{ player.surname }}</span>
+                                                    <template v-if="player.isInjured">
+                                                        <i class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
+                                                            :title="getInjuryMessage(player)"></i>
+                                                    </template>
+                                                </td>
                                                 <td class="text-center pt-0 pb-0">
                                                     <span class="overall" :class="player.category">
                                                         {{ player.overall }}
@@ -704,7 +727,7 @@
                                                     {{ player.age }}
                                                 </td>
                                                 <td>
-                                                    <div class="energy progress position-relative"
+                                                    <div class="progress"
                                                         :title="`${translator.get('Energy')} ${player.energy}%`">
                                                         <div class="progress-bar" role="progressbar"
                                                             :class="player.energy > 75 ? 'bg-success' : player.energy > 50 ? 'bg-warning' : 'bg-danger'"
@@ -1061,7 +1084,13 @@
                                                             :title="translator.get(player.country.name)"
                                                             style="max-height: 1.5rem;">
                                                     </td>
-                                                    <td>{{ player.surname }}</td>
+                                                    <td>
+                                                        <span>{{ player.surname }}</span>
+                                                        <template v-if="player.isInjured">
+                                                            <i class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
+                                                                :title="getInjuryMessage(player)"></i>
+                                                        </template>
+                                                    </td>
                                                     <td class="text-center pt-0 pb-0">
                                                         <span class="overall" :class="player.category">
                                                             {{ player.overall }}
@@ -1072,7 +1101,7 @@
                                                         {{ player.age }}
                                                     </td>
                                                     <td>
-                                                        <div class="energy progress position-relative"
+                                                        <div class="progress"
                                                             :title="`${translator.get('Energy')} ${player.energy}%`">
                                                             <div class="progress-bar" role="progressbar"
                                                                 :class="player.energy > 75 ? 'bg-success' : player.energy > 50 ? 'bg-warning' : 'bg-danger'"
@@ -1255,7 +1284,13 @@
                                                                 :title="translator.get(player.country.name)"
                                                                 style="max-height: 1.5rem;">
                                                         </td>
-                                                        <td>{{ player.surname }}</td>
+                                                        <td>
+                                                            <span>{{ player.surname }}</span>
+                                                            <template v-if="player.isInjured">
+                                                                <i class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
+                                                                    :title="getInjuryMessage(player)"></i>
+                                                            </template>
+                                                        </td>
                                                         <td>{{ player.club.name }}</td>
                                                         <td class="text-center pt-0 pb-0">
                                                             <span class="overall" :class="player.category">
@@ -1504,8 +1539,13 @@
                     this.selectedPlayerId = playerId;
                 }
             },
-            getInjuryMessage: function(player) {
-                debugger;
+            dragStart: function (event, playerId) {
+                event.dataTransfer.setData("playerId", playerId);
+            },
+            drop: function (event) {
+                this.selectedPlayerId = parseInt(event.dataTransfer.getData("playerId"));
+            },
+            getInjuryMessage: function (player) {
                 const message = "{0} - {1}".format(this.translator.get("Injured player"), this.translator.get("Out until {0}").format(player.recoveryDate.toLocaleDateString()));
                 return message;
             },
@@ -1513,15 +1553,13 @@
                 fieldLocalizationId = parseInt(fieldLocalizationId);
                 const fieldLocalization = FieldLocalization.getById(fieldLocalizationId);
                 if (this.selectedPlayerId) {
-                    this.selectedPlayer.fieldLocalization = fieldLocalization;
+                    this.game.club.movePlayerToField(this.selectedPlayer, fieldLocalization);
                     this.selectedPlayerId = null;
                 }
             },
             movePlayerToBench: function () {
                 if (this.selectedPlayerId && this.selectedPlayer.fieldLocalization) {
-                    const order = this.game.club.players.map(sp => sp.order).max() + 1;
-                    this.selectedPlayer.fieldLocalization = null;
-                    this.selectedPlayer.order = order;
+                    this.game.club.movePlayerToBench(this.selectedPlayer);
                 }
                 this.selectedPlayerId = null;
             },
@@ -1630,6 +1668,9 @@
             currentOpponent() {
                 return this.currentMatch.getOpponent(this.game.club.id);
             },
+            lineup() {
+                return this.game.club.getLineup(this.currentMatch.championshipEdition);
+            },
             nationalLeague() {
                 return this.game.getClubNationalLeague();
             },
@@ -1650,6 +1691,11 @@
                 this.colors = { background: this.game.club.colors.backgroundCustom, foreground: this.game.club.foregroundCustom };
                 this.selectedChampionshipEditionId = this.nationalLeague.id;
                 this.message = '';
+
+                let x = ChampionshipEditionPlayer.create(this.game.getClubCurrentMatch().championshipEdition, this.game.club.players[0]);
+                x.redCard = true;
+                x.yellowCards = 3;
+
                 this.gameLoaded = true;
             }
             catch (error) {

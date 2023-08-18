@@ -49,12 +49,12 @@ namespace RaffootLoader.Services
             $"{PrefixOfContext}{Separator}Offensive", "Offside", "Options", "Out until {0}", "Overall", "OV",
             $"{PrefixOfContext}{Separator}Passes", $"{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Players", "Playing Style", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
             "Quarter-finals",
-            "Raffoot", "Ranking", $"{PrefixOfContext}{Separator}Referee", "Reset", $"{PrefixOfContext}{Separator}Right", "Round of 16", "Round of 32", "Round of 64",
-            "Save Changes", "Save Game", "Search", "Search Players", "Sector", "Semifinals", "Shots on goal", "Showing {0} of {1}", "Silver", "Squad", "Stadium", "Standings", "Star", "Start Game", "Starting game...", "Start of the match", "Statistics", "Supercup", $"{PrefixOfContext}{Separator}Supporters",
+            "Raffoot", "Ranking", "Red Card", $"{PrefixOfContext}{Separator}Referee", "Reset", $"{PrefixOfContext}{Separator}Right", "Round of 16", "Round of 32", "Round of 64",
+            "Save Changes", "Save Game", "Search", "Search Players", "Sector", "Semifinals", "Shots on goal", "Showing {0} of {1}", "Silver", "Squad", "Stadium", "Standings", "Star", "Start Game", "Starting game...", "Start of the match", "Statistics", "Supercup", $"{PrefixOfContext}{Separator}Supporters",  $"{PrefixOfContext}{Separator}Suspended",
             $"{PrefixOfContext}{Separator}Tackles", "Text color", "Ticket Price", "Time", "Top Scorers", "Total", $"{PrefixOfContext}{Separator}Trust", "Type",
             "Uniform",
             $"{PrefixOfContext}{Separator}Wage", "Wide", "Window mode", "Wins", "World", "World Cup",
-            "Year", "Yes"
+            "Year", "Yellow Card", "Yellow Cards", "Yes"
         };
         private readonly string[] _fixedTexts = new[] { "BeNe", "CON", "Overall", "OV", "Raffoot", "Reset" };
 
