@@ -1,31 +1,26 @@
 class Player {
-    constructor(fullName, name, countryId, positionIds, age, overall, clubId, externalId, hasPhoto, star, energy, wage, goals) {
-        this.fullName = fullName;
+    constructor(name, countryId, positionId, age, baseOverall, clubId, externalId, hasPhoto, energy, wage) {
         this.name = name;
         this._countryId = countryId;
-        this._positionIds = positionIds;
+        this._positionId = positionId;
         this.age = age;
-        this.overall = overall;
+        this.baseOverall = baseOverall;
         this._clubId = clubId;
+        this._fieldLocalizationId = null;
         this.externalId = externalId;
         this.hasPhoto = hasPhoto;
-        this.star = star;
         this.energy = energy;
         this.wage = wage;
-        this.stats = { matches: 0, goals: 0, assists: 0, grades: 0 };
+        this.stats = { matches: 0, goals: 0, assists: 0 };
     }
 
-    static create(fullName, name, countryName, positionAbbreviations, age, overall, club, externalId, hasPhoto) {
-        const country = Context.game.countries.find(c => c.name === countryName);
-        const positionIds = positionAbbreviations.map(pa => Position.getByAbbreviation(pa)).map(p => p.id);
-        const star = false;
+    static create(name, countryId, positionId, age, baseOverall, club, externalId, hasPhoto) {
         const energy = 100;
-        const wage = Player._getBaseWage(overall, false);
-        const player = new Player(fullName, name, country.id, positionIds, age, overall, club.id, externalId, hasPhoto, star, energy, wage);
+        const wage = Player._getBaseWage(baseOverall, false);
+        const player = new Player(name, countryId, positionId, age, baseOverall, club.id, externalId, hasPhoto, energy, wage);
         player.id = Context.game.players.push(player);
         
         club.addPlayer(player);
-        SquadPlayer.create(club.squad, player);
         
         return player;
     }
@@ -69,12 +64,16 @@ class Player {
         return value;
     }
 
-    get averageGrade() {
-        return this.stats.matches > 0 ? this.stats.grades / this.stats.matches : null;
+    get category() {
+        return Player.getCategory(this.baseOverall);
     }
 
-    get category() {
-        return Player.getCategory(this.overall);
+    get fieldLocalization() {
+        return this._fieldLocalizationId ? FieldLocalization.getById(this._fieldLocalizationId) : null;
+    }
+
+    set fieldLocalization(value) {
+        this._fieldLocalizationId = value ? value.id : null;
     }
 
     get club() {
@@ -92,17 +91,26 @@ class Player {
     get idealFormations() {
         return Context.game.formations.filter(f => f.fieldLocalizations)
     }
+
+    get isImprovised() {
+        if (this.fieldLocalization) {
+            return this._positionId != this.fieldLocalization.position.id;
+        }
+        else {
+            return false;
+        }
+    }
     
     get marketValue() {
-        return Player._calculateMarketValue(this.overall, this.star, this.age);
+        return Player._calculateMarketValue(this.baseOverall, this.star, this.age);
     }
 
-    get positionId() {
-        return this._positionIds[0];
+    get overall() {
+        return this._fieldLocalizationId ? this.calculateOverallAt(this.fieldLocalization) : this.baseOverall;
     }
 
     get position() {
-        return Position.getById(this.positionId);
+        return Position.getById(this._positionId);
     }
 
     get surname() {
@@ -117,8 +125,25 @@ class Player {
         }
     }
 
+    calculateOverallAt(fieldLocalization) {
+        if (this._positionId === fieldLocalization.position.id) {
+            return this.baseOverall;
+        }
+        else if (this.position.fieldLocalizations[0].line === fieldLocalization.line) {
+            const overall = this.baseOverall * 0.95;
+            return Math.round(overall);
+        }
+        else {
+            const playerNearestFieldLocalization = this.getNearestFieldLocalization(fieldLocalization);
+            const distance = playerNearestFieldLocalization.calculateDistanceTo(fieldLocalization);
+            const factor = playerNearestFieldLocalization.position.fieldRegion.id === fieldLocalization.position.fieldRegion.id ? 3 : 4;
+            const overall = this.baseOverall - (distance * factor);
+            return Math.round(overall);
+        }
+    }
+
     getNearestFieldLocalization(fieldLocalization) {
-        if (this.position.id === fieldLocalization.position.id) {
+        if (this._positionId === fieldLocalization.position.id) {
             return fieldLocalization;
         }
 

@@ -22,8 +22,8 @@ class Continent {
 
     static seed() {
 		Continent.create('Africa', 'Africa Champions Cup', 'Africa Conference Cup');
-		Continent.create('Asia', 'Asia Champions Cup', 'Asia Conference Cup');
 		Continent.create('America', 'Copa Libertadores', 'Copa Sudamericana');
+		Continent.create('Asia', 'Asia Champions Cup', 'Asia Conference Cup');
 		Continent.create('Europe', 'Champions League', 'Europa League');
 	}
 

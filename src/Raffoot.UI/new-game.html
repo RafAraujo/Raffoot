@@ -15,8 +15,8 @@
 
 <body>
     <div id="app" v-cloak>
-        <div class="container">
-            <div class="row mt-3" v-if="!gameCreated">
+        <div class="container" v-if="!gameCreated">
+            <div class="row mt-3">
                 <div class="col">
                     <div class="alert alert-primary alert-dismissible fade show" role="alert">
                         {{ translator.get("Processing...") }}
@@ -49,9 +49,15 @@
                             <select id="country" class="form-select" required
                                 @change="game.country = game.countries.find(c => c.id === parseInt($event.target.value))">
                                 <option></option>
-                                <option v-for="country in playableCountries" :key="country.id" :value="country.id">
-                                    {{ country.name }}
-                                </option>
+                                <template
+                                    v-for="continent in game.continents.map(c => ({ id: c.id, name: translator.get(c.name) }))">
+                                    <optgroup :label="continent.name">
+                                        <option v-for="country in getPlayableCountries(continent.id)" :key="country.id"
+                                            :value="country.id">
+                                            {{ country.name }}
+                                        </option>
+                                    </optgroup>
+                                </template>
                             </select>
                         </div>
                     </div>
@@ -64,7 +70,7 @@
                                 <template
                                     v-for="championshipEdition in game.currentSeason.getNationalLeaguesByCountryId(game.country?.id)">
                                     <optgroup :label="translator.getChampionshipName(championshipEdition.championship)">
-                                        <option v-for="club in championshipEdition.clubs" :key="club.id"
+                                        <option v-for="club in championshipEdition.clubs.orderBy('name')" :key="club.id"
                                             :value="club.id">
                                             {{ club.name }}
                                         </option>
@@ -126,13 +132,10 @@
     <script src="../Raffoot.Domain/Models/Formation.js"></script>
     <script src="../Raffoot.Domain/Models/Game.js"></script>
     <script src="../Raffoot.Domain/Models/Match.js"></script>
-    <script src="../Raffoot.Domain/Models/MatchClub.js"></script>
     <script src="../Raffoot.Domain/Models/Player.js"></script>
     <script src="../Raffoot.Domain/Models/Position.js"></script>
     <script src="../Raffoot.Domain/Models/Season.js"></script>
     <script src="../Raffoot.Domain/Models/SeasonDate.js"></script>
-    <script src="../Raffoot.Domain/Models/Squad.js"></script>
-    <script src="../Raffoot.Domain/Models/SquadPlayer.js"></script>
     <script src="../Raffoot.Domain/Config.js"></script>
     <script src="../Raffoot.Domain/Context.js"></script>
     <script src="../Raffoot.Domain/MultiLanguage.js"></script>
@@ -161,17 +164,18 @@
                 gameCreated: false,
                 gameName: '',
                 message: { text: '', type: 'primary' },
-                playableCountries: [],
                 translator: new TranslatorService(),
             }
         },
         methods: {
-            getPlayableCountries() {
-                let countries =
-                    this.game.currentSeason.championshipEditions
-                        .filter(ce => ce.championship.championshipType.scope === 'national' && ce.championship.championshipType.format === 'league')
+            getPlayableCountries(continentId) {
+                const countryIds = Context.game.countries.filter(c => c.continent?.id === continentId).map(c => c.id);
+
+                const countries =
+                    this.game.currentSeason.getNationalLeagues()
                         .flatMap(ce => ce.championship.countries)
                         .distinct()
+                        .filter(c => countryIds.includes(c.id))
                         .map(c => ({ id: c.id, name: this.translator.get(c.name) }))
                         .orderBy('name');
 
@@ -180,8 +184,8 @@
             startGame: async function () {
                 try {
                     this.game.name = this.gameName;
-                    this.game.club.squad.setOrder();
-                    //this.game.club.squad.clearSettings();
+                    this.game.club.setOrder();
+                    //this.game.club.clearFormation();
                     let id = await gameService.insertAsync(Vue.toRaw(this.game));
                     this.redirect(`home.html?id=${id}`);
                 }
@@ -194,7 +198,6 @@
         },
         mounted() {
             this.game = gameService.create('');
-            this.playableCountries = this.getPlayableCountries();
             this.gameCreated = true;
         }
     };

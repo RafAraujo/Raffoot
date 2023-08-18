@@ -89,8 +89,8 @@ class GameFactory {
 
 	static _arrangeSquads() {
 		for (const club of Context.game.clubs) {
-			club.squad.arrange();
-			club.receive(club.squad.wage * 9);
+			club.arrangePlayers();
+			club.receive(club.playerWages * 9);
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using RaffootLoader.Data;
 using RaffootLoader.Data.Interfaces;
+using RaffootLoader.Domain.Enums;
 using RaffootLoader.Domain.Models;
 using RaffootLoader.Services.Interfaces;
 using RaffootLoader.Utils;
@@ -36,41 +37,54 @@ namespace RaffootLoader.Services
                 sb.AppendLine(string.Format("class {0} {{", fileName));
 
                 sb.AppendLine("\tstatic seedCountries() {");
-                foreach (var country in _context.Countries.OrderBy(c => c.Name))
-                    sb.AppendLine(string.Format("\t\tCountry.create(\"{0}\", {1});",
+                sb.AppendLine("\t\tlet c = Country.create;");
+                sb.AppendLine();
+
+                var countries = _context.Countries.OrderBy(c => c.Name);
+                var leagues = _context.Leagues;
+
+                foreach (var country in countries)
+                {
+                    sb.AppendLine(string.Format("\t\tc(\"{0}\"{1});",
                         country.Name,
-                        string.IsNullOrEmpty(country.Continent) ? "null" : $"\"{country.Continent}\""));
+                        string.IsNullOrEmpty(country.Continent) ? string.Empty : $", {(int)Enum.Parse(typeof(Continent), country.Continent) + 1}"));
+                }
+
                 sb.AppendLine("\t}").AppendLine();
 
                 sb.AppendLine("\tstatic seedClubs() {");
-                sb.AppendLine("\t\tlet club = null;");
+                sb.AppendLine("\t\tlet x = null;");
+                sb.AppendLine("\t\tlet c = Club.create;");
+                sb.AppendLine("\t\tlet p = Player.create;");
                 sb.AppendLine();
 
-                foreach (var league in _context.Leagues)
+                var countryNames = countries.Select(c => c.Name).ToList();
+                var positions = _context.Positions.Select(p => p.Abbreviation).ToList();
+
+                foreach (var league in leagues)
                 {
                     var country = _context.Countries.Single(c => c.Name == league.Country);
                     var clubs = _context.Clubs.Where(c => c.LeagueId == league.ExternalId);
 
                     foreach (var club in clubs)
                     {
-                        sb.AppendLine(string.Format("\t\tclub = Club.create(\"{0}\", \"{1}\", {2}, \"{3}\", \"{4}\");",
-                            club.Name,
-                            country.Name,
+                        sb.AppendLine(string.Format("\t\tx = c(\"{0}\", {1}, {2}, \"{3}\", \"{4}\");",
+                        club.Name,
+                            countryNames.IndexOf(country.Name) + 1,
                             club.ExternalId,
                             club.BackgroundColor,
                             club.ForegroundColor));
 
                         foreach (var player in _context.Players.Where(p => p.ClubId == club.ExternalId))
                         {
-                            sb.AppendLine(string.Format("\t\tPlayer.create(\"{0}\", \"{1}\", \"{2}\", [{3}], {4}, {5}, club, {6}, {7});",
-                                player.FullName,
+                            sb.AppendLine(string.Format("\t\tp(\"{0}\", {1}, {2}, {3}, {4}, x, {5}, {6});",
                                 player.Name,
-                                player.Country,
-                                string.Join(", ", player.Positions.Select(p => $"'{p}'")),
+                                countryNames.IndexOf(player.Country) + 1,
+                                positions.IndexOf(player.Positions.First()) + 1,
                                 player.Age,
                                 player.Overall,
                                 player.ExternalId,
-                                player.HasPhoto.ToString().ToLower()));
+                                Convert.ToByte(player.HasPhoto)));
                         }
 
                         sb.AppendLine();

@@ -8,25 +8,27 @@ namespace RaffootLoader.Data
     public class Context : IContext
     {
         private readonly ISettings _settings;
-        private readonly IRepository<League> _leagueRepository;
+
         private readonly IRepository<Club> _clubRepository;
-        private readonly IRepository<Player> _playerRepository;
         private readonly IRepository<Country> _countryRepository;
+        private readonly IRepository<League> _leagueRepository;
+        private readonly IRepository<Player> _playerRepository;
         private readonly IRepository<Translation> _translationRepository;
 
-        private IEnumerable<League> _leagues;
         private IEnumerable<Club> _clubs;
-        private IEnumerable<Player> _players;
         private IEnumerable<Country> _countries;
-
-        public IEnumerable<League> Leagues
-        {
-            get => _leagues ??= _leagueRepository.GetAll();
-        }
+        private IEnumerable<League> _leagues;
+        private IEnumerable<Player> _players;
+        private IEnumerable<Position> _positions;
 
         public IEnumerable<Club> Clubs
         {
             get => _clubs ??= _clubRepository.GetAll();
+        }
+
+        public IEnumerable<League> Leagues
+        {
+            get => _leagues ??= _leagueRepository.GetAll();
         }
 
         public IEnumerable<Player> Players
@@ -37,6 +39,28 @@ namespace RaffootLoader.Data
         public IEnumerable<Country> Countries
         {
             get => _countries ??= _countryRepository.GetAll();
+        }
+
+        public IEnumerable<Position> Positions
+        {
+            get => _positions ??= new[]
+            {
+                new Position("Goalkeeper", "GK"),
+                new Position("Centre-Back", "CB"),
+                new Position("Left-Back", "LB"),
+                new Position("Right-Back", "RB"),
+                new Position("Left Wing-Back", "LWB"),
+                new Position("Right Wing-Back", "RWB"),
+                new Position("Defensive Midfielder", "CDM"),
+                new Position("Centre Midfielder", "CM"),
+                new Position("Left Midfielder", "LM"),
+                new Position("Right Midfielder", "RM"),
+                new Position("Attacking Midfielder", "CAM"),
+                new Position("Left Winger", "LW"),
+                new Position("Right Winger", "RW"),
+                new Position("Centre Forward", "CF"),
+                new Position("Striker", "ST"),
+            };
         }
 
         public static IEnumerable<string> Languages

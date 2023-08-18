@@ -58,13 +58,10 @@ class GameService {
         game.fieldRegions = game.fieldRegions.map(o => Object.assign(new FieldRegion(), o));
         game.formations = game.formations.map(o => Object.assign(new Formation(), o));
         game.matches = game.matches.map(o => Object.assign(new Match(), o));
-        game.matchClubs = game.matchClubs.map(o => Object.assign(new MatchClub(), o));
         game.players = game.players.map(o => Object.assign(new Player(), o));
         game.positions = game.positions.map(o => Object.assign(new Position(), o));
         game.seasons = game.seasons.map(o => Object.assign(new Season(), o));
         game.seasonDates = game.seasonDates.map(o => Object.assign(new SeasonDate(), o));
-        game.squads = game.squads.map(o => Object.assign(new Squad(), o));
-        game.squadPlayers = game.squadPlayers.map(o => Object.assign(new SquadPlayer(), o));
 
         Context.game = game;
 

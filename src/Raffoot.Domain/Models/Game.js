@@ -26,13 +26,10 @@ class Game {
         this.fieldRegions = [];
         this.formations = [];
         this.matches = [];
-        this.matchClubs = [];
         this.players = [];
         this.positions = [];
         this.seasons = [];
         this.seasonDates = [];
-        this.squads = [];
-        this.squadPlayers = [];
     }
 
     get club() {

@@ -5,9 +5,8 @@ class Country {
         this._clubIds = [];
     }
 
-    static create(name, continentName) {
-        const continent = Context.game.continents.find(c => c.name === continentName);
-        const country = new Country(name, continent?.id);
+    static create(name, continentId) {
+        const country = new Country(name, continentId);
         country.id = Context.game.countries.push(country);        
         return country;
     }

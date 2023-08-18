@@ -2,9 +2,12 @@ class Match {
     constructor(date, championshipEditionId) {
         this.date = date;
         this._championshipEditionId = championshipEditionId;
-        this._matchClubIds = [];
+        this._clubHomeId = null;
+        this._clubAwayId = null;
+        this.goalsHome = null;
+        this.goalsAway = null;
         this.audience = null;
-        this.finished = false;
+        this.isFinished = false;
     }
 
     static create(championshipEdition, date) {
@@ -18,30 +21,28 @@ class Match {
         return Context.game.matches[id - 1];
     }
 
+    static _formattedScore(club1, club2) {
+        return this.finished ? `${club1.goals} × ${club2.goals}` : '';
+    }
+
     get championshipEdition() {
         return ChampionshipEdition.getById(this._championshipEditionId);
     }
 
-    get matchClubs() {
-        return Context.game.matchClubs.filterByIds(this._matchClubIds);
-    }
-
     get clubs() {
-        return this.matchClubs.map(mc => mc.club);
+        return this._clubAwayId ? [this.clubHome, this.clubAway] : null;
     }
 
-    get matchClubHome() {
-        const matchClub = this.matchClubs.find(mc => mc.situation === 'home');
-        return matchClub ? matchClub : this.matchClubs[0];
+    get clubHome() {
+        return Club.getById(this._clubHomeId);
     }
 
-    get matchClubAway() {
-        const matchClub = this.matchClubs.find(mc => mc.situation === 'away');
-        return matchClub ? matchClub : this.matchClubs[1];
+    get clubAway() {
+        return Club.getById(this._clubAwayId);
     }
 
     get description() {
-        return `${this.matchClubHome.club.name} × ${this.matchClubAway.club.name}`;
+        return `${this.clubHome.name} × ${this.clubAway.name}`;
     }
 
     get income() {
@@ -49,20 +50,20 @@ class Match {
     }
 
     get score() {
-        return this._formattedScore(this.matchClubHome, this.matchClubAway);
+        return this.isFinished ? Match._formattedScore(this.clubHome, this.clubAway) : null;
     }
 
     get scoreReverse() {
-        return this._formattedScore(this.matchClubAway, this.matchClubHome);
-    }
-
-    _formattedScore(matchClub1, matchClub2) {
-        return this.finished ? `${matchClub1.goals} × ${matchClub2.goals}` : '';
+        return Match._formattedScore(this.clubAway, this.clubHome);
     }
 
     addClub(club, situation) {
-        const matchClub = MatchClub.create(this, club, situation);
-        this._matchClubIds.push(matchClub.id);
+        if (situation === 'home') {
+            this._clubHomeId = club.id
+        }
+        else {
+            this._clubAwayId = club.id;
+        }
     }
 
     getGoalsByClubId(clubId) {

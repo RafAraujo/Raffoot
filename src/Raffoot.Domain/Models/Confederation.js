@@ -54,6 +54,10 @@ class Confederation {
         Confederation.create(europe, 'Scandinavia', ['Denmark', 'Finland', 'Norway', 'Sweden'], 2, 2);
     }
 
+    get continent() {
+        return Continent.getById(this._continentId);
+    }
+
     get countries() {
         return Context.game.countries.filterByIds(this._countryIds);
     }

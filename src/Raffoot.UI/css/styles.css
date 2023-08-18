@@ -13,7 +13,7 @@ td {
     vertical-align: middle;
 }
 
-a i,
+a:not(.nav-link) i,
 button i,
 label i {
     margin-right: 4px;

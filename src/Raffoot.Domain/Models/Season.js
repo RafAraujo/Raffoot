@@ -105,7 +105,7 @@ class Season {
     }
 
     getMatchesByClubId(clubId) {
-        return this.matches.filter(m => m.matchClubs.map(mc => mc.club?.id).includes(clubId)).orderBy('date');
+        return this.matches.filter(m => m.clubs?.map(c => c.id).includes(clubId)).orderBy('date');
     }
 
     getNextMatch(clubId) {

@@ -20,6 +20,11 @@ namespace RaffootLoader.Services
             $"{PrefixOfContext}{Separator}Left winger", $"{PrefixOfContext}{Separator}Right winger", "Centre forward", "Striker"
         };
 
+        private readonly string[] _continents = new[]
+        {
+            "Africa", "Asia", "America", "Europe"
+        };
+
         private readonly string[] _confederations = new[]
         {
             "Argentina", "Brazil", "Australia", "Saudi Arabia", "England", "France", "Germany", "Italy", "Portugal", "Spain",
@@ -152,6 +157,7 @@ namespace RaffootLoader.Services
             var texts = _texts.ToList();
 
             texts.AddRange(_positions);
+            texts.AddRange(_continents);
             texts.AddRange(_confederations);
             texts.AddRange(_confederations.Select(c => $"{PrefixOfContext}{Separator}{c} League"));
             texts.AddRange(_confederations.Select(c => $"{PrefixOfContext}{Separator}{c} Cup"));

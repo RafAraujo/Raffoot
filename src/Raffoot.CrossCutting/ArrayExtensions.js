@@ -1,3 +1,5 @@
+const _collator = new Intl.Collator();
+
 Array.range = function (size, startAt = 0) {
     return [...Array(size).keys()].map(i => i + startAt);
 }
@@ -56,8 +58,8 @@ Array.prototype.max = function () {
     return this.reduce((acc, currentValue) => Math.max(acc, currentValue));
 }
 
-Array.prototype.orderBy = function () {
-    return this.slice().sort(dynamicSort(arguments));
+Array.prototype.orderBy = function (...properties) {
+    return this.slice().sort(dynamicSort(properties));
 }
 
 function dynamicSort(properties) {
@@ -70,16 +72,18 @@ function dynamicSort(properties) {
 
             if (property[0] === '-') {
                 order = -1;
-                property = property.substr(1);
+                property = property.substring(1);
             }
 
-            let valueA = getValue(a, property);
-            let valueB = getValue(b, property);
+            const valueA = getValue(a, property);
+            const valueB = getValue(b, property);
 
-            if (typeof valueA === 'string')
-                result = valueA.localeCompare(valueB) * order;
-            else
+            if (typeof valueA === 'string') {
+                result = _collator.compare(valueA, valueB) * order;
+            }
+            else {
                 result = (valueA < valueB ? -1 : valueA > valueB ? 1 : 0) * order;
+            }
         }
 
         return result;

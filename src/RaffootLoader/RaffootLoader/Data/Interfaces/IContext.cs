@@ -8,6 +8,7 @@ namespace RaffootLoader.Data.Interfaces
         IEnumerable<Country> Countries { get; }
         IEnumerable<League> Leagues { get; }
         IEnumerable<Player> Players { get; }
+        IEnumerable<Position> Positions { get; }
         IEnumerable<Translation> Translations { get; }
 
         bool DatabaseExists();

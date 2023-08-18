@@ -4,7 +4,6 @@ class Club {
         this._countryId = countryId;
         this.externalId = externalId;
         this._playerIds = [];
-        this._squadId = null;
         this.money = 0;
         this.colors = {
             background: backgroundColor,
@@ -17,16 +16,14 @@ class Club {
             supporters: 80
         };
         this._trophies = [];
+
+        this._formationId = null;
+        this.playingStyle = 'balanced';
     }
 
-    static create(name, countryName, externalId, backgroundColor, foregroundColor) {
-        const country = Context.game.countries.find(c => c.name === countryName);
-        const club = new Club(name, country.id, externalId, backgroundColor, foregroundColor);
+    static create(name, countryId, externalId, backgroundColor, foregroundColor) {
+        const club = new Club(name, countryId, externalId, backgroundColor, foregroundColor);
         club.id = Context.game.clubs.push(club);
-
-        country.addClub(club);
-        Squad.create(club);
-        
         return club;
     }
 
@@ -42,20 +39,36 @@ class Club {
         return Country.getById(this._countryId);
     }
 
+    get formation() {
+        return Formation.getById(this._formationId);
+    }
+
+    set formation(value) {
+        this._formationId = value?.id;
+    }
+
+    get lineup() {
+        return this._formationId ? this.formation.fieldLocalizations.map(fl => ({ fieldLocalization: fl, player: this.getPlayerByFieldLocalizationId(fl.id) })) : null;
+    }
+
     get overall() {
-        return this.squad.overall;
+        return this.players.map(p => p.overall);
     }
 
     get players() {
         return Context.game.players.filterByIds(this._playerIds);
     }
 
-    get squad() {
-        return Squad.getById(this._squadId);
+    get playerWages() {
+        return this.players.map(sp => sp.wage).sum();
     }
 
-    set squad(value) {
-        this._squadId = value.id;
+    get starting11() {
+        return this.players.filter(sp => sp.fieldLocalization);
+    }
+
+    get substitutes() {
+        return this.players.filter(sp => !sp.fieldLocalization);
     }
 
     get throphies() {
@@ -70,8 +83,43 @@ class Club {
         this._trophies.push(championshipEdition.id);
     }
 
-    getLogoURL() {
-        return `${Config.folders.logosFolder}/${this.externalId}.png`;
+    arrangePlayers() {
+        const formation = this.getRecommendedFormation();
+        this.changeFormation(formation, true);
+    }
+
+    changeFormation(formation, automaticLineup = false) {
+        for (const player of this.players) {
+            player.fieldLocalization = null;
+        }
+        this.formation = formation;
+        if (formation && automaticLineup) {
+            this.setAutomaticLineUp();
+        }
+    }
+
+    clearFormation() {
+        this.changeFormation(null);
+        this.playingStyle = '';
+    }
+
+    getOverallByFieldRegion(fieldRegion) {
+        const players = this.players.filter(p => p.position.fieldRegion.id === fieldRegion.id);
+        return players.map(p => p.overall).sum();
+    }
+
+    getPlayerByFieldLocalizationId(fieldLocalizationId) {
+        return this.starting11.find(sp => sp.fieldLocalization.id === fieldLocalizationId);
+    }
+
+    getBestAvailablePlayerForFieldLocalization(fieldLocalization) {
+        const players = this.substitutes.filter(p => p.position.id === fieldLocalization.position.id);
+        const player = players.length > 0 ? players.orderBy('-baseOverall')[0] : null;
+        return player;
+    }
+
+    getBestPlayers(count) {
+        return this.players.orderBy('-overall', 'age').take(count);
     }
 
     getKitsURLs() {
@@ -83,12 +131,85 @@ class Club {
         return urlList;
     }
 
+    getLogoURL() {
+        return `${Config.folders.logosFolder}/${this.externalId}.png`;
+    }
+
+    getBestPlayersWithoutGoalkeeper(count) {
+        return this.players.filter(p => !p.position.isGoalkeeper).orderBy('-overall', 'age').take(count);
+    }
+
+    getRecommendedFormation() {
+        const ranking = [];
+
+        for (const formation of Context.game.formations) {
+            const players = this.players.filter(pl => formation.positions.map(p => p.id).includes(pl.position.id));
+
+            ranking.push({
+                formation: formation,
+                overall: players.map(p => p.overall).sum(),
+            });
+        }
+
+        return ranking.orderBy('-overall')[0].formation;
+    }
+
+    setAutomaticLineUp() {
+        for (const fieldLocalization of this.formation.fieldLocalizations.reverse()) {
+            const ranking = [];
+            let chosenPlayer = this.getBestAvailablePlayerForFieldLocalization(fieldLocalization);
+
+            if (chosenPlayer === null) {
+                let players = this.substitutes.filter(p => p.position.fieldRegion === fieldLocalization.position.fieldRegion);
+
+                if (players.length === 0) {
+                    players = this.substitutes;
+                }
+
+                for (const player of players) {
+                    ranking.push({
+                        player: player,
+                        overall: player.calculateOverallAt(fieldLocalization)
+                    });
+                }
+
+                chosenPlayer = ranking.orderBy('-overall', '-player.energy')[0].player;
+            }
+
+            chosenPlayer.fieldLocalization = fieldLocalization;
+        }
+    }
+
+    setOrder() {
+        let order = 0;
+        for (const player of this.starting11) {
+            player.order = ++order;
+        }
+        for (const player of this.substitutes.orderBy('order', 'position.id', '-baseOverall')) {
+            player.order = ++order;
+        }
+    }
+
+    swapPlayerRoles(player1, player2) {
+        const aux = { fieldLocalization: player1.fieldLocalization, order: player1.order };
+
+        player1.fieldLocalization = player2.fieldLocalization;
+        player2.fieldLocalization = aux.fieldLocalization;
+
+        player1.order = player2.order;
+        player2.order = aux.order;
+    }
+
+    rest(days) {
+        this.players.rest(days);
+    }
+
     pay(amount) {
         this.money -= amount;
     }
     
     payWages() {
-        this.pay(this.squad.wage);
+        this.pay(this.playerWages);
     }
 
     receive(amount) {

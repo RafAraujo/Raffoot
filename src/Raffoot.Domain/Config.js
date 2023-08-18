@@ -6,17 +6,6 @@ const Config = (function () {
         defaultFirstYear: new Date().getFullYear(),
         indexedDbName: 'Raffoot',
 
-        files: {
-            defaultPlayerPhoto: `${ResourcesFolder}/players/0.svg`,
-        },
-
-        folders: {
-            flagsFolder: `${ResourcesFolder}/countries`,
-            kitsFolder: `${ResourcesFolder}/kits`,
-            logosFolder: `${ResourcesFolder}/clubs`,
-            photosFolder: `${ResourcesFolder}/players`,
-        },
-
         colors: {
             blue: { hex: '#007bff', class: 'primary' },
             gray: { hex: '#6c757d', class: 'secondary' },
@@ -34,6 +23,17 @@ const Config = (function () {
 
         continentalCup: {
             maxClubCount: 32,
+        },
+
+        files: {
+            defaultPlayerPhoto: `${ResourcesFolder}/players/0.svg`,
+        },
+
+        folders: {
+            flagsFolder: `${ResourcesFolder}/countries`,
+            kitsFolder: `${ResourcesFolder}/kits`,
+            logosFolder: `${ResourcesFolder}/clubs`,
+            photosFolder: `${ResourcesFolder}/players`,
         },
 
         nationalCup: {
