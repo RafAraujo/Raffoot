@@ -524,7 +524,8 @@
                                                                     </div>
                                                                     <div class="overall position-absolute">
                                                                         <template v-if="item.player.isInjured">
-                                                                            <i class="fa-solid fa-plus text-danger"></i>
+                                                                            <i class="fa-solid fa-plus text-danger"
+                                                                                :title="getInjuryMessage(item.player)"></i>
                                                                         </template>
                                                                         <template v-else>
                                                                             {{ item.player.overall }}
@@ -1502,6 +1503,11 @@
                 else {
                     this.selectedPlayerId = playerId;
                 }
+            },
+            getInjuryMessage: function(player) {
+                debugger;
+                const message = "{0} - {1}".format(this.translator.get("Injured player"), this.translator.get("Out until {0}").format(player.recoveryDate.toLocaleDateString()));
+                return message;
             },
             movePlayerToField: function (fieldLocalizationId) {
                 fieldLocalizationId = parseInt(fieldLocalizationId);

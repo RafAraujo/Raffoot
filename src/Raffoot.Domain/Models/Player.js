@@ -99,10 +99,6 @@ class Player {
         return Object.hasOwn(this, 'injury');
     }
 
-    get injuryRecoveryDate() {
-        return this.isInjured ? this.injury.date.addDays(this.injury.daysToRecover) : null;
-    }
-
     get marketValue() {
         return Player._calculateMarketValue(this.baseOverall, this.star, this.age);
     }
@@ -115,6 +111,10 @@ class Player {
         return Position.getById(this._positionId);
     }
 
+    get recoveryDate() {
+        return this.isInjured ? this.injury.date.addDays(this.injury.daysToRecover) : null;
+    }
+    
     get surname() {
         const array = this.name.split(' ');
         if (array.length > 1 && array[0].endsWith('.')) {

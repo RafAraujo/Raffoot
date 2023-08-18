@@ -21,6 +21,7 @@ namespace RaffootLoader.Services
         };
 
         private readonly string[] _continents = new[]
+        
         {
             "Africa", "Asia", "America", "Europe"
         };
@@ -41,12 +42,12 @@ namespace RaffootLoader.Services
             "False 9", "Final", "Finances", "Flat", "Formation", "For Sale", "Foul", "Free Kick Taker", "Full screen",
             "Game", "Game deleted with success",  $"{PrefixOfContext}{Separator}Goal",  $"{PrefixOfContext}{Separator}Goals", $"{PrefixOfContext}{Separator}Goals against", $"{PrefixOfContext}{Separator}goals difference", "Gold", "Group",
             "History", "Holding", $"{PrefixOfContext}{Separator}Home",
-            "Income", "International",
+            "Income", "Injured player", "International",
             "League", "Left", $"{PrefixOfContext}{Separator}Lineup", "Load", "Load Game", "Load more", "Loading game...", "Logo", $"{PrefixOfContext}{Separator}Losses",
             "Market Value", "Matches", $"{PrefixOfContext}{Separator}Maximum", "Midfield", $"{PrefixOfContext}{Separator}Minimum", "Money",
             "Name", "Narrow", "National", "Nationality", "New Game", "No",
-            $"{PrefixOfContext}{Separator}Offensive", "Offside", "Options", "Overall", "OV",
-            $"{PrefixOfContext}{Separator}Passes", "{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Players", "Playing Style", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
+            $"{PrefixOfContext}{Separator}Offensive", "Offside", "Options", "Out until {0}", "Overall", "OV",
+            $"{PrefixOfContext}{Separator}Passes", $"{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Players", "Playing Style", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
             "Quarter-finals",
             "Raffoot", "Ranking", $"{PrefixOfContext}{Separator}Referee", "Reset", $"{PrefixOfContext}{Separator}Right", "Round of 16", "Round of 32", "Round of 64",
             "Save Changes", "Save Game", "Search", "Search Players", "Sector", "Semifinals", "Shots on goal", "Showing {0} of {1}", "Silver", "Squad", "Stadium", "Standings", "Star", "Start Game", "Starting game...", "Start of the match", "Statistics", "Supercup", $"{PrefixOfContext}{Separator}Supporters",
