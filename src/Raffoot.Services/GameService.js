@@ -48,7 +48,7 @@ class GameService {
         game.championshipEditionEliminationPhaseDuels = game.championshipEditionEliminationPhaseDuels.map(o => Object.assign(new ChampionshipEditionEliminationPhaseDuel(), o));
         game.championshipEditionFixtures = game.championshipEditionFixtures.map(o => Object.assign(new ChampionshipEditionFixture(), o));
         game.championshipEditionGroups = game.championshipEditionGroups.map(o => Object.assign(new ChampionshipEditionGroup(), o));
-        game.championshipEditionPlayers = game.championships.map(o => Object.assign(new ChampionshipEditionPlayer(), o));
+        game.championshipEditionPlayers = game.championshipEditionPlayers.map(o => Object.assign(new ChampionshipEditionPlayer(), o));
         game.championshipTypes = game.championshipTypes.map(o => Object.assign(new ChampionshipType(), o));
         game.clubs = game.clubs.map(o => Object.assign(new Club(), o));
         game.confederations = game.confederations.map(o => Object.assign(new Confederation(), o));

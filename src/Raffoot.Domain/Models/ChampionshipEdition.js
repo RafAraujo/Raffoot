@@ -3,6 +3,7 @@ class ChampionshipEdition {
         this._championshipId = championshipId;
         this.year = year;
         this._championshipEditionClubIds = [];
+        this._championshipEditionPlayerIds = [];
         this._championshipEditionEliminationPhaseIds = [];
         this._championshipEditionFixtureIds = [];
         this._championshipEditionPlayerIds = [];
@@ -26,6 +27,10 @@ class ChampionshipEdition {
 
     get championshipEditionClubs() {
         return Context.game.championshipEditionClubs.filterByIds(this._championshipEditionClubIds);
+    }
+
+    get championshipEditionPlayers() {
+        return Context.game.championshipEditionPlayers.filterByIds(this._championshipEditionPlayerIds);
     }
 
     get championshipEditionGroups() {
@@ -89,6 +94,10 @@ class ChampionshipEdition {
     addClub(club) {
         const championshipEditionClub = ChampionshipEditionClub.create(this, club);
         this._championshipEditionClubIds.push(championshipEditionClub.id);
+    }
+
+    addChampionshipEditionPlayer() {
+        this._championshipEditionPlayerIds.push(this.championshipEditionPlayers.id);
     }
 
     addMatch(match) {

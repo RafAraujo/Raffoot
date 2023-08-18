@@ -17,11 +17,12 @@
     <div id="app" v-cloak>
         <div v-if="!gameLoaded">
             <div class="container">
-                <div class="row mt-3">
+                <div class="row mt-3" :class="{ 'd-none' : !message.text }">
                     <div class="col">
-                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                            {{ translator.get("Processing...") }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`" role="alert">
+                            {{ message.text }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                :aria-label=translator.get('Close')></button>
                         </div>
                     </div>
                 </div>
@@ -522,10 +523,16 @@
                                                                         }}
                                                                     </div>
                                                                     <div class="overall position-absolute">
-                                                                        {{ item.player.overall }}
+                                                                        <template v-if="item.player.isInjured">
+                                                                            <i class="fa-solid fa-plus text-danger"></i>
+                                                                        </template>
+                                                                        <template v-else>
+                                                                            {{ item.player.overall }}
+                                                                        </template>
                                                                     </div>
                                                                 </div>
                                                                 <img class="max-size-3-rem"
+                                                                    :class="{ 'opacity-25' : !item.player.isAvailable(game.currentMatch) }"
                                                                     :src="item.player.getPhotoURL()"
                                                                     :alt="item.player.name" :title="item.player.name"
                                                                     onerror="this.onerror = null; this.src='res/players/0.svg'"
@@ -593,10 +600,16 @@
                                                                     }}
                                                                 </div>
                                                                 <div class="overall position-absolute">
-                                                                    {{ player.overall }}
+                                                                    <template v-if="player.isInjured">
+                                                                        <i class="fa-solid fa-plus text-danger"></i>
+                                                                    </template>
+                                                                    <template v-else>
+                                                                        {{ player.overall }}
+                                                                    </template>
                                                                 </div>
                                                             </div>
                                                             <img class="max-size-3-rem" :src="player.getPhotoURL()"
+                                                                :class="{ 'opacity-25' : !player.isAvailable(game.currentMatch) }"
                                                                 :alt="player.name" :title="player.name"
                                                                 onerror="this.src='res/players/0.svg'" draggable="true"
                                                                 @dragstart="selectedPlayerId = player.id"
@@ -1106,7 +1119,8 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-6">
-                                        <label for="field-region" class="form-label">{{ translator.get("Sector") }}</label>
+                                        <label for="field-region" class="form-label">{{ translator.get("Sector")
+                                            }}</label>
                                         <select id="field-region" class="form-select"
                                             v-model.lazy="playerFilter.fieldRegionId">
                                             <option></option>
@@ -1117,7 +1131,8 @@
                                         </select>
                                     </div>
                                     <div class="col-6">
-                                        <label for="position" class="form-label">{{ translator.get("Position") }}</label>
+                                        <label for="position" class="form-label">{{ translator.get("Position")
+                                            }}</label>
                                         <select id="position" class="form-select"
                                             v-model.lazy="playerFilter.positionId">
                                             <option></option>
@@ -1222,17 +1237,6 @@
                                                         @click="updatePlayerOrderForPlayersSection('wage')">
                                                         {{ translator.get("Wage") }}
                                                     </th>
-                                                    <th class="text-center" :title="('{0} ({1}/{2})'.format(
-                                                            translator.get('Matches'),
-                                                            translator.get('Goals'),
-                                                            translator.get('Assists')))">
-                                                        {{
-                                                        "{0} ({1}/{2})".format(
-                                                        translator.getAbbreviation("Matches"),
-                                                        translator.getAbbreviation("Goals"),
-                                                        translator.getAbbreviation("Assists"))
-                                                        }}
-                                                    </th>
                                                 </thead>
                                                 <tbody>
                                                     <tr
@@ -1264,14 +1268,6 @@
                                                         <td class="text-end">{{ player.marketValue.formatCurrency() }}
                                                         </td>
                                                         <td class="text-center">{{ player.wage.formatCurrency() }}</td>
-                                                        <td class="text-center">
-                                                            {{
-                                                            "{0} ({1}/{2})".format(
-                                                            player.stats.matches.toLocaleString(),
-                                                            player.stats.goals.toLocaleString(),
-                                                            player.stats.assists.toLocaleString())
-                                                            }}
-                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -1413,7 +1409,7 @@
                 config: Config,
                 game: null,
                 gameLoaded: false,
-                message: { text: '', type: 'primary' },
+                message: { text: translator.get('Processing...'), type: 'primary' },
                 modal: { title: '', message: '', methodOk: function () { } },
                 pageSize: Config.pageSize,
                 theme: 'dark',
@@ -1482,7 +1478,7 @@
                 }
             },
             async save() {
-                this.message = { text: this.translator.get('Processing...'), type: 'primary' };
+                this.message = { text: '', type: 'primary' };
                 await gameService.saveAsync(Vue.toRaw(this.game));
                 this.message.text = "";
             },
@@ -1500,7 +1496,7 @@
                 playerId = parseInt(playerId);
                 const player = Player.getById(playerId);
                 if (this.selectedPlayerId) {
-                    this.game.club.swapPlayerRoles(this.selectedplayer, player);
+                    this.game.club.swapPlayerRoles(this.selectedPlayer, player);
                     this.selectedPlayerId = null;
                 }
                 else {
@@ -1642,10 +1638,17 @@
             },
         },
         async created() {
-            await this.loadGame();
-            this.colors = { background: this.game.club.colors.backgroundCustom, foreground: this.game.club.foregroundCustom };
-            this.selectedChampionshipEditionId = this.nationalLeague.id;
-            this.gameLoaded = true;
+            try {
+                this.message = { text: this.translator.get('Processing...'), type: 'primary' };
+                await this.loadGame();
+                this.colors = { background: this.game.club.colors.backgroundCustom, foreground: this.game.club.foregroundCustom };
+                this.selectedChampionshipEditionId = this.nationalLeague.id;
+                this.message = '';
+                this.gameLoaded = true;
+            }
+            catch (error) {
+                this.message = { text: error, type: 'danger' };
+            }
         },
     };
 

@@ -3,7 +3,7 @@ class MatchSimulation {
         this._match = match;
         this._time = 0;
 
-        this._ballPossessor = this._match.matchClubHome.goalkeeper;
+        this._ballPossessor = this._match.clubHome.goalkeeper;
         this._moves = [];
     }
 
@@ -28,7 +28,7 @@ class MatchSimulation {
     }
 
     nextMove() {
-        const action = this._ballPossessor.chooseAction();
+        const action = this._chooseAction();
 
         const move = {
             time: this._time,
@@ -40,21 +40,21 @@ class MatchSimulation {
 
         if (action === 'passing') {
             let target = this._ballPossessor.playersAhead.length > 0 ? this._ballPossessor.playersAhead.getRandom() : this._attackingClub.playersAt(FieldRegion.find('midfield')).getRandom();
-            let marker = this._defendingClub.playersAt(this._ballLocation.inverse).getRandom();
+            let marker = this._defendingClub.getPlayersAt(this._ballLocation.inverse).getRandom();
 
-            pro = this._ballPossessor.overall + this._attackingClub.regionOverall(this._ballLocation) + this._ballLocation.name === 'goal' ? this._attackingClub.regionOverall('defense') : 0;
-            con = this._defendingClub.regionOverall(marker.fieldLocalization.position.fieldRegion);
+            pro = this._ballPossessor.overall + this._attackingClub.getRegionOverall(this._ballLocation) + this._ballLocation.name === 'goal' ? this._attackingClub.regionOverall('defense') : 0;
+            con = this._defendingClub.getRegionOverall(marker.fieldLocalization.position.fieldRegion);
             let result = Random.number(pro + con);
 
             if (move.success = result <= pro) {
                 if (!marker.redCard && result <= this._ballPossessor.overall * 0.1) {
-                    marker.addYellowCard();
+                    this._addYellowCard(marker);
                     move.event = new MatchSimulationEvent(marker.redCard ? 'red card' : 'yellow card', marker, move.time);
                 }
                 this._ballPossessor = target;
             }
             else {
-                this._ballPossessor = this._defendingClub.playersAt(this._ballLocation.inverse).getRandom();
+                this._ballPossessor = this._defendingClub.getPlayersAt(this._ballLocation.inverse).getRandom();
             }
         }
         else if (action === 'finishing') {
@@ -75,6 +75,25 @@ class MatchSimulation {
         }
 
         return move;
+    }
+
+    _addYellowCard(player) {
+        const championshipEditionPlayer = match.championshipEdition.championshipEditionPlayers.find(cep => cep.player.id === player.id);
+    }
+
+    _chooseAction() {
+        const result = Random.number(100);
+
+        switch (this._ballPossessor.fieldLocalization.position.fieldRegion.name) {
+            case 'goal':
+                return 'passing';
+            case 'defense':
+                return result > this.fieldLocalization.line * 1 ? 'passing' : 'finishing';
+            case 'midfield':
+                return result > this.fieldLocalization.line * 2 ? 'passing' : 'finishing';
+            case 'attack':
+                return result > this.fieldLocalization.line * 3 ? 'passing' : 'finishing';
+        }
     }
 
     _drainEnergy() {

@@ -40,13 +40,13 @@ Date.monthsDiff = (d1, d2) => {
 };
 
 Date.prototype.addDays = function (value) {
-    let date = new Date(this);
+    let date = new Date(this.valueOf());
     date.setDate(this.getDate() + value);
     return date;
 };
 
 Date.prototype.addMonths = function (value) {
-    let date = new Date(this);
+    let date = new Date(this.valueOf());
     date.setMonth(this.getMonth() + value);
     return date;
 };

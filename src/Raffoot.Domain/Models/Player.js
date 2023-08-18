@@ -11,7 +11,6 @@ class Player {
         this.hasPhoto = hasPhoto;
         this.energy = energy;
         this.wage = wage;
-        this.stats = { matches: 0, goals: 0, assists: 0 };
     }
 
     static create(name, countryId, positionId, age, baseOverall, club, externalId, hasPhoto) {
@@ -19,9 +18,9 @@ class Player {
         const wage = Player._getBaseWage(baseOverall, false);
         const player = new Player(name, countryId, positionId, age, baseOverall, club.id, externalId, hasPhoto, energy, wage);
         player.id = Context.game.players.push(player);
-        
+
         club.addPlayer(player);
-        
+
         return player;
     }
 
@@ -93,14 +92,17 @@ class Player {
     }
 
     get isImprovised() {
-        if (this.fieldLocalization) {
-            return this._positionId != this.fieldLocalization.position.id;
-        }
-        else {
-            return false;
-        }
+        return this.fieldLocalization ? this._positionId != this.fieldLocalization.position.id : false;
     }
-    
+
+    get isInjured() {
+        return Object.hasOwn(this, 'injury');
+    }
+
+    get injuryRecoveryDate() {
+        return this.isInjured ? this.injury.date.addDays(this.injury.daysToRecover) : null;
+    }
+
     get marketValue() {
         return Player._calculateMarketValue(this.baseOverall, this.star, this.age);
     }
@@ -123,6 +125,10 @@ class Player {
         else {
             return this.name;
         }
+    }
+
+    addChampionshipEditionPlayer(championshipEditionPlayer) {
+        this._championshipEditionPlayers.push(championshipEditionPlayer.id);
     }
 
     calculateOverallAt(fieldLocalization) {
@@ -164,7 +170,20 @@ class Player {
         return url;
     }
 
+    isAvailable(match) {
+        const championshipEditionPlayer = match?.championshipEdition.championshipEditionPlayers.find(cep => cep.player.id === this.id);
+        return !this.isInjured && (!championshipEditionPlayer?.isSuspended ?? true);
+    }
+
+    recover() {
+        delete this.injury;
+    }
+
     rest(days) {
         this.energy = Math.min(this.energy + days * 3, 100);
+    }
+
+    setInjury(date, daysToRecover) {
+        this.injury = { date, daysToRecover };
     }
 }

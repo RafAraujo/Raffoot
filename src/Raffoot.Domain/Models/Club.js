@@ -12,7 +12,7 @@ class Club {
             foregroundCustom: foregroundColor
         };
         this.trust = {
-            boardOfDirectors: 80,
+            boardOfDirectors: 100,
             supporters: 80
         };
         this._trophies = [];
@@ -45,6 +45,10 @@ class Club {
 
     set formation(value) {
         this._formationId = value?.id;
+    }
+
+    get goalkeeper() {
+        return this.starting11.find(p => p.position.isGoalkeeper);
     }
 
     get lineup() {
@@ -103,9 +107,17 @@ class Club {
         this.playingStyle = '';
     }
 
+    getRegionOverall(fieldRegion) {
+        return this.getPlayersAt(fieldRegion).map(mp => mp.overall).sum();
+    }
+
     getOverallByFieldRegion(fieldRegion) {
         const players = this.players.filter(p => p.position.fieldRegion.id === fieldRegion.id);
         return players.map(p => p.overall).sum();
+    }
+
+    getPlayersAt(fieldRegion) {
+        return this.starting11.filter(p => p.fieldLocalization.position.fieldRegion === fieldRegion);
     }
 
     getPlayerByFieldLocalizationId(fieldLocalizationId) {
@@ -143,7 +155,8 @@ class Club {
         const ranking = [];
 
         for (const formation of Context.game.formations) {
-            const players = this.players.filter(pl => formation.positions.map(p => p.id).includes(pl.position.id));
+            const positionIds = formation.positions.map(p => p.id);
+            const players = this.players.filter(pl => positionIds.includes(pl.position.id));
 
             ranking.push({
                 formation: formation,
