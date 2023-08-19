@@ -628,7 +628,8 @@
                                                                 :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
                                                                 :src="item.player.getPhotoURL()" :alt="item.player.name"
                                                                 :title="item.player.name"
-                                                                onerror="this.src='res/players/0.svg'" draggable="true"
+                                                                onerror="this.onerror = null; this.src='res/players/0.svg'"
+                                                                draggable="true"
                                                                 @dragstart="dragStart($event, item.player.id)"
                                                                 @drop="drop($event); changePlayers(item.player.id)"
                                                                 @dragover.prevent>
@@ -1669,7 +1670,7 @@
                 return this.currentMatch.getOpponent(this.game.club.id);
             },
             lineup() {
-                return this.game.club.getLineup(this.currentMatch.championshipEdition);
+                return this.game.club.getLineup(this.currentMatch?.championshipEdition);
             },
             nationalLeague() {
                 return this.game.getClubNationalLeague();
@@ -1685,22 +1686,18 @@
             },
         },
         async created() {
-            try {
+            //try {
                 this.message = { text: this.translator.get('Processing...'), type: 'primary' };
                 await this.loadGame();
                 this.colors = { background: this.game.club.colors.backgroundCustom, foreground: this.game.club.foregroundCustom };
                 this.selectedChampionshipEditionId = this.nationalLeague.id;
                 this.message = '';
 
-                let x = ChampionshipEditionPlayer.create(this.game.getClubCurrentMatch().championshipEdition, this.game.club.players[0]);
-                x.redCard = true;
-                x.yellowCards = 3;
-
                 this.gameLoaded = true;
-            }
-            catch (error) {
-                this.message = { text: error, type: 'danger' };
-            }
+            //}
+            //catch (error) {
+                //this.message = { text: error, type: 'danger' };
+            //}
         },
     };
 
