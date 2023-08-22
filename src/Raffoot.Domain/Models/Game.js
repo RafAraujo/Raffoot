@@ -84,4 +84,24 @@ class Game {
         season.schedule();
         this._currentSeasonId = season.id;
     }
+
+    play() {
+        let t0 = performance.now();
+
+        const matches = this.currentSeason.getCurrentMatches();
+        const matchSimulations = matches.map(m => m.prepare());
+
+        let time = 0;
+
+        while (time <= 90) {
+            for (const matchSimulation of matchSimulations) {
+                matchSimulation.nextMove(time);
+            }
+            time++;
+        }
+
+        console.log(`Game.play() took ${(performance.now() - t0)} milliseconds.`);
+
+        return matchSimulations;
+    }
 }

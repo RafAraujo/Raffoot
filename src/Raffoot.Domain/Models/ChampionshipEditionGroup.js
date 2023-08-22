@@ -17,7 +17,7 @@ class ChampionshipEditionGroup {
     }
 
     get championshipEditionClubs() {
-        return Context.game.championshipEditionClubs.filterById(this._championshipEditionClubIds);
+        return Context.game.championshipEditionClubs.filterByIds(this._championshipEditionClubIds);
     }
 
     get name() {
@@ -29,7 +29,7 @@ class ChampionshipEditionGroup {
     }
 
     get matches() {
-        return this.championshipEdition.matches.filterById(this._matchIds);
+        return this.championshipEdition.matches.filterByIds(this._matchIds);
     }
 
     addChampionshipEditionClub(championshipEditionClub) {

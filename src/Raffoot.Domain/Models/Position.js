@@ -47,11 +47,6 @@ class Position {
 		Position.create('Striker', 'ST', attack);
 	}
 
-    static link(position1, position2) {
-        position1.linkedPositionId = position2.id;
-        position2.linkedPositionId = position1.id;
-    }
-
     get fieldRegion() {
         return FieldRegion.getById(this._fieldRegionId);
     }

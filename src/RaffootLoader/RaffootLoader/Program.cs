@@ -52,9 +52,6 @@ while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
         case ProgramOption.UpdateClubsColors:
             dataExtractor.UpdateClubsColors();
             break;
-        case ProgramOption.UpdatePlayerHasPhotoFlag:
-            dataExtractor.UpdatePlayerHasPhotoFlag();
-            break;
         case ProgramOption.GenerateSoFifaServiceFile:
             fileGenerator.GenerateSoFifaServiceFile();
             break;

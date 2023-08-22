@@ -9,7 +9,6 @@
         DownloadKits,
         DownloadPhotos,
         UpdateClubsColors,
-        UpdatePlayerHasPhotoFlag,
         GenerateSoFifaServiceFile,
 
         DropTranslations,

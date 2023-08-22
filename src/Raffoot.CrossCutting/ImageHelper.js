@@ -32,8 +32,19 @@ class ImageHelper {
 
             reader.onloadend = () => resolve(reader.result)
             reader.onerror = reject
-            
+
             reader.readAsDataURL(blob);
         });
+    }
+
+    static exists(url) {
+        try {
+            const img = new Image();
+            img.src = url;
+            return img.height != 0;
+        }
+        catch (error) {
+            return false;
+        }
     }
 }

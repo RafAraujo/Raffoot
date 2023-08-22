@@ -153,14 +153,10 @@ namespace RaffootLoader.Services
                     var fileName = $"{player.ExternalId}{Path.GetExtension(url)}";
                     var filePath = Path.Combine(_settings.ImagesPath, "players", fileName);
 
-                    if (File.Exists(filePath))
-                    {
-                        player.HasPhoto = true;
-                    }
-                    else
+                    if (!File.Exists(filePath))
                     {
                         CreateFolder(filePath);
-                        tasks.Add(DownloadPhoto(player, url, filePath));
+                        tasks.Add(DownloadPhoto(url, filePath));
                     }
                 }
 
@@ -185,10 +181,9 @@ namespace RaffootLoader.Services
             Directory.CreateDirectory(folder);
         }
 
-        private async Task DownloadPhoto(Player player, string url, string filePath)
+        private async Task DownloadPhoto(string url, string filePath)
         {
             await DownloadImage(url, filePath);
-            player.HasPhoto = true;
         }
 
         private async Task DownloadImage(string url, string filePath)

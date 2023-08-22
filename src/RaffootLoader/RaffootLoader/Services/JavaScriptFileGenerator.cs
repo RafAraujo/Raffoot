@@ -37,7 +37,7 @@ namespace RaffootLoader.Services
                 sb.AppendLine(string.Format("class {0} {{", fileName));
 
                 sb.AppendLine("\tstatic seedCountries() {");
-                sb.AppendLine("\t\tlet c = Country.create;");
+                sb.AppendLine("\t\tconst c = Country.create;");
                 sb.AppendLine();
 
                 var countries = _context.Countries.OrderBy(c => c.Name);
@@ -53,9 +53,9 @@ namespace RaffootLoader.Services
                 sb.AppendLine("\t}").AppendLine();
 
                 sb.AppendLine("\tstatic seedClubs() {");
+                sb.AppendLine("\t\tconst c = Club.create;");
+                sb.AppendLine("\t\tconst p = Player.create;");
                 sb.AppendLine("\t\tlet x = null;");
-                sb.AppendLine("\t\tlet c = Club.create;");
-                sb.AppendLine("\t\tlet p = Player.create;");
                 sb.AppendLine();
 
                 var countryNames = countries.Select(c => c.Name).ToList();
@@ -68,23 +68,22 @@ namespace RaffootLoader.Services
 
                     foreach (var club in clubs)
                     {
-                        sb.AppendLine(string.Format("\t\tx = c(\"{0}\", {1}, {2}, \"{3}\", \"{4}\");",
-                        club.Name,
+                        sb.AppendLine(string.Format("\t\tx = c(\"{0}\", {1}, \"{2}\", \"{3}\", {4});",
+                            club.Name,
                             countryNames.IndexOf(country.Name) + 1,
-                            club.ExternalId,
                             club.BackgroundColor,
-                            club.ForegroundColor));
+                            club.ForegroundColor,
+                            club.ExternalId));
 
                         foreach (var player in _context.Players.Where(p => p.ClubId == club.ExternalId))
                         {
-                            sb.AppendLine(string.Format("\t\tp(\"{0}\", {1}, {2}, {3}, {4}, x, {5}, {6});",
+                            sb.AppendLine(string.Format("\t\tp(\"{0}\", {1}, {2}, {3}, {4}, x, {5});",
                                 player.Name,
                                 countryNames.IndexOf(player.Country) + 1,
                                 positions.IndexOf(player.Positions.First()) + 1,
                                 player.Age,
                                 player.Overall,
-                                player.ExternalId,
-                                Convert.ToByte(player.HasPhoto)));
+                                player.ExternalId));
                         }
 
                         sb.AppendLine();

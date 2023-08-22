@@ -330,22 +330,5 @@ namespace RaffootLoader.Services
                 ConsoleUtils.ShowException(ex);
             }
         }
-
-        public void UpdatePlayerHasPhotoFlag()
-        {
-            Console.WriteLine();
-            var current = 0;
-
-            foreach (var player in _context.Players)
-            {
-                var url = player.Photo.Split(' ')[2];
-                var fileName = $"{player.ExternalId}{Path.GetExtension(url)}";
-                var filePath = Path.Combine(_settings.ImagesPath, "players", fileName);
-
-                player.HasPhoto = File.Exists(filePath);
-                _playerRepository.Update(player);
-                ConsoleUtils.ShowProgress(++current, _context.Players.Count(), "Updating database: ");
-            }
-        }
     }
 }

@@ -47,7 +47,6 @@ const Config = (function () {
             maxOverall: 99,
         },
         playingStyles: ['defensive', 'balanced', 'offensive'],
-        stadiumTicketPrice: 40,
         yellowCardsRequiredForSuspension: 3
     }
 })();

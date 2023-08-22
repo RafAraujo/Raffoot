@@ -1,16 +1,11 @@
 class Club {
-    constructor(name, countryId, externalId, backgroundColor, foregroundColor) {
+    constructor(name, countryId, colors, externalId) {
         this.name = name;
         this._countryId = countryId;
         this.externalId = externalId;
         this._playerIds = [];
         this.money = 0;
-        this.colors = {
-            background: backgroundColor,
-            backgroundCustom: backgroundColor,
-            foreground: foregroundColor,
-            foregroundCustom: foregroundColor
-        };
+        this.colors = colors;
         this.trust = {
             boardOfDirectors: 100,
             supporters: 80
@@ -21,8 +16,14 @@ class Club {
         this.playingStyle = 'balanced';
     }
 
-    static create(name, countryId, externalId, backgroundColor, foregroundColor) {
-        const club = new Club(name, countryId, externalId, backgroundColor, foregroundColor);
+    static create(name, countryId, backgroundColor, foregroundColor, externalId) {
+        const colors = {
+            background: backgroundColor,
+            backgroundCustom: backgroundColor,
+            foreground: foregroundColor,
+            foregroundCustom: foregroundColor
+        };
+        const club = new Club(name, countryId, colors, externalId);
         club.id = Context.game.clubs.push(club);
         return club;
     }

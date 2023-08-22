@@ -20,7 +20,7 @@ class ChampionshipEditionEliminationPhaseDuel {
     }
 
     get matches() {
-        return Context.game.matches.filterById(this._matchIds);
+        return Context.game.matches.filterByIds(this._matchIds);
     }
 
     get clubs() {

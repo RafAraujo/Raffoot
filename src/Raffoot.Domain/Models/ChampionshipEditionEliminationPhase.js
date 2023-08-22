@@ -42,7 +42,7 @@ class ChampionshipEditionEliminationPhase {
     }
 
     get championshipEditionEliminationPhaseDuels() {
-        return ChampionshipEditionEliminationPhaseDuel.all().filterById(this._championshipEditionEliminationPhaseDuelIds);
+        return ChampionshipEditionEliminationPhaseDuel.all().filterByIds(this._championshipEditionEliminationPhaseDuelIds);
     }
 
     get name() {

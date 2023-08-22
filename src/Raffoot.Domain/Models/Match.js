@@ -1,17 +1,12 @@
 class Match {
-    constructor(date, championshipEditionId) {
-        this.date = date;
+    constructor(championshipEditionId, date) {
         this._championshipEditionId = championshipEditionId;
-        this._clubHomeId = null;
-        this._clubAwayId = null;
-        this.goalsHome = null;
-        this.goalsAway = null;
-        this.audience = null;
-        this.isFinished = false;
+        this.date = date;
+        this._clubIds = [];
     }
 
     static create(championshipEdition, date) {
-        const match = new Match(date, championshipEdition.id);
+        const match = new Match(championshipEdition.id, date);
         match.id = Context.game.matches.push(match);
         championshipEdition.addMatch(match);
         return match;
@@ -21,72 +16,69 @@ class Match {
         return Context.game.matches[id - 1];
     }
 
-    static _formattedScore(club1, club2) {
-        return this.finished ? `${club1.goals} × ${club2.goals}` : '';
-    }
-
     get championshipEdition() {
         return ChampionshipEdition.getById(this._championshipEditionId);
     }
 
     get clubs() {
-        return this._clubAwayId ? [this.clubHome, this.clubAway] : null;
+        return Context.game.clubs.filterByIds(this._clubIds);
     }
 
     get clubHome() {
-        return Club.getById(this._clubHomeId);
+        return Club.getById(this._clubIds[0]);
     }
 
     get clubAway() {
-        return Club.getById(this._clubAwayId);
+        return Club.getById(this._clubIds[1]);
     }
 
     get description() {
         return `${this.clubHome.name} × ${this.clubAway.name}`;
     }
 
-    get income() {
-        return this.audience ? this.audience * Config.stadiumTicketPrice : null;
+    get isFinished() {
+        return this.goals != null;
     }
 
     get score() {
-        return this.isFinished ? Match._formattedScore(this.clubHome, this.clubAway) : null;
+        return this.isFinished ? `${this.goals[0]} × ${this.goals[1]}` : null;
     }
 
     get scoreReverse() {
-        return Match._formattedScore(this.clubAway, this.clubHome);
+        return this.isFinished ? `${this.goals[1]} × ${this.goals[0]}` : null;
     }
 
     addClub(club, situation) {
-        if (situation === 'home') {
-            this._clubHomeId = club.id
+        if (this._clubIds.length === 1 && situation === 'home') {
+            this._clubIds.unshift(club.id);
         }
         else {
-            this._clubAwayId = club.id;
+            this._clubIds.push(club.id);
         }
+    }
+
+    addGoal(clubId) {
+        const index = this._clubIds[0] === clubId ? 0 : 1;
+        this.goals[index]++;
     }
 
     getGoalsByClubId(clubId) {
-        return this.matchClubs.find(mc => mc.club.id === clubId).goals;
+        if ([this._clubHomeId, this._clubAwayId].includes(id => id === clubId)) {
+            return clubId === this._clubHomeId ? this.goals[0] : this.goals[1];
+        }
+        throw new Error();
     }
 
     getOpponent(clubId) {
-        if (this.clubs.map(c => c.id).includes(clubId)) {
-            return this.clubs.find(c => c.id != clubId);
+        if (this._clubIds.includes(clubId)) {
+            return clubId === this._clubIds[0] ? this.clubAway : this.clubHome;
         }
-        else {
-            throw new Error('This match does not include the club');
-        }
+        throw new Error();
     }
 
     prepare() {
-        this.audience = Random.number(this.stadium.capacity);
-        for (const matchClub of this.matchClubs) {
-            matchClub.goals = 0;
-            matchClub.arrangeTeam();
-        }
-        this.finished = false;
-        this.matchPlaying = new MatchPlaying(this);
+        this.goals = [0, 0];
+        return new MatchSimulation(this);
     }
 
     play() {

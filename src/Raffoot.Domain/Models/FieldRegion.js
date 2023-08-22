@@ -30,6 +30,18 @@ class FieldRegion {
         return this.positions.flatMap(p => p.fieldLocalizations);
     }
 
+    get inverse() {
+        switch (this.name) {
+            case 'goal':
+            case 'defense':
+                return FieldRegion.getByName('attack');
+            case 'midfield':
+                return this;
+            case 'attack':
+                return FieldRegion.getByName('defense');
+        }
+    }
+
     get positions() {
         return Context.game.positions.filterByIds(this._positionIds);
     }

@@ -1,22 +1,18 @@
 class Player {
-    constructor(name, countryId, positionId, age, baseOverall, clubId, externalId, hasPhoto, energy, wage) {
+    constructor(name, countryId, positionId, age, baseOverall, clubId, energy, externalId) {
         this.name = name;
         this._countryId = countryId;
         this._positionId = positionId;
         this.age = age;
         this.baseOverall = baseOverall;
         this._clubId = clubId;
-        this._fieldLocalizationId = null;
-        this.externalId = externalId;
-        this.hasPhoto = hasPhoto;
         this.energy = energy;
-        this.wage = wage;
+        this.externalId = externalId;
     }
 
-    static create(name, countryId, positionId, age, baseOverall, club, externalId, hasPhoto) {
+    static create(name, countryId, positionId, age, baseOverall, club, externalId) {
         const energy = 100;
-        const wage = Player._getBaseWage(baseOverall, false);
-        const player = new Player(name, countryId, positionId, age, baseOverall, club.id, externalId, hasPhoto, energy, wage);
+        const player = new Player(name, countryId, positionId, age, baseOverall, club.id, energy, externalId);
         player.id = Context.game.players.push(player);
 
         club.addPlayer(player);
@@ -40,26 +36,24 @@ class Player {
         return overall >= 80 ? 'gold' : overall >= 60 ? 'silver' : 'bronze';
     }
 
-    static _getBaseWage(overall, star) {
-        return Math.max(Player._calculateBaseWage(overall, star), Player._getMinimumWage());
+    static _getBaseWage(overall) {
+        return Math.max(Player._calculateBaseWage(overall), Player._getMinimumWage());
     }
 
     static _getMinimumWage() {
         return Player._calculateBaseWage(10, false);
     }
 
-    static _calculateBaseWage(overall, star) {
-        let factor = 2.125;
-        let value = Math.pow(overall, factor);
-        value *= star ? 2 : 1;
-        return parseFloat(value.toFixed(2));
+    static _calculateBaseWage(overall) {
+        return Math.pow(overall, 2.85);
     }
 
-    static _calculateMarketValue(overall, star, age) {
-        let reference = Player._calculateBaseWage(overall, star) * 36;
-        let multiplier = 32 - age;
-        let factor = 0.05;
-        let value = reference + (multiplier * factor * reference);
+    static _calculateMarketValue(overall, age) {
+        const exponent = 3.1 + 0.01 * overall;
+        const reference = Math.pow(overall, exponent);
+        const factor = reference * 0.1;
+        const multiplier = 32 - age;
+        const value = reference + (factor * multiplier);
         return value;
     }
 
@@ -72,7 +66,12 @@ class Player {
     }
 
     set fieldLocalization(value) {
-        this._fieldLocalizationId = value ? value.id : null;
+        if (value) {
+            this._fieldLocalizationId = value.id;
+        }
+        else {
+            delete this._fieldLocalizationId;
+        }
     }
 
     get club() {
@@ -108,7 +107,7 @@ class Player {
     }
 
     get marketValue() {
-        return Player._calculateMarketValue(this.baseOverall, this.star, this.age);
+        return Player._calculateMarketValue(this.baseOverall, this.age);
     }
 
     get overall() {
@@ -133,6 +132,10 @@ class Player {
         else {
             return this.name;
         }
+    }
+
+    get wage() {
+        return Player._getBaseWage(this.baseOverall);
     }
 
     addChampionshipEditionPlayer(championshipEditionPlayer) {
@@ -173,7 +176,7 @@ class Player {
     }
 
     getPhotoURL() {
-        const file = this.hasPhoto ? `${this.externalId}.png` : '0.svg';
+        const file = `${this.externalId}.png` ?? '0.svg';
         const url = `${Config.folders.photosFolder}/${file}`;
         return url;
     }

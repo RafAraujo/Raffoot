@@ -471,9 +471,9 @@
                                                         v-for="baseFormation in game.formations.map(f => f.baseFormation).distinct().sort()">
                                                         <optgroup :label="baseFormation">
                                                             <option v-for="formation in game.formations
-                                                                    .filter(f => f.baseFormation === baseFormation)
-                                                                    .map(f => ({ id: f.id, name: translator.getFormationName(f) }))
-                                                                    .orderBy('name')" :key="formation.id"
+                                                                .filter(f => f.baseFormation === baseFormation)
+                                                                .map(f => ({ id: f.id, name: translator.getFormationName(f) }))
+                                                                .orderBy('name')" :key="formation.id"
                                                                 :value="formation.id"
                                                                 :selected="game.club.formation?.id == formation?.id">
                                                                 {{ formation.name }}
@@ -532,8 +532,7 @@
                                                                 :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
                                                                 :src="item.player.getPhotoURL()" :alt="item.player.name"
                                                                 :title="item.player.name"
-                                                                onerror="this.onerror = null; this.src='res/players/0.svg'"
-                                                                draggable="true"
+                                                                onerror="this.src='res/players/0.svg';" draggable="true"
                                                                 @dragstart="dragStart($event, item.player.id)"
                                                                 @dragover.prevent
                                                                 @drop="drop($event); changePlayers(item.player.id)">
@@ -575,7 +574,7 @@
                                                                 :src="game.club.getKitsURLs()[0]"
                                                                 :alt="translator.get(fieldLocalization.position.name)"
                                                                 :title="translator.get(fieldLocalization.position.name)"
-                                                                onerror="this.onerror = null; this.src='res/players/0.svg'"
+                                                                onerror="this.src='res/players/0.svg';"
                                                                 @dragstart="$event.dataTransfer.effectAllowed = 'none'"
                                                                 @dragover.prevent
                                                                 @drop="drop($event); movePlayerToField(fieldLocalization.id)">
@@ -628,8 +627,7 @@
                                                                 :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
                                                                 :src="item.player.getPhotoURL()" :alt="item.player.name"
                                                                 :title="item.player.name"
-                                                                onerror="this.onerror = null; this.src='res/players/0.svg'"
-                                                                draggable="true"
+                                                                onerror="this.src='res/players/0.svg';" draggable="true"
                                                                 @dragstart="dragStart($event, item.player.id)"
                                                                 @drop="drop($event); changePlayers(item.player.id)"
                                                                 @dragover.prevent>
@@ -712,7 +710,7 @@
                                                         style="max-height: 1.5rem;">
                                                 </td>
                                                 <td>
-                                                    <span>{{ player.surname }}</span>
+                                                    <span>{{ player.name }}</span>
                                                     <template v-if="player.isInjured">
                                                         <i class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
                                                             :title="getInjuryMessage(player)"></i>
@@ -978,7 +976,8 @@
                                 <label for="select-country" class="form-label">
                                     {{ translator.get("Country") }}
                                 </label>
-                                <select id="select-country" class="form-select" @change="selectCountry($event)">
+                                <select id="select-country" class="form-select"
+                                    @change="this.selectedCountryId = parseInt($event.target.value); this.selectedClubId = null;">
                                     <option></option>
                                     <option v-for="country in game.clubs
                                         .flatMap(c => c.country)
@@ -994,7 +993,8 @@
                                 <label for="select-club" class="form-label">
                                     {{ translator.get("Club") }}
                                 </label>
-                                <select id="select-club" class="form-select" @change="selectClub($event)">
+                                <select id="select-club" class="form-select"
+                                    @change="selectedClubId = parseInt($event.target.value)">
                                     <option></option>
                                     <option v-for="club in game.clubs
                                         .filter(c => c.country.id === selectedCountryId)
@@ -1086,7 +1086,7 @@
                                                             style="max-height: 1.5rem;">
                                                     </td>
                                                     <td>
-                                                        <span>{{ player.surname }}</span>
+                                                        <span>{{ player.name }}</span>
                                                         <template v-if="player.isInjured">
                                                             <i class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
                                                                 :title="getInjuryMessage(player)"></i>
@@ -1444,6 +1444,7 @@
                 activeSection: 'play',
                 colors: { background: '', foreground: '' },
                 config: Config,
+                errorLoadingPhoto: false,
                 game: null,
                 gameLoaded: false,
                 message: { text: translator.get('Processing...'), type: 'primary' },
@@ -1583,13 +1584,6 @@
             // Standings:
 
             // Clubs:
-            selectCountry: function (event) {
-                this.selectedCountryId = parseInt(event.target.value);
-                this.selectedClubId = null;
-            },
-            selectClub: function (event) {
-                this.selectedClubId = parseInt(event.target.value);
-            },
             updatePlayerOrderForClubsSection: function (column) {
                 this.clubsOrderColumn = this.clubsOrderColumn === column ? `-${column}` : column;
             },
@@ -1687,16 +1681,16 @@
         },
         async created() {
             //try {
-                this.message = { text: this.translator.get('Processing...'), type: 'primary' };
-                await this.loadGame();
-                this.colors = { background: this.game.club.colors.backgroundCustom, foreground: this.game.club.foregroundCustom };
-                this.selectedChampionshipEditionId = this.nationalLeague.id;
-                this.message = '';
+            this.message = { text: this.translator.get('Processing...'), type: 'primary' };
+            await this.loadGame();
+            this.colors = { background: this.game.club.colors.backgroundCustom, foreground: this.game.club.foregroundCustom };
+            this.selectedChampionshipEditionId = this.nationalLeague.id;
+            this.message = '';
 
-                this.gameLoaded = true;
+            this.gameLoaded = true;
             //}
             //catch (error) {
-                //this.message = { text: error, type: 'danger' };
+            //this.message = { text: error, type: 'danger' };
             //}
         },
     };

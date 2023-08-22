@@ -5,7 +5,6 @@ class Season {
         this._championshipEditionsIds = [];
         this._seasonDateIds = [];
         this._currentSeasonDateIndex = 0;
-        this.finished = false;
     }
 
     static create(year, championshipTypes) {
@@ -25,6 +24,10 @@ class Season {
 
     get championshipEditions() {
         return Context.game.championshipEditions.filterByIds(this._championshipEditionsIds);
+    }
+
+    get finished() {
+        return this._currentSeasonDateIndex === this.seasonDates.length;
     }
 
     get seasonDates() {
@@ -58,8 +61,6 @@ class Season {
                 club.payWages();
             }
         }
-
-        this.finished = this._currentSeasonDateIndex === this.seasonDates.length;
     }
 
     getInternationalChampionshipEditions() {
