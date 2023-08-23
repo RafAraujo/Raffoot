@@ -4,6 +4,7 @@ class MatchSimulation {
 
         this._ballPossessor = this.match.clubHome.goalkeeper;
         this._moves = [];
+        this._events = [];
     }
 
     get _allPlayers() {

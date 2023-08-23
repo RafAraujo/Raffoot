@@ -87,7 +87,9 @@ class ChampionshipEdition {
     }
 
     get topScorers() {
-        return this.championshipEditionPlayers.orderBy('-goals', 'appearances', 'timePlayed');
+        return this.championshipEditionPlayers
+            .filter(cep => cep.goals > 0)
+            .orderBy('-goals', 'appearances', 'timePlayed');
     }
 
     addClub(club) {
