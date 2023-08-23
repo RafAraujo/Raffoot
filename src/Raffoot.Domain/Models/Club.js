@@ -13,7 +13,6 @@ class Club {
         this._trophies = [];
 
         this._formationId = null;
-        this.playingStyle = 'balanced';
     }
 
     static create(name, countryId, backgroundColor, foregroundColor, externalId) {
@@ -101,7 +100,6 @@ class Club {
 
     clearFormation() {
         this.changeFormation(null);
-        this.playingStyle = '';
     }
 
     getEmptyFieldLocalizations() {

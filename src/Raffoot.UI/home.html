@@ -489,20 +489,6 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="select-playing-style" class="form-label">
-                                                    {{ translator.get("Playing Style") }}
-                                                </label>
-                                                <select id="select-playing-style" class="form-select" required
-                                                    @change="game.club.playingStyle = $event.target.value">
-                                                    <option></option>
-                                                    <option v-for="playingStyle in config.playingStyles"
-                                                        :key="playingStyle" :value="playingStyle"
-                                                        :selected="game.club.playingStyle == playingStyle">
-                                                        {{ translator.get(playingStyle) }}
-                                                    </option>
-                                                </select>
-                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 mb-2">
