@@ -45,11 +45,11 @@ class Match {
     }
 
     get score() {
-        return this.isFinished ? `${this.goals[0]} × ${this.goals[1]}` : null;
+        return this.goals ? `${this.goals[0]} × ${this.goals[1]}` : null;
     }
 
     get scoreReverse() {
-        return this.isFinished ? `${this.goals[1]} × ${this.goals[0]}` : null;
+        return this.goals ? `${this.goals[1]} × ${this.goals[0]}` : null;
     }
 
     addClub(club, situation) {

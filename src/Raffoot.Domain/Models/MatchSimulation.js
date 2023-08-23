@@ -4,7 +4,6 @@ class MatchSimulation {
 
         this._ballPossessor = this.match.clubHome.goalkeeper;
         this._moves = [];
-        this._events = [];
     }
 
     get _allPlayers() {
@@ -50,7 +49,7 @@ class MatchSimulation {
         }
     }
 
-    stats() {
+    getStats() {
         const clubHomePassing = this._getMoves('passing', this._match.clubHome, false).length;
         const clubHomePassingSuccessful = this._getMoves('passing', this._match.clubHome, true).length;
         const clubHomeFinishing = this._getMoves('finishing', this._match.clubHome, false).length;
@@ -68,7 +67,6 @@ class MatchSimulation {
     }
 
     nextMove(time) {
-        debugger;
         const action = this._chooseAction();
 
         const move = {
@@ -115,7 +113,7 @@ class MatchSimulation {
             this._ballPossessor = this._clubDefending.goalkeeper;
         }
 
-        if (time % 10 === 0) {
+        if (time > 0 && time % 10 === 0) {
             this._drainEnergy();
         }
 
