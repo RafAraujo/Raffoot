@@ -68,6 +68,7 @@ class MatchSimulation {
     }
 
     nextMove(time) {
+        debugger;
         const action = this._chooseAction();
 
         const move = {
@@ -183,7 +184,6 @@ class MatchSimulation {
     _drainEnergy() {
         for (const player of this._allPlayers) {
             player.energy = Math.max(player.energy - player.age * 0.1, 0);
-            player.energy = Math.round(player.energy);
         }
     }
 

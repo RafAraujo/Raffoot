@@ -36,8 +36,12 @@ class Match {
         return `${this.clubHome.name} × ${this.clubAway.name}`;
     }
 
-    get isFinished() {
-        return this.goals != null;
+    get goalsHome() {
+        return this.goals ? this.goals[0] : null;
+    }
+
+    get goalsAway() {
+        return this.goals ? this.goals[1] : null;
     }
 
     get score() {
@@ -63,7 +67,7 @@ class Match {
     }
 
     getGoalsByClubId(clubId) {
-        if ([this._clubHomeId, this._clubAwayId].includes(id => id === clubId)) {
+        if ([this._clubIds].includes(id => id === clubId)) {
             return clubId === this._clubHomeId ? this.goals[0] : this.goals[1];
         }
         throw new Error();
