@@ -50,49 +50,49 @@
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'play' }" href="#play"
                                         @click="changeSection($event)">
-                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-play fa-fw"></i>
                                         {{ translator.get("Play") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'squad' }" href="#squad"
                                         @click="changeSection($event)">
-                                        <i class="fa-solid fa-people-group"></i>
+                                        <i class="fa-solid fa-people-group fa-fw"></i>
                                         {{ translator.get("Squad") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'calendar' }"
                                         href="#calendar" @click="changeSection($event)">
-                                        <i class="fa-solid fa-calendar-days"></i>
+                                        <i class="fa-solid fa-calendar-days fa-fw"></i>
                                         {{ translator.get("Calendar") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'standings' }"
                                         href="#standings" @click="changeSection($event)">
-                                        <i class="fa-solid fa-table-list"></i>
+                                        <i class="fa-solid fa-table-list fa-fw"></i>
                                         {{ translator.get("Standings") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'finances' }"
                                         href="#finances" @click="changeSection($event)">
-                                        <i class="fa-solid fa-dollar-sign"></i>
+                                        <i class="fa-solid fa-dollar-sign fa-fw"></i>
                                         {{ translator.get("Finances") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'clubs' }" href="#clubs"
                                         @click="changeSection($event)">
-                                        <i class="fa-solid fa-shield-halved"></i>
+                                        <i class="fa-solid fa-shield-halved fa-fw"></i>
                                         {{ translator.get("Clubs") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection == 'players' }"
                                         href="#players" @click="changeSection($event)">
-                                        <i class="fa-solid fa-user"></i>
+                                        <i class="fa-solid fa-user fa-fw"></i>
                                         {{ translator.get("Players") }}
                                     </a>
                                 </li>
@@ -100,19 +100,19 @@
                                     <a class="nav-link dropdown-toggle"
                                         :class="{ 'active' : ['champions', 'top-scorers', 'ranking'].includes(activeSection) }"
                                         href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa-solid fa-book"></i>
+                                        <i class="fa-solid fa-book fa-fw"></i>
                                         {{ translator.get("History") }}
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="#champions" @click="changeSection($event)">
-                                                <i class="fa-solid fa-trophy"></i>
+                                                <i class="fa-solid fa-trophy fa-fw"></i>
                                                 {{ translator.get("Champions") }}
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="#top-scorers" @click="changeSection($event)">
-                                                <i class="fa-solid fa-futbol"></i>
+                                                <i class="fa-solid fa-futbol fa-fw"></i>
                                                 {{ translator.get("Top Scorers") }}
                                             </a>
                                         </li>
@@ -121,7 +121,7 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="#ranking" @click="changeSection($event)">
-                                                <i class="fa-solid fa-ranking-star"></i>
+                                                <i class="fa-solid fa-ranking-star fa-fw"></i>
                                                 {{ translator.get("Ranking") }}
                                             </a>
                                         </li>
@@ -130,13 +130,13 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
-                                        <i class="fa-solid fa-gear"></i>
+                                        <i class="fa-solid fa-gear fa-fw"></i>
                                         {{ translator.get("Options") }}
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="#" @click="save()">
-                                                <i class="fa-solid fa-floppy-disk"></i>
+                                                <i class="fa-solid fa-floppy-disk fa-fw"></i>
                                                 {{ translator.get("Save Game") }}
                                             </a>
                                         </li>
@@ -146,13 +146,13 @@
                                         <li>
                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                 data-bs-target="#modal-colors">
-                                                <i class="fa-solid fa-palette"></i>
+                                                <i class="fa-solid fa-palette fa-fw"></i>
                                                 {{ translator.get("Colors") }}
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="#" @click="toggleFullscreen()">
-                                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                                <i class="fa-solid fa-up-right-and-down-left-from-center fa-fw"></i>
                                                 {{ translator.get("Full screen") }}
                                             </a>
                                         </li>
@@ -161,7 +161,7 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="index.html">
-                                                <i class="fa-solid fa-power-off"></i>
+                                                <i class="fa-solid fa-power-off fa-fw"></i>
                                                 {{ translator.get("Exit Game") }}
                                             </a>
                                         </li>
@@ -378,11 +378,11 @@
                             <div class="row small">
                                 <div class="col">
                                     <p class="m-0">
-                                        <i class="fa-solid fa-sack-dollar me-2"></i>
+                                        <i class="fa-solid fa-sack-dollar fa-fw me-2"></i>
                                         <span>{{ game.club.money.formatCurrency() }}</span>
                                     </p>
                                     <p class="m-0">
-                                        <i class="fa-solid fa-flag me-2"></i>
+                                        <i class="fa-solid fa-flag fa-fw me-2"></i>
                                         <span>
                                             {{
                                             `${translator.getChampionshipName(nationalLeague.championship)}
@@ -751,7 +751,6 @@
                                             <th class="text-start" style="width: 1.5rem;"></th>
                                             <th class="text-start">{{ translator.get("Away") }}</th>
                                             <th class="text-center">{{ translator.get("Championship") }}</th>
-                                            <th class="text-center">{{ translator.get("Audience") }}</th>
                                             <th class="text-center">{{ translator.get("Income") }}</th>
                                         </thead>
                                         <tbody>
@@ -775,7 +774,6 @@
                                                     translator.getChampionshipName(match.championshipEdition.championship)
                                                     }}
                                                 </td>
-                                                <td class="text-center">{{ match.audience }}</td>
                                                 <td class="text-center">{{ match.income }}</td>
                                             </tr>
                                         </tbody>
@@ -860,8 +858,8 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link link-dark" href="#"
-                                                :class="{ 'active' : activeTab === 'classification-top-scorers' }"
-                                                @click.prevent="activeTab = 'classification-top-scorers'">
+                                                :class="{ 'active' : activeTab === 'top-scorers' }"
+                                                @click.prevent="activeTab = 'top-scorers'">
                                                 {{ translator.get("Top Scorers") }}
                                             </a>
                                         </li>
@@ -870,7 +868,9 @@
                                         :class="{ 'd-none' : activeTab !== 'classification' }">
                                         <table class="table table-hover">
                                             <thead class="table-light">
-                                                <th class="text-center">#</th>
+                                                <th class="text-center">
+                                                    #
+                                                </th>
                                                 <th class="text-center" style="width: 1.5rem;">
                                                 </th>
                                                 <th class="text-start">{{ translator.get("Club") }}</th>
@@ -944,6 +944,45 @@
                                         </table>
                                     </div>
                                     <div class="table-responsive" :class="{ 'd-none' : activeTab !== 'top-scorers' }">
+                                        <table class="table table-hover">
+                                            <thead class="table-light">
+                                                <th class="text-center">
+                                                    #
+                                                </th>
+                                                <th class="text-center">
+                                                    {{ translator.get("Player") }}
+                                                </th>
+                                                <th class="text-center">
+                                                    {{ translator.get("Club") }}
+                                                </th>
+                                                <th class="text-center">
+                                                    {{ translator.get("Goals") }}
+                                                </th>
+                                                <th class="text-center">
+                                                    {{ translator.get("Matches") }}
+                                                </th>
+                                            </thead>
+                                            <tbody>
+                                                <tr
+                                                    v-for="(championshipEditionPlayer, index) in selectedChampionshipEdition?.topScorers">
+                                                    <td class="text-center">
+                                                        {{ index + 1 }}
+                                                    </td>
+                                                    <td>
+                                                        {{ championshipEditionPlayer.player.name }}
+                                                    </td>
+                                                    <td>
+                                                        {{ championshipEditionPlayer.player.club.name }}
+                                                    </td>
+                                                    <td>
+                                                        {{ championshipEditionPlayer.goals }}
+                                                    </td>
+                                                    <td>
+                                                        {{ championshipEditionPlayer.matches }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </template>
                             </div>

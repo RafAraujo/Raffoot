@@ -47,7 +47,7 @@ namespace RaffootLoader.Services
             "Market Value", "Matches", $"{PrefixOfContext}{Separator}Maximum", "Midfield", $"{PrefixOfContext}{Separator}Minimum", "Money",
             "Name", "Narrow", "National", "Nationality", "New Game", "No",
             $"{PrefixOfContext}{Separator}Offensive", "Offside", "Options", "Out until {0}", "Overall", "OV",
-            $"{PrefixOfContext}{Separator}Passes", $"{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Players", "Playing Style", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
+            $"{PrefixOfContext}{Separator}Passes", $"{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Player", $"{PrefixOfContext}{Separator}Players", "Playing Style", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
             "Quarter-finals",
             "Raffoot", "Ranking", "Red Card", $"{PrefixOfContext}{Separator}Referee", "Reset", $"{PrefixOfContext}{Separator}Right", "Round of 16", "Round of 32", "Round of 64",
             "Save Changes", "Save Game", "Search", "Search Players", "Sector", "Semifinals", "Shots on goal", "Showing {0} of {1}", "Silver", "Squad", "Stadium", "Standings", "Star", "Start Game", "Starting game...", "Start of the match", "Statistics", "Supercup", $"{PrefixOfContext}{Separator}Supporters",  $"{PrefixOfContext}{Separator}Suspended",

@@ -50,7 +50,7 @@ class MatchSimulation {
         }
     }
 
-    stats() {
+    getStats() {
         const clubHomePassing = this._getMoves('passing', this._match.clubHome, false).length;
         const clubHomePassingSuccessful = this._getMoves('passing', this._match.clubHome, true).length;
         const clubHomeFinishing = this._getMoves('finishing', this._match.clubHome, false).length;
@@ -114,7 +114,7 @@ class MatchSimulation {
             this._ballPossessor = this._clubDefending.goalkeeper;
         }
 
-        if (time % 10 === 0) {
+        if (time > 0 && time % 10 === 0) {
             this._drainEnergy();
         }
 
@@ -183,7 +183,6 @@ class MatchSimulation {
     _drainEnergy() {
         for (const player of this._allPlayers) {
             player.energy = Math.max(player.energy - player.age * 0.1, 0);
-            player.energy = Math.round(player.energy);
         }
     }
 
