@@ -43,10 +43,10 @@ class TranslatorService {
         return name;
     }
 
-    getChampionshipName(championship) {
+    getChampionshipName(championship, includeDivision = true) {
         const championshipNameWithoutDivision = championship.name.replace(` ${championship.division}`, '');
         const translation = this.get(championshipNameWithoutDivision);
-        return championship.championshipType.format === 'league' ? `${translation} ${championship.division}` : `${translation}`;
+        return championship.championshipType.format === 'league' && includeDivision ? `${translation} ${championship.division}` : `${translation}`;
     }
 
     static getLanguage() {

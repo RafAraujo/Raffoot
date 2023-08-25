@@ -26,6 +26,10 @@ class Season {
         return Context.game.championshipEditions.filterByIds(this._championshipEditionsIds);
     }
 
+    get currentDate() {
+        return this.currentSeasonDate.date;
+    }
+
     get finished() {
         return this._currentSeasonDateIndex === this.seasonDates.length;
     }
@@ -38,16 +42,12 @@ class Season {
         return this.seasonDates[this._currentSeasonDateIndex];
     }
 
-    get previousSeasonDate() {
-        return this.seasonDates[this._currentSeasonDateIndex - 1];
-    }
-
-    get currentDate() {
-        return this.currentSeasonDate.date;
-    }
-
     get matches() {
         return this.championshipEditions.flatMap(ce => ce.matches);
+    }
+
+    get previousSeasonDate() {
+        return this.seasonDates[this._currentSeasonDateIndex - 1];
     }
 
     advanceDate() {
@@ -71,46 +71,37 @@ class Season {
         return this.championshipEditions.filter(ce => ce.championship.championshipType.scope === 'national');
     }
 
-    getChampionshipEditionsByConfederationId(confederationId) {
+    getChampionshipEditionsByConfederation(confederation) {
         const championshipEditions = this.getNationalChampionshipEditions();
-        return championshipEditions.filter(ce => ce.championship.confederation.id === confederationId);
+        return championshipEditions.filter(ce => ce.championship.confederation.id === confederation.id);
+    }
+
+    getChampionshipEditionCurrentStage(championshipEdition) {
+        if (championshipEdition.championship.championshipType.regulation === 'round-robin') {
+            const fixture = championshipEdition.championshipEditionFixtures.find(cef => cef.seasonDate.id === this.currentSeasonDate.id);
+            return fixture.number;
+        }
     }
 
     getCurrentChampionshipEditions() {
-        return this.getChampionshipEditionsByDate(this.currentDate);
+        return this.currentSeasonDate.matches.map(m => m.championshipEdition).distinct();
     }
 
-    getCurrentMatches() {
-        return this.getMatchesByDate(this.currentDate);
-    }
-
-    getCurrentMatchesByChampionshipEditionId(championshipEditionId) {
-        return this.getMatchesByDate(this.currentDate).filter(m => m.championshipEditionId === championshipEditionId);
+    getCurrentMatchesByChampionshipEdition(championshipEdition) {
+        return this.currentSeasonDate.matches.filter(m => m.championshipEdition.id === championshipEdition.id);
     }
 
     getNationalLeagues() {
-        return this.getNationalChampionshipEditions().filter(ce => ce.championship.isNationalLeague);
+        return this.championshipEditions.filter(ce => ce.championship.isNationalLeague);
     }
 
-    getNationalLeaguesByCountryId(countryId) {
+    getNationalLeaguesByCountry(country) {
         const championshipEditions = this.getNationalLeagues();
-        return championshipEditions.filter(ce => ce.championship.countries.map(c => c.id).includes(countryId));
+        return championshipEditions.filter(ce => ce.championship.countries.map(c => c.id).includes(country.id));
     }
 
-    getChampionshipEditionsByDate(date) {
-        return this.getMatchesByDate(date).map(m => m.championshipEdition).distinct();
-    }
-
-    getMatchesByDate(date) {
-        return this.matches.filter(m => m.date.getTime() === date.getTime());
-    }
-
-    getMatchesByClubId(clubId) {
-        return this.matches.filter(m => m.clubs?.map(c => c.id).includes(clubId)).orderBy('date');
-    }
-
-    getNextMatch(clubId) {
-        return this.getMatchesByClubId(clubId).find(m => m.date >= this.currentDate);
+    getMatchesByClub(club) {
+        return this.matches.filter(m => m.clubs?.map(c => c.id).includes(club.id)).orderBy('date');
     }
 
     schedule() {
@@ -119,15 +110,18 @@ class Season {
 
         for (const championshipEdition of this.championshipEditions) {
             this._defineChampionshipEditionClubs(championshipEdition);
-            const dates = this.seasonDates.filter(sd => sd.championshipType.id === championshipEdition.championship.championshipType.id).map(sd => sd.date);
+            const seasonDates = this.seasonDates.filter(sd => sd.championshipType.id === championshipEdition.championship.championshipType.id);
             const dateCount = championshipEdition.championship.getDateCount();
-            championshipEdition.scheduleMatches(dates.lastItems(dateCount));
+            championshipEdition.addSeasonDates(seasonDates.lastItems(dateCount));
+            championshipEdition.scheduleMatches();
         }
     }
 
     _addSeasonDate(date, championshipType) {
-        if (this.championshipTypes.includes(championshipType))
-            this._seasonDateIds.push(SeasonDate.create(date, championshipType).id);
+        if (this.championshipTypes.includes(championshipType)) {
+            const seasonDate = SeasonDate.create(this, date, championshipType);
+            this._seasonDateIds.push(seasonDate.id);
+        }
     }
 
     _defineCalendar() {
@@ -161,7 +155,7 @@ class Season {
     _defineChampionshipEditions() {
         const championships = this.championshipTypes.flatMap(ct => ct.championships);
         for (const championship of championships) {
-            const championshipEdition = ChampionshipEdition.create(championship, this.year);
+            const championshipEdition = ChampionshipEdition.create(championship, this);
             this._championshipEditionsIds.push(championshipEdition.id);
         }
     }
@@ -175,8 +169,7 @@ class Season {
             eligibleClubs = eligibleClubs.filter(club => championshipEdition.championship.countries.some(country => club.country.id === country.id));
 
             if (championshipEdition.championship.championshipType.id === nationalLeague.id) {
-                const otherDivisions = Context.game.championshipEditions.filter(ce =>
-                    ce.year == this.year &&
+                const otherDivisions = this.championshipEditions.filter(ce =>
                     ce.championship.championshipType.id === nationalLeague.id &&
                     ce.championship.countries.map(c => c.id).includes(championshipEdition.championship.countries[0].id) &&
                     ce.championship.division !== championshipEdition.championship.division);
@@ -186,9 +179,11 @@ class Season {
             }
         }
 
-        const clubs = eligibleClubs.orderBy('-overall').take(clubCount);
+        eligibleClubs = eligibleClubs.orderBy('division', '-overall');
+        const clubs = eligibleClubs.take(clubCount);
+
         for (const club of clubs) {
-            championshipEdition.addClub(club);
+            ChampionshipEditionClub.create(championshipEdition, club)
         }
     }
 

@@ -87,6 +87,10 @@ class Championship {
         return this.confederation.countries;
     }
 
+    get divisionLetter() {
+        return `${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[this.division - 1]}`;
+    }
+
     get groupClubCount() {
         return this.championshipType.regulation === 'groups' ? Config.cup.groupClubCount : null;
     }
@@ -95,7 +99,7 @@ class Championship {
         return this.championshipType.regulation === 'groups' ? this.clubCount / Config.cup.groupClubCount : 0;
     }
 
-    get groupDatesCount() {
+    get groupDateCount() {
         return this.championshipType.regulation === 'groups' ? (Config.cup.groupClubCount - 1) * (this.isTwoLeggedTie ? 2 : 1) : 0;
     }
 
@@ -136,9 +140,9 @@ class Championship {
     getDateCount() {
         switch (this.championshipType.regulation) {
             case 'groups':
-                return this.groupDatesCount + this.getEliminationDatesCount();
+                return this.groupDateCount + this.getEliminationDateCount();
             case 'elimination':
-                return this.getEliminationDatesCount();
+                return this.getEliminationDateCount();
             case 'round-robin':
                 return (this.clubCount - 1) * (this.isTwoLeggedTie ? 2 : 1);
             default:
@@ -146,17 +150,17 @@ class Championship {
         }
     }
 
-    getEliminationDatesCount() {
+    getEliminationDateCount() {
         switch (this.championshipType.regulation) {
             case 'groups':
-                return genericEliminationDatesCount(Config.cup.groupClubCount * Config.cup.groupQualifiedClubCount, this.isTwoLeggedTie);
+                return _genericEliminationDateCount(Config.cup.groupClubCount * Config.cup.groupQualifiedClubCount, this.isTwoLeggedTie);
             case 'elimination':
-                return genericEliminationDatesCount(this.clubCount, this.isTwoLeggedTie);
+                return _genericEliminationDateCount(this.clubCount, this.isTwoLeggedTie);
             default:
                 return 0;
         }
 
-        function genericEliminationDatesCount(clubCount, isTwoLeggedTie) {
+        function _genericEliminationDateCount(clubCount, isTwoLeggedTie) {
             return Math.log2(clubCount) * (isTwoLeggedTie ? 2 : 1);
         }
     }

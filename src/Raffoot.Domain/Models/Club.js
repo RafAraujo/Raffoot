@@ -10,6 +10,7 @@ class Club {
             boardOfDirectors: 100,
             supporters: 80
         };
+        this.division = null;
         this._trophies = [];
 
         this._formationId = null;
@@ -52,7 +53,7 @@ class Club {
     }
 
     get overall() {
-        return this.players.map(p => p.overall);
+        return this.players.map(p => p.baseOverall).average();
     }
 
     get players() {

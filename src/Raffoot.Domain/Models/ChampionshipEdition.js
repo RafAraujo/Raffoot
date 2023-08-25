@@ -1,17 +1,20 @@
 class ChampionshipEdition {
-    constructor(championshipId, year) {
+    constructor(championshipId, seasonId) {
         this._championshipId = championshipId;
-        this.year = year;
+        this._seasonId = seasonId;
+        this._seasonDateIds = [];
+
         this._championshipEditionClubIds = [];
         this._championshipEditionPlayerIds = [];
         this._championshipEditionEliminationPhaseIds = [];
         this._championshipEditionFixtureIds = [];
-        this.dates = [];
+        this._championshipEditionGroupIds = [];
+
         this._matchIds = [];
     }
 
-    static create(championship, year) {
-        const championshipEdition = new ChampionshipEdition(championship.id, year);
+    static create(championship, season) {
+        const championshipEdition = new ChampionshipEdition(championship.id, season.id);
         championshipEdition.id = Context.game.championshipEditions.push(championshipEdition);
         return championshipEdition;
     }
@@ -52,26 +55,20 @@ class ChampionshipEdition {
         return this.championshipEditionClubs.map(cec => cec.club);
     }
 
-    get eliminationPhaseDates() {
-        if (this.championship.championshipType.regulation === 'round-robin')
-            return [];
-        else
-            return this.dates.slice(this.championship.groupDatesCount);
-    }
-
-    get groupDates() {
-        if (this.championship.championshipType.regulation != 'groups')
-            return [];
-        else
-            return this.dates.slice(0, this.championship.groupDatesCount - 1);
-    }
-
     get matches() {
         return Context.game.matches.filterByIds(this._matchIds);
     }
 
     get name() {
-        return `${this.championship.name} ${this.year}`;
+        return `${this.championship.name} ${this.season.year}`;
+    }
+
+    get season() {
+        return Season.getById(this._seasonId);
+    }
+
+    get seasonDates() {
+        return Context.game.seasonDates.filterByIds(this._seasonDateIds);
     }
 
     get table() {
@@ -79,21 +76,20 @@ class ChampionshipEdition {
     }
 
     get topAssists() {
-        return this.championshipEditionPlayers.orderBy('-assists', 'appearances', 'timePlayed');
+        return this.championshipEditionPlayers.orderBy('-assists', 'matches');
     }
 
     get topPlayers() {
-        return this.championshipEditionPlayers.orderBy('-averageRating', 'appearances', 'timePlayed');
+        return this.championshipEditionPlayers.orderBy('-averageRating', 'matches');
     }
 
     get topScorers() {
         return this.championshipEditionPlayers
             .filter(cep => cep.goals > 0)
-            .orderBy('-goals', 'appearances', 'timePlayed');
+            .orderBy('-goals', 'matches');
     }
 
-    addClub(club) {
-        const championshipEditionClub = ChampionshipEditionClub.create(this, club);
+    addChampionshipEditionClub(championshipEditionClub) {
         this._championshipEditionClubIds.push(championshipEditionClub.id);
     }
 
@@ -103,6 +99,10 @@ class ChampionshipEdition {
 
     addMatch(match) {
         this._matchIds.push(match.id);
+    }
+
+    addSeasonDates(seasonDates) {
+        this._seasonDateIds = seasonDates.map(sd => sd.id);
     }
 
     getClubPosition(club) {
@@ -172,9 +172,7 @@ class ChampionshipEdition {
         return this.table.lastItems(positions.length);
     }
 
-    scheduleMatches(dates) {
-        this.dates = dates;
-
+    scheduleMatches() {
         switch (this.championship.championshipType.regulation) {
             case 'elimination':
                 this._defineChampionshipEditionEliminationPhases();
@@ -196,27 +194,31 @@ class ChampionshipEdition {
         let clubCount = this.championship.championshipType.regulation === 'groups' ?
             this.championship.groupCount * this.championship.qualifiedClubsByGroupCount :
             this.championship.clubCount;
+        
+        let start = 0;
 
         while (clubCount >= 2) {
-            const eliminationPhase = ChampionshipEditionEliminationPhase.create(this, clubCount);
-            this._championshipEditionEliminationPhaseIds.push(eliminationPhase.id);
+            const seasonDates = this.seasonDates.slice(this.championship.groupDateCount).slice(start, start += 2);
+            const championshipEditionEliminationPhase = ChampionshipEditionEliminationPhase.create(this, clubCount, seasonDates);
+            this._championshipEditionEliminationPhaseIds.push(championshipEditionEliminationPhase.id);
             clubCount /= 2;
         }
     }
 
     _defineChampionshipEditionGroups() {
-        let championshipEditionClubs = this.championshipEditionClubs.slice();
+        const championshipEditionClubs = this.championshipEditionClubs.slice();
 
         for (const i = 0; i < this.championship.groupCount; i++) {
-            let group = ChampionshipEditionGroup.create(this, i + 1);
+            const championshipEditionFixtures = this.championship.groupDateCount.map((_, index) => ChampionshipEditionFixture.create(this, index + 1));
+            const championshipEditionGroup = ChampionshipEditionGroup.create(this, i + 1, championshipEditionFixtures);
 
             for (const j = 0; j < this.championship.groupClubCount; j++) {
-                let championshipEditionClub = championshipEditionClubs.getRandom();
-                group.addChampionshipEditionClub(championshipEditionClub);
+                const championshipEditionClub = championshipEditionClubs.getRandom();
+                championshipEditionGroup.addChampionshipEditionClub(championshipEditionClub);
                 championshipEditionClubs.remove(championshipEditionClub);
             }
 
-            this._championshipEditionGroupIdss.push(group.id);
+            this._championshipEditionGroupIds.push(championshipEditionGroup.id);
         }
     }
 
@@ -229,52 +231,48 @@ class ChampionshipEdition {
     }
 
     _scheduleMatchesChampionshipEditionGroups() {
-        for (const group of this.championshipEditionGroups) {
-            let matches = ChampionshipEdition.genericRoundRobin(this, this.groupDates, group.clubs, this.championship.isTwoLeggedTie);
-            group.addMatches(matches);
+        for (const championshipEditionGroup of this.championshipEditionGroups) {
+            ChampionshipEdition._genericRoundRobin(this, this.groupDates, championshipEditionGroup.clubs, championshipEditionGroup.championshipEditionFixtures);
         }
-
-        this._scheduleMatchesElimination();
     }
 
     _scheduleMatchesElimination() {
-        let eliminationPhases = this.championshipEditionEliminationPhases;
-        let matchesPerPhase = this.championship.isTwoLeggedTie ? 2 : 1;
-
-        for (let i = 0; i < eliminationPhases.length; i++) {
-            let eliminationPhase = eliminationPhases[i];
-
-            for (let j = 0; j < eliminationPhase.clubCount; j += 2) {
-                for (let k = 0; k < matchesPerPhase; k++) {
-                    const date = this.eliminationPhaseDates[i * matchesPerPhase + k];
-
-                    const match = Match.create(this, date);
-                    eliminationPhase.addMatch(match);
+        for (const championshipEditionEliminationPhase of this.championshipEditionEliminationPhases) {
+            for (let i = 0; i < championshipEditionEliminationPhase.clubCount; i += 2) {
+                for (const seasonDate of championshipEditionEliminationPhase.seasonDates) {
+                    const match = Match.create(this, seasonDate);
+                    championshipEditionEliminationPhase.addMatch(match);
                 }
             }
         }
 
         if (this.championship.championshipType.regulation === 'elimination') {
-            eliminationPhases[0].qualify(this.championshipEditionClubs);
+            this.championshipEditionEliminationPhases[0].qualify(this.championshipEditionClubs);
         }
     }
 
     _scheduleMatchesRoundRobin() {
-        ChampionshipEdition.genericRoundRobin(this, this.dates, this.clubs, this.championship.isTwoLeggedTie);
+        ChampionshipEdition._genericRoundRobin(this, this.seasonDates, this.clubs, this.championshipEditionFixtures);
     }
 
-    static genericRoundRobin(championshipEdition, dates, clubs, isTwoLeggedTie) {
+    static _genericRoundRobin(championshipEdition, seasonDates, clubs, championshipEditionFixtures) {
         const matches = [];
-        const rounds = (clubs.length - 1) * (isTwoLeggedTie ? 2 : 1);
 
-        for (let i = 0; i < rounds; i++) {
-            const date = dates[i];
+        clubs = clubs.slice().shuffle();
+
+        for (let i = 0; i < championshipEditionFixtures.length; i++) {
+            const championshipEditionFixture = championshipEditionFixtures[i];
+            const seasonDate = seasonDates[i];
+            
+            championshipEditionFixture.seasonDate = seasonDate;
+
             for (let j = 0; j < clubs.length / 2; j++) {
-                let match = Match.create(championshipEdition, date);
+                let match = Match.create(championshipEdition, seasonDate);
 
                 match.addClub(clubs[j], i % 2 === 0 ? 'home' : 'away');
                 match.addClub(clubs[clubs.length - 1 - j], i % 2 === 0 ? 'away' : 'home');
 
+                championshipEditionFixture.addMatch(match);
                 matches.push(match);
             }
             rotate(clubs);

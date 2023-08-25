@@ -2,7 +2,7 @@ class ChampionshipEditionPlayer {
     constructor(championshipEditionId, playerId) {
         this._championshipEditionId = championshipEditionId;
         this._playerId = playerId;
-        this.appearances = 0;
+        this.matches = 0;
         this.goals = 0;
         this.assists = 0;
         this.yellowCards = 0;
@@ -16,6 +16,14 @@ class ChampionshipEditionPlayer {
 
         championshipEdition.addChampionshipEditionPlayer(championshipEditionPlayer);
 
+        return championshipEditionPlayer;
+    }
+
+    static createIfNotExists(championshipEdition, player) {
+        let championshipEditionPlayer = Context.game.championshipEditionPlayers.find(cep => cep.championshipEdition.id === championshipEdition.id && cep.player.id === player.id);
+        if (!championshipEdition) {
+            championshipEditionPlayer = ChampionshipEditionPlayer.create(championshipEdition, player);
+        }
         return championshipEditionPlayer;
     }
 

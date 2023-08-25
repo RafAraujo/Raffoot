@@ -18,8 +18,8 @@ class ChampionshipType {
     }
 
     static seed() {
+        ChampionshipType.create('national', 'league', 'round-robin', true);
 		ChampionshipType.create('national', 'cup', 'elimination', true);
-		ChampionshipType.create('national', 'league', 'round-robin', true);
 		ChampionshipType.create('national', 'supercup', 'elimination', false);
 		ChampionshipType.create('continental', 'cup', 'groups', true);
 		ChampionshipType.create('continental', 'supercup', 'elimination', false);

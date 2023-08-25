@@ -37,7 +37,8 @@ namespace RaffootLoader.Services
                 sb.AppendLine(string.Format("class {0} {{", fileName));
 
                 sb.AppendLine("\tstatic seedCountries() {");
-                sb.AppendLine("\t\tconst c = Country.create;");
+                sb.AppendLine("\t\tconst" +
+                    " c = Country.create;");
                 sb.AppendLine();
 
                 var countries = _context.Countries.OrderBy(c => c.Name);

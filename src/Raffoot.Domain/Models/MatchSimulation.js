@@ -158,11 +158,7 @@ class MatchSimulation {
     }
 
     _getChampionshipEditionPlayer(player) {
-        let championshipEditionPlayer = this.match.championshipEdition.championshipEditionPlayers.find(cep => cep.player.id === player.id);
-        if (!championshipEditionPlayer) {
-            championshipEditionPlayer = ChampionshipEditionPlayer.create(this.match.championshipEdition, player);
-        }
-        return championshipEditionPlayer;
+        return this.match.championshipEdition.championshipEditionPlayers.find(cep => cep.player.id === player.id);
     }
 
     _chooseAction() {

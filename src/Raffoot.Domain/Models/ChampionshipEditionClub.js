@@ -14,6 +14,12 @@ class ChampionshipEditionClub {
     static create(championshipEdition, club) {
         const championshipEditionClub = new ChampionshipEditionClub(championshipEdition.id, club.id);
         championshipEditionClub.id = Context.game.championshipEditionClubs.push(championshipEditionClub);
+
+        championshipEdition.addChampionshipEditionClub(championshipEditionClub);
+        if (championshipEdition.championship.championshipType.id === ChampionshipType.find('national', 'league').id) {
+            championshipEditionClub.club.division = championshipEdition.championship.division;
+        }
+
         return championshipEditionClub;
     }
 

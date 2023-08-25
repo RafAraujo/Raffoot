@@ -30,6 +30,8 @@ class Game {
         this.positions = [];
         this.seasons = [];
         this.seasonDates = [];
+
+        this.time = 0;
     }
 
     get club() {
@@ -46,15 +48,15 @@ class Game {
     }
 
     getClubCurrentMatch() {
-        return this.currentSeason.getCurrentMatches().find(m => m.clubs.map(c => c.id).includes(this._clubId));
+        return this.currentSeason.currentSeasonDate.matches.find(m => m.clubs.map(c => c.id).includes(this._clubId));
     }
 
     getClubMatches() {
-        return this.currentSeason.getMatchesByClubId(this.club.id);
+        return this.currentSeason.getMatchesByClub(this.club);
     }
 
     getClubNationalLeague() {
-        const nationalLeagues = this.currentSeason.getNationalLeaguesByCountryId(this.club.country.id);
+        const nationalLeagues = this.currentSeason.getNationalLeaguesByCountry(this.club.country);
         return nationalLeagues.find(ce => ce.clubs.map(c => c.id).includes(this.club.id));
     }
 
@@ -88,16 +90,15 @@ class Game {
     play() {
         let t0 = performance.now();
 
-        const matches = this.currentSeason.getCurrentMatches();
+        const matches = this.currentSeason.currentSeasonDate.matches;
+        
         const matchSimulations = matches.map(m => m.prepare());
 
-        let time = 0;
-
-        while (time <= 90) {
+        while (this.time <= 90) {
             for (const matchSimulation of matchSimulations) {
                 matchSimulation.nextMove(time);
             }
-            time++;
+            this.time++;
         }
 
         console.log(`Game.play() took ${(performance.now() - t0)} milliseconds.`);

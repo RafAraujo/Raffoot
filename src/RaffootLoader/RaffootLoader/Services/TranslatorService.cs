@@ -44,7 +44,7 @@ namespace RaffootLoader.Services
             "History", "Holding", $"{PrefixOfContext}{Separator}Home",
             "Income", "Injured player", "International",
             "League", "Left", $"{PrefixOfContext}{Separator}Lineup", "Load", "Load Game", "Load more", "Loading game...", "Logo", $"{PrefixOfContext}{Separator}Losses",
-            "Market Value", "Matches", $"{PrefixOfContext}{Separator}Maximum", "Midfield", $"{PrefixOfContext}{Separator}Minimum", "Money",
+            "Market Value", $"{PrefixOfContext}{Separator}Match", "Matchday", "Matches", $"{PrefixOfContext}{Separator}Maximum", "Midfield", $"{PrefixOfContext}{Separator}Minimum", "Money",
             "Name", "Narrow", "National", "Nationality", "New Game", "No",
             $"{PrefixOfContext}{Separator}Offensive", "Offside", "Options", "Out until {0}", "Overall", "OV",
             $"{PrefixOfContext}{Separator}Passes", $"{PrefixOfContext}{Separator}Penalty", "Penalty Taker", "Play", $"{PrefixOfContext}{Separator}Player", $"{PrefixOfContext}{Separator}Players", "Playing Style", $"{PrefixOfContext}{Separator}Points", "Position", "POS", "Preferred Side", "Processing...",
@@ -85,6 +85,7 @@ namespace RaffootLoader.Services
             new Translation("Left winger", "Ponta-esquerda", "pt-BR"),
             new Translation("Right winger", "Ponta-direita", "pt-BR"),
 
+            new Translation("Matchday", "Rodada", "pt-BR"),
             new Translation("Standings", "Tabelas", "pt-BR"),
             new Translation("Squad", "Elenco", "pt-BR"),
             new Translation("Tackles", "Desarmes", "pt-BR"),

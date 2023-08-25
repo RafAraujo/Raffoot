@@ -1,14 +1,16 @@
 class ChampionshipEditionEliminationPhase {
-    constructor(championshipEditionId, clubCount) {
+    constructor(championshipEditionId, clubCount, seasonDateIds) {
         this._championshipEditionId = championshipEditionId;
         this.clubCount = clubCount;
         this._championshipEditionClubIds = [];
+        this._seasonDateIds = seasonDateIds;
         this._matchIds = [];
         this._championshipEditionEliminationPhaseDuelIds = [];
     }
 
-    static create(championshipEdition, clubCount) {
-        let championshipEditionEliminationPhase = new ChampionshipEditionEliminationPhase(championshipEdition.id, clubCount);
+    static create(championshipEdition, clubCount, seasonDates) {
+        const seasonDateIds = seasonDates.map(sd => sd.id);
+        const championshipEditionEliminationPhase = new ChampionshipEditionEliminationPhase(championshipEdition.id, clubCount, seasonDateIds);
         championshipEditionEliminationPhase.id = Context.game.championshipEditionEliminationPhases.push(championshipEditionEliminationPhase);
         return championshipEditionEliminationPhase;
     }
@@ -25,12 +27,12 @@ class ChampionshipEditionEliminationPhase {
         return Context.game.championshipEditionClubs.filterByIds(this._championshipEditionClubIds);
     }
 
-    get clubs() {
-        return this.championshipEditionClubs.map(cec => cec.club);
+    get championshipEditionEliminationPhaseDuels() {
+        return ChampionshipEditionEliminationPhaseDuel.all().filterByIds(this._championshipEditionEliminationPhaseDuelIds);
     }
 
-    get matches() {
-        return Context.game.matches.filterByIds(this._matchIds);
+    get clubs() {
+        return this.championshipEditionClubs.map(cec => cec.club);
     }
 
     get firstDate() {
@@ -41,21 +43,25 @@ class ChampionshipEditionEliminationPhase {
         return this.matches.last().date;
     }
 
-    get championshipEditionEliminationPhaseDuels() {
-        return ChampionshipEditionEliminationPhaseDuel.all().filterByIds(this._championshipEditionEliminationPhaseDuelIds);
+    get matches() {
+        return Context.game.matches.filterByIds(this._matchIds);
     }
 
     get name() {
         switch (this.clubCount) {
             case 8:
-                return 'Quarter-final';
+                return 'Quarter-finals';
             case 4:
-                return 'Semi-final';
+                return 'Semifinals';
             case 2:
                 return 'Final';
             default:
                 return `Round of ${this.clubCount}`;
         }
+    }
+
+    get seasonDates() {
+        return Context.game.seasonDates.filterByIds(this._seasonDateIds);
     }
 
     addChampionshipEditionEliminationPhaseDuel(championshipEditionEliminationPhaseDuel) {
@@ -72,10 +78,10 @@ class ChampionshipEditionEliminationPhase {
     }
 
     _defineDuels() {
-        const championshipEditionClubs = this.championshipEditionClubs.slice().shuffle();
+        const championshipEditionClubs = this.championshipEditionClubs;
         
         for (let i = 0; i < championshipEditionClubs.length; i += 2) {
-            const clubs = championshipEditionClubs.slice(i, i + 2).map(cec => cec.club);
+            const clubs = [championshipEditionClubs[i], championshipEditionClubs[championshipEditionClubs.length - 1 - i]].map(cec => cec.club);
             const matches = this.matches.slice(i, i + 2);
             const matchesPerPhase = this.championshipEdition.championship.isTwoLeggedTie ? 2 : 1;
 

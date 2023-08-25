@@ -19,32 +19,34 @@ class ChampionshipEditionEliminationPhaseDuel {
         return ChampionshipEditionEliminationPhase.getById(this._championshipEditionEliminationPhaseId);
     }
 
+    get clubs() {
+        return this.matches[0].clubs;
+    }
+    
     get matches() {
         return Context.game.matches.filterByIds(this._matchIds);
     }
 
-    get clubs() {
-        return this.matches[0].clubs;
+    getGoals(clubId) {
+        return this.matches.map(m => m.getGoals(clubId)).sum()
     }
 
-    get finished() {
-        return this.matches.every(m => m.finished);
+    getGoalsPenaltyShootout(clubId) {
+        return this.matches.map(m => m.getGoalsPenaltyShootout(clubId)).sum()
     }
 
-    get aggregate() {
-        if (this.finished) {
-            let club1Goals = this.matches.map(m => m.getGoalsByClubId(this.clubs[0].id)).sum();
-            let club2Goals = this.matches.map(m => m.getGoalsByClubId(this.clubs[1].id)).sum();
+    getWinner() {
+        const club1 = this.clubs[0];
+        const club2 = this.clubs[1];
 
-            return `${club1Goals} x ${club2Goals}`;
+        let club1Goals = this.getGoals(club1.id);
+        let club2Goals = this.getGoals(club2.id);
+
+        if (club1Goals === club2Goals) {
+            club1Goals = this.getGoalsPenaltyShootout(club1.id);
+            club2Goals = this.getGoalsPenaltyShootout(club2.id);
         }
-        else
-        {
-            return ' x '
-        }
-    }
 
-    get winner() {
-
+        return club1Goals > club2Goals ? club1 : club2;
     }
 }

@@ -1,14 +1,17 @@
 class Match {
-    constructor(championshipEditionId, date) {
+    constructor(championshipEditionId, seasonDateId) {
         this._championshipEditionId = championshipEditionId;
-        this.date = date;
+        this._seasonDateId = seasonDateId;
         this._clubIds = [];
     }
 
-    static create(championshipEdition, date) {
-        const match = new Match(championshipEdition.id, date);
+    static create(championshipEdition, seasonDate) {
+        const match = new Match(championshipEdition.id, seasonDate.id);
         match.id = Context.game.matches.push(match);
+
         championshipEdition.addMatch(match);
+        seasonDate.addMatch(match);
+
         return match;
     }
 
@@ -32,8 +35,12 @@ class Match {
         return Club.getById(this._clubIds[1]);
     }
 
+    get date() {
+        return SeasonDate.getById(this._seasonDateId).date;
+    }
+
     get description() {
-        return `${this.clubHome.name} × ${this.clubAway.name}`;
+        return this._clubIds.length === 2 ? `${this.clubHome.name} × ${this.clubAway.name}` : '';
     }
 
     get goalsHome() {
@@ -66,9 +73,16 @@ class Match {
         this.goals[index]++;
     }
 
-    getGoalsByClubId(clubId) {
+    getGoals(clubId) {
         if ([this._clubIds].includes(id => id === clubId)) {
             return clubId === this._clubHomeId ? this.goals[0] : this.goals[1];
+        }
+        throw new Error();
+    }
+
+    getGoalsPenaltyShootout(clubId) {
+        if ([this._clubIds].includes(id => id === clubId)) {
+            return clubId === this._clubHomeId ? this.goalsPenaltyShottout[0] : this.goalsPenaltyShottout[1];
         }
         throw new Error();
     }
@@ -82,10 +96,19 @@ class Match {
 
     prepare() {
         this.goals = [0, 0];
+        this._incrementPlayersMatches();
         return new MatchSimulation(this);
     }
 
     play() {
         this.matchPlaying.play();
+    }
+
+    _incrementPlayersMatches() {
+        const playersOnField = this.clubs.flatMap(c => c.playersOnField);
+        for (const player of playersOnField) {
+            const championshipEditionPlayer = ChampionshipEditionPlayer.createIfNotExists(this.championshipEdition, player);
+            championshipEditionPlayer.matches++;
+        }
     }
 }

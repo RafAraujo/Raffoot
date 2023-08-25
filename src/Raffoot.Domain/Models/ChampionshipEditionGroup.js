@@ -3,11 +3,12 @@ class ChampionshipEditionGroup {
         this._championshipEditionId = championshipEditionId;
         this.number = number;
         this._championshipEditionClubIds = [];
-        this._matchIds = [];
+        this._championshipEditionFixtureIds = [];
     }
 
-    static create(championshipEdition, number) {
-        const championshipEditionGroup = new ChampionshipEditionGroup(championshipEdition.id, number);
+    static create(championshipEdition, number, championshipEditionFixtures) {
+        const championshipEditionFixtureIds = championshipEditionFixtures.map(cef => cef.id);
+        const championshipEditionGroup = new ChampionshipEditionGroup(championshipEdition.id, number, championshipEditionFixtureIds);
         championshipEditionGroup.id = Context.game.championshipEditionGroups.push(championshipEditionGroup);
         return championshipEditionGroup;
     }
@@ -28,16 +29,16 @@ class ChampionshipEditionGroup {
         return ChampionshipEdition.getById(this._championshipEditionId);
     }
 
+    get championshipEditionFixtures() {
+        return Context.game.championshipEditionFixtures.filterByIds(this._championshipEditionFixtureIds);
+    }
+
     get matches() {
         return this.championshipEdition.matches.filterByIds(this._matchIds);
     }
 
     addChampionshipEditionClub(championshipEditionClub) {
         this._championshipEditionClubIds.push(championshipEditionClub.id);
-    }
-
-    addMatches(matches) {
-        this._matchIds.concat(matches.map(m => m.id));
     }
 
     table() {

@@ -68,7 +68,7 @@
                                 @change="game.club = game.clubs.find(c => c.id === parseInt($event.target.value))">
                                 <option></option>
                                 <template
-                                    v-for="championshipEdition in game.currentSeason.getNationalLeaguesByCountryId(game.country?.id)">
+                                    v-if="game.country" v-for="championshipEdition in game.currentSeason.getNationalLeaguesByCountry(game.country)">
                                     <optgroup :label="translator.getChampionshipName(championshipEdition.championship)">
                                         <option v-for="club in championshipEdition.clubs.orderBy('name')" :key="club.id"
                                             :value="club.id">
