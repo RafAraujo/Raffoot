@@ -21,7 +21,7 @@ class SeasonDate {
     }
 
     get matches() {
-        return this.season.matches.filterByIds(this._matchIds);
+        return Context.game.matches.filterByIds(this._matchIds);
     }
 
     get season() {

@@ -40,7 +40,7 @@ namespace RaffootLoader.Services
             "Date", "Defense", $"{PrefixOfContext}{Separator}Defensive", "Delete", "Diamond", "Division", $"{PrefixOfContext}{Separator}Draws",
             "End of contract", "End of the match", "Energy", "Error", "Exit Game", "Expand",
             "False 9", "Final", "Finances", "Flat", "Formation", "For Sale", "Foul", "Free Kick Taker", "Full screen",
-            "Game", "Game deleted with success",  $"{PrefixOfContext}{Separator}Goal",  $"{PrefixOfContext}{Separator}Goals", $"{PrefixOfContext}{Separator}Goals against", $"{PrefixOfContext}{Separator}goals difference", "Gold", "Group",
+            "Game", "Game deleted with success",  $"{PrefixOfContext}{Separator}Goal",  $"{PrefixOfContext}{Separator}Goals", $"{PrefixOfContext}{Separator}Goals against", $"{PrefixOfContext}{Separator}Goals difference", "Gold", "Group",
             "History", "Holding", $"{PrefixOfContext}{Separator}Home",
             "Income", "Injured player", "International",
             "League", "Left", $"{PrefixOfContext}{Separator}Lineup", "Load", "Load Game", "Load more", "Loading game...", "Logo", $"{PrefixOfContext}{Separator}Losses",
@@ -85,6 +85,7 @@ namespace RaffootLoader.Services
             new Translation("Left winger", "Ponta-esquerda", "pt-BR"),
             new Translation("Right winger", "Ponta-direita", "pt-BR"),
 
+            new Translation("Goals difference", "Saldo de gols", "pt-BR"),
             new Translation("Matchday", "Rodada", "pt-BR"),
             new Translation("Standings", "Tabelas", "pt-BR"),
             new Translation("Squad", "Elenco", "pt-BR"),

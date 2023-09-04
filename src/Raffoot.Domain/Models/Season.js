@@ -42,10 +42,6 @@ class Season {
         return this.seasonDates[this._currentSeasonDateIndex];
     }
 
-    get matches() {
-        return this.championshipEditions.flatMap(ce => ce.matches);
-    }
-
     get previousSeasonDate() {
         return this.seasonDates[this._currentSeasonDateIndex - 1];
     }
@@ -101,7 +97,8 @@ class Season {
     }
 
     getMatchesByClub(club) {
-        return this.matches.filter(m => m.clubs?.map(c => c.id).includes(club.id)).orderBy('date');
+        const matches = this.championshipEditions.flatMap(ce => ce.matches);
+        return matches.filter(m => m.clubs?.map(c => c.id).includes(club.id)).orderBy('date');
     }
 
     schedule() {

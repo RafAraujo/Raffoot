@@ -16,7 +16,8 @@ class ChampionshipEditionClub {
         championshipEditionClub.id = Context.game.championshipEditionClubs.push(championshipEditionClub);
 
         championshipEdition.addChampionshipEditionClub(championshipEditionClub);
-        if (championshipEdition.championship.championshipType.id === ChampionshipType.find('national', 'league').id) {
+        const nationalLeague = ChampionshipType.find('national', 'league');
+        if (championshipEdition.championship.championshipType.id === nationalLeague.id) {
             championshipEditionClub.club.division = championshipEdition.championship.division;
         }
 

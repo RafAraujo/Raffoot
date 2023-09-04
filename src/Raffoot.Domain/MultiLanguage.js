@@ -694,7 +694,7 @@ const MultiLanguage =
     "Goalkeeper": "Goleiro",
     "Goals": "Gols",
     "Goals against": "Gols contra",
-    "Goals difference": "Futebol Masculino – saldo de gols",
+    "Goals difference": "Saldo de gols",
     "Gold": "Ouro",
     "Greece": "Grécia",
     "Grenada": "Granada",
