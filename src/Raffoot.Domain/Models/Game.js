@@ -88,21 +88,23 @@ class Game {
     }
 
     play() {
-        let t0 = performance.now();
-
-        const matches = this.currentSeason.currentSeasonDate.matches;
-        
+        const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
         const matchSimulations = matches.map(m => m.prepare());
+        let index = 0;
 
-        while (this.time <= 90) {
+        const interval = setInterval(() => {
+            let t0 = performance.now();
+
             for (const matchSimulation of matchSimulations) {
-                matchSimulation.nextMove(time);
+                matchSimulation.nextMove();
             }
-            this.time++;
-        }
 
-        console.log(`Game.play() took ${(performance.now() - t0)} milliseconds.`);
+            console.log(`matchSimulation.nextMove() ${index++} took ${(performance.now() - t0)} milliseconds.`);
 
-        return matchSimulations;
+            if (++this.time === 90) {
+                clearInterval(interval);
+            }
+        }, 1);
+
     }
 }

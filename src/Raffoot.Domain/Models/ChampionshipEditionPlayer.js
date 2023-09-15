@@ -21,7 +21,7 @@ class ChampionshipEditionPlayer {
 
     static createIfNotExists(championshipEdition, player) {
         let championshipEditionPlayer = Context.game.championshipEditionPlayers.find(cep => cep.championshipEdition.id === championshipEdition.id && cep.player.id === player.id);
-        if (!championshipEdition) {
+        if (!championshipEditionPlayer) {
             championshipEditionPlayer = ChampionshipEditionPlayer.create(championshipEdition, player);
         }
         return championshipEditionPlayer;

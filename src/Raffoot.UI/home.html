@@ -356,7 +356,8 @@
                                                     <td class="text-start p-0 text-break"
                                                         style="width: 34%; height: 40px;"
                                                         :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
-                                                        {{ match.clubHome.name.replace("Mönchengladbach", "M'gladbach") }}
+                                                        {{ match.clubHome.name.replace("Mönchengladbach", "M'gladbach")
+                                                        }}
                                                     </td>
                                                     <td class="text-center p-0 border"
                                                         style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
@@ -1553,7 +1554,13 @@
             changeSection: function (event) {
                 event.preventDefault();
                 const section = event.currentTarget.getAttribute('href').substring(1);
-                setTimeout(() => this.activeSection = section, 1);
+                setTimeout(() => {
+                    this.activeSection = section;
+
+                    if (this.activeSection === 'matches') {
+                        this.game.play();
+                    }
+                }, 1);
 
                 const collapseElement = document.querySelector('.navbar-collapse.collapse')
                 if (collapseElement.classList.contains('show')) {
