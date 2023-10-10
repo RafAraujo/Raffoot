@@ -1,6 +1,6 @@
 class SoFifaService {
     static getService() {
-        return SoFifa23Service;
+        return SoFifa24Service;
     }
 
     static seedCountries() {

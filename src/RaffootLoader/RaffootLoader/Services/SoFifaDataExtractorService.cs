@@ -165,10 +165,9 @@ namespace RaffootLoader.Services
                     var cells = tr.Descendants().Where(n => n.Name == "td").ToList();
 
                     var link = cells[1].Descendants().First(n => n.Name == "a");
-                    var div = link.Descendants().First(n => n.Name == "div");
 
                     club.ExternalId = int.Parse(link.GetAttributeValue("href", default(string)).Split("/")[2]);
-                    club.Name = div.InnerText;
+                    club.Name = link.InnerText;
 
                     clubs.Add(club);
                 }
@@ -189,10 +188,11 @@ namespace RaffootLoader.Services
                 ConsoleUtils.ShowProgress(++current, clubs.Count(), $"Players: ");
 
                 var url = string.Format("{0}{1}{2}", BaseUrl, "team/", club.ExternalId);
+                await Task.Delay(100);
                 var doc = await GetHtmlDocument(url).ConfigureAwait(false);
 
                 club.Logo = doc.DocumentNode.Descendants().First(n => n.Name == "div" && n.HasClass("bp3-card")).Descendants().First(n => n.Name == "img").GetAttributeValue("data-srcset", default(string));
-                foreach (var div in doc.DocumentNode.Descendants().Where(n => n.Name == "div" && n.HasClass("block-half")))
+                foreach (var div in doc.DocumentNode.Descendants().Where(n => n.Name == "div" && n.HasClass("block-half") && !n.HasClass("pure-g")))
                 {
                     var img = div.Descendants().First(n => n.Name == "img");
                     club.Kits.Add(img.GetAttributeValue("data-srcset", default(string)));

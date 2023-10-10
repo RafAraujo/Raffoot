@@ -28,7 +28,8 @@ namespace RaffootLoader.Services
             {
                 Console.WriteLine("Generating SoFifaService file...");
 
-                var version = DateTime.Now.ToString("yy");
+                var year = DateTime.Now.Month < 9 ? DateTime.Now.Year : DateTime.Now.Year + 1;
+                var version = year.ToString().Substring(2, 2);
                 var fileName = $"SoFifa{version}Service";
                 var filePath = Path.Combine(_settings.BasePath, "Raffoot.Services", $"{fileName}.js");
 
