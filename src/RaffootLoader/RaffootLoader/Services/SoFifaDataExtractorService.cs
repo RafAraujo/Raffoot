@@ -17,7 +17,6 @@ namespace RaffootLoader.Services
         private readonly ISettings _settings;
         private readonly IContext _context;
         private readonly IRepository<Club> _clubRepository;
-        private readonly IRepository<Player> _playerRepository;
 
         private readonly HttpClient _client;
 
@@ -27,13 +26,11 @@ namespace RaffootLoader.Services
         public SoFifaDataExtractorService(
             ISettings settings,
             IContext context,
-            IRepository<Club> clubRepository,
-            IRepository<Player> playerRepository)
+            IRepository<Club> clubRepository)
         {
             _settings = settings;
             _context = context;
             _clubRepository = clubRepository;
-            _playerRepository = playerRepository;
 
             _client = new();
             _client.DefaultRequestHeaders.Add("User-Agent", "C# App");
@@ -44,24 +41,31 @@ namespace RaffootLoader.Services
 
         public async Task CreateDatabase()
         {
-            if (_context.DatabaseExists())
+            try
             {
-                Console.WriteLine("Database already exists");
-                return;
+                if (_context.DatabaseExists())
+                {
+                    Console.WriteLine("Database already exists");
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("Creating database...");
+                }
+
+                _leagues = GetLeagues();
+                var clubs = await GetClubs(_leagues).ConfigureAwait(false);
+                var players = await GetPlayers(clubs).ConfigureAwait(false);
+
+                _context.InsertMany(_leagues);
+                _context.InsertMany(clubs);
+                _context.InsertMany(players);
+                _context.InsertMany(_countries.OrderBy(c => c.Name));
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("Creating database...");
+                ConsoleUtils.ShowException(ex);
             }
-
-            _leagues = GetLeagues();
-            var clubs = await GetClubs(_leagues).ConfigureAwait(false);
-            var players = await GetPlayers(clubs).ConfigureAwait(false);
-
-            _context.InsertMany(_leagues);
-            _context.InsertMany(clubs);
-            _context.InsertMany(players);
-            _context.InsertMany(_countries.OrderBy(c => c.Name));
         }
 
         private static IList<League> GetLeagues()
@@ -150,13 +154,13 @@ namespace RaffootLoader.Services
                 var url = string.Format("{0}{1}{2}", BaseUrl, "teams/?lg=", league.ExternalId);
                 var doc = await GetHtmlDocument(url);
 
-                var table = doc.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "table" && n.HasClass("persist-area"));
+                var table = doc.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "table");
                 if (table == null)
                 {
                     continue;
                 }
                 var tbody = table.Descendants().First(n => n.Name == "tbody");
-                var rows = tbody.Descendants().Where(n => n.Name == "tr" && n.Descendants().Count(n => n.Name == "td") == 8);
+                var rows = tbody.Descendants().Where(n => n.Name == "tr");
 
                 foreach (var tr in rows)
                 {
@@ -191,14 +195,19 @@ namespace RaffootLoader.Services
                 await Task.Delay(100);
                 var doc = await GetHtmlDocument(url).ConfigureAwait(false);
 
-                club.Logo = doc.DocumentNode.Descendants().First(n => n.Name == "div" && n.HasClass("bp3-card")).Descendants().First(n => n.Name == "img").GetAttributeValue("data-srcset", default(string));
-                foreach (var div in doc.DocumentNode.Descendants().Where(n => n.Name == "div" && n.HasClass("block-half") && !n.HasClass("pure-g")))
+                club.Logo = doc.DocumentNode.Descendants().First(n => n.Name == "div" && n.HasClass("profile")).Descendants().First(n => n.Name == "img").GetAttributeValue("data-srcset", default(string));
+
+                var aside = doc.DocumentNode.Descendants().First(n => n.Name == "aside");
+                foreach (var div in aside.Descendants().Where(n => n.Name == "div" && n.HasClass("grid")).TakeLast(2))
                 {
-                    var img = div.Descendants().First(n => n.Name == "img");
-                    club.Kits.Add(img.GetAttributeValue("data-srcset", default(string)));
+                    foreach (var innerDiv in div.Descendants().Where(n => n.Name == "div" && !string.IsNullOrEmpty(n.InnerHtml)))
+                    {
+                        var img = innerDiv.Descendants().First(n => n.Name == "img");
+                        club.Kits.Add(img.GetAttributeValue("data-srcset", default(string)));
+                    }
                 }
 
-                var table = doc.DocumentNode.Descendants().First(n => n.Name == "table" && n.HasClass("persist-area"));
+                var table = doc.DocumentNode.Descendants().First(n => n.Name == "table");
                 var tbody = table.Descendants().First(n => n.Name == "tbody");
                 var rows = tbody.Descendants().Where(n => n.Name == "tr");
 
@@ -209,15 +218,16 @@ namespace RaffootLoader.Services
                     var cells = tr.Descendants().Where(n => n.Name == "td").ToList();
 
                     var linkPlayer = cells[1].Descendants().First(n => n.Name == "a");
+                    var imgCountry = cells[1].Descendants().First(n => n.Name == "img");
 
                     player.ExternalId = int.Parse(linkPlayer.GetAttributeValue("href", default(string)).Split("/")[2]);
-                    player.Name = linkPlayer.Descendants().First(n => n.Name == "div").InnerText;
-                    player.FullName = linkPlayer.GetAttributeValue("aria-label", default(string));
-                    player.Country = cells[1].Descendants().First(n => n.Name == "img").GetAttributeValue("title", default(string));
+                    player.Name = linkPlayer.InnerText;
+                    player.FullName = linkPlayer.GetAttributeValue("data-tippy-content", default(string));
+                    player.Country = imgCountry.GetAttributeValue("title", default(string));
 
                     if (!_countries.Any(c => c.Name == player.Country))
                     {
-                        var flag = cells[1].Descendants().First(n => n.Name == "img").GetAttributeValue("data-srcset", default(string));
+                        var flag = imgCountry.GetAttributeValue("data-srcset", default(string));
                         var continent = _leagues.FirstOrDefault(l => l.Country == player.Country)?.Continent;
                         var country = new Country(player.Country, flag, continent.ToString());
                         _countries.Add(country);
@@ -227,14 +237,13 @@ namespace RaffootLoader.Services
                         player.Positions.Add(linkPosition.InnerText);
 
                     player.Age = int.Parse(cells[2].InnerText);
-                    player.Overall = int.Parse(cells[3].InnerText);
-                    player.Potential = int.Parse(cells[4].InnerText);
 
-                    var start = cells[5].InnerText.IndexOf("(") + 1;
-                    var length = cells[5].InnerText.IndexOf(")") - start;
+                    player.Overall = int.Parse(cells[3].Descendants().First(n => n.Name == "em").InnerText);
+                    player.Potential = int.Parse(cells[4].Descendants().First(n => n.Name == "em").InnerText);
+
+                    var start = cells[5].InnerText.IndexOf('(') + 1;
+                    var length = cells[5].InnerText.IndexOf(')') - start;
                     player.JerseyNumber = int.Parse(cells[5].InnerText.Substring(start, length));
-
-                    player.EndOfContract = int.Parse(cells[5].Descendants().First(n => n.Name == "div").InnerText.Split(' ')[3]);
 
                     player.Photo = cells[0].Descendants().First(n => n.Name == "img").GetAttributeValue("data-srcset", default(string));
 

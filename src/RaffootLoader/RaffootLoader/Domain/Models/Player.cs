@@ -22,8 +22,6 @@
 
         public int JerseyNumber { get; set; }
 
-        public int EndOfContract { get; set; }
-
         public string Photo { get; set; }
 
         public bool HasPhoto { get; set; }
