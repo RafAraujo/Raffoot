@@ -48,9 +48,9 @@ class Confederation {
         Confederation.create(europe, 'Spain', ['Spain'], 4, 1);
         Confederation.create(europe, 'BeNe', ['Belgium', 'Netherlands'], 3, 2);
         Confederation.create(europe, 'British Isles', ['Republic of Ireland', 'Scotland'], 1, 2);
-        Confederation.create(europe, 'Centre Europe', ['Austria', 'Czech Republic', 'Switzerland'], 1, 2);
+        Confederation.create(europe, 'Centre Europe', ['Austria', 'Czechia', 'Switzerland'], 1, 2);
         Confederation.create(europe, 'Eastern Europe', ['Croatia', 'Poland', 'Romania', 'Ukraine'], 1, 2);
-        Confederation.create(europe, 'Eurasia', ['Cyprus', 'Greece', 'Russia', 'Turkey'], 2, 2);
+        Confederation.create(europe, 'Eurasia', ['Cyprus', 'Greece', 'Russia', 'Türkiye'], 2, 2);
         Confederation.create(europe, 'Scandinavia', ['Denmark', 'Finland', 'Norway', 'Sweden'], 2, 2);
     }
 

@@ -6,7 +6,7 @@
 
         public int ClubId { get; set; }
 
-        public List<string> Positions { get; set; } = new List<string>();
+        public List<string> Positions { get; set; } = [];
 
         public string Country { get; set; }
 

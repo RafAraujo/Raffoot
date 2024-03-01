@@ -10,7 +10,7 @@
 
         public string Logo { get; set; }
 
-        public List<string> Kits { get; set; } = new();
+        public List<string> Kits { get; set; } = [];
 
         public string BackgroundColor { get; set; }
 

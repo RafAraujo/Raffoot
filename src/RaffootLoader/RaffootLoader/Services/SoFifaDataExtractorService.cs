@@ -20,8 +20,8 @@ namespace RaffootLoader.Services
 
         private readonly HttpClient _client;
 
-        private IList<League> _leagues;
-        private readonly IList<Country> _countries;
+        private List<League> _leagues;
+        private readonly List<Country> _countries;
 
         public SoFifaDataExtractorService(
             ISettings settings,
@@ -35,8 +35,8 @@ namespace RaffootLoader.Services
             _client = new();
             _client.DefaultRequestHeaders.Add("User-Agent", "C# App");
 
-            _leagues = new List<League>();
-            _countries = new List<Country>();
+            _leagues = [];
+            _countries = [];
         }
 
         public async Task CreateDatabase()
@@ -68,7 +68,7 @@ namespace RaffootLoader.Services
             }
         }
 
-        private static IList<League> GetLeagues()
+        private static List<League> GetLeagues()
         {
             var leagues = new[]
             {
@@ -99,7 +99,7 @@ namespace RaffootLoader.Services
                 new League(4, "Belgium", 1, Continent.Europe),
                 new League(317, "Croatia", 1, Continent.Europe),
                 new League(318, "Cyprus", 1, Continent.Europe),
-                new League(319, "Czech Republic", 1, Continent.Europe),
+                new League(319, "Czechia", 1, Continent.Europe),
                 new League(1, "Denmark", 1, Continent.Europe),
                 new League(13, "England", 1, Continent.Europe),
                 new League(14, "England", 2, Continent.Europe),
@@ -128,7 +128,7 @@ namespace RaffootLoader.Services
                 new League(54, "Spain", 2, Continent.Europe),
                 new League(56, "Sweden", 1, Continent.Europe),
                 new League(189, "Switzerland", 1, Continent.Europe),
-                new League(68, "Turkey", 1, Continent.Europe),
+                new League(68, "Türkiye", 1, Continent.Europe),
                 new League(332, "Ukraine", 1, Continent.Europe),
             };
 
@@ -138,7 +138,7 @@ namespace RaffootLoader.Services
                     throw new Exception();
             }
 
-            return leagues;
+            return [.. leagues];
         }
 
         public async Task<IEnumerable<Club>> GetClubs(IEnumerable<League> leagues)

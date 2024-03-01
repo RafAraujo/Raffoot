@@ -5,15 +5,21 @@ using RaffootLoader.Utils;
 
 namespace RaffootLoader.Data
 {
-    public class Context : IContext
+    public class Context(
+        ISettings settings,
+        IRepository<League> leagueRepository,
+        IRepository<Club> clubRepository,
+        IRepository<Player> playerRepository,
+        IRepository<Country> countryRepository,
+        IRepository<Translation> translationRepository) : IContext
     {
-        private readonly ISettings _settings;
+        private readonly ISettings _settings = settings;
 
-        private readonly IRepository<Club> _clubRepository;
-        private readonly IRepository<Country> _countryRepository;
-        private readonly IRepository<League> _leagueRepository;
-        private readonly IRepository<Player> _playerRepository;
-        private readonly IRepository<Translation> _translationRepository;
+        private readonly IRepository<Club> _clubRepository = clubRepository;
+        private readonly IRepository<Country> _countryRepository = countryRepository;
+        private readonly IRepository<League> _leagueRepository = leagueRepository;
+        private readonly IRepository<Player> _playerRepository = playerRepository;
+        private readonly IRepository<Translation> _translationRepository = translationRepository;
 
         private IEnumerable<Club> _clubs;
         private IEnumerable<Country> _countries;
@@ -71,22 +77,6 @@ namespace RaffootLoader.Data
         public IEnumerable<Translation> Translations
         {
             get => _translationRepository.GetAll();
-        }
-
-        public Context(
-            ISettings settings,
-            IRepository<League> leagueRepository,
-            IRepository<Club> clubRepository,
-            IRepository<Player> playerRepository,
-            IRepository<Country> countryRepository,
-            IRepository<Translation> translationRepository)
-        {
-            _settings = settings;
-            _leagueRepository = leagueRepository;
-            _clubRepository = clubRepository;
-            _playerRepository = playerRepository;
-            _countryRepository = countryRepository;
-            _translationRepository = translationRepository;
         }
 
         public bool DatabaseExists() => File.Exists(_settings.DbPath);
