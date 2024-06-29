@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffoot</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="container" v-if="!gameCreated">
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        {{ translator.get("Processing...") }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" v-if="gameCreated">
+            <div class="row mt-3 mb-3">
+                <div class="col text-center">
+                    <h1 class="text-center">{{ translator.get("Raffoot") }}</h1>
+                </div>
+            </div>
+            <div class="row mb-3" :class="{ 'd-none' : !message.text }">
+                <div class="col">
+                    <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`" role="alert">
+                        {{ message.text }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+            <form id="form" action="home.html" @submit.prevent="startGame()">
+                <fieldset>
+                    <legend>{{ translator.get("Choose your club") }}</legend>
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="country" class="form-label">{{ translator.get("Country") }}</label>
+                            <select id="country" class="form-select" required autocomplete="off"
+                                @change="game.country = game.countries.find(c => c.id === parseInt($event.target.value))">
+                                <option></option>
+                                <template
+                                    v-for="continent in game.continents.map(c => ({ id: c.id, name: translator.get(c.name) }))">
+                                    <optgroup :label="continent.name">
+                                        <option v-for="country in getPlayableCountries(continent.id)" :key="country.id"
+                                            :value="country.id">
+                                            {{ country.name }}
+                                        </option>
+                                    </optgroup>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="club" class="form-label">{{ translator.get("Club") }}</label>
+                            <select id="club" class="form-control" required autocomplete="off"
+                                @change="game.club = game.clubs.find(c => c.id === parseInt($event.target.value))">
+                                <option></option>
+                                <template v-if="game.country"
+                                    v-for="championshipEdition in game.currentSeason.getNationalLeaguesByCountry(game.country)">
+                                    <optgroup :label="translator.getChampionshipName(championshipEdition.championship)">
+                                        <option v-for="club in championshipEdition.clubs.orderBy('name')" :key="club.id"
+                                            :value="club.id">
+                                            {{ club.name }}
+                                        </option>
+                                    </optgroup>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="name" class="form-label">{{ translator.get("Name") }}</label>
+                            <input id="name" type="text" class="form-control" required autocomplete="off"
+                                v-model.lazy="gameName">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="row">
+                    <div class="col-6 col-sm-3 d-grid">
+                        <a href="index.html" class="btn btn-secondary">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            {{ translator.get("Back") }}
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-3 d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-play"></i>
+                            {{ translator.get("Start Game") }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/ArrayExtensions.js"></script>
+    <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/DateExtensions.js"></script>
+    <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/NumberExtensions.js"></script>
+    <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/Random.js"></script>
+    <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/StringExtensions.js"></script>
+
+    <script src="../Raffoot.Infrastructure/Raffoot.Data/ConnectionFactory.js"></script>
+    <script src="../Raffoot.Infrastructure/Raffoot.Data/GenericDAO.js"></script>
+
+    <script src="../Raffoot.Domain/Models/Championship.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEdition.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionClub.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionEliminationPhase.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionEliminationPhaseDuel.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionFixture.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionGroup.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionPlayer.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipType.js"></script>
+    <script src="../Raffoot.Domain/Models/Club.js"></script>
+    <script src="../Raffoot.Domain/Models/Confederation.js"></script>
+    <script src="../Raffoot.Domain/Models/Continent.js"></script>
+    <script src="../Raffoot.Domain/Models/Country.js"></script>
+    <script src="../Raffoot.Domain/Models/FieldLocalization.js"></script>
+    <script src="../Raffoot.Domain/Models/FieldRegion.js"></script>
+    <script src="../Raffoot.Domain/Models/Formation.js"></script>
+    <script src="../Raffoot.Domain/Models/Game.js"></script>
+    <script src="../Raffoot.Domain/Models/Match.js"></script>
+    <script src="../Raffoot.Domain/Models/Player.js"></script>
+    <script src="../Raffoot.Domain/Models/Position.js"></script>
+    <script src="../Raffoot.Domain/Models/Season.js"></script>
+    <script src="../Raffoot.Domain/Models/SeasonDate.js"></script>
+    <script src="../Raffoot.Domain/Config.js"></script>
+    <script src="../Raffoot.Domain/Context.js"></script>
+    <script src="../Raffoot.Domain/MultiLanguage.js"></script>
+
+    <script src="../Raffoot.Application/GameFactory.js"></script>
+    <script src="../Raffoot.Application/GameService.js"></script>
+    <script src="../Raffoot.Application/SoFifa24Service.js"></script>
+    <script src="../Raffoot.Application/SoFifaService.js"></script>
+    <script src="../Raffoot.Application/TranslatorService.js"></script>
+
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/vue/vue.global.js"></script>
+</body>
+
+</html>
+
+<script>
+    "use strict";
+
+    const gameService = new GameService();
+
+    const RaffootApp = {
+        data() {
+            return {
+                game: null,
+                gameCreated: false,
+                gameName: '',
+                message: { text: '', type: 'primary' },
+                translator: new TranslatorService(),
+            }
+        },
+        methods: {
+            getPlayableCountries(continentId) {
+                let countries = this.game.getPlayableCountries(continentId);
+                countries = countries.map(c => ({ id: c.id, name: this.translator.get(c.name) })).orderBy('name');
+                return countries;
+            },
+            startGame: async function () {
+                try {
+                    this.game.name = this.gameName;
+                    this.game.club.setSquadOrder();
+                    //this.game.club.clearFormation();
+                    const id = await gameService.insertAsync(Vue.toRaw(this.game));
+                    this.redirect(`home.html?id=${id}`);
+                }
+                catch (error) {
+                    console.error(error);
+                    this.message = { text: error, type: 'danger' };
+                };
+            },
+            redirect: url => location.href = url,
+        },
+        mounted() {
+            this.game = gameService.create('');
+            this.gameCreated = true;
+        }
+    };
+
+    Vue.createApp(RaffootApp).mount('#app');
+</script>

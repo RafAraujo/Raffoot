@@ -1,0 +1,304 @@
+class ChampionshipEdition {
+    constructor(championshipId, seasonId) {
+        this._championshipId = championshipId;
+        this._seasonId = seasonId;
+        this._seasonDateIds = [];
+
+        this._championshipEditionClubIds = [];
+        this._championshipEditionPlayerIds = [];
+        this._championshipEditionEliminationPhaseIds = [];
+        this._championshipEditionFixtureIds = [];
+        this._championshipEditionGroupIds = [];
+
+        this._matchIds = [];
+    }
+
+    static create(championship, season) {
+        const championshipEdition = new ChampionshipEdition(championship.id, season.id);
+        championshipEdition.id = Context.game.championshipEditions.push(championshipEdition);
+        return championshipEdition;
+    }
+
+    static getById(id) {
+        return Context.game.championshipEditions[id - 1];
+    }
+
+    get championship() {
+        return Championship.getById(this._championshipId);
+    }
+
+    get championshipEditionClubs() {
+        return Context.game.championshipEditionClubs.filterByIds(this._championshipEditionClubIds);
+    }
+
+    get championshipEditionPlayers() {
+        return Context.game.championshipEditionPlayers.filterByIds(this._championshipEditionPlayerIds);
+    }
+
+    get championshipEditionGroups() {
+        return Context.game.championshipEditionGroups.filterByIds(this._championshipEditionGroupIds);
+    }
+
+    get championshipEditionEliminationPhases() {
+        return Context.game.championshipEditionEliminationPhases.filterByIds(this._championshipEditionEliminationPhaseIds);
+    }
+
+    get championshipEditionFixtures() {
+        return Context.game.championshipEditionFixtures.filterByIds(this._championshipEditionFixtureIds);
+    }
+
+    get championshipEditionPlayers() {
+        return Context.game.championshipEditionPlayers.filterByIds(this._championshipEditionPlayerIds);
+    }
+
+    get clubs() {
+        return this.championshipEditionClubs.map(cec => cec.club);
+    }
+
+    get matches() {
+        return Context.game.matches.filterByIds(this._matchIds);
+    }
+
+    get name() {
+        return `${this.championship.name} ${this.season.year}`;
+    }
+
+    get season() {
+        return Season.getById(this._seasonId);
+    }
+
+    get seasonDates() {
+        return Context.game.seasonDates.filterByIds(this._seasonDateIds);
+    }
+
+    get table() {
+        return this.championshipEditionClubs.orderBy('-championshipEditionEliminationPhasesWon', '-points', '-won', '-goalsDifference', '-goalsFor', 'club.name');
+    }
+
+    get topAssists() {
+        return this.championshipEditionPlayers.orderBy('-assists', 'matches');
+    }
+
+    get topPlayers() {
+        return this.championshipEditionPlayers.orderBy('-averageRating', 'matches');
+    }
+
+    get topScorers() {
+        return this.championshipEditionPlayers
+            .filter(cep => cep.goals > 0)
+            .orderBy('-goals', 'matches');
+    }
+
+    addChampionshipEditionClub(championshipEditionClub) {
+        this._championshipEditionClubIds.push(championshipEditionClub.id);
+    }
+
+    addChampionshipEditionPlayer(championshipEditionPlayer) {
+        this._championshipEditionPlayerIds.push(championshipEditionPlayer.id);
+    }
+
+    addMatch(match) {
+        this._matchIds.push(match.id);
+    }
+
+    addSeasonDates(seasonDates) {
+        this._seasonDateIds = seasonDates.map(sd => sd.id);
+    }
+
+    getClubPosition(club) {
+        return this.table.map(cec => cec.club.id).indexOf(club.id) + 1;
+    }
+
+    getContinentalCupClassificationZonePositions(continentalCupDivision) {
+        const positions = [];
+
+        const nationalCup = ChampionshipType.find('national', 'cup');
+        const nationalLeague = ChampionshipType.find('national', 'league');
+
+        if (this.championship.division === 1) {
+            if (this.championship.championshipType.id === nationalLeague.id) {
+                const start = continentalCupDivision === 1 ? 1 : this.championship.confederation.getContinentalCupSpots(1) + 1;
+                const cupSpots = this.championship.confederation.getContinentalCupSpots(continentalCupDivision);
+                for (let position = start; position < start + cupSpots; position++) {
+                    positions.push(position);
+                }
+            }
+            else if (this.championship.championshipType.id === nationalCup.id && continentalCupDivision === 2) {
+                positions.push(1);
+            }
+        }
+
+        return positions;
+    }
+
+    getContinentalCupClassificationZoneClubs(continentalCupDivision) {
+        const positions = this.getContinentalCupClassificationZonePositions(continentalCupDivision);
+        return this.table.firstItems(positions.length);
+    }
+
+    getPromotionZonePositions() {
+        const positions = [];
+
+        if (this.championship.championshipType.format === 'league' && this.championship.division > 1) {
+            const clubCount = this.championship.promotionClubCount;
+            for (let position = 1; position <= clubCount; position++) {
+                positions.push(position);
+            }
+        }
+
+        return positions;
+    }
+
+    getPromotionZoneClubs() {
+        const positions = this.getPromotionZonePositions();
+        return this.table.take(positions.length);
+    }
+
+    getRelegationZonePositions() {
+        const positions = [];
+
+        if (this.championship.championshipType.format === 'league') {
+            const clubCount = this.championship.relegationClubCount;
+            for (let position = this.clubs.length; position > this.clubs.length - clubCount; position--) {
+                positions.push(position);
+            }
+        }
+
+        return positions;
+    }
+
+    getRelegationZoneClubs() {
+        const positions = this.getRelegationZonePositions();
+        return this.table.lastItems(positions.length);
+    }
+
+    scheduleMatches() {
+        switch (this.championship.championshipType.regulation) {
+            case 'elimination':
+                this._defineChampionshipEditionEliminationPhases();
+                this._scheduleMatchesElimination();
+                break;
+            case 'groups':
+                this._defineChampionshipEditionGroups();
+                this._defineChampionshipEditionEliminationPhases();
+                this._scheduleMatchesChampionshipEditionGroups();
+                break;
+            case 'round-robin':
+                this._defineChampionshipEditionFixtures();
+                this._scheduleMatchesRoundRobin();
+                break;
+        }
+    }
+
+    _defineChampionshipEditionEliminationPhases() {
+        let clubCount = this.championship.championshipType.regulation === 'groups' ?
+            this.championship.groupCount * this.championship.qualifiedClubsByGroupCount :
+            this.championship.clubCount;
+        
+        let start = 0;
+
+        while (clubCount >= 2) {
+            const seasonDates = this.seasonDates.slice(this.championship.groupDateCount).slice(start, start += 2);
+            const championshipEditionEliminationPhase = ChampionshipEditionEliminationPhase.create(this, clubCount, seasonDates);
+            this._championshipEditionEliminationPhaseIds.push(championshipEditionEliminationPhase.id);
+            clubCount /= 2;
+        }
+    }
+
+    _defineChampionshipEditionGroups() {
+        const championshipEditionClubs = this.championshipEditionClubs.slice();
+
+        for (const i = 0; i < this.championship.groupCount; i++) {
+            const championshipEditionFixtures = this.championship.groupDateCount.map((_, index) => ChampionshipEditionFixture.create(this, index + 1));
+            const championshipEditionGroup = ChampionshipEditionGroup.create(this, i + 1, championshipEditionFixtures);
+
+            for (const j = 0; j < this.championship.groupClubCount; j++) {
+                const championshipEditionClub = championshipEditionClubs.getRandom();
+                championshipEditionGroup.addChampionshipEditionClub(championshipEditionClub);
+                championshipEditionClubs.remove(championshipEditionClub);
+            }
+
+            this._championshipEditionGroupIds.push(championshipEditionGroup.id);
+        }
+    }
+
+    _defineChampionshipEditionFixtures() {
+        const dateCount = this.championship.getDateCount();
+        for (let i = 0; i < dateCount; i++) {
+            const fixture = ChampionshipEditionFixture.create(this, i + 1);
+            this._championshipEditionFixtureIds.push(fixture.id);
+        }
+    }
+
+    _scheduleMatchesChampionshipEditionGroups() {
+        for (const championshipEditionGroup of this.championshipEditionGroups) {
+            ChampionshipEdition._genericRoundRobin(this, this.groupDates, championshipEditionGroup.clubs, championshipEditionGroup.championshipEditionFixtures);
+        }
+    }
+
+    _scheduleMatchesElimination() {
+        for (const championshipEditionEliminationPhase of this.championshipEditionEliminationPhases) {
+            for (let i = 0; i < championshipEditionEliminationPhase.clubCount; i += 2) {
+                for (const seasonDate of championshipEditionEliminationPhase.seasonDates) {
+                    const match = Match.create(this, seasonDate);
+                    championshipEditionEliminationPhase.addMatch(match);
+                }
+            }
+        }
+
+        if (this.championship.championshipType.regulation === 'elimination') {
+            this.championshipEditionEliminationPhases[0].qualify(this.championshipEditionClubs);
+        }
+    }
+
+    _scheduleMatchesRoundRobin() {
+        ChampionshipEdition._genericRoundRobin(this, this.seasonDates, this.clubs, this.championshipEditionFixtures);
+    }
+
+    static _genericRoundRobin(championshipEdition, seasonDates, clubs, championshipEditionFixtures) {
+        const matches = [];
+
+        clubs = clubs.slice().shuffle();
+
+        for (let i = 0; i < championshipEditionFixtures.length; i++) {
+            const championshipEditionFixture = championshipEditionFixtures[i];
+            const seasonDate = seasonDates[i];
+            
+            championshipEditionFixture.seasonDate = seasonDate;
+
+            for (let j = 0; j < clubs.length / 2; j++) {
+                let match = Match.create(championshipEdition, seasonDate);
+
+                match.addClub(clubs[j], i % 2 === 0 ? 'home' : 'away');
+                match.addClub(clubs[clubs.length - 1 - j], i % 2 === 0 ? 'away' : 'home');
+
+                championshipEditionFixture.addMatch(match);
+                matches.push(match);
+            }
+            rotate(clubs);
+
+            function rotate(clubs) {
+                clubs.splice(1, 0, clubs.pop());
+            }
+        }
+
+        return matches;
+    }
+
+    continentalCupClassificationZonePositions(continentalCupDivision) {
+        const positions = [];
+        const spots = this.championship.country.continentalCupSpots;
+
+        if (this.championship.championshipType.format === 'league' && this.championship.division === 1) {
+            for (const position = (spots * (continentalCupDivision - 1)) + 1; position <= spots * continentalCupDivision; position++) {
+                positions.push(position);
+            }
+        }
+
+        return positions;
+    }
+
+    continentalCupClassificationZoneClubs(division) {
+        return this.table.take(this.continentalCupClassificationZonePositions(division).length);
+    }
+}
