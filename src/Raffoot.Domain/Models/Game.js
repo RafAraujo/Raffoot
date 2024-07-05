@@ -94,7 +94,7 @@ class Game {
         this._currentSeasonId = season.id;
     }
 
-    play() {
+    playOld() {
         const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
         for (const match of matches) {
             match.prepare();
@@ -120,5 +120,32 @@ class Game {
                 }
             }
         }, this._matchSpeed);
+    }
+
+    play(callback) {
+        const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
+        for (const match of matches) {
+            match.prepare();
+        }
+        const matchSimulations = matches.map(m => m.matchSimulation);
+        
+        let index = 0;
+
+        do {
+            let t0 = performance.now();
+
+            for (const matchSimulation of matchSimulations) {
+                matchSimulation.nextAction(this.time);
+            }
+
+            console.log(`matchSimulation.nextAction() ${index++} took ${(performance.now() - t0)} milliseconds.`);
+        }
+        while (++this.time < 90);
+
+        for (const match of matches) {
+            match.finish();
+        }
+
+        callback();
     }
 }

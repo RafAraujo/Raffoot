@@ -6,24 +6,42 @@ class MatchSimulationEvent {
         this.player = null;
     }
 
+    get club() {
+        return this.player.club;
+    }
+
+    get isClubHome() {
+        return this.club.id === this.matchSimulation.match.clubHome.id;
+    }
+
+    get isClubAway() {
+        return this.club.id === this.matchSimulation.match.clubAway.id;
+    }
+
     dispatch() {
         switch (this.type) {
             case 'goal':
-                this._addGoal();
+                this._goal();
+                break;
             case 'foul':
-                this._addFoul();
+                this._foul();
+                break;
         }
     }
 
-    _addGoal() {
+    _goal() {
         this.player = this.matchSimulation.ballPossessor;
         this.matchSimulation.match.addGoal(this.player.club.id);
-        const championshipEditionPlayer = this._getChampionshipEditionPlayer(this.player);
-        championshipEditionPlayer.goals++;
+        this._addGoal(this.player);
         const previousAction = this.matchSimulation.previousAction;
         if (previousAction?.player.club.id === this.player.club.id && previousAction.type === 'passing') {
             this._addAssist(this.matchSimulation.previousAction.player);
         }
+    }
+
+    _addGoal(player) {
+        const championshipEditionPlayer = this._getChampionshipEditionPlayer(player);
+        championshipEditionPlayer.goals++;
     }
 
     _addAssist(player) {
@@ -31,7 +49,7 @@ class MatchSimulationEvent {
         championshipEditionPlayer.assists++;
     }
 
-    _addFoul() {
+    _foul() {
         this.player = this.matchSimulation.marker;
     }
 

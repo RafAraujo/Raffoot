@@ -3,7 +3,7 @@ class MatchesSectionViewModel {
         this.controller = new MatchesSectionController(game, translator);
     }
 
-    getCurrentMatchLastEvent() {
-        const event = this.controller.getLastEvent();
+    getCurrentDateChampionshipEditions() {
+        return this.controller.getCurrentDateChampionshipEditions();
     }
 }

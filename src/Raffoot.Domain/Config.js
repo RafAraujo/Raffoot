@@ -21,6 +21,7 @@ const Config = (function () {
         continentalCup: {
             maxClubCount: 32,
         },
+        delayBeforeSummary: 5000,
         files: {
             defaultPlayerPhoto: `${ResourcesFolder}/players/0.svg`,
         },

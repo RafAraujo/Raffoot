@@ -4,23 +4,16 @@ using RaffootLoader.Domain.Enums;
 using RaffootLoader.Domain.Models;
 using RaffootLoader.Services.Interfaces;
 using RaffootLoader.Utils;
-using System.Drawing;
 using System.Dynamic;
 using System.Text;
 using System.Text.Json;
 
 namespace RaffootLoader.Services
 {
-	public class JavaScriptFileGenerator : IJavaScriptFileGenerator
+	public class JavaScriptFileGenerator(ISettings settings, IContext context) : IJavaScriptFileGenerator
 	{
-		private readonly ISettings _settings;
-		private readonly IContext _context;
-
-		public JavaScriptFileGenerator(ISettings settings, IContext context)
-		{
-			_settings = settings;
-			_context = context;
-		}
+		private readonly ISettings _settings = settings;
+		private readonly IContext _context = context;
 
 		public void GenerateSoFifaServiceFile(int year)
 		{
@@ -68,12 +61,15 @@ namespace RaffootLoader.Services
 
 					foreach (var club in clubs)
 					{
-						sb.AppendLine(string.Format("\t\tx = c(\"{0}\", {1}, \"{2}\", \"{3}\", {4});",
+						var shortName = GetShortName(club.Name);
+
+						sb.AppendLine(string.Format("\t\tx = c(\"{0}\", {1}, \"{2}\", \"{3}\", {4}, {5});",
 							club.Name,
 							countryNames.IndexOf(country.Name) + 1,
 							club.BackgroundColor,
 							club.ForegroundColor,
-							club.ExternalId));
+							club.ExternalId,
+							string.IsNullOrEmpty(shortName) ? "null" : $"\"{shortName}\""));
 
 						foreach (var player in _context.Players.Where(p => p.ClubId == club.ExternalId))
 						{
@@ -149,19 +145,24 @@ namespace RaffootLoader.Services
 			}
 		}
 
-		private static Rectangle CropRectangle(Rectangle original, decimal newWidthPercentage, decimal newHeightPercentage)
+		private static string GetShortName(string clubName)
 		{
-			var croppedWidth = original.Width * newWidthPercentage;
-			var croppedHeight = original.Width * newHeightPercentage;
+			var clubs = new List<Tuple<string, string>>
+			{
+				new("Borussia Mönchengladbach", "Borussia M'gladbach"),
+				new("Brighton & Hove Albion", "Brighton"),
+				new("Eintracht Braunschweig", "E. Braunschweig"),
+				new("Forest Green Rovers", "Forest Green"),
+				new("Olympique de Marseille", "Olympique Marseille"),
+				new("Peterborough United", "Peterborough"),
+				new("Sheffield Wednesday", "Sheffield W."),
+				new("SpVgg Greuther Fürth", "Greuther Fürth"),
+				new("West Bromwich Albion", "West Brom"),
+				new("Wolverhampton Wanderers", "Wolverhampton")
+			};
 
-			var width = original.Width - (int)croppedWidth;
-			var height = original.Width - (int)croppedHeight;
-
-			var x = (int)croppedWidth / 2;
-			var y = (int)croppedHeight / 2;
-
-			var rectangle = new Rectangle(x, y, width, height);
-			return rectangle;
+			var shortName = clubs.SingleOrDefault(c => c.Item1 == clubName);
+			return shortName?.Item2;
 		}
 	}
 }

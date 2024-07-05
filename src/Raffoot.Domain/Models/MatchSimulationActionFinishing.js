@@ -11,7 +11,7 @@ class MatchSimulationActionFinishing extends MatchSimulationAction {
         this.getResult();
 
         if (this.isSuccessful) {
-            this.addEvent('goal');
+           this.addEvent('goal');
         }
 
         sim.ballPossessor = sim.clubDefending.goalkeeper;

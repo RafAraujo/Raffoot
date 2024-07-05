@@ -292,7 +292,7 @@ namespace RaffootLoader.Services
                 if (!OperatingSystem.IsWindows())
                 {
                     Console.WriteLine("OS is not Windows");
-                    return;
+                    return;        
                 }
 
                 var sb = new StringBuilder();

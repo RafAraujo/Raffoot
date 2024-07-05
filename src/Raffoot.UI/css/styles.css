@@ -51,6 +51,10 @@ td.secondary-continental-cup {
     font-weight: bold;
 }
 
+tr.selected-match td {
+    background-color: khaki;
+}
+
 td.promotion {
     color: deepskyblue;
     font-weight: bold;

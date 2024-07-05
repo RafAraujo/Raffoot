@@ -48,6 +48,10 @@ class Match {
         return this._clubIds.length === 2 ? `${this.clubHome.name} × ${this.clubAway.name}` : '';
     }
 
+    get hasGoals() {
+        return (this.goals ?? [0]).sum() > 0;
+    }
+
     get goalsHome() {
         return this.goals ? this.goals[0] : null;
     }

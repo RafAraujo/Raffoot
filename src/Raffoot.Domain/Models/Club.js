@@ -1,8 +1,11 @@
 class Club {
-    constructor(name, countryId, colors, externalId) {
+    constructor(name, countryId, colors, externalId, shortName) {
         this.name = name;
         this._countryId = countryId;
         this.externalId = externalId;
+        if (shortName) {
+            this._shortName = shortName;
+        }
         this._playerIds = [];
         this.money = 0;
         this.colors = colors;
@@ -16,14 +19,14 @@ class Club {
         this._formationId = null;
     }
 
-    static create(name, countryId, backgroundColor, foregroundColor, externalId) {
+    static create(name, countryId, backgroundColor, foregroundColor, externalId, shortName) {
         const colors = {
             background: backgroundColor,
             backgroundCustom: backgroundColor,
             foreground: foregroundColor,
             foregroundCustom: foregroundColor
         };
-        const club = new Club(name, countryId, colors, externalId);
+        const club = new Club(name, countryId, colors, externalId, shortName);
         club.id = Context.game.clubs.push(club);
         return club;
     }
@@ -70,6 +73,10 @@ class Club {
 
     get playerWages() {
         return this.players.map(p => p.wage).sum();
+    }
+
+    get shortName() {
+        return this._shortName ?? this.name;
     }
 
     get throphies() {

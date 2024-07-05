@@ -79,7 +79,7 @@ class Season {
         }
     }
 
-    getCurrentChampionshipEditions() {
+    getCurrentDateChampionshipEditions() {
         return this.currentSeasonDate.matches.map(m => m.championshipEdition).distinct();
     }
 

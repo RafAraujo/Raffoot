@@ -36,10 +36,10 @@ class MatchSimulation {
         return this.matchSimulationActions.length > 1 ? this.matchSimulationActions[this.matchSimulationActions.length - 2] : null;
     }
 
-    getLastEvent() {
-        const matchSimulationEvents = this.matchSimulationActions.flatMap(a => a.matchSimulationEvents);
-        const event = matchSimulationEvents.last();
-        return event;
+    getMatchSimulationEvents(type, club) {
+        let events = this.matchSimulationActions.flatMap(a => a.matchSimulationEvents);
+        events = events.filter(e => e.type === type && e.player.club.id === club.id);
+        return events;
     }
 
     getStats() {
@@ -48,14 +48,14 @@ class MatchSimulation {
         const clubHomeBallPossession = (this.matchSimulationActions.filter(a => a.player.club == this.match.clubHome).length / this.matchSimulationActions.length) * 100;
         const clubHomePassing = this._getActions('passing', this.match.clubHome, false).length;
         const clubHomePassingSuccessful = this._getActions('passing', this.match.clubHome, true).length;
-        const clubeHomeFouls = this._getEvents('foul', this.match.clubHome).length;
+        const clubeHomeFouls = this._getActions('foul', this.match.clubHome).length;
         
         const clubAwayFinishing = this._getActions('finishing', this.match.clubAway, true).length;
         const clubAwayFinishingSuccessful = this._getActions('finishing', this.match.clubAway, true).length;
         const clubAwayBallPossession = (this.matchSimulationActions.filter(a => a.player.club == this.match.clubAway).length / this.matchSimulationActions.length) * 100;
         const clubAwayPassing = this._getActions('passing', this.match.clubAway, false).length;
         const clubAwayPassingSuccessful = this._getActions('passing', this.match.clubAway, true).length;
-        const clubAwayFouls = this._getEvents('foul', this.match.clubAway).length;
+        const clubAwayFouls = this._getActions('foul', this.match.clubAway).length;
 
         const stats = {
             finishing: [clubHomeFinishing, clubAwayFinishing],
@@ -119,11 +119,12 @@ class MatchSimulation {
     }
 
     _chooseAction(time) {
-        const  result= Random.numberBetween(1, 50);
+        const result = Random.numberBetween(1, 50);
 
         let action = new MatchSimulationActionPassing(this, time);
 
-        if (this.previousAction?.isSuccessful && result < this.ballPossessor.fieldLocalization.line * this.ballPossessor.fieldLocalization.position.fieldRegion.id) {
+        const fieldLocalization = this.ballPossessor.fieldLocalization;
+        if (this.previousAction?.isSuccessful && result < fieldLocalization.line * fieldLocalization.position.fieldRegion.id) {
             action = new MatchSimulationActionFinishing(this, time);
         }
 
