@@ -21,8 +21,8 @@ class GameService {
 
     async insertAsync(game) {
         const dao = await this._getDaoAsync();
-        let result = await dao.insertManyAsync([game]);
-        let id = result[0];
+        const result = await dao.insertManyAsync([game]);
+        const id = result[0];
         ConnectionFactory.closeConnection();
         return id;
     }
@@ -71,21 +71,21 @@ class GameService {
     }
 
     async delete(id) {
-        let dao = await this._getDaoAsync();
+        const dao = await this._getDaoAsync();
         await dao.deleteAsync('Game', id);
         ConnectionFactory.closeConnection();
     }
 
     async _getDaoAsync() {
         await this._createDatabaseIfNotExists();
-        let connection = await ConnectionFactory.getConnectionAsync(Config.indexedDbName);
-        let dao = new GenericDAO(connection);
+        const connection = await ConnectionFactory.getConnectionAsync(Config.indexedDbName);
+        const dao = new GenericDAO(connection);
         return dao;
     }
 
     async _createDatabaseIfNotExists() {
-        let databases = await indexedDB.databases();
-        let exists = databases.map(db => db.name).includes(Config.indexedDbName);
+        const databases = await indexedDB.databases();
+        const exists = databases.map(db => db.name).includes(Config.indexedDbName);
         if (!exists) {
             ConnectionFactory.createDatabaseAsync(Config.indexedDbName, ['Game']);
         }

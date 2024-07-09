@@ -31,8 +31,8 @@
         </div>
         <div v-if="gameLoaded" @click="playSection.unselectPlayer()">
             <header>
-                <nav class="navbar navbar-expand-xl border-bottom border-body"
-                    :class="isSimulating() ? 'd-none' : '', `bg-${theme}`" :data-bs-theme="theme">
+                <nav class="navbar navbar-expand-xl border-bottom border-body" :class="`bg-${theme}`"
+                    :data-bs-theme="theme">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="index.html">Raffoot</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -43,49 +43,49 @@
                         <div class="collapse navbar-collapse" id="navbar-content">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link" :class="{ 'active' : activeSection == 'play' }" href="#play"
+                                    <a class="nav-link" :class="{ 'active' : activeSection === 'play' }" href="#play"
                                         @click="changeSection($event)">
                                         <i class="fa-solid fa-play fa-fw"></i>
                                         {{ translator.get("Play") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" :class="{ 'active' : activeSection == 'squad' }" href="#squad"
+                                    <a class="nav-link" :class="{ 'active' : activeSection === 'squad' }" href="#squad"
                                         @click="changeSection($event)">
                                         <i class="fa-solid fa-people-group fa-fw"></i>
                                         {{ translator.get("Squad") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" :class="{ 'active' : activeSection == 'calendar' }"
+                                    <a class="nav-link" :class="{ 'active' : activeSection === 'calendar' }"
                                         href="#calendar" @click="changeSection($event)">
                                         <i class="fa-solid fa-calendar-days fa-fw"></i>
                                         {{ translator.get("Calendar") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" :class="{ 'active' : activeSection == 'standings' }"
+                                    <a class="nav-link" :class="{ 'active' : activeSection === 'standings' }"
                                         href="#standings" @click="changeSection($event)">
                                         <i class="fa-solid fa-table-list fa-fw"></i>
                                         {{ translator.get("Standings") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" :class="{ 'active' : activeSection == 'finances' }"
+                                    <a class="nav-link" :class="{ 'active' : activeSection === 'finances' }"
                                         href="#finances" @click="changeSection($event)">
                                         <i class="fa-solid fa-dollar-sign fa-fw"></i>
                                         {{ translator.get("Finances") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" :class="{ 'active' : activeSection == 'clubs' }" href="#clubs"
+                                    <a class="nav-link" :class="{ 'active' : activeSection === 'clubs' }" href="#clubs"
                                         @click="changeSection($event)">
                                         <i class="fa-solid fa-shield-halved fa-fw"></i>
                                         {{ translator.get("Clubs") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" :class="{ 'active' : activeSection == 'players' }"
+                                    <a class="nav-link" :class="{ 'active' : activeSection === 'players' }"
                                         href="#players" @click="changeSection($event)">
                                         <i class="fa-solid fa-user fa-fw"></i>
                                         {{ translator.get("Players") }}
@@ -188,236 +188,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" :class="{ 'd-none' : isSimulating() }">
+                        <div class="row">
                             <div class="col">
                                 <div class="d-flex align-items-center border-bottom mt-1 mb-2">
                                     <img class="me-2" :src="game.club.getLogoURL()" :alt="game.club.name"
                                         :title="game.club.name" style="max-height: 4rem;">
                                     <h1 class="fs-3 m-0">{{ game.club.name }}</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section id="summary" :class="{ 'd-none' : activeSection !== 'summary' }">
-                        <div class="row mt-4">
-                            <div class="col col-md-5">
-                                <select class="form-select"
-                                    @change="summarySection.selectConfederation($event.target.value)">
-                                    <option v-for="confederation in summarySection.getConfederations()"
-                                        :key="confederation.id" :value="confederation.id"
-                                        :selected="summarySection.selectedConfederationId == confederation.id">
-                                        {{ confederation.name }}
-                                    </option>
-                                </select>
-                                <div class="table-responsive">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div v-for="championshipEdition in summarySection.getCurrentDateChampionshipEditions()">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="table-responsive">
-                                                <table class="table table-borderless caption-top small">
-                                                    <caption class="text-light">
-                                                        {{
-                                                        "{0} {1} - {2} {3}".format(
-                                                        translator.get("Division"),
-                                                        championshipEdition.championship.division,
-                                                        translator.get("Matchday"),
-                                                        game.currentSeason.getChampionshipEditionCurrentStage(championshipEdition))
-                                                        }}
-                                                    </caption>
-                                                    <tbody>
-                                                        <tr v-for="match in game.currentSeason.getCurrentMatchesByChampionshipEdition(championshipEdition)"
-                                                            @click.stop="summarySection.selectMatch(match.id)"
-                                                            :class="{ 'selected-match' : summarySection.selectedMatchId === match.id }">
-                                                            <td class="text-end p-0 text-break"
-                                                                style="width: 44%; height: 40px;">
-                                                                {{ match.clubHome.shortName }}
-                                                                <img class="ms-1 me-1"
-                                                                    :src="match.clubHome.getLogoURL()"
-                                                                    :alt="match.clubHome.name"
-                                                                    :title="match.clubHome.name"
-                                                                    style="max-height: 1.5rem;">
-                                                            </td>
-                                                            <td class="text-center p-0">
-                                                                {{ match.score }}
-                                                            </td>
-                                                            <td class="text-start p-0" style="width: 44%;">
-                                                                <img class="ms-1 me-1"
-                                                                    :src="match.clubAway.getLogoURL()"
-                                                                    :alt="match.clubAway.name"
-                                                                    :title="match.clubAway.name"
-                                                                    style="max-height: 1.5rem;">
-                                                                {{ match.clubAway.shortName }}
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section id="matches" :class="{ 'd-none' : activeSection !== 'matches' }">
-                        <div class="sticky-top bg-matches">
-                            <div style="height: 10px;">&nbsp;</div>
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <div class="progress" role="progressbar" :aria-label="translator.get('Time')"
-                                        :aria-valuenow="game.time" aria-valuemin="0" aria-valuemax="100"
-                                        style="border-radius: 0; height: 1.75rem;">
-                                        <div class="progress-bar bg-success border fw-bold"
-                                            :class="{ 'progress-bar-striped progress-bar-animated' : !currentMatch?.isFinished }"
-                                            style="font-size: 14px;" :style="{ width: (game.time / 90) * 100 + '%' }">
-                                            {{ `${game.time}'` }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <template v-if="currentMatch">
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <span class="fw-bold text-warning">
-                                            {{
-                                            translator.getChampionshipName(currentMatch.championshipEdition.championship,
-                                            false)
-                                            }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col text-center">
-                                        <span class="text-light">
-                                            {{
-                                            "{0} {1} - {2} {3}".format(
-                                            translator.get("Division"),
-                                            currentMatch.championshipEdition.championship.division,
-                                            translator.get("Matchday"),
-                                            game.currentSeason.getChampionshipEditionCurrentStage(currentMatch.championshipEdition))
-                                            }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="table-responsive">
-                                            <table class="table table-borderless border mb-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="text-center p-0 border"
-                                                            style="width: 42%; height: 60px;"
-                                                            :style="{ backgroundColor: currentMatch.clubHome.colors.backgroundCustom, color: currentMatch.clubHome.colors.foregroundCustom }">
-                                                            <div>
-                                                                <img :src="currentMatch.clubHome.getLogoURL()"
-                                                                    :alt="currentMatch.clubHome.name"
-                                                                    :title="currentMatch.clubHome.name"
-                                                                    style="max-height: 4rem;">
-                                                            </div>
-                                                            <span>{{ currentMatch.clubHome.name }}</span>
-                                                        </td>
-                                                        <td class="text-center p-0 border display-6"
-                                                            style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
-                                                            {{ currentMatch.goalsHome }}
-                                                        </td>
-                                                        <td class="text-center p-0 border display-6"
-                                                            style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
-                                                            {{ currentMatch.goalsAway }}
-                                                        </td>
-                                                        <td class="text-center p-0 border" style="width: 42%;"
-                                                            :style="{ backgroundColor: currentMatch.clubAway.colors.backgroundCustom, color: currentMatch.clubAway.colors.foregroundCustom }">
-                                                            <div>
-                                                                <img :src="currentMatch.clubAway.getLogoURL()"
-                                                                    :alt="currentMatch.clubAway.name"
-                                                                    :title="currentMatch.clubAway.name"
-                                                                    style="max-height: 4rem;">
-                                                            </div>
-                                                            <span>{{ currentMatch.clubAway.name }}</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr v-if="currentMatch.hasGoals">
-                                                        <td class="text-end">
-                                                            <div
-                                                                v-for="event in currentMatch.matchSimulation?.getMatchSimulationEvents('goal', currentMatch.clubHome)">
-                                                                {{ `${event.player.name} ${event.time}'` }}
-                                                            </div>
-                                                        </td>
-                                                        <td class="text-center" colspan="2">
-                                                            <i class="fa-regular fa-futbol"></i>
-                                                        <td>
-                                                            <div
-                                                                v-for="event in currentMatch.matchSimulation?.getMatchSimulationEvents('goal', currentMatch.clubAway)">
-                                                                {{ `${event.player.name} ${event.time}'` }}
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </template>
-                            <div class="row">
-                                <div class="col">
-                                    &nbsp;
-                                </div>
-                            </div>
-                        </div>
-                        <div v-for="championshipEdition in matchesSection.getCurrentDateChampionshipEditions()">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="table-responsive">
-                                        <table class="table caption-top small border">
-                                            <caption class="text-light">
-                                                {{
-                                                "{0} {1} - {2} {3}".format(
-                                                translator.get("Division"),
-                                                championshipEdition.championship.division,
-                                                translator.get("Matchday"),
-                                                game.currentSeason.getChampionshipEditionCurrentStage(championshipEdition))
-                                                }}
-                                            </caption>
-                                            <tbody>
-                                                <tr
-                                                    v-for="match in game.currentSeason.getCurrentMatchesByChampionshipEdition(championshipEdition)">
-                                                    <td class="text-end p-0"
-                                                        :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
-                                                        <img class="ms-1 me-1" :src="match.clubHome.getLogoURL()"
-                                                            :alt="match.clubHome.name" :title="match.clubHome.name"
-                                                            style="max-height: 1.5rem;">
-                                                    </td>
-                                                    <td class="text-start p-0 text-break"
-                                                        style="width: 34%; height: 40px;"
-                                                        :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
-                                                        {{ match.clubHome.shortName }}
-                                                    </td>
-                                                    <td class="text-center p-0 border"
-                                                        style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
-                                                        {{ match.goalsHome }}
-                                                    </td>
-                                                    <td class="text-center p-0 border"
-                                                        style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
-                                                        {{ match.goalsAway }}
-                                                    </td>
-                                                    <td class="text-end p-0 text-break"
-                                                        :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
-                                                        <img class="ms-1 me-1" :src="match.clubAway.getLogoURL()"
-                                                            :alt="match.clubAway.name" :title="match.clubAway.name"
-                                                            style="max-height: 1.5rem;">
-                                                    </td>
-                                                    <td class="text-start p-0" style="width: 34%;"
-                                                        :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
-                                                        {{ match.clubAway.shortName }}
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -501,12 +277,10 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <div>
-                                    <button class="btn btn-light border" @click.stop="goToSection('matches')">
-                                        <i class="fa-solid fa-right-long"></i>
-                                        {{ translator.get("Advance") }}
-                                    </button>
-                                </div>
+                                <button class="btn btn-light border" @click.stop="playMatches()">
+                                    <i class="fa-solid fa-right-long"></i>
+                                    {{ translator.get("Advance") }}
+                                </button>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -786,8 +560,12 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="text-end">{{ player.marketValue.formatCurrency() }}</td>
-                                                <td class="text-end">{{ player.wage.formatCurrency() }}</td>
+                                                <td class="text-end" :title="player.marketValue.formatCurrency()">
+                                                    {{ player.marketValue.formatNumberInWords() }}
+                                                </td>
+                                                <td class="text-end" :title="player.wage.formatCurrency()">
+                                                    {{ player.wage.formatNumberInWords() }}
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -875,17 +653,11 @@
                                     v-model.lazy="standingSection.selectedChampionshipEditionId">
                                     <option></option>
                                     <template v-if="standingSection.isNationalChampionshipsSelected">
-                                        <template
-                                            v-for="confederation in game.confederations.map(c => ({ id: c.id, name: translator.get(c.name) })).orderBy('name')">
+                                        <template v-for="confederation in standingSection.getConfederations()">
                                             <optgroup :label="confederation.name">
-                                                <option v-for="championshipEdition in game.currentSeason.getChampionshipEditionsByConfederation(confederation)
-                                                    .map(ce => ({
-                                                        id: ce.id,
-                                                        importance: ce.championship.importance,
-                                                        name: translator.getChampionshipName(ce.championship)
-                                                    }))
-                                                    .orderBy('-importance', 'name')" :key="championshipEdition.id"
-                                                    :value="championshipEdition.id"
+                                                <option
+                                                    v-for="championshipEdition in standingSection.getChampionshipEditionsByConfederation(confederation.id)"
+                                                    :key="championshipEdition.id" :value="championshipEdition.id"
                                                     :selected="standingSection.selectedChampionshipEditionId == championshipEdition.id">
                                                     {{ championshipEdition.name }}
                                                 </option>
@@ -893,14 +665,9 @@
                                         </template>
                                     </template>
                                     <template v-else>
-                                        <option v-for="championshipEdition in game.currentSeason.getInternationalChampionshipEditions()
-                                            .map(ce => ({
-                                                id: ce.id,
-                                                importance: ce.championship.importance,
-                                                name: translator.getChampionshipName(ce.championship)
-                                            }))
-                                            .orderBy('-importance', 'name')" :key="championshipEdition.id"
-                                            :value="championshipEdition.id"
+                                        <option
+                                            v-for="championshipEdition in standingSection.getInternationalChampionshipEditions()"
+                                            :key="championshipEdition.id" :value="championshipEdition.id"
                                             :selected="standingSection.selectedChampionshipEditionId == championshipEdition.id">
                                             {{ championshipEdition.name }}
                                         </option>
@@ -929,80 +696,123 @@
                                     </ul>
                                     <div class="table-responsive"
                                         :class="{ 'd-none' : standingSection.activeTab !== 'classification' }">
-                                        <table class="table table-hover">
-                                            <thead class="table-light">
-                                                <th class="text-center">
-                                                    #
-                                                </th>
-                                                <th class="text-center" style="width: 1.5rem;">
-                                                </th>
-                                                <th class="text-start">{{ translator.get("Club") }}</th>
-                                                <th class="text-center" :title="translator.get('Points')">
-                                                    {{ translator.getAbbreviation("Points") }}
-                                                </th>
-                                                <th class="text-center" :title="translator.get('Matches')">
-                                                    {{ translator.getAbbreviation("Matches") }}
-                                                </th>
-                                                <th class="text-center" :title="translator.get('Wins')">
-                                                    {{ translator.getAbbreviation("Wins") }}
-                                                </th>
-                                                <th class="text-center" :title="translator.get('Draws')">
-                                                    {{ translator.getAbbreviation("Draws") }}
-                                                </th>
-                                                <th class="text-center" :title="translator.get('Losses')">
-                                                    {{ translator.getAbbreviation("Losses") }}
-                                                </th>
-                                                <th class="text-center" :title="translator.get('Goals')">
-                                                    {{ translator.getAbbreviation("Goals") }}
-                                                </th>
-                                                <th class="text-center" :title="translator.get('Goals Against')">
-                                                    {{ translator.getAbbreviation("Goals Against") }}
-                                                </th>
-                                                <th class="text-center" :title="translator.get('Goals Difference')">
-                                                    {{ translator.getAbbreviation("Goals Difference") }}
-                                                </th>
-                                            </thead>
-                                            <tbody>
-                                                <tr
-                                                    v-for="(championshipEditionClub, index) in standingSection.selectedChampionshipEdition?.table">
-                                                    <td class="text-center"
-                                                        :class="standingSection.getCssClassForPosition(index + 1, standingSection.selectedChampionshipEdition)">
-                                                        {{ index + 1 }}
-                                                    </td>
-                                                    <td>
-                                                        <img :src="championshipEditionClub.club.getLogoURL()"
-                                                            :alt="championshipEditionClub.club.name"
-                                                            :title="championshipEditionClub.club.name"
-                                                            style="max-height: 1.5rem;">
-                                                    </td>
-                                                    <td>
-                                                        {{ championshipEditionClub.club.name }}
-                                                    </td>
-                                                    <td class="text-center">{{ championshipEditionClub.points }}</td>
-                                                    <td class="text-center">
-                                                        {{ championshipEditionClub.matches }}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        {{ championshipEditionClub.won }}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        {{ championshipEditionClub.drawn }}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        {{ championshipEditionClub.lost }}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        {{ championshipEditionClub.goalsFor }}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        {{ championshipEditionClub.goalsAgainst }}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        {{ championshipEditionClub.goalsDifference }}
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <template
+                                            v-if="standingSection.selectedChampionshipEdition.championship.championshipType.format === 'cup'">
+                                            <table class="table table-hover table-borderless"
+                                                v-for="phase in standingSection.selectedChampionshipEdition.championshipEditionEliminationPhases">
+                                                <thead class="table-light">
+                                                    <th class="text-center border-bottom" colspan="5">
+                                                        {{ translator.get(phase.name) }}
+                                                    </th>
+                                                </thead>
+                                                <tbody>
+                                                    <template
+                                                        v-for="duel in phase.championshipEditionEliminationPhaseDuels">
+                                                        <tr v-for="(match, index) in duel.matches"
+                                                            :style="[index === 1 ? { 'borderBottom': 'solid 2px black' } : null]">
+                                                            <td class="text-end">{{ match.clubHome.name }}</td>
+                                                            <td class="text-end" style="width: 1.5rem;">
+                                                                <img class="ms-1 me-1"
+                                                                    :src="match.clubHome.getLogoURL()"
+                                                                    :alt="match.clubHome.name"
+                                                                    :title="match.clubHome.name"
+                                                                    style="max-height: 1.5rem;">
+                                                            </td>
+                                                            <td class="text-center">×</td>
+                                                            <td class="text-start" style="width: 1.5rem;">
+                                                                <img class="ms-1 me-1"
+                                                                    :src="match.clubAway.getLogoURL()"
+                                                                    :alt="match.clubAway.name"
+                                                                    :title="match.clubAway.name"
+                                                                    style="max-height: 1.5rem;">
+                                                            </td>
+                                                            <td class="text-start">
+                                                                {{ match.clubAway.name }}
+                                                            </td>
+                                                        </tr>
+                                                    </template>
+                                                </tbody>
+                                            </table>
+                                        </template>
+                                        <template
+                                            v-else-if="standingSection.selectedChampionshipEdition.championship.championshipType.format === 'league'">
+                                            <table class="table table-hover">
+                                                <thead class="table-light">
+                                                    <th class="text-center">
+                                                        #
+                                                    </th>
+                                                    <th class="text-center" style="width: 1.5rem;">
+                                                    </th>
+                                                    <th class="text-start">{{ translator.get("Club") }}</th>
+                                                    <th class="text-center" :title="translator.get('Points')">
+                                                        {{ translator.getAbbreviation("Points") }}
+                                                    </th>
+                                                    <th class="text-center" :title="translator.get('Matches')">
+                                                        {{ translator.getAbbreviation("Matches") }}
+                                                    </th>
+                                                    <th class="text-center" :title="translator.get('Wins')">
+                                                        {{ translator.getAbbreviation("Wins") }}
+                                                    </th>
+                                                    <th class="text-center" :title="translator.get('Draws')">
+                                                        {{ translator.getAbbreviation("Draws") }}
+                                                    </th>
+                                                    <th class="text-center" :title="translator.get('Losses')">
+                                                        {{ translator.getAbbreviation("Losses") }}
+                                                    </th>
+                                                    <th class="text-center" :title="translator.get('Goals')">
+                                                        {{ translator.getAbbreviation("Goals") }}
+                                                    </th>
+                                                    <th class="text-center" :title="translator.get('Goals Against')">
+                                                        {{ translator.getAbbreviation("Goals Against") }}
+                                                    </th>
+                                                    <th class="text-center" :title="translator.get('Goals Difference')">
+                                                        {{ translator.getAbbreviation("Goals Difference") }}
+                                                    </th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr
+                                                        v-for="(championshipEditionClub, index) in standingSection.selectedChampionshipEdition?.getTable()">
+                                                        <td class="text-center"
+                                                            :class="standingSection.getCssClassForPosition(index + 1)">
+                                                            {{ index + 1 }}
+                                                        </td>
+                                                        <td>
+                                                            <img :src="championshipEditionClub.club.getLogoURL()"
+                                                                :alt="championshipEditionClub.club.name"
+                                                                :title="championshipEditionClub.club.name"
+                                                                style="max-height: 1.5rem;">
+                                                        </td>
+                                                        <td>
+                                                            {{ championshipEditionClub.club.name }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{ championshipEditionClub.points }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{ championshipEditionClub.matches }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{ championshipEditionClub.won }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{ championshipEditionClub.drawn }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{ championshipEditionClub.lost }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{ championshipEditionClub.goalsFor }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{ championshipEditionClub.goalsAgainst }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{ championshipEditionClub.goalsDifference }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </template>
                                     </div>
                                     <div class="table-responsive"
                                         :class="{ 'd-none' : standingSection.activeTab !== 'top-scorers' }">
@@ -1064,10 +874,11 @@
                                     {{ translator.get("Country") }}
                                 </label>
                                 <select id="select-country" class="form-select"
-                                    @change="clubSection.selectedCountryId = parseInt($event.target.value); clubSection.selectedClubId = null;">
+                                    @change="clubSection.selectCountry($event.target.value)">
                                     <option></option>
                                     <option v-for="country in clubSection.countries" :value="country.id"
-                                        :key="country.id" :value="country.id">
+                                        :key="country.id" :value="country.id"
+                                        :selected="clubSection.selectedCountryId === country.id">
                                         {{ country.name }}
                                     </option>
                                 </select>
@@ -1077,9 +888,10 @@
                                     {{ translator.get("Club") }}
                                 </label>
                                 <select id="select-club" class="form-select"
-                                    @change="clubSection.selectedClubId = parseInt($event.target.value)">
+                                    @change="clubSection.selectClub($event.target.value)">
                                     <option></option>
-                                    <option v-for="club in clubSection.clubs" :key="club.id" :value="club.id">
+                                    <option v-for="club in clubSection.clubs" :key="club.id" :value="club.id"
+                                        :selected="clubSection.selectedClubId === club.id">
                                         {{ club.name }}
                                     </option>
                                 </select>
@@ -1193,8 +1005,12 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td class="text-end">{{ player.marketValue.formatCurrency() }}</td>
-                                                    <td class="text-end">{{ player.wage.formatCurrency() }}</td>
+                                                    <td class="text-end" :title="player.marketValue.formatCurrency()">
+                                                        {{ player.marketValue.formatNumberInWords() }}
+                                                    </td>
+                                                    <td class="text-end" :title="player.wage.formatCurrency()">
+                                                        {{ player.wage.formatNumberInWords() }}
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -1220,9 +1036,8 @@
                                         <select id="nationality" class="form-select"
                                             v-model.lazy="playerSection.playerFilter.countryId">
                                             <option></option>
-                                            <option
-                                                v-for="country in game.countries.map(c => ({ id: c.id, name: c.name })).orderBy('name')"
-                                                :key="country.id" :value="country.id">
+                                            <option v-for="country in playerSection.getCountries()" :key="country.id"
+                                                :value="country.id">
                                                 {{ country.name }}
                                             </option>
                                         </select>
@@ -1379,9 +1194,13 @@
                                                             :class="player.age < 32 ? 'text-primary' : 'text-danger'">
                                                             {{ player.age }}
                                                         </td>
-                                                        <td class="text-end">{{ player.marketValue.formatCurrency() }}
+                                                        <td class="text-end"
+                                                            :title="player.marketValue.formatCurrency()">
+                                                            {{ player.marketValue.formatNumberInWords() }}
                                                         </td>
-                                                        <td class="text-center">{{ player.wage.formatCurrency() }}</td>
+                                                        <td class="text-end" :title="player.wage.formatCurrency()">
+                                                            {{ player.wage.formatNumberInWords() }}
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -1391,7 +1210,7 @@
                                 <div class="row mb-2">
                                     <div class="col">
                                         <button type="button" class="btn btn-primary btn-sm border"
-                                            @click="playerSection.pageSize += config.pageSize"
+                                            @click="playerSection.pageSize += game.config.search.pageSize"
                                             :disabled="playerSection.pageSize >= playerSection.filteredPlayers.length">
                                             <i class="fa-solid fa-plus"></i>
                                             {{ translator.get("Load more") }}
@@ -1406,7 +1225,7 @@
                 </footer>
             </div>
 
-            <div class="modal fade" id="modal-colors" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+            <div id="modal-colors" class="modal fade" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -1507,20 +1326,16 @@
     <script src="../Raffoot.Application/TranslatorService.js"></script>
 
     <script src="../Raffoot.Application/Controllers/ClubSectionController.js"></script>
-    <script src="../Raffoot.Application/Controllers/MatchesSectionController.js"></script>
     <script src="../Raffoot.Application/Controllers/PlayerSectionController.js"></script>
     <script src="../Raffoot.Application/Controllers/PlaySectionController.js"></script>
     <script src="../Raffoot.Application/Controllers/SquadSectionController.js"></script>
     <script src="../Raffoot.Application/Controllers/StandingSectionController.js"></script>
-    <script src="../Raffoot.Application/Controllers/SummarySectionController.js"></script>
 
     <script src="../Raffoot.Application/ViewModels/Sections/ClubSectionViewModel.js"></script>
-    <script src="../Raffoot.Application/ViewModels/Sections/MatchesSectionViewModel.js"></script>
     <script src="../Raffoot.Application/ViewModels/Sections/PlayerSectionViewModel.js"></script>
     <script src="../Raffoot.Application/ViewModels/Sections/PlaySectionViewModel.js"></script>
     <script src="../Raffoot.Application/ViewModels/Sections/SquadSectionViewModel.js"></script>
     <script src="../Raffoot.Application/ViewModels/Sections/StandingSectionViewModel.js"></script>
-    <script src="../Raffoot.Application/ViewModels/Sections/SummarySectionViewModel.js"></script>
 
     <script src="../Raffoot.Application/ViewModels/PlayerFilterViewModel.js"></script>
     <script src="../Raffoot.Application/ViewModels/PlayerOrderViewModel.js"></script>
@@ -1549,8 +1364,6 @@
                 theme: 'dark',
                 translator: translator,
 
-                summarySection: null,
-                matchesSection: null,
                 playSection: null,
                 squadSection: null,
                 standingSection: null,
@@ -1583,17 +1396,11 @@
             },
             goToSection(section) {
                 this.activeSection = section;
-                if (this.activeSection === 'matches') {
-                    this.game.play(() => setTimeout(() => { this.goToSection('summary') }, this.config.delayBeforeSummary));
-                }
 
                 const collapseElement = document.querySelector('.navbar-collapse.collapse')
                 if (collapseElement.classList.contains('show')) {
                     const collapse = new bootstrap.Collapse(collapseElement);
                 }
-            },
-            isSimulating() {
-                return ['matches', 'summary'].some(s => this.activeSection === s);
             },
             toggleFullscreen() {
                 if (document.fullscreenElement) {
@@ -1607,19 +1414,22 @@
                 const urlParams = new URLSearchParams(location.search);
                 const gameId = parseInt(urlParams.get('id'));
                 this.game = await gameService.loadAsync(gameId);
-                this.summarySection = new SummarySectionViewModel(this.game, translator);
-                this.matchesSection = new MatchesSectionViewModel(this.game, translator);
                 this.playSection = new PlaySectionViewModel(this.game, translator);
                 this.squadSection = new SquadSectionViewModel(this.game, translator);
                 this.standingSection = new StandingSectionViewModel(this.game, translator);
                 this.clubSection = new ClubSectionViewModel(this.game, translator);
                 this.playerSection = new PlayerSectionViewModel(this.game, translator);
             },
+            playMatches() {
+                const url = `play.html?id=${this.game.id}`;
+                this.redirect(url);
+            },
             setColors: function () {
-                document.body.style.backgroundColor = this.isSimulating() ? 'rgb(27, 70, 38)' : this.game.club.colors.backgroundCustom;
-                document.body.style.color = this.isSimulating() ? 'white' : this.game.club.colors.foregroundCustom;
+                document.body.style.backgroundColor = this.game.club.colors.backgroundCustom;
+                document.body.style.color = this.game.club.colors.foregroundCustom;
                 this.theme = this.game.club.colors.foregroundCustom === '#000000' ? 'dark' : 'light';
             },
+            redirect: url => location.href = url,
         },
         computed: {
             clubId() {

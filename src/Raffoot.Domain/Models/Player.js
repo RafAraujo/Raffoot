@@ -41,7 +41,8 @@ class Player {
     }
 
     static _calculateBaseWage(overall) {
-        return Math.pow(overall, 2.85);
+        const wage = Math.pow(overall, 2.85);
+        return Math.round(wage);
     }
 
     static _calculateMarketValue(overall, age) {
@@ -50,7 +51,7 @@ class Player {
         const factor = reference * 0.1;
         const multiplier = 32 - age;
         const value = reference + (factor * multiplier);
-        return value;
+        return Math.round(value);
     }
 
     get category() {

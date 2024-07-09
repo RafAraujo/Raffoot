@@ -11,7 +11,17 @@ class StandingSectionViewModel {
         return championshipEdition;
     }
 
-    getCssClassForPosition(position, championshipEdition) {
+    getChampionshipEditionsByConfederation(confederationId) {
+        return this.controller.getChampionshipEditionsByConfederation(confederationId);
+    }
+
+    getConfederations() {
+        return this.controller.getConfederations();
+    }
+
+    getCssClassForPosition(position) {
+        const championshipEdition = this.selectedChampionshipEdition;
+        
         if (championshipEdition.getContinentalCupClassificationZonePositions(1).includes(position)) {
             return 'main-continental-cup';
         }
@@ -24,6 +34,10 @@ class StandingSectionViewModel {
         else if (championshipEdition.getRelegationZonePositions().includes(position)) {
             return 'relegation';
         }
+    }
+
+    getInternationalChampionshipEditions() {
+        return this.controller.getInternationalChampionshipEditions();
     }
 
     selectNationalChampionships(currentMatch) {

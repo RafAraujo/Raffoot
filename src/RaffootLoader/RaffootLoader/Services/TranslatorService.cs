@@ -31,7 +31,7 @@ namespace RaffootLoader.Services
 		[
 			"Advance", "Age", "Assists", "Attack", "Audience", "Automatic selection", $"{PrefixOfContext}{Separator}Away", "Average",
 			"Back", "Background color", $"{PrefixOfContext}{Separator}Balanced", "Ball Possession", $"{PrefixOfContext}{Separator}Board of Directors", "Bronze",
-			"Calendar", "Cancel", "Capacity", "Category", "Champions", "Championship", "Championships", "Choose your club", "Clear", "Classification", "Close", "Club", "Clubs", "Coach", "Colors", "CON", "Continental Supercup", "Country", "Creating game...", $"{PrefixOfContext}{Separator}Cup",
+			"Calendar", "Cancel", "Capacity", "Category", "Champions", "Championship", "Championships", "Choose your club", "Clear", "Classification", "Close", "Club", "Clubs", "Coach", "Colors", "CON", "Continental Supercup", "Continue", "Country", "Creating game...", $"{PrefixOfContext}{Separator}Cup",
 			"Date", "Defense", $"{PrefixOfContext}{Separator}Defensive", "Delete", "Diamond", "Division", $"{PrefixOfContext}{Separator}Draws",
 			"End of contract", "End of the match", "Energy", "Error", "Exit Game", "Expand",
 			"False 9", "Final", "Finances", "Flat", "Formation", "For Sale", "Foul", "Fouls", "Free Kick Taker", "Full screen",

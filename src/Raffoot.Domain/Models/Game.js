@@ -31,7 +31,13 @@ class Game {
         this.seasons = [];
         this.seasonDates = [];
 
-        this._matchSpeed = Config.matchSpeed.veryFast;
+        this.config = {
+            fullScreen: Config.fullScreen,
+            matchSpeed: Config.matchSpeedOptions.ultraFast,
+            search: {
+                pageSize: Config.search.pageSize
+            }
+        };
         this.time = 0;
     }
 
@@ -94,12 +100,14 @@ class Game {
         this._currentSeasonId = season.id;
     }
 
-    playOld() {
+    play(callback) {
+        this.time = 0;
         const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
         for (const match of matches) {
             match.prepare();
         }
         const matchSimulations = matches.map(m => m.matchSimulation);
+        const includesMyClub = matches.flatMap(m => m.clubs).includes(this.club);
         
         let index = 0;
 
@@ -118,11 +126,14 @@ class Game {
                 for (const match of matches) {
                     match.finish();
                 }
+
+                callback();
             }
-        }, this._matchSpeed);
+        }, this.config.matchSpeed);
     }
 
-    play(callback) {
+    playOld(callback) {
+        this.time = 0;
         const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
         for (const match of matches) {
             match.prepare();

@@ -52,7 +52,7 @@ class Season {
         const days = Date.daysDiff(previousDate, this.currentDate);
 
         for (const club of Context.game.clubs) {
-            club.squad.rest(days);
+            club.rest(days);
             if (this._currentSeasonDateIndex > 0 && this.currentDate.getMonth() > this.previousSeasonDate.date.getMonth()) {
                 club.payWages();
             }
@@ -67,9 +67,9 @@ class Season {
         return this.championshipEditions.filter(ce => ce.championship.championshipType.scope === 'national');
     }
 
-    getChampionshipEditionsByConfederation(confederation) {
+    getChampionshipEditionsByConfederation(confederationId) {
         const championshipEditions = this.getNationalChampionshipEditions();
-        return championshipEditions.filter(ce => ce.championship.confederation.id === confederation.id);
+        return championshipEditions.filter(ce => ce.championship.confederation.id === confederationId);
     }
 
     getChampionshipEditionCurrentStage(championshipEdition) {

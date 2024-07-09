@@ -71,10 +71,6 @@ class ChampionshipEdition {
         return Context.game.seasonDates.filterByIds(this._seasonDateIds);
     }
 
-    get table() {
-        return this.championshipEditionClubs.orderBy('-championshipEditionEliminationPhasesWon', '-points', '-won', '-goalsDifference', '-goalsFor', 'club.name');
-    }
-
     get topAssists() {
         return this.championshipEditionPlayers.orderBy('-assists', 'matches');
     }
@@ -103,10 +99,6 @@ class ChampionshipEdition {
 
     addSeasonDates(seasonDates) {
         this._seasonDateIds = seasonDates.map(sd => sd.id);
-    }
-
-    getClubPosition(club) {
-        return this.table.map(cec => cec.club.id).indexOf(club.id) + 1;
     }
 
     getContinentalCupClassificationZonePositions(continentalCupDivision) {
@@ -170,6 +162,15 @@ class ChampionshipEdition {
     getRelegationZoneClubs() {
         const positions = this.getRelegationZonePositions();
         return this.table.lastItems(positions.length);
+    }
+
+    getTable() {
+        if (this.championship.championshipType.format === 'league') {
+            return this.championshipEditionClubs.orderBy('-championshipEditionEliminationPhasesWon', '-points', '-won', '-goalsDifference', '-goalsFor', 'club.name');
+        }
+        else {
+            return this.championshipEditionEliminationPhases;
+        }
     }
 
     scheduleMatches() {

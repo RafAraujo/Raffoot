@@ -28,7 +28,7 @@ class ChampionshipEditionEliminationPhase {
     }
 
     get championshipEditionEliminationPhaseDuels() {
-        return ChampionshipEditionEliminationPhaseDuel.all().filterByIds(this._championshipEditionEliminationPhaseDuelIds);
+        return Context.game.championshipEditionEliminationPhaseDuels.filterByIds(this._championshipEditionEliminationPhaseDuelIds);
     }
 
     get clubs() {

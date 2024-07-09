@@ -1,5 +1,11 @@
 const Config = (function () {
     const ResourcesFolder = 'res';
+
+    const PlayigStyleOptions = {
+        defensive: 1,
+        balanced: 2,
+        offensive: 3,
+    };
     
     return {
         version: '1.0',
@@ -21,20 +27,22 @@ const Config = (function () {
         continentalCup: {
             maxClubCount: 32,
         },
-        delayBeforeSummary: 5000,
+        delayBeforeSummary: 1000,
         files: {
             defaultPlayerPhoto: `${ResourcesFolder}/players/0.svg`,
         },
+        fullScreen: true,
         folders: {
             flagsFolder: `${ResourcesFolder}/countries`,
             kitsFolder: `${ResourcesFolder}/kits`,
             logosFolder: `${ResourcesFolder}/clubs`,
             photosFolder: `${ResourcesFolder}/players`,
         },
-        matchSpeed: {
+        matchSpeedOptions: {
             normal: 1000,
             fast: 500,
-            veryFast: 250
+            veryFast: 250,
+            ultraFast: 125,
         },
         nationalCup: {
             maxClubCount: 64,
@@ -45,14 +53,15 @@ const Config = (function () {
             maxDivisionCount: 4,
             promotionAndRelegationPercentage: 0.2,
         },
-        pageSize: 50,
+        search: {
+            pageSize: 50,
+        },
         player: {
             minAge: 15,
             maxAge: 45,
             minOverall: 1,
             maxOverall: 99,
         },
-        playingStyles: ['defensive', 'balanced', 'offensive'],
         yellowCardsRequiredForSuspension: 3
     }
 })();

@@ -60,6 +60,10 @@ class Match {
         return this.goals ? this.goals[1] : null;
     }
 
+    get isDraw() {
+        return this.goals ? this.goals[0] === this.goals[1] : false;
+    }
+
     get score() {
         return this.goals ? `${this.goals[0]} × ${this.goals[1]}` : null;
     }
@@ -144,6 +148,30 @@ class Match {
 
     finish() {
         this.isFinished = true;
+        const clubWinner = this.getWinner();
+
+        for (const club of this.clubs) {
+            const championshipEditionClub = Context.game.championshipEditionClubs
+                .find(cec => cec.championshipEdition.id === this._championshipEditionId && cec.club.id === club.id);
+            
+            championshipEditionClub.played++;
+
+            if (this.isDraw) {
+                championshipEditionClub.drawn++
+            }
+            else {
+                championshipEditionClub.club.id === clubWinner.id ? championshipEditionClub.won++ : championshipEditionClub.lost++;
+            }
+
+            if (championshipEditionClub.club.id === this.clubs[0].id) {
+                championshipEditionClub.goalsFor += this.goals[0];
+                championshipEditionClub.goalsAgainst += this.goals[1];
+            }
+            else {
+                championshipEditionClub.goalsFor += this.goals[1];
+                championshipEditionClub.goalsAgainst += this.goals[0];
+            }
+        }
     }
 
     _incrementPlayersMatches() {

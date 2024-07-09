@@ -1,8 +1,8 @@
 class ClubSectionViewModel {
     constructor(game, translator) {
         this.controller = new ClubSectionController(game, translator);
-        this.selectedCountryId = null;
-        this.selectedClubId = null;
+        this.selectedCountryId = game.club.country.id;
+        this.selectedClubId = game.club.id;
         this.playerOrder = new PlayerOrderViewModel();
     }
 
@@ -24,5 +24,14 @@ class ClubSectionViewModel {
 
     get kitsURLs() {
         return this.controller.getKitsURLs(this.selectedClubId);
+    }
+
+    selectCountry(countryId) {
+        this.selectedCountryId = parseInt(countryId);
+        this.selectedClubId = null;
+    }
+
+    selectClub(clubId) {
+        this.selectedClubId = parseInt(clubId);
     }
 }

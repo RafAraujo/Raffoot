@@ -1530,7 +1530,7 @@ class SoFifa24Service {
 		p("C. Fuentes", 28, 7, 30, 72, x, 218208);
 		p("D. Plaza", 28, 13, 20, 60, x, 71316);
 
-		x = c("Universidad Católica", 28, "#AFB8C2", "#000000", 110975, null);
+		x = c("Universidad Católica", 28, "#AFB8C2", "#000000", 110975, "U. Católica");
 		p("T. Gillier", 28, 1, 19, 63, x, 268394);
 		p("G. Soto", 28, 4, 29, 69, x, 242306);
 		p("B. Ampuero", 28, 2, 29, 71, x, 225396);
@@ -1788,7 +1788,7 @@ class SoFifa24Service {
 		p("Y. Quiñones", 31, 9, 20, 65, x, 264756);
 		p("J. Carvajal", 31, 15, 19, 60, x, 71940);
 
-		x = c("Independiente Medellín", 31, "#B23540", "#FFFFFF", 101103, null);
+		x = c("Independiente Medellín", 31, "#B23540", "#FFFFFF", 101103, "I. Medellín");
 		p("E. Chaux", 31, 1, 31, 70, x, 214415);
 		p("L. Orejuela", 31, 4, 27, 70, x, 222535);
 		p("J. Palacios", 31, 2, 23, 68, x, 263511);
@@ -1934,7 +1934,7 @@ class SoFifa24Service {
 		p("A. Morales", 31, 13, 23, 62, x, 278846);
 		p("J. Mora", 31, 1, 26, 60, x, 71765);
 
-		x = c("Independiente del Valle", 44, "#2D313E", "#FFFFFF", 112908, null);
+		x = c("Independiente del Valle", 44, "#2D313E", "#FFFFFF", 112908, "I. del Valle");
 		p("M. Ramírez", 44, 1, 22, 74, x, 256161);
 		p("M. Fernández", 28, 4, 27, 70, x, 230118);
 		p("M. Carabajal", 6, 2, 26, 72, x, 241064);
@@ -1965,7 +1965,7 @@ class SoFifa24Service {
 		p("C. Loor", 44, 1, 17, 58, x, 71055);
 		p("J. Herrera", 44, 4, 19, 60, x, 71113);
 
-		x = c("Barcelona Guayaquil", 44, "#D6AA28", "#000000", 110981, null);
+		x = c("Barcelona Guayaquil", 44, "#D6AA28", "#000000", 110981, "Barcelona SC");
 		p("J. Burrai", 44, 1, 32, 75, x, 215048);
 		p("A. Rangel", 44, 2, 21, 62, x, 71243);
 		p("N. Ramírez", 28, 2, 26, 68, x, 232189);
@@ -2024,7 +2024,7 @@ class SoFifa24Service {
 		p("E. Minda", 44, 1, 18, 61, x, 70147);
 		p("J. Macías", 44, 11, 18, 60, x, 267990);
 
-		x = c("Universidad Católica", 44, "#7A9EC3", "#000000", 114581, null);
+		x = c("Universidad Católica", 44, "#7A9EC3", "#000000", 114581, "U. Católica");
 		p("R. Romo", 155, 1, 33, 73, x, 193359);
 		p("G. Anangonó", 44, 4, 25, 68, x, 254210);
 		p("G. Vallecilla", 44, 2, 24, 63, x, 254172);
@@ -2109,7 +2109,7 @@ class SoFifa24Service {
 		p("M. Cedeño", 44, 8, 19, 61, x, 69950);
 		p("A. Álvarez", 44, 10, 21, 61, x, 278039);
 
-		x = c("Técnico Universitario", 44, "#C07979", "#000000", 113746, null);
+		x = c("Técnico Universitario", 44, "#C07979", "#000000", 113746, "T. Universitario");
 		p("W. Chavez", 44, 1, 29, 65, x, 279904);
 		p("E. Patta", 44, 4, 32, 62, x, 279770);
 		p("C. Pérez", 31, 2, 28, 63, x, 231711);
@@ -2253,7 +2253,7 @@ class SoFifa24Service {
 		p("S. Hawkins", 151, 2, 16, 53, x, 278151);
 		p("G. Minoungou", 36, 10, 20, 52, x, 72379);
 
-		x = c("San Jose Earthquakes", 151, "#2C386C", "#FFFFFF", 111928, null);
+		x = c("San Jose Earthquakes", 151, "#2C386C", "#FFFFFF", 111928, "SJ Earthquakes");
 		p("W. Yarbrough", 151, 1, 34, 67, x, 186998);
 		p("Akapo", 48, 4, 30, 73, x, 216605);
 		p("Rodrigues", 19, 2, 25, 68, x, 263784);
@@ -2485,7 +2485,7 @@ class SoFifa24Service {
 		p("A. Fortune", 145, 8, 20, 57, x, 274273);
 		p("E. Morales", 17, 2, 19, 59, x, 259934);
 
-		x = c("Vancouver Whitecaps", 151, "#B6B4B6", "#000000", 101112, null);
+		x = c("Vancouver Whitecaps", 151, "#B6B4B6", "#000000", 101112, "Whitecaps");
 		p("Y. Takaoka", 78, 1, 27, 73, x, 244656);
 		p("J. Brown", 77, 2, 24, 67, x, 261140);
 		p("R. Veselinović", 128, 2, 24, 70, x, 255827);
@@ -4245,7 +4245,7 @@ class SoFifa24Service {
 		p("Fu Huan", 29, 4, 29, 65, x, 224624);
 		p("Léo Cittadini", 19, 11, 29, 65, x, 215791);
 
-		x = c("Chengdu Rongcheng", 29, "#962D36", "#FFFFFF", 116360, null);
+		x = c("Chengdu Rongcheng", 29, "#962D36", "#FFFFFF", 116360, "Rongcheng");
 		p("Zhang Yan", 29, 1, 26, 62, x, 233668);
 		p("Tang Xin", 29, 6, 32, 66, x, 241252);
 		p("Yang Yiming", 29, 2, 28, 61, x, 255632);
@@ -4365,7 +4365,7 @@ class SoFifa24Service {
 		p("Wang Dongsheng", 29, 3, 26, 54, x, 269539);
 		p("A. Abdusalam", 29, 9, 20, 55, x, 269538);
 
-		x = c("Wuhan Three Towns", 29, "#2C43B9", "#FFFFFF", 116361, null);
+		x = c("Wuhan Three Towns", 29, "#2C43B9", "#FFFFFF", 116361, "Three Towns");
 		p("Liu Dianzuo", 29, 1, 33, 69, x, 224702);
 		p("Deng Hanwen", 29, 4, 28, 69, x, 237010);
 		p("Park Ji Soo", 82, 2, 29, 71, x, 212912);
@@ -4395,7 +4395,7 @@ class SoFifa24Service {
 		p("He Tongshuai", 29, 8, 23, 50, x, 269547);
 		p("Chen Yuhao", 29, 4, 21, 52, x, 252517);
 
-		x = c("Tianjin Jinmen Tiger", 29, "#6C6CA4", "#FFFFFF", 111774, null);
+		x = c("Tianjin Jinmen Tiger", 29, "#6C6CA4", "#FFFFFF", 111774, "Jinmen Tiger");
 		p("Fang Jingqi", 29, 1, 30, 60, x, 221798);
 		p("Ming Tian", 29, 4, 28, 67, x, 247197);
 		p("A. Grant", 8, 2, 29, 73, x, 209210);
@@ -4454,7 +4454,7 @@ class SoFifa24Service {
 		p("Wang Jinshuai", 29, 1, 22, 52, x, 261984);
 		p("Liu Bin", 29, 5, 25, 53, x, 243099);
 
-		x = c("Cangzhou Mighty Lions", 29, "#333659", "#FFFFFF", 112985, null);
+		x = c("Cangzhou Mighty Lions", 29, "#333659", "#FFFFFF", 112985, "Mighty Lions");
 		p("Shao Puliang", 29, 1, 33, 62, x, 221844);
 		p("Sun Qinhan", 29, 6, 23, 56, x, 261921);
 		p("Yang Yun", 29, 2, 34, 62, x, 191857);
@@ -6414,7 +6414,7 @@ class SoFifa24Service {
 		p("M. Sonko", 139, 12, 18, 63, x, 271953);
 		p("F. Surdez", 140, 9, 21, 65, x, 70427);
 
-		x = c("Union Saint-Gilloise", 14, "#BBA424", "#000000", 2014, null);
+		x = c("Union Saint-Gilloise", 14, "#BBA424", "#000000", 2014, "Union SG");
 		p("A. Moris", 90, 1, 33, 73, x, 184167);
 		p("K. Mac Allister", 6, 2, 25, 74, x, 233230);
 		p("C. Burgess", 47, 2, 31, 76, x, 210044);
@@ -7437,7 +7437,7 @@ class SoFifa24Service {
 		p("L. Shaw", 47, 3, 27, 82, x, 205988);
 		p("T. Malacia", 104, 3, 23, 77, x, 238041);
 
-		x = c("Tottenham Hotspur", 47, "#DAD4D5", "#000000", 18, null);
+		x = c("Tottenham Hotspur", 47, "#DAD4D5", "#000000", 18, "Tottenham");
 		p("G. Vicario", 76, 1, 26, 84, x, 240091);
 		p("Pedro Porro", 135, 4, 23, 82, x, 243576);
 		p("C. Romero", 6, 2, 25, 83, x, 232488);
@@ -8353,7 +8353,7 @@ class SoFifa24Service {
 		p("N. Lowe", 47, 15, 17, 55, x, 274472);
 		p("S. Sidibé", 47, 8, 16, 53, x, 277365);
 
-		x = c("Queens Park Rangers", 47, "#8999AA", "#000000", 15, null);
+		x = c("Queens Park Rangers", 47, "#8999AA", "#000000", 15, "QPR");
 		p("A. Begović", 18, 1, 36, 71, x, 172723);
 		p("J. Dunne", 118, 2, 25, 69, x, 235156);
 		p("S. Cook", 47, 2, 32, 72, x, 193011);
@@ -8575,7 +8575,7 @@ class SoFifa24Service {
 		p("J. Cotterill", 156, 8, 18, 54, x, 268888);
 		p("C. Congreve", 156, 8, 19, 54, x, 268306);
 
-		x = c("Sheffield Wednesday", 47, "#8A95A6", "#000000", 1807, "Sheffield W.");
+		x = c("Sheffield Wednesday", 47, "#8A95A6", "#000000", 1807, "Sheffield Wed.");
 		p("J. Beadle", 47, 1, 18, 67, x, 273621);
 		p("Pol Valentín", 135, 4, 26, 65, x, 236390);
 		p("L. Palmer", 126, 4, 31, 68, x, 198377);
@@ -8965,7 +8965,7 @@ class SoFifa24Service {
 		p("J. Stones", 47, 15, 19, 59, x, 277368);
 		p("L. Brennan", 47, 12, 21, 56, x, 253375);
 
-		x = c("Northampton Town", 47, "#6F4349", "#FFFFFF", 1930, null);
+		x = c("Northampton Town", 47, "#6F4349", "#FFFFFF", 1930, "Northampton");
 		p("L. Burge", 47, 1, 30, 63, x, 203175);
 		p("A. McGowan", 47, 4, 26, 65, x, 213127);
 		p("S. Sherring", 47, 2, 23, 65, x, 243765);
@@ -8995,7 +8995,7 @@ class SoFifa24Service {
 		p("T. Magloire", 47, 2, 24, 62, x, 239221);
 		p("D. Hylton", 47, 15, 34, 55, x, 182617);
 
-		x = c("Wycombe Wanderers", 47, "#3F6D8A", "#FFFFFF", 1933, null);
+		x = c("Wycombe Wanderers", 47, "#3F6D8A", "#FFFFFF", 1933, "Wycombe");
 		p("F. Ravizzoli", 6, 1, 25, 61, x, 262718);
 		p("J. Grimmer", 126, 4, 29, 65, x, 205015);
 		p("J. Low", 156, 2, 21, 64, x, 273020);
@@ -9464,7 +9464,7 @@ class SoFifa24Service {
 		p("A. James", 47, 2, 18, 51, x, 271854);
 		p("S. Fletcher", 126, 15, 36, 63, x, 164769);
 
-		x = c("Milton Keynes Dons", 47, "#CCC8C9", "#000000", 1798, null);
+		x = c("Milton Keynes Dons", 47, "#CCC8C9", "#000000", 1798, "MK Dons");
 		p("F. Marschall", 47, 1, 20, 57, x, 268583);
 		p("K. Lofthouse", 47, 6, 22, 60, x, 246662);
 		p("M. Williams", 156, 7, 27, 62, x, 224017);
@@ -10136,7 +10136,7 @@ class SoFifa24Service {
 		p("N. Kujasalo", 52, 8, 19, 53, x, 71945);
 		p("M. Boamah", 52, 2, 20, 53, x, 71943);
 
-		x = c("Paris Saint Germain", 53, "#453B4C", "#FFFFFF", 73, null);
+		x = c("Paris Saint Germain", 53, "#453B4C", "#FFFFFF", 73, "PSG");
 		p("G. Donnarumma", 76, 1, 24, 87, x, 230621);
 		p("A. Hakimi", 100, 4, 24, 84, x, 235212);
 		p("Marquinhos", 19, 2, 29, 87, x, 207865);
@@ -10194,7 +10194,7 @@ class SoFifa24Service {
 		p("K. Ouattara", 53, 3, 18, 69, x, 273933);
 		p("E. Diop", 53, 10, 18, 66, x, 275019);
 
-		x = c("Olympique de Marseille", 53, "#BDC3C5", "#000000", 219, null);
+		x = c("Olympique de Marseille", 53, "#BDC3C5", "#000000", 219, "Marseille");
 		p("Pau López", 135, 1, 28, 79, x, 221087);
 		p("J. Clauss", 53, 4, 30, 80, x, 239093);
 		p("C. Mbemba", 34, 2, 28, 79, x, 210897);
@@ -10279,7 +10279,7 @@ class SoFifa24Service {
 		p("A. Ilić", 128, 15, 23, 67, x, 277799);
 		p("S. Umtiti", 53, 2, 29, 77, x, 205600);
 
-		x = c("Olympique Lyonnais", 53, "#CAC3C5", "#000000", 66, null);
+		x = c("Olympique Lyonnais", 53, "#CAC3C5", "#000000", 66, "Lyon");
 		p("A. Lopes", 116, 1, 32, 80, x, 199482);
 		p("Clinton Mata", 4, 4, 30, 76, x, 208364);
 		p("J. O'Brien", 118, 2, 22, 74, x, 253510);
@@ -11244,7 +11244,7 @@ class SoFifa24Service {
 		p("Y. Merdji", 53, 15, 29, 64, x, 237023);
 		p("M. Sylla", 53, 2, 28, 63, x, 276015);
 
-		x = c("FC Bayern München", 57, "#CBB2B2", "#000000", 21, null);
+		x = c("FC Bayern München", 57, "#CBB2B2", "#000000", 21, "Bayern München");
 		p("M. Neuer", 57, 1, 37, 87, x, 167495);
 		p("J. Kimmich", 57, 7, 28, 87, x, 212622);
 		p("M. de Ligt", 104, 2, 23, 84, x, 235243);
@@ -11279,7 +11279,7 @@ class SoFifa24Service {
 		p("T. Hülsmann", 57, 1, 19, 57, x, 277669);
 		p("J. Asp-Jensen", 42, 8, 17, 62, x, 72246);
 
-		x = c("Bayer 04 Leverkusen", 57, "#563339", "#FFFFFF", 32, null);
+		x = c("Bayer 04 Leverkusen", 57, "#563339", "#FFFFFF", 32, "Bayer Leverkusen");
 		p("L. Hrádecký", 52, 1, 33, 82, x, 190941);
 		p("O. Kossounou", 36, 2, 22, 81, x, 246875);
 		p("J. Tah", 57, 2, 27, 84, x, 213331);
@@ -11310,7 +11310,7 @@ class SoFifa24Service {
 		p("R. Münz", 57, 2, 17, 59, x, 278750);
 		p("F. Onyeka", 57, 11, 16, 59, x, 70037);
 
-		x = c("Borussia Dortmund", 57, "#867125", "#FFFFFF", 22, null);
+		x = c("Borussia Dortmund", 57, "#867125", "#FFFFFF", 22, "B. Dortmund");
 		p("G. Kobel", 140, 1, 25, 87, x, 235073);
 		p("J. Ryerson", 109, 4, 25, 78, x, 229891);
 		p("M. Hummels", 57, 2, 34, 84, x, 178603);
@@ -12735,7 +12735,7 @@ class SoFifa24Service {
 		p("S. Müller", 57, 1, 27, 64, x, 234846);
 		p("H. Crosthwaite", 57, 12, 20, 60, x, 257778);
 
-		x = c("DSC Arminia Bielefeld", 57, "#3B6B90", "#FFFFFF", 159, null);
+		x = c("DSC Arminia Bielefeld", 57, "#3B6B90", "#FFFFFF", 159, "Arminia Bielefeld");
 		p("J. Kersken", 57, 1, 22, 64, x, 257914);
 		p("C. Lannert", 57, 4, 25, 64, x, 259453);
 		p("L. Schneider", 57, 2, 23, 64, x, 243959);
@@ -12825,7 +12825,7 @@ class SoFifa24Service {
 		p("V. Zentrich", 41, 2, 20, 60, x, 258647);
 		p("D. Girtler", 76, 15, 18, 56, x, 278794);
 
-		x = c("Waldhof Mannheim", 57, "#314060", "#FFFFFF", 110532, null);
+		x = c("Waldhof Mannheim", 57, "#314060", "#FFFFFF", 110532, "Waldhof 07");
 		p("L. Hawryluk", 57, 1, 22, 64, x, 263674);
 		p("L. Klünter", 57, 4, 27, 66, x, 229487);
 		p("M. Seegert", 57, 2, 29, 67, x, 239181);
@@ -12914,7 +12914,7 @@ class SoFifa24Service {
 		p("D. Beleme", 21, 15, 22, 62, x, 276183);
 		p("A. Herzog", 57, 8, 25, 63, x, 242748);
 
-		x = c("Borussia Dortmund II", 57, "#867125", "#FFFFFF", 110676, null);
+		x = c("Borussia Dortmund II", 57, "#867125", "#FFFFFF", 110676, "B. Dortmund II");
 		p("S. Ostrzinski", 57, 1, 19, 61, x, 266906);
 		p("P. Göbel", 57, 4, 29, 64, x, 211825);
 		p("M. Šuver", 37, 2, 23, 63, x, 261437);
@@ -15319,7 +15319,7 @@ class SoFifa24Service {
 		p("B. Douglas", 126, 3, 33, 65, x, 200443);
 		p("M. Pruchniewski", 115, 1, 16, 54, x, 276731);
 
-		x = c("Raków Częstochowa", 115, "#8C385A", "#FFFFFF", 114326, null);
+		x = c("Raków Częstochowa", 115, "#8C385A", "#FFFFFF", 114326, "Raków");
 		p("V. Kovacević", 128, 1, 25, 72, x, 263032);
 		p("B. Racovițan", 119, 2, 23, 67, x, 261040);
 		p("Z. Arsenić", 37, 2, 29, 70, x, 239179);
@@ -15400,7 +15400,7 @@ class SoFifa24Service {
 		p("D. Lončar", 37, 2, 26, 65, x, 274213);
 		p("R. Kurzawa", 115, 8, 30, 67, x, 221791);
 
-		x = c("Jagiellonia Białystok", 115, "#C88138", "#000000", 110745, null);
+		x = c("Jagiellonia Białystok", 115, "#C88138", "#000000", 110745, "Jagiellonia");
 		p("Z. Alomerović", 128, 1, 32, 71, x, 208764);
 		p("M. Sáček", 41, 4, 26, 69, x, 239808);
 		p("M. Skrzypczak", 115, 2, 22, 63, x, 248508);
@@ -15777,7 +15777,7 @@ class SoFifa24Service {
 		p("J. Łabędzki", 115, 8, 17, 53, x, 275591);
 		p("R. Gonçalves", 115, 11, 19, 57, x, 276897);
 
-		x = c("Puszcza Niepołomice", 115, "#B6B6B6", "#000000", 114393, null);
+		x = c("Puszcza Niepołomice", 115, "#B6B6B6", "#000000", 114393, "Puszcza");
 		p("O. Zych", 115, 1, 19, 59, x, 271411);
 		p("P. Mroziński", 115, 4, 30, 61, x, 205813);
 		p("A. Craciun", 97, 2, 25, 63, x, 276727);
@@ -16670,7 +16670,7 @@ class SoFifa24Service {
 		p("V. Chiricheș", 119, 2, 33, 69, x, 205943);
 		p("M. Toma", 119, 8, 16, 58, x, 278573);
 
-		x = c("Universitatea Craiova", 119, "#87ACC2", "#000000", 308, null);
+		x = c("Universitatea Craiova", 119, "#87ACC2", "#000000", 308, "U. Craiova");
 		p("L. Popescu", 119, 1, 26, 66, x, 248054);
 		p("Ș. Vlădoiu", 119, 4, 24, 66, x, 247949);
 		p("J. Badelj", 37, 2, 19, 63, x, 273803);
@@ -17007,7 +17007,7 @@ class SoFifa24Service {
 		p("C. Petro", 92, 4, 22, 62, x, 274734);
 		p("S. Camara", 63, 15, 25, 63, x, 252767);
 
-		x = c("CSM Politehnica Iași", 119, "#8697B0", "#000000", 110815, null);
+		x = c("CSM Politehnica Iași", 119, "#8697B0", "#000000", 110815, "Politehnica Iași");
 		p("S. Lung", 119, 1, 34, 68, x, 205942);
 		p("M. Martac", 119, 4, 31, 63, x, 251044);
 		p("F. Ilie", 119, 2, 31, 63, x, 257819);

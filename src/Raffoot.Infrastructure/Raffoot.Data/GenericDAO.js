@@ -9,8 +9,7 @@ class GenericDAO {
         }
 
         return new Promise((resolve, reject) => {
-
-            let request = this._connection
+            const request = this._connection
                 .transaction([store], 'readwrite')
                 .objectStore(store)
                 .add(entity);
@@ -23,8 +22,7 @@ class GenericDAO {
 
     async insertManyAsync(entities) {
         return new Promise((resolve, reject) => {
-
-            let transaction = this._connection.transaction(entities.map(e => e.constructor.name).distinct(), 'readwrite')
+            const transaction = this._connection.transaction(entities.map(e => e.constructor.name).distinct(), 'readwrite')
 
             const requests = [];
             for (const entity of entities) {
@@ -43,21 +41,19 @@ class GenericDAO {
         }
 
         return new Promise((resolve, reject) => {
-            let request = this._connection
+            const request = this._connection
                 .transaction([store], 'readwrite')
                 .objectStore(store)
                 .put(entity, key);
 
             request.onsuccess = () => resolve(request.result);
-
             request.onerror = error => reject(error);
         });
     }
 
     async updateManyAsync(entities) {
         return new Promise((resolve, reject) => {
-
-            let transaction = this._connection.transaction(entities.map(e => e.constructor.name).distinct(), 'readwrite')
+            const transaction = this._connection.transaction(entities.map(e => e.constructor.name).distinct(), 'readwrite')
 
             transaction.oncomplete = () => resolve(entities);
             transaction.onerror = error => reject(error);
@@ -68,8 +64,7 @@ class GenericDAO {
 
     async getAllAsync(store) {
         return new Promise((resolve, reject) => {
-
-            let request = this._connection
+            const request = this._connection
                 .transaction([store], 'readonly')
                 .objectStore(store)
                 .getAll();
@@ -82,19 +77,19 @@ class GenericDAO {
 
     async getAllWithKeysAsync(store) {
         return new Promise((resolve, reject) => {
-            let objects = [];
+            const objects = [];
 
-            let request = this._connection
+            const request = this._connection
                 .transaction([store], 'readonly')
                 .objectStore(store)
                 .openCursor();
 
             request.onsuccess = function (event) {
-                let cursor = event.target.result;
+                const cursor = event.target.result;
                 if (cursor) {
-                    let key = cursor.primaryKey;
-                    let value = cursor.value;
-                    let object = { key, value };
+                    const key = cursor.primaryKey;
+                    const value = cursor.value;
+                    const object = { key, value };
                     objects.push(object);
                     cursor.continue();
                 }
@@ -109,7 +104,7 @@ class GenericDAO {
 
     async getByIdAsync(store, id) {
         return new Promise((resolve, reject) => {
-            let getById = this._connection
+            const getById = this._connection
                 .transaction([store], 'readonly')
                 .objectStore(store)
                 .get(id);
@@ -122,8 +117,7 @@ class GenericDAO {
 
     async deleteAsync(store, id) {
         return new Promise((resolve, reject) => {
-
-            let request = this._connection
+            const request = this._connection
                 .transaction([store], 'readwrite')
                 .objectStore(store)
                 .delete(id);

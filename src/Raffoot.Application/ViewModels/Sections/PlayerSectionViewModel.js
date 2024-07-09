@@ -3,16 +3,20 @@ class PlayerSectionViewModel {
         this.controller = new PlayerSectionController(game, translator);
         this.playerFilter = new PlayerFilterViewModel();
         this.filteredPlayers = [];
-        this.pageSize = Config.pageSize;
+        this.pageSize = game.config.search.pageSize;
         this.playerOrder = new PlayerOrderViewModel();
     }
 
     get showingPlayers() {
         const players = this.filteredPlayers
             .take(this.pageSize)
-            .orderBy(this.playerOrder.orderColumn, 'position.id', '-overall', 'name');
+            .orderBy(this.playerOrder.orderColumn, '-overall', 'name');
         
         return players;
+    }
+
+    getCountries() {
+        return this.controller.getCountries();
     }
 
     getShowingPlayersMessage() {

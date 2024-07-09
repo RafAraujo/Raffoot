@@ -239,7 +239,9 @@ class Club {
     }
 
     rest(days) {
-        this.players.rest(days);
+        for (const player of this.players) {
+            player.rest(days);
+        }
     }
 
     pay(amount) {

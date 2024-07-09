@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffoot</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body style="background-color: rgb(27, 70, 38); color: white;">
+    <div id="app" v-cloak>
+        <div v-if="!gameLoaded">
+            <div class="container">
+                <div class="row mt-3" :class="{ 'd-none' : !message.text }">
+                    <div class="col">
+                        <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`" role="alert">
+                            {{ message.text }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                :aria-label=translator.get('Close')></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-if="gameLoaded">
+            <div id="content" class="container">
+                <main>
+                    <section id="summary" :class="{ 'd-none' : activeSection !== 'summary' }">
+                        <div class="row mt-4">
+                            <div class="col col-md-5">
+                                <select class="form-select"
+                                    @change="summarySection.selectConfederation($event.target.value)">
+                                    <option v-for="confederation in summarySection.getConfederations()"
+                                        :key="confederation.id" :value="confederation.id"
+                                        :selected="summarySection.selectedConfederationId == confederation.id">
+                                        {{ confederation.name }}
+                                    </option>
+                                </select>
+                                <div class="table-responsive">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div v-for="championshipEdition in summarySection.getCurrentDateChampionshipEditions()">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="table-responsive">
+                                                <table class="table table-borderless caption-top small">
+                                                    <caption class="text-light">
+                                                        {{
+                                                        "{0} {1} - {2} {3}".format(
+                                                        translator.get("Division"),
+                                                        championshipEdition.championship.division,
+                                                        translator.get("Matchday"),
+                                                        game.currentSeason.getChampionshipEditionCurrentStage(championshipEdition))
+                                                        }}
+                                                    </caption>
+                                                    <tbody>
+                                                        <tr v-for="match in game.currentSeason.getCurrentMatchesByChampionshipEdition(championshipEdition)"
+                                                            @click.stop="summarySection.selectMatch(match.id)"
+                                                            :class="{ 'selected-match' : summarySection.selectedMatchId === match.id }">
+                                                            <td class="text-end p-0 text-break"
+                                                                style="width: 44%; height: 40px;">
+                                                                {{ match.clubHome.shortName }}
+                                                                <img class="ms-1 me-1"
+                                                                    :src="match.clubHome.getLogoURL()"
+                                                                    :alt="match.clubHome.name"
+                                                                    :title="match.clubHome.name"
+                                                                    style="max-height: 1.5rem;">
+                                                            </td>
+                                                            <td class="text-center p-0">
+                                                                {{ match.score }}
+                                                            </td>
+                                                            <td class="text-start p-0" style="width: 44%;">
+                                                                <img class="ms-1 me-1"
+                                                                    :src="match.clubAway.getLogoURL()"
+                                                                    :alt="match.clubAway.name"
+                                                                    :title="match.clubAway.name"
+                                                                    style="max-height: 1.5rem;">
+                                                                {{ match.clubAway.shortName }}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 65px;">
+                            <div class="col">
+                            </div>
+                        </div>
+                        <div class="fixed-bottom p-2 bg-dark border-top">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <button class="btn btn-light" @click.stop="advanceDate()">
+                                        {{ `${translator.get("Continue")} >>` }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="matches" :class="{ 'd-none' : activeSection !== 'matches' }">
+                        <div class="sticky-top bg-matches">
+                            <div style="height: 10px;">&nbsp;</div>
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="progress" role="progressbar" :aria-label="translator.get('Time')"
+                                        :aria-valuenow="game.time" aria-valuemin="0" aria-valuemax="100"
+                                        style="border-radius: 0; height: 1.75rem;">
+                                        <div class="progress-bar bg-success border fw-bold"
+                                            :class="{ 'progress-bar-striped progress-bar-animated' : !currentMatch?.isFinished }"
+                                            style="font-size: 14px;" :style="{ width: (game.time / 90) * 100 + '%' }">
+                                            {{ `${game.time}'` }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <template v-if="currentMatch">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <span class="fw-bold text-warning">
+                                            {{
+                                            translator.getChampionshipName(currentMatch.championshipEdition.championship,
+                                            false)
+                                            }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col text-center">
+                                        <span class="text-light">
+                                            {{
+                                            "{0} {1} - {2} {3}".format(
+                                            translator.get("Division"),
+                                            currentMatch.championshipEdition.championship.division,
+                                            translator.get("Matchday"),
+                                            game.currentSeason.getChampionshipEditionCurrentStage(currentMatch.championshipEdition))
+                                            }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless border mb-0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center p-0 border"
+                                                            style="width: 42%; height: 60px;"
+                                                            :style="{ backgroundColor: currentMatch.clubHome.colors.backgroundCustom, color: currentMatch.clubHome.colors.foregroundCustom }">
+                                                            <div>
+                                                                <img :src="currentMatch.clubHome.getLogoURL()"
+                                                                    :alt="currentMatch.clubHome.name"
+                                                                    :title="currentMatch.clubHome.name"
+                                                                    style="max-height: 4rem;">
+                                                            </div>
+                                                            <span>{{ currentMatch.clubHome.name }}</span>
+                                                        </td>
+                                                        <td class="text-center p-0 border display-6"
+                                                            style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
+                                                            {{ currentMatch.goalsHome }}
+                                                        </td>
+                                                        <td class="text-center p-0 border display-6"
+                                                            style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
+                                                            {{ currentMatch.goalsAway }}
+                                                        </td>
+                                                        <td class="text-center p-0 border" style="width: 42%;"
+                                                            :style="{ backgroundColor: currentMatch.clubAway.colors.backgroundCustom, color: currentMatch.clubAway.colors.foregroundCustom }">
+                                                            <div>
+                                                                <img :src="currentMatch.clubAway.getLogoURL()"
+                                                                    :alt="currentMatch.clubAway.name"
+                                                                    :title="currentMatch.clubAway.name"
+                                                                    style="max-height: 4rem;">
+                                                            </div>
+                                                            <span>{{ currentMatch.clubAway.name }}</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr v-if="currentMatch.hasGoals">
+                                                        <td class="text-end">
+                                                            <div
+                                                                v-for="event in currentMatch.matchSimulation?.getMatchSimulationEvents('goal', currentMatch.clubHome)">
+                                                                {{ `${event.player.name} ${event.time}'` }}
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center" colspan="2">
+                                                            <i class="fa-regular fa-futbol"></i>
+                                                        <td>
+                                                            <div
+                                                                v-for="event in currentMatch.matchSimulation?.getMatchSimulationEvents('goal', currentMatch.clubAway)">
+                                                                {{ `${event.player.name} ${event.time}'` }}
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                            <div class="row">
+                                <div class="col">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <div v-for="championshipEdition in matchesSection.getCurrentDateChampionshipEditions()">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="table-responsive">
+                                        <table class="table caption-top small border">
+                                            <caption class="text-light">
+                                                {{
+                                                "{0} {1} - {2} {3}".format(
+                                                translator.get("Division"),
+                                                championshipEdition.championship.division,
+                                                translator.get("Matchday"),
+                                                game.currentSeason.getChampionshipEditionCurrentStage(championshipEdition))
+                                                }}
+                                            </caption>
+                                            <tbody>
+                                                <tr
+                                                    v-for="match in game.currentSeason.getCurrentMatchesByChampionshipEdition(championshipEdition)">
+                                                    <td class="text-end p-0"
+                                                        :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
+                                                        <img class="ms-1 me-1" :src="match.clubHome.getLogoURL()"
+                                                            :alt="match.clubHome.name" :title="match.clubHome.name"
+                                                            style="max-height: 1.5rem;">
+                                                    </td>
+                                                    <td class="text-start p-0 text-break"
+                                                        style="width: 34%; height: 40px;"
+                                                        :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
+                                                        {{ match.clubHome.shortName }}
+                                                    </td>
+                                                    <td class="text-center p-0 border"
+                                                        style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
+                                                        {{ match.goalsHome }}
+                                                    </td>
+                                                    <td class="text-center p-0 border"
+                                                        style="min-width: 32px; max-width: 32px; background-color: darkseagreen;">
+                                                        {{ match.goalsAway }}
+                                                    </td>
+                                                    <td class="text-end p-0 text-break"
+                                                        :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
+                                                        <img class="ms-1 me-1" :src="match.clubAway.getLogoURL()"
+                                                            :alt="match.clubAway.name" :title="match.clubAway.name"
+                                                            style="max-height: 1.5rem;">
+                                                    </td>
+                                                    <td class="text-start p-0" style="width: 34%;"
+                                                        :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
+                                                        {{ match.clubAway.shortName }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+    <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/ArrayExtensions.js"></script>
+    <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/DateExtensions.js"></script>
+    <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/NumberExtensions.js"></script>
+    <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/Random.js"></script>
+    <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/StringExtensions.js"></script>
+
+    <script src="../Raffoot.Infrastructure/Raffoot.Data/ConnectionFactory.js"></script>
+    <script src="../Raffoot.Infrastructure/Raffoot.Data/GenericDAO.js"></script>
+
+    <script src="../Raffoot.Domain/Models/Championship.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEdition.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionClub.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionEliminationPhase.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionEliminationPhaseDuel.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionFixture.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionGroup.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipEditionPlayer.js"></script>
+    <script src="../Raffoot.Domain/Models/ChampionshipType.js"></script>
+    <script src="../Raffoot.Domain/Models/Club.js"></script>
+    <script src="../Raffoot.Domain/Models/Confederation.js"></script>
+    <script src="../Raffoot.Domain/Models/Continent.js"></script>
+    <script src="../Raffoot.Domain/Models/Country.js"></script>
+    <script src="../Raffoot.Domain/Models/FieldLocalization.js"></script>
+    <script src="../Raffoot.Domain/Models/FieldRegion.js"></script>
+    <script src="../Raffoot.Domain/Models/Formation.js"></script>
+    <script src="../Raffoot.Domain/Models/Game.js"></script>
+    <script src="../Raffoot.Domain/Models/Match.js"></script>
+    <script src="../Raffoot.Domain/Models/MatchSimulation.js"></script>
+    <script src="../Raffoot.Domain/Models/MatchSimulationAction.js"></script>
+    <script src="../Raffoot.Domain/Models/MatchSimulationActionFinishing.js"></script>
+    <script src="../Raffoot.Domain/Models/MatchSimulationActionPassing.js"></script>
+    <script src="../Raffoot.Domain/Models/MatchSimulationEvent.js"></script>
+    <script src="../Raffoot.Domain/Models/Player.js"></script>
+    <script src="../Raffoot.Domain/Models/Position.js"></script>
+    <script src="../Raffoot.Domain/Models/Season.js"></script>
+    <script src="../Raffoot.Domain/Models/SeasonDate.js"></script>
+    <script src="../Raffoot.Domain/Config.js"></script>
+    <script src="../Raffoot.Domain/Context.js"></script>
+    <script src="../Raffoot.Domain/MultiLanguage.js"></script>
+
+    <script src="../Raffoot.Application/GameFactory.js"></script>
+    <script src="../Raffoot.Application/GameService.js"></script>
+    <script src="../Raffoot.Application/TranslatorService.js"></script>
+
+    <script src="../Raffoot.Application/Controllers/MatchesSectionController.js"></script>
+    <script src="../Raffoot.Application/Controllers/SummarySectionController.js"></script>
+
+    <script src="../Raffoot.Application/ViewModels/Sections/MatchesSectionViewModel.js"></script>
+    <script src="../Raffoot.Application/ViewModels/Sections/SummarySectionViewModel.js"></script>
+
+    <script src="../Raffoot.Application/ViewModels/PlayerFilterViewModel.js"></script>
+    <script src="../Raffoot.Application/ViewModels/PlayerOrderViewModel.js"></script>
+
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/vue/vue.global.js"></script>
+</body>
+
+</html>
+
+<script>
+    "use strict";
+
+    const gameService = new GameService();
+    const translator = new TranslatorService();
+
+    const RaffootApp = {
+        data() {
+            return {
+                activeSection: 'matches',
+                config: Config,
+                game: null,
+                gameLoaded: false,
+                message: { text: translator.get('Processing...'), type: 'primary' },
+                modal: { title: '', message: '', methodOk: function () { } },
+                theme: 'dark',
+                translator: translator,
+
+                summarySection: null,
+                matchesSection: null,
+            }
+        },
+        methods: {
+            async save() {
+                this.message = { text: '', type: 'primary' };
+                await gameService.saveAsync(Vue.toRaw(this.game));
+                this.message.text = '';
+            },
+            async advanceDate() {
+                this.game.currentSeason.advanceDate();
+                let t0 = performance.now();
+                await this.save();
+                console.log(`this.save() took ${(performance.now() - t0)} milliseconds.`);
+                const url = `home.html?id=${this.game.id}`;
+                setTimeout(() => this.redirect(url), 1);
+            },
+            goToSection(section) {
+                this.activeSection = section;
+            },
+            toggleFullscreen() {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                }
+                else {
+                    document.documentElement.requestFullscreen();
+                }
+            },
+            loadGame: async function () {
+                const urlParams = new URLSearchParams(location.search);
+                const gameId = parseInt(urlParams.get('id'));
+                this.game = await gameService.loadAsync(gameId);
+                this.summarySection = new SummarySectionViewModel(this.game, translator);
+                this.matchesSection = new MatchesSectionViewModel(this.game, translator);
+            },
+            redirect: url => location.href = url,
+        },
+        computed: {
+            clubId() {
+                return this.game?.club.id;
+            },
+            currentMatch() {
+                return this.game.getClubCurrentMatch();
+            },
+        },
+        async created() {
+            //try {
+            this.message = { text: this.translator.get('Processing...'), type: 'primary' };
+            await this.loadGame();
+            this.message = '';
+
+            this.gameLoaded = true;
+            this.game.play(() => setTimeout(() => { this.goToSection('summary') }, this.config.delayBeforeSummary));
+            //}
+            //catch (error) {
+            //    this.message = { text: error, type: 'danger' };
+            //}
+        },
+    };
+
+    Vue.createApp(RaffootApp).mount('#app');
+</script>

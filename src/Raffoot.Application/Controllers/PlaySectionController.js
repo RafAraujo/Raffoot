@@ -30,7 +30,8 @@ class PlaySectionController {
 
     getClubNationalLeaguePositionMessage() {
         const nationalLeague = this.game.getClubNationalLeague();
-        const position = nationalLeague.getClubPosition(this.game.club);
+        const table = nationalLeague.getTable();
+        const position = table.map(cec => cec.club.id).indexOf(this.game.club.id) + 1;
         const message = `${this.translator.getChampionshipName(nationalLeague.championship)} - ${this.translator.get("Position")} #${position}`;
         return message;
     }

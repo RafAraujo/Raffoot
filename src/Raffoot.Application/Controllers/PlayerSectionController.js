@@ -4,6 +4,14 @@ class PlayerSectionController  {
         this.translator = translator;
     }
 
+    getCountries() {
+        const countries = this.game.countries
+            .map(c => ({ id: c.id, name: this.translator.get(c.name) }))
+            .orderBy('name');
+        
+        return countries;
+    }
+
     getShowingPlayersMessage(players, pageSize) {
         const showing = players.length < pageSize ? players.length : this.pageSize;
         const total = players.length;
@@ -33,7 +41,7 @@ class PlayerSectionController  {
             players = players.filter(p => p.position.id === playerFilter.positionId);
         }
 
-        players = players.orderBy('_positionId', '-overall', 'name');
+        players = players.orderBy('-overall', 'name');
 
         return players;
     }
