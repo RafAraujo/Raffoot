@@ -64,6 +64,10 @@ class Match {
         return this.goals ? this.goals[0] === this.goals[1] : false;
     }
 
+    get playersOnField() {
+        return this.clubs.flatMap(c => c.playersOnField);
+    }
+
     get score() {
         return this.goals ? `${this.goals[0]} × ${this.goals[1]}` : null;
     }
@@ -114,7 +118,7 @@ class Match {
 
     getGoalsPenaltyShootout(club) {
         if (this._clubIds.includes(club.id)) {
-            return club.id === this._clubIds[0] ? this.goalsPenaltyShottout[0] : this.goalsPenaltyShottout[1];
+            return club.id === this._clubIds[0] ? this.goalsPenaltyShootout[0] : this.goalsPenaltyShootout[1];
         }
         throw new Error();
     }
@@ -143,7 +147,9 @@ class Match {
     prepare() {
         this.goals = [0, 0];
         this._incrementPlayersMatches();
-        this.matchSimulation = new MatchSimulation(this);
+        this.matchSimulation = MatchSimulation.create(this);
+        this.matchSimulation.prepare();
+        return this.matchSimulation;
     }
 
     finish() {
@@ -175,8 +181,8 @@ class Match {
     }
 
     _incrementPlayersMatches() {
-        const playersOnField = this.clubs.flatMap(c => c.playersOnField);
-        for (const player of playersOnField) {
+        const players = this.playersOnField;
+        for (const player of players) {
             const championshipEditionPlayer = ChampionshipEditionPlayer.createIfNotExists(this.championshipEdition, player);
             championshipEditionPlayer.matches++;
         }

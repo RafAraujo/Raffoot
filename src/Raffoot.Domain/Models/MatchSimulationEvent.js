@@ -1,9 +1,22 @@
 class MatchSimulationEvent {
-    constructor(matchSimulation, time, type) {
-        this.matchSimulation = matchSimulation;
+    constructor(matchSimulationActionId, time, type) {
+        this._matchSimulationActionId = matchSimulationActionId;
         this.time = time;
         this.type = type;
         this.player = null;
+    }
+
+    static create(matchSimulationAction, time, type) {
+        const matchSimulationEvent = new MatchSimulationEvent(matchSimulationAction.id, time, type);
+        matchSimulationEvent.id = Context.game.matchSimulationEvents.push(matchSimulationEvent);
+
+        matchSimulationAction.addEvent(matchSimulationEvent);
+
+        return matchSimulationEvent;
+    }
+
+    static getById(id) {
+        return Context.game.matchSimulationEvents[id - 1];
     }
 
     get club() {
@@ -16,6 +29,14 @@ class MatchSimulationEvent {
 
     get isClubAway() {
         return this.club.id === this.matchSimulation.match.clubAway.id;
+    }
+
+    get matchSimulation() {
+        return this.matchSimulationAction.matchSimulation;
+    }
+
+    get matchSimulationAction() {
+        return MatchSimulationAction.getById(this._matchSimulationActionId);
     }
 
     dispatch() {

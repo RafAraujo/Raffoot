@@ -3,7 +3,11 @@ class MatchesSectionViewModel {
         this.controller = new MatchesSectionController(game, translator);
     }
 
-    getCurrentDateChampionshipEditions() {
-        return this.controller.getCurrentDateChampionshipEditions();
+    getChampionshipEditionCurrentStageMessage(championshipEdition) {
+        return this.controller.getChampionshipEditionCurrentStageMessage(championshipEdition);
+    }
+
+    getCurrentChampionshipEditions() {
+        return this.controller.getCurrentChampionshipEditions();
     }
 }

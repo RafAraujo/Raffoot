@@ -22,6 +22,10 @@ class ChampionshipEditionEliminationPhaseDuel {
     get clubs() {
         return this.matches[0].clubs;
     }
+
+    get isFinished() {
+        return this.matches.every(m => m.isFinished);
+    }
     
     get matches() {
         return Context.game.matches.filterByIds(this._matchIds);
@@ -36,6 +40,10 @@ class ChampionshipEditionEliminationPhaseDuel {
     }
 
     getWinner() {
+        if (!this.isFinished) {
+            return null;
+        }
+
         const club1 = this.clubs[0];
         const club2 = this.clubs[1];
 
@@ -43,8 +51,8 @@ class ChampionshipEditionEliminationPhaseDuel {
         let club2Goals = this.getGoals(club2);
 
         if (club1Goals === club2Goals) {
-            club1Goals = this.getGoalsPenaltyShootout(club1);
-            club2Goals = this.getGoalsPenaltyShootout(club2);
+            club1Goals = 2; //this.getGoalsPenaltyShootout(club1);
+            club2Goals = 1; // this.getGoalsPenaltyShootout(club2);
         }
 
         return club1Goals > club2Goals ? club1 : club2;

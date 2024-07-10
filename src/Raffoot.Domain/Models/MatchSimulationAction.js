@@ -1,17 +1,29 @@
 class MatchSimulationAction {
-    constructor(matchSimulation, time, type) {
-        this.matchSimulation = matchSimulation;
+    constructor(matchSimulationId, time, type, playerId) {
+        this._matchSimulationId = matchSimulationId;
         this.time = time;
         this.type = type;
-        this.player = matchSimulation.ballPossessor;
-        this.target = null;
+        this._playerId = playerId;
         this.evaluation = {
             failure: 0,
             success: 0,
             result: 0
         };
 
-        this.matchSimulationEvents = [];
+        this._matchSimulationEventIds = [];
+    }
+
+    static create(matchSimulationAction) {
+        const matchSimulation = matchSimulationAction.matchSimulation;
+        matchSimulationAction.id = Context.game.matchSimulationActions.push(matchSimulationAction);
+        
+        matchSimulation.addAction(matchSimulationAction);
+
+        return matchSimulationAction;
+    }
+
+    static getById(id) {
+        return Context.game.matchSimulationActions[id - 1];
     }
 
     get club() {
@@ -22,9 +34,20 @@ class MatchSimulationAction {
         return this.evaluation.result > this.evaluation.failure;
     }
 
-    addEvent(type) {
-        const matchSimulationEvent = new MatchSimulationEvent(this.matchSimulation, this.time, type);
-        this.matchSimulationEvents.push(matchSimulationEvent);
+    get matchSimulation() {
+        return MatchSimulation.getById(this._matchSimulationId);
+    }
+
+    get matchSimulationEvents() {
+        return Context.game.matchSimulationEvents.filterByIds(this._matchSimulationEventIds);
+    }
+
+    get player() {
+        return Player.getById(this._playerId);
+    }
+
+    addEvent(matchSimulationEvent) {
+        this._matchSimulationEventIds.push(matchSimulationEvent.id);
         matchSimulationEvent.dispatch();
     }
 

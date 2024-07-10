@@ -1,6 +1,12 @@
 class MatchSimulationActionPassing extends MatchSimulationAction {
-    constructor(matchSimulation, time) {
-        super(matchSimulation, time, 'passing')
+    constructor(matchSimulationId, time, playerId) {
+        super(matchSimulationId, time, 'passing', playerId)
+    }
+
+    static create(matchSimulation, time) {
+        const matchSimulationActionPassing = new MatchSimulationActionPassing(matchSimulation.id, time, matchSimulation.ballPossessor.id);
+        MatchSimulationAction.create(matchSimulationActionPassing);
+        return matchSimulationActionPassing;
     }
 
     evaluate() {
@@ -9,7 +15,7 @@ class MatchSimulationActionPassing extends MatchSimulationAction {
         this.target = this._chooseTarget();
 
         this.evaluation.failure = sim.clubDefending.getRegionOverall(sim.marker.fieldLocalization.position.fieldRegion);
-        this.evaluation.success = sim.ballPossessor.overall + (sim.ballLocation.name === 'goal' ? sim.clubAttacking.getDefenseOverall() : sim.clubAttacking.getRegionOverall(sim.ballLocation));
+        this.evaluation.success = this.player.overall + (sim.ballLocation.name === 'goal' ? sim.clubAttacking.getDefenseOverall() : sim.clubAttacking.getRegionOverall(sim.ballLocation));
         this.getResult();
 
         if (this.isSuccessful) {

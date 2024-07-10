@@ -1,3 +1,3 @@
-let Context = {
+const Context = {
     game: null
 };

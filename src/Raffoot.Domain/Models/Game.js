@@ -31,6 +31,10 @@ class Game {
         this.seasons = [];
         this.seasonDates = [];
 
+        this.matchSimulations = [];
+        this.matchSimulationActions = [];
+        this.matchSimulationEvents = [];
+
         this.config = {
             fullScreen: Config.fullScreen,
             matchSpeed: Config.matchSpeedOptions.ultraFast,
@@ -52,6 +56,47 @@ class Game {
 
     get currentSeason() {
         return Season.getById(this._currentSeasonId);
+    }
+
+    advanceDate() {
+        const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
+        for (const match of matches) {
+            delete match.matchSimulation;
+        }
+
+        const previousDate = this.currentSeason.currentDate;
+
+        this._qualifyToNextEliminationPhases();
+
+        this.currentSeason.advanceDate();
+        const days = Date.daysDiff(previousDate, this.currentSeason.currentDate);
+
+        for (const club of this.clubs) {
+            club.rest(days);
+            if (this.currentSeason.currentDate.getMonth() > previousDate.getMonth()) {
+                club.payWages();
+            }
+        }
+
+        this.matchSimulations = [];
+        this.matchSimulationActions = [];
+        this.matchSimulationEvents = [];
+    }
+
+    _qualifyToNextEliminationPhases() {
+        const currentDate = this.currentSeason.currentDate;
+        const championshipEditionEliminationPhases = this.championshipEditionEliminationPhases.filter(ceep => ceep.lastDate === currentDate);
+        
+        for (const eliminationPhase of championshipEditionEliminationPhases) {
+            const championshipEdition = eliminationPhase.championshipEdition;
+            const winners = [];
+            for (const duel of eliminationPhase.championshipEditionEliminationPhaseDuels) {
+                const winner = duel.getWinner();
+                winners.push(winner);
+            }
+            const nextEliminationPhase = this.currentSeason.getChampionshipEditionNextEliminationPhase(championshipEdition);
+            nextEliminationPhase.qualify(winners);
+        }
     }
 
     getClubCurrentMatch() {

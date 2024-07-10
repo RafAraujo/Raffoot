@@ -50,18 +50,14 @@
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-                                <div v-for="championshipEdition in summarySection.getCurrentDateChampionshipEditions()">
+                                <div v-for="championshipEdition in summarySection.getCurrentChampionshipEditions()">
                                     <div class="row">
                                         <div class="col">
                                             <div class="table-responsive">
                                                 <table class="table table-borderless caption-top small">
                                                     <caption class="text-light">
                                                         {{
-                                                        "{0} {1} - {2} {3}".format(
-                                                        translator.get("Division"),
-                                                        championshipEdition.championship.division,
-                                                        translator.get("Matchday"),
-                                                        game.currentSeason.getChampionshipEditionCurrentStage(championshipEdition))
+                                                        matchesSection.getChampionshipEditionCurrentStageMessage(championshipEdition)
                                                         }}
                                                     </caption>
                                                     <tbody>
@@ -142,11 +138,7 @@
                                     <div class="col text-center">
                                         <span class="text-light">
                                             {{
-                                            "{0} {1} - {2} {3}".format(
-                                            translator.get("Division"),
-                                            currentMatch.championshipEdition.championship.division,
-                                            translator.get("Matchday"),
-                                            game.currentSeason.getChampionshipEditionCurrentStage(currentMatch.championshipEdition))
+                                            matchesSection.getChampionshipEditionCurrentStageMessage(currentMatch.championshipEdition)
                                             }}
                                         </span>
                                     </div>
@@ -209,24 +201,32 @@
                                     </div>
                                 </div>
                             </template>
+                            <template v-else>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <span class="fw-bold text-warning">
+                                            {{
+                                            translator.getChampionshipName(matchesSection.getCurrentChampionshipEditions()[0].championship,
+                                            false)
+                                            }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </template>
                             <div class="row">
                                 <div class="col">
                                     &nbsp;
                                 </div>
                             </div>
                         </div>
-                        <div v-for="championshipEdition in matchesSection.getCurrentDateChampionshipEditions()">
+                        <div v-for="championshipEdition in matchesSection.getCurrentChampionshipEditions()">
                             <div class="row">
                                 <div class="col">
                                     <div class="table-responsive">
                                         <table class="table caption-top small border">
                                             <caption class="text-light">
                                                 {{
-                                                "{0} {1} - {2} {3}".format(
-                                                translator.get("Division"),
-                                                championshipEdition.championship.division,
-                                                translator.get("Matchday"),
-                                                game.currentSeason.getChampionshipEditionCurrentStage(championshipEdition))
+                                                matchesSection.getChampionshipEditionCurrentStageMessage(championshipEdition)
                                                 }}
                                             </caption>
                                             <tbody>
@@ -365,7 +365,7 @@
                 this.message.text = '';
             },
             async advanceDate() {
-                this.game.currentSeason.advanceDate();
+                this.game.advanceDate();
                 let t0 = performance.now();
                 await this.save();
                 console.log(`this.save() took ${(performance.now() - t0)} milliseconds.`);

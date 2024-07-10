@@ -47,16 +47,7 @@ class Season {
     }
 
     advanceDate() {
-        const previousDate = this.currentDate;
         this._currentSeasonDateIndex++;
-        const days = Date.daysDiff(previousDate, this.currentDate);
-
-        for (const club of Context.game.clubs) {
-            club.rest(days);
-            if (this._currentSeasonDateIndex > 0 && this.currentDate.getMonth() > this.previousSeasonDate.date.getMonth()) {
-                club.payWages();
-            }
-        }
     }
 
     getInternationalChampionshipEditions() {
@@ -72,14 +63,32 @@ class Season {
         return championshipEditions.filter(ce => ce.championship.confederation.id === confederationId);
     }
 
-    getChampionshipEditionCurrentStage(championshipEdition) {
-        if (championshipEdition.championship.championshipType.regulation === 'round-robin') {
-            const fixture = championshipEdition.championshipEditionFixtures.find(cef => cef.seasonDate.id === this.currentSeasonDate.id);
-            return fixture.number;
-        }
+    getChampionshipEditionCurrentEliminationPhase(championshipEdition) {
+        return championshipEdition.championshipEditionEliminationPhases
+            .find(ceep => ceep.seasonDates.map(sd => sd.id).includes(this.currentSeasonDate.id));
     }
 
-    getCurrentDateChampionshipEditions() {
+    getChampionshipEditionCurrentFixture(championshipEdition) {
+        return championshipEdition.championshipEditionFixtures
+            .find(cef => cef.seasonDate.id === this.currentSeasonDate.id);
+    }
+
+    getChampionshipEditionCurrentStage(championshipEdition) {
+        const fixture = this.getChampionshipEditionCurrentFixture(championshipEdition);
+
+        if (fixture) {
+            return fixture;
+        }
+
+        return this.getChampionshipEditionCurrentEliminationPhase(championshipEdition);
+    }
+
+    getChampionshipEditionNextEliminationPhase(championshipEdition) {
+        return championshipEdition.championshipEditionEliminationPhases
+            .find(ceep => ceep.seasonDates[0].date > this.currentDate);
+    }
+
+    getCurrentChampionshipEditions() {
         return this.currentSeasonDate.matches.map(m => m.championshipEdition).distinct();
     }
 
@@ -140,7 +149,7 @@ class Season {
             if (date.getMonth() === 6) {
                 continue;
             }
-            
+
             this._addSeasonDate(date, championshipType);
             championshipTypes.rotate();
         }

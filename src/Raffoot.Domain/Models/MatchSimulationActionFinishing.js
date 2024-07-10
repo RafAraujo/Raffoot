@@ -1,17 +1,23 @@
 class MatchSimulationActionFinishing extends MatchSimulationAction {
-    constructor(matchSimulation, time) {
-        super(matchSimulation, time, 'finishing')
+    constructor(matchSimulationId, time, playerId) {
+        super(matchSimulationId, time, 'finishing', playerId)
+    }
+
+    static create(matchSimulation, time) {
+        const matchSimulationActionFinishing = new MatchSimulationActionFinishing(matchSimulation.id, time, matchSimulation.ballPossessor.id);
+        MatchSimulationAction.create(matchSimulationActionFinishing);
+        return matchSimulationActionFinishing;
     }
 
     evaluate() {
         const sim = this.matchSimulation;
 
         this.evaluation.failure = sim.clubDefending.goalkeeper.overall + sim.clubDefending.getDefenseOverall();
-        this.evaluation.success = sim.ballPossessor.overall;
+        this.evaluation.success = this.player.overall;
         this.getResult();
 
         if (this.isSuccessful) {
-           this.addEvent('goal');
+            MatchSimulationEvent.create(this, this.time, 'goal');
         }
 
         sim.ballPossessor = sim.clubDefending.goalkeeper;

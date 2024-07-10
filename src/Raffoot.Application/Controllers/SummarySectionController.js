@@ -15,7 +15,7 @@ class SummarySectionController {
 
     getConfederations() {
         const confederations = this.game.currentSeason
-            .getCurrentDateChampionshipEditions()
+            .getCurrentChampionshipEditions()
             .map(ce => ce.championship.confederation)
             .distinct()
             .map(c => ({ id: c.id, name: this.translator.get(c.name) }))
@@ -23,9 +23,9 @@ class SummarySectionController {
         return confederations;
     }
 
-    getCurrentDateChampionshipEditions(confederationId) {
+    getCurrentChampionshipEditions(confederationId) {
         const championshipEditions = this.game.currentSeason
-            .getCurrentDateChampionshipEditions()
+            .getCurrentChampionshipEditions()
             .filter(ce => ce.championship.confederation.id == confederationId)
         return championshipEditions;
     }

@@ -13,8 +13,8 @@ class SummarySectionViewModel {
         return this.controller.getConfederations();
     }
 
-    getCurrentDateChampionshipEditions() {
-        return this.controller.getCurrentDateChampionshipEditions(this.selectedConfederationId);
+    getCurrentChampionshipEditions() {
+        return this.controller.getCurrentChampionshipEditions(this.selectedConfederationId);
     }
 
     selectConfederation(confederationId) {

@@ -710,7 +710,10 @@
                                                         v-for="duel in phase.championshipEditionEliminationPhaseDuels">
                                                         <tr v-for="(match, index) in duel.matches"
                                                             :style="[index === 1 ? { 'borderBottom': 'solid 2px black' } : null]">
-                                                            <td class="text-end">{{ match.clubHome.name }}</td>
+                                                            <td class="text-end"
+                                                                :class="{ 'fw-bold' : match.clubHome === duel.getWinner() }">
+                                                                {{ match.clubHome.name }}
+                                                            </td>
                                                             <td class="text-end" style="width: 1.5rem;">
                                                                 <img class="ms-1 me-1"
                                                                     :src="match.clubHome.getLogoURL()"
@@ -718,7 +721,9 @@
                                                                     :title="match.clubHome.name"
                                                                     style="max-height: 1.5rem;">
                                                             </td>
-                                                            <td class="text-center">×</td>
+                                                            <td class="text-center">
+                                                                {{ match.score }}
+                                                            </td>
                                                             <td class="text-start" style="width: 1.5rem;">
                                                                 <img class="ms-1 me-1"
                                                                     :src="match.clubAway.getLogoURL()"
@@ -726,7 +731,8 @@
                                                                     :title="match.clubAway.name"
                                                                     style="max-height: 1.5rem;">
                                                             </td>
-                                                            <td class="text-start">
+                                                            <td class="text-start"
+                                                                :class="{ 'fw-bold' : match.clubAway === duel.getWinner() }">
                                                                 {{ match.clubAway.name }}
                                                             </td>
                                                         </tr>
