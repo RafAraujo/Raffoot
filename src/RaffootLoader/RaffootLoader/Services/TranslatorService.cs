@@ -6,9 +6,8 @@ using RaffootLoader.Utils;
 
 namespace RaffootLoader.Services
 {
-	public class TranslatorService(ISettings settings, IContext context, ITranslatorApi translatorApi) : ITranslatorService
+	public class TranslatorService(IContext context, ITranslatorApi translatorApi) : ITranslatorService
 	{
-		private readonly ISettings _settings = settings;
 		private readonly IContext _context = context;
 		private readonly ITranslatorApi _translatorApi = translatorApi;
 
@@ -33,7 +32,7 @@ namespace RaffootLoader.Services
 			"Back", "Background color", $"{PrefixOfContext}{Separator}Balanced", "Ball Possession", $"{PrefixOfContext}{Separator}Board of Directors", "Bronze",
 			"Calendar", "Cancel", "Capacity", "Category", "Champions", "Championship", "Championships", "Choose your club", "Clear", "Classification", "Close", "Club", "Clubs", "Coach", "Colors", "CON", "Continental Supercup", "Continue", "Country", "Creating game...", $"{PrefixOfContext}{Separator}Cup",
 			"Date", "Defense", $"{PrefixOfContext}{Separator}Defensive", "Delete", "Diamond", "Division", $"{PrefixOfContext}{Separator}Draws",
-			"End of contract", "End of the match", "Energy", "Error", "Exit Game", "Expand",
+			"End of contract", "End of the match", "Energy", "Error", "Event", "Exit Game", "Expand",
 			"False 9", "Final", "Finances", "Flat", "Formation", "For Sale", "Foul", "Fouls", "Free Kick Taker", "Full screen",
 			"Game", "Game deleted with success",  $"{PrefixOfContext}{Separator}Goal",  $"{PrefixOfContext}{Separator}Goals", $"{PrefixOfContext}{Separator}Goals against", $"{PrefixOfContext}{Separator}Goals difference", "Gold", "Group",
 			"History", "Holding", $"{PrefixOfContext}{Separator}Home",
@@ -46,7 +45,7 @@ namespace RaffootLoader.Services
 			"Quarter-finals",
 			"Raffoot", "Ranking", "Red Card", $"{PrefixOfContext}{Separator}Referee", "Reset", $"{PrefixOfContext}{Separator}Right", "Round of 16", "Round of 32", "Round of 64",
 			"Save Changes", "Save Game", "Search", "Search Players", "Sector", "Semifinals", "Shots on goal", "Showing {0} of {1}", "Silver", "Squad", "Stadium", "Standings", "Star", "Start Game", "Starting game...", "Start of the match", "Statistics", "Supercup", $"{PrefixOfContext}{Separator}Supporters",  $"{PrefixOfContext}{Separator}Suspended",
-			$"{PrefixOfContext}{Separator}Tackles", "Text color", "Ticket Price", "Time", "Top Scorers", "Total", $"{PrefixOfContext}{Separator}Trust", "Type",
+			$"{PrefixOfContext}{Separator}Tackles", "Text color", "Ticket Price", "Time", "Top Scorers", "Total", "Transfer Window", $"{PrefixOfContext}{Separator}Trust", "Type",
 			"Uniform",
 			$"{PrefixOfContext}{Separator}Wage", "Wide", "Window mode", "Wins", "World", "World Cup",
 			"Year", "Yellow Card", "Yellow Cards", "Yes"
@@ -54,38 +53,39 @@ namespace RaffootLoader.Services
 
 		private readonly string[] _fixedTexts = ["BeNe", "CON", "Overall", "OV", "Raffoot", "Reset"];
 
+		// https://www.reddit.com/r/EASportsFC/comments/aq78a6/currently_working_on_a_project_and_need_to_find/
 		private readonly Translation[] _fixedTranslations =
 		[
-			new Translation("GK", "G", "fr"),       new Translation("GK", "POR", "es"),     new Translation("GK", "TW", "de"),      new Translation("GK", "GR", "pt-PT"),       new Translation("GK", "GOL", "pt-BR"),      new Translation("GK", "POR", "it"),     new Translation("GK", "DM", "nl"),      new Translation("GK", "BR", "pl"),      new Translation("GK", "BR", "cs"),
-			new Translation("RB", "DD", "fr"),      new Translation("RB", "LD", "es"),      new Translation("RB", "RV", "de"),      new Translation("RB", "DD", "pt-PT"),       new Translation("RB", "LD", "pt-BR"),       new Translation("RB", "TD", "it"),      new Translation("RB", "RA", "nl"),      new Translation("RB", "PO", "pl"),      new Translation("RB", "PO", "cs"),
-			new Translation("RWB", "DLD", "fr"),    new Translation("RWB", "CAD", "es"),    new Translation("RWB", "RAV", "de"),    new Translation("RWB", "LDO", "pt-PT"),     new Translation("RWB", "ADD", "pt-BR"),     new Translation("RWB", "ADA", "it"),    new Translation("RWB", "RVV", "nl"),    new Translation("RWB", "CPS", "pl"),    new Translation("RWB", "PKO", "cs"),
-			new Translation("CB", "DC", "fr"),      new Translation("CB", "DFC", "es"),     new Translation("CB", "IV", "de"),      new Translation("CB", "DC", "pt-PT"),       new Translation("CB", "ZAG", "pt-BR"),      new Translation("CB", "DC", "it"),      new Translation("CB", "CV", "nl"),      new Translation("CB", "SO", "pl"),      new Translation("CB", "SO", "cs"),
-			new Translation("LB", "DG", "fr"),      new Translation("LB", "LI", "es"),      new Translation("LB", "LV", "de"),      new Translation("LB", "DE", "pt-PT"),       new Translation("LB", "LE", "pt-BR"),       new Translation("LB", "TS", "it"),      new Translation("LB", "LA", "nl"),      new Translation("LB", "LO", "pl"),      new Translation("LB", "LO", "cs"),
-			new Translation("LWB", "DLG", "fr"),    new Translation("LWB", "CAI", "es"),    new Translation("LWB", "LAV", "de"),    new Translation("LWB", "LEO", "pt-PT"),     new Translation("LWB", "ADE", "pt-BR"),     new Translation("LWB", "ASA", "it"),    new Translation("LWB", "LVV", "nl"),    new Translation("LWB", "CLS", "pl"),    new Translation("LWB", "LKO", "cs"),
-			new Translation("CDM", "MDC", "fr"),    new Translation("CDM", "MCD", "es"),    new Translation("CDM", "ZDM", "de"),    new Translation("CDM", "MDC", "pt-PT"),     new Translation("CDM", "VOL", "pt-BR"),     new Translation("CDM", "CDC", "it"),    new Translation("CDM", "CVM", "nl"),    new Translation("CDM", "SPD", "pl"),    new Translation("CDM", "SDZ", "cs"),
-			new Translation("CM", "MC", "fr"),      new Translation("CM", "MC", "es"),      new Translation("CM", "ZM", "de"),      new Translation("CM", "MC", "pt-PT"),       new Translation("CM", "MC", "pt-BR"),       new Translation("CM", "CC", "it"),      new Translation("CM", "CM", "nl"),      new Translation("CM", "SP", "pl"),      new Translation("CM", "SZ", "cs"),
-			new Translation("CAM", "MOC", "fr"),    new Translation("CAM", "MCO", "es"),    new Translation("CAM", "ZOM", "de"),    new Translation("CAM", "MCO", "pt-PT"),     new Translation("CAM", "MEI", "pt-BR"),     new Translation("CAM", "COC", "it"),    new Translation("CAM", "CAM", "nl"),    new Translation("CAM", "SPO", "pl"),    new Translation("CAM", "SOZ", "cs"),
-			new Translation("RM", "MD", "fr"),      new Translation("RM", "MD", "es"),      new Translation("RM", "RM", "de"),      new Translation("RM", "MD", "pt-PT"),       new Translation("RM", "MD", "pt-BR"),       new Translation("RM", "ED", "it"),      new Translation("RM", "RM", "nl"),      new Translation("RM", "PP", "pl"),      new Translation("RM", "PZ", "cs"),
-			new Translation("RW", "AD", "fr"),      new Translation("RW", "ED", "es"),      new Translation("RW", "RF", "de"),      new Translation("RW", "ED", "pt-PT"),       new Translation("RW", "PD", "pt-BR"),       new Translation("RW", "AD", "it"),      new Translation("RW", "RVA", "nl"),     new Translation("RW", "PS", "pl"),      new Translation("RW", "PK", "cs"),
-			new Translation("LM", "MG", "fr"),      new Translation("LM", "MI", "es"),      new Translation("LM", "LM", "de"),      new Translation("LM", "ME", "pt-PT"),       new Translation("LM", "ME", "pt-BR"),       new Translation("LM", "ES", "it"),      new Translation("LM", "LM", "nl"),      new Translation("LM", "LP", "pl"),      new Translation("LM", "LZ", "cs"),
-			new Translation("LW", "AG", "fr"),      new Translation("LW", "EI", "es"),      new Translation("LW", "LF", "de"),      new Translation("LW", "EE", "pt-PT"),       new Translation("LW", "PE", "pt-BR"),       new Translation("LW", "AS", "it"),      new Translation("LW", "LVA", "nl"),     new Translation("LW", "LS", "pl"),      new Translation("LW", "LK", "cs"),
-			new Translation("RF", "AVD", "fr"),     new Translation("RF", "SDD", "es"),     new Translation("RF", "RS", "de"),      new Translation("RF", "AD", "pt-PT"),       new Translation("RF", "MAD", "pt-BR"),      new Translation("RF", "ATD", "it"),     new Translation("RF", "RV", "nl"),      new Translation("RF", "PN", "pl"),      new Translation("RF", "PU", "cs"),
-			new Translation("CF", "AT", "fr"),      new Translation("CF", "SD", "es"),      new Translation("CF", "MS", "de"),      new Translation("CF", "AC", "pt-PT"),       new Translation("CF", "SA", "pt-BR"),       new Translation("CF", "AT", "it"),      new Translation("CF", "CA", "nl"),      new Translation("CF", "SN", "pl"),      new Translation("CF", "SU", "cs"),
-			new Translation("LF", "AVG", "fr"),     new Translation("LF", "SDI", "es"),     new Translation("LF", "LS", "de"),      new Translation("LF", "AE", "pt-PT"),       new Translation("LF", "MAE", "pt-BR"),      new Translation("LF", "ATS", "it"),     new Translation("LF", "LV", "nl"),      new Translation("LF", "LN", "pl"),      new Translation("LF", "LU", "cs"),
-			new Translation("ST", "BU", "fr"),      new Translation("ST", "DC", "es"),      new Translation("ST", "ST", "de"),      new Translation("ST", "PL", "pt-PT"),       new Translation("ST", "ATA", "pt-BR"),      new Translation("ST", "ATT", "it"),     new Translation("ST", "SP", "nl"),      new Translation("ST", "N", "pl"),       new Translation("ST", "HU", "cs"),
+			new("GK", "G", "fr"),    new("GK", "POR", "es"),  new("GK", "TW", "de"),   new("GK", "GR", "pt-PT"),   new("GK", "GOL", "pt-BR"),  new("GK", "POR", "it"),  new("GK", "DM", "nl"),   new("GK", "BR", "pl"),   new("GK", "BR", "cs"),
+			new("RB", "DD", "fr"),   new("RB", "LD", "es"),   new("RB", "RV", "de"),   new("RB", "DD", "pt-PT"),   new("RB", "LD", "pt-BR"),   new("RB", "TD", "it"),   new("RB", "RA", "nl"),   new("RB", "PO", "pl"),   new("RB", "PO", "cs"),
+			new("RWB", "DLD", "fr"), new("RWB", "CAD", "es"), new("RWB", "RAV", "de"), new("RWB", "LDO", "pt-PT"), new("RWB", "ADD", "pt-BR"), new("RWB", "ADA", "it"), new("RWB", "RVV", "nl"), new("RWB", "CPS", "pl"), new("RWB", "PKO", "cs"),
+			new("CB", "DC", "fr"),   new("CB", "DFC", "es"),  new("CB", "IV", "de"),   new("CB", "DC", "pt-PT"),   new("CB", "ZAG", "pt-BR"),  new("CB", "DC", "it"),   new("CB", "CV", "nl"),   new("CB", "SO", "pl"),   new("CB", "SO", "cs"),
+			new("LB", "DG", "fr"),   new("LB", "LI", "es"),   new("LB", "LV", "de"),   new("LB", "DE", "pt-PT"),   new("LB", "LE", "pt-BR"),   new("LB", "TS", "it"),   new("LB", "LA", "nl"),   new("LB", "LO", "pl"),   new("LB", "LO", "cs"),
+			new("LWB", "DLG", "fr"), new("LWB", "CAI", "es"), new("LWB", "LAV", "de"), new("LWB", "LEO", "pt-PT"), new("LWB", "ADE", "pt-BR"), new("LWB", "ASA", "it"), new("LWB", "LVV", "nl"), new("LWB", "CLS", "pl"), new("LWB", "LKO", "cs"),
+			new("CDM", "MDC", "fr"), new("CDM", "MCD", "es"), new("CDM", "ZDM", "de"), new("CDM", "MDC", "pt-PT"), new("CDM", "VOL", "pt-BR"), new("CDM", "CDC", "it"), new("CDM", "CVM", "nl"), new("CDM", "SPD", "pl"), new("CDM", "SDZ", "cs"),
+			new("CM", "MC", "fr"),   new("CM", "MC", "es"),   new("CM", "ZM", "de"),   new("CM", "MC", "pt-PT"),   new("CM", "MC", "pt-BR"),   new("CM", "CC", "it"),   new("CM", "CM", "nl"),   new("CM", "SP", "pl"),   new("CM", "SZ", "cs"),
+			new("CAM", "MOC", "fr"), new("CAM", "MCO", "es"), new("CAM", "ZOM", "de"), new("CAM", "MCO", "pt-PT"), new("CAM", "MEI", "pt-BR"), new("CAM", "COC", "it"), new("CAM", "CAM", "nl"), new("CAM", "SPO", "pl"), new("CAM", "SOZ", "cs"),
+			new("RM", "MD", "fr"),   new("RM", "MD", "es"),   new("RM", "RM", "de"),   new("RM", "MD", "pt-PT"),   new("RM", "MD", "pt-BR"),   new("RM", "ED", "it"),   new("RM", "RM", "nl"),   new("RM", "PP", "pl"),   new("RM", "PZ", "cs"),
+			new("RW", "AD", "fr"),   new("RW", "ED", "es"),   new("RW", "RF", "de"),   new("RW", "ED", "pt-PT"),   new("RW", "PD", "pt-BR"),   new("RW", "AD", "it"),   new("RW", "RVA", "nl"),  new("RW", "PS", "pl"),   new("RW", "PK", "cs"),
+			new("LM", "MG", "fr"),   new("LM", "MI", "es"),   new("LM", "LM", "de"),   new("LM", "ME", "pt-PT"),   new("LM", "ME", "pt-BR"),   new("LM", "ES", "it"),   new("LM", "LM", "nl"),   new("LM", "LP", "pl"),   new("LM", "LZ", "cs"),
+			new("LW", "AG", "fr"),   new("LW", "EI", "es"),   new("LW", "LF", "de"),   new("LW", "EE", "pt-PT"),   new("LW", "PE", "pt-BR"),   new("LW", "AS", "it"),   new("LW", "LVA", "nl"),  new("LW", "LS", "pl"),   new("LW", "LK", "cs"),
+			new("RF", "AVD", "fr"),  new("RF", "SDD", "es"),  new("RF", "RS", "de"),   new("RF", "AD", "pt-PT"),   new("RF", "MAD", "pt-BR"),  new("RF", "ATD", "it"),  new("RF", "RV", "nl"),   new("RF", "PN", "pl"),   new("RF", "PU", "cs"),
+			new("CF", "AT", "fr"),   new("CF", "SD", "es"),   new("CF", "MS", "de"),   new("CF", "AC", "pt-PT"),   new("CF", "SA", "pt-BR"),   new("CF", "AT", "it"),   new("CF", "CA", "nl"),   new("CF", "SN", "pl"),   new("CF", "SU", "cs"),
+			new("LF", "AVG", "fr"),  new("LF", "SDI", "es"),  new("LF", "LS", "de"),   new("LF", "AE", "pt-PT"),   new("LF", "MAE", "pt-BR"),  new("LF", "ATS", "it"),  new("LF", "LV", "nl"),   new("LF", "LN", "pl"),   new("LF", "LU", "cs"),
+			new("ST", "BU", "fr"),   new("ST", "DC", "es"),   new("ST", "ST", "de"),   new("ST", "PL", "pt-PT"),   new("ST", "ATA", "pt-BR"),  new("ST", "ATT", "it"),  new("ST", "SP", "nl"),   new("ST", "N", "pl"),    new("ST", "HU", "cs"),
 
-			new Translation("Left wing-back", "Ala-esquerdo", "pt-BR"),
-			new Translation("Right wing-back", "Ala-direito", "pt-BR"),
-			new Translation("Left midfielder", "Meia-esquerda", "pt-BR"),
-			new Translation("Right midfielder", "Meia-direita", "pt-BR"),
-			new Translation("Left winger", "Ponta-esquerda", "pt-BR"),
-			new Translation("Right winger", "Ponta-direita", "pt-BR"),
+			new("Left wing-back", "Ala-esquerdo", "pt-BR"),
+			new("Right wing-back", "Ala-direito", "pt-BR"),
+			new("Left midfielder", "Meia-esquerda", "pt-BR"),
+			new("Right midfielder", "Meia-direita", "pt-BR"),
+			new("Left winger", "Ponta-esquerda", "pt-BR"),
+			new("Right winger", "Ponta-direita", "pt-BR"),
 
-			new Translation("Goals difference", "Saldo de gols", "pt-BR"),
-			new Translation("Matchday", "Rodada", "pt-BR"),
-			new Translation("Standings", "Tabelas", "pt-BR"),
-			new Translation("Squad", "Elenco", "pt-BR"),
-			new Translation("Tackles", "Desarmes", "pt-BR"),
+			new("Goals difference", "Saldo de gols", "pt-BR"),
+			new("Matchday", "Rodada", "pt-BR"),
+			new("Standings", "Tabelas", "pt-BR"),
+			new("Squad", "Elenco", "pt-BR"),
+			new("Tackles", "Desarmes", "pt-BR"),
 		];
 
 		private const string PrefixOfContext = "Men's Football";
@@ -97,9 +97,6 @@ namespace RaffootLoader.Services
 
 			try
 			{
-				const string FileName = "MultiLanguage";
-				var filePath = Path.Combine(_settings.BasePath, "Raffoot.Domain", $"{FileName}.js");
-
 				const string sourceLanguage = "en";
 
 				var languages = new[] { "pt-BR" };
@@ -130,7 +127,7 @@ namespace RaffootLoader.Services
 					if (fixedTranslation == null)
 					{
 						var translatedText = (translation.TranslatedText.Contains(Separator) ? translation.TranslatedText[(translation.TranslatedText.IndexOf(Separator) + Separator.Length)..] : translation.TranslatedText).WithFirstCharUppercase();
-						translations.Add(new Translation(originalText, translatedText, translation.Language));
+						translations.Add(new(originalText, translatedText, translation.Language));
 					}
 				}
 

@@ -14,6 +14,7 @@ class Club {
             supporters: 80
         };
         this.division = null;
+        this.lastYearPositionInTheNationalLeague = null;
         this._trophies = [];
 
         this._formationId = null;

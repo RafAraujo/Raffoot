@@ -41,6 +41,10 @@ span.overall.bronze {
     color: white;
 }
 
+tbody.championship-two-legged-tie tr:nth-child(even) td {
+    border-bottom: solid 2px black;
+}
+
 td.main-continental-cup {
     color: blue;
     font-weight: bold;
@@ -63,6 +67,10 @@ td.promotion {
 td.relegation {
     color: red;
     font-weight: bold;
+}
+
+td.transfer-window {
+    background-color: lavender;
 }
 
 .bench {

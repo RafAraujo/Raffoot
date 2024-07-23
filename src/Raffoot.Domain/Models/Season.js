@@ -1,15 +1,16 @@
 class Season {
-    constructor(year, championshipTypeIds) {
+    constructor(year, isFirst, championshipTypeIds) {
         this.year = year;
+        this.isFirst = isFirst;
         this._championshipTypeIds = championshipTypeIds;
         this._championshipEditionsIds = [];
         this._seasonDateIds = [];
-        this._currentSeasonDateIndex = 0;
+        this._currentSeasonDateIndex = 0; ''
     }
 
-    static create(year, championshipTypes) {
+    static create(year, isFirst, championshipTypes) {
         const championshipTypeIds = championshipTypes.map(ct => ct.id);
-        const season = new Season(year, championshipTypeIds);
+        const season = new Season(year, isFirst, championshipTypeIds);
         season.id = Context.game.seasons.push(season);
         return season;
     }
@@ -30,8 +31,8 @@ class Season {
         return this.currentSeasonDate.date;
     }
 
-    get finished() {
-        return this._currentSeasonDateIndex === this.seasonDates.length;
+    get isFinished() {
+        return this._currentSeasonDateIndex === this.seasonDates.length - 1;
     }
 
     get seasonDates() {
@@ -50,12 +51,23 @@ class Season {
         this._currentSeasonDateIndex++;
     }
 
-    getInternationalChampionshipEditions() {
-        return this.championshipEditions.filter(ce => !ce.championship.championshipType.scope === 'national');
-    }
+    getCalendarByClub(club) {
+        const items = [];
+        for (const seasonDate of this.seasonDates) {
+            const match = seasonDate.matches.find(m => m.clubs?.map(c => c.id).includes(club.id)) ?? null;
 
-    getNationalChampionshipEditions() {
-        return this.championshipEditions.filter(ce => ce.championship.championshipType.scope === 'national');
+            if (match || seasonDate.isTransferWindow) {
+                const item = {
+                    date: seasonDate.date,
+                    match: match,
+                    isTransferWindow: seasonDate.isTransferWindow,
+                };
+
+                items.push(item);
+            }
+        }
+
+        return items;
     }
 
     getChampionshipEditionsByConfederation(confederationId) {
@@ -96,6 +108,14 @@ class Season {
         return this.currentSeasonDate.matches.filter(m => m.championshipEdition.id === championshipEdition.id);
     }
 
+    getInternationalChampionshipEditions() {
+        return this.championshipEditions.filter(ce => !ce.championship.championshipType.scope === 'national');
+    }
+
+    getNationalChampionshipEditions() {
+        return this.championshipEditions.filter(ce => ce.championship.championshipType.scope === 'national');
+    }
+
     getNationalLeagues() {
         return this.championshipEditions.filter(ce => ce.championship.isNationalLeague);
     }
@@ -116,18 +136,16 @@ class Season {
 
         for (const championshipEdition of this.championshipEditions) {
             this._defineChampionshipEditionClubs(championshipEdition);
-            const seasonDates = this.seasonDates.filter(sd => sd.championshipType.id === championshipEdition.championship.championshipType.id);
+            const seasonDates = this.seasonDates.filter(sd => sd.championshipType?.id === championshipEdition.championship.championshipType.id);
             const dateCount = championshipEdition.championship.getDateCount();
             championshipEdition.addSeasonDates(seasonDates.lastItems(dateCount));
             championshipEdition.scheduleMatches();
         }
     }
 
-    _addSeasonDate(date, championshipType) {
-        if (this.championshipTypes.includes(championshipType)) {
-            const seasonDate = SeasonDate.create(this, date, championshipType);
-            this._seasonDateIds.push(seasonDate.id);
-        }
+    _addSeasonDate(date, isTransferWindow, championshipType) {
+        const seasonDate = SeasonDate.create(this, date, isTransferWindow, championshipType);
+        this._seasonDateIds.push(seasonDate.id);
     }
 
     _defineCalendar() {
@@ -136,26 +154,40 @@ class Season {
         const worldCup = ChampionshipType.find('world', 'cup');
 
         let date = Date.firstSunday(1, this.year);
-        this._addSeasonDate(date, nationalSupercup);
-        date = date.addDays(3);
-        this._addSeasonDate(date, continentalSupercup);
 
-        const championshipTypes = this.championshipTypes.filter(ct => ct.format !== 'supercup' && ct.scope !== 'world');
-        let championshipType = null;
-
-        while (championshipType = championshipTypes.find(ct => !this._isTotallyScheduled(ct))) {
-            date = date.addDays(date.getDay() === 0 ? 3 : 4);
-
-            if (date.getMonth() === 6) {
-                continue;
-            }
-
-            this._addSeasonDate(date, championshipType);
-            championshipTypes.rotate();
+        while (date.getMonth() === 1) {
+            this._addSeasonDate(date, true, null);
+            date = date.addDays(date.getDay() === 0 ? 7 : 4);
         }
 
-        date = date.addDays(date.getDay() === 0 ? 3 : 4);
-        this._addSeasonDate(date, worldCup);
+        this._addSeasonDate(date, false, nationalSupercup);
+        date = date.addDays(7);
+        this._addSeasonDate(date, false, continentalSupercup);
+
+        const championshipTypes = this.championshipTypes.filter(ct => ct.format !== 'supercup' && ct.scope !== 'world');
+        let pendingChampionshipTypes = [];
+
+        while ((pendingChampionshipTypes = championshipTypes.filter(ct => !this._isTotallyScheduled(ct))).length > 0) {
+            const isTransferWindow = date.getMonth() === 6;
+
+            if (isTransferWindow || pendingChampionshipTypes.length === 1) {
+                date = date.addDays(date.getDay() === 0 ? 7 : 4);
+            }
+            else {
+                date = date.addDays(date.getDay() === 0 ? 3 : 4);
+            }
+
+            if (isTransferWindow) {
+                this._addSeasonDate(date, isTransferWindow, null);
+            }
+            else {
+                this._addSeasonDate(date, isTransferWindow, pendingChampionshipTypes[0]);
+                championshipTypes.rotate();
+            }
+        }
+
+        date = date.addDays(date.getDay() === 0 ? 7 : 11);
+        this._addSeasonDate(date, false, worldCup);
     }
 
     _defineChampionshipEditions() {
@@ -167,12 +199,12 @@ class Season {
     }
 
     _defineChampionshipEditionClubs(championshipEdition) {
-        const nationalLeague = ChampionshipType.find('national', 'league');
-        const clubCount = championshipEdition.championship.clubCount;
         let eligibleClubs = Context.game.clubs;
 
         if (championshipEdition.championship.countries != null) {
             eligibleClubs = eligibleClubs.filter(club => championshipEdition.championship.countries.some(country => club.country.id === country.id));
+
+            const nationalLeague = ChampionshipType.find('national', 'league');
 
             if (championshipEdition.championship.championshipType.id === nationalLeague.id) {
                 const otherDivisions = this.championshipEditions.filter(ce =>
@@ -185,11 +217,18 @@ class Season {
             }
         }
 
-        eligibleClubs = eligibleClubs.orderBy('division', '-overall');
+        if (this.isFirst) {
+            eligibleClubs = eligibleClubs.orderBy('division', '-overall');
+        }
+        else {
+            eligibleClubs = eligibleClubs.orderBy('-club.lastYearPositionInTheNationalLeague')
+        }
+        const clubCount = championshipEdition.championship.clubCount;
         const clubs = eligibleClubs.take(clubCount);
 
+        let bracketOrder = 0;
         for (const club of clubs) {
-            ChampionshipEditionClub.create(championshipEdition, club)
+            ChampionshipEditionClub.create(championshipEdition, club, ++bracketOrder);
         }
     }
 

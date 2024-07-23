@@ -1,29 +1,42 @@
 class ClubSectionViewModel {
     constructor(game, translator) {
-        this.controller = new ClubSectionController(game, translator);
+        this.game = game;
+        this.translator = translator;
+        
         this.selectedCountryId = game.club.country.id;
         this.selectedClubId = game.club.id;
         this.playerOrder = new PlayerOrderViewModel();
     }
 
     get selectedClub() {
-        return this.controller.getClubById(this.selectedClubId);
+        return Club.getById(this.selectedClubId);
     }
 
     get clubs() {
-        return this.controller.getClubsByCountryId(this.selectedCountryId);
+        const clubs = this.game.clubs
+            .filter(c => c.country.id === this.selectedCountryId)
+            .orderBy('name');
+
+        return clubs;
     }
 
     get countries() {
-        return this.controller.getCountries();
-    }
-
-    get players() {
-        return this.controller.getPlayers(this.selectedClubId, [this.playerOrder.orderColumn, 'position.id', '-overall', 'name'])
+        const countries = this.game.clubs
+            .flatMap(c => c.country)
+            .distinct()
+            .map(c => ({ id: c.id, name: this.translator.get(c.name) }))
+            .orderBy('name');
+            
+        return countries;
     }
 
     get kitsURLs() {
-        return this.controller.getKitsURLs(this.selectedClubId);
+        return this.selectedClub.getKitsURLs();
+    }
+
+    get players() {
+        const orderColumns = [this.playerOrder.orderColumn, 'position.id', '-overall', 'name'];
+        return this.selectedClub.players.orderBy(...orderColumns);
     }
 
     selectCountry(countryId) {

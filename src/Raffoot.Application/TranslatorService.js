@@ -14,8 +14,10 @@ class TranslatorService {
         if (translation) {
             return translation;
         }
-
-        throw new Error(`Text "${text}" not found`);
+        else {
+            console.error(`Text "${text}" not found`)
+            return text;
+        }
     }
 
     getAbbreviation(text) {

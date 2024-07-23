@@ -78,10 +78,11 @@ class ChampionshipEditionEliminationPhase {
     }
 
     _defineDuels() {
-        const championshipEditionClubs = this.championshipEditionClubs;
+        const championshipEditionClubs = this.championshipEditionClubs.orderBy('-bracketOrder');
         
         for (let i = 0; i < championshipEditionClubs.length; i += 2) {
-            const clubs = [championshipEditionClubs[i], championshipEditionClubs[championshipEditionClubs.length - 1 - i]].map(cec => cec.club);
+            const clubs = [championshipEditionClubs[i], championshipEditionClubs[championshipEditionClubs.length - 1 - i]]
+                .map(cec => cec.club);
             const matches = this.matches.slice(i, i + 2);
             const matchesPerPhase = this.championshipEdition.championship.isTwoLeggedTie ? 2 : 1;
 

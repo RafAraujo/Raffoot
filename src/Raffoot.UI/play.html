@@ -35,7 +35,7 @@
                     <section id="summary" :class="{ 'd-none' : activeSection !== 'summary' }">
                         <div class="row mt-4">
                             <div class="col col-md-5">
-                                <select class="form-select"
+                                <select id="summary-confederation" class="form-select"
                                     @change="summarySection.selectConfederation($event.target.value)">
                                     <option v-for="confederation in summarySection.getConfederations()"
                                         :key="confederation.id" :value="confederation.id"
@@ -61,7 +61,7 @@
                                                         }}
                                                     </caption>
                                                     <tbody>
-                                                        <tr v-for="match in game.currentSeason.getCurrentMatchesByChampionshipEdition(championshipEdition)"
+                                                        <tr v-for="match in summarySection.getCurrentMatchesByChampionshipEdition(championshipEdition)"
                                                             @click.stop="summarySection.selectMatch(match.id)"
                                                             :class="{ 'selected-match' : summarySection.selectedMatchId === match.id }">
                                                             <td class="text-end p-0 text-break"
@@ -320,9 +320,6 @@
     <script src="../Raffoot.Application/GameFactory.js"></script>
     <script src="../Raffoot.Application/GameService.js"></script>
     <script src="../Raffoot.Application/TranslatorService.js"></script>
-
-    <script src="../Raffoot.Application/Controllers/MatchesSectionController.js"></script>
-    <script src="../Raffoot.Application/Controllers/SummarySectionController.js"></script>
 
     <script src="../Raffoot.Application/ViewModels/Sections/MatchesSectionViewModel.js"></script>
     <script src="../Raffoot.Application/ViewModels/Sections/SummarySectionViewModel.js"></script>

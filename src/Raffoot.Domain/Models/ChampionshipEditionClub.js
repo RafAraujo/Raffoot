@@ -1,7 +1,8 @@
 class ChampionshipEditionClub {
-    constructor(championshipEditionId, clubId) {
+    constructor(championshipEditionId, clubId, bracketOrder) {
         this._championshipEditionId = championshipEditionId;
         this._clubId = clubId;
+        this.bracketOrder = bracketOrder;
         this.played = 0;
         this.eliminationPhasesWon = 0;
         this.won = 0;
@@ -11,8 +12,8 @@ class ChampionshipEditionClub {
         this.goalsAgainst = 0;
     }
 
-    static create(championshipEdition, club) {
-        const championshipEditionClub = new ChampionshipEditionClub(championshipEdition.id, club.id);
+    static create(championshipEdition, club, bracketOrder) {
+        const championshipEditionClub = new ChampionshipEditionClub(championshipEdition.id, club.id, bracketOrder);
         championshipEditionClub.id = Context.game.championshipEditionClubs.push(championshipEditionClub);
 
         championshipEdition.addChampionshipEditionClub(championshipEditionClub);

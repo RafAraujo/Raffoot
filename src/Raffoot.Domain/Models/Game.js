@@ -59,43 +59,47 @@ class Game {
     }
 
     advanceDate() {
-        const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
-        for (const match of matches) {
-            delete match.matchSimulation;
+        if (this.currentSeason.currentSeasonDate.isTransferWindow) {
+            this.currentSeason.advanceDate();
         }
-
-        const previousDate = this.currentSeason.currentDate;
-
-        this._qualifyToNextEliminationPhases();
-
-        this.currentSeason.advanceDate();
-        const days = Date.daysDiff(previousDate, this.currentSeason.currentDate);
-
-        for (const club of this.clubs) {
-            club.rest(days);
-            if (this.currentSeason.currentDate.getMonth() > previousDate.getMonth()) {
-                club.payWages();
+        else {
+            const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
+            for (const match of matches) {
+                delete match.matchSimulation;
             }
-        }
 
-        this.matchSimulations = [];
-        this.matchSimulationActions = [];
-        this.matchSimulationEvents = [];
+            this._qualifyWinnersToNextEliminationPhases();
+
+            const previousDate = this.currentSeason.currentDate;
+            this.currentSeason.advanceDate();
+            const days = Date.daysDiff(previousDate, this.currentSeason.currentDate);
+
+            for (const club of this.clubs) {
+                club.rest(days);
+                if (this.currentSeason.currentDate.getMonth() > previousDate.getMonth()) {
+                    club.payWages();
+                }
+            }
+
+            this.matchSimulations = [];
+            this.matchSimulationActions = [];
+            this.matchSimulationEvents = [];
+        }
     }
 
-    _qualifyToNextEliminationPhases() {
-        const currentDate = this.currentSeason.currentDate;
-        const championshipEditionEliminationPhases = this.championshipEditionEliminationPhases.filter(ceep => ceep.lastDate === currentDate);
-        
+    _qualifyWinnersToNextEliminationPhases() {
+        const championshipEditionEliminationPhases = this.championshipEditionEliminationPhases.filter(ceep => ceep.lastDate === this.currentSeason.currentDate);
+
         for (const eliminationPhase of championshipEditionEliminationPhases) {
             const championshipEdition = eliminationPhase.championshipEdition;
-            const winners = [];
+            const championshipEditionClubs = [];
             for (const duel of eliminationPhase.championshipEditionEliminationPhaseDuels) {
                 const winner = duel.getWinner();
-                winners.push(winner);
+                const championshipEditionClub = championshipEdition.championshipEditionClubs.find(cec => cec.club.id === winner.id);
+                championshipEditionClubs.push(championshipEditionClub);
             }
             const nextEliminationPhase = this.currentSeason.getChampionshipEditionNextEliminationPhase(championshipEdition);
-            nextEliminationPhase.qualify(winners);
+            nextEliminationPhase.qualify(championshipEditionClubs);
         }
     }
 
@@ -103,17 +107,16 @@ class Game {
         return this.currentSeason.currentSeasonDate.matches.find(m => m.clubs.map(c => c.id).includes(this._clubId));
     }
 
-    getClubMatches() {
-        return this.currentSeason.getMatchesByClub(this.club);
+    getNationalLeague(club) {
+        const nationalLeagues = this.currentSeason.getNationalLeaguesByCountry(club.country);
+        return nationalLeagues.find(ce => ce.clubs.map(c => c.id).includes(club.id));
     }
 
-    getClubNationalLeague() {
-        const nationalLeagues = this.currentSeason.getNationalLeaguesByCountry(this.club.country);
-        return nationalLeagues.find(ce => ce.clubs.map(c => c.id).includes(this.club.id));
-    }
-
-    getClubNextMatch() {
-        return this.currentSeason.getNextMatch(this.club.id);
+    getPositionInTheNationalLeague(club) {
+        const nationalLeague = this.getNationalLeague(club);
+        const table = nationalLeague.getTable();
+        const position = table.map(cec => cec.club.id).indexOf(club.id) + 1;
+        return position;
     }
 
     getPlayableCountries(continentId) {
@@ -129,7 +132,7 @@ class Game {
     }
 
     newSeason() {
-        const year = this.firstYear;
+        let year = this.firstYear;
         const isFirstSeason = this.seasons.length === 0;
         let championshipTypes = this.championshipTypes;
 
@@ -140,7 +143,7 @@ class Game {
             year = this.seasons.last().year + 1;
         }
 
-        const season = Season.create(year, championshipTypes);
+        const season = Season.create(year, isFirstSeason, championshipTypes);
         season.schedule();
         this._currentSeasonId = season.id;
     }
@@ -153,7 +156,7 @@ class Game {
         }
         const matchSimulations = matches.map(m => m.matchSimulation);
         const includesMyClub = matches.flatMap(m => m.clubs).includes(this.club);
-        
+
         let index = 0;
 
         const interval = setInterval(() => {
@@ -184,7 +187,7 @@ class Game {
             match.prepare();
         }
         const matchSimulations = matches.map(m => m.matchSimulation);
-        
+
         let index = 0;
 
         do {

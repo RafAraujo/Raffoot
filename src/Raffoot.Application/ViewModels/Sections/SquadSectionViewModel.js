@@ -1,10 +1,13 @@
 class SquadSectionViewModel {
     constructor(game, translator) {
-        this.controller = new SquadSectionController(game, translator);
+        this.game = game;
+        this.translator = translator;
+
         this.playerOrder = new PlayerOrderViewModel();
     }
 
-    getPlayers() {
-        return this.controller.getPlayers(this.playerOrder);
+    getPlayers(playerOrder) {
+        const players = this.game.club.players.orderBy(this.playerOrder.orderColumn, 'position.id', '-overall', 'name');
+        return players;
     }
 }

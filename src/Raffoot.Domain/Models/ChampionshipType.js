@@ -1,9 +1,10 @@
 class ChampionshipType {
-    constructor(scope, format, regulation, isTwoLeggedTie) {
+    constructor(scope, format, regulation, isTwoLeggedTie, order) {
         this.scope = scope;
         this.format = format;
         this.regulation = regulation;
         this.isTwoLeggedTie = isTwoLeggedTie;
+        this.order = order;
         this._championshipIds = [];
     }
 
@@ -18,12 +19,12 @@ class ChampionshipType {
     }
 
     static seed() {
-        ChampionshipType.create('national', 'league', 'round-robin', true);
-		ChampionshipType.create('national', 'cup', 'elimination', true);
-		ChampionshipType.create('national', 'supercup', 'elimination', false);
-		ChampionshipType.create('continental', 'cup', 'groups', true);
-		ChampionshipType.create('continental', 'supercup', 'elimination', false);
-		ChampionshipType.create('world', 'cup', 'elimination', false);
+        ChampionshipType.create('national', 'league', 'round-robin', true, 3);
+		ChampionshipType.create('national', 'cup', 'elimination', true, 4);
+		ChampionshipType.create('national', 'supercup', 'elimination', false, 1);
+		ChampionshipType.create('continental', 'cup', 'groups', true, 5);
+		ChampionshipType.create('continental', 'supercup', 'elimination', false, 2);
+		ChampionshipType.create('world', 'cup', 'elimination', false, 6);
 	}
 
     static find(scope, format) {

@@ -1,13 +1,14 @@
 class SeasonDate {
-    constructor(seasonId, date, championshipTypeId) {
+    constructor(seasonId, date, isTransferWindow, championshipTypeId) {
         this._seasonId = seasonId;
         this.date = date;
+        this.isTransferWindow = isTransferWindow;
         this._championshipTypeId = championshipTypeId;
         this._matchIds = [];
     }
 
-    static create(season, date, championshipType) {
-        const seasonDate = new SeasonDate(season.id, date, championshipType.id);
+    static create(season, date, isTransferWindow, championshipType) {
+        const seasonDate = new SeasonDate(season.id, date, isTransferWindow, championshipType?.id ?? null);
         seasonDate.id = Context.game.seasonDates.push(seasonDate);
         return seasonDate;
     }

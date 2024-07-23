@@ -1,6 +1,8 @@
 class StandingSectionViewModel {
     constructor(game, translator) {
-        this.controller = new StandingSectionController(game, translator);
+        this.game = game;
+        this.translator = translator;
+
         this.activeTab = 'classification';
         this.isNationalChampionshipsSelected = true;
         this.selectedChampionshipEditionId = null;
@@ -12,11 +14,24 @@ class StandingSectionViewModel {
     }
 
     getChampionshipEditionsByConfederation(confederationId) {
-        return this.controller.getChampionshipEditionsByConfederation(confederationId);
+        const championshipEditions = this.game.currentSeason
+            .getChampionshipEditionsByConfederation(confederationId)
+            .map(ce => ({
+                id: ce.id,
+                importance: ce.championship.importance,
+                name: this.translator.getChampionshipName(ce.championship)
+            }))
+            .orderBy('-importance', 'name');
+        
+        return championshipEditions;
     }
 
     getConfederations() {
-        return this.controller.getConfederations();
+        const confederations = this.game.confederations
+            .map(c => ({ id: c.id, name: this.translator.get(c.name) }))
+            .orderBy('name');
+        
+        return confederations;
     }
 
     getCssClassForPosition(position) {
@@ -37,12 +52,21 @@ class StandingSectionViewModel {
     }
 
     getInternationalChampionshipEditions() {
-        return this.controller.getInternationalChampionshipEditions();
+        const championshipEditions = this.game.currentSeason
+            .getInternationalChampionshipEditions()
+            .map(ce => ({
+                id: ce.id,
+                importance: ce.championship.importance,
+                name: this.translator.getChampionshipName(ce.championship)
+            }))
+            .orderBy('-importance', 'name');
+        
+        return championshipEditions;
     }
 
     selectNationalChampionships(currentMatch) {
         this.isNationalChampionshipsSelected = true;
-        const nationalLeague = this.controller.getClubNationalLeague();
+        const nationalLeague = this.game.getNationalLeague(this.game.club);
         this.selectedChampionshipEditionId = currentMatch?.championshipEdition.id ?? nationalLeague.id;
     }
 

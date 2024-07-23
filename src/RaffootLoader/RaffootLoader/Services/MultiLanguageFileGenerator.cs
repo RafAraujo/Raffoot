@@ -5,7 +5,9 @@ using RaffootLoader.Services.Interfaces;
 using RaffootLoader.Utils;
 using System.Dynamic;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Unicode;
 
 namespace RaffootLoader.Services
 {
@@ -47,7 +49,7 @@ namespace RaffootLoader.Services
 					}
 				}
 
-				var serialized = JsonSerializer.Serialize(json, new JsonSerializerOptions { WriteIndented = true });
+				var serialized = JsonSerializer.Serialize(json, new JsonSerializerOptions { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
 
 				var sb = new StringBuilder();
 
