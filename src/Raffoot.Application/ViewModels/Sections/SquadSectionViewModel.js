@@ -3,7 +3,7 @@ class SquadSectionViewModel {
         this.game = game;
         this.translator = translator;
 
-        this.playerOrder = new PlayerOrderViewModel();
+        this.playerOrder = new PlayerOrderViewModel('position.id');
     }
 
     getPlayers(playerOrder) {

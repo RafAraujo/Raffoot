@@ -1,6 +1,6 @@
 class PlayerOrderViewModel {
-    constructor() {
-        this.orderColumn = 'position.id';
+    constructor(orderColumn) {
+        this.orderColumn = orderColumn;
     }
 
     updateOrder(column) {

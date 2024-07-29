@@ -2,6 +2,12 @@
     display: none;
 }
 
+@media (max-width: 576px) {
+    table {
+        font-size: 14px;
+    }
+}
+
 body {
     cursor: default;
     user-select: none;
@@ -21,28 +27,43 @@ label i {
 
 span.overall {
     display: inline-block;
-    padding: 2px;
+    padding: 5px 7px;
     text-align: center;
-    width: 2rem;
+    border: 1px solid
 }
 
 span.overall.gold {
     background-color: gold;
     color: black;
+    border-color: orange;
 }
 
 span.overall.silver {
     background-color: lightgray;
     color: black;
+    border-color: darkgray;
 }
 
 span.overall.bronze {
     background-color: #cd7f32;
     color: white;
+    border-color: brown;
 }
 
 tbody.championship-two-legged-tie tr:nth-child(even) td {
     border-bottom: solid 2px black;
+}
+
+tr.selectable:hover {
+    border: solid 1px black;
+}
+
+td img.flag {
+    max-height: 1.5em;
+}
+
+td img.club-logo {
+    max-width: 1.75rem;
 }
 
 td.main-continental-cup {
@@ -150,13 +171,13 @@ td.transfer-window {
 
 .player .overall {
     left: 2.5%;
-    top: 16px;
+    top: 0.75rem;
     z-index: 2;
 }
 
 .player .position {
     left: 2.5%;
-    top: 30px;
+    top: 1.75rem;
     z-index: 2;
 }
 

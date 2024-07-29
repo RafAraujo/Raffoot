@@ -19,7 +19,7 @@ namespace RaffootLoader.Services
 		{
 			PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 			WriteIndented = true,
-			
+
 		};
 
 		public void GenerateSoFifaServiceFile(int year)
@@ -54,7 +54,7 @@ namespace RaffootLoader.Services
 				ConsoleUtils.ShowException(ex);
 			}
 		}
-		
+
 		private string GetJsonData()
 		{
 			var json = string.Empty;

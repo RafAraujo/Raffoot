@@ -12,13 +12,16 @@ const Config = (function () {
         defaultFirstYear: new Date().getFullYear(),
         indexedDbName: 'Raffoot',
         colors: {
+            black: { hex: '#212529', class: 'dark' },
             blue: { hex: '#007bff', class: 'primary' },
+            gold: { hex: '#ffd700' },
             gray: { hex: '#6c757d', class: 'secondary' },
             green: { hex: '#28a745', class: 'success' },
             orange: { hex: '#fd7e14' },
             purple: { hex: '#6f42c1' },
             red: { hex: '#dc3545', class: 'danger' },
-            yellow: { hex: '#ffc107', class: 'warning' }
+            white: { hex: '#f8f9fa', class: 'light' },
+            yellow: { hex: '#ffc107', class: 'warning' },
         },
         cup: {
             groupClubCount: 4,

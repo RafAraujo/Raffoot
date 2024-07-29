@@ -19,7 +19,8 @@ class PlaySectionViewModel {
     changePlayers(playerId) {
         playerId = parseInt(playerId);
         if (this.selectedPlayerId) {
-            this.controller.swapPlayerRoles(this.selectedPlayerId, playerId);
+            const player = Player.getById(playerId);
+            this.game.club.swapPlayerRoles(this.selectedPlayer, player);
             this.selectedPlayerId = null;
         }
         else {
@@ -56,7 +57,7 @@ class PlaySectionViewModel {
     }
 
     getInjuryMessage(player) {
-        const message = '{0} - {1}'.format(this.translator.get('Injured player'), this.translator.get('Out until {0}').format(player.recoveryDate.toLocaleDateString()));
+        const message = '{0} - {1} {2}'.format(this.translator.get('Injured player'), this.translator.get('Out until'), player.recoveryDate.toLocaleDateString());
         return message;
     }
 
@@ -64,6 +65,9 @@ class PlaySectionViewModel {
         const player = Player.getById(playerId);
         if (player?.fieldLocalization) {
             this.game.club.movePlayerToBench(player);
+        }
+        else {
+            this.unselectPlayer();
         }
     }
 

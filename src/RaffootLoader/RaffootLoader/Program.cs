@@ -2,7 +2,6 @@
 using RaffootLoader;
 using RaffootLoader.Data;
 using RaffootLoader.Data.Interfaces;
-using RaffootLoader.Domain.Models;
 using RaffootLoader.Enums;
 using RaffootLoader.Integration;
 using RaffootLoader.Integration.GoogleTranslator;
@@ -17,9 +16,7 @@ var serviceProvider = serviceCollection.BuildServiceProvider();
 var context = serviceProvider.GetService<IContext>();
 var dataExtractor = serviceProvider.GetService<IDataExtractorService>();
 var imageDownloader = serviceProvider.GetService<IImageDownloaderService>();
-var translator = serviceProvider.GetService<ITranslatorService>();
 var fileGenerator = serviceProvider.GetService<IJavaScriptFileGenerator>();
-var multiLanguageFileGenerator = serviceProvider.GetService<IMultiLanguageFileGenerator>();
 
 WriteInstructions();
 
@@ -27,85 +24,73 @@ string line;
 
 while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
 {
-    if (!int.TryParse(line, out int option))
-    {
-        continue;
-    }
+	if (!int.TryParse(line, out int option))
+	{
+		continue;
+	}
 
-    switch ((ProgramOption)option)
-    {
-        case ProgramOption.DropDatabase:
-            context.DropDatabase();
-            break;
-        case ProgramOption.CreateDatabase:
-            await dataExtractor.CreateDatabase();
-            break;
-        case ProgramOption.DownloadFlags:
-            await imageDownloader.DownloadFlags().ConfigureAwait(false);
-            break;
-        case ProgramOption.DownloadLogos:
-            await imageDownloader.DownloadLogos().ConfigureAwait(false);
-            break;
-        case ProgramOption.DownloadKits:
-            await imageDownloader.DownloadKits().ConfigureAwait(false);
-            break;
-        case ProgramOption.DownloadPhotos:
-            await imageDownloader.DownloadPhotos().ConfigureAwait(false);
-            break;
-        case ProgramOption.UpdateClubsColors:
-            dataExtractor.UpdateClubsColors();
-            break;
-        case ProgramOption.GenerateSoFifaServiceFile:
+	switch ((ProgramOption)option)
+	{
+		case ProgramOption.DropDatabase:
+			context.DropDatabase();
+			break;
+		case ProgramOption.CreateDatabase:
+			await dataExtractor.CreateDatabase();
+			break;
+		case ProgramOption.DownloadFlags:
+			await imageDownloader.DownloadFlags().ConfigureAwait(false);
+			break;
+		case ProgramOption.DownloadLogos:
+			await imageDownloader.DownloadLogos().ConfigureAwait(false);
+			break;
+		case ProgramOption.DownloadKits:
+			await imageDownloader.DownloadKits().ConfigureAwait(false);
+			break;
+		case ProgramOption.DownloadPhotos:
+			await imageDownloader.DownloadPhotos().ConfigureAwait(false);
+			break;
+		case ProgramOption.UpdateClubsColors:
+			dataExtractor.UpdateClubsColors();
+			break;
+		case ProgramOption.GenerateSoFifaServiceFile:
 			var year = DateTime.Now.Month < 10 ? DateTime.Now.Year : DateTime.Now.Year + 1;
 			fileGenerator.GenerateSoFifaServiceFile(year);
-            break;
+			break;
+	}
 
-        case ProgramOption.DropTranslations:
-            context.DropCollection(nameof(Translation));
-            break;
-        case ProgramOption.UpdateTranslations:
-            await translator.UpdateTranslations();
-            break;
-        case ProgramOption.GenerateMultiLanguageFile:
-            multiLanguageFileGenerator.GenerateMultiLanguageFile();
-            break;
-    }
-
-    Console.WriteLine();
-    WriteInstructions();
+	Console.WriteLine();
+	WriteInstructions();
 }
 
 // https://stackoverflow.com/questions/70628314/injecting-primitive-type-in-constructor-of-generic-type-using-microsoft-di
 static void ConfigureServices(IServiceCollection services)
 {
-    var consoleAppPath = Assembly.GetExecutingAssembly().Location;
-    var basePath = @$"{consoleAppPath}\..\..\..\..\..\..\";
-    var dbPath = Path.Combine(basePath, @"RaffootLoader\Raffoot.db");
-    var imagesPath = Path.Combine(basePath, @"Raffoot.UI\res\");
+	var consoleAppPath = Assembly.GetExecutingAssembly().Location;
+	var basePath = @$"{consoleAppPath}\..\..\..\..\..\..\";
+	var dbPath = Path.Combine(basePath, @"RaffootLoader\Raffoot.db");
+	var imagesPath = Path.Combine(basePath, @"Raffoot.UI\res\");
 
-    services.AddSingleton<ISettings, Settings>(sp => new Settings(basePath, dbPath, imagesPath));
+	services.AddSingleton<ISettings, Settings>(sp => new Settings(basePath, dbPath, imagesPath));
 
-    services.AddScoped<IContext, Context>();
-    services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-    services.AddScoped<IDataExtractorService, SoFifaDataExtractorService>();
-    services.AddScoped<IImageDownloaderService, SoFifaImageDownloaderService>();
-    services.AddScoped<ITranslatorApi, GoogleTranslator>();
-    services.AddScoped<ITranslatorService, TranslatorService>();
-    services.AddScoped<IJavaScriptFileGenerator, JavaScriptFileGenerator>();
-    services.AddScoped<IMultiLanguageFileGenerator, MultiLanguageFileGenerator>();
+	services.AddScoped<IContext, Context>();
+	services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+	services.AddScoped<IDataExtractorService, SoFifaDataExtractorService>();
+	services.AddScoped<IImageDownloaderService, SoFifaImageDownloaderService>();
+	services.AddScoped<ITranslatorApi, GoogleTranslator>();
+	services.AddScoped<IJavaScriptFileGenerator, JavaScriptFileGenerator>();
 
-    services.AddHttpClient();
+	services.AddHttpClient();
 	services.AddAutoMapper(Assembly.GetExecutingAssembly());
 }
 
 static void WriteInstructions()
 {
-    Console.ResetColor();
-    Console.WriteLine("Choose:");
+	Console.ResetColor();
+	Console.WriteLine("Choose:");
 
-    foreach (ProgramOption value in Enum.GetValues(typeof(ProgramOption)))
-    {
-        Console.WriteLine("\t[{0}] - {1}", (int)value, value);
-    }
-    Console.WriteLine();
+	foreach (ProgramOption value in Enum.GetValues(typeof(ProgramOption)))
+	{
+		Console.WriteLine("\t[{0}] - {1}", (int)value, value);
+	}
+	Console.WriteLine();
 }

@@ -41,7 +41,7 @@ class Player {
     }
 
     static _calculateBaseWage(overall) {
-        const wage = Math.pow(overall, 2.85);
+        const wage = Math.pow(overall, 2.9);
         return Math.round(wage);
     }
 

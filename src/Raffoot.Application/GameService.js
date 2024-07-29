@@ -62,6 +62,7 @@ class GameService {
         game.positions = game.positions.map(o => Object.assign(new Position(), o));
         game.seasons = game.seasons.map(o => Object.assign(new Season(), o));
         game.seasonDates = game.seasonDates.map(o => Object.assign(new SeasonDate(), o));
+        game.transfers = game.transfers.map(o => Object.assign(new PlayerTransfer(), o));
 
         Context.game = game;
 

@@ -82,7 +82,7 @@ class ChampionshipEdition {
     get topScorers() {
         return this.championshipEditionPlayers
             .filter(cep => cep.goals > 0)
-            .orderBy('-goals', 'matches');
+            .orderBy('-goals', 'matches', 'player.name');
     }
 
     addChampionshipEditionClub(championshipEditionClub) {

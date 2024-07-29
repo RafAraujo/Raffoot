@@ -11,10 +11,6 @@
         UpdateClubsColors,
         GenerateSoFifaServiceFile,
 
-        DropTranslations,
-        UpdateTranslations,
-        GenerateMultiLanguageFile,
-
         Exit = 99
     }
 }

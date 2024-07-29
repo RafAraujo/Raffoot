@@ -30,6 +30,7 @@ class Game {
         this.positions = [];
         this.seasons = [];
         this.seasonDates = [];
+        this.transfers = [];
 
         this.matchSimulations = [];
         this.matchSimulationActions = [];

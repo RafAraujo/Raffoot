@@ -1,16 +1,34 @@
 class TranslatorService {
     constructor() {
-        const languageAbbreviation = TranslatorService.getLanguage();
-        this.language = MultiLanguage[languageAbbreviation];
+        this.language = TranslatorService.getLanguage();
+    }
+
+    static getAvailableLanguages() {
+        return Object.getOwnPropertyNames(MultiLanguage);
+    }
+
+    static getLanguage() {
+        const availableLanguages = TranslatorService.getAvailableLanguages();
+        const browserLanguage = navigator.language || navigator.userLanguage;
+        const language = availableLanguages.find(l => browserLanguage.startsWith(l)) ?? "en";
+        return language;
+    }
+
+    get translations() {
+        return MultiLanguage[this.language];
     }
 
     get(text) {
-        let translation = this.language[text];
-        if (translation) {
-            return translation;
+        if (this.language === "en") {
+            const firstLanguageAvailable = Object.keys(MultiLanguage)[0];
+            const translations = MultiLanguage[firstLanguageAvailable];
+            if (!translations.hasOwnProperty(text) && !translations.hasOwnProperty(text.withOnlyFirstLetterUpperCase())) {
+                console.error(`Text "${text}" not found`)
+            }
+            return text;
         }
 
-        translation = this.language[text.withOnlyFirstLetterUpperCase()];
+        const translation = this.translations[text] ?? this.translations[text.withOnlyFirstLetterUpperCase()];
         if (translation) {
             return translation;
         }
@@ -50,12 +68,5 @@ class TranslatorService {
         const championshipNameWithoutDivision = championship.name.replace(` ${championship.division}`, '');
         const translation = this.get(championshipNameWithoutDivision);
         return championship.championshipType.format === 'league' && includeDivision ? `${translation} ${championship.division}` : `${translation}`;
-    }
-
-    static getLanguage() {
-        let availableLanguages = Object.getOwnPropertyNames(MultiLanguage);
-        let browserLanguage = navigator.language || navigator.userLanguage;
-        let language = availableLanguages.find(l => l === browserLanguage || browserLanguage.startsWith(l)) ?? "en";
-        return language;
     }
 }

@@ -5,7 +5,8 @@ class ClubSectionViewModel {
         
         this.selectedCountryId = game.club.country.id;
         this.selectedClubId = game.club.id;
-        this.playerOrder = new PlayerOrderViewModel();
+        this.playerOrder = new PlayerOrderViewModel('position.id');
+        this.errorLoadingKit = false;
     }
 
     get selectedClub() {

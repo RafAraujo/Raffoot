@@ -67,21 +67,19 @@
                                                             <td class="text-end p-0 text-break"
                                                                 style="width: 44%; height: 40px;">
                                                                 {{ match.clubHome.shortName }}
-                                                                <img class="ms-1 me-1"
+                                                                <img class="club-logo ms-1 me-1"
                                                                     :src="match.clubHome.getLogoURL()"
                                                                     :alt="match.clubHome.name"
-                                                                    :title="match.clubHome.name"
-                                                                    style="max-height: 1.5rem;">
+                                                                    :title="match.clubHome.name">
                                                             </td>
                                                             <td class="text-center p-0">
                                                                 {{ match.score }}
                                                             </td>
                                                             <td class="text-start p-0" style="width: 44%;">
-                                                                <img class="ms-1 me-1"
+                                                                <img class="club-logo ms-1 me-1"
                                                                     :src="match.clubAway.getLogoURL()"
                                                                     :alt="match.clubAway.name"
-                                                                    :title="match.clubAway.name"
-                                                                    style="max-height: 1.5rem;">
+                                                                    :title="match.clubAway.name">
                                                                 {{ match.clubAway.shortName }}
                                                             </td>
                                                         </tr>
@@ -234,9 +232,8 @@
                                                     v-for="match in game.currentSeason.getCurrentMatchesByChampionshipEdition(championshipEdition)">
                                                     <td class="text-end p-0"
                                                         :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
-                                                        <img class="ms-1 me-1" :src="match.clubHome.getLogoURL()"
-                                                            :alt="match.clubHome.name" :title="match.clubHome.name"
-                                                            style="max-height: 1.5rem;">
+                                                        <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
+                                                            :alt="match.clubHome.name" :title="match.clubHome.name">
                                                     </td>
                                                     <td class="text-start p-0 text-break"
                                                         style="width: 34%; height: 40px;"
@@ -253,9 +250,8 @@
                                                     </td>
                                                     <td class="text-end p-0 text-break"
                                                         :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
-                                                        <img class="ms-1 me-1" :src="match.clubAway.getLogoURL()"
-                                                            :alt="match.clubAway.name" :title="match.clubAway.name"
-                                                            style="max-height: 1.5rem;">
+                                                        <img class="club-logo ms-1 me-1" :src="match.clubAway.getLogoURL()"
+                                                            :alt="match.clubAway.name" :title="match.clubAway.name">
                                                     </td>
                                                     <td class="text-start p-0" style="width: 34%;"
                                                         :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
