@@ -33,7 +33,8 @@ class PlaySectionViewModel {
     }
 
     drop(event) {
-        this.selectedPlayerId = parseInt(event.dataTransfer.getData('playerId'));
+        const data = event.dataTransfer.getData('playerId');
+        this.selectedPlayerId = parseInt(data);
     }
 
     getBaseFormations() {
@@ -49,15 +50,20 @@ class PlaySectionViewModel {
         return formations;
     }
 
-    getClubNationalLeaguePositionMessage() {
-        const nationalLeague = this.game.getNationalLeague(this.game.club);
-        const position = this.game.getPositionInTheNationalLeague(this.game.club);
-        const message = `${this.translator.getChampionshipName(nationalLeague.championship)} - ${this.translator.get("Position")} #${position}`;
+    getInjuryMessage(player) {
+        const message = '{0} - {1} {2}'.format(this.translator.get('Injured player'), this.translator.get('Out until'), player.recoveryDate.toLocaleDateString());
         return message;
     }
 
-    getInjuryMessage(player) {
-        const message = '{0} - {1} {2}'.format(this.translator.get('Injured player'), this.translator.get('Out until'), player.recoveryDate.toLocaleDateString());
+    getLineup() {
+        const lineup = this.game.club.getLineup(this.currentMatch?.championshipEdition);
+        return lineup;
+    }
+
+    getNationalLeaguePositionMessage() {
+        const nationalLeague = this.game.getNationalLeagueByClub(this.game.club);
+        const position = this.game.getPositionInTheNationalLeagueByClub(this.game.club);
+        const message = `${this.translator.getChampionshipName(nationalLeague.championship)} - ${this.translator.get("Position")} #${position}`;
         return message;
     }
 

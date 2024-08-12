@@ -1,11 +1,15 @@
-[v-cloak] {
-    display: none;
-}
-
 @media (max-width: 576px) {
     table {
-        font-size: 14px;
+        font-size: small;
+
+        tr {
+            height: 2rem;
+        }
     }
+}
+
+[v-cloak] {
+    display: none;
 }
 
 body {
@@ -22,14 +26,85 @@ td {
 a:not(.nav-link) i,
 button i,
 label i {
-    margin-right: 4px;
+    margin-right: 0.25rem;
+}
+
+div {
+    .modal {
+        color: black;
+    }
+
+    .progress {
+        border-radius: 0;
+    }
+}
+
+div.lineup {
+    color: white;
+    background-color: rgb(66, 74, 86);
+
+    .field {
+        background: url('../res/grass\ -\ dark.png') repeat;
+        background-size: auto;
+        font-size: small;
+    }
+
+    .bench {
+        background-color: rgb(73, 81, 93);
+        font-size: small;
+    }
+
+    .field-localization,
+    .player {
+        border-radius: 20%;
+        border-width: 2px !important;
+        width: 20%;
+        max-width: 20%;
+    }
+
+    .field-localization,
+    .player:hover {
+        cursor: pointer;
+    }
+
+    .player {
+        img {
+            max-height: 3rem;
+        }
+
+        div.cards {
+            top: 0px;
+        }
+
+        div.overall {
+            left: 2.5%;
+            top: 0.75rem;
+            z-index: 1;
+        }
+
+        div.position {
+            left: 2.5%;
+            top: 1.75rem;
+            z-index: 1;
+        }
+
+        div.energy {
+            left: 2.5%;
+            height: 0.25rem;
+            width: 95%;
+        }
+
+        div.improvised {
+            color: yellow;
+        }
+    }
 }
 
 span.overall {
     display: inline-block;
     padding: 5px 7px;
     text-align: center;
-    border: 1px solid
+    border: 1px solid;
 }
 
 span.overall.gold {
@@ -50,53 +125,54 @@ span.overall.bronze {
     border-color: brown;
 }
 
-tbody.championship-two-legged-tie tr:nth-child(even) td {
-    border-bottom: solid 2px black;
+table.table {
+    tbody.championship-two-legged-tie tr:nth-child(even) td {
+        border-bottom: solid 2px black;
+    }
+
+    tr.selectable:hover {
+        border: solid 1px black;
+    }
+
+    td img.flag {
+        max-height: 1.5em;
+    }
+
+    td img.club-logo {
+        max-width: 1.75rem;
+    }
+
+    td.main-continental-cup {
+        color: blue;
+        font-weight: bold;
+    }
+
+    td.secondary-continental-cup {
+        color: orange;
+        font-weight: bold;
+    }
+
+    tr.selected-match td {
+        background-color: khaki;
+    }
+
+    td.promotion {
+        color: deepskyblue;
+        font-weight: bold;
+    }
+
+    td.relegation {
+        color: red;
+        font-weight: bold;
+    }
+
+    td.transfer-window {
+        background-color: lavender;
+    }
 }
 
-tr.selectable:hover {
-    border: solid 1px black;
-}
-
-td img.flag {
-    max-height: 1.5em;
-}
-
-td img.club-logo {
-    max-width: 1.75rem;
-}
-
-td.main-continental-cup {
-    color: blue;
-    font-weight: bold;
-}
-
-td.secondary-continental-cup {
-    color: orange;
-    font-weight: bold;
-}
-
-tr.selected-match td {
-    background-color: khaki;
-}
-
-td.promotion {
-    color: deepskyblue;
-    font-weight: bold;
-}
-
-td.relegation {
-    color: red;
-    font-weight: bold;
-}
-
-td.transfer-window {
-    background-color: lavender;
-}
-
-.bench {
-    background-color: rgb(73, 81, 93);
-    font-size: small;
+table.sortable th {
+    cursor: pointer
 }
 
 .bg-gray {
@@ -108,7 +184,7 @@ td.transfer-window {
 }
 
 .bg-matches,
-.table.bg-matches * {
+.bg-matches * {
     color: white;
     background-color: rgb(27, 70, 38);
 }
@@ -126,83 +202,4 @@ td.transfer-window {
 .color-inherit,
 .color-inherit:hover {
     color: inherit;
-}
-
-.field {
-    background: url('../res/grass\ -\ dark.png') repeat;
-    background-size: auto;
-    font-size: small;
-}
-
-.field-localization,
-.player {
-    border-radius: 20%;
-    border-width: 2px !important;
-    width: 20%;
-    max-width: 20%;
-}
-
-.field-localization,
-.player:hover {
-    cursor: pointer;
-}
-
-.lineup {
-    color: white;
-    background-color: rgb(66, 74, 86);
-}
-
-.max-size-3-rem {
-    max-width: 3rem;
-    max-height: 3rem;
-}
-
-.modal {
-    color: black;
-}
-
-.player img {
-    z-index: 1;
-}
-
-.player .cards {
-    top: 0px;
-}
-
-.player .overall {
-    left: 2.5%;
-    top: 0.75rem;
-    z-index: 2;
-}
-
-.player .position {
-    left: 2.5%;
-    top: 1.75rem;
-    z-index: 2;
-}
-
-.player .energy {
-    left: 2.5%;
-    height: 0.25rem;
-    width: 95%;
-    z-index: 1;
-}
-
-.player .improvised {
-    color: yellow;
-}
-
-.progress {
-    border-radius: 0;
-}
-
-.sortable th {
-    cursor: pointer
-}
-
-.red-card {
-    background-color: red;
-    display: inline-block;
-    width: 1em;
-    padding: 0;
 }

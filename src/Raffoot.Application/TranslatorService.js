@@ -1,34 +1,26 @@
 class TranslatorService {
     constructor() {
-        this.language = TranslatorService.getLanguage();
+        this.language = TranslatorService._getLanguage();
     }
 
-    static getAvailableLanguages() {
+    static _getAvailableLanguages() {
         return Object.getOwnPropertyNames(MultiLanguage);
     }
 
-    static getLanguage() {
-        const availableLanguages = TranslatorService.getAvailableLanguages();
+    static _getLanguage() {
+        const availableLanguages = TranslatorService._getAvailableLanguages();
         const browserLanguage = navigator.language || navigator.userLanguage;
-        const language = availableLanguages.find(l => browserLanguage.startsWith(l)) ?? "en";
+        const language = availableLanguages.find(l => browserLanguage.startsWith(l)) ?? 'en';
         return language;
     }
 
-    get translations() {
-        return MultiLanguage[this.language];
-    }
-
     get(text) {
-        if (this.language === "en") {
-            const firstLanguageAvailable = Object.keys(MultiLanguage)[0];
-            const translations = MultiLanguage[firstLanguageAvailable];
-            if (!translations.hasOwnProperty(text) && !translations.hasOwnProperty(text.withOnlyFirstLetterUpperCase())) {
-                console.error(`Text "${text}" not found`)
-            }
+        if (this.language === 'en') {
             return text;
         }
 
-        const translation = this.translations[text] ?? this.translations[text.withOnlyFirstLetterUpperCase()];
+        const translations = MultiLanguage[this.language];
+        const translation = translations[text] ?? translations[text.withOnlyFirstLetterUpperCase()];
         if (translation) {
             return translation;
         }
@@ -36,7 +28,7 @@ class TranslatorService {
             console.error(`Text "${text}" not found`)
             return text;
         }
-    }
+    } 
 
     getAbbreviation(text) {
         let abbreviation = '';

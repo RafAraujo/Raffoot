@@ -166,7 +166,7 @@
                             <form @submit.prevent class="d-flex" role="search">
                                 <input id="search" class="form-control me-2" type="search"
                                     :placeholder="translator.get('Search')" aria-label="Search">
-                                <button class="btn"
+                                <button type="button" class="btn"
                                     :class="colorsModal.theme === 'dark' ? 'btn-outline-light' : 'btn-outline-dark'"
                                     type="submit">
                                     {{ translator.get("Search") }}
@@ -218,7 +218,7 @@
                                 <p class="m-0">
                                     <i class="fa-solid fa-flag fa-fw me-2"></i>
                                     <span>
-                                        {{ playSection.getClubNationalLeaguePositionMessage() }}
+                                        {{ playSection.getNationalLeaguePositionMessage() }}
                                     </span>
                                 </p>
                                 <div class="row">
@@ -262,7 +262,7 @@
                             <div class="col">
                                 <div class="d-inline-block me-3">
                                     <img :src="currentOpponent.getLogoURL()" :alt="currentOpponent.name"
-                                        :title="currentOpponent.name" class="max-size-3-rem">
+                                        :title="currentOpponent.name" style="max-height: 3rem;">
                                 </div>
                                 <div class="d-inline-block align-middle">
                                     <p class="m-0 fw-bold">
@@ -278,7 +278,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <button class="btn btn-light border" @click.stop="advance()">
+                                <button type="button" class="btn btn-light border" @click.stop="advance()">
                                     <i class="fa-solid fa-right-long"></i>
                                     {{ translator.get("Advance") }}
                                 </button>
@@ -332,7 +332,8 @@
                                     <div class="row">
                                         <div class="col-lg-6 mb-2">
                                             <div class="field position-relative border" style="height: 475px">
-                                                <template v-for="item in lineup.filter(i => i.player.isOnField)">
+                                                <template
+                                                    v-for="item in playSection.getLineup().filter(i => i.player.isOnField)">
                                                     <div class="player position-absolute text-center"
                                                         @click.stop="playSection.changePlayers(item.player.id)"
                                                         :style="{ top: (11 - item.player.fieldLocalization.line) * 7.7 + '%', left: (item.player.fieldLocalization.column) * 20 + '%' }"
@@ -353,12 +354,11 @@
                                                             translator.get(item.player.fieldLocalization.position.abbreviation)
                                                             }}
                                                         </div>
-                                                        <img class="position-relative max-size-3-rem"
+                                                        <img class="position-relative"
                                                             :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
                                                             :src="item.player.getPhotoURL()" :alt="item.player.name"
                                                             :title="item.player.name"
-                                                            @error="$event.target.src = 'res/players/0.svg';"
-                                                            draggable="true"
+                                                            @error="loadDefaultPlayerPhoto($event)" draggable="true"
                                                             @dragstart="playSection.dragStart($event, item.player.id)"
                                                             @dragover.prevent
                                                             @drop="playSection.drop($event); playSection.changePlayers(item.player.id)">
@@ -395,11 +395,10 @@
                                                     <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
                                                         @click.stop="playSection.movePlayerToField(fieldLocalization.id)"
                                                         :style="{ top: (11 - fieldLocalization.line) * 7.7 + '%', left: (fieldLocalization.column) * 20 + '%' }">
-                                                        <img class="max-size-3-rem"
-                                                            :src="game.club.getKitsURLs()[0].url"
+                                                        <img :src="game.club.getKitsURLs()[0].url"
                                                             :alt="translator.get(fieldLocalization.position.name)"
                                                             :title="translator.get(fieldLocalization.position.name)"
-                                                            @error="$event.target.src = 'res/players/0.svg';"
+                                                            @error="loadDefaultPlayerPhoto($event)"
                                                             @dragstart="$event.dataTransfer.effectAllowed = 'none'"
                                                             @dragover.prevent
                                                             @drop="playSection.drop($event); playSection.movePlayerToField(fieldLocalization.id)">
@@ -419,7 +418,7 @@
                                                 @drop="playSection.drop($event); playSection.movePlayerToBench()"
                                                 @dragover.prevent>
                                                 <template
-                                                    v-for="item in lineup.filter(i => i.player.isOnBench).orderBy('player.order', 'player.position.id', '-player.overall')">
+                                                    v-for="item in playSection.getLineup().filter(i => i.player.isOnBench).orderBy('player.order', 'player.position.id', '-player.overall')">
                                                     <div class="player d-inline-block position-relative text-center"
                                                         @click.stop="playSection.changePlayers(item.player.id)"
                                                         :class="{ 'border blink' : item.player.id === playSection.selectedPlayerId }">
@@ -449,12 +448,10 @@
                                                                 :title="translator.get('Suspended')">
                                                             </i>
                                                         </div>
-                                                        <img class="max-size-3-rem"
-                                                            :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
+                                                        <img :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
                                                             :src="item.player.getPhotoURL()" :alt="item.player.name"
                                                             :title="item.player.name"
-                                                            @error="$event.target.src = 'res/players/0.svg';"
-                                                            draggable="true"
+                                                            @error="loadDefaultPlayerPhoto($event)" draggable="true"
                                                             @dragstart="playSection.dragStart($event, item.player.id)"
                                                             @drop="playSection.drop($event); playSection.changePlayers(item.player.id)"
                                                             @dragover.prevent>
@@ -645,7 +642,7 @@
                                     name="championship-type" autocomplete="off" checked>
                                 <label for="championship-national" class="btn border me-2"
                                     :class="`btn-${colorsModal.theme}`"
-                                    @click="standingSection.selectNationalChampionships(currentMatch)">
+                                    @click="standingSection.selectNationalChampionship(currentMatch)">
                                     <i class="fa-solid fa-flag"></i>
                                     {{ translator.get("National") }}
                                 </label>
@@ -1184,7 +1181,8 @@
                                                 </th>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="player in playersSection.showingPlayers" class="selectable">
+                                                <tr v-for="player in playersSection.showingPlayers" class="selectable"
+                                                    @click="playerModal.show(player)">
                                                     <td class="text-center fw-bold"
                                                         :class="`text-${config.colors[player.position.fieldRegion.color].class}`"
                                                         :title="translator.get(player.position.name)">
@@ -1269,7 +1267,7 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <button class="btn btn-outline-dark" @click="colorsModal.resetColors()">
+                                    <button type="button" class="btn btn-outline-dark" @click="colorsModal.resetColors()">
                                         <i class="fa-solid fa-rotate-left"></i>
                                         {{ translator.get("Reset") }}
                                     </button>
@@ -1292,31 +1290,27 @@
 
             <div id="modal-player" class="modal fade" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content" v-if="playerModal.player">
                         <div class="modal-header">
-                            <h1 id="modal-title" class="modal-title fs-5">{{ translator.get("Player")}}</h1>
+                            <h1 id="modal-title" class="modal-title fs-5">{{ playerModal.player.name }}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 :aria-label="translator.get('Close')"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row mb-3">
                                 <div class="col-6">
-                                    <img class="max-size-3-rem" :src="selectedPlayer?.getPhotoURL()"
-                                        :alt="selectedPlayer?.name" :title="selectedPlayer?.name"
-                                        @error="$event.target.src = 'res/players/0.svg';">
+                                    <img :src="playerModal.player.getPhotoURL()" :alt="playerModal.player.name"
+                                        :title="playerModal.player.name" @error="loadDefaultPlayerPhoto($event)">
                                 </div>
                                 <div class="col-6">
+
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                <i class="fa-solid fa-xmark"></i>
-                                {{ translator.get("Cancel") }}
-                            </button>
-                            <button type="button" class="btn btn-primary"
-                                @click="game.club.colors.backgroundCustom = colors.background; game.club.colors.foregroundCustom = colors.foreground; setColors()">
-                                <i class="fa-solid fa-floppy-disk"></i>
+                            <button type="button" class="btn btn-dark">
+                                <i class="fa-solid fa-cart
+                                -shopping"></i>
                                 {{ translator.get("Buy") }}
                             </button>
                         </div>
@@ -1388,7 +1382,7 @@
     <script src="../Raffoot.Application/ViewModels/PlayerOrderViewModel.js"></script>
 
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="js/vue/vue.global.prod.js"></script>
+    <script src="js/vue/vue.global.js"></script>
 </body>
 
 </html>
@@ -1411,6 +1405,8 @@
                 translator: translator,
 
                 colorsModal: null,
+                playerModal: null,
+
                 playSection: null,
                 squadSection: null,
                 standingSection: null,
@@ -1457,11 +1453,17 @@
                     document.documentElement.requestFullscreen();
                 }
             },
+            loadDefaultPlayerPhoto(event) {
+                event.target.src = 'res/players/0.svg';
+            },
             loadGame: async function () {
                 const urlParams = new URLSearchParams(location.search);
                 const gameId = parseInt(urlParams.get('id'));
                 this.game = await gameService.loadAsync(gameId);
+
                 this.colorsModal = new ColorsModalViewModel(this.game, translator);
+                this.playerModal = new PlayerModalViewModel(this.game, translator, 'modal-player');
+
                 this.playSection = new PlaySectionViewModel(this.game, translator);
                 this.squadSection = new SquadSectionViewModel(this.game, translator);
                 this.calendarSection = new CalendarViewModel(this.game, translator);
@@ -1486,20 +1488,17 @@
                 return this.game?.club.id;
             },
             currentMatch() {
-                return this.game.getClubCurrentMatch();
+                return this.game.getCurrentMatch();
             },
             currentOpponent() {
                 return this.currentMatch.getOpponent(this.game.club);
-            },
-            lineup() {
-                return this.game.club.getLineup(this.currentMatch?.championshipEdition);
             },
         },
         async created() {
             //try {
             this.message = { text: this.translator.get('Processing...'), type: 'primary' };
             await this.loadGame();
-            this.standingSection.selectNationalChampionships();
+            this.standingSection.selectNationalChampionship();
             this.message = '';
 
             this.gameLoaded = true;

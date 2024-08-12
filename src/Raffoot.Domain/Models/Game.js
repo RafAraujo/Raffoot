@@ -89,7 +89,8 @@ class Game {
     }
 
     _qualifyWinnersToNextEliminationPhases() {
-        const championshipEditionEliminationPhases = this.championshipEditionEliminationPhases.filter(ceep => ceep.lastDate === this.currentSeason.currentDate);
+        const championshipEditionEliminationPhases = this.championshipEditionEliminationPhases
+            .filter(ceep => ceep.lastDate === this.currentSeason.currentDate);
 
         for (const eliminationPhase of championshipEditionEliminationPhases) {
             const championshipEdition = eliminationPhase.championshipEdition;
@@ -104,23 +105,23 @@ class Game {
         }
     }
 
-    getClubCurrentMatch() {
+    getCurrentMatch() {
         return this.currentSeason.currentSeasonDate.matches.find(m => m.clubs.map(c => c.id).includes(this._clubId));
     }
 
-    getNationalLeague(club) {
+    getNationalLeagueByClub(club) {
         const nationalLeagues = this.currentSeason.getNationalLeaguesByCountry(club.country);
         return nationalLeagues.find(ce => ce.clubs.map(c => c.id).includes(club.id));
     }
 
-    getPositionInTheNationalLeague(club) {
-        const nationalLeague = this.getNationalLeague(club);
+    getPositionInTheNationalLeagueByClub(club) {
+        const nationalLeague = this.getNationalLeagueByClub(club);
         const table = nationalLeague.getTable();
         const position = table.map(cec => cec.club.id).indexOf(club.id) + 1;
         return position;
     }
 
-    getPlayableCountries(continentId) {
+    getPlayableCountriesByContinent(continentId) {
         const countryIds = Context.game.countries.filter(c => c.continent?.id === continentId).map(c => c.id);
 
         const countries =

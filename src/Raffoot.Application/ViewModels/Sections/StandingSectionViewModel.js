@@ -64,13 +64,14 @@ class StandingSectionViewModel {
         return championshipEditions;
     }
 
-    selectNationalChampionships(currentMatch) {
+    selectNationalChampionship(currentMatch) {
         this.isNationalChampionshipsSelected = true;
-        const nationalLeague = this.game.getNationalLeague(this.game.club);
-        this.selectedChampionshipEditionId = currentMatch?.championshipEdition.id ?? nationalLeague.id;
+        const nationalLeague = this.game.getNationalLeagueByClub(this.game.club);
+        const currentChampionshipEdition = currentMatch?.championshipEdition;
+        this.selectedChampionshipEditionId = currentChampionshipEdition?.id ?? nationalLeague.id;
     }
 
-    selectInternationalChampionships() {
+    selectInternationalChampionship() {
         this.isNationalChampionshipsSelected = false;
         this.selectedChampionshipEditionId = null;
     }
