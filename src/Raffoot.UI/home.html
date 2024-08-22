@@ -73,7 +73,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection === 'finances' }"
                                         href="#finances" @click="changeSection($event)">
-                                        <i class="fa-solid fa-dollar-sign fa-fw"></i>
+                                        <i class="fa-solid fa-sack-dollar fa-fw"></i>
                                         {{ translator.get("Finances") }}
                                     </a>
                                 </li>
@@ -198,12 +198,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row small">
                             <div class="col">
                                 <div class="m-0 text-end">
-                                    {{
-                                    game.currentSeason.currentDate.toLocaleDateString()
-                                    }}
+                                    <i class="fa-solid fa-clock fa-fw me-1"></i>
+                                    <span>{{ game.currentSeason.currentDate.toLocaleDateString() }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row small">
+                            <div class="col">
+                                <div class="m-0 text-end" :title="game.club.money.formatCurrency()">
+                                    <i class="fa-solid fa-dollar-sign fa-fw me-1"></i>
+                                    <span>{{ game.club.money.formatAbbreviated() }}</span>
                                 </div>
                             </div>
                         </div>
@@ -212,8 +219,13 @@
                         <div class="row small">
                             <div class="col">
                                 <p class="m-0">
-                                    <i class="fa-solid fa-sack-dollar fa-fw me-2"></i>
-                                    <span>{{ game.club.money.formatCurrency() }}</span>
+                                    <a href="#" class="text-light text-decoration-none"
+                                        :title="translator.get('Messages')">
+                                        <i class="fa-solid fa-envelope fa-fw me-2"></i>
+                                        <span>
+                                            {{ 0 }}
+                                        </span>
+                                    </a>
                                 </p>
                                 <p class="m-0">
                                     <i class="fa-solid fa-flag fa-fw me-2"></i>
@@ -491,7 +503,7 @@
                                         <thead class="table-light">
                                             <th class="text-center" :title="translator.get('Position')"
                                                 @click="squadSection.playerOrder.updateOrder('position.id')">
-                                                {{ translator.get("Position").substring(0, 3).toUpperCase() }}
+                                                {{ translator.get("POS") }}
                                             </th>
                                             <th class="p-0"
                                                 @click="squadSection.playerOrder.updateOrder('country.name')">
@@ -501,7 +513,7 @@
                                                 {{ translator.get("Name") }}
                                             </th>
                                             <th class="text-center" :title="translator.get('Overall')"
-                                                @click="squadSection.playerOrder.updateOrder('overall')">
+                                                @click="squadSection.playerOrder.updateOrder('baseOverall')">
                                                 {{ translator.get("OV") }}
                                             </th>
                                             <th class="text-center"
@@ -536,12 +548,12 @@
                                                     <span>{{ player.name }}</span>
                                                     <template v-if="player.isInjured">
                                                         <i class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
-                                                            :title="getInjuryMessage(player)"></i>
+                                                            :title="playSection.getInjuryMessage(player)"></i>
                                                     </template>
                                                 </td>
                                                 <td class="text-center pt-0 pb-0">
                                                     <span class="overall" :class="player.category">
-                                                        {{ player.overall }}
+                                                        {{ player.baseOverall }}
                                                     </span>
                                                 </td>
                                                 <td class="text-center"
@@ -560,10 +572,10 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-end" :title="player.marketValue.formatCurrency()">
-                                                    {{ player.marketValue.formatNumberInWords() }}
+                                                    {{ player.marketValue.formatAbbreviated() }}
                                                 </td>
                                                 <td class="text-end" :title="player.wage.formatCurrency()">
-                                                    {{ player.wage.formatNumberInWords() }}
+                                                    {{ player.wage.formatAbbreviated() }}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -951,7 +963,7 @@
                                             <thead class="table-light">
                                                 <th class="text-center" :title="translator.get('Position')"
                                                     @click="clubSection.playerOrder.updateOrder('position.id')">
-                                                    {{ translator.get("Position").substring(0, 3).toUpperCase() }}
+                                                    {{ translator.get("POS") }}
                                                 </th>
                                                 <th class="p-0"
                                                     @click="clubSection.playerOrder.updateOrder('country.name')">
@@ -961,7 +973,7 @@
                                                     {{ translator.get("Name") }}
                                                 </th>
                                                 <th class="text-center" :title="translator.get('Overall')"
-                                                    @click="clubSection.playerOrder.updateOrder('overall')">
+                                                    @click="clubSection.playerOrder.updateOrder('baseOverall')">
                                                     {{ translator.get("OV") }}
                                                 </th>
                                                 <th class="text-center"
@@ -997,12 +1009,12 @@
                                                         <span>{{ player.name }}</span>
                                                         <template v-if="player.isInjured">
                                                             <i class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
-                                                                :title="getInjuryMessage(player)"></i>
+                                                                :title="playSection.getInjuryMessage(player)"></i>
                                                         </template>
                                                     </td>
                                                     <td class="text-center pt-0 pb-0">
                                                         <span class="overall" :class="player.category">
-                                                            {{ player.overall }}
+                                                            {{ player.baseOverall }}
                                                         </span>
                                                     </td>
                                                     <td class="text-center"
@@ -1022,10 +1034,10 @@
                                                         </div>
                                                     </td>
                                                     <td class="text-end" :title="player.marketValue.formatCurrency()">
-                                                        {{ player.marketValue.formatNumberInWords() }}
+                                                        {{ player.marketValue.formatAbbreviated() }}
                                                     </td>
                                                     <td class="text-end" :title="player.wage.formatCurrency()">
-                                                        {{ player.wage.formatNumberInWords() }}
+                                                        {{ player.wage.formatAbbreviated() }}
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -1060,8 +1072,8 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-6">
-                                    <label for="field-region" class="form-label">{{ translator.get("Sector")
-                                        }}</label>
+                                    <label for="field-region" class="form-label">
+                                        {{ translator.get("Sector") }}</label>
                                     <select id="field-region" class="form-select"
                                         v-model.lazy="playersSection.playerFilter.fieldRegionId">
                                         <option></option>
@@ -1090,50 +1102,70 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-3">
-                                    <label for="minimumAge" class="form-label">
+                                    <label for="minimum-age" class="form-label">
                                         {{ `${translator.get("Age")} (${translator.get("Minimum")})` }}
                                     </label>
-                                    <input id="minimumAge" type="number" class="form-control"
+                                    <input id="minimum-age" type="number" class="form-control"
                                         :min="config.player.minAge" :max="config.player.maxAge"
                                         v-model.lazy="playersSection.playerFilter.age.minimum">
                                 </div>
                                 <div class="col-3">
-                                    <label for="maximumAge" class="form-label">
+                                    <label for="maximum-age" class="form-label">
                                         {{ `${translator.get("Age")} (${translator.get("Maximum")})` }}
                                     </label>
-                                    <input id="maximumAge" type="number" class="form-control"
+                                    <input id="maximum-age" type="number" class="form-control"
                                         :min="config.player.minAge" :max="config.player.maxAge"
                                         v-model.lazy="playersSection.playerFilter.age.maximum">
                                 </div>
                                 <div class="col-3">
-                                    <label for="minimumOverall" class="form-label">
+                                    <label for="minimu-overall" class="form-label">
                                         {{ `${translator.get("Overall")} (${translator.get("Minimum")})` }}
                                     </label>
-                                    <input id="minimumOverall" type="number" class="form-control"
+                                    <input id="minimu-overall" type="number" class="form-control"
                                         :min="config.player.minOverall" :max="config.player.maxOverall"
                                         v-model.lazy="playersSection.playerFilter.overall.minimum">
                                 </div>
                                 <div class="col-3">
-                                    <label for="maximumOverall" class="form-label">
+                                    <label for="maximum-overall" class="form-label">
                                         {{ `${translator.get("Overall")} (${translator.get("Maximum")})` }}
                                     </label>
-                                    <input id="maximumOverall" type="number" class="form-control"
+                                    <input id="maximum-overall" type="number" class="form-control"
                                         :min="config.player.minOverall" :max="config.player.maxOverall"
                                         v-model.lazy="playersSection.playerFilter.overall.maximum">
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label for="market-value" class="form-label">
+                                        {{ `${translator.get("Market Value")} (${translator.get("Maximum")})` }}
+                                    </label>
+                                    <input type="range" min="1" max="300" value="300" class="form-range"
+                                        v-model.lazy="playersSection.playerFilter.marketValue.maximum"
+                                        oninput="this.nextElementSibling.value = this.value">
+                                    <output :value="playersSection.playerFilter.marketValue.maximum"></output>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-switch">
+                                        <input type="checkbox" class="form-check-input"
+                                            v-model.lazy="playersSection.playerFilter.forSale">
+                                        <label for="for-sale" class="form-check-label">
+                                            {{ translator.get("For Sale") }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </fieldset>
                         <div class="row mb-3">
-                            <div class="col-6 col-md-3 d-grid">
+                            <div class="d-grid col-6 col-md-3">
                                 <button type="button" class="btn btn-secondary border"
-                                    @click="playersSection.resetFilter()">
+                                    @click="playersSection.resetFilter(); playerModal.unselectPlayer()">
                                     <i class="fa-solid fa-rotate-left"></i>
                                     {{ translator.get("Reset") }}
                                 </button>
                             </div>
-                            <div class="col-6 col-md-3 d-grid">
+                            <div class="d-grid col-6 col-md-3">
                                 <button type="button" class="btn btn-primary border"
-                                    @click.stop="playersSection.searchPlayers()">
+                                    @click.stop="playersSection.searchPlayers(); playerModal.unselectPlayer()">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                     {{ translator.get("Search") }}
                                 </button>
@@ -1145,22 +1177,22 @@
                                     <div class="table-responsive">
                                         <table class="table table-hover table-borderless sortable">
                                             <caption class="color-inherit">
-                                                {{ playersSection.showingPlayersMessage }}
+                                                {{ playersSection.getShowingPlayersMessage() }}
                                             </caption>
                                             <thead class="table-light">
                                                 <th class="text-center" :title="translator.get('Position')"
                                                     @click="playersSection.playerOrder.updateOrder('position.id')">
-                                                    {{ translator.get("Position").substring(0, 3).toUpperCase() }}
+                                                    {{ translator.get("POS") }}
                                                 </th>
                                                 <th class="p-0"
                                                     @click="playersSection.playerOrder.updateOrder('country.name')">
                                                 </th>
                                                 <th class="text-center"
-                                                    @click="playersSection.playerOrder.updateOrder('surname')">
+                                                    @click="playersSection.playerOrder.updateOrder('name')">
                                                     {{ translator.get("Name") }}
                                                 </th>
                                                 <th class="text-center" :title="translator.get('Overall')"
-                                                    @click="playersSection.playerOrder.updateOrder('overall')">
+                                                    @click="playersSection.playerOrder.updateOrder('baseOverall')">
                                                     {{ translator.get("OV") }}
                                                 </th>
                                                 <th class="text-center"
@@ -1179,10 +1211,15 @@
                                                     @click="playersSection.playerOrder.updateOrder('club.name')">
                                                     {{ translator.get("Club") }}
                                                 </th>
+                                                <th class="text-center" :title="translator.get('For Sale')"
+                                                    @click="playersSection.playerOrder.updateOrder('club.name')">
+                                                    {{ translator.getAbbreviation("For Sale") }}
+                                                </th>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="player in playersSection.showingPlayers" class="selectable"
-                                                    @click="playerModal.show(player)">
+                                                <tr v-for="player in playersSection.showingPlayers"
+                                                    :class="{ 'selected': playerModal.player === player }"
+                                                    @click.stop="playerModal.selectPlayer($event, player)">
                                                     <td class="text-center fw-bold"
                                                         :class="`text-${config.colors[player.position.fieldRegion.color].class}`"
                                                         :title="translator.get(player.position.name)">
@@ -1194,15 +1231,15 @@
                                                             :title="translator.get(player.country.name)">
                                                     </td>
                                                     <td>
-                                                        <span>{{ player.surname }}</span>
+                                                        <span>{{ player.name }}</span>
                                                         <template v-if="player.isInjured">
                                                             <i class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
-                                                                :title="getInjuryMessage(player)"></i>
+                                                                :title="playSection.getInjuryMessage(player)"></i>
                                                         </template>
                                                     </td>
                                                     <td class="text-center pt-0 pb-0 p-0">
                                                         <span class="overall" :class="player.category">
-                                                            {{ player.overall }}
+                                                            {{ player.baseOverall }}
                                                         </span>
                                                     </td>
                                                     <td class="text-center"
@@ -1210,12 +1247,16 @@
                                                         {{ player.age }}
                                                     </td>
                                                     <td class="text-end" :title="player.marketValue.formatCurrency()">
-                                                        {{ player.marketValue.formatNumberInWords() }}
+                                                        {{ player.marketValue.formatAbbreviated() }}
                                                     </td>
                                                     <td class="text-end" :title="player.wage.formatCurrency()">
-                                                        {{ player.wage.formatNumberInWords() }}
+                                                        {{ player.wage.formatAbbreviated() }}
                                                     </td>
                                                     <td>{{ player.club.name }}</td>
+                                                    <td class="text-center">
+                                                        <i class="fa-solid fa-circle-check text-success"
+                                                            :class="{ 'd-none' : !player.forSale }"></i>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -1230,6 +1271,23 @@
                                         <i class="fa-solid fa-plus"></i>
                                         {{ translator.get("Load more") }}
                                     </button>
+                                </div>
+                            </div>
+                            <div :class="{ 'd-none' : !playerModal.player }">
+                                <div class="row" style="margin-top: 65px;"></div>
+                                <div class="row fixed-bottom p-2 bg-dark border-top">
+                                    <div class="d-grid col-6 col-md-2 offset-md-4">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                            data-bs-target="#modal-player">
+                                            {{ `${translator.get("Make an offer")}` }}
+                                        </button>
+                                    </div>
+                                    <div class="d-grid col-6 col-md-2">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                            data-bs-target="#modal-player">
+                                            {{ `${translator.get("Buy")}` }}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </template>
@@ -1267,7 +1325,8 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <button type="button" class="btn btn-outline-dark" @click="colorsModal.resetColors()">
+                                    <button type="button" class="btn btn-outline-dark"
+                                        @click="colorsModal.resetColors()">
                                         <i class="fa-solid fa-rotate-left"></i>
                                         {{ translator.get("Reset") }}
                                     </button>
@@ -1288,30 +1347,77 @@
                 </div>
             </div>
 
-            <div id="modal-player" class="modal fade" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+            <div id="modal-player" class="modal fade" tabindex="-2" aria-labelledby="modal-title" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" v-if="playerModal.player">
                         <div class="modal-header">
-                            <h1 id="modal-title" class="modal-title fs-5">{{ playerModal.player.name }}</h1>
+                            <h1 id="modal-title" class="modal-title fs-5">{{ translator.get("Make an offer")}}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 :aria-label="translator.get('Close')"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row mb-3">
-                                <div class="col-6">
-                                    <img :src="playerModal.player.getPhotoURL()" :alt="playerModal.player.name"
-                                        :title="playerModal.player.name" @error="loadDefaultPlayerPhoto($event)">
+                                <div class="col-5">
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <img class="img-fluid border" :src="playerModal.player.getPhotoURL()"
+                                                :alt="playerModal.player.name" :title="playerModal.player.name"
+                                                @error="loadDefaultPlayerPhoto($event)">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-6 d-flex align-items-center">
+                                            <img class="img-fluid border" :src="playerModal.player.country.getFlagURL()"
+                                                :title="translator.get(playerModal.player.country.name)">
+                                        </div>
+                                        <div class="col-6">
+                                            <img class="img-fluid" :src="playerModal.player.club.getLogoURL()"
+                                                :title="playerModal.player.club.name">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-6">
-
+                                <div class="col-7">
+                                    <div>
+                                        <span class="fs-5">{{ playerModal.player.name }}</span>
+                                    </div>
+                                    <div>
+                                        <span>{{ translator.get("Position") }}: </span>
+                                        <span>{{ translator.get(playerModal.player.position.name) }}</span>
+                                    </div>
+                                    <div>
+                                        <span>{{ translator.get("Overall") }}: </span>
+                                        <span>{{ playerModal.player.baseOverall }}</span>
+                                    </div>
+                                    <div>
+                                        <span>{{ translator.get("Age") }}: </span>
+                                        <span>{{ playerModal.player.age }}</span>
+                                    </div>
+                                    <div class="mt-3">
+                                        <span>{{ translator.get("Market Value") }}: </span>
+                                        <span>$ {{ playerModal.player.marketValue.formatAbbreviated() }}</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <span>{{ translator.get("Wage") }}: </span>
+                                        <span>$ {{ playerModal.player.wage.formatAbbreviated() }}</span>
+                                    </div>
+                                    <div>
+                                        <label for="offer" class="form-label">{{
+                                            translator.get(`Offer (in thousands of $)`) }}:</label>
+                                        <input id="offer" type="number" min="0" step="1" class="form-control"
+                                            v-model="playerModal.offerInput" required autofocus>
+                                        <span class="small" :class="{ 'text-danger' : !playerModal.offerIsValid }">{{ playerModal.offerDescription }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-dark">
-                                <i class="fa-solid fa-cart
-                                -shopping"></i>
-                                {{ translator.get("Buy") }}
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="fa-solid fa-xmark"></i>
+                                {{ translator.get("Cancel") }}
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa-solid fa-share"></i>
+                                {{ translator.get("Send") }}
                             </button>
                         </div>
                     </div>
@@ -1462,7 +1568,7 @@
                 this.game = await gameService.loadAsync(gameId);
 
                 this.colorsModal = new ColorsModalViewModel(this.game, translator);
-                this.playerModal = new PlayerModalViewModel(this.game, translator, 'modal-player');
+                this.playerModal = new PlayerModalViewModel(this.game, translator);
 
                 this.playSection = new PlaySectionViewModel(this.game, translator);
                 this.squadSection = new SquadSectionViewModel(this.game, translator);

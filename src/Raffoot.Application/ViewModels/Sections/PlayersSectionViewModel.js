@@ -13,7 +13,7 @@ class PlayersSectionViewModel {
         const players = this.filteredPlayers
             .take(this.pageSize)
             .orderBy(this.playerOrder.orderColumn, '-overall', 'name');
-        
+
         return players;
     }
 
@@ -36,7 +36,8 @@ class PlayersSectionViewModel {
         const playerFilter = this.playerFilter;
 
         if (playerFilter.name) {
-            players = this.game.players.filter(p => p.name.includes(playerFilter.name));
+            const name = playerFilter.name.trim().toLowerCase().removeAccents();
+            players = this.game.players.filter(p => p.name.toLowerCase().removeAccents().includes(name));
         }
 
         players = players.filter(p => p.age >= playerFilter.age.minimum && p.age <= this.playerFilter.age.maximum);
@@ -53,6 +54,9 @@ class PlayersSectionViewModel {
         if (playerFilter.positionId) {
             players = players.filter(p => p.position.id === playerFilter.positionId);
         }
+
+        players = players.filter(p => p.marketValue <= playerFilter.marketValue.maximum * 1000 * 1000);
+        players = players.filter(p => p.forSale === playerFilter.forSale);
 
         players = players.orderBy('-overall', 'name');
         this.filteredPlayers = players;

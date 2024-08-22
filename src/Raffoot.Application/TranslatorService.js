@@ -61,4 +61,14 @@ class TranslatorService {
         const translation = this.get(championshipNameWithoutDivision);
         return championship.championshipType.format === 'league' && includeDivision ? `${translation} ${championship.division}` : `${translation}`;
     }
+
+    getNumberInWords(text) {
+        const numericClasses = ["billion", "million", "thousand"];
+
+        for (const numericClass of numericClasses) {
+            text = text.replace(numericClass, this.get(numericClass));
+        }
+
+        return text.toLowerCase();
+    }
 }

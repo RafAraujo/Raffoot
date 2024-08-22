@@ -1,10 +1,11 @@
 @media (max-width: 576px) {
     table {
         font-size: small;
+    }
 
-        tr {
-            height: 2rem;
-        }
+    tr {
+        height: 3.5rem;
+        min-height: 3.5rem;
     }
 }
 
@@ -130,7 +131,7 @@ table.table {
         border-bottom: solid 2px black;
     }
 
-    tr.selectable:hover {
+    tr.selected {
         border: solid 1px black;
     }
 
@@ -191,6 +192,8 @@ table.sortable th {
 
 .blink {
     animation: blinker 1s linear infinite;
+    z-index: 1;
+    background-color: rgb(66, 74, 86);
 }
 
 @keyframes blinker {

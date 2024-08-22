@@ -8,6 +8,7 @@ class Player {
         this._clubId = clubId;
         this.energy = energy;
         this.externalId = externalId;
+        this.forSale = false;
     }
 
     static create(name, countryId, positionId, age, baseOverall, club, externalId) {
@@ -45,12 +46,12 @@ class Player {
         return Math.round(wage);
     }
 
-    static _calculateMarketValue(overall, age) {
-        const exponent = 3.1 + 0.01 * overall;
+    static _calculateMarketValue(overall, age, fieldRegion) {
+        const fieldRegionFactor = fieldRegion.id * 0.00025;
+        const exponent = 3.1 + overall * (0.01 + fieldRegionFactor);
         const reference = Math.pow(overall, exponent);
-        const factor = reference * 0.1;
-        const multiplier = 32 - age;
-        const value = reference + (factor * multiplier);
+        const ageFactor = (32 - age) * reference * 0.08;
+        const value = reference + ageFactor;
         return Math.round(value);
     }
 
@@ -104,7 +105,7 @@ class Player {
     }
 
     get marketValue() {
-        return Player._calculateMarketValue(this.baseOverall, this.age);
+        return Player._calculateMarketValue(this.baseOverall, this.age, this.position.fieldRegion);
     }
 
     get overall() {

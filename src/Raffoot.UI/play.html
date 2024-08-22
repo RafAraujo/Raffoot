@@ -91,17 +91,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="margin-top: 65px;">
-                            <div class="col">
-                            </div>
-                        </div>
-                        <div class="fixed-bottom p-2 bg-dark border-top">
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button class="btn btn-light" @click.stop="advanceDate()">
-                                        {{ `${translator.get("Continue")} >>` }}
-                                    </button>
-                                </div>
+                        <div class="row" style="margin-top: 65px;"></div>
+                        <div class="row fixed-bottom p-2 bg-dark border-top">
+                            <div class="col text-center">
+                                <button class="btn btn-light" @click.stop="advanceDate()">
+                                    {{ `${translator.get("Continue")} >>` }}
+                                </button>
                             </div>
                         </div>
                     </section>
@@ -232,7 +227,8 @@
                                                     v-for="match in game.currentSeason.getCurrentMatchesByChampionshipEdition(championshipEdition)">
                                                     <td class="text-end p-0"
                                                         :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
-                                                        <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
+                                                        <img class="club-logo ms-1 me-1"
+                                                            :src="match.clubHome.getLogoURL()"
                                                             :alt="match.clubHome.name" :title="match.clubHome.name">
                                                     </td>
                                                     <td class="text-start p-0 text-break"
@@ -250,7 +246,8 @@
                                                     </td>
                                                     <td class="text-end p-0 text-break"
                                                         :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
-                                                        <img class="club-logo ms-1 me-1" :src="match.clubAway.getLogoURL()"
+                                                        <img class="club-logo ms-1 me-1"
+                                                            :src="match.clubAway.getLogoURL()"
                                                             :alt="match.clubAway.name" :title="match.clubAway.name">
                                                     </td>
                                                     <td class="text-start p-0" style="width: 34%;"

@@ -90,7 +90,7 @@ class GameFactory {
 	static _arrangeSquads() {
 		for (const club of Context.game.clubs) {
 			club.arrangePlayers();
-			club.receive(club.playerWages * 9);
+			club.receive(club.playerWages * 18);
 		}
 	}
 }
