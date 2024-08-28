@@ -1404,8 +1404,9 @@
                                         <label for="offer" class="form-label">{{
                                             translator.get(`Offer (in thousands of $)`) }}:</label>
                                         <input id="offer" type="number" min="0" step="1" class="form-control"
-                                            v-model="playerModal.offerInput" required autofocus>
-                                        <span class="small" :class="{ 'text-danger' : !playerModal.offerIsValid }">{{ playerModal.offerDescription }}</span>
+                                            @keyup="playerModal.updateOffer($event.target.value)" required autofocus>
+                                        <span class="small" :class="{ 'text-danger' : !playerModal.offerIsValid }">{{
+                                            playerModal.offerDescription }}</span>
                                     </div>
                                 </div>
                             </div>

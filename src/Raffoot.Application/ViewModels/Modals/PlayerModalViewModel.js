@@ -3,11 +3,7 @@ class PlayerModalViewModel {
         this.game = game;
         this.translator = translator;
         this.player = null;
-        this.offerInput = null;
-    }
-
-    get offer() {
-        return Number(this.offerInput) * 1000;
+        this.offer = null;
     }
 
     get offerDescription() {
@@ -48,6 +44,10 @@ class PlayerModalViewModel {
     unselectPlayer() {
         this.player = null;
         this.offerInput = null;
+    }
+
+    updateOffer(value) {
+        this.offer = value * 1000;
     }
 
     _scroll(event) {
