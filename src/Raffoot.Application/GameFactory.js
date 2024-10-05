@@ -5,13 +5,14 @@ class GameFactory {
 		}
 
 		Context.game = new Game(name, year);
+		const service = new FifaService(year);
 
 		let t0 = performance.now();
 		Continent.seed();
 		console.log(`Continent.seed() took ${(performance.now() - t0)} milliseconds.`);
 
 		t0 = performance.now();
-		SoFifaService.seedCountries();
+		service.seedCountries();
 		console.log(`SoFifaService.seedCountries() took ${(performance.now() - t0)} milliseconds.`);
 
 		t0 = performance.now();
@@ -35,7 +36,7 @@ class GameFactory {
 		console.log(`Formation.seed() took ${(performance.now() - t0)} milliseconds.`);
 
 		t0 = performance.now();
-		SoFifaService.seedClubs();
+		service.seedClubs();
 		console.log(`SoFifaService.seedClubs() took ${(performance.now() - t0)} milliseconds.`);
 
 		t0 = performance.now();
@@ -63,8 +64,9 @@ class GameFactory {
 
 	static _definePromotionAndRelegation() {
 		const allNationalLeagues = Context.game.championships.filter(c => c.isNationalLeague);
+		const confederations = Context.game.confederations.filter(c => c.playable);
 
-		for (const confederation of Context.game.confederations) {
+		for (const confederation of confederations) {
 			const nationalLeagues = allNationalLeagues.filter(c => c.confederation.id === confederation.id);
 			
 			const clubsWithoutDivisionCount = confederation.clubs.length - nationalLeagues.flatMap(c => c.clubCount).sum();

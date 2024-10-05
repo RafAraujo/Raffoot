@@ -59,6 +59,10 @@ class Position {
         return this.name === 'Goalkeeper';
     }
 
+    get line() {
+        return this.fieldLocalizations[0].line;
+    }
+
     addFieldLocalization(fieldLocalization) {
         this._fieldLocalizationIds.push(fieldLocalization.id);
     }

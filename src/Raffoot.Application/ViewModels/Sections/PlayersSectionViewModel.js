@@ -56,7 +56,9 @@ class PlayersSectionViewModel {
         }
 
         players = players.filter(p => p.marketValue <= playerFilter.marketValue.maximum * 1000 * 1000);
-        players = players.filter(p => p.forSale === playerFilter.forSale);
+        if (playerFilter.forSale) {
+            players = players.filter(p => p.forSale === true);
+        }
 
         players = players.orderBy('-overall', 'name');
         this.filteredPlayers = players;

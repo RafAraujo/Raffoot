@@ -31,7 +31,7 @@ class Championship {
         const continentalSupercup = ChampionshipType.find('continental', 'supercup');
         const worldCup = ChampionshipType.find('world', 'cup');
 
-        const confederations = Context.game.confederations;
+        const confederations = Context.game.confederations.filter(c => c.playable);
 
         for (const confederation of confederations) {
             const countryIds = confederation.countries.map(c => Country.getByName(c.name)).map(c => c.id);
@@ -51,7 +51,7 @@ class Championship {
             Championship.create(`${confederation.name} Supercup`, nationalSupercup, countryIds, 1, 2);
         }
 
-        const continents = Context.game.continents.filter(con => con.countries.flatMap(c => c.clubs).length > 0);
+        const continents = Context.game.continents.filter(con => con.clubs.length > 16);
 
         for (const continent of continents) {
             for (let division = 1; division <= 2; division++) {

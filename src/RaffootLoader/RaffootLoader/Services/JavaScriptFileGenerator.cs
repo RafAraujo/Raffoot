@@ -1,6 +1,7 @@
 ﻿using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Enums;
-using RaffootLoader.Services.Interfaces;
+using RaffootLoader.Domain.Interfaces.Services;
+using RaffootLoader.Services.Fifa.Abstract;
 using RaffootLoader.Utils;
 using System.Text;
 
@@ -8,18 +9,15 @@ namespace RaffootLoader.Services
 {
 	public class JavaScriptFileGenerator(ISettings settings, IContext context) : IJavaScriptFileGenerator
 	{
-		private readonly ISettings _settings = settings;
-		private readonly IContext _context = context;
-
-		public void GenerateSoFifaServiceFile(int year)
+		public void GenerateFifaServiceFile()
 		{
 			try
 			{
-				Console.WriteLine("Generating SoFifaService file...");
+				Console.WriteLine("Generating FifaService file...");
 
-				var version = year.ToString().Substring(2, 2);
-				var fileName = $"SoFifa{version}Service";
-				var filePath = Path.Combine(_settings.BasePath, "Raffoot.Application", $"{fileName}.js");
+				var version = settings.Year.ToString().Substring(2, 2);
+				var fileName = $"Fifa{version}Service";
+				var filePath = Path.Combine(settings.BaseFolder, "Raffoot.Application", $"{fileName}.js");
 
 				var sb = new StringBuilder();
 
@@ -29,8 +27,7 @@ namespace RaffootLoader.Services
 				sb.AppendLine("\t\tconst c = Country.create;");
 				sb.AppendLine();
 
-				var countries = _context.Countries.OrderBy(c => c.Name);
-				var leagues = _context.Leagues;
+				var countries = context.Countries.OrderBy(c => c.Name).ToList();
 
 				foreach (var country in countries)
 				{
@@ -48,34 +45,46 @@ namespace RaffootLoader.Services
 				sb.AppendLine();
 
 				var countryNames = countries.Select(c => c.Name).ToList();
-				var positions = _context.Positions.Select(p => p.Abbreviation).ToList();
+				var positions = context.Positions.Select(p => p.Abbreviation).ToList();
+
+				var leagues = context.Leagues;
+				var clubs = context.Clubs;
+				var players = context.Players;
 
 				foreach (var league in leagues)
 				{
-					var country = _context.Countries.Single(c => c.Name == league.Country);
-					var clubs = _context.Clubs.Where(c => c.LeagueId == league.ExternalId);
+					var country = countries.SingleOrDefault(c => c.Name == league.Country);
+					var leagueClubs = clubs.Where(c => c.LeagueId == league.ExternalId);
 
-					foreach (var club in clubs)
+					foreach (var club in leagueClubs)
 					{
-						var shortName = GetShortName(club.Name);
+						if (country == null && league.Country == "Rest of World")
+						{
+							country = countries.Single(c => c.Name == FifaService.GetCountryForRestOfWorldClub(club));
+						}
 
-						sb.AppendLine(string.Format("\t\tx = c(\"{0}\", {1}, \"{2}\", \"{3}\", {4}, {5});",
+						var shortName = FifaService.GetShortClubName(club.Name);
+
+						sb.AppendLine(string.Format("\t\tx = c(\"{0}\", {1}, \"{2}\", \"{3}\", {4});",
 							club.Name,
 							countryNames.IndexOf(country.Name) + 1,
 							club.BackgroundColor,
 							club.ForegroundColor,
-							club.ExternalId,
 							string.IsNullOrEmpty(shortName) ? "null" : $"\"{shortName}\""));
 
-						foreach (var player in _context.Players.Where(p => p.ClubId == club.ExternalId))
+						foreach (var player in players.Where(p => p.ClubId == club.ExternalId))
 						{
-							sb.AppendLine(string.Format("\t\tp(\"{0}\", {1}, {2}, {3}, {4}, x, {5});",
+							var position = FifaService.GetStandardizedPositionAbbreviation(player.Positions.First());
+
+							var countryId = countryNames.IndexOf(player.Country) + 1;
+							var positionId = positions.IndexOf(position) + 1;
+
+							sb.AppendLine(string.Format("\t\tp(\"{0}\", {1}, {2}, {3}, {4}, x);",
 								player.Name,
-								countryNames.IndexOf(player.Country) + 1,
-								positions.IndexOf(player.Positions.First()) + 1,
+								countryId,
+								positionId,
 								player.Age,
-								player.Overall,
-								player.ExternalId));
+								player.Overall));
 						}
 
 						sb.AppendLine();
@@ -90,56 +99,6 @@ namespace RaffootLoader.Services
 			{
 				ConsoleUtils.ShowException(ex);
 			}
-		}
-
-		private static string GetShortName(string clubName)
-		{
-			var clubs = new List<Tuple<string, string>>
-			{
-				new("Barcelona Guayaquil", "Barcelona SC"),
-				new("Bayer 04 Leverkusen", "Bayer Leverkusen"),
-				new("Borussia Mönchengladbach", "B. M'gladbach"),
-				new("Borussia Dortmund", "B. Dortmund"),
-				new("Borussia Dortmund II", "B. Dortmund II"),
-				new("Brighton & Hove Albion", "Brighton"),
-				new("Cangzhou Mighty Lions", "Mighty Lions"),
-				new("Chengdu Rongcheng", "Rongcheng"),
-				new("CSM Politehnica Iași", "Politehnica Iași"),
-				new("DSC Arminia Bielefeld", "Arminia Bielefeld"),
-				new("Eintracht Braunschweig", "E. Braunschweig"),
-				new("FC Bayern München", "Bayern München"),
-				new("Forest Green Rovers", "Forest Green"),
-				new("Independiente del Valle", "I. del Valle"),
-				new("Independiente Medellín", "I. Medellín"),
-				new("Jagiellonia Białystok", "Jagiellonia"),
-				new("Milton Keynes Dons", "MK Dons"),
-				new("Northampton Town", "Northampton"),
-				new("Olympique de Marseille", "Marseille"),
-				new("Olympique Lyonnais", "Lyon"),
-				new("Paris Saint Germain", "PSG"),
-				new("Peterborough United", "Peterborough"),
-				new("Puszcza Niepołomice", "Puszcza"),
-				new("Queens Park Rangers", "QPR"),
-				new("Raków Częstochowa", "Raków"),
-				new("San Jose Earthquakes", "SJ Earthquakes"),
-				new("Sheffield Wednesday", "Sheffield Wed."),
-				new("SpVgg Greuther Fürth", "Greuther Fürth"),
-				new("Tianjin Jinmen Tiger", "Jinmen Tiger"),
-				new("Técnico Universitario", "T. Universitario"),
-				new("Tottenham Hotspur", "Tottenham"),
-				new("Union Saint-Gilloise", "Union SG"),
-				new("Universidad Católica", "U. Católica"),
-				new("Universitatea Craiova", "U. Craiova"),
-				new("Vancouver Whitecaps", "Whitecaps"),
-				new("Waldhof Mannheim", "Waldhof 07"),
-				new("West Bromwich Albion", "West Brom"),
-				new("Wolverhampton Wanderers", "Wolverhampton"),
-				new("Wuhan Three Towns", "Three Towns"),
-				new("Wycombe Wanderers", "Wycombe"),
-			};
-
-			var shortName = clubs.SingleOrDefault(c => c.Item1 == clubName);
-			return shortName?.Item2;
 		}
 	}
 }

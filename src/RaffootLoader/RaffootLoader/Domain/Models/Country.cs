@@ -1,16 +1,9 @@
 ﻿namespace RaffootLoader.Domain.Models
 {
-    public class Country : Entity
+    public class Country(string name, string flag, string continent) : Entity
     {
-        public string Name { get; set; }
-        public string Flag { get; set; }
-        public string Continent { get; set; }
-
-        public Country(string name, string flag, string continent)
-        {
-            Name = name;
-            Flag = flag;
-            Continent = continent;
-        }
-    }
+		public string Name { get; set; } = name;
+		public string Flag { get; set; } = flag;
+		public string Continent { get; set; } = continent;
+	}
 }

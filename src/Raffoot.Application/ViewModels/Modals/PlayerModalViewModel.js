@@ -6,6 +6,14 @@ class PlayerModalViewModel {
         this.offer = null;
     }
 
+    get canBuy() {
+        return this.player?.forSale && this.canMakeOffer;
+    }
+
+    get canMakeOffer() {
+        return this.player?.club.id === this.game.club.id;
+    }
+
     get offerDescription() {
         const error = this.errorMessage;
         if (error) {

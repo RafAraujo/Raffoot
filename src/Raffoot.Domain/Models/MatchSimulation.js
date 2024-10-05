@@ -67,31 +67,12 @@ class MatchSimulation {
         return events;
     }
 
-    getStats() {
-        const clubHomeFinishing = this._getActions('finishing', this.match.clubHome, false).length;
-        const clubHomeFinishingSuccessful = this._getActions('finishing', this.match.clubAway, true).length;
-        const clubHomeBallPossession = (this.matchSimulationActions.filter(a => a.player.club == this.match.clubHome).length / this.matchSimulationActions.length) * 100;
-        const clubHomePassing = this._getActions('passing', this.match.clubHome, false).length;
-        const clubHomePassingSuccessful = this._getActions('passing', this.match.clubHome, true).length;
-        const clubeHomeFouls = this._getActions('foul', this.match.clubHome).length;
-        
-        const clubAwayFinishing = this._getActions('finishing', this.match.clubAway, true).length;
-        const clubAwayFinishingSuccessful = this._getActions('finishing', this.match.clubAway, true).length;
-        const clubAwayBallPossession = (this.matchSimulationActions.filter(a => a.player.club == this.match.clubAway).length / this.matchSimulationActions.length) * 100;
-        const clubAwayPassing = this._getActions('passing', this.match.clubAway, false).length;
-        const clubAwayPassingSuccessful = this._getActions('passing', this.match.clubAway, true).length;
-        const clubAwayFouls = this._getActions('foul', this.match.clubAway).length;
-
-        const stats = {
-            finishing: [clubHomeFinishing, clubAwayFinishing],
-            finishingSuccessful: [clubHomeFinishingSuccessful, clubAwayFinishingSuccessful],
-            ballPossession: [Math.round(clubHomeBallPossession), Math.round(clubAwayBallPossession)],
-            passing: [clubHomePassing, clubAwayPassing],
-            passingSuccessful: [clubHomePassingSuccessful, clubAwayPassingSuccessful],
-            fouls: [clubeHomeFouls, clubAwayFouls],
-        };
-
-        return stats;
+    getActions(type, club, onlySuccessful) {
+        let actions = this.matchSimulationActions.filter(a => a.type === type && a.club.id === club.id);
+        if (onlySuccessful) {
+            actions = actions.filter(a => a.isSuccessful)
+        }
+        return actions;
     }
 
     nextAction(time) {
@@ -111,7 +92,7 @@ class MatchSimulation {
     }
 
     testAlgorithm() {
-        const total = 1000;
+        const total = 500;
 
         const table = {
             wins: 0,
@@ -119,9 +100,12 @@ class MatchSimulation {
             defeats: 0
         };
 
+        const match = this.match;
+
         for (let i = 0; i < total; i++) {
             this.test();
-            const winner = this.match.getWinner();
+            match.isFinished = true;
+            const winner = match.getWinner();
             switch (winner) {
                 case this.match.clubHome:
                     table.wins++;
@@ -167,14 +151,6 @@ class MatchSimulation {
             player.energy = Math.max(player.energy - player.age * 0.01, 0);
             player.energy = Math.round(player.energy);
         }
-    }
-
-    _getActions(type, club, onlySuccessful) {
-        let actions = this.matchSimulationActions.filter(a => a.type === type && a.club.id === club.id);
-        if (onlySuccessful) {
-            actions = actions.filter(a => a.isSuccessful)
-        }
-        return actions;
     }
 
     _logAction(action) {

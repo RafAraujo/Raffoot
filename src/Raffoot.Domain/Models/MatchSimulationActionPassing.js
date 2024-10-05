@@ -15,7 +15,7 @@ class MatchSimulationActionPassing extends MatchSimulationAction {
         this.target = this._chooseTarget();
 
         this.evaluation.failure = sim.clubDefending.getRegionOverall(sim.marker.fieldLocalization.position.fieldRegion);
-        this.evaluation.success = this.player.overall + (sim.ballLocation.name === 'goal' ? sim.clubAttacking.getDefenseOverall() : sim.clubAttacking.getRegionOverall(sim.ballLocation));
+        this.evaluation.success = this.player.currentOverall + (sim.ballLocation.name === 'goal' ? sim.clubAttacking.getDefenseOverall() : sim.clubAttacking.getRegionOverall(sim.ballLocation));
         this.getResult();
 
         if (this.isSuccessful) {

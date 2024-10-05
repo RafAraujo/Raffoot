@@ -3,6 +3,7 @@ class PlaySectionViewModel {
         this.game = game;
         this.translator = translator;
 
+        this.selectedClub = game.club;
         this.automaticSelection = true;
         this.selectedPlayerId = null;
     }
@@ -37,6 +38,10 @@ class PlaySectionViewModel {
         this.selectedPlayerId = parseInt(data);
     }
 
+    getBench() {
+        return this.getLineup().filter(i => i.player.isOnBench).orderBy('player.order', 'player.position.id', '-player.overall');
+    }
+
     getBaseFormations() {
         return this.game.formations.map(f => f.baseFormation).distinct().sort();
     }
@@ -56,7 +61,7 @@ class PlaySectionViewModel {
     }
 
     getLineup() {
-        const lineup = this.game.club.getLineup(this.currentMatch?.championshipEdition);
+        const lineup = this.selectedClub.getLineup(this.currentMatch?.championshipEdition);
         return lineup;
     }
 
@@ -85,6 +90,10 @@ class PlaySectionViewModel {
             this.game.club.movePlayerToField(player, fieldLocalization);
             this.selectedPlayerId = null;
         }
+    }
+
+    selectClub(club) {
+        this.selectedClub = club;
     }
 
     swapPlayerRoles(playerId1, playerId2) {

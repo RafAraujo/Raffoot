@@ -36,10 +36,11 @@ const Config = (function () {
         },
         fullScreen: true,
         folders: {
-            flagsFolder: `${ResourcesFolder}/countries`,
-            kitsFolder: `${ResourcesFolder}/kits`,
-            logosFolder: `${ResourcesFolder}/clubs`,
-            photosFolder: `${ResourcesFolder}/players`,
+            audioFolder: `${ResourcesFolder}/audio`,
+            flagFolder: `${ResourcesFolder}/image/countries`,
+            kitFolder: `${ResourcesFolder}/image/kits`,
+            logoFolder: `${ResourcesFolder}/image/clubs`,
+            photoFolder: `${ResourcesFolder}/image/players`,
         },
         matchSpeedOptions: {
             normal: 1000,

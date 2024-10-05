@@ -13,9 +13,23 @@
     display: none;
 }
 
+html[data-bs-theme="dark"] {
+    td.text-primary {
+        color: LightSkyBlue !important;
+    }
+    td.text-success {
+        color: darkseagreen !important;
+    }
+    td.text-danger {
+        color: lightcoral !important;
+    }
+    td.text-warning {
+        color: khaki !important;
+    }
+}
+
 body {
     cursor: default;
-    user-select: none;
 }
 
 h1,
@@ -31,21 +45,21 @@ label i {
 }
 
 div {
-    .modal {
-        color: black;
-    }
-
     .progress {
         border-radius: 0;
     }
 }
 
 div.lineup {
-    color: white;
     background-color: rgb(66, 74, 86);
+    color: white;
+
+    img {
+        max-height: 3rem;
+    }
 
     .field {
-        background: url('../res/grass\ -\ dark.png') repeat;
+        background: url('../res/image/grass\ -\ dark.png') repeat;
         background-size: auto;
         font-size: small;
     }
@@ -55,10 +69,13 @@ div.lineup {
         font-size: small;
     }
 
+    .field,
+    .bench {
+        border: 1px solid gray;
+    }
+
     .field-localization,
     .player {
-        border-radius: 20%;
-        border-width: 2px !important;
         width: 20%;
         max-width: 20%;
     }
@@ -69,9 +86,7 @@ div.lineup {
     }
 
     .player {
-        img {
-            max-height: 3rem;
-        }
+        border-radius: 20%;
 
         div.cards {
             top: 0px;
@@ -99,6 +114,11 @@ div.lineup {
             color: yellow;
         }
     }
+
+    .player.injured {
+        background-color: rgba(220, 53, 69, 0.15);
+        border-color: rgb(220, 53, 69);
+    }
 }
 
 span.overall {
@@ -121,14 +141,14 @@ span.overall.silver {
 }
 
 span.overall.bronze {
-    background-color: #cd7f32;
-    color: white;
-    border-color: brown;
+    background-color: sandybrown;
+    color: black;
+    border-color: sienna;
 }
 
 table.table {
     tbody.championship-two-legged-tie tr:nth-child(even) td {
-        border-bottom: solid 2px black;
+        border-bottom: 2px solid black;
     }
 
     tr.selected {
@@ -144,31 +164,19 @@ table.table {
     }
 
     td.main-continental-cup {
-        color: blue;
-        font-weight: bold;
+        border-left: 3px solid blue;
     }
 
     td.secondary-continental-cup {
-        color: orange;
-        font-weight: bold;
-    }
-
-    tr.selected-match td {
-        background-color: khaki;
+        border-left: 3px solid orange;
     }
 
     td.promotion {
-        color: deepskyblue;
-        font-weight: bold;
+        border-left: 3px solid deepskyblue;
     }
 
     td.relegation {
-        color: red;
-        font-weight: bold;
-    }
-
-    td.transfer-window {
-        background-color: lavender;
+        border-left: 3px solid red;
     }
 }
 
@@ -194,6 +202,7 @@ table.sortable th {
     animation: blinker 1s linear infinite;
     z-index: 1;
     background-color: rgb(66, 74, 86);
+    border: 2px solid;
 }
 
 @keyframes blinker {

@@ -2,11 +2,13 @@
 using RaffootLoader;
 using RaffootLoader.Data;
 using RaffootLoader.Data.Interfaces;
-using RaffootLoader.Enums;
-using RaffootLoader.Integration;
+using RaffootLoader.Domain.Enums;
+using RaffootLoader.Domain.Interfaces;
+using RaffootLoader.Domain.Interfaces.Services;
 using RaffootLoader.Integration.GoogleTranslator;
 using RaffootLoader.Services;
-using RaffootLoader.Services.Interfaces;
+using RaffootLoader.Services.Fifa;
+using RaffootLoader.Utils;
 using System.Reflection;
 
 var serviceCollection = new ServiceCollection();
@@ -14,11 +16,14 @@ ConfigureServices(serviceCollection);
 var serviceProvider = serviceCollection.BuildServiceProvider();
 
 var context = serviceProvider.GetService<IContext>();
-var dataExtractor = serviceProvider.GetService<IDataExtractorService>();
+var databaseCreator = serviceProvider.GetService<IDatabaseCreator>();
+var imageService = serviceProvider.GetService<IImageService>();
 var imageDownloader = serviceProvider.GetService<IImageDownloaderService>();
+var imageAnalysis = serviceProvider.GetService<IImageAnalysisService>();
 var fileGenerator = serviceProvider.GetService<IJavaScriptFileGenerator>();
+var settings = serviceProvider.GetService<ISettings>();
 
-WriteInstructions();
+WriteInstructions(settings);
 
 string line;
 
@@ -31,51 +36,80 @@ while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
 
 	switch ((ProgramOption)option)
 	{
+		case ProgramOption.DoAll:
+			await DoAll().ConfigureAwait(false);
+			break;
+		case ProgramOption.ChangeYear:
+			ChangeYear(settings);
+			break;
 		case ProgramOption.DropDatabase:
 			context.DropDatabase();
 			break;
 		case ProgramOption.CreateDatabase:
-			await dataExtractor.CreateDatabase();
+			await databaseCreator.CreateDatabase();
 			break;
 		case ProgramOption.DownloadFlags:
-			await imageDownloader.DownloadFlags().ConfigureAwait(false);
+			await imageDownloader.DownloadImages(ImageType.Flag).ConfigureAwait(false);
 			break;
 		case ProgramOption.DownloadLogos:
-			await imageDownloader.DownloadLogos().ConfigureAwait(false);
-			break;
-		case ProgramOption.DownloadKits:
-			await imageDownloader.DownloadKits().ConfigureAwait(false);
+			await imageDownloader.DownloadImages(ImageType.Logo).ConfigureAwait(false);
 			break;
 		case ProgramOption.DownloadPhotos:
-			await imageDownloader.DownloadPhotos().ConfigureAwait(false);
+			await imageDownloader.DownloadImages(ImageType.Photo).ConfigureAwait(false);
+			break;
+		case ProgramOption.DownloadKits:
+			await imageDownloader.DownloadImages(ImageType.Kit).ConfigureAwait(false);
 			break;
 		case ProgramOption.UpdateClubsColors:
-			dataExtractor.UpdateClubsColors();
+			imageAnalysis.UpdateClubsColors();
 			break;
-		case ProgramOption.GenerateSoFifaServiceFile:
-			var year = DateTime.Now.Month < 10 ? DateTime.Now.Year : DateTime.Now.Year + 1;
-			fileGenerator.GenerateSoFifaServiceFile(year);
+		case ProgramOption.GenerateFifaServiceFile:
+			fileGenerator.GenerateFifaServiceFile();
+			break;
+		case ProgramOption.CheckClubsWithoutLogo:
+			imageService.CheckClubsWithoutLogo();
 			break;
 	}
 
 	Console.WriteLine();
-	WriteInstructions();
+	WriteInstructions(settings);
+}
+
+async Task DoAll()
+{
+	var success = ChangeYear(settings);
+	if (!success)
+	{
+		return;
+	}
+	context.DropDatabase();
+	await databaseCreator.CreateDatabase();
+	foreach (ImageType imageType in Enum.GetValues(typeof(ImageType)))
+	{
+		await imageDownloader.DownloadImages(imageType).ConfigureAwait(false);
+	}
+	imageAnalysis.UpdateClubsColors();
+	fileGenerator.GenerateFifaServiceFile();
 }
 
 // https://stackoverflow.com/questions/70628314/injecting-primitive-type-in-constructor-of-generic-type-using-microsoft-di
 static void ConfigureServices(IServiceCollection services)
 {
 	var consoleAppPath = Assembly.GetExecutingAssembly().Location;
-	var basePath = @$"{consoleAppPath}\..\..\..\..\..\..\";
-	var dbPath = Path.Combine(basePath, @"RaffootLoader\Raffoot.db");
-	var imagesPath = Path.Combine(basePath, @"Raffoot.UI\res\");
+	var baseFolder = @$"{consoleAppPath}\..\..\..\..\..\..\";
+	var dbFolder = Path.Combine(baseFolder, @"RaffootLoader\");
+	var imagesFolder = Path.Combine(baseFolder, @"Raffoot.UI\res\image\");
+	var year = GetMaxYear();
 
-	services.AddSingleton<ISettings, Settings>(sp => new Settings(basePath, dbPath, imagesPath));
+	services.AddSingleton<ISettings, Settings>(sp => new Settings(baseFolder, dbFolder, imagesFolder, year));
 
 	services.AddScoped<IContext, Context>();
 	services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-	services.AddScoped<IDataExtractorService, SoFifaDataExtractorService>();
+	services.AddScoped<IDatabaseCreator, DatabaseCreatorService>();
+	services.AddScoped<IFifaDataExtractorService, SoFifaDataExtractorService>();
+	services.AddScoped<IImageService, ImageService>();
 	services.AddScoped<IImageDownloaderService, SoFifaImageDownloaderService>();
+	services.AddScoped<IImageAnalysisService, ImageAnalysisService>();
 	services.AddScoped<ITranslatorApi, GoogleTranslator>();
 	services.AddScoped<IJavaScriptFileGenerator, JavaScriptFileGenerator>();
 
@@ -83,14 +117,34 @@ static void ConfigureServices(IServiceCollection services)
 	services.AddAutoMapper(Assembly.GetExecutingAssembly());
 }
 
-static void WriteInstructions()
+static void WriteInstructions(ISettings settings)
 {
 	Console.ResetColor();
-	Console.WriteLine("Choose:");
+	Console.WriteLine("Choose (year {0}):", settings.Year);
 
-	foreach (ProgramOption value in Enum.GetValues(typeof(ProgramOption)))
+	foreach (ProgramOption value in Enum.GetValues(typeof(ProgramOption)).Cast<ProgramOption>().OrderBy(po => (int)po))
 	{
 		Console.WriteLine("\t[{0}] - {1}", (int)value, value);
 	}
 	Console.WriteLine();
 }
+
+static bool ChangeYear(ISettings settings)
+{
+	Console.WriteLine("\n{0} ({1} - {2}):", "Enter the year", GetMinYear(), GetMaxYear());
+
+	if (int.TryParse(Console.ReadLine(), out int year))
+	{
+		if (year >= GetMinYear() && year <= GetMaxYear())
+		{
+			settings.Year = year;
+			return true;
+		}
+	}
+
+	ConsoleUtils.WriteError("Invalid year");
+	return false;
+}
+
+static int GetMinYear() => 2005;
+static int GetMaxYear() => DateTime.Now.Month < 9 ? DateTime.Now.Year : DateTime.Now.Year + 1;

@@ -4,7 +4,6 @@ class ColorsModalViewModel {
         this.translator = translator;
 
         this.colors = { background: this.game.club.colors.backgroundCustom, foreground: this.game.club.colors.foregroundCustom };
-        this.theme = 'dark';
     }
 
     resetColors() {
@@ -19,8 +18,8 @@ class ColorsModalViewModel {
     }
 
     setColors() {
+        return;
         document.body.style.backgroundColor = this.game.club.colors.backgroundCustom;
         document.body.style.color = this.game.club.colors.foregroundCustom;
-        this.theme = this.game.club.colors.foregroundCustom === '#000000' ? 'dark' : 'light';
     }
 }

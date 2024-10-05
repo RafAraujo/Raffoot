@@ -2,8 +2,10 @@
 {
     public interface ISettings
     {
-        string BasePath { get; set; }
-        string DbPath { get; set; }
-        string ImagesPath { get; set; }
+        string BaseFolder { get; set; }
+        string DbFolder { get; set; }
+        string ImagesFolder { get; set; }
+        int Year { get; set; }
+		string DbPath { get; }
     }
 }

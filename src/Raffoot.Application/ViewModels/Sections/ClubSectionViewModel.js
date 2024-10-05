@@ -6,7 +6,6 @@ class ClubSectionViewModel {
         this.selectedCountryId = game.club.country.id;
         this.selectedClubId = game.club.id;
         this.playerOrder = new PlayerOrderViewModel('position.id');
-        this.errorLoadingKit = false;
     }
 
     get selectedClub() {
@@ -31,13 +30,13 @@ class ClubSectionViewModel {
         return countries;
     }
 
-    get kitsURLs() {
-        return this.selectedClub.getKitsURLs();
-    }
-
     get players() {
         const orderColumns = [this.playerOrder.orderColumn, 'position.id', '-overall', 'name'];
         return this.selectedClub.players.orderBy(...orderColumns);
+    }
+    
+    getKitsURLs() {
+        return this.selectedClub.getKitsURLs();
     }
 
     selectCountry(countryId) {

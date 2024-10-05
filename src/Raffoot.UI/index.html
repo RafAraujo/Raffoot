@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -18,38 +18,49 @@
     <div id="app" class="container" v-cloak>
         <div class="row mt-3 mb-3">
             <div class="col">
-                <h1 class="text-center">{{ translator.get("Raffoot") }}</h1>
+                <h1 class="text-center">Raffoot</h1>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-9 d-grid mx-auto">
-                <button class="btn btn-outline-dark btn-lg" @click="redirect('new-game.html')">
-                    <i class="fa-solid fa-plus"></i>
+                <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`" @click="redirect('new-game.html')">
+                    <i class="fa-solid fa-file"></i>
                     {{ translator.get("New Game") }}
                 </button>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-9 d-grid mx-auto">
-                <button class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#modal-games">
+                <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`" data-bs-toggle="modal"
+                    data-bs-target="#modal-games">
                     <i class="fa-solid fa-folder-open"></i>
-                    {{ translator.get("Load Game") }}
+                    {{ translator.get("Load game") }}
                 </button>
             </div>
         </div>
+        <div class="row mb-3">
+            <div class="col-9 d-grid mx-auto">
+                <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`" data-bs-toggle="modal"
+                    data-bs-target="#modal-import">
+                    <i class="fa-solid fa-file-import"></i>
+                    {{ translator.get("Import game") }}
+                </button>
+            </div>
+        </div>
+
         <!-- Modal -->
         <div id="modal-games" class="modal fade" tabindex="-1" aria-labelledby="modal-games-label" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 id="modal-games-label" class="modal-title fs-5">{{ translator.get("Load Game") }}</h1>
+                        <h1 id="modal-games-label" class="modal-title fs-5">{{ translator.get("Load game") }}</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="select-games" class="form-label">{{ translator.get("Game") }}</label>
-                                <select id="select-games" class="form-select" @change="selectGame($event)">
+                                <label for="games" class="form-label">{{ translator.get("Game") }}</label>
+                                <select id="games" class="form-select" @change="selectGame($event)">
                                     <option></option>
                                     <option v-for="game in savedGames" :key="game.key" :value="game.key">
                                         {{ game.value.name }}
@@ -81,10 +92,6 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" :disabled="!selectedGame" @click="loadGame()">
-                            <i class="fa-solid fa-folder-open"></i>
-                            {{ translator.get("Load") }}
-                        </button>
                         <button class="btn btn-secondary" data-bs-dismiss="modal">
                             <i class="fa-solid fa-xmark"></i>
                             {{ translator.get("Cancel") }}
@@ -93,11 +100,56 @@
                             <i class="fa-solid fa-trash-can"></i>
                             {{ translator.get("Delete") }}
                         </button>
+                        <button class="btn btn-primary" :disabled="!selectedGame" @click="loadGame()">
+                            <i class="fa-solid fa-folder-open"></i>
+                            {{ translator.get("Load") }}
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="modal-import" class="modal fade" tabindex="-1" aria-labelledby="modal-import-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 id="modal-import-label" class="modal-title fs-5">{{ translator.get("Import game") }}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input id="file" type="file" class="form-control" @change="importGame($event)">
+                            </div>
+                        </div>
+                        <div class="row" :class="{ 'd-none' : !message.text }">
+                            <div class="col">
+                                <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`"
+                                    role="alert">
+                                    {{ message.text }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                            {{ translator.get("Cancel") }}
+                        </button>
+                        <button class="btn btn-primary" :disabled="!selectedGame" @click="importGame()">
+                            <i class="fa-solid fa-file-import"></i>
+                            {{ translator.get("Import") }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/lz-string/lz-string.min.js"></script>
 
     <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/ArrayExtensions.js"></script>
     <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/DateExtensions.js"></script>
@@ -118,7 +170,7 @@
     <script src="../Raffoot.Application/TranslatorService.js"></script>
 
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="js/vue/vue.global.prod.js"></script>
+    <script src="js/vue/vue.global.js"></script>
 </body>
 
 </html>
@@ -131,9 +183,11 @@
     const RaffootApp = {
         data() {
             return {
+                file: null,
                 message: { text: '', type: 'primary' },
                 savedGames: [],
                 selectedGame: null,
+                theme: 'dark',
                 translator: new TranslatorService(),
             }
         },
@@ -161,6 +215,21 @@
                     this.message = { text: error, type: 'danger' };
                 }
             },
+            importGame(event) {
+                const files = event.target.files;
+                if (!files.length)
+                    return;
+
+                const reader = new FileReader();
+                reader.readAsText(files[0]);
+                reader.onload = async function (event) {
+                    const game = gameService.decompress(reader.result);
+                    await gameService.insertAsync(game);
+                }
+                reader.onerror = function (event) {
+                    alert('Erro');
+                }
+            },
             loadGame() {
                 if (this.selectedGame) {
                     const url = `home.html?id=${this.selectedGame.key}`;
@@ -168,6 +237,16 @@
                 }
             },
             redirect: url => location.href = url,
+        },
+        computed: {
+            themeInverse() {
+                return this.theme === 'dark' ? 'light' : 'dark';
+            }
+        },
+        watch: {
+            theme(newTheme, oldTheme) {
+                document.documentElement.setAttribute('data-bs-theme', newTheme);
+            },
         },
         async mounted() {
             await this.getSavedGames();

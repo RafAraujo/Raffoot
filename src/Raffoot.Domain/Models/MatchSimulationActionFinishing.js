@@ -12,8 +12,8 @@ class MatchSimulationActionFinishing extends MatchSimulationAction {
     evaluate() {
         const sim = this.matchSimulation;
 
-        this.evaluation.failure = sim.clubDefending.goalkeeper.overall + sim.clubDefending.getDefenseOverall();
-        this.evaluation.success = this.player.overall;
+        this.evaluation.failure = sim.clubDefending.goalkeeper.currentOverall + sim.clubDefending.getDefenseOverall();
+        this.evaluation.success = this.player.currentOverall;
         this.getResult();
 
         if (this.isSuccessful) {

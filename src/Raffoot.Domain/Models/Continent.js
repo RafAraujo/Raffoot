@@ -34,6 +34,10 @@ class Continent {
         return this.confederations.flatMap(c => c.countries);
     }
 
+    get clubs() {
+        return this.countries.flatMap(c => c.clubs);
+    }
+
     addConfederation(confederation) {
         this._confederationIds.push(confederation.id);
     }

@@ -46,7 +46,7 @@ let ConnectionFactory = (function () {
 
         static getConnectionAsync(dbName, dbVersion = null) {
             return new Promise((resolve, reject) => {
-                let request = indexedDB.open(dbName, dbVersion || 1);
+                let request = indexedDB.open(dbName, dbVersion ?? 1);
 
                 request.onsuccess = e => {
                     if (!_connection) {

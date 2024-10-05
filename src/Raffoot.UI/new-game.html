@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
 
 <body>
     <div id="app" v-cloak>
-        <div class="container" v-if="!gameCreated">
+        <div class="container" v-if="isCreatingGame">
             <div class="row mt-3">
                 <div class="col">
                     <div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -26,10 +26,10 @@
                 </div>
             </div>
         </div>
-        <div class="container" v-if="gameCreated">
+        <div class="container">
             <div class="row mt-3 mb-3">
                 <div class="col text-center">
-                    <h1 class="text-center">{{ translator.get("Raffoot") }}</h1>
+                    <h1 class="text-center">Raffoot</h1>
                 </div>
             </div>
             <div class="row mb-3" :class="{ 'd-none' : !message.text }">
@@ -43,18 +43,28 @@
             <form id="form" action="home.html" @submit.prevent="startGame()">
                 <fieldset>
                     <legend>{{ translator.get("Choose your club") }}</legend>
-
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="year" class="form-label">{{ translator.get("Year") }}</label>
+                            <select id="year" class="form-control" required autocomplete="off"
+                                @change="createGame($event.target.value)">
+                                <option></option>
+                                <option v-for="year in getYears()" :key="year" :value="year">
+                                    {{ year }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="row mb-3">
                         <div class="col">
                             <label for="country" class="form-label">{{ translator.get("Country") }}</label>
                             <select id="country" class="form-select" required autocomplete="off"
-                                @change="game.country = game.countries.find(c => c.id === parseInt($event.target.value))">
+                                @change="setCountry($event.target.value)">
                                 <option></option>
-                                <template
-                                    v-for="continent in game.continents.map(c => ({ id: c.id, name: translator.get(c.name) }))">
+                                <template v-for="continent in getContinents()">
                                     <optgroup :label="continent.name">
-                                        <option v-for="country in getPlayableCountriesByContinent(continent.id)" :key="country.id"
-                                            :value="country.id">
+                                        <option v-for="country in getPlayableCountriesByContinent(continent.id)"
+                                            :key="country.id" :value="country.id">
                                             {{ country.name }}
                                         </option>
                                     </optgroup>
@@ -66,10 +76,10 @@
                         <div class="col">
                             <label for="club" class="form-label">{{ translator.get("Club") }}</label>
                             <select id="club" class="form-control" required autocomplete="off"
-                                @change="game.club = game.clubs.find(c => c.id === parseInt($event.target.value))">
+                                @change="setClub($event.target.value)">
                                 <option></option>
-                                <template v-if="game.country"
-                                    v-for="championshipEdition in game.currentSeason.getNationalLeaguesByCountry(game.country)">
+                                <template v-if="game?.country"
+                                    v-for="championshipEdition in game?.currentSeason.getNationalLeaguesByCountry(game.country)">
                                     <optgroup :label="translator.getChampionshipName(championshipEdition.championship)">
                                         <option v-for="club in championshipEdition.clubs.orderBy('name')" :key="club.id"
                                             :value="club.id">
@@ -99,7 +109,7 @@
                     <div class="col-6 col-sm-3 d-grid">
                         <button type="submit" class="btn btn-primary">
                             <i class="fa-solid fa-play"></i>
-                            {{ translator.get("Start Game") }}
+                            {{ translator.get("Start game") }}
                         </button>
                     </div>
                 </div>
@@ -144,12 +154,32 @@
 
     <script src="../Raffoot.Application/GameFactory.js"></script>
     <script src="../Raffoot.Application/GameService.js"></script>
-    <script src="../Raffoot.Application/SoFifa24Service.js"></script>
-    <script src="../Raffoot.Application/SoFifaService.js"></script>
+    <script src="../Raffoot.Application/Fifa05Service.js"></script>
+    <script src="../Raffoot.Application/Fifa06Service.js"></script>
+    <script src="../Raffoot.Application/Fifa07Service.js"></script>
+    <script src="../Raffoot.Application/Fifa08Service.js"></script>
+    <script src="../Raffoot.Application/Fifa09Service.js"></script>
+    <script src="../Raffoot.Application/Fifa10Service.js"></script>
+    <script src="../Raffoot.Application/Fifa11Service.js"></script>
+    <script src="../Raffoot.Application/Fifa12Service.js"></script>
+    <script src="../Raffoot.Application/Fifa13Service.js"></script>
+    <script src="../Raffoot.Application/Fifa14Service.js"></script>
+    <script src="../Raffoot.Application/Fifa15Service.js"></script>
+    <script src="../Raffoot.Application/Fifa16Service.js"></script>
+    <script src="../Raffoot.Application/Fifa17Service.js"></script>
+    <script src="../Raffoot.Application/Fifa18Service.js"></script>
+    <script src="../Raffoot.Application/Fifa19Service.js"></script>
+    <script src="../Raffoot.Application/Fifa20Service.js"></script>
+    <script src="../Raffoot.Application/Fifa21Service.js"></script>
+    <script src="../Raffoot.Application/Fifa22Service.js"></script>
+    <script src="../Raffoot.Application/Fifa23Service.js"></script>
+    <script src="../Raffoot.Application/Fifa24Service.js"></script>
+    <script src="../Raffoot.Application/Fifa25Service.js"></script>
+    <script src="../Raffoot.Application/FifaService.js"></script>
     <script src="../Raffoot.Application/TranslatorService.js"></script>
 
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="js/vue/vue.global.prod.js"></script>
+    <script src="js/vue/vue.global.js"></script>
 </body>
 
 </html>
@@ -163,17 +193,48 @@
         data() {
             return {
                 game: null,
-                gameCreated: false,
                 gameName: '',
+                isCreatingGame: false,
                 message: { text: '', type: 'primary' },
+                theme: 'dark',
                 translator: new TranslatorService(),
             }
         },
         methods: {
+            createGame(year) {
+                if (!year)
+                    return;
+                this.isCreatingGame = true;
+                this.game = gameService.create('', year);
+                this.isCreatingGame = false;
+            },
+            getContinents() {
+                return this.game?.continents.map(c => ({ id: c.id, name: this.translator.get(c.name) }));
+            },
             getPlayableCountriesByContinent(continentId) {
-                let countries = this.game.getPlayableCountriesByContinent(continentId);
+                let countries = this.game?.getPlayableCountriesByContinent(continentId);
                 countries = countries.map(c => ({ id: c.id, name: this.translator.get(c.name) })).orderBy('name');
                 return countries;
+            },
+            getYears: function () {
+                let year = 2005;
+                const years = [];
+                const currentYear = new Date().getFullYear();
+                do {
+                    years.push(year);
+                }
+                while (year++ <= currentYear);
+                return years.reverse();
+            },
+            setClub(id) {
+                if (!this.game)
+                    return;
+                this.game.club = this.game.clubs.find(c => c.id === parseInt(id));
+            },
+            setCountry(id) {
+                if (!this.game)
+                    return;
+                this.game.country = this.game.countries.find(c => c.id === parseInt(id));
             },
             startGame: async function () {
                 try {
@@ -190,10 +251,11 @@
             },
             redirect: url => location.href = url,
         },
-        mounted() {
-            this.game = gameService.create('');
-            this.gameCreated = true;
-        }
+        watch: {
+            theme(newTheme, oldTheme) {
+                document.documentElement.setAttribute('data-bs-theme', newTheme);
+            },
+        },
     };
 
     Vue.createApp(RaffootApp).mount('#app');

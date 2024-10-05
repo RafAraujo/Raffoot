@@ -1,44 +1,26 @@
 ﻿using RaffootLoader.Data.Interfaces;
-using RaffootLoader.Services.Interfaces;
+using RaffootLoader.Domain.Enums;
+using RaffootLoader.Domain.Interfaces.Services;
+using RaffootLoader.Services.DTO;
 using RaffootLoader.Utils;
 
 namespace RaffootLoader.Services
 {
-	public class SoFifaImageDownloaderService : IImageDownloaderService
+	public class SoFifaImageDownloaderService(IContext context, IImageService imageService) : IImageDownloaderService
 	{
-		private readonly ISettings _settings;
-		private readonly IContext _context;
-		private readonly HttpClient _client;
+		private readonly HttpClient _client = new(new HttpClientHandler { AllowAutoRedirect = false });
 
-		public SoFifaImageDownloaderService(ISettings settings, IContext context)
-		{
-			_settings = settings;
-			_context = context;
-			_client = new(new HttpClientHandler { AllowAutoRedirect = false });
-		}
-
-		public async Task DownloadFlags()
+		public async Task DownloadImages(ImageType imageType)
 		{
 			var tasks = new List<Task>();
 
 			try
 			{
-				Console.WriteLine("Downloading flags...");
+				Console.WriteLine($"Downloading {imageType.ToString().ToLower()}s...");
 
-				foreach (var country in _context.Countries)
-				{
-
-					var url = country.Flag.Split(' ')[2];
-					var fileName = $"{country.Name}{Path.GetExtension(url)}";
-					var filePath = Path.Combine(_settings.ImagesPath, "countries", fileName);
-
-					if (!File.Exists(filePath))
-					{
-						CreateFolder(filePath);
-						tasks.Add(DownloadImage(url, filePath));
-					}
-				}
-
+				var imagesInfos = GetImagesInfos(imageType);
+				imagesInfos = imagesInfos.Where(dto => !string.IsNullOrEmpty(dto.FilePath) && !File.Exists(dto.FilePath));
+				tasks = imagesInfos.Select(dto => DownloadFile(dto.Url, dto.FilePath)).ToList();
 				await Task.WhenAll(tasks).ConfigureAwait(false);
 			}
 			catch (Exception ex)
@@ -53,141 +35,22 @@ namespace RaffootLoader.Services
 			}
 		}
 
-		public async Task DownloadLogos()
+		private IEnumerable<ImageInfoDto> GetImagesInfos(ImageType imageType)
 		{
-			var tasks = new List<Task>();
-
-			try
+			return imageType switch
 			{
-				Console.WriteLine("Downloading logos...");
-
-				foreach (var club in _context.Clubs)
-				{
-					var url = club.Logo.Split(' ')[2];
-					var fileName = $"{club.ExternalId}{Path.GetExtension(url)}";
-					var filePath = Path.Combine(_settings.ImagesPath, "clubs", fileName);
-
-					if (!File.Exists(filePath))
-					{
-						CreateFolder(filePath);
-						tasks.Add(DownloadImage(url, filePath));
-					}
-				}
-
-				await Task.WhenAll(tasks).ConfigureAwait(false);
-			}
-			catch (Exception ex)
-			{
-				ConsoleUtils.ShowException(ex);
-			}
-			finally
-			{
-				Console.WriteLine("\tSuccess: {0}", tasks.Count(t => t.IsCompletedSuccessfully));
-				Console.WriteLine("\tFailed: {0}", tasks.Count(t => t.IsFaulted));
-				Console.WriteLine("\tTotal: {0}", tasks.Count);
-			}
+				ImageType.Flag => context.Countries.Select(imageService.GetFlag),
+				ImageType.Logo => context.Clubs.Select(imageService.GetLogo),
+				ImageType.Kit => context.Clubs.SelectMany(imageService.GetKits),
+				ImageType.Photo => context.Players.Select(imageService.GetPhoto),
+				_ => [],
+			};
 		}
 
-		public async Task DownloadKits()
-		{
-			var tasks = new List<Task>();
-
-			try
-			{
-				Console.WriteLine("Downloading kits...");
-
-				foreach (var club in _context.Clubs)
-				{
-					var index = 1;
-
-					var folderPath = Path.Combine(_settings.ImagesPath, "kits", club.ExternalId.ToString());
-					Directory.CreateDirectory(folderPath);
-
-					foreach (var kit in club.Kits)
-					{
-						var url = kit.Split(' ')[2];
-						var fileName = $"{index++}{Path.GetExtension(url)}";
-						var filePath = Path.Combine(folderPath, fileName);
-
-						if (!File.Exists(filePath))
-						{
-							tasks.Add(DownloadImage(url, filePath));
-						}
-					}
-				}
-
-				await Task.WhenAll(tasks).ConfigureAwait(false);
-			}
-			catch (Exception ex)
-			{
-				ConsoleUtils.ShowException(ex);
-			}
-			finally
-			{
-				Console.WriteLine("\tSuccess: {0}", tasks.Count(t => t.IsCompletedSuccessfully));
-				Console.WriteLine("\tFailed: {0}", tasks.Count(t => t.IsFaulted));
-				Console.WriteLine("\tTotal: {0}", tasks.Count);
-			}
-		}
-
-		public async Task DownloadPhotos()
-		{
-			var tasks = new List<Task>();
-
-			try
-			{
-				Console.WriteLine("Downloading photos...");
-
-				var defaultPhotoPath = Path.Combine(_settings.ImagesPath, "players", "0.svg");
-
-				if (!File.Exists(defaultPhotoPath))
-				{
-					CreateFolder(defaultPhotoPath);
-					await DownloadImage("https://cdn.sofifa.net/player_0.svg", defaultPhotoPath);
-				}
-
-				foreach (var player in _context.Players)
-				{
-					var url = player.Photo.Split(' ')[2];
-					var fileName = $"{player.ExternalId}{Path.GetExtension(url)}";
-					var filePath = Path.Combine(_settings.ImagesPath, "players", fileName);
-
-					if (!File.Exists(filePath))
-					{
-						CreateFolder(filePath);
-						tasks.Add(DownloadPhoto(url, filePath));
-					}
-				}
-
-				await Task.WhenAll(tasks).ConfigureAwait(false);
-			}
-			catch (Exception ex)
-			{
-				ConsoleUtils.ShowException(ex);
-			}
-			finally
-			{
-
-				Console.WriteLine("\tSuccess: {0}", tasks.Count(t => t.IsCompletedSuccessfully));
-				Console.WriteLine("\tFailed: {0}", tasks.Count(t => t.IsFaulted));
-				Console.WriteLine("\tTotal: {0}", tasks.Count);
-			}
-		}
-
-		private static void CreateFolder(string filePath)
-		{
-			var folder = Path.GetDirectoryName(filePath);
-			Directory.CreateDirectory(folder);
-		}
-
-		private async Task DownloadPhoto(string url, string filePath)
-		{
-			await DownloadImage(url, filePath);
-		}
-
-		private async Task DownloadImage(string url, string filePath)
+		private async Task DownloadFile(string url, string filePath)
 		{
 			using var stream = await _client.GetStreamAsync(url).ConfigureAwait(false);
+			Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 			using var fileStream = new FileStream(filePath, FileMode.OpenOrCreate);
 			await stream.CopyToAsync(fileStream);
 		}

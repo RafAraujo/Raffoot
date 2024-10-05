@@ -1,4 +1,6 @@
-﻿using RaffootLoader.Domain.Models;
+﻿using RaffootLoader.Domain.Interfaces;
+using RaffootLoader.Domain.Models;
+using System.Net;
 
 namespace RaffootLoader.Integration.GoogleTranslator
 {
@@ -32,7 +34,7 @@ namespace RaffootLoader.Integration.GoogleTranslator
 
             var response = await _client.GetAsync(endpoint + route).ConfigureAwait(false);
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.StatusCode == HttpStatusCode.OK)
             {
                 var result = content.Substring(4, content.IndexOf(',') - 5);
                 var translation = new Translation(text, result, targetLanguage);

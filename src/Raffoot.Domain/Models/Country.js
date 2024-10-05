@@ -2,7 +2,6 @@ class Country {
     constructor(name, continentId) {
         this.name = name;
         this._continentId = continentId;
-        this._clubIds = [];
     }
 
     static create(name, continentId) {
@@ -24,18 +23,14 @@ class Country {
     }
 
     get clubs() {
-        return Context.game.clubs.filterByIds(this._clubIds);
+        return Context.game.clubs.filter(c => c.country.id === this.id);
     }
 
     get hasClubs() {
         return this.clubs.length > 0;
     }
 
-    addClub(club) {
-        this._clubIds.push(club.id);
-    }
-
     getFlagURL() {
-        return `${Config.folders.flagsFolder}/${this.name}.png`;
+        return `${Config.folders.flagFolder}/${this.name}.png`;
     }
 }

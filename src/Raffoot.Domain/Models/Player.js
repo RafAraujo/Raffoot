@@ -1,19 +1,17 @@
 class Player {
-    constructor(name, countryId, positionId, age, baseOverall, clubId, energy, externalId) {
+    constructor(name, countryId, positionId, age, overall, clubId, energy) {
         this.name = name;
         this._countryId = countryId;
         this._positionId = positionId;
         this.age = age;
-        this.baseOverall = baseOverall;
+        this.overall = overall;
         this._clubId = clubId;
         this.energy = energy;
-        this.externalId = externalId;
-        this.forSale = false;
     }
 
-    static create(name, countryId, positionId, age, baseOverall, club, externalId) {
+    static create(name, countryId, positionId, age, overall, club) {
         const energy = 100;
-        const player = new Player(name, countryId, positionId, age, baseOverall, club.id, energy, externalId);
+        const player = new Player(name, countryId, positionId, age, overall, club.id, energy);
         player.id = Context.game.players.push(player);
 
         club.addPlayer(player);
@@ -34,29 +32,36 @@ class Player {
     }
 
     static _getBaseWage(overall) {
-        return Math.max(Player._calculateBaseWage(overall), Player._getMinimumWage());
+        const baseWage = Player._calculateBaseWage(overall);
+        const minimumWage = Player._getMinimumWage()
+        return Math.max(baseWage, minimumWage);
     }
 
     static _getMinimumWage() {
-        return Player._calculateBaseWage(10, false);
+        const wage = Player._calculateBaseWage(10, false);
+        return wage;
     }
 
     static _calculateBaseWage(overall) {
-        const wage = Math.pow(overall, 2.9);
+        overall = Math.min(overall - 50, 50);
+        let wage = Math.pow(overall, 3) * 10;
+        const minimumValue = 10 * 1000;
+        wage = Math.max(minimumValue, wage);
         return Math.round(wage);
     }
 
-    static _calculateMarketValue(overall, age, fieldRegion) {
-        const fieldRegionFactor = fieldRegion.id * 0.00025;
-        const exponent = 3.1 + overall * (0.01 + fieldRegionFactor);
-        const reference = Math.pow(overall, exponent);
-        const ageFactor = (32 - age) * reference * 0.08;
-        const value = reference + ageFactor;
+    static _calculateMarketValue(overall, age, position) {
+        overall =  Math.min(overall - 50, 50);
+        const reference = Math.pow(overall, 4) * (overall / 1.5);
+        const ageFactor = (32 - age) * reference * 0.1;
+        const positionFactor = (position.line - 1) * (reference * 0.03);
+        const minimumValue = 100 * 1000;
+        const value = minimumValue + reference + ageFactor + positionFactor;
         return Math.round(value);
     }
 
     get category() {
-        return Player.getCategory(this.baseOverall);
+        return Player.getCategory(this.overall);
     }
 
     get fieldLocalization() {
@@ -78,6 +83,10 @@ class Player {
 
     get country() {
         return Country.getById(this._countryId);
+    }
+
+    get currentOverall() {
+        return this._fieldLocalizationId ? this.calculateOverallAt(this.fieldLocalization) : this.overall;
     }
 
     get idealFieldLocalizations() {
@@ -105,11 +114,7 @@ class Player {
     }
 
     get marketValue() {
-        return Player._calculateMarketValue(this.baseOverall, this.age, this.position.fieldRegion);
-    }
-
-    get overall() {
-        return this._fieldLocalizationId ? this.calculateOverallAt(this.fieldLocalization) : this.baseOverall;
+        return Player._calculateMarketValue(this.overall, this.age, this.position);
     }
 
     get position() {
@@ -133,7 +138,7 @@ class Player {
     }
 
     get wage() {
-        return Player._getBaseWage(this.baseOverall);
+        return Player._getBaseWage(this.overall);
     }
 
     addChampionshipEditionPlayer(championshipEditionPlayer) {
@@ -142,17 +147,17 @@ class Player {
 
     calculateOverallAt(fieldLocalization) {
         if (this._positionId === fieldLocalization.position.id) {
-            return this.baseOverall;
+            return this.overall;
         }
         else if (this.position.fieldLocalizations[0].line === fieldLocalization.line) {
-            const overall = this.baseOverall * 0.95;
+            const overall = this.overall * 0.95;
             return Math.round(overall);
         }
         else {
             const playerNearestFieldLocalization = this.getNearestFieldLocalization(fieldLocalization);
             const distance = playerNearestFieldLocalization.calculateDistanceTo(fieldLocalization);
             const factor = playerNearestFieldLocalization.position.fieldRegion.id === fieldLocalization.position.fieldRegion.id ? 3 : 4;
-            const overall = this.baseOverall - (distance * factor);
+            const overall = this.overall - (distance * factor);
             return Math.round(overall);
         }
     }
@@ -174,8 +179,8 @@ class Player {
     }
 
     getPhotoURL() {
-        const file = `${this.externalId}.png` ?? '0.svg';
-        const url = `${Config.folders.photosFolder}/${file}`;
+        const file = `${this.id}.png` ?? '0.svg';
+        const url = `${Config.folders.photoFolder}/${Context.game.firstYear}/${file}`;
         return url;
     }
 

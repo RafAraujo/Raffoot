@@ -7,7 +7,8 @@ class Confederation {
     }
 
     static create(continent, name, countryNames, continentalCupSpots) {
-        const countryIds = countryNames.map(cn => Country.getByName(cn)).map(c => c.id);
+        const countryIds = countryNames.map(cn => Country.getByName(cn)).filter(c => c).map(c => c.id);
+        const clubs = Context.game.clubs.filter(c => countryIds.includes(c.country.id));
         const confederation = new Confederation(name, continent.id, countryIds, continentalCupSpots);
         confederation.id = Context.game.confederations.push(confederation);
 
@@ -63,6 +64,10 @@ class Confederation {
 
     get clubs() {
         return this.countries.flatMap(c => c.clubs);
+    }
+
+    get playable() {
+        return this.clubs.length > Config.nationalLeague.minClubCount;
     }
     
     getContinentalCupSpots(continentalCupDivision) {

@@ -1,8 +1,7 @@
 class Club {
-    constructor(name, countryId, colors, externalId, shortName) {
+    constructor(name, countryId, colors, shortName) {
         this.name = name;
         this._countryId = countryId;
-        this.externalId = externalId;
         if (shortName) {
             this._shortName = shortName;
         }
@@ -20,14 +19,14 @@ class Club {
         this._formationId = null;
     }
 
-    static create(name, countryId, backgroundColor, foregroundColor, externalId, shortName) {
+    static create(name, countryId, backgroundColor, foregroundColor, shortName) {
         const colors = {
             background: backgroundColor,
             backgroundCustom: backgroundColor,
             foreground: foregroundColor,
             foregroundCustom: foregroundColor
         };
-        const club = new Club(name, countryId, colors, externalId, shortName);
+        const club = new Club(name, countryId, colors, shortName);
         club.id = Context.game.clubs.push(club);
         return club;
     }
@@ -56,8 +55,12 @@ class Club {
         return this.playersOnField.find(p => p.position.isGoalkeeper);
     }
 
+    get marketValue() {
+        return this.players.map(p => p.marketValue).sum();
+    }
+
     get overall() {
-        return this.players.map(p => p.baseOverall).average();
+        return this.players.map(p => p.overall).average();
     }
 
     get players() {
@@ -125,12 +128,7 @@ class Club {
     }
 
     getRegionOverall(fieldRegion) {
-        return this.getPlayersAt(fieldRegion).map(mp => mp.overall).sum();
-    }
-
-    getOverallByFieldRegion(fieldRegion) {
-        const players = this.players.filter(p => p.position.fieldRegion.id === fieldRegion.id);
-        return players.map(p => p.overall).sum();
+        return this.getPlayersAt(fieldRegion).map(p => p.currentOverall).sum();
     }
 
     getPlayersAt(fieldRegion) {
@@ -142,8 +140,8 @@ class Club {
     }
 
     getBestAvailablePlayerForFieldLocalization(fieldLocalization) {
-        const players = this.playersOnBench.filter(p => p.position.id === fieldLocalization.position.id);
-        const player = players.length > 0 ? players.orderBy('-baseOverall')[0] : null;
+        const players = this.playersOnBench.filter(p => p.position.id === fieldLocalization.position.id && !p.isInjured);
+        const player = players.length > 0 ? players.orderBy('-overall', '-energy', 'age')[0] : null;
         return player;
     }
 
@@ -153,15 +151,16 @@ class Club {
 
     getKitsURLs() {
         const urlList = [];
-        for (let i = 1; i <= 3; i++) {
-            const url = `${Config.folders.kitsFolder}/${this.externalId}/${i}.png`;
-            urlList.push({ url: url, description: i === 1 ? 'Home' : i === 2 ? 'Away' : 'Goalkeeper' });
+        const descriptions = ['Home', 'Away', 'Goalkeeper', 'Alternative'];
+        for (let i = 1; i <= 4; i++) {
+            const url = `${Config.folders.kitFolder}/${Context.game.firstYear}/${this.country.name}/${this.name.replace('/', '-')}/${i}.png`;
+            urlList.push({ url: url, description: descriptions[i - 1]});
         }
         return urlList;
     }
 
     getLogoURL() {
-        return `${Config.folders.logosFolder}/${this.externalId}.png`;
+        return `${Config.folders.logoFolder}/${this.country.name} - ${this.name.replace('/', '-')}.png`;
     }
 
     getBestPlayersWithoutGoalkeeper(count) {
@@ -173,7 +172,7 @@ class Club {
 
         for (const formation of Context.game.formations) {
             const positionIds = formation.positions.map(p => p.id);
-            const players = this.players.filter(pl => positionIds.includes(pl.position.id));
+            const players = this.players.filter(p => positionIds.includes(p.position.id));
 
             ranking.push({
                 formation: formation,
@@ -199,10 +198,11 @@ class Club {
             let chosenPlayer = this.getBestAvailablePlayerForFieldLocalization(fieldLocalization);
 
             if (chosenPlayer === null) {
-                let players = this.playersOnBench.filter(p => p.position.fieldRegion === fieldLocalization.position.fieldRegion);
+                let availablePlayers = this.playersOnBench.filter(p => !p.isInjured);
+                let players = availablePlayers.filter(p => p.position.fieldRegion === fieldLocalization.position.fieldRegion);
 
                 if (players.length === 0) {
-                    players = this.playersOnBench;
+                    players = availablePlayers;
                 }
 
                 for (const player of players) {
@@ -212,10 +212,11 @@ class Club {
                     });
                 }
 
-                chosenPlayer = ranking.orderBy('-overall', '-player.energy')[0].player;
+                chosenPlayer = ranking.orderBy('-overall', '-player.energy', 'player.age')[0].player;
             }
 
-            chosenPlayer.fieldLocalization = fieldLocalization;
+            if (chosenPlayer)
+                chosenPlayer.fieldLocalization = fieldLocalization;
         }
     }
 
@@ -224,7 +225,7 @@ class Club {
         for (const player of this.playersOnField) {
             player.order = ++order;
         }
-        for (const player of this.playersOnBench.orderBy('order', 'position.id', '-baseOverall')) {
+        for (const player of this.playersOnBench.orderBy('order', 'position.id', '-overall')) {
             player.order = ++order;
         }
     }

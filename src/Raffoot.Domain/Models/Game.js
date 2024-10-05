@@ -35,6 +35,7 @@ class Game {
         this.matchSimulations = [];
         this.matchSimulationActions = [];
         this.matchSimulationEvents = [];
+        this.matchSimulationStatistics = [];
 
         this.config = {
             fullScreen: Config.fullScreen,
@@ -157,7 +158,6 @@ class Game {
             match.prepare();
         }
         const matchSimulations = matches.map(m => m.matchSimulation);
-        const includesMyClub = matches.flatMap(m => m.clubs).includes(this.club);
 
         let index = 0;
 
@@ -180,33 +180,5 @@ class Game {
                 callback();
             }
         }, this.config.matchSpeed);
-    }
-
-    playOld(callback) {
-        this.time = 0;
-        const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
-        for (const match of matches) {
-            match.prepare();
-        }
-        const matchSimulations = matches.map(m => m.matchSimulation);
-
-        let index = 0;
-
-        do {
-            let t0 = performance.now();
-
-            for (const matchSimulation of matchSimulations) {
-                matchSimulation.nextAction(this.time);
-            }
-
-            console.log(`matchSimulation.nextAction() ${index++} took ${(performance.now() - t0)} milliseconds.`);
-        }
-        while (++this.time < 90);
-
-        for (const match of matches) {
-            match.finish();
-        }
-
-        callback();
     }
 }

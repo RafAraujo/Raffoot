@@ -1,17 +1,21 @@
 class TranslatorService {
     constructor() {
-        this.language = TranslatorService._getLanguage();
+        this.language = this.getLanguage();
     }
 
     static _getAvailableLanguages() {
         return Object.getOwnPropertyNames(MultiLanguage);
     }
 
-    static _getLanguage() {
+    getLanguage() {
         const availableLanguages = TranslatorService._getAvailableLanguages();
         const browserLanguage = navigator.language || navigator.userLanguage;
         const language = availableLanguages.find(l => browserLanguage.startsWith(l)) ?? 'en';
         return language;
+    }
+
+    setLanguage(abbreviation) {
+        this.language = abbreviation;
     }
 
     get(text) {
