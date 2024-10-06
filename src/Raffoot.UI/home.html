@@ -1624,7 +1624,7 @@
             loadDefaultPlayerPhoto(event) {
                 event.target.src = 'res/image/players/0.svg';
             },
-            loadGame: async function () {
+            async loadGame() {
                 const urlParams = new URLSearchParams(location.search);
                 const gameId = parseInt(urlParams.get('id'));
                 this.game = await gameService.loadAsync(gameId);

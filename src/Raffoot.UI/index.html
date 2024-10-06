@@ -32,7 +32,7 @@
         <div class="row mb-3">
             <div class="col-9 d-grid mx-auto">
                 <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`" data-bs-toggle="modal"
-                    data-bs-target="#modal-games">
+                    data-bs-target="#modal-games" @click="clearMessage()">
                     <i class="fa-solid fa-folder-open"></i>
                     {{ translator.get("Load game") }}
                 </button>
@@ -41,7 +41,7 @@
         <div class="row mb-3">
             <div class="col-9 d-grid mx-auto">
                 <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`" data-bs-toggle="modal"
-                    data-bs-target="#modal-import">
+                    data-bs-target="#modal-import" @click="clearMessage()">
                     <i class="fa-solid fa-file-import"></i>
                     {{ translator.get("Import game") }}
                 </button>
@@ -109,7 +109,7 @@
             </div>
         </div>
 
-        <div id="modal-import" class="modal fade" tabindex="-1" aria-labelledby="modal-import-label" aria-hidden="true">
+        <div id="modal-import" class="modal fade" tabindex="-1" aria-labelledby="modal-import-label" aria-hidden="true" @hidden.bs.modal="alert('teste')">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -119,7 +119,8 @@
                     <div class="modal-body">
                         <div class="row mb-3">
                             <div class="col">
-                                <input id="file" type="file" class="form-control" @change="importGame($event)">
+                                <input id="file" type="file" class="form-control" @change="onChangeFile($event)"
+                                    accept=".raffoot">
                             </div>
                         </div>
                         <div class="row" :class="{ 'd-none' : !message.text }">
@@ -138,7 +139,7 @@
                             <i class="fa-solid fa-xmark"></i>
                             {{ translator.get("Cancel") }}
                         </button>
-                        <button class="btn btn-primary" :disabled="!selectedGame" @click="importGame()">
+                        <button class="btn btn-primary" :disabled="file == null" @click="importGame()">
                             <i class="fa-solid fa-file-import"></i>
                             {{ translator.get("Import") }}
                         </button>
@@ -192,17 +193,10 @@
             }
         },
         methods: {
-            getSavedGames: async function () {
-                this.savedGames = await gameService.getAllAsync();
+            clearMessage() {
+                this.message = { text: '', type: 'primary' };
             },
-            selectGame: async function (event) {
-                this.message.text = '';
-                this.selectedGame = null;
-                const id = event.target.value;
-                const game = id ? this.savedGames.find(g => g.key == id) : null;
-                this.selectedGame = game;
-            },
-            deleteGame: async function () {
+            async deleteGame() {
                 try {
                     this.message = { text: this.translator.get('Processing...'), type: 'primary' };
                     await gameService.delete(this.selectedGame.key);
@@ -211,32 +205,66 @@
                     this.message = { text: this.translator.get('Game deleted with success'), type: 'success' };
                 }
                 catch (error) {
-                    console.log(error);
+                    console.error(error);
                     this.message = { text: error, type: 'danger' };
                 }
             },
-            importGame(event) {
-                const files = event.target.files;
-                if (!files.length)
-                    return;
-
+            async getSavedGames() {
+                this.savedGames = await gameService.getAllAsync();
+            },
+            importGame() {
                 const reader = new FileReader();
-                reader.readAsText(files[0]);
+                const self = this;
                 reader.onload = async function (event) {
-                    const game = gameService.decompress(reader.result);
-                    await gameService.insertAsync(game);
-                }
+                    try {
+                        const game = gameService.decompress(reader.result);
+                        if (!game?.name || !game?.firstYear) {
+                            self.message = { text: self.translator.get('Invalid file'), type: 'warning' };
+                            return;
+                        }
+
+                        await gameService.insertAsync(game);
+                        self.message = { text: self.translator.get('Game imported with success'), type: 'success' };
+                        await self.getSavedGames();
+                    }
+                    catch (error) {
+                        console.error(error);
+                        self.message = { text: error, type: 'danger' };
+                    }
+                };
                 reader.onerror = function (event) {
-                    alert('Erro');
+                    console.log(event);
+                    self.message = { text: reader.error, type: 'danger' };
+                };
+
+                try {
+                    reader.readAsText(this.file);
+                }
+                catch (error) {
+                    console.error(error);
+                    this.message = { text: error, type: 'danger' };
                 }
             },
             loadGame() {
-                if (this.selectedGame) {
-                    const url = `home.html?id=${this.selectedGame.key}`;
-                    this.redirect(url);
-                }
+                if (!this.selectedGame)
+                    return;
+                
+                const url = `home.html?id=${this.selectedGame.key}`;
+                this.redirect(url);
+            },
+            onChangeFile(event) {
+                this.message = { text: '', type: 'primary' };
+                const files = event.target.files;
+                this.file = files.length === 0 ? null : files[0];
             },
             redirect: url => location.href = url,
+            selectGame(event) {
+                this.message.text = '';
+                this.selectedGame = null;
+                const id = event.target.value;
+                const game = id ? this.savedGames.find(g => g.key == id) : null;
+                this.selectedGame = game;
+            },
         },
         computed: {
             themeInverse() {

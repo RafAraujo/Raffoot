@@ -4,35 +4,6 @@ class GameService {
         return game;
     }
 
-    cast(object) {
-        const game = Object.assign(new Game(), object);
-        
-        game.championships = game.championships.map(o => Object.assign(new Championship(), o));
-        game.championshipEditions = game.championshipEditions.map(o => Object.assign(new ChampionshipEdition(), o));
-        game.championshipEditionClubs = game.championshipEditionClubs.map(o => Object.assign(new ChampionshipEditionClub(), o));
-        game.championshipEditionEliminationPhases = game.championshipEditionEliminationPhases.map(o => Object.assign(new ChampionshipEditionEliminationPhase(), o));
-        game.championshipEditionEliminationPhaseDuels = game.championshipEditionEliminationPhaseDuels.map(o => Object.assign(new ChampionshipEditionEliminationPhaseDuel(), o));
-        game.championshipEditionFixtures = game.championshipEditionFixtures.map(o => Object.assign(new ChampionshipEditionFixture(), o));
-        game.championshipEditionGroups = game.championshipEditionGroups.map(o => Object.assign(new ChampionshipEditionGroup(), o));
-        game.championshipEditionPlayers = game.championshipEditionPlayers.map(o => Object.assign(new ChampionshipEditionPlayer(), o));
-        game.championshipTypes = game.championshipTypes.map(o => Object.assign(new ChampionshipType(), o));
-        game.clubs = game.clubs.map(o => Object.assign(new Club(), o));
-        game.confederations = game.confederations.map(o => Object.assign(new Confederation(), o));
-        game.continents = game.continents.map(o => Object.assign(new Continent(), o));
-        game.countries = game.countries.map(o => Object.assign(new Country(), o));
-        game.fieldLocalizations = game.fieldLocalizations.map(o => Object.assign(new FieldLocalization(), o));
-        game.fieldRegions = game.fieldRegions.map(o => Object.assign(new FieldRegion(), o));
-        game.formations = game.formations.map(o => Object.assign(new Formation(), o));
-        game.matches = game.matches.map(o => Object.assign(new Match(), o));
-        game.players = game.players.map(o => Object.assign(new Player(), o));
-        game.positions = game.positions.map(o => Object.assign(new Position(), o));
-        game.seasons = game.seasons.map(o => Object.assign(new Season(), o));
-        game.seasonDates = game.seasonDates.map(o => Object.assign(new SeasonDate(), o));
-        game.playerTransfers = game.transfers.map(o => Object.assign(new PlayerTransfer(), o));
-
-        return game;
-    }
-
     compress(game) {
         const string = JSON.stringify(game);
         const compressed = LZString.compressToEncodedURIComponent(string);
@@ -87,7 +58,8 @@ class GameService {
         let t0 = performance.now();
 
         const object = await this.getByIdAsync(id);
-        const game = this.cast(object);
+        const game = this._cast(object);
+        game.id = id;
         Context.game = game;
 
 		console.log(`GameService.loadAsync() took ${(performance.now() - t0)} milliseconds.`);
@@ -99,6 +71,35 @@ class GameService {
         const dao = await this._getDaoAsync();
         await dao.deleteAsync('Game', id);
         ConnectionFactory.closeConnection();
+    }
+
+    _cast(object) {
+        const game = Object.assign(new Game(), object);
+        
+        game.championships = game.championships.map(o => Object.assign(new Championship(), o));
+        game.championshipEditions = game.championshipEditions.map(o => Object.assign(new ChampionshipEdition(), o));
+        game.championshipEditionClubs = game.championshipEditionClubs.map(o => Object.assign(new ChampionshipEditionClub(), o));
+        game.championshipEditionEliminationPhases = game.championshipEditionEliminationPhases.map(o => Object.assign(new ChampionshipEditionEliminationPhase(), o));
+        game.championshipEditionEliminationPhaseDuels = game.championshipEditionEliminationPhaseDuels.map(o => Object.assign(new ChampionshipEditionEliminationPhaseDuel(), o));
+        game.championshipEditionFixtures = game.championshipEditionFixtures.map(o => Object.assign(new ChampionshipEditionFixture(), o));
+        game.championshipEditionGroups = game.championshipEditionGroups.map(o => Object.assign(new ChampionshipEditionGroup(), o));
+        game.championshipEditionPlayers = game.championshipEditionPlayers.map(o => Object.assign(new ChampionshipEditionPlayer(), o));
+        game.championshipTypes = game.championshipTypes.map(o => Object.assign(new ChampionshipType(), o));
+        game.clubs = game.clubs.map(o => Object.assign(new Club(), o));
+        game.confederations = game.confederations.map(o => Object.assign(new Confederation(), o));
+        game.continents = game.continents.map(o => Object.assign(new Continent(), o));
+        game.countries = game.countries.map(o => Object.assign(new Country(), o));
+        game.fieldLocalizations = game.fieldLocalizations.map(o => Object.assign(new FieldLocalization(), o));
+        game.fieldRegions = game.fieldRegions.map(o => Object.assign(new FieldRegion(), o));
+        game.formations = game.formations.map(o => Object.assign(new Formation(), o));
+        game.matches = game.matches.map(o => Object.assign(new Match(), o));
+        game.players = game.players.map(o => Object.assign(new Player(), o));
+        game.positions = game.positions.map(o => Object.assign(new Position(), o));
+        game.seasons = game.seasons.map(o => Object.assign(new Season(), o));
+        game.seasonDates = game.seasonDates.map(o => Object.assign(new SeasonDate(), o));
+        game.playerTransfers = game.transfers.map(o => Object.assign(new PlayerTransfer(), o));
+
+        return game;
     }
 
     async _getDaoAsync() {
