@@ -29,11 +29,11 @@
                 </div>
             </div>
         </div>
-        <div v-if="gameLoaded" @click="playSection.unselectPlayer()">
+        <div v-if="gameLoaded" @click="clearMessage(); playSection.unselectPlayer()">
             <header>
                 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="index.html">Raffoot</a>
+                        <a class="navbar-brand" href="#" @click.prevent="goToSection('play')">Raffoot</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -132,13 +132,15 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="#" @click="saveAsync()">
+                                            <a class="dropdown-item" href="#"
+                                                @click.prevent="saveAsync(true); toggleColapse()">
                                                 <i class="fa-solid fa-floppy-disk fa-fw"></i>
                                                 {{ translator.get("Save game") }}
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#" @click="exportGame()">
+                                            <a class="dropdown-item" href="#"
+                                                @click.prevent="exportGame(); toggleColapse()">
                                                 <i class="fa-solid fa-file-export fa-fw"></i>
                                                 {{ translator.get("Export game") }}
                                             </a>
@@ -148,20 +150,21 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#modal-language">
+                                                data-bs-target="#modal-language" @click.prevent="toggleColapse()">
                                                 <i class="fa-solid fa-language fa-fw"></i>
                                                 {{ translator.get("Language") }}
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#modal-colors">
+                                                data-bs-target="#modal-colors" @click.prevent="toggleColapse()">
                                                 <i class="fa-solid fa-palette fa-fw"></i>
                                                 {{ translator.get("Colors") }}
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#" @click="toggleFullscreen()">
+                                            <a class="dropdown-item" href="#"
+                                                @click="toggleFullscreen(); toggleColapse()">
                                                 <i class="fa-solid fa-up-right-and-down-left-from-center fa-fw"></i>
                                                 {{ translator.get("Full screen") }}
                                             </a>
@@ -190,8 +193,8 @@
                                 <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`"
                                     role="alert">
                                     {{ message.text }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
+                                    <button type="button" class="btn-close" aria-label="Close"
+                                        @click="clearMessage()"></button>
                                 </div>
                             </div>
                         </div>
@@ -228,15 +231,13 @@
                                     <a href="#" class="text-decoration-none color-inherit fw-bold"
                                         :title="translator.get('Messages')">
                                         <i class="fa-solid fa-envelope fa-fw me-2"></i>
-                                        <span>
-                                            {{ 0 }}
-                                        </span>
+                                        {{ game.messages.length }}
                                     </a>
                                 </p>
                                 <p class="m-0">
                                     <i class="fa-solid fa-flag fa-fw me-2"></i>
                                     <span>
-                                        {{ playSection.getNationalLeaguePositionMessage() }}
+                                        {{ playSection.getNationalLeaguePosition() }}
                                     </span>
                                 </p>
                                 <div class="row">
@@ -296,7 +297,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <button type="button" class="btn btn-light border" @click.stop="advanceDate()">
+                                <button type="button" class="btn btn-light border" @click="advanceDate()">
                                     <i class="fa-solid fa-right-long"></i>
                                     {{ translator.get("Advance") }}
                                 </button>
@@ -361,7 +362,7 @@
                                                 <template
                                                     v-for="item in playSection.getLineup().filter(i => i.player.isOnField)">
                                                     <div class="player position-absolute text-center"
-                                                        @click.stop="playSection.changePlayers(item.player.id)"
+                                                        @click.stop="clearMessage(); playSection.changePlayers(item.player.id)"
                                                         :style="{ top: (11 - item.player.fieldLocalization.line) * 7.7 + '%', left: (item.player.fieldLocalization.column) * 20 + '%' }"
                                                         :class="{ 'blink' : item.player.id === playSection.selectedPlayerId, 'injured' : item.player.isInjured }">
                                                         <div class="overall position-absolute">
@@ -419,7 +420,7 @@
                                                 <template
                                                     v-for="fieldLocalization in game.club.getEmptyFieldLocalizations()">
                                                     <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
-                                                        @click.stop="playSection.movePlayerToField(fieldLocalization.id)"
+                                                        @click.stop="clearMessage(); playSection.movePlayerToField(fieldLocalization.id)"
                                                         :style="{ top: (11 - fieldLocalization.line) * 7.7 + '%', left: (fieldLocalization.column) * 20 + '%' }">
                                                         <img :src="game.club.getKitsURLs()[0].url"
                                                             :alt="translator.get(fieldLocalization.position.name)"
@@ -440,12 +441,12 @@
                                         <div class="col-lg-6">
                                             <div class="bench"
                                                 :class="{ 'pb-5' : game.club.playersOnBench.length % 5 === 0 }"
-                                                @click.stop="playSection.movePlayerToBench()"
+                                                @click.stop="clearMessage(); playSection.movePlayerToBench()"
                                                 @drop="playSection.drop($event); playSection.movePlayerToBench()"
                                                 @dragover.prevent>
                                                 <template v-for="item in playSection.getBench()">
                                                     <div class="player d-inline-block position-relative text-center"
-                                                        @click.stop="playSection.changePlayers(item.player.id)"
+                                                        @click.stop="clearMessage(); playSection.changePlayers(item.player.id)"
                                                         :class="{ 'blink' : item.player.id === playSection.selectedPlayerId, 'injured' : item.player.isInjured }">
                                                         <div class="overall position-absolute">
                                                             <template v-if="item.player.isInjured">
@@ -718,14 +719,14 @@
                                         <a class="nav-link color-inherit text-decoration-underline" aria-current="page"
                                             href="#"
                                             :class="{ 'active' : standingSection.activeTab === 'classification' }"
-                                            @click.stop="standingSection.activeTab = 'classification'">
+                                            @click="standingSection.activeTab = 'classification'">
                                             {{ translator.get("Classification") }}
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link color-inherit text-decoration-underline" href="#"
                                             :class="{ 'active' : standingSection.activeTab === 'top-scorers' }"
-                                            @click.stop="standingSection.activeTab = 'top-scorers'">
+                                            @click="standingSection.activeTab = 'top-scorers'">
                                             {{ translator.get("Top Scorers") }}
                                         </a>
                                     </li>
@@ -953,7 +954,7 @@
                             <div class="row-mb-2">
                                 <div class="col text-center">
                                     <div class="row">
-                                        <div v-for="(kit, index) in clubSection.getKitsURLs()" class="col-3">
+                                        <div v-for="(kit, index) in clubSection.getKitsURLs()" class="col-6 col-sm-3">
                                             <figure class="figure">
                                                 <img class="figure-img img-fluid" :src="kit.url"
                                                     :alt="translator.get('Uniform')" :title="translator.get('Uniform')"
@@ -1181,7 +1182,7 @@
                             </div>
                             <div class="d-grid col-6 col-md-3">
                                 <button type="button" class="btn btn-primary border"
-                                    @click.stop="playersSection.searchPlayers(); playerModal.unselectPlayer()">
+                                    @click="playersSection.searchPlayers(); playerModal.unselectPlayer()">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                     {{ translator.get("Search") }}
                                 </button>
@@ -1324,14 +1325,12 @@
                         <div class="modal-body">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="language" id="language-english"
-                                    :checked="translator.language.startsWith('en')"
-                                    @click="setLanguage('en')">
+                                    :checked="translator.language.startsWith('en')" @click="setLanguage('en')">
                                 <label class="form-check-label" for="language-english">English</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="language" id="language-portuguese"
-                                    :checked="translator.language.startsWith('pt')"
-                                    @click="setLanguage('pt-BR')">
+                                    :checked="translator.language.startsWith('pt')" @click="setLanguage('pt-BR')">
                                 <label class="form-check-label" for="language-portuguese">Português</label>
                             </div>
                         </div>
@@ -1626,10 +1625,14 @@
                 const section = event.currentTarget.getAttribute('href').substring(1);
                 this.goToSection(section);
             },
-            async saveAsync() {
+            clearMessage() {
                 this.message = { text: '', type: 'primary' };
+            },
+            async saveAsync(showMessage = false) {
                 await gameService.saveAsync(Vue.toRaw(this.game));
-                this.message.text = '';
+                if (showMessage) {
+                    this.message = { text: translator.get('Game saved successfully'), type: 'success' };
+                }
             },
             exportGame() {
                 const game = Vue.toRaw(this.game);
@@ -1649,10 +1652,7 @@
                 for (const element of document.getElementsByClassName('nav-link dropdown-toggle show'))
                     element.click();
 
-                const collapseElement = document.querySelector('.navbar-collapse.collapse');
-                if (collapseElement.classList.contains('show')) {
-                    const collapse = new bootstrap.Collapse(collapseElement);
-                }
+                this.toggleColapse();
             },
             toggleFullscreen() {
                 if (document.fullscreenElement) {
@@ -1694,6 +1694,12 @@
                 this.game.config.language = language;
                 this.translator.setLanguage(language);
             },
+            toggleColapse() {
+                const collapseElement = document.querySelector('.navbar-collapse.collapse');
+                if (collapseElement.classList.contains('show')) {
+                    const collapse = new bootstrap.Collapse(collapseElement);
+                }
+            }
         },
         computed: {
             clubId() {
@@ -1717,6 +1723,7 @@
             },
             theme(newTheme, oldTheme) {
                 document.documentElement.setAttribute('data-bs-theme', newTheme);
+                this.game.config.theme = newTheme;
                 localStorage.setItem('theme', newTheme);
             },
         },
@@ -1724,10 +1731,11 @@
             try {
                 this.message = { text: this.translator.get('Processing...'), type: 'primary' };
                 await this.loadGame();
-                this.theme = this.game.config.theme;
                 this.standingSection.selectNationalChampionship();
                 this.message = '';
                 this.gameLoaded = true;
+
+                this.theme = this.game.config.theme;
                 this.colorsModal.setColors();
             }
             catch (error) {

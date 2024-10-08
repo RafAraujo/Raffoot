@@ -14,19 +14,29 @@
 }
 
 html[data-bs-theme="dark"] {
-    td.text-primary, i.text-primary {
+
+    td.text-primary,
+    i.text-primary {
         color: LightSkyBlue !important;
     }
-    td.text-secondary, i.text-secondary {
+
+    td.text-secondary,
+    i.text-secondary {
         color: lightgray !important;
     }
-    td.text-success, i.text-success {
+
+    td.text-success,
+    i.text-success {
         color: darkseagreen !important;
     }
-    td.text-danger, i.text-danger {
+
+    td.text-danger,
+    i.text-danger {
         color: lightcoral !important;
     }
-    td.text-warning, i.text-warning {
+
+    td.text-warning,
+    i.text-warning {
         color: khaki !important;
     }
 
@@ -171,19 +181,19 @@ table.table {
     }
 
     td.main-continental-cup {
-        border-left: 3px solid blue;
+        box-shadow: inset 4px 0 blue;
     }
 
     td.secondary-continental-cup {
-        border-left: 3px solid orange;
+        box-shadow: inset 4px 0 orange;
     }
 
     td.promotion {
-        border-left: 3px solid deepskyblue;
+        box-shadow: inset 4px 0 deepskyblue;
     }
 
     td.relegation {
-        border-left: 3px solid red;
+        box-shadow: inset 4px 0 red;
     }
 }
 

@@ -95,7 +95,7 @@
                                     <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`"
                                         role="alert">
                                         {{ message.text }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        <button type="button" class="btn-close" @click="clearMessage()"
                                             aria-label="Close"></button>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@
                                     <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`"
                                         role="alert">
                                         {{ message.text }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        <button type="button" class="btn-close" @click="clearMessage()"
                                             aria-label="Close"></button>
                                     </div>
                                 </div>
@@ -218,7 +218,7 @@
                     await gameService.delete(this.selectedGame.key);
                     this.selectedGame = null;
                     await this.getSavedGames();
-                    this.message = { text: this.translator.get('Game deleted with success'), type: 'success' };
+                    this.message = { text: this.translator.get('Game deleted successfully'), type: 'success' };
                 }
                 catch (error) {
                     console.error(error);
@@ -242,7 +242,7 @@
                         await gameService.insertAsync(game);
                         this.file = null;
                         file.value = null;
-                        self.message = { text: self.translator.get('Game imported with success'), type: 'success' };
+                        self.message = { text: self.translator.get('Game imported successfully'), type: 'success' };
                         await self.getSavedGames();
                     }
                     catch (error) {
@@ -294,7 +294,7 @@
                 document.documentElement.setAttribute('data-bs-theme', newTheme);
             },
         },
-        async created() {
+        created() {
             document.documentElement.setAttribute('data-bs-theme', this.theme);
         },
         async mounted() {

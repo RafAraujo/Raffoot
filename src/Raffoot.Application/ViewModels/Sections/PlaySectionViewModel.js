@@ -65,7 +65,7 @@ class PlaySectionViewModel {
         return lineup;
     }
 
-    getNationalLeaguePositionMessage() {
+    getNationalLeaguePosition() {
         const nationalLeague = this.game.getNationalLeagueByClub(this.game.club);
         const position = this.game.getPositionInTheNationalLeagueByClub(this.game.club);
         const message = `${this.translator.getChampionshipName(nationalLeague.championship)} - ${this.translator.get("Position")} #${position}`;

@@ -37,6 +37,8 @@ class Game {
         this.matchSimulationEvents = [];
         this.matchSimulationStatistics = [];
 
+        this.messages = [];
+
         this.config = {
             fullScreen: Config.fullScreen,
             language: Config.language,
