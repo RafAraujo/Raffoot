@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-bs-theme="dark">
+<html data-bs-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -16,6 +16,13 @@
 
 <body>
     <div id="app" v-cloak>
+        <header>
+            <div class="sticky-top d-flex justify-content-end m-2">
+                <a href="#" :title="translator.get(themeInverse)" class="link-body-emphasis">
+                    <i class="fa-solid" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'" @click="changeTheme()"></i>
+                </a>
+            </div>
+        </header>
         <div class="container" v-if="isCreatingGame">
             <div class="row mt-3">
                 <div class="col">
@@ -47,9 +54,9 @@
                         <div class="col">
                             <label for="year" class="form-label">{{ translator.get("Year") }}</label>
                             <select id="year" class="form-control" required autocomplete="off"
-                                @change="createGame($event.target.value)">
+                                v-model.lazy="selectedYear" @change="createGame($event.target.value)">
                                 <option></option>
-                                <option v-for="year in getYears()" :key="year" :value="year">
+                                <option v-for="(year, index) in getYears()" :key="year" :value="year">
                                     {{ year }}
                                 </option>
                             </select>
@@ -196,17 +203,32 @@
                 gameName: '',
                 isCreatingGame: false,
                 message: { text: '', type: 'primary' },
-                theme: 'dark',
+                selectedYear: null,
+                theme: Config.theme,
                 translator: new TranslatorService(),
             }
         },
         methods: {
+            changeTheme() {
+                this.theme = this.themeInverse;
+                localStorage.setItem('theme', this.theme)
+            },
             createGame(year) {
                 if (!year)
                     return;
                 this.isCreatingGame = true;
                 this.game = gameService.create('', year);
+                this.game.config.theme = this.theme;
                 this.isCreatingGame = false;
+            },
+            fifaServiceExists(year) {
+                try {
+                    eval(`Fifa${(year).toString().substring(2)}Service`);
+                    return true;
+                }
+                catch {
+                    return false;
+                }
             },
             getContinents() {
                 return this.game?.continents.map(c => ({ id: c.id, name: this.translator.get(c.name) }));
@@ -216,15 +238,20 @@
                 countries = countries.map(c => ({ id: c.id, name: this.translator.get(c.name) })).orderBy('name');
                 return countries;
             },
-            getYears: function () {
-                let year = 2005;
+            getYears() {
+                const maxYear = Config.years.max;
+                const minYear = Config.years.min;
+
                 const years = [];
-                const currentYear = new Date().getFullYear();
-                do {
-                    years.push(year);
-                }
-                while (year++ <= currentYear);
-                return years.reverse();
+                for (let year = maxYear; year >= minYear; year--)
+                    if (this.fifaServiceExists(year)) {
+                        years.push(year);
+                        if (!this.selectedYear) {
+                            this.selectedYear = year;
+                        }
+                    }
+
+                return years;
             },
             setClub(id) {
                 if (!this.game)
@@ -236,7 +263,7 @@
                     return;
                 this.game.country = this.game.countries.find(c => c.id === parseInt(id));
             },
-            startGame: async function () {
+            async startGame() {
                 try {
                     this.game.name = this.gameName;
                     this.game.club.setSquadOrder();
@@ -251,11 +278,23 @@
             },
             redirect: url => location.href = url,
         },
+        computed: {
+            themeInverse() {
+                return this.theme === 'dark' ? 'light' : 'dark';
+            }
+        },
         watch: {
             theme(newTheme, oldTheme) {
                 document.documentElement.setAttribute('data-bs-theme', newTheme);
             },
         },
+        async created() {
+            document.documentElement.setAttribute('data-bs-theme', this.theme);
+        },
+        async mounted() {
+            if (this.selectedYear)
+                this.createGame(this.selectedYear);
+        }
     };
 
     Vue.createApp(RaffootApp).mount('#app');

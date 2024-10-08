@@ -1,21 +1,18 @@
 class TranslatorService {
     constructor() {
-        this.language = this.getLanguage();
+        this._browserLanguage = Config.browserLanguage;
+        this._gameLanguage = null;
+
+        this.language = this._getLanguage();
     }
 
     static _getAvailableLanguages() {
         return Object.getOwnPropertyNames(MultiLanguage);
     }
 
-    getLanguage() {
-        const availableLanguages = TranslatorService._getAvailableLanguages();
-        const browserLanguage = navigator.language || navigator.userLanguage;
-        const language = availableLanguages.find(l => browserLanguage.startsWith(l)) ?? 'en';
-        return language;
-    }
-
-    setLanguage(abbreviation) {
-        this.language = abbreviation;
+    setLanguage(language) {
+        this._gameLanguage = language;
+        this.language = this._getLanguage();
     }
 
     get(text) {
@@ -29,7 +26,7 @@ class TranslatorService {
             return translation;
         }
         else {
-            console.error(`Text "${text}" not found`)
+            console.error(`Text "${text}" not found`);
             return text;
         }
     } 
@@ -74,5 +71,12 @@ class TranslatorService {
         }
 
         return text.toLowerCase();
+    }
+
+    _getLanguage() {
+        const availableLanguages = TranslatorService._getAvailableLanguages();
+        let language = this._gameLanguage ?? this._browserLanguage;
+        language = availableLanguages.find(l => language.startsWith(l)) ?? 'en';
+        return language;
     }
 }

@@ -8,9 +8,7 @@ const Config = (function () {
     };
     
     return {
-        version: '1.0',
-        defaultFirstYear: new Date().getFullYear(),
-        indexedDbName: 'Raffoot',
+        browserLanguage: navigator.language ?? navigator.userLanguage,
         colors: {
             black: { hex: '#212529', class: 'dark' },
             blue: { hex: '#007bff', class: 'primary' },
@@ -42,6 +40,7 @@ const Config = (function () {
             logoFolder: `${ResourcesFolder}/image/clubs`,
             photoFolder: `${ResourcesFolder}/image/players`,
         },
+        indexedDbName: 'Raffoot',
         matchSpeedOptions: {
             normal: 1000,
             fast: 500,
@@ -66,6 +65,13 @@ const Config = (function () {
             minOverall: 1,
             maxOverall: 99,
         },
-        yellowCardsRequiredForSuspension: 3
+        theme: localStorage.getItem('theme') ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+        version: '1.0',
+        years: {
+            default: new Date().getFullYear(),
+            min: 2005,
+            max: new Date().getFullYear() + 1,
+        },
+        yellowCardsRequiredForSuspension: 3,
     }
 })();

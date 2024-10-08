@@ -64,6 +64,25 @@ class StandingSectionViewModel {
         return championshipEditions;
     }
 
+    getLast5(championshipEdition, club) {
+        const fixtures = this.game.getLastFixtures(championshipEdition, 5);
+        const matches = fixtures.flatMap(f => f.matches).filter(m => m.clubs.includes(club));
+        const result = [];
+
+        for (const match of matches) {
+            const description = match.isDraw ? 'Draw' : match.getWinner() === club ? 'Win' : 'Loss';
+            const item = {
+                color: 'text-' + (description === 'Draw' ? 'secondary' : description === 'Win' ? 'success' : 'danger'),
+                description: `${this.translator.get(description)} (${match.fullDescription})`,
+                icon: 'fa-' + (description === 'Draw' ? 'circle-minus' : description === 'Win' ? 'circle-check' : 'circle-xmark'),
+            };
+
+            result.push(item);
+        }
+
+        return result;
+    }
+
     selectNationalChampionship(currentMatch) {
         this.isNationalChampionshipsSelected = true;
         const nationalLeague = this.game.getNationalLeagueByClub(this.game.club);

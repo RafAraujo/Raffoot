@@ -17,6 +17,11 @@ class PlayersSectionViewModel {
         return players;
     }
 
+    getClubs() {
+        const clubs = this.game.clubs;
+        return clubs;
+    }
+
     getCountries() {
         const countries = this.game.countries
             .map(c => ({ id: c.id, name: this.translator.get(c.name) }))

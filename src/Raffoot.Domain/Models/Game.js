@@ -39,10 +39,13 @@ class Game {
 
         this.config = {
             fullScreen: Config.fullScreen,
+            language: Config.language,
             matchSpeed: Config.matchSpeedOptions.ultraFast,
             search: {
                 pageSize: Config.search.pageSize
-            }
+            },
+            theme: Config.theme,
+            useClubColors: true,
         };
         this.time = 0;
     }
@@ -108,6 +111,10 @@ class Game {
 
     getCurrentMatch() {
         return this.currentSeason.currentSeasonDate.matches.find(m => m.clubs.map(c => c.id).includes(this._clubId));
+    }
+
+    getLastFixtures(championshipEdition, count) {
+        return championshipEdition.championshipEditionFixtures.filter(cef => cef.seasonDate.date <= this.currentSeason.currentDate).lastItems(count);
     }
 
     getNationalLeagueByClub(club) {

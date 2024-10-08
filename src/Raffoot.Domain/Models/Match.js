@@ -48,6 +48,10 @@ class Match {
         return this._clubIds.length === 2 ? `${this.clubHome.name} × ${this.clubAway.name}` : '';
     }
 
+    get fullDescription() {
+        return this._clubIds.length === 2 ? `${this.clubHome.name} ${this.goals[0]}×${this.goals[1]} ${this.clubAway.name}` : '';
+    }
+
     get hasGoals() {
         return (this.goals ?? [0]).sum() > 0;
     }

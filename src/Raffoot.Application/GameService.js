@@ -58,6 +58,9 @@ class GameService {
         let t0 = performance.now();
 
         const object = await this.getByIdAsync(id);
+        if (object == null)
+            return null;
+        
         const game = this._cast(object);
         game.id = id;
         Context.game = game;

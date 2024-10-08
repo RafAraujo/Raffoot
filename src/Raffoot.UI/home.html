@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-bs-theme="dark">
+<html data-bs-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -31,8 +31,7 @@
         </div>
         <div v-if="gameLoaded" @click="playSection.unselectPlayer()">
             <header>
-                <nav class="navbar navbar-expand-lg bg-body-tertiary" :class="`bg-${colorsModal.theme}`"
-                    :data-bs-theme="colorsModal.theme">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="index.html">Raffoot</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -100,13 +99,15 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="#champions" @click.prevent="changeSection($event)">
+                                            <a class="dropdown-item" href="#champions"
+                                                @click.prevent="changeSection($event)">
                                                 <i class="fa-solid fa-trophy fa-fw"></i>
                                                 {{ translator.get("Champions") }}
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#top-scorers" @click.prevent="changeSection($event)">
+                                            <a class="dropdown-item" href="#top-scorers"
+                                                @click.prevent="changeSection($event)">
                                                 <i class="fa-solid fa-futbol fa-fw"></i>
                                                 {{ translator.get("Top Scorers") }}
                                             </a>
@@ -115,7 +116,8 @@
                                             <hr class="dropdown-divider">
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#ranking" @click.prevent="changeSection($event)">
+                                            <a class="dropdown-item" href="#ranking"
+                                                @click.prevent="changeSection($event)">
                                                 <i class="fa-solid fa-ranking-star fa-fw"></i>
                                                 {{ translator.get("Ranking") }}
                                             </a>
@@ -135,54 +137,47 @@
                                                 {{ translator.get("Save game") }}
                                             </a>
                                         </li>
-                                        <li></li>
-                                        <a class="dropdown-item" href="#" @click="exportGame()">
-                                            <i class="fa-solid fa-file-export fa-fw"></i>
-                                            {{ translator.get("Export game") }}
-                                        </a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#modal-language">
-                                        <i class="fa-solid fa-language fa-fw"></i>
-                                        {{ translator.get("Language") }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#modal-colors">
-                                        <i class="fa-solid fa-palette fa-fw"></i>
-                                        {{ translator.get("Colors") }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#" @click="toggleFullscreen()">
-                                        <i class="fa-solid fa-up-right-and-down-left-from-center fa-fw"></i>
-                                        {{ translator.get("Full screen") }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="index.html">
-                                        <i class="fa-solid fa-power-off fa-fw"></i>
-                                        {{ translator.get("Exit game") }}
-                                    </a>
+                                        <li>
+                                            <a class="dropdown-item" href="#" @click="exportGame()">
+                                                <i class="fa-solid fa-file-export fa-fw"></i>
+                                                {{ translator.get("Export game") }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#modal-language">
+                                                <i class="fa-solid fa-language fa-fw"></i>
+                                                {{ translator.get("Language") }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#modal-colors">
+                                                <i class="fa-solid fa-palette fa-fw"></i>
+                                                {{ translator.get("Colors") }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" @click="toggleFullscreen()">
+                                                <i class="fa-solid fa-up-right-and-down-left-from-center fa-fw"></i>
+                                                {{ translator.get("Full screen") }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="index.html">
+                                                <i class="fa-solid fa-power-off fa-fw"></i>
+                                                {{ translator.get("Exit game") }}
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
-                            </li>
-                            </ul>
-                            <form @submit.prevent class="d-flex" role="search">
-                                <input id="search" class="form-control me-2" type="search"
-                                    :placeholder="translator.get('Search')" aria-label="Search">
-                                <button type="button" class="btn" :class="`btn-outline-${themeInverse}`" type="submit">
-                                    {{ translator.get("Search") }}
-                                </button>
-                            </form>
                         </div>
                     </div>
                 </nav>
@@ -808,6 +803,9 @@
                                                 <th class="text-center" :title="translator.get('Goals Difference')">
                                                     {{ translator.getAbbreviation("Goals Difference") }}
                                                 </th>
+                                                <th>
+                                                    {{ translator.get("Last 5") }}
+                                                </th>
                                             </thead>
                                             <tbody>
                                                 <tr
@@ -825,7 +823,7 @@
                                                     <td>
                                                         {{ championshipEditionClub.club.name }}
                                                     </td>
-                                                    <td class="text-center">
+                                                    <td class="text-center fw-bold">
                                                         {{ championshipEditionClub.points }}
                                                     </td>
                                                     <td class="text-center">
@@ -848,6 +846,11 @@
                                                     </td>
                                                     <td class="text-center">
                                                         {{ championshipEditionClub.goalsDifference }}
+                                                    </td>
+                                                    <td>
+                                                        <i v-for="item in standingSection.getLast5(standingSection.selectedChampionshipEdition, championshipEditionClub.club)"
+                                                            class="fa-solid me-1" :class="item.icon, item.color"
+                                                            :title="item.description"></i>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -1322,13 +1325,13 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="language" id="language-english"
                                     :checked="translator.language.startsWith('en')"
-                                    @click="translator.setLanguage('en')">
+                                    @click="setLanguage('en')">
                                 <label class="form-check-label" for="language-english">English</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="language" id="language-portuguese"
                                     :checked="translator.language.startsWith('pt')"
-                                    @click="translator.setLanguage('pt-BR')">
+                                    @click="setLanguage('pt-BR')">
                                 <label class="form-check-label" for="language-portuguese">Português</label>
                             </div>
                         </div>
@@ -1352,40 +1355,78 @@
                         </div>
                         <div class="modal-body">
                             <div class="row mb-3">
-                                <div class="col-6">
-                                    <label for="background-color" class="form-label">
-                                        {{ translator.get('Background color') }}</label>
-                                    <input id="background-color" type="color" class="form-control form-control-color"
-                                        @change="colorsModal.colors.background = $event.target.value"
-                                        :value="game.club.colors.backgroundCustom">
-                                </div>
-                                <div class="col-6">
-                                    <label for="foreground-color" class="form-label">
-                                        {{ translator.get('Text color') }}
-                                    </label>
-                                    <input id="foreground-color" type="color" class="form-control form-control-color"
-                                        @change="colorsModal.colors.foreground = $event.target.value"
-                                        :value="game.club.colors.foregroundCustom">
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col">
-                                    <button type="button" class="btn btn-outline-dark"
-                                        @click="colorsModal.resetColors()">
-                                        <i class="fa-solid fa-rotate-left"></i>
-                                        {{ translator.get("Reset") }}
-                                    </button>
+                                    <label class="form-label">
+                                        {{ translator.get("Theme") }}
+                                    </label>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input id="theme-light" class="form-check-input" type="radio" name="theme"
+                                                value="light" v-model.lazy="theme" :checked="theme === 'light'">
+                                            <label for="theme-light" class="form-check-label">
+                                                {{ translator.get("Light") }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input id="theme-dark" class="form-check-input" type="radio" name="theme"
+                                                value="dark" v-model.lazy="theme" :checked="theme === 'dark'">
+                                            <label for="theme-dark" class="form-check-label">
+                                                {{ translator.get("Dark") }}
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="form-check form-switch">
+                                        <input id="useClubColors" type="checkbox" class="form-check-input" role="switch"
+                                            v-model.lazy="game.config.useClubColors" @change="colorsModal.setColors()">
+                                        <label class="form-check-label" for="useClubColors">
+                                            {{ translator.get("Use club colors") }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <template v-if="game.config.useClubColors">
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label for="background-color" class="form-label">
+                                            {{ translator.get('Background color') }}</label>
+                                        <input id="background-color" type="color"
+                                            class="form-control form-control-color"
+                                            @change="colorsModal.setBackground($event.target.value)"
+                                            :value="game.club.colors.backgroundCustom">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="foreground-color" class="form-label">
+                                            {{ translator.get('Text color') }}
+                                        </label>
+                                        <input id="foreground-color" type="color"
+                                            class="form-control form-control-color"
+                                            @change="colorsModal.setForeground($event.target.value)"
+                                            :value="game.club.colors.foregroundCustom">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button type="button" class="btn border" :class="`btn-${theme}`"
+                                            @click="colorsModal.resetColors()">
+                                            <i class="fa-solid fa-rotate-left"></i>
+                                            {{ translator.get("Reset") }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </template>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                 <i class="fa-solid fa-xmark"></i>
-                                {{ translator.get("Cancel") }}
-                            </button>
-                            <button type="button" class="btn btn-primary" @click="colorsModal.saveChanges()">
-                                <i class="fa-solid fa-floppy-disk"></i>
-                                {{ translator.get("Save changes") }}
+                                {{ translator.get("Close") }}
                             </button>
                         </div>
                     </div>
@@ -1557,7 +1598,7 @@
                 gameLoaded: false,
                 message: { text: translator.get('Processing...'), type: 'primary' },
                 modal: { title: '', message: '', methodOk: function () { } },
-                theme: 'dark',
+                theme: null,
                 translator: translator,
 
                 colorsModal: null,
@@ -1629,6 +1670,11 @@
                 const gameId = parseInt(urlParams.get('id'));
                 this.game = await gameService.loadAsync(gameId);
 
+                if (this.game == null)
+                    throw new Error(translator.get('Game not found'));
+
+                this.translator.setLanguage(this.game.config.language);
+
                 this.colorsModal = new ColorsModalViewModel(this.game, translator);
                 this.playerModal = new PlayerModalViewModel(this.game, translator);
 
@@ -1644,6 +1690,10 @@
                 audio.play();
             },
             redirect: url => location.href = url,
+            setLanguage(language) {
+                this.game.config.language = language;
+                this.translator.setLanguage(language);
+            },
         },
         computed: {
             clubId() {
@@ -1665,22 +1715,20 @@
                     this.colorsModal.setColors();
                 }
             },
-            clubId(newClubId, oldClubId) {
-                if (newClubId !== oldClubId) {
-                    this.colorsModal.setColors();
-                }
-            },
             theme(newTheme, oldTheme) {
                 document.documentElement.setAttribute('data-bs-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
             },
         },
         async created() {
             try {
                 this.message = { text: this.translator.get('Processing...'), type: 'primary' };
                 await this.loadGame();
+                this.theme = this.game.config.theme;
                 this.standingSection.selectNationalChampionship();
                 this.message = '';
                 this.gameLoaded = true;
+                this.colorsModal.setColors();
             }
             catch (error) {
                 this.message = { text: error, type: 'danger' };

@@ -14,17 +14,24 @@
 }
 
 html[data-bs-theme="dark"] {
-    td.text-primary {
+    td.text-primary, i.text-primary {
         color: LightSkyBlue !important;
     }
-    td.text-success {
+    td.text-secondary, i.text-secondary {
+        color: lightgray !important;
+    }
+    td.text-success, i.text-success {
         color: darkseagreen !important;
     }
-    td.text-danger {
+    td.text-danger, i.text-danger {
         color: lightcoral !important;
     }
-    td.text-warning {
+    td.text-warning, i.text-warning {
         color: khaki !important;
+    }
+
+    .modal-content {
+        color: white;
     }
 }
 

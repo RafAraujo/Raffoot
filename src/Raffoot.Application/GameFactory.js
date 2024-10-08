@@ -1,7 +1,7 @@
 class GameFactory {
 	static create(name, year = null) {
 		if (year == null) {
-			year = Config.defaultFirstYear;
+			year = Config.years.default;
 		}
 
 		Context.game = new Game(name, year);
