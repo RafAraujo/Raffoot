@@ -1604,6 +1604,8 @@
 
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="js/vue/vue.global.js"></script>
+
+    <script src="mock.js"></script>
 </body>
 
 </html>
@@ -1683,8 +1685,8 @@
             loadDefaultPlayerPhoto: event => event.target.src = 'res/image/players/0.svg',
             async loadGame() {
                 const urlParams = new URLSearchParams(location.search);
-                const gameId = parseInt(urlParams.get('id'));
-                this.game = await gameService.loadAsync(gameId);
+                const id = urlParams.get('id');
+                this.game = await gameService.loadAsync(id);
 
                 if (this.game == null)
                     throw new Error(translator.get('Game not found'));

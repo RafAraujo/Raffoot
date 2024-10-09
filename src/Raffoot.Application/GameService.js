@@ -57,7 +57,11 @@ class GameService {
     async loadAsync(id) {
         let t0 = performance.now();
 
-        const object = await this.getByIdAsync(id);
+        let object = null;
+        if (id === 'mock')
+            object = this._getMock();
+        else 
+            object = await this.getByIdAsync(parseInt(id));
         if (object == null)
             return null;
         
@@ -118,5 +122,10 @@ class GameService {
         if (!exists) {
             ConnectionFactory.createDatabaseAsync(Config.indexedDbName, ['Game']);
         }
+    }
+
+    _getMock() {
+        const object = this.decompress(mock);
+        return object;
     }
 }

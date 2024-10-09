@@ -294,12 +294,10 @@
                 document.documentElement.setAttribute('data-bs-theme', newTheme);
             },
         },
-        created() {
+        async created() {
             document.documentElement.setAttribute('data-bs-theme', this.theme);
-        },
-        async mounted() {
             await this.getSavedGames();
-        }
+        },
     };
 
     Vue.createApp(RaffootApp).mount('#app');
