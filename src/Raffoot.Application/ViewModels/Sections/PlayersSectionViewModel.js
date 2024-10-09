@@ -60,6 +60,7 @@ class PlayersSectionViewModel {
             players = players.filter(p => p.position.id === playerFilter.positionId);
         }
 
+        playerFilter.marketValue.maximum = window['market-value'].value;
         players = players.filter(p => p.marketValue <= playerFilter.marketValue.maximum * 1000 * 1000);
         if (playerFilter.forSale) {
             players = players.filter(p => p.forSale === true);

@@ -4,6 +4,7 @@ class TranslatorService {
         this._gameLanguage = null;
 
         this.language = this._getLanguage();
+        document.documentElement.setAttribute('lang', this.language);
     }
 
     static _getAvailableLanguages() {

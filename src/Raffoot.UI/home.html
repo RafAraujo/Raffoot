@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-bs-theme="light">
+<html lang="pt-br" data-bs-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -26,6 +26,9 @@
                                 :aria-label=translator.get('Close')></button>
                         </div>
                     </div>
+                    <a href="index.html" :class="{ 'd-none' : message.type != 'danger' }">
+                        {{ translator.get("Back") }}
+                    </a>
                 </div>
             </div>
         </div>
@@ -43,49 +46,49 @@
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection === 'play' }" href="#play"
-                                        @click.prevent="changeSection($event)">
+                                        @click.prevent="goToSection('play')">
                                         <i class="fa-solid fa-play fa-fw"></i>
                                         {{ translator.get("Play") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection === 'squad' }" href="#squad"
-                                        @click.prevent="changeSection($event)">
+                                        @click.prevent="goToSection('squad')">
                                         <i class="fa-solid fa-people-group fa-fw"></i>
                                         {{ translator.get("Squad") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection === 'calendar' }"
-                                        href="#calendar" @click.prevent="changeSection($event)">
+                                        href="#calendar" @click.prevent="goToSection('calendar')">
                                         <i class="fa-solid fa-calendar-days fa-fw"></i>
                                         {{ translator.get("Calendar") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection === 'standings' }"
-                                        href="#standings" @click.prevent="changeSection($event)">
+                                        href="#standings" @click.prevent="goToSection('standings')">
                                         <i class="fa-solid fa-table-list fa-fw"></i>
                                         {{ translator.get("Standings") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection === 'finances' }"
-                                        href="#finances" @click.prevent="changeSection($event)">
+                                        href="#finances" @click.prevent="goToSection('finances')">
                                         <i class="fa-solid fa-sack-dollar fa-fw"></i>
                                         {{ translator.get("Finances") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection === 'clubs' }" href="#clubs"
-                                        @click.prevent="changeSection($event)">
+                                        @click.prevent="goToSection('clubs')">
                                         <i class="fa-solid fa-shield-halved fa-fw"></i>
                                         {{ translator.get("Clubs") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" :class="{ 'active' : activeSection === 'players' }"
-                                        href="#players" @click.prevent="changeSection($event)">
+                                        href="#players" @click.prevent="goToSection('players')">
                                         <i class="fa-solid fa-user fa-fw"></i>
                                         {{ translator.get("Players") }}
                                     </a>
@@ -100,14 +103,14 @@
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="#champions"
-                                                @click.prevent="changeSection($event)">
+                                                @click.prevent="goToSection('champions')">
                                                 <i class="fa-solid fa-trophy fa-fw"></i>
                                                 {{ translator.get("Champions") }}
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="#top-scorers"
-                                                @click.prevent="changeSection($event)">
+                                                @click.prevent="goToSection('top-scorers')">
                                                 <i class="fa-solid fa-futbol fa-fw"></i>
                                                 {{ translator.get("Top Scorers") }}
                                             </a>
@@ -117,7 +120,7 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="#ranking"
-                                                @click.prevent="changeSection($event)">
+                                                @click.prevent="goToSection('ranking')">
                                                 <i class="fa-solid fa-ranking-star fa-fw"></i>
                                                 {{ translator.get("Ranking") }}
                                             </a>
@@ -247,11 +250,11 @@
                                             `${translator.get("Trust")} - ${translator.get("Board of Directors")}:`
                                             }}
                                         </span>
-                                        <div class="progress border"
+                                        <div class="progress bg-lightgray border"
                                             :title="`${translator.get('Trust')} ${translator.get('Board of Directors')}: ${game.club.trust.boardOfDirectors}%`">
-                                            <div class="progress-bar" :class="`text-${theme} bg-${themeInverse}`"
-                                                role="progressbar" :aria-valuenow="game.club.trust.boardOfDirectors"
-                                                aria-valuemin="0" aria-valuemax="100"
+                                            <div class="progress-bar bg-dark" role="progressbar"
+                                                :aria-valuenow="game.club.trust.boardOfDirectors" aria-valuemin="0"
+                                                aria-valuemax="100"
                                                 :style="{ width: game.club.trust.boardOfDirectors + '%' }">
                                                 {{ `${game.club.trust.boardOfDirectors}%` }}
                                             </div>
@@ -263,11 +266,11 @@
                                             `${translator.get("Trust")} - ${translator.get("Supporters")}:`
                                             }}
                                         </span>
-                                        <div class="progress border"
+                                        <div class="progress bg-lightgray border"
                                             :title="`${translator.get('Trust')} ${translator.get('Supporters')}: ${game.club.trust.supporters}%`">
-                                            <div class="progress-bar" :class="`text-${theme} bg-${themeInverse}`"
-                                                role="progressbar" :aria-valuenow="game.club.trust.supporters"
-                                                aria-valuemin="0" aria-valuemax="100"
+                                            <div class="progress-bar bg-dark" role="progressbar"
+                                                :aria-valuenow="game.club.trust.supporters" aria-valuemin="0"
+                                                aria-valuemax="100"
                                                 :style="{ width: game.club.trust.supporters + '%' }">
                                                 {{ `${game.club.trust.supporters}%` }}
                                             </div>
@@ -778,7 +781,7 @@
                                         <table class="table table-hover">
                                             <thead class="table-light">
                                                 <th class="text-center">#</th>
-                                                <th class="text-center"></th>
+                                                <th class="text-center w-2rem"></th>
                                                 <th class="text-start">{{ translator.get("Club") }}</th>
                                                 <th class="text-center" :title="translator.get('Points')">
                                                     {{ translator.getAbbreviation("Points") }}
@@ -815,8 +818,8 @@
                                                         :class="standingSection.getCssClassForPosition(index + 1)">
                                                         {{ index + 1 }}
                                                     </td>
-                                                    <td class="p-0">
-                                                        <img class="club-logo"
+                                                    <td class="text-center p-0">
+                                                        <img class="club-logo me-1"
                                                             :src="championshipEditionClub.club.getLogoURL()"
                                                             :alt="championshipEditionClub.club.name"
                                                             :title="championshipEditionClub.club.name">
@@ -862,20 +865,23 @@
                                     :class="{ 'd-none' : standingSection.activeTab !== 'top-scorers' }">
                                     <table class="table table-hover">
                                         <thead class="table-light">
-                                            <th class="text-center">
-                                                #
-                                            </th>
+                                            <th class="text-center">#</th>
+                                            <th class="w-2rem"></th>
                                             <th class="text-center">
                                                 {{ translator.get("Player") }}
-                                            </th>
-                                            <th class="text-center">
-                                                {{ translator.get("Club") }}
                                             </th>
                                             <th class="text-center">
                                                 {{ translator.get("Goals") }}
                                             </th>
                                             <th class="text-center">
                                                 {{ translator.get("Matches") }}
+                                            </th>
+                                            <th class="w-2rem"></th>
+                                            <th>
+                                                {{ translator.get("Club") }}
+                                            </th>
+                                            <th class="text-center">
+                                                {{ translator.get("Position") }}
                                             </th>
                                         </thead>
                                         <tbody>
@@ -884,17 +890,36 @@
                                                 <td class="text-center">
                                                     {{ index + 1 }}
                                                 </td>
-                                                <td>
-                                                    {{ championshipEditionPlayer.player.name }}
+                                                <td class="p-0">
+                                                    <img class="player me-1"
+                                                        :src="championshipEditionPlayer.player.getPhotoURL()"
+                                                        :alt="championshipEditionPlayer.player.name"
+                                                        :title="championshipEditionPlayer.player.name"
+                                                        @error="loadDefaultPlayerPhoto($event)">
                                                 </td>
                                                 <td>
-                                                    {{ championshipEditionPlayer.player.club.name }}
+                                                    {{ championshipEditionPlayer.player.name }}
                                                 </td>
                                                 <td class="text-center">
                                                     {{ championshipEditionPlayer.goals }}
                                                 </td>
                                                 <td class="text-center">
                                                     {{ championshipEditionPlayer.matches }}
+                                                </td>
+                                                <td class="p-0">
+                                                    <img class="club-logo me-1"
+                                                        :src="championshipEditionPlayer.player.club.getLogoURL()"
+                                                        :alt="championshipEditionPlayer.player.club.name"
+                                                        :title="championshipEditionPlayer.player.club.name">
+                                                </td>
+                                                <td>
+                                                    {{ championshipEditionPlayer.player.club.name }}
+                                                </td>
+                                                <td class="text-center fw-bold"
+                                                    :class="`text-${config.colors[championshipEditionPlayer.player.position.fieldRegion.color].class}`">
+                                                    {{
+                                                    translator.get(championshipEditionPlayer.player.position.abbreviation)
+                                                    }}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -1119,7 +1144,7 @@
                             <div class="row mb-3">
                                 <div class="col-3">
                                     <label for="minimum-age" class="form-label">
-                                        {{ `${translator.get("Age")} (${translator.get("Minimum")})` }}
+                                        {{ `${translator.get("Age")} (${translator.get("Minimum").toLowerCase()})` }}
                                     </label>
                                     <input id="minimum-age" type="number" class="form-control"
                                         :min="config.player.minAge" :max="config.player.maxAge"
@@ -1127,7 +1152,7 @@
                                 </div>
                                 <div class="col-3">
                                     <label for="maximum-age" class="form-label">
-                                        {{ `${translator.get("Age")} (${translator.get("Maximum")})` }}
+                                        {{ `${translator.get("Age")} (${translator.get("Maximum").toLowerCase()})` }}
                                     </label>
                                     <input id="maximum-age" type="number" class="form-control"
                                         :min="config.player.minAge" :max="config.player.maxAge"
@@ -1135,7 +1160,8 @@
                                 </div>
                                 <div class="col-3">
                                     <label for="minimu-overall" class="form-label">
-                                        {{ `${translator.get("Overall")} (${translator.get("Minimum")})` }}
+                                        {{ `${translator.get("Overall")} (${translator.get("Minimum").toLowerCase()})`
+                                        }}
                                     </label>
                                     <input id="minimu-overall" type="number" class="form-control"
                                         :min="config.player.minOverall" :max="config.player.maxOverall"
@@ -1143,7 +1169,8 @@
                                 </div>
                                 <div class="col-3">
                                     <label for="maximum-overall" class="form-label">
-                                        {{ `${translator.get("Overall")} (${translator.get("Maximum")})` }}
+                                        {{ `${translator.get("Overall")} (${translator.get("Maximum").toLowerCase()})`
+                                        }}
                                     </label>
                                     <input id="maximum-overall" type="number" class="form-control"
                                         :min="config.player.minOverall" :max="config.player.maxOverall"
@@ -1153,13 +1180,13 @@
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <label for="market-value" class="form-label">
-                                        {{ `${translator.get("Market Value")} (${translator.get("Maximum")})` }}
+                                        {{ `${translator.get("Market Value")}
+                                        (${translator.get("Maximum").toLowerCase()})` }}
                                     </label>
                                     <input id="market-value" type="range" min="1" max="300" value="300"
-                                        class="form-range"
-                                        v-model.lazy="playersSection.playerFilter.marketValue.maximum"
-                                        oninput="this.nextElementSibling.value = this.value">
-                                    <output :value="playersSection.playerFilter.marketValue.maximum"></output>
+                                        class="form-range" oninput="this.nextElementSibling.value = this.value">
+                                    <output class="d-block" style="margin-top: -12px;"
+                                        :value="playersSection.playerFilter.marketValue.maximum"></output>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check form-switch">
@@ -1363,7 +1390,8 @@
                                     <div class="col-6">
                                         <div class="form-check">
                                             <input id="theme-light" class="form-check-input" type="radio" name="theme"
-                                                value="light" v-model.lazy="theme" :checked="theme === 'light'">
+                                                value="light" :checked="game.config.theme === 'light'"
+                                                @click="colorsModal.changeTheme('light', true)">
                                             <label for="theme-light" class="form-check-label">
                                                 {{ translator.get("Light") }}
                                             </label>
@@ -1372,7 +1400,8 @@
                                     <div class="col-6">
                                         <div class="form-check">
                                             <input id="theme-dark" class="form-check-input" type="radio" name="theme"
-                                                value="dark" v-model.lazy="theme" :checked="theme === 'dark'">
+                                                value="dark" :checked="game.config.theme === 'dark'"
+                                                @click="colorsModal.changeTheme('dark', true)">
                                             <label for="theme-dark" class="form-check-label">
                                                 {{ translator.get("Dark") }}
                                             </label>
@@ -1413,7 +1442,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <button type="button" class="btn border" :class="`btn-${theme}`"
+                                        <button type="button" class="btn btn-light border"
                                             @click="colorsModal.resetColors()">
                                             <i class="fa-solid fa-rotate-left"></i>
                                             {{ translator.get("Reset") }}
@@ -1512,9 +1541,6 @@
         </div>
     </div>
 
-    </div>
-    </div>
-
     <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/lz-string/lz-string.min.js"></script>
 
     <script src="../Raffoot.Infrastructure/Raffoot.CrossCutting/ArrayExtensions.js"></script>
@@ -1596,8 +1622,6 @@
                 game: null,
                 gameLoaded: false,
                 message: { text: translator.get('Processing...'), type: 'primary' },
-                modal: { title: '', message: '', methodOk: function () { } },
-                theme: null,
                 translator: translator,
 
                 colorsModal: null,
@@ -1620,10 +1644,6 @@
                     const url = `play.html?id=${this.game.id}`;
                     this.redirect(url);
                 }
-            },
-            changeSection(event) {
-                const section = event.currentTarget.getAttribute('href').substring(1);
-                this.goToSection(section);
             },
             clearMessage() {
                 this.message = { text: '', type: 'primary' };
@@ -1648,10 +1668,8 @@
             },
             goToSection(section) {
                 this.activeSection = section;
-
                 for (const element of document.getElementsByClassName('nav-link dropdown-toggle show'))
                     element.click();
-
                 this.toggleColapse();
             },
             toggleFullscreen() {
@@ -1662,9 +1680,7 @@
                     document.documentElement.requestFullscreen();
                 }
             },
-            loadDefaultPlayerPhoto(event) {
-                event.target.src = 'res/image/players/0.svg';
-            },
+            loadDefaultPlayerPhoto: event => event.target.src = 'res/image/players/0.svg',
             async loadGame() {
                 const urlParams = new URLSearchParams(location.search);
                 const gameId = parseInt(urlParams.get('id'));
@@ -1685,10 +1701,7 @@
                 this.clubSection = new ClubSectionViewModel(this.game, translator);
                 this.playersSection = new PlayersSectionViewModel(this.game, translator);
             },
-            playAudio() {
-                var audio = new Audio('res/sound/gol.wav');
-                audio.play();
-            },
+            playAudio: () => new Audio('res/sound/gol.wav').play(),
             redirect: url => location.href = url,
             setLanguage(language) {
                 this.game.config.language = language;
@@ -1711,20 +1724,12 @@
             currentOpponent() {
                 return this.currentMatch?.getOpponent(this.game.club);
             },
-            themeInverse() {
-                return this.theme === 'dark' ? 'light' : 'dark';
-            },
         },
         watch: {
             activeSection(newActiveSection, oldActiveSection) {
                 if ([newActiveSection, oldActiveSection].some(s => s === 'matches')) {
                     this.colorsModal.setColors();
                 }
-            },
-            theme(newTheme, oldTheme) {
-                document.documentElement.setAttribute('data-bs-theme', newTheme);
-                this.game.config.theme = newTheme;
-                localStorage.setItem('theme', newTheme);
             },
         },
         async created() {
@@ -1735,13 +1740,16 @@
                 this.message = '';
                 this.gameLoaded = true;
 
-                this.theme = this.game.config.theme;
+                this.colorsModal.changeTheme(this.game.config.theme);
                 this.colorsModal.setColors();
             }
             catch (error) {
                 this.message = { text: error, type: 'danger' };
             }
         },
+        updated() {
+            console.log('Updated');
+        }
     };
 
     Vue.createApp(RaffootApp).mount('#app');
