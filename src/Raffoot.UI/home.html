@@ -839,7 +839,9 @@
                                                         {{ championshipEditionClub.lost }}
                                                     </td>
                                                     <td class="text-center">
-                                                        {{ `${championshipEditionClub.goalsFor}:${championshipEditionClub.goalsAgainst}` }}
+                                                        {{
+                                                        `${championshipEditionClub.goalsFor}:${championshipEditionClub.goalsAgainst}`
+                                                        }}
                                                     </td>
                                                     <td>
                                                         <i v-for="item in standingSection.getLast5(standingSection.selectedChampionshipEdition, championshipEditionClub.club)"
@@ -1660,6 +1662,11 @@
                 link.setAttribute('download', game.name + ".raffoot");
                 link.click();
             },
+            getQueryString(parameter) {
+                const urlParams = new URLSearchParams(location.search);
+                const value = urlParams.get(parameter);
+                return value;
+            },
             goToSection(section) {
                 this.activeSection = section;
                 for (const element of document.getElementsByClassName('nav-link dropdown-toggle show'))
@@ -1676,8 +1683,7 @@
             },
             loadDefaultPlayerPhoto: event => event.target.src = 'res/image/players/0.svg',
             async loadGame() {
-                const urlParams = new URLSearchParams(location.search);
-                const id = urlParams.get('id');
+                const id = this.getQueryString('id');
                 this.game = await gameService.loadAsync(id);
 
                 if (this.game == null)
@@ -1742,7 +1748,13 @@
             }
         },
         beforeUpdate: () => t0 = performance.now(),
-        updated: () => console.log(`Update took ${(performance.now() - t0)} milliseconds.`),
+        updated() {
+            const debug = this.getQueryString('debug');
+            const time = performance.now() - t0;
+            console.log(`Update took ${time} milliseconds.`);
+            if (debug === '1')
+                alert(time);
+        }
     };
 
     Vue.createApp(RaffootApp).mount('#app');
