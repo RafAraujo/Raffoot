@@ -1606,6 +1606,7 @@
 
     const gameService = new GameService();
     const translator = new TranslatorService();
+    let t0 = null;
 
     const RaffootApp = {
         data() {
@@ -1740,9 +1741,8 @@
                 this.message = { text: error, type: 'danger' };
             }
         },
-        updated() {
-            console.log('Updated');
-        }
+        beforeUpdate: () => t0 = performance.now(),
+        updated: () => console.log(`Update took ${(performance.now() - t0)} milliseconds.`),
     };
 
     Vue.createApp(RaffootApp).mount('#app');

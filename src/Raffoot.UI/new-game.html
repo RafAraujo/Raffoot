@@ -197,6 +197,7 @@
     "use strict";
 
     const gameService = new GameService();
+    let t0 = performance.now();
 
     const RaffootApp = {
         data() {
@@ -296,7 +297,9 @@
         async mounted() {
             if (this.selectedYear)
                 this.createGame(this.selectedYear);
-        }
+        },
+        beforeUpdate: () => t0 = performance.now(),
+        updated: () => console.log(`Update took ${(performance.now() - t0)} milliseconds.`),
     };
 
     Vue.createApp(RaffootApp).mount('#app');
