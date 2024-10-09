@@ -220,9 +220,11 @@
                         </div>
                         <div class="row small">
                             <div class="col">
-                                <div class="m-0 text-end" :title="game.club.money.formatCurrency()">
+                                <div class="m-0 text-end">
                                     <i class="fa-solid fa-dollar-sign fa-fw"></i>
-                                    <span>{{ game.club.money.formatAbbreviated() }}</span>
+                                    <span :title="game.club.money.formatCurrency()">
+                                        {{ game.club.money.formatAbbreviated() }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -801,12 +803,6 @@
                                                 <th class="text-center" :title="translator.get('Goals')">
                                                     {{ translator.getAbbreviation("Goals") }}
                                                 </th>
-                                                <th class="text-center" :title="translator.get('Goals Against')">
-                                                    {{ translator.getAbbreviation("Goals Against") }}
-                                                </th>
-                                                <th class="text-center" :title="translator.get('Goals Difference')">
-                                                    {{ translator.getAbbreviation("Goals Difference") }}
-                                                </th>
                                                 <th>
                                                     {{ translator.get("Last 5") }}
                                                 </th>
@@ -843,13 +839,7 @@
                                                         {{ championshipEditionClub.lost }}
                                                     </td>
                                                     <td class="text-center">
-                                                        {{ championshipEditionClub.goalsFor }}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        {{ championshipEditionClub.goalsAgainst }}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        {{ championshipEditionClub.goalsDifference }}
+                                                        {{ `${championshipEditionClub.goalsFor}:${championshipEditionClub.goalsAgainst}` }}
                                                     </td>
                                                     <td>
                                                         <i v-for="item in standingSection.getLast5(standingSection.selectedChampionshipEdition, championshipEditionClub.club)"
@@ -1394,6 +1384,7 @@
                                                 @click="colorsModal.changeTheme('light', true)">
                                             <label for="theme-light" class="form-check-label">
                                                 {{ translator.get("Light") }}
+                                                <i class="fa-solid fa-sun ms-2"></i>
                                             </label>
                                         </div>
                                     </div>
@@ -1404,6 +1395,7 @@
                                                 @click="colorsModal.changeTheme('dark', true)">
                                             <label for="theme-dark" class="form-check-label">
                                                 {{ translator.get("Dark") }}
+                                                <i class="fa-solid fa-moon ms-2"></i>
                                             </label>
                                         </div>
                                     </div>

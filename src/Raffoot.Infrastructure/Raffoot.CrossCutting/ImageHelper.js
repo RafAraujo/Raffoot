@@ -1,25 +1,25 @@
 class ImageHelper {
     static async create(src, alt = null, title = null, urlAlternative = null) {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             const image = new Image();
 
             image.onload = () => resolve(image);
 
             image.onerror = () => {
-                if (urlAlternative) {
-                    image.onerror = () => { }
-                    image.src = urlAlternative;
-                }
+                if (!urlAlternative)
+                    reject('Error loading image');
+
+                image.onerror = () => reject('Error loading alternative image');
+                image.src = urlAlternative;
             };
 
             image.src = src;
 
-            if (alt) {
+            if (alt)
                 image.alt = alt;
-            }
-            if (title) {
+
+            if (title)
                 image.title = title;
-            }
         });
     }
 

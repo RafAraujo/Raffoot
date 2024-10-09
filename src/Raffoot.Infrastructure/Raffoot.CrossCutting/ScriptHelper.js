@@ -5,7 +5,7 @@ class ScriptHelper {
             script.src = src;
             document.documentElement.appendChild(script);
 
-            script.onload = () => resolve();
+            script.onload = resolve;
 
             script.onerror = () => reject('Error loading script');
         });

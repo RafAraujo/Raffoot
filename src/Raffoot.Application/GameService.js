@@ -57,11 +57,13 @@ class GameService {
     async loadAsync(id) {
         let t0 = performance.now();
 
+        id = id === 'mock' ? id : parseInt(id);
+
         let object = null;
         if (id === 'mock')
             object = await this._loadMock();
         else 
-            object = await this.getByIdAsync(parseInt(id));
+            object = await this.getByIdAsync(id);
 
         if (object == null)
             return null;
@@ -126,7 +128,7 @@ class GameService {
     }
 
     async _loadMock() {
-        await ScriptHelper.load('mock.js');
+        await ScriptHelper.load(Config.mockScript);
         const object = this.decompress(mock);
         return object
     }

@@ -66,7 +66,7 @@ class StandingSectionViewModel {
 
     getLast5(championshipEdition, club) {
         const fixtures = this.game.getLastFixtures(championshipEdition, 5);
-        const matches = fixtures.flatMap(f => f.matches).filter(m => m.clubs.includes(club));
+        const matches = fixtures.flatMap(f => f.matches).filter(m => m.clubs.includes(club)).filter(m => m.isFinished);
         const result = [];
 
         for (const match of matches) {
