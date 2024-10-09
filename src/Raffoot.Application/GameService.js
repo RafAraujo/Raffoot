@@ -59,9 +59,10 @@ class GameService {
 
         let object = null;
         if (id === 'mock')
-            object = this._getMock();
+            object = await this._loadMock();
         else 
             object = await this.getByIdAsync(parseInt(id));
+
         if (object == null)
             return null;
         
@@ -124,8 +125,9 @@ class GameService {
         }
     }
 
-    _getMock() {
+    async _loadMock() {
+        await ScriptHelper.load('mock.js');
         const object = this.decompress(mock);
-        return object;
+        return object
     }
 }
