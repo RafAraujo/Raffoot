@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffoot</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+    <header>
+        <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" v-cloak>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" @click.prevent="vm.goToSection('play')">Raffoot</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content"
+                    aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar-content">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" :class="{ 'active' : vm.activeSection === 'play' }" href="#play"
+                                @click.prevent="vm.goToSection('play')">
+                                <i class="fa-solid fa-play fa-fw"></i>
+                                {{ vm.translator.get("Play") }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" :class="{ 'active' : vm.activeSection === 'squad' }" href="#squad"
+                                @click.prevent="vm.goToSection('squad')">
+                                <i class="fa-solid fa-people-group fa-fw"></i>
+                                {{ vm.translator.get("Squad") }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" :class="{ 'active' : vm.activeSection === 'calendar' }" href="#calendar"
+                                @click.prevent="vm.goToSection('calendar')">
+                                <i class="fa-solid fa-calendar-days fa-fw"></i>
+                                {{ vm.translator.get("Calendar") }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" :class="{ 'active' : vm.activeSection === 'standings' }" href="#standings"
+                                @click.prevent="vm.goToSection('standings')">
+                                <i class="fa-solid fa-table-list fa-fw"></i>
+                                {{ vm.translator.get("Standings") }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" :class="{ 'active' : vm.activeSection === 'finances' }" href="#finances"
+                                @click.prevent="vm.goToSection('finances')">
+                                <i class="fa-solid fa-sack-dollar fa-fw"></i>
+                                {{ vm.translator.get("Finances") }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" :class="{ 'active' : vm.activeSection === 'clubs' }" href="#clubs"
+                                @click.prevent="vm.goToSection('clubs')">
+                                <i class="fa-solid fa-shield-halved fa-fw"></i>
+                                {{ vm.translator.get("Clubs") }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" :class="{ 'active' : vm.activeSection === 'players' }" href="#players"
+                                @click.prevent="vm.goToSection('players')">
+                                <i class="fa-solid fa-user fa-fw"></i>
+                                {{ vm.translator.get("Players") }}
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"
+                                :class="{ 'active' : ['champions', 'top-scorers', 'ranking'].includes(vm.activeSection) }"
+                                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-book fa-fw"></i>
+                                {{ vm.translator.get("History") }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#champions"
+                                        @click.prevent="vm.goToSection('champions')">
+                                        <i class="fa-solid fa-trophy fa-fw"></i>
+                                        {{ vm.translator.get("Champions") }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#top-scorers"
+                                        @click.prevent="vm.goToSection('top-scorers')">
+                                        <i class="fa-solid fa-futbol fa-fw"></i>
+                                        {{ vm.translator.get("Top Scorers") }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#ranking" @click.prevent="vm.goToSection('ranking')">
+                                        <i class="fa-solid fa-ranking-star fa-fw"></i>
+                                        {{ vm.translator.get("Ranking") }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fa-solid fa-gear fa-fw"></i>
+                                {{ vm.translator.get("Options") }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#" onclick=general.mounted.saveAsync(true)
+                                        @click="toggleColapse()">
+                                        <i class="fa-solid fa-floppy-disk fa-fw"></i>
+                                        {{ vm.translator.get("Save game") }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#" @click.prevent="exportGame(); toggleColapse()">
+                                        <i class="fa-solid fa-file-export fa-fw"></i>
+                                        {{ vm.translator.get("Export game") }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#modal-language" @click.prevent="toggleColapse()">
+                                        <i class="fa-solid fa-language fa-fw"></i>
+                                        {{ vm.translator.get("Language") }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#modal-colors" @click.prevent="toggleColapse()">
+                                        <i class="fa-solid fa-palette fa-fw"></i>
+                                        {{ vm.translator.get("Colors") }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#" @click="toggleFullscreen(); toggleColapse()">
+                                        <i class="fa-solid fa-up-right-and-down-left-from-center fa-fw"></i>
+                                        {{ vm.translator.get("Full screen") }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="index.html">
+                                        <i class="fa-solid fa-power-off fa-fw"></i>
+                                        {{ vm.translator.get("Exit game") }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main id="content" class="container" onclick="play.mounted.vm.unselectPlayer()">
+        <section id="general" v-cloak>
+            <div class="row mt-2" :class="{ 'd-none' : !vm.message.text }">
+                <div class="col">
+                    <div class="alert alert-dismissible fade show" :class="`alert-${vm.message.type}`" role="alert">
+                        {{ vm.message.text }}
+                        <button type="button" class="btn-close" aria-label="Close" @click="vm.clearMessage()"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex align-items-center border-bottom mt-1 mb-2">
+                        <img class="me-2" :src="vm.game.club.getLogoURL()" :alt="vm.game.club.name" :title="vm.game.club.name"
+                            style="max-height: 4rem;">
+                        <h1 class="fs-3 m-0">{{ vm.game.club.name }}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row small">
+                <div class="col">
+                    <div class="m-0 text-end">
+                        <i class="fa-solid fa-clock fa-fw me-1"></i>
+                        <span>{{ vm.game.currentSeason.currentDate.toLocaleDateString() }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row small">
+                <div class="col">
+                    <div class="m-0 text-end">
+                        <i class="fa-solid fa-dollar-sign fa-fw"></i>
+                        <span :title="vm.game.club.money.formatCurrency()">
+                            {{ vm.game.club.money.formatAbbreviated() }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="play" v-cloak>
+            <div class="row small">
+                <div class="col">
+                    <p class="m-0">
+                        <a href="#" class="text-decoration-none color-inherit fw-bold"
+                            :title="vm.translator.get('Messages')">
+                            <i class="fa-solid fa-envelope fa-fw me-2"></i>
+                            {{ vm.game.messages.length }}
+                        </a>
+                    </p>
+                    <p class="m-0">
+                        <i class="fa-solid fa-flag fa-fw me-2"></i>
+                        <span>
+                            {{ vm.getNationalLeaguePosition() }}
+                        </span>
+                    </p>
+                    <div class="row">
+                        <div class="col-6 col-md-3">
+                            <span>
+                                {{
+                                `${vm.translator.get("Trust")} - ${vm.translator.get("Board of Directors")}:`
+                                }}
+                            </span>
+                            <div class="progress bg-lightgray border"
+                                :title="`${vm.translator.get('Trust')} ${vm.translator.get('Board of Directors')}: ${vm.game.club.trust.boardOfDirectors}%`">
+                                <div class="progress-bar bg-dark" role="progressbar"
+                                    :aria-valuenow="vm.game.club.trust.boardOfDirectors" aria-valuemin="0"
+                                    aria-valuemax="100" :style="{ width: vm.game.club.trust.boardOfDirectors + '%' }">
+                                    {{ `${vm.game.club.trust.boardOfDirectors}%` }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <span>
+                                {{
+                                `${vm.translator.get("Trust")} - ${vm.translator.get("Supporters")}:`
+                                }}
+                            </span>
+                            <div class="progress bg-lightgray border"
+                                :title="`${vm.translator.get('Trust')} ${vm.translator.get('Supporters')}: ${vm.game.club.trust.supporters}%`">
+                                <div class="progress-bar bg-dark" role="progressbar"
+                                    :aria-valuenow="vm.game.club.trust.supporters" aria-valuemin="0" aria-valuemax="100"
+                                    :style="{ width: vm.game.club.trust.supporters + '%' }">
+                                    {{ `${vm.game.club.trust.supporters}%` }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div v-if="vm.currentMatch" class="row mb-3">
+                <div class="col">
+                    <div class="d-inline-block me-3">
+                        <img :src="vm.currentOpponent.getLogoURL()" :alt="vm.currentOpponent.name"
+                            :title="vm.currentOpponent.name" style="max-height: 3rem;">
+                    </div>
+                    <div class="d-inline-block align-middle">
+                        <p class="m-0 fw-bold">
+                            {{ vm.currentMatch.description }}
+                        </p>
+                        <p class="m-0">
+                            {{
+                            vm.translator.getChampionshipName(vm.currentMatch.championshipEdition.championship)
+                            }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <button type="button" class="btn btn-light border" @click="vm.advanceDate()">
+                        <i class="fa-solid fa-right-long"></i>
+                        {{ vm.translator.get("Advance") }}
+                    </button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <ul v-if="vm.currentOpponent" class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link color-inherit text-decoration-underline"
+                                :class="{ 'active' : vm.selectedClub === vm.game.club }"
+                                @click="vm.selectClub(vm.game.club)" aria-current="page" href="#">
+                                {{ vm.game.club.name }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link color-inherit text-decoration-underline"
+                                :class="{ 'active' : vm.selectedClub === vm.currentOpponent }" href="#"
+                                @click="vm.selectClub(vm.currentOpponent)">
+                                {{ vm.currentOpponent.name }}
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="lineup p-1">
+                        <div class="row mt-2 mb-1 align-items-center">
+                            <div class="col-auto">
+                                <label for="select-formation" class="col-form-label">
+                                    {{ vm.translator.get("Formation") }}
+                                </label>
+                            </div>
+                            <div class="col-auto">
+                                <select id="select-formation" class="form-select" required
+                                    :disabled="vm.selectedClub === vm.currentOpponent"
+                                    @change="vm.changeFormation($event.target.value)">
+                                    <option></option>
+                                    <template v-for="baseFormation in vm.getBaseFormations()">
+                                        <optgroup :label="baseFormation">
+                                            <option v-for="formation in vm.getFormations(baseFormation)"
+                                                :key="formation.id" :value="formation.id"
+                                                :selected="vm.selectedClub.formation?.id == formation?.id">
+                                                {{ formation.name }}
+                                            </option>
+                                        </optgroup>
+                                    </template>
+                                </select>
+                            </div>
+                            <div>
+                                <div :class="{ 'invisible' : vm.selectedClub === vm.currentOpponent }"
+                                    class="form-check form-check-inline form-check-reverse form-switch mt-1">
+                                    <input id="automatic-selection" class="form-check-input" type="checkbox"
+                                        v-model.lazy="vm.automaticSelection">
+                                    <label for="automatic-selection" class="form-check-label">
+                                        {{ vm.translator.get("Automatic selection") }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 mb-2">
+                                <div class="field position-relative" style="height: 475px">
+                                    <template v-for="item in vm.getLineup().filter(i => i.player.isOnField)">
+                                        <div class="player position-absolute text-center"
+                                            @click.stop="vm.changePlayers(item.player.id)"
+                                            :style="{ top: (11 - item.player.fieldLocalization.line) * 7.7 + '%', left: (item.player.fieldLocalization.column) * 20 + '%' }"
+                                            :class="{ 'blink' : item.player.id === vm.selectedPlayerId, 'injured' : item.player.isInjured }">
+                                            <div class="overall position-absolute">
+                                                <i v-if="item.player.isInjured"
+                                                    class="fa-solid fa-plus fa-lg text-danger"
+                                                    :title="vm.getInjuryMessage(item.player)">
+                                                </i>
+                                                <span v-else>
+                                                    {{ item.player.currentOverall }}
+                                                </span>
+                                            </div>
+                                            <div class="position position-absolute"
+                                                :class="{ 'improvised' : item.player.isImprovised }"
+                                                :title="vm.translator.get(item.player.fieldLocalization.position.name)">
+                                                {{
+                                                vm.translator.get(item.player.fieldLocalization.position.abbreviation)
+                                                }}
+                                            </div>
+                                            <img class="position-relative"
+                                                :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
+                                                :src="item.player.getPhotoURL()" :alt="item.player.name"
+                                                :title="item.player.name" onerror="loadDefaultPlayerPhoto(event)"
+                                                draggable="true" @dragstart="vm.dragStart($event, item.player.id)"
+                                                @dragover.prevent
+                                                @drop="vm.drop($event); vm.changePlayers(item.player.id)">
+                                            <div class="cards position-absolute w-100 text-end">
+                                                <i v-if="item.championshipEditionPlayer?.redCard"
+                                                    class="fa-solid fa-square fa-lg text-danger me-1"
+                                                    :title="vm.translator.get('Suspended')">
+                                                </i>
+                                                <i v-else v-for="index in item.championshipEditionPlayer?.yellowCards"
+                                                    class="fa-solid fa-square fa-lg text-warning me-1"
+                                                    :title="vm.translator.get('Suspended')">
+                                                </i>
+                                            </div>
+                                            <div class="energy progress position-relative"
+                                                :title="`${vm.translator.get('Energy')} ${item.player.energy}%`">
+                                                <div class="progress-bar" role="progressbar"
+                                                    :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                    :aria-valuenow="item.player.energy" aria-valuemin="0"
+                                                    aria-valuemax="100" :style="{ width: item.player.energy + '%' }">
+                                                </div>
+                                            </div>
+                                            <div :dir="item.player.fieldLocalization.column < 3 ? 'ltr' : 'rtl'">
+                                                <span class="d-inline-block position-relative text-nowrap">
+                                                    {{ item.player.surname }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template v-for="fieldLocalization in vm.game.club.getEmptyFieldLocalizations()">
+                                        <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
+                                            @click.stop="vm.movePlayerToField(fieldLocalization.id)"
+                                            :style="{ top: (11 - fieldLocalization.line) * 7.7 + '%', left: (fieldLocalization.column) * 20 + '%' }">
+                                            <img :src="vm.game.club.getKitsURLs()[0].url"
+                                                :alt="vm.translator.get(fieldLocalization.position.name)"
+                                                :title="vm.translator.get(fieldLocalization.position.name)"
+                                                onerror="loadDefaultPlayerPhoto(event)"
+                                                @dragstart="$event.dataTransfer.effectAllowed = 'none'"
+                                                @dragover.prevent
+                                                @drop="vm.drop($event); vm.movePlayerToField(fieldLocalization.id)">
+                                            <span class="fw-bold">
+                                                {{
+                                                vm.translator.get(fieldLocalization.position.abbreviation)
+                                                }}
+                                            </span>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="bench" :class="{ 'pb-5' : vm.game.club.playersOnBench.length % 5 === 0 }"
+                                    @click.stop="vm.movePlayerToBench()" @drop="vm.drop($event); vm.movePlayerToBench()"
+                                    @dragover.prevent>
+                                    <template v-for="item in vm.getBench()">
+                                        <div class="player d-inline-block position-relative text-center"
+                                            @click.stop="vm.changePlayers(item.player.id)"
+                                            :class="{ 'blink' : item.player.id === vm.selectedPlayerId, 'injured' : item.player.isInjured }">
+                                            <div class="overall position-absolute">
+                                                <template v-if="item.player.isInjured">
+                                                    <i class="fa-solid fa-plus fa-lg text-danger"
+                                                        :title="vm.getInjuryMessage(item.player)"></i>
+                                                </template>
+                                                <template v-else>
+                                                    {{ item.player.overall }}
+                                                </template>
+                                            </div>
+                                            <div class="position position-absolute"
+                                                :title="vm.translator.get(item.player.position.name)">
+                                                {{
+                                                vm.translator.get(item.player.position.abbreviation)
+                                                }}
+                                            </div>
+                                            <div class="cards position-absolute w-100 text-end">
+                                                <i v-if="item.championshipEditionPlayer?.redCard"
+                                                    class="fa-solid fa-square fa-lg text-danger me-1"
+                                                    :title="vm.translator.get('Suspended')">
+                                                </i>
+                                                <i v-else v-for="index in item.championshipEditionPlayer?.yellowCards"
+                                                    class="fa-solid fa-square fa-lg text-warning me-1"
+                                                    :title="vm.translator.get('Suspended')">
+                                                </i>
+                                            </div>
+                                            <img :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
+                                                :src="item.player.getPhotoURL()" :alt="item.player.name"
+                                                :title="item.player.name" onerror="loadDefaultPlayerPhoto(event)"
+                                                draggable="true" @dragstart="vm.dragStart($event, item.player.id)"
+                                                @drop="vm.drop($event); vm.changePlayers(item.player.id)"
+                                                @dragover.prevent>
+                                            <div class="energy progress position-relative"
+                                                :title="`${vm.translator.get('Energy')} ${item.player.energy}%`">
+                                                <div class="progress-bar" role="progressbar"
+                                                    :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                    :aria-valuenow="item.player.energy" aria-valuemin="0"
+                                                    aria-valuemax="100" :style="{ width: item.player.energy + '%' }">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span class="d-inline-block position-relative text-nowrap">
+                                                    {{ item.player.surname }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="squad" v-cloak>
+            <div class="row mb-2">
+                <div class="col">
+                    <h2 class="fs-5">{{ vm.translator.get("Squad") }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-borderless sortable">
+                            <thead class="table-light">
+                                <th class="text-center" :title="vm.translator.get('Position')"
+                                    @click="vm.playerOrder.updateOrder('position.id')">
+                                    {{ vm.translator.get("POS") }}
+                                </th>
+                                <th class="p-0" @click="vm.playerOrder.updateOrder('country.name')">
+                                </th>
+                                <th class="text-center" @click="vm.playerOrder.updateOrder('name')">
+                                    {{ vm.translator.get("Name") }}
+                                </th>
+                                <th class="text-center" :title="vm.translator.get('Overall')"
+                                    @click="vm.playerOrder.updateOrder('overall')">
+                                    {{ vm.translator.get("OV") }}
+                                </th>
+                                <th class="text-center" @click="vm.playerOrder.updateOrder('age')">
+                                    {{ vm.translator.get("Age") }}
+                                </th>
+                                <th class="text-center" @click="vm.playerOrder.updateOrder('energy')">
+                                    {{ vm.translator.get("Energy") }}
+                                </th>
+                                <th class="text-center" @click="vm.playerOrder.updateOrder('marketValue')">
+                                    {{ vm.translator.get("Market Value") }}
+                                </th>
+                                <th class="text-center" @click="vm.playerOrder.updateOrder('wage')">
+                                    {{ vm.translator.get("Wage") }}
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="player in vm.getPlayers()">
+                                    <td class="text-center fw-bold"
+                                        :class="`text-${vm.getColorClass(player.position.fieldRegion.color)}`"
+                                        :title="vm.translator.get(player.position.name)">
+                                        {{ vm.translator.get(player.position.abbreviation) }}
+                                    </td>
+                                    <td class="p-0">
+                                        <img class="flag border" :src="player.country.getFlagURL()"
+                                            :title="vm.translator.get(player.country.name)">
+                                    </td>
+                                    <td>
+                                        <span>{{ player.name }}</span>
+                                        <template v-if="player.isInjured">
+                                            <i class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
+                                                :title="playSection.getInjuryMessage(player)"></i>
+                                        </template>
+                                    </td>
+                                    <td class="text-center pt-0 pb-0">
+                                        <span class="overall" :class="player.category">
+                                            {{ player.overall }}
+                                        </span>
+                                    </td>
+                                    <td class="text-center" :class="player.age <= 32 ? 'text-primary' : 'text-danger'">
+                                        {{ player.age }}
+                                    </td>
+                                    <td>
+                                        <div class="progress"
+                                            :title="`${vm.translator.get('Energy')} ${player.energy}%`">
+                                            <div class="progress-bar" role="progressbar"
+                                                :class="player.energy > 75 ? 'bg-success' : player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                :aria-valuenow="player.energy" aria-valuemin="0" aria-valuemax="100"
+                                                :style="{ width: player.energy + '%' }">
+                                                {{ player.energy }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-end" :title="player.marketValue.formatCurrency()">
+                                        {{ player.marketValue.formatAbbreviated() }}
+                                    </td>
+                                    <td class="text-end" :title="player.wage.formatCurrency()">
+                                        {{ player.wage.formatAbbreviated() }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/lz-string/lz-string.min.js"></script>
+
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/ArrayExtensions.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/DateExtensions.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/ImageHelper.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/NumberExtensions.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/Random.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/ScriptHelper.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/StringExtensions.js"></script>
+
+    <script src="../../Raffoot.Infrastructure/Raffoot.Data/ConnectionFactory.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.Data/GenericDAO.js"></script>
+
+    <script src="../../Raffoot.Domain/Models/Championship.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEdition.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEditionClub.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEditionEliminationPhase.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEditionEliminationPhaseDuel.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEditionFixture.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEditionGroup.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEditionPlayer.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipType.js"></script>
+    <script src="../../Raffoot.Domain/Models/Club.js"></script>
+    <script src="../../Raffoot.Domain/Models/Confederation.js"></script>
+    <script src="../../Raffoot.Domain/Models/Continent.js"></script>
+    <script src="../../Raffoot.Domain/Models/Country.js"></script>
+    <script src="../../Raffoot.Domain/Models/FieldLocalization.js"></script>
+    <script src="../../Raffoot.Domain/Models/FieldRegion.js"></script>
+    <script src="../../Raffoot.Domain/Models/Formation.js"></script>
+    <script src="../../Raffoot.Domain/Models/Game.js"></script>
+    <script src="../../Raffoot.Domain/Models/Match.js"></script>
+    <script src="../../Raffoot.Domain/Models/MatchSimulation.js"></script>
+    <script src="../../Raffoot.Domain/Models/MatchSimulationAction.js"></script>
+    <script src="../../Raffoot.Domain/Models/MatchSimulationActionFinishing.js"></script>
+    <script src="../../Raffoot.Domain/Models/MatchSimulationActionPassing.js"></script>
+    <script src="../../Raffoot.Domain/Models/MatchSimulationEvent.js"></script>
+    <script src="../../Raffoot.Domain/Models/MatchSimulationStatistics.js"></script>
+    <script src="../../Raffoot.Domain/Models/Player.js"></script>
+    <script src="../../Raffoot.Domain/Models/Position.js"></script>
+    <script src="../../Raffoot.Domain/Models/Season.js"></script>
+    <script src="../../Raffoot.Domain/Models/SeasonDate.js"></script>
+    <script src="../../Raffoot.Domain/Config.js"></script>
+    <script src="../../Raffoot.Domain/Context.js"></script>
+    <script src="../../Raffoot.Domain/MultiLanguage.js"></script>
+
+    <script src="../../Raffoot.Application/GameFactory.js"></script>
+
+    <script src="../../Raffoot.Application/Services/GameService.js"></script>
+    <script src="../../Raffoot.Application/Services/TranslatorService.js"></script>
+
+    <script src="../Helpers/VueInstance.js"></script>
+
+    <script src="../ViewModels/Modals/ColorsModalViewModel.js"></script>
+    <script src="../ViewModels/Modals/PlayerModalViewModel.js"></script>
+
+    <script src="../ViewModels/Sections/CalendarViewModel.js"></script>
+    <script src="../ViewModels/Sections/ClubSectionViewModel.js"></script>
+    <script src="../ViewModels/Sections/PlayersSectionViewModel.js"></script>
+    <script src="../ViewModels/Sections/PlaySectionViewModel.js"></script>
+    <script src="../ViewModels/Sections/SquadSectionViewModel.js"></script>
+    <script src="../ViewModels/Sections/StandingSectionViewModel.js"></script>
+
+    <script src="../ViewModels/GeneralViewModel.js"></script>
+    <script src="../ViewModels/MenuViewModel.js"></script>
+    <script src="../ViewModels/PlayerFilterViewModel.js"></script>
+    <script src="../ViewModels/PlayerOrderViewModel.js"></script>
+
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/vue/vue.global.js"></script>
+</body>
+
+</html>
+
+<script>
+    "use strict";
+
+    const gameService = new GameService();
+    const translator = new TranslatorService();
+
+    const urlParams = new URLSearchParams(location.search);
+    const id = urlParams.get('id');
+    let game = null;
+
+    let menu = null;
+    let general = null;
+    let play = null;
+    let squad = null;
+
+    document.addEventListener('DOMContentLoaded', async function (event) {
+        game = await gameService.loadAsync(id);
+
+        menu = new VueInstance(new MenuViewModel(game, translator)).createApp().mount('#menu');
+        general = new VueInstance(new GeneralViewModel(game, translator)).createApp().mount('#general');
+        play = new VueInstance(new PlaySectionViewModel(game, translator)).createApp().mount('#play');
+        squad = new VueInstance(new SquadSectionViewModel(game, translator)).createApp().mount('#squad');
+
+        general.mounted.vm.clearMessage();
+        menu.mounted.vm.goToSection('play');
+    });
+</script>
+<script>
+    "use script";
+
+    function loadDefaultPlayerPhoto(event) {
+        event.target.src = Config.files.defaultPlayerPhoto;
+    }
+</script>

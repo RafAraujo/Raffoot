@@ -98,7 +98,7 @@ static void ConfigureServices(IServiceCollection services)
 	var consoleAppPath = Assembly.GetExecutingAssembly().Location;
 	var baseFolder = @$"{consoleAppPath}\..\..\..\..\..\..\";
 	var dbFolder = Path.Combine(baseFolder, @"RaffootLoader\");
-	var imagesFolder = Path.Combine(baseFolder, @"Raffoot.UI\res\image\");
+	var imagesFolder = Path.Combine(baseFolder, @"Raffoot.UI\Pages\res\image\");
 	var year = GetMaxYear();
 
 	services.AddSingleton<ISettings, Settings>(sp => new Settings(baseFolder, dbFolder, imagesFolder, year));

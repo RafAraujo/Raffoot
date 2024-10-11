@@ -2,14 +2,34 @@ class PlaySectionViewModel {
     constructor(game, translator) {
         this.game = game;
         this.translator = translator;
+        this.gameService = new GameService();
 
         this.selectedClub = game.club;
         this.automaticSelection = true;
         this.selectedPlayerId = null;
     }
 
+    get currentMatch() {
+        return this.game.getCurrentMatch();
+    }
+
+    get currentOpponent() {
+        return this.currentMatch?.getOpponent(this.game.club);
+    }
+
     get selectedPlayer() {
         return Player.getById(this.selectedPlayerId);
+    }
+
+    async advanceDate() {
+        if (this.game.currentSeason.currentSeasonDate.matches.length === 0) {
+            this.game.advanceDate();
+            await this.gameService.saveAsync(Vue.toRaw(this.game));
+        }
+        else {
+            const url = `play.html?id=${this.game.id}`;
+            this.redirect(url);
+        }
     }
 
     changeFormation(formationId) {
@@ -36,6 +56,17 @@ class PlaySectionViewModel {
     drop(event) {
         const data = event.dataTransfer.getData('playerId');
         this.selectedPlayerId = parseInt(data);
+    }
+
+    getCurrentMatch() {
+        const match = this.game.getCurrentMatch();
+        return match;
+    }
+
+    getCurrentOpponent() {
+        const match = this.getCurrentMatch();
+        const club = match.getOpponent(this.game.club);
+        return club;
     }
 
     getBench() {
@@ -90,6 +121,10 @@ class PlaySectionViewModel {
             this.game.club.movePlayerToField(player, fieldLocalization);
             this.selectedPlayerId = null;
         }
+    }
+
+    redirect(url) {
+        location.href = url
     }
 
     selectClub(club) {

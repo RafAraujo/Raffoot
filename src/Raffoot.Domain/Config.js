@@ -30,7 +30,7 @@ const Config = (function () {
         },
         delayBeforeSummary: 1000,
         files: {
-            defaultPlayerPhoto: `${ResourcesFolder}/players/0.svg`,
+            defaultPlayerPhoto: `${ResourcesFolder}/image/players/0.svg`,
         },
         fullScreen: true,
         folders: {

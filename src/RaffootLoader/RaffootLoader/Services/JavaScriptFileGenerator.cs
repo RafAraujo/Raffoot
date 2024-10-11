@@ -17,7 +17,7 @@ namespace RaffootLoader.Services
 
 				var version = settings.Year.ToString().Substring(2, 2);
 				var fileName = $"Fifa{version}Service";
-				var filePath = Path.Combine(settings.BaseFolder, "Raffoot.Application", $"{fileName}.js");
+				var filePath = Path.Combine(settings.BaseFolder, "Raffoot.Application", "Services", $"{fileName}.js");
 
 				var sb = new StringBuilder();
 
