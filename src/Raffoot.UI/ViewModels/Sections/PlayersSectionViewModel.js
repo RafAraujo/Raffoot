@@ -3,6 +3,7 @@ class PlayersSectionViewModel {
         this.game = game;
         this.translator = translator;
 
+        this.config = Config;
         this.playerFilter = new PlayerFilterViewModel();
         this.filteredPlayers = [];
         this.pageSize = game.config.search.pageSize;
@@ -15,11 +16,6 @@ class PlayersSectionViewModel {
             .orderBy(this.playerOrder.orderColumn, '-overall', 'name');
 
         return players;
-    }
-
-    getClubs() {
-        const clubs = this.game.clubs;
-        return clubs;
     }
 
     getCountries() {

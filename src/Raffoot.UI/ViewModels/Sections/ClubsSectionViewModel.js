@@ -1,4 +1,4 @@
-class ClubSectionViewModel {
+class ClubsSectionViewModel {
     constructor(game, translator) {
         this.game = game;
         this.translator = translator;
