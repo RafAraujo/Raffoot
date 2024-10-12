@@ -26,6 +26,10 @@ class FieldRegion {
         FieldRegion.create('attack', 'red');
     }
 
+    get colorClass() {
+        return Config.colors[this.color].class;
+    }
+
     get fieldLocalizations() {
         return this.positions.flatMap(p => p.fieldLocalizations);
     }

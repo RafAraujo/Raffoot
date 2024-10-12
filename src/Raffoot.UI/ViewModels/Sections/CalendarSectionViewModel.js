@@ -1,4 +1,4 @@
-class CalendarViewModel {
+class CalendarSectionViewModel {
     constructor(game, translator) {
         this.game = game;
         this.translator = translator;

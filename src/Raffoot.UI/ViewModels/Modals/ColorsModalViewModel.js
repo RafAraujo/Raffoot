@@ -6,7 +6,7 @@ class ColorsModalViewModel {
         this.colors = { background: this.game.club.colors.backgroundCustom, foreground: this.game.club.colors.foregroundCustom };
     }
 
-    changeTheme(theme, saveLocalStorage = false) {
+    setTheme(theme, saveLocalStorage = false) {
         this.game.config.theme = theme;
         document.documentElement.setAttribute('data-bs-theme', theme);
         if (saveLocalStorage)

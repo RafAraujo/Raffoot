@@ -1,7 +1,9 @@
 class MenuViewModel {
-    constructor(game, translator) {
+    constructor(game, translator, generalViewModel) {
         this.game = game;
         this.translator = translator;
+        this.generalViewModel = generalViewModel;
+        this.gameService = new GameService();
 
         this.activeSection = 'play';
         this.sections = ['play', 'squad', 'calendar', 'standings', 'finances', 'clubs', 'players', 'champions', 'top-scorers', 'ranking'];
@@ -23,14 +25,20 @@ class MenuViewModel {
         this.activeSection = section;
         for (const element of document.getElementsByClassName('nav-link dropdown-toggle show'))
             element.click();
-        this.toggleColapse();
+        this.toggleCollapse();
         this.hideAllSections();
         document.getElementById(section).classList.remove('d-none');
     }
 
     hideAllSections() {
-        for (const section of this.sections)
+        for (const section of this.sections) {
             document.getElementById(section)?.classList.add('d-none');
+        }
+    }
+
+    async saveAsync() {
+        await this.gameService.saveAsync(Vue.toRaw(this.game));
+        Common.showMessage(this.translator.get('Game saved successfully'), 'success');
     }
 
     toggleFullscreen() {
@@ -42,7 +50,7 @@ class MenuViewModel {
         }
     }
     
-    toggleColapse() {
+    toggleCollapse() {
         const collapseElement = document.querySelector('.navbar-collapse.collapse');
         if (collapseElement.classList.contains('show')) {
             const collapse = new bootstrap.Collapse(collapseElement);

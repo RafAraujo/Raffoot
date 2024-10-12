@@ -1,4 +1,4 @@
-class StandingSectionViewModel {
+class StandingsSectionViewModel {
     constructor(game, translator) {
         this.game = game;
         this.translator = translator;

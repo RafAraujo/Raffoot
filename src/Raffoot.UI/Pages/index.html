@@ -19,7 +19,7 @@
         <header>
             <div class="sticky-top d-flex justify-content-end m-2">
                 <a href="#" :title="translator.get(themeInverse)" class="link-body-emphasis">
-                    <i class="fa-solid" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'" @click="changeTheme()"></i>
+                    <i class="fa-solid" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'" @click="setTheme()"></i>
                 </a>
             </div>
         </header>
@@ -207,10 +207,6 @@
             }
         },
         methods: {
-            changeTheme() {
-                this.theme = this.themeInverse;
-                localStorage.setItem('theme', this.theme)
-            },
             clearMessage() {
                 this.message = { text: '', type: 'primary' };
             },
@@ -284,6 +280,10 @@
                 const id = event.target.value;
                 const game = id ? this.savedGames.find(g => g.key == id) : null;
                 this.selectedGame = game;
+            },
+            setTheme() {
+                this.theme = this.themeInverse;
+                localStorage.setItem('theme', this.theme)
             },
         },
         computed: {

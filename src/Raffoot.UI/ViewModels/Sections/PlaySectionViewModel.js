@@ -140,5 +140,4 @@ class PlaySectionViewModel {
     unselectPlayer() {
         this.selectedPlayerId = null;
     }
-
 }
