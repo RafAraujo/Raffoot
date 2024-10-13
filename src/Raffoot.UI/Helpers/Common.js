@@ -21,7 +21,7 @@ class Common {
         span.innerText = text;
     }
 
-    static clearMessage() {
+    static hideMessage() {
         const element = document.getElementById('message');
         element.classList.add('d-none');
     }

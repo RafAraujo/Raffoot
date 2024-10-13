@@ -71,20 +71,6 @@ class ChampionshipEdition {
         return Context.game.seasonDates.filterByIds(this._seasonDateIds);
     }
 
-    get topAssists() {
-        return this.championshipEditionPlayers.orderBy('-assists', 'matches');
-    }
-
-    get topPlayers() {
-        return this.championshipEditionPlayers.orderBy('-averageRating', 'matches');
-    }
-
-    get topScorers() {
-        return this.championshipEditionPlayers
-            .filter(cep => cep.goals > 0)
-            .orderBy('-goals', 'matches', 'player.name');
-    }
-
     addChampionshipEditionClub(championshipEditionClub) {
         this._championshipEditionClubIds.push(championshipEditionClub.id);
     }
@@ -171,6 +157,20 @@ class ChampionshipEdition {
         else {
             return this.championshipEditionEliminationPhases;
         }
+    }
+
+    getTopScorers() {
+        return this.championshipEditionPlayers
+            .filter(cep => cep.goals > 0)
+            .orderBy('-goals', 'matches', 'player.name');
+    }
+
+    getTopAssists() {
+        return this.championshipEditionPlayers.orderBy('-assists', 'matches');
+    }
+
+    getTopPlayers() {
+        return this.championshipEditionPlayers.orderBy('-averageRating', 'matches');
     }
 
     scheduleMatches() {

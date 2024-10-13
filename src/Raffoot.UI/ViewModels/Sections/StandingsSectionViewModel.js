@@ -82,6 +82,11 @@ class StandingsSectionViewModel {
         return result;
     }
 
+    getTopScorers() {
+        const topScorers = this.selectedChampionshipEdition?.getTopScorers().take(10);
+        return topScorers;
+    }
+
     selectNationalChampionship(currentMatch) {
         this.isNationalChampionshipsSelected = true;
         const nationalLeague = this.game.getNationalLeagueByClub(this.game.club);

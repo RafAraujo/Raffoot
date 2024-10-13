@@ -12,7 +12,7 @@ class ClubsSectionViewModel {
         return Club.getById(this.selectedClubId);
     }
 
-    get clubs() {
+    getClubs() {
         const clubs = this.game.clubs
             .filter(c => c.country.id === this.selectedCountryId)
             .orderBy('name');
@@ -20,7 +20,7 @@ class ClubsSectionViewModel {
         return clubs;
     }
 
-    get countries() {
+    getCountries() {
         const countries = this.game.clubs
             .flatMap(c => c.country)
             .distinct()
@@ -30,7 +30,7 @@ class ClubsSectionViewModel {
         return countries;
     }
 
-    get players() {
+    getPlayers() {
         const orderColumns = [this.playerOrder.orderColumn, 'position.id', '-overall', 'name'];
         return this.selectedClub.players.orderBy(...orderColumns);
     }

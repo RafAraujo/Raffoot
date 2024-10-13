@@ -837,8 +837,7 @@
                                 </th>
                             </thead>
                             <tbody>
-                                <tr
-                                    v-for="(championshipEditionPlayer, index) in vm.selectedChampionshipEdition?.topScorers">
+                                <tr v-for="(championshipEditionPlayer, index) in vm.getTopScorers()">
                                     <td class="text-center">
                                         {{ index + 1 }}
                                     </td>
@@ -894,7 +893,7 @@
                     </label>
                     <select id="select-country" class="form-select" @change="vm.selectCountry($event.target.value)">
                         <option></option>
-                        <option v-for="country in vm.countries" :value="country.id" :key="country.id"
+                        <option v-for="country in vm.getCountries()" :value="country.id" :key="country.id"
                             :value="country.id" :selected="vm.selectedCountryId === country.id">
                             {{ country.name }}
                         </option>
@@ -906,7 +905,7 @@
                     </label>
                     <select id="select-club" class="form-select" @change="vm.selectClub($event.target.value)">
                         <option></option>
-                        <option v-for="club in vm.clubs" :key="club.id" :value="club.id"
+                        <option v-for="club in vm.getClubs()" :key="club.id" :value="club.id"
                             :selected="vm.selectedClubId === club.id">
                             {{ club.name }}
                         </option>
@@ -977,7 +976,7 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="player in vm.players">
+                                    <tr v-for="player in vm.getPlayers()">
                                         <td class="text-center fw-bold"
                                             :class="`text-${player.position.fieldRegion.colorClass}`"
                                             :title="vm.translator.get(player.position.name)">
@@ -1581,22 +1580,25 @@
         },
 
         async created() {
-            //try {
-            this.message = { text: translator.get('Processing...'), type: 'primary' };
-            await this.loadGame();
-            this.gameLoaded = true;
+            try {
+                this.message = { text: translator.get('Processing...'), type: 'primary' };
+                await this.loadGame();
+                this.gameLoaded = true;
 
-            views.menu.mounted.vm.goToSection('play');
-            document.documentElement.addEventListener('click', () => views.play.mounted.vm.unselectPlayer());
+                views.menu.mounted.vm.goToSection('play');
+                document.documentElement.addEventListener('click', () => {
+                    views.play.mounted.vm.unselectPlayer();
+                    Common.hideMessage();
+                });
 
-            views.standings.mounted.vm.selectNationalChampionship();
+                views.standings.mounted.vm.selectNationalChampionship();
 
-            views.colorsModal.mounted.vm.setTheme(game.config.theme);
-            views.colorsModal.mounted.vm.setColors();
-            //}
-            //catch (error) {
-            //    this.message = { text: error, type: 'danger' };
-            //}
+                views.colorsModal.mounted.vm.setTheme(game.config.theme);
+                views.colorsModal.mounted.vm.setColors();
+            }
+            catch (error) {
+                this.message = { text: error, type: 'danger' };
+            }
         }
     };
 
