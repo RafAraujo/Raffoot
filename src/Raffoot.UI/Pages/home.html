@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raffoot</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome/css/solid.min.css">
@@ -246,7 +246,7 @@
                                 }}
                             </span>
                             <div class="progress bg-lightgray border"
-                                :title="`${vm.translator.get('Trust')} ${vm.translator.get('Board of Directors')}: ${vm.game.club.trust.boardOfDirectors}%`">
+                                :title="`${vm.translator.get('Trust')} - ${vm.translator.get('Board of Directors')}: ${vm.game.club.trust.boardOfDirectors}%`">
                                 <div class="progress-bar bg-dark" role="progressbar"
                                     :aria-valuenow="vm.game.club.trust.boardOfDirectors" aria-valuemin="0"
                                     aria-valuemax="100" :style="{ width: vm.game.club.trust.boardOfDirectors + '%' }">
@@ -261,7 +261,7 @@
                                 }}
                             </span>
                             <div class="progress bg-lightgray border"
-                                :title="`${vm.translator.get('Trust')} ${vm.translator.get('Supporters')}: ${vm.game.club.trust.supporters}%`">
+                                :title="`${vm.translator.get('Trust')} - ${vm.translator.get('Supporters')}: ${vm.game.club.trust.supporters}%`">
                                 <div class="progress-bar bg-dark" role="progressbar"
                                     :aria-valuenow="vm.game.club.trust.supporters" aria-valuemin="0" aria-valuemax="100"
                                     :style="{ width: vm.game.club.trust.supporters + '%' }">
