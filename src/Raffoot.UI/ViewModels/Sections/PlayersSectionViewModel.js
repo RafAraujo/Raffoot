@@ -1,8 +1,9 @@
 class PlayersSectionViewModel {
-    constructor(game, translator) {
+    constructor(game, translator, playerModal) {
         this.game = game;
         this.translator = translator;
 
+        this.playerModal = playerModal;
         this.config = Config;
         this.playerFilter = new PlayerFilterViewModel();
         this.filteredPlayers = [];

@@ -18,7 +18,7 @@
     <header>
         <div id="loading" v-cloak>
             <div class="container" v-if="!gameLoaded">
-                <div class="row mt-3" :class="{ 'd-none' : !message.text }">
+                <div class="row mt-3" v-show="message.text">
                     <div class="col">
                         <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`" role="alert">
                             {{ message.text }}
@@ -26,7 +26,7 @@
                                 :aria-label=translator.get('Close')></button>
                         </div>
                     </div>
-                    <a href="index.html" :class="{ 'd-none' : message.type != 'danger' }">
+                    <a href="index.html" v-show="message.type === 'danger'">
                         {{ translator.get("Back") }}
                     </a>
                 </div>
@@ -661,8 +661,8 @@
                     <label for="select-championship" class="form-label">
                         {{ vm.translator.get("Championship") }}
                     </label>
-                    <select id="select-championship" class="form-select"
-                        v-model.lazy="vm.selectedChampionshipEditionId">
+                    <select id="select-championship" class="form-select" v-model.lazy="vm.selectedChampionshipEditionId"
+                        v-once>
                         <option></option>
                         <template v-if="vm.isNationalChampionshipsSelected">
                             <template v-for="confederation in vm.getConfederations()">
@@ -704,7 +704,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="table-responsive" :class="{ 'd-none' : vm.activeTab !== 'classification' }">
+                    <div class="table-responsive" v-show="vm.activeTab === 'classification'">
                         <template v-if="vm.selectedChampionshipEdition.championship.championshipType.format === 'cup'">
                             <table class="table table-hover table-borderless"
                                 v-for="phase in vm.selectedChampionshipEdition.championshipEditionEliminationPhases">
@@ -814,7 +814,7 @@
                             </table>
                         </template>
                     </div>
-                    <div class="table-responsive" :class="{ 'd-none' : vm.activeTab !== 'top-scorers' }">
+                    <div class="table-responsive" v-show="vm.activeTab === 'top-scorers'">
                         <table class="table table-hover">
                             <thead class="table-light">
                                 <th class="text-center">#</th>
@@ -1105,8 +1105,9 @@
                             {{ `${vm.translator.get("Overall")} (${vm.translator.get("Maximum").toLowerCase()})`
                             }}
                         </label>
-                        <input id="maximum-overall" type="number" class="form-control" :min="vm.config.player.minOverall"
-                            :max="vm.config.player.maxOverall" v-model.lazy="vm.playerFilter.overall.maximum">
+                        <input id="maximum-overall" type="number" class="form-control"
+                            :min="vm.config.player.minOverall" :max="vm.config.player.maxOverall"
+                            v-model.lazy="vm.playerFilter.overall.maximum">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -1133,15 +1134,13 @@
             </fieldset>
             <div class="row mb-3">
                 <div class="d-grid col-6 col-md-3">
-                    <button type="button" class="btn btn-secondary border"
-                        @click="vm.resetFilter()">
+                    <button type="button" class="btn btn-secondary border" @click="vm.resetFilter()">
                         <i class="fa-solid fa-rotate-left"></i>
                         {{ vm.translator.get("Reset") }}
                     </button>
                 </div>
                 <div class="d-grid col-6 col-md-3">
-                    <button type="button" class="btn btn-primary border"
-                        @click="vm.searchPlayers()">
+                    <button type="button" class="btn btn-primary border" @click="vm.searchPlayers()">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         {{ vm.translator.get("Search") }}
                     </button>
@@ -1191,7 +1190,7 @@
                                         :class="{ 'selected': vm.playerModal.player === player }"
                                         @click.stop="vm.playerModal.selectPlayer($event, player)">
                                         <td class="text-center fw-bold"
-                                            :class="`text-${config.colors[player.position.fieldRegion.color].class}`"
+                                            :class="`text-${player.position.fieldRegion.colorClass}`"
                                             :title="vm.translator.get(player.position.name)">
                                             {{ vm.translator.get(player.position.abbreviation) }}
                                         </td>
@@ -1225,7 +1224,7 @@
                                         <td>{{ player.club.name }}</td>
                                         <td class="text-center">
                                             <i class="fa-solid fa-circle-check text-success"
-                                                :class="{ 'd-none' : !player.forSale }"></i>
+                                                v-show="player.forSale"></i>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1243,7 +1242,7 @@
                         </button>
                     </div>
                 </div>
-                <div :class="{ 'd-none' : !vm.playerModal.player }">
+                <div v-show="vm.playerModal.player">
                     <div class="row" style="margin-top: 65px;"></div>
                     <div class="row fixed-bottom p-2 bg-dark border-top">
                         <div class="d-grid col-6 col-md-2 offset-md-4">
@@ -1391,7 +1390,7 @@
                 <div class="modal-header">
                     <h1 id="modal-title" class="modal-title fs-5">{{ vm.translator.get("Make an offer")}}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        :aria-label="translator.get('Close')"></button>
+                        :aria-label="vm.translator.get('Close')"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mb-3">
@@ -1405,7 +1404,7 @@
                             <div class="row mt-2">
                                 <div class="col-6 d-flex align-items-center">
                                     <img class="img-fluid border" :src="vm.player.country.getFlagURL()"
-                                        :title="translator.get(vm.player.country.name)">
+                                        :title="vm.translator.get(vm.player.country.name)">
                                 </div>
                                 <div class="col-6">
                                     <img class="img-fluid" :src="vm.player.club.getLogoURL()"
@@ -1566,6 +1565,10 @@
 
                 translator.setLanguage(game.config.language);
 
+                views.colorsModal = new VueInstance(new ColorsModalViewModel(game, translator)).createApp().mount('#modal-colors');
+                views.languageModal = new VueInstance(new LanguageModalViewModel(game, translator)).createApp().mount('#modal-language');
+                views.playerModal = new VueInstance(new PlayerModalViewModel(game, translator)).createApp().mount('#modal-player');
+
                 views.general = new VueInstance(new GeneralViewModel(game, translator)).createApp().mount('#general');
                 views.menu = new VueInstance(new MenuViewModel(game, translator)).createApp().mount('#menu');
                 views.play = new VueInstance(new PlaySectionViewModel(game, translator)).createApp().mount('#play');
@@ -1573,26 +1576,23 @@
                 views.calendar = new VueInstance(new CalendarSectionViewModel(game, translator)).createApp().mount('#calendar');
                 views.standings = new VueInstance(new StandingsSectionViewModel(game, translator)).createApp().mount('#standings');
                 views.clubs = new VueInstance(new ClubsSectionViewModel(game, translator)).createApp().mount('#clubs');
-                views.players = new VueInstance(new PlayersSectionViewModel(game, translator)).createApp().mount('#players');
-
-                views.colorsModal = new VueInstance(new ColorsModalViewModel(game, translator)).createApp().mount('#modal-colors');
-                views.languageModal = new VueInstance(new LanguageModalViewModel(game, translator)).createApp().mount('#modal-language');
-                views.playerModal = new VueInstance(new PlayerModalViewModel(game, translator)).createApp().mount('#modal-player');
+                views.players = new VueInstance(new PlayersSectionViewModel(game, translator, views.playerModal.mounted.vm)).createApp().mount('#players');
             },
         },
+
         async created() {
             //try {
-                this.message = { text: translator.get('Processing...'), type: 'primary' };
-                await this.loadGame();
-                this.gameLoaded = true;
+            this.message = { text: translator.get('Processing...'), type: 'primary' };
+            await this.loadGame();
+            this.gameLoaded = true;
 
-                views.menu.mounted.vm.goToSection('play');
-                document.documentElement.addEventListener('click', () => views.play.mounted.vm.unselectPlayer());
+            views.menu.mounted.vm.goToSection('play');
+            document.documentElement.addEventListener('click', () => views.play.mounted.vm.unselectPlayer());
 
-                views.standings.mounted.vm.selectNationalChampionship();
+            views.standings.mounted.vm.selectNationalChampionship();
 
-                views.colorsModal.mounted.vm.setTheme(game.config.theme);
-                views.colorsModal.mounted.vm.setColors();
+            views.colorsModal.mounted.vm.setTheme(game.config.theme);
+            views.colorsModal.mounted.vm.setColors();
             //}
             //catch (error) {
             //    this.message = { text: error, type: 'danger' };

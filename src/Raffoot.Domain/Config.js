@@ -41,7 +41,7 @@ const Config = (function () {
             photoFolder: `${ResourcesFolder}/image/players`,
         },
         indexedDbName: 'Raffoot',
-        mockScript: '../Raffoot.Infrastructure/Raffoot.Data/Mock.js',
+        mockScript: '../../Raffoot.Infrastructure/Raffoot.Data/Mock.js',
         matchSpeedOptions: {
             normal: 1000,
             fast: 500,

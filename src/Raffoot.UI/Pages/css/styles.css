@@ -14,30 +14,36 @@
 }
 
 html[data-bs-theme="dark"] {
+    table.table {
+        tbody.championship-two-legged-tie tr:nth-child(even) td,
+        tr.selected {
+            border-color: white;
+        }
 
-    td.text-primary,
-    i.text-primary {
-        color: LightSkyBlue !important;
-    }
+        td.text-primary,
+        i.text-primary {
+            color: LightSkyBlue !important;
+        }
 
-    td.text-secondary,
-    i.text-secondary {
-        color: lightgray !important;
-    }
+        td.text-secondary,
+        i.text-secondary {
+            color: lightgray !important;
+        }
 
-    td.text-success,
-    i.text-success {
-        color: darkseagreen !important;
-    }
+        td.text-success,
+        i.text-success {
+            color: darkseagreen !important;
+        }
 
-    td.text-danger,
-    i.text-danger {
-        color: lightcoral !important;
-    }
+        td.text-danger,
+        i.text-danger {
+            color: lightcoral !important;
+        }
 
-    td.text-warning,
-    i.text-warning {
-        color: khaki !important;
+        td.text-warning,
+        i.text-warning {
+            color: khaki !important;
+        }
     }
 
     .modal-content {

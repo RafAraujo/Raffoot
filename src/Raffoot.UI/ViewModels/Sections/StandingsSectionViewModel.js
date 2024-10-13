@@ -76,7 +76,6 @@ class StandingsSectionViewModel {
                 description: `${this.translator.get(description)} (${match.fullDescription})`,
                 icon: 'fa-' + (description === 'Draw' ? 'circle-minus' : description === 'Win' ? 'circle-check' : 'circle-xmark'),
             };
-
             result.push(item);
         }
 
