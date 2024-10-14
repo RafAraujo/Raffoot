@@ -2,13 +2,22 @@ class PlayersSectionViewModel {
     constructor(game, translator, playerModal) {
         this.game = game;
         this.translator = translator;
-
         this.playerModal = playerModal;
+
         this.config = Config;
         this.playerFilter = new PlayerFilterViewModel();
         this.filteredPlayers = [];
         this.pageSize = game.config.search.pageSize;
         this.playerOrder = new PlayerOrderViewModel('-overall');
+        this.selectedPlayer = null;
+    }
+
+    get canBuy() {
+        return this.selectedPlayer?.forSale && this.canMakeOffer;
+    }
+
+    get canMakeOffer() {
+        return this.selectedPlayer?.club.id === this.game.club.id;
     }
 
     get showingPlayers() {
@@ -70,5 +79,9 @@ class PlayersSectionViewModel {
     resetFilter() {
         this.playerFilter.reset();
         this.filteredPlayers = [];
+    }
+
+    selectPlayer(player) {
+        this.selectedPlayer = player;
     }
 }

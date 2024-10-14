@@ -90,18 +90,15 @@ class ChampionshipEdition {
     getContinentalCupClassificationZonePositions(continentalCupDivision) {
         const positions = [];
 
-        const nationalCup = ChampionshipType.find('national', 'cup');
-        const nationalLeague = ChampionshipType.find('national', 'league');
-
         if (this.championship.division === 1) {
-            if (this.championship.championshipType.id === nationalLeague.id) {
+            if (this.championship.isNationalLeague) {
                 const start = continentalCupDivision === 1 ? 1 : this.championship.confederation.getContinentalCupSpots(1) + 1;
                 const cupSpots = this.championship.confederation.getContinentalCupSpots(continentalCupDivision);
                 for (let position = start; position < start + cupSpots; position++) {
                     positions.push(position);
                 }
             }
-            else if (this.championship.championshipType.id === nationalCup.id && continentalCupDivision === 2) {
+            else if (this.championship.isNationalCup && continentalCupDivision === 2) {
                 positions.push(1);
             }
         }
@@ -152,7 +149,7 @@ class ChampionshipEdition {
 
     getTable() {
         if (this.championship.championshipType.format === 'league') {
-            return this.championshipEditionClubs.orderBy('-championshipEditionEliminationPhasesWon', '-points', '-won', '-goalsDifference', '-goalsFor', 'club.name');
+            return this.championshipEditionClubs.orderBy('-points', '-won', '-goalsDifference', '-goalsFor', 'club.name');
         }
         else {
             return this.championshipEditionEliminationPhases;

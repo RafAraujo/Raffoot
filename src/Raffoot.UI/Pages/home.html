@@ -772,7 +772,7 @@
                                 </thead>
                                 <tbody>
                                     <tr
-                                        v-for="(championshipEditionClub, index) in vm.selectedChampionshipEdition?.getTable()">
+                                        v-for="(championshipEditionClub, index) in vm.getTable()">
                                         <td class="text-center" :class="vm.getCssClassForPosition(index + 1)">
                                             {{ index + 1 }}
                                         </td>
@@ -805,7 +805,7 @@
                                             }}
                                         </td>
                                         <td>
-                                            <i v-for="item in vm.getLast5(vm.selectedChampionshipEdition, championshipEditionClub.club)"
+                                            <i v-for="item in vm.getLast5Results(championshipEditionClub)"
                                                 class="fa-solid me-1" :class="item.icon, item.color"
                                                 :title="item.description"></i>
                                         </td>
@@ -866,7 +866,8 @@
                                         {{ championshipEditionPlayer.player.club.name }}
                                     </td>
                                     <td class="text-center fw-bold"
-                                        :class="`text-${championshipEditionPlayer.player.position.fieldRegion.colorClass}`">
+                                        :class="`text-${championshipEditionPlayer.player.position.fieldRegion.colorClass}`"
+                                        :title="vm.translator.get(championshipEditionPlayer.player.position.name)">
                                         {{
                                         vm.translator.get(championshipEditionPlayer.player.position.abbreviation)
                                         }}
@@ -1186,8 +1187,8 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="player in vm.showingPlayers"
-                                        :class="{ 'selected': vm.playerModal.player === player }"
-                                        @click.stop="vm.playerModal.selectPlayer($event, player)">
+                                        :class="{ 'selected': vm.selectedPlayer === player }"
+                                        @click.stop="vm.selectPlayer(player)">
                                         <td class="text-center fw-bold"
                                             :class="`text-${player.position.fieldRegion.colorClass}`"
                                             :title="vm.translator.get(player.position.name)">
@@ -1241,18 +1242,18 @@
                         </button>
                     </div>
                 </div>
-                <div v-show="vm.playerModal.player">
+                <div v-show="vm.selectedPlayer">
                     <div class="row" style="margin-top: 65px;"></div>
                     <div class="row fixed-bottom p-2 bg-dark border-top">
                         <div class="d-grid col-6 col-md-2 offset-md-4">
                             <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                :disabled="vm.playerModal.canMakeOffer" data-bs-target="#modal-player">
+                                :disabled="vm.canMakeOffer" data-bs-target="#modal-player">
                                 {{ vm.translator.get("Make an offer") }}
                             </button>
                         </div>
                         <div class="d-grid col-6 col-md-2">
                             <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                :disabled="!vm.playerModal.canBuy" data-bs-target="#modal-player">
+                                :disabled="!vm.canBuy" data-bs-target="#modal-player">
                                 {{ vm.translator.get("Buy") }}
                             </button>
                         </div>

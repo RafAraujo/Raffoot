@@ -9,7 +9,7 @@ class StandingsSectionViewModel {
     }
 
     get selectedChampionshipEdition() {
-        const championshipEdition = Context.game.currentSeason.championshipEditions.find(ce => ce.id === this.selectedChampionshipEditionId);
+        const championshipEdition = game.currentSeason.championshipEditions.find(ce => ce.id === this.selectedChampionshipEditionId);
         return championshipEdition;
     }
 
@@ -64,26 +64,29 @@ class StandingsSectionViewModel {
         return championshipEditions;
     }
 
-    getLast5(championshipEdition, club) {
-        const fixtures = this.game.getLastFixtures(championshipEdition, 5);
-        const matches = fixtures.flatMap(f => f.matches).filter(m => m.clubs.includes(club)).filter(m => m.isFinished);
-        const result = [];
+    getLast5Results(championshipEditionClub) {
+        const response = [];
 
-        for (const match of matches) {
-            const description = match.isDraw ? 'Draw' : match.getWinner() === club ? 'Win' : 'Loss';
+        for (const matchInfo of championshipEditionClub.last5Results) {
+            const result = matchInfo.result;
+
             const item = {
-                color: 'text-' + (description === 'Draw' ? 'secondary' : description === 'Win' ? 'success' : 'danger'),
-                description: `${this.translator.get(description)} (${match.fullDescription})`,
-                icon: 'fa-' + (description === 'Draw' ? 'circle-minus' : description === 'Win' ? 'circle-check' : 'circle-xmark'),
+                color: 'text-' + (result === 'Draw' ? 'secondary' : result === 'Win' ? 'success' : 'danger'),
+                description: `${this.translator.get(result)} - ${matchInfo.description}`,
+                icon: 'fa-' + (result === 'Draw' ? 'circle-minus' : result === 'Win' ? 'circle-check' : 'circle-xmark'),
             };
-            result.push(item);
+            response.push(item);
         }
 
-        return result;
+        return response;
+    }
+
+    getTable() {
+        return this.selectedChampionshipEdition?.getTable()
     }
 
     getTopScorers() {
-        const topScorers = this.selectedChampionshipEdition?.getTopScorers().take(10);
+        const topScorers = this.selectedChampionshipEdition?.getTopScorers().take(20);
         return topScorers;
     }
 

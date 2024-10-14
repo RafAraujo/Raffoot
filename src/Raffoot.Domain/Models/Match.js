@@ -166,12 +166,12 @@ class Match {
             
             championshipEditionClub.played++;
 
-            if (this.isDraw) {
+            const matchInfo = this._getMatchInfo(club, clubWinner);
+
+            if (matchInfo.result === 'Draw')
                 championshipEditionClub.drawn++
-            }
-            else {
-                championshipEditionClub.club.id === clubWinner.id ? championshipEditionClub.won++ : championshipEditionClub.lost++;
-            }
+            else
+                matchInfo.result === 'Win' ? championshipEditionClub.won++ : championshipEditionClub.lost++;
 
             if (championshipEditionClub.club.id === this.clubs[0].id) {
                 championshipEditionClub.goalsFor += this.goals[0];
@@ -181,7 +181,33 @@ class Match {
                 championshipEditionClub.goalsFor += this.goals[1];
                 championshipEditionClub.goalsAgainst += this.goals[0];
             }
+
+            if (this.championshipEdition.championship.isNationalLeague) {
+                championshipEditionClub.last5Results.push(matchInfo);
+                if (championshipEditionClub.last5Results.length > 5)
+                    championshipEditionClub.last5Results.shift();
+            }
         }
+    }
+
+    _getMatchInfo(club, clubWinner) {
+        const matchInfo = {
+            description: this.fullDescription
+        };
+
+        if (this.isDraw) {
+            matchInfo.result = 'Draw';
+        }
+        else {
+            if (club.id === clubWinner.id)  {
+                matchInfo.result = 'Win';
+            }
+            else {
+                matchInfo.result = 'Loss';
+            }
+        }
+
+        return matchInfo;
     }
 
     _incrementPlayersMatches() {

@@ -116,6 +116,11 @@ class Championship {
         }
     }
 
+    get isNationalCup() {
+        const nationalLeague = ChampionshipType.find('national', 'cup');
+        return this._championshipTypeId === nationalLeague.id;
+    }
+
     get isNationalLeague() {
         const nationalLeague = ChampionshipType.find('national', 'league');
         return this._championshipTypeId === nationalLeague.id;

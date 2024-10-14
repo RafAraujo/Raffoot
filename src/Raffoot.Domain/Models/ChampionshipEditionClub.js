@@ -10,6 +10,7 @@ class ChampionshipEditionClub {
         this.lost = 0;
         this.goalsFor = 0;
         this.goalsAgainst = 0;
+        this.last5Results = [];
     }
 
     static create(championshipEdition, club, bracketOrder) {
