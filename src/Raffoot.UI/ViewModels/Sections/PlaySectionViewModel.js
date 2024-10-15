@@ -6,19 +6,7 @@ class PlaySectionViewModel {
 
         this.selectedClub = game.club;
         this.automaticSelection = true;
-        this.selectedPlayerId = null;
-    }
-
-    get currentMatch() {
-        return this.game.getCurrentMatch();
-    }
-
-    get currentOpponent() {
-        return this.currentMatch?.getOpponent(this.game.club);
-    }
-
-    get selectedPlayer() {
-        return Player.getById(this.selectedPlayerId);
+        this.selectedPlayer = null;
     }
 
     async advanceDate() {
@@ -37,15 +25,13 @@ class PlaySectionViewModel {
         this.game.club.changeFormation(formation, this.automaticSelection);
     }
 
-    changePlayers(playerId) {
-        playerId = parseInt(playerId);
-        if (this.selectedPlayerId) {
-            const player = Player.getById(playerId);
+    changePlayers(player) {
+        if (this.selectedPlayer) {
             this.game.club.swapPlayerRoles(this.selectedPlayer, player);
-            this.selectedPlayerId = null;
+            this.selectedPlayer = null;
         }
         else {
-            this.selectedPlayerId = playerId;
+            this.selectedPlayer = player;
         }
     }
 
@@ -55,7 +41,15 @@ class PlaySectionViewModel {
 
     drop(event) {
         const data = event.dataTransfer.getData('playerId');
-        this.selectedPlayerId = parseInt(data);
+        playerId = parseInt(data);
+        this.selectedPlayer = Player.getById(playerId);
+    }
+
+    getCurrentChampionshipName() {
+        const match = this.getCurrentMatch();
+        const championship = match.championshipEdition.championship;
+        const name = this.translator.getChampionshipName(championship, false);
+        return name;
     }
 
     getCurrentMatch() {
@@ -65,7 +59,7 @@ class PlaySectionViewModel {
 
     getCurrentOpponent() {
         const match = this.getCurrentMatch();
-        const club = match.getOpponent(this.game.club);
+        const club = match?.getOpponent(this.game.club);
         return club;
     }
 
@@ -75,6 +69,10 @@ class PlaySectionViewModel {
 
     getBaseFormations() {
         return this.game.formations.map(f => f.baseFormation).distinct().sort();
+    }
+
+    getEmptyFieldLocalizations() {
+        return this.game.club.getEmptyFieldLocalizations();
     }
 
     getFormations(baseFormation) {
@@ -103,23 +101,22 @@ class PlaySectionViewModel {
         return message;
     }
 
-    movePlayerToBench(playerId) {
-        const player = Player.getById(playerId);
-        if (player?.fieldLocalization) {
-            this.game.club.movePlayerToBench(player);
+    loadDefaultPlayerPhoto = Common.loadDefaultPlayerPhoto;
+
+    movePlayerToBench() {
+        if (this.selectedPlayer?.fieldLocalization) {
+            this.game.club.movePlayerToBench(this.selectedPlayer);
         }
-        else {
-            this.unselectPlayer();
-        }
+
+        this.unselectPlayer();
     }
 
     movePlayerToField(fieldLocalizationId) {
         fieldLocalizationId = parseInt(fieldLocalizationId);
-        if (this.selectedPlayerId) {
-            const player = Player.getById(this.selectedPlayerId);
+        if (this.selectedPlayer) {
             const fieldLocalization = FieldLocalization.getById(fieldLocalizationId);
-            this.game.club.movePlayerToField(player, fieldLocalization);
-            this.selectedPlayerId = null;
+            this.game.club.movePlayerToField(this.selectedPlayer, fieldLocalization);
+            this.selectedPlayer = null;
         }
     }
 
@@ -131,13 +128,7 @@ class PlaySectionViewModel {
         this.selectedClub = club;
     }
 
-    swapPlayerRoles(playerId1, playerId2) {
-        const player1 = Player.getById(playerId1);
-        const player2 = Player.getById(playerId2);
-        this.game.club.swapPlayerRoles(player1, player2);
-    }
-
     unselectPlayer() {
-        this.selectedPlayerId = null;
+        this.selectedPlayer = null;
     }
 }

@@ -12,20 +12,12 @@ class PlayersSectionViewModel {
         this.selectedPlayer = null;
     }
 
-    get canBuy() {
+    canBuy() {
         return this.selectedPlayer?.forSale && this.canMakeOffer;
     }
 
-    get canMakeOffer() {
+    canMakeOffer() {
         return this.selectedPlayer?.club.id === this.game.club.id;
-    }
-
-    get showingPlayers() {
-        const players = this.filteredPlayers
-            .take(this.pageSize)
-            .orderBy(this.playerOrder.orderColumn, '-overall', 'name');
-
-        return players;
     }
 
     getCountries() {
@@ -33,6 +25,14 @@ class PlayersSectionViewModel {
             .map(c => ({ id: c.id, name: this.translator.get(c.name) }))
             .orderBy('name');
         return countries;
+    }
+
+    getShowingPlayers() {
+        const players = this.filteredPlayers
+            .take(this.pageSize)
+            .orderBy(this.playerOrder.orderColumn, '-overall', 'name');
+
+        return players;
     }
 
     getShowingPlayersMessage() {

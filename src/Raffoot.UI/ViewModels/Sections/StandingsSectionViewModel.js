@@ -5,12 +5,7 @@ class StandingsSectionViewModel {
 
         this.activeTab = 'classification';
         this.isNationalChampionshipsSelected = true;
-        this.selectedChampionshipEditionId = null;
-    }
-
-    get selectedChampionshipEdition() {
-        const championshipEdition = game.currentSeason.championshipEditions.find(ce => ce.id === this.selectedChampionshipEditionId);
-        return championshipEdition;
+        this.selectedChampionshipEdition = null;
     }
 
     getChampionshipEditionsByConfederation(confederationId) {
@@ -35,18 +30,18 @@ class StandingsSectionViewModel {
     }
 
     getCssClassForPosition(position) {
-        const championshipEdition = this.selectedChampionshipEdition;
+        const ce = this.selectedChampionshipEdition;
         
-        if (championshipEdition.getContinentalCupClassificationZonePositions(1).includes(position)) {
+        if (ce.getContinentalCupClassificationZonePositions(1).includes(position)) {
             return 'main-continental-cup';
         }
-        else if (championshipEdition.getContinentalCupClassificationZonePositions(2).includes(position)) {
+        else if (ce.getContinentalCupClassificationZonePositions(2).includes(position)) {
             return 'secondary-continental-cup';
         }
-        else if (championshipEdition.getPromotionZonePositions().includes(position)) {
+        else if (ce.getPromotionZonePositions().includes(position)) {
             return 'promotion';
         }
-        else if (championshipEdition.getRelegationZonePositions().includes(position)) {
+        else if (ce.getRelegationZonePositions().includes(position)) {
             return 'relegation';
         }
     }
@@ -90,15 +85,19 @@ class StandingsSectionViewModel {
         return topScorers;
     }
 
+    selectChampionshipEdition(id) {
+        this.selectedChampionshipEdition = id ? ChampionshipEdition.getById(parseInt(id)) : null;
+    }
+
     selectNationalChampionship(currentMatch) {
         this.isNationalChampionshipsSelected = true;
         const nationalLeague = this.game.getNationalLeagueByClub(this.game.club);
         const currentChampionshipEdition = currentMatch?.championshipEdition;
-        this.selectedChampionshipEditionId = currentChampionshipEdition?.id ?? nationalLeague.id;
+        this.selectedChampionshipEdition = currentChampionshipEdition ?? nationalLeague;
     }
 
     selectInternationalChampionship() {
         this.isNationalChampionshipsSelected = false;
-        this.selectedChampionshipEditionId = null;
+        this.selectedChampionshipEdition = null;
     }
 }

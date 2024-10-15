@@ -9,20 +9,40 @@ class VueInstance {
     }
 
     createApp() {
-        this.object = this.createObject(this.viewModel);
+        this.object = this.createObject();
+        this.object.computed = this.computed();
         this.object.beforeUpdate = this._beforeUpdate;
         this.object.updated = this._updated;
         this.app = Vue.createApp(this.object);
         return this;
     }
 
-    createObject(viewModel) {
+    computed() {
+        return {
+            currentMatch() {
+                return this.game.getCurrentMatch();
+            },
+            currentOpponent() {
+                return this.currentMatch?.getOpponent(this.game.club);
+            }
+        };
+    }
+
+    createObject() {
+        const clone = { ...this.viewModel };
+        const methods = {};
+
+        for (const method of Object.getOwnPropertyNames(Object.getPrototypeOf(this.viewModel))) {
+            if (method === 'constructor')
+                continue;
+            methods[method] = this.viewModel[method];
+        }
+
         const object = {
             data() {
-                return {
-                    vm: viewModel
-                }
+                return clone;
             },
+            methods: methods
         };
 
         return object;

@@ -3,18 +3,14 @@ class ClubsSectionViewModel {
         this.game = game;
         this.translator = translator;
         
-        this.selectedCountryId = game.club.country.id;
-        this.selectedClubId = game.club.id;
+        this.selectedCountry = game.club.country;
+        this.selectedClub = game.club;
         this.playerOrder = new PlayerOrderViewModel('position.id');
-    }
-
-    get selectedClub() {
-        return Club.getById(this.selectedClubId);
     }
 
     getClubs() {
         const clubs = this.game.clubs
-            .filter(c => c.country.id === this.selectedCountryId)
+            .filter(c => c.country.id === this.selectedCountry.id)
             .orderBy('name');
 
         return clubs;
@@ -30,21 +26,20 @@ class ClubsSectionViewModel {
         return countries;
     }
 
-    getPlayers() {
-        const orderColumns = [this.playerOrder.orderColumn, 'position.id', '-overall', 'name'];
-        return this.selectedClub.players.orderBy(...orderColumns);
-    }
-    
     getKitsURLs() {
         return this.selectedClub.getKitsURLs();
     }
 
-    selectCountry(countryId) {
-        this.selectedCountryId = parseInt(countryId);
-        this.selectedClubId = null;
+    getPlayers() {
+        const orderColumns = [this.playerOrder.orderColumn, 'position.id', '-overall', 'name'];
+        return this.selectedClub.players.orderBy(...orderColumns);
     }
 
-    selectClub(clubId) {
-        this.selectedClubId = parseInt(clubId);
+    selectClub(id) {
+        this.selectedClub = id ? Club.getById(parseInt(id)) : null;
+    }
+
+    selectCountry(id) {
+        this.selectedCountry = id ? Country.getById(parseInt(id)) : null;
     }
 }
