@@ -12,11 +12,12 @@ class PlaySectionViewModel {
     async advanceDate() {
         if (this.game.currentSeason.currentSeasonDate.matches.length === 0) {
             this.game.advanceDate();
-            await this.gameService.saveAsync(Vue.toRaw(this.game));
         }
         else {
-            const url = `play.html?id=${this.game.id}`;
-            this.redirect(url);
+            this.showMatches();
+            this.game.play(() => setTimeout(() => {
+                this.hideMatches();
+            }, Config.delayBeforeSummary + 90000));
         }
     }
 
@@ -101,6 +102,11 @@ class PlaySectionViewModel {
         return message;
     }
 
+    hideMatches() {
+        Common.hideElement('#matches');
+        Common.showElement('#control-panel');
+    }
+
     loadDefaultPlayerPhoto = Common.loadDefaultPlayerPhoto;
 
     movePlayerToBench() {
@@ -126,6 +132,11 @@ class PlaySectionViewModel {
 
     selectClub(club) {
         this.selectedClub = club;
+    }
+
+    showMatches() {
+        Common.showElement('#matches');
+        Common.hideElement('#control-panel');
     }
 
     unselectPlayer() {

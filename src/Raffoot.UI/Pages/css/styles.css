@@ -15,35 +15,31 @@
 
 html[data-bs-theme="dark"] {
     table.table {
+
         tbody.championship-two-legged-tie tr:nth-child(even) td,
         tr.selected {
             border-color: white;
         }
+    }
 
-        td.text-primary,
-        i.text-primary {
-            color: LightSkyBlue !important;
-        }
+    .text-primary {
+        color: LightSkyBlue !important;
+    }
 
-        td.text-secondary,
-        i.text-secondary {
-            color: lightgray !important;
-        }
+    .text-secondary {
+        color: lightgray !important;
+    }
 
-        td.text-success,
-        i.text-success {
-            color: darkseagreen !important;
-        }
+    .text-success {
+        color: darkseagreen !important;
+    }
 
-        td.text-danger,
-        i.text-danger {
-            color: lightcoral !important;
-        }
+    .text-danger {
+        color: lightcoral !important;
+    }
 
-        td.text-warning,
-        i.text-warning {
-            color: khaki !important;
-        }
+    .text-warning {
+        color: khaki !important;
     }
 
     .modal-content {
@@ -53,6 +49,21 @@ html[data-bs-theme="dark"] {
 
 body {
     cursor: default;
+}
+
+#matches {
+    background-color: rgb(27, 70, 38);
+
+    .sticky-top {
+        background-color: rgb(27, 70, 38);
+    }
+
+    td.score {
+        min-width: 32px;
+        max-width: 32px;
+        background-color: darkseagreen;
+        color: black;
+    }
 }
 
 h1,
@@ -217,12 +228,6 @@ table.sortable th {
 
 .bg-inherit {
     background-color: inherit;
-}
-
-.bg-matches,
-.bg-matches * {
-    color: white;
-    background-color: rgb(27, 70, 38);
 }
 
 .blink {

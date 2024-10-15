@@ -13,6 +13,16 @@ class Common {
         new Audio('res/sound/goal.wav').play();
     }
 
+    static showElement(selector) {
+        const element = document.querySelector(selector);
+        element.classList.remove('d-none');
+    }
+
+    static hideElement(selector) {
+        const element = document.querySelector(selector);
+        element.classList.add('d-none');
+    }
+
     static showMessage(text, type) {
         const element = document.getElementById('message');
         element.classList.remove(...element.classList);

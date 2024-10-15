@@ -1,11 +1,11 @@
-class MatchesSectionViewModel {
+class SimulationSectionViewModel {
     constructor(game, translator) {
         this.game = game;
         this.translator = translator;
     }
 
     getCurrentChampionshipName() {
-        const championship = thsi.currentMatch.championshipEdition.championship;
+        const championship = this.currentMatch.championshipEdition.championship;
         const name = this.translator.getChampionshipName(championship);
         return name;
     }

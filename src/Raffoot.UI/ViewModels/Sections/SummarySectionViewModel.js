@@ -4,7 +4,6 @@ class SummarySectionViewModel {
         this.translator = translator;
 
         this.selectedConfederationId = this.getGameClubConfederation().id;
-        this.selectedMatchId = null;
     }
 
     getGameClubConfederation() {
@@ -42,9 +41,5 @@ class SummarySectionViewModel {
 
     selectConfederation(confederationId) {
         this.selectedConfederationId = parseInt(confederationId);
-    }
-
-    selectMatch(matchId) {
-        this.selectedMatchId = matchId;
     }
 }

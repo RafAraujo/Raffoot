@@ -60,6 +60,9 @@ class VueInstance {
 
     _updated() {
         const time = performance.now() - this._t0;
-        console.log(`[${this.name}]`, `Update took ${time} milliseconds.`);
+        const message = `[${this.name}] Update took ${time} milliseconds.`;
+        console.log(message);
+        if (location.search.includes('mock'))
+            alert(message);
     }
 }

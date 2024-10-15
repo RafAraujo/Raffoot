@@ -169,6 +169,7 @@ class Game {
         const matchSimulations = matches.map(m => m.matchSimulation);
 
         let index = 0;
+        const speed = this.config.matchSpeed;
 
         const interval = setInterval(() => {
             let t0 = performance.now();
@@ -188,6 +189,6 @@ class Game {
 
                 callback();
             }
-        }, this.config.matchSpeed);
+        }, speed);
     }
 }

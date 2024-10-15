@@ -4,6 +4,17 @@ class PlayerModalViewModel {
         this.translator = translator;
         this.player = null;
         this.offer = null;
+        this.offerInput = null;
+    }
+
+    getErrorMessage() {
+        if (isNaN(this.offer) || this.offer < 0 || Array.from((this.offerInput ?? '').toString()).some(x => x < '0' || x > '9')) {
+            return this.translator.get('Invalid value');
+        }
+        else if (this.offer > this.game.club.money) {
+            return this.translator.get('Value greater than the money available');
+        }
+        return '';
     }
 
     getOfferDescription() {
@@ -15,7 +26,7 @@ class PlayerModalViewModel {
         return this.offer ? this.translator.getNumberInWords(this.offer.formatInWords()) : '';
     }
 
-    getOfferIsValid() {
+    offerIsValid() {
         return this.getErrorMessage() === '';
     }
 
@@ -40,16 +51,6 @@ class PlayerModalViewModel {
 
     updateOffer(value) {
         this.offer = value * 1000;
-    }
-
-    _getErrorMessage() {
-        if (isNaN(this.offer) || this.offer < 0 || Array.from((this.offerInput ?? '').toString()).some(x => x < '0' || x > '9')) {
-            return this.translator.get('Invalid value');
-        }
-        else if (this.offer > this.game.club.money) {
-            return this.translator.get('Value greater than the money available');
-        }
-        return '';
     }
 
     _scroll(event) {
