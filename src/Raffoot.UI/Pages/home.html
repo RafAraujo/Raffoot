@@ -116,7 +116,7 @@
                                 </caption>
                                 <tbody>
                                     <tr
-                                        v-for="match in game.currentSeason.getCurrentMatchesByChampionshipEdition(championshipEdition)">
+                                        v-for="match in getCurrentMatches(championshipEdition)">
                                         <td class="text-end p-0"
                                             :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
                                             <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
@@ -150,12 +150,12 @@
             </template>
         </section>
         <section id="summary" class="container" v-cloak>
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col col-md-5">
-                    <select id="summary-confederation" class="form-select"
+                    <select id="summary-confederation" class="form-select mt-4"
                         @change="selectConfederation($event.target.value)">
                         <option v-for="confederation in getConfederations()" :key="confederation.id"
-                            :value="confederation.id" :selected="selectedConfederationId == confederation.id">
+                            :value="confederation.id" :selected="selectedConfederation.id === confederation.id">
                             {{ confederation.name }}
                         </option>
                     </select>
@@ -172,22 +172,19 @@
                                             {{ getCurrentStageMessage(championshipEdition) }}
                                         </caption>
                                         <tbody>
-                                            <tr v-for="match in getCurrentMatchesByChampionshipEdition(championshipEdition)"
+                                            <tr v-for="match in getCurrentMatches(championshipEdition)"
                                                 @click.stop="selectMatch(match.id)"
-                                                :class="{ 'selected-match' : selectedMatchId === match.id }">
-                                                <td class="text-end p-0 text-break"
-                                                    style="width: 44%; height: 40px;">
+                                                :class="{ 'selected' : selectedMatch?.id === match.id }">
+                                                <td class="text-end p-0 text-break" style="width: 44%; height: 40px;">
                                                     {{ match.clubHome.shortName }}
-                                                    <img class="club-logo ms-1 me-1"
-                                                        :src="match.clubHome.getLogoURL()"
+                                                    <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
                                                         :alt="match.clubHome.name" :title="match.clubHome.name">
                                                 </td>
                                                 <td class="text-center p-0">
                                                     {{ match.score }}
                                                 </td>
                                                 <td class="text-start p-0" style="width: 44%;">
-                                                    <img class="club-logo ms-1 me-1"
-                                                        :src="match.clubAway.getLogoURL()"
+                                                    <img class="club-logo ms-1 me-1" :src="match.clubAway.getLogoURL()"
                                                         :alt="match.clubAway.name" :title="match.clubAway.name">
                                                     {{ match.clubAway.shortName }}
                                                 </td>
@@ -201,22 +198,23 @@
                 </div>
             </div>
             <div class="row" style="margin-top: 65px;"></div>
-            <div class="row fixed-bottom p-2 bg-dark border-top">
+            <div class="row fixed-bottom p-2 bg-dark border-top border-light">
                 <div class="col text-center">
-                    <button class="btn btn-light" @click.stop="advanceDate()">
-                        {{ `${translator.get("Continue")} >>` }}
+                    <button class="btn btn-light btn-lg" @click.stop="advanceDate()">
+                        <i class="fa-solid fa-right-long"></i>
+                        {{ translator.get("Continue") }}
                     </button>
                 </div>
             </div>
         </section>
     </div>
-    <div id="control-panel">
+    <div id="management">
         <header>
-            <div id="loading" v-cloak>
-                <div class="container" v-if="!gameLoaded">
-                    <div class="row mt-3" v-show="message.text">
+            <div id="loading" class="container" v-cloak>
+                <template v-if="!gameLoaded">
+                    <div class="row">
                         <div class="col">
-                            <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`"
+                            <div class="alert alert-dismissible fade show mt-3" :class="`alert-${message.type}`"
                                 role="alert">
                                 {{ message.text }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
@@ -227,7 +225,7 @@
                             {{ translator.get("Back") }}
                         </a>
                     </div>
-                </div>
+                </template>
             </div>
             <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" v-cloak>
                 <div class="container-fluid">
@@ -381,7 +379,7 @@
                 </div>
             </nav>
         </header>
-        <main id="control-panel" class="container">
+        <main class="container">
             <section id="general" v-cloak>
                 <div class="row mt-2">
                     <div class="col">
@@ -1448,13 +1446,13 @@
                             <div class="d-grid col-6 col-md-2 offset-md-4">
                                 <button type="button" class="btn btn-light" data-bs-toggle="modal"
                                     :disabled="canMakeOffer()" data-bs-target="#modal-player"
-                                    @click="playerModal.player = selectedPlayer">
+                                    @click="modal.player = selectedPlayer">
                                     {{ translator.get("Make an offer") }}
                                 </button>
                             </div>
                             <div class="d-grid col-6 col-md-2">
                                 <button type="button" class="btn btn-light" data-bs-toggle="modal" :disabled="!canBuy()"
-                                    data-bs-target="#modal-player" @click="playerModal.player = selectedPlayer">
+                                    data-bs-target="#modal-player" @click="modal.player = selectedPlayer">
                                     {{ translator.get("Buy") }}
                                 </button>
                             </div>
@@ -1715,21 +1713,23 @@
     <script src="../../Raffoot.Application/Services/TranslatorService.js"></script>
 
     <script src="../Helpers/Common.js"></script>
+    <script src="../Helpers/Router.js"></script>
     <script src="../Helpers/VueInstance.js"></script>
 
     <script src="../ViewModels/Modals/ColorsModalViewModel.js"></script>
     <script src="../ViewModels/Modals/LanguageModalViewModel.js"></script>
     <script src="../ViewModels/Modals/PlayerModalViewModel.js"></script>
-    
+
     <script src="../ViewModels/Sections/CalendarSectionViewModel.js"></script>
     <script src="../ViewModels/Sections/ClubsSectionViewModel.js"></script>
     <script src="../ViewModels/Sections/PlayersSectionViewModel.js"></script>
     <script src="../ViewModels/Sections/PlaySectionViewModel.js"></script>
     <script src="../ViewModels/Sections/SquadSectionViewModel.js"></script>
     <script src="../ViewModels/Sections/StandingsSectionViewModel.js"></script>
-    
+
     <script src="../ViewModels/Sections/SimulationSectionViewModel.js"></script>
-    
+    <script src="../ViewModels/Sections/SummarySectionViewModel.js"></script>
+
     <script src="../ViewModels/GeneralViewModel.js"></script>
     <script src="../ViewModels/MenuViewModel.js"></script>
     <script src="../ViewModels/PlayerFilterViewModel.js"></script>
@@ -1748,7 +1748,6 @@
     const translator = new TranslatorService();
 
     let game = null;
-    let views = [];
 
     const loaderApp = {
         data() {
@@ -1768,20 +1767,21 @@
 
                 translator.setLanguage(game.config.language);
 
-                views.colorsModal = new VueInstance(new ColorsModalViewModel(game, translator)).createApp().mount('#modal-colors');
-                views.languageModal = new VueInstance(new LanguageModalViewModel(game, translator)).createApp().mount('#modal-language');
-                views.playerModal = new VueInstance(new PlayerModalViewModel(game, translator)).createApp().mount('#modal-player');
+                Router.addView('#management', new VueInstance('#modal-colors', new ColorsModalViewModel(game, translator)).createApp().mount(), true);
+                Router.addView('#management', new VueInstance('#modal-language', new LanguageModalViewModel(game, translator)).createApp().mount(), true);
+                Router.addView('#management', new VueInstance('#modal-player', new PlayerModalViewModel(game, translator)).createApp().mount(), true);
 
-                views.general = new VueInstance(new GeneralViewModel(game, translator)).createApp().mount('#general');
-                views.menu = new VueInstance(new MenuViewModel(game, translator)).createApp().mount('#menu');
-                views.play = new VueInstance(new PlaySectionViewModel(game, translator)).createApp().mount('#play');
-                views.squad = new VueInstance(new SquadSectionViewModel(game, translator)).createApp().mount('#squad');
-                views.calendar = new VueInstance(new CalendarSectionViewModel(game, translator)).createApp().mount('#calendar');
-                views.standings = new VueInstance(new StandingsSectionViewModel(game, translator)).createApp().mount('#standings');
-                views.clubs = new VueInstance(new ClubsSectionViewModel(game, translator)).createApp().mount('#clubs');
-                views.players = new VueInstance(new PlayersSectionViewModel(game, translator, views.playerModal.mounted)).createApp().mount('#players');
+                Router.addView('#management', new VueInstance('#menu', new MenuViewModel(game, translator)).createApp().mount(), true);
+                Router.addView('#management', new VueInstance('#general', new GeneralViewModel(game, translator)).createApp().mount(), true);
+                Router.addView('#management', new VueInstance('#play', new PlaySectionViewModel(game, translator)).createApp().mount());
+                Router.addView('#management', new VueInstance('#squad', new SquadSectionViewModel(game, translator)).createApp().mount());
+                Router.addView('#management', new VueInstance('#calendar', new CalendarSectionViewModel(game, translator)).createApp().mount());
+                Router.addView('#management', new VueInstance('#standings', new StandingsSectionViewModel(game, translator)).createApp().mount());
+                Router.addView('#management', new VueInstance('#clubs', new ClubsSectionViewModel(game, translator)).createApp().mount());
+                Router.addView('#management', new VueInstance('#players', new PlayersSectionViewModel(game, translator)).createApp().mount());
 
-                views.simulation = new VueInstance(new SimulationSectionViewModel(game, translator)).createApp().mount('#simulation');
+                Router.addView('#matches', new VueInstance('#simulation', new SimulationSectionViewModel(game, translator)).createApp().mount());
+                Router.addView('#matches', new VueInstance('#summary', new SummarySectionViewModel(game, translator)).createApp().mount());
             },
         },
 
@@ -1791,16 +1791,17 @@
             await this.loadGame();
             this.gameLoaded = true;
 
-            views.menu.mounted.goToSection('play');
+            Router.goTo('play');
+
             document.documentElement.addEventListener('click', () => {
-                views.play.mounted.unselectPlayer();
+                Router.get('play').unselectPlayer();
                 Common.hideMessage();
             });
 
-            views.standings.mounted.selectNationalChampionship();
+            Router.get('standings').selectNationalChampionship();
 
-            views.colorsModal.mounted.setTheme(game.config.theme);
-            views.colorsModal.mounted.setColors();
+            Router.get('modal-colors').setTheme(game.config.theme);
+            Router.get('modal-colors').setColors();
             //}
             //catch (error) {
             //    this.message = { text: error, type: 'danger' };

@@ -22,7 +22,7 @@ class Confederation {
     }
 
     static getByName(name) {
-        return Context.game.confederation.find(c => c.name === name);
+        return Context.game.confederations.find(c => c.name === name);
     }
 
     static seed() {

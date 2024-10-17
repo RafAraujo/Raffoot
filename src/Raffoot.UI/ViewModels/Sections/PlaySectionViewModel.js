@@ -14,10 +14,11 @@ class PlaySectionViewModel {
             this.game.advanceDate();
         }
         else {
-            this.showMatches();
+            Router.goTo('simulation');
             this.game.play(() => setTimeout(() => {
-                this.hideMatches();
-            }, Config.delayBeforeSummary + 90000));
+                Router.get('summary').$forceUpdate();
+                Router.goTo('summary');
+            }, Config.delayBeforeSummary));
         }
     }
 
@@ -102,11 +103,6 @@ class PlaySectionViewModel {
         return message;
     }
 
-    hideMatches() {
-        Common.hideElement('#matches');
-        Common.showElement('#control-panel');
-    }
-
     loadDefaultPlayerPhoto = Common.loadDefaultPlayerPhoto;
 
     movePlayerToBench() {
@@ -132,11 +128,6 @@ class PlaySectionViewModel {
 
     selectClub(club) {
         this.selectedClub = club;
-    }
-
-    showMatches() {
-        Common.showElement('#matches');
-        Common.hideElement('#control-panel');
     }
 
     unselectPlayer() {

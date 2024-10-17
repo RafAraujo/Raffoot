@@ -1,11 +1,16 @@
 class VueInstance {
-    constructor(viewModel) {
+    constructor(selector, viewModel) {
         this._t0 = null;
 
+        this.selector = selector;
         this.viewModel = viewModel;
         this.object = null;
         this.app = null;
         this.mounted = null;
+    }
+
+    get name() {
+        return this.selector.substring(1);
     }
 
     createApp() {
@@ -48,9 +53,9 @@ class VueInstance {
         return object;
     }
 
-    mount(selector) {
-        this.mounted = this.app.mount(selector);
-        this.app._instance.data.name = selector.substring(1);
+    mount() {
+        this.mounted = this.app.mount(this.selector);
+        this.app._instance.data.name = this.name;
         return this;
     }
 

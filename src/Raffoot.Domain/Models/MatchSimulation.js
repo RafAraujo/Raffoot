@@ -149,7 +149,6 @@ class MatchSimulation {
     _drainEnergy() {
         for (const player of this.match.playersOnField) {
             player.energy = Math.max(player.energy - player.age * 0.01, 0);
-            player.energy = Math.round(player.energy);
         }
     }
 

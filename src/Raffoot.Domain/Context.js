@@ -1,3 +1,3 @@
-const Context = {
-    game: null
-};
+class Context {
+    static game = null;
+}

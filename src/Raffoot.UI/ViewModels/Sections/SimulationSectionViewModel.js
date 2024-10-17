@@ -10,6 +10,11 @@ class SimulationSectionViewModel {
         return name;
     }
 
+    getCurrentMatches(championshipEdition) {
+        const matches = this.game.currentSeason.getCurrentMatchesByChampionshipEdition(championshipEdition);
+        return matches;
+    }
+
     getCurrentStageMessage(championshipEdition) {
         let message = '';
         const stage = this.game.currentSeason.getChampionshipEditionCurrentStage(championshipEdition);
@@ -29,12 +34,15 @@ class SimulationSectionViewModel {
     }
 
     getCurrentChampionshipEditions() {
-        const clubConfederation = this.game.confederations.find(conf => conf.countries.map(c => c.id).includes(this.game.club.country.id));
+        const clubConfederation = this.game.confederations.find(conf => conf.countries.map(c => c.id).includes(this.game.club?.country.id));
         let championshipEditions = this.game.currentSeason.getCurrentChampionshipEditions();
         
         let confederation = null;
         if (championshipEditions.flatMap(ce => ce.championship).some(c => c.confederation.id === clubConfederation.id)) {
             confederation = clubConfederation;
+        }
+        else {
+            confederation = Confederation.getByName('England');
         }
         
         championshipEditions = championshipEditions.filter(ce => ce.championship.confederation.id === confederation?.id);

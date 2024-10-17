@@ -13,6 +13,14 @@
     display: none;
 }
 
+html, body {
+    height: 100%;
+}
+
+.container-fluid {
+    min-height: 100%;
+}
+
 html[data-bs-theme="dark"] {
     table.table {
 

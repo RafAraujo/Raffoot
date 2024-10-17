@@ -190,6 +190,7 @@ class Player {
 
     rest(days) {
         this.energy = Math.min(this.energy + days * 3, 100);
+        this.energy = Math.round(this.energy);
     }
 
     setInjury(date, daysToRecover) {

@@ -6,7 +6,6 @@ class MenuViewModel {
         this.gameService = new GameService();
 
         this.activeSection = 'play';
-        this.sections = ['play', 'squad', 'calendar', 'standings', 'finances', 'clubs', 'players', 'champions', 'top-scorers', 'ranking'];
     }
 
     exportGame() {
@@ -25,14 +24,7 @@ class MenuViewModel {
         for (const element of document.getElementsByClassName('nav-link dropdown-toggle show'))
             element.click();
         this.toggleCollapse();
-        this.hideAllSections();
-        document.getElementById(section).classList.remove('d-none');
-    }
-
-    hideAllSections() {
-        for (const section of this.sections) {
-            document.getElementById(section)?.classList.add('d-none');
-        }
+        Router.goTo(section);
     }
 
     async saveAsync() {
