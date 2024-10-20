@@ -80,12 +80,6 @@ td {
     vertical-align: middle;
 }
 
-a:not(.nav-link) i,
-button i,
-label i {
-    margin-right: 0.25rem;
-}
-
 div {
     .progress {
         border-radius: 0;
@@ -210,19 +204,19 @@ table.table {
     }
 
     td.main-continental-cup {
-        box-shadow: inset 4px 0 blue;
+        box-shadow: inset 4px 0 blue, inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
     }
 
     td.secondary-continental-cup {
-        box-shadow: inset 4px 0 orange;
+        box-shadow: inset 4px 0 orange, inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
     }
 
     td.promotion {
-        box-shadow: inset 4px 0 deepskyblue;
+        box-shadow: inset 4px 0 deepskyblue, inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
     }
 
     td.relegation {
-        box-shadow: inset 4px 0 red;
+        box-shadow: inset 4px 0 red, inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
     }
 }
 

@@ -33,6 +33,7 @@ Number.prototype.formatInWords = function () {
     let remainder = this;
 
     const numericClasses = [
+        { value: Math.pow(1000, 4), name: 'trilion'},
         { value: Math.pow(1000, 3), name: 'billion'},
         { value: Math.pow(1000, 2), name: 'million'},
         { value: Math.pow(1000, 1), name: 'thousand'},
@@ -41,9 +42,12 @@ Number.prototype.formatInWords = function () {
     for (const numericClass of numericClasses) {
         if (this >= numericClass.value) {
             let value = Math.trunc(remainder / numericClass.value);
-            if (formatted.length > 0) {
+            if (value === 0)
+                continue;
+
+            if (formatted.length > 0)
                 formatted += ' ';
-            }
+
             formatted += `${value} ${numericClass.name}`
             remainder -= value * numericClass.value;
         }

@@ -30,7 +30,7 @@ class TranslatorService {
             console.error(`Text "${text}" not found`);
             return text;
         }
-    } 
+    }
 
     getAbbreviation(text) {
         let abbreviation = '';
@@ -65,10 +65,21 @@ class TranslatorService {
     }
 
     getNumberInWords(text) {
-        const numericClasses = ["billion", "million", "thousand"];
+        const numericClasses = ["trilion", "billion", "million", "thousand"];
+        const numericClassesPlural = ["trilions", "billions", "millions", "thousand"];
 
-        for (const numericClass of numericClasses) {
-            text = text.replace(numericClass, this.get(numericClass));
+        const parts = text.split(' ');
+
+        for (let i = 0; i < numericClasses.length; i++) {
+            const numericClass = numericClasses[i];
+            const numericClassPlural = numericClassesPlural[i];
+
+            if (text.includes(numericClass)) {
+                const index = parts.indexOf(numericClass);
+                const number = parseInt(parts[index - 1]);
+                const word = number === 1 ? numericClass : numericClassPlural;
+                text = text.replace(numericClass, this.get(word));
+            }
         }
 
         return text.toLowerCase();

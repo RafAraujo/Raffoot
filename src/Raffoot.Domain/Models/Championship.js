@@ -48,7 +48,7 @@ class Championship {
                 division++;
             }
 
-            Championship.create(`${confederation.name} Supercup`, nationalSupercup, countryIds, 1, 2);
+            Championship.create(`${confederation.name} Supercup`, nationalSupercup, null, confederation.id, 1, 2);
         }
 
         const continents = Context.game.continents.filter(con => con.clubs.length > 16);
@@ -57,7 +57,7 @@ class Championship {
             for (let division = 1; division <= 2; division++) {
                 Championship.create(continent.getContinentalCupName(division), continentalCup, continent.id, null, division, continent.getContinentalCupSpots(division));
             }
-            Championship.create(`${continent.name} Supercup`, continentalSupercup, null, null, 1, 2);
+            Championship.create(`${continent.name} Supercup`, continentalSupercup, continent.id, null, 1, 2);
         }
 
         Championship.create('World Cup', worldCup, null, null, 1, 2);

@@ -34,7 +34,8 @@ class SimulationSectionViewModel {
     }
 
     getCurrentChampionshipEditions() {
-        const clubConfederation = this.game.confederations.find(conf => conf.countries.map(c => c.id).includes(this.game.club?.country.id));
+        const countryId = this.game.club?.country.id;
+        const clubConfederation = this.game.confederations.find(conf => conf.countries.map(c => c.id).includes(countryId));
         let championshipEditions = this.game.currentSeason.getCurrentChampionshipEditions();
         
         let confederation = null;
@@ -42,7 +43,7 @@ class SimulationSectionViewModel {
             confederation = clubConfederation;
         }
         else {
-            confederation = Confederation.getByName('England');
+            confederation = championshipEditions.flatMap(ce => ce.championship.confederation).distinct().getRandom();
         }
         
         championshipEditions = championshipEditions.filter(ce => ce.championship.confederation.id === confederation?.id);

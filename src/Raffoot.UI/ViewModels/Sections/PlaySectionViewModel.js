@@ -7,18 +7,29 @@ class PlaySectionViewModel {
         this.selectedClub = game.club;
         this.automaticSelection = true;
         this.selectedPlayer = null;
+        this.loading = false;
     }
 
     async advanceDate() {
+        this.loading = true;
         if (this.game.currentSeason.currentSeasonDate.matches.length === 0) {
             this.game.advanceDate();
+            this.loading = false;
         }
         else {
-            Router.goTo('simulation');
-            this.game.play(() => setTimeout(() => {
-                Router.get('summary').$forceUpdate();
-                Router.goTo('summary');
-            }, Config.delayBeforeSummary));
+            if (this.currentMatch) {
+                Router.goTo('simulation');
+                this.game.play(this.game.config.matchSpeed, () => setTimeout(() => {
+                    Router.goTo('summary', true);
+                    this.loading = false;
+                }, Config.delayBeforeSummary));
+            }
+            else {
+                this.game.play(1, () => {
+                    this.game.advanceDate();
+                    this.loading = false;
+                });
+            }
         }
     }
 

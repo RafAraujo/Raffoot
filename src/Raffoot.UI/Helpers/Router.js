@@ -17,8 +17,10 @@ class Router {
         return view.vueInstance.mounted;
     }
 
-    static goTo(viewName) {
+    static goTo(viewName, forceUpdate = false) {
         const view = Router.views.find(v => v.name === viewName);
+        if (forceUpdate)
+            view.vueInstance.mounted.$forceUpdate();
         Router._hideViews();
         Router._showView(view);
     }

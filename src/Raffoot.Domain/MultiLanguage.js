@@ -459,6 +459,8 @@ const MultiLanguage =
     "Top Scorers": "Artilheiros",
     "Total": "Total",
     "Transfer Window": "Janela de transferências",
+    "Trilion": "Trilhão",
+    "Trilions": "Trilhões",
     "Trinidad and Tobago": "Trinidad e Tobago",
     "Trust": "Confiança",
     "Tunisia": "Tunísia",

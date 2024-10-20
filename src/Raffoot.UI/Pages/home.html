@@ -115,8 +115,7 @@
                                     {{ getCurrentStageMessage(championshipEdition) }}
                                 </caption>
                                 <tbody>
-                                    <tr
-                                        v-for="match in getCurrentMatches(championshipEdition)">
+                                    <tr v-for="match in getCurrentMatches(championshipEdition)">
                                         <td class="text-end p-0"
                                             :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
                                             <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
@@ -487,8 +486,10 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <button type="button" class="btn btn-light border" @click="advanceDate()">
-                            <i class="fa-solid fa-right-long"></i>
+                        <button type="button" class="btn btn-light border" @click="advanceDate()" :disabled="loading">
+                            <span class="spinner-border spinner-border-sm me-1" aria-hidden="true"
+                                v-show="loading"></span>
+                            <i class="fa-solid fa-right-long me-1" v-show="!loading"></i>
                             {{ translator.get("Advance") }}
                         </button>
                     </div>
@@ -1333,13 +1334,13 @@
                 <div class="row mb-3">
                     <div class="d-grid col-6 col-md-3">
                         <button type="button" class="btn btn-secondary border" @click="resetFilter()">
-                            <i class="fa-solid fa-rotate-left"></i>
+                            <i class="fa-solid fa-rotate-left me-1"></i>
                             {{ translator.get("Reset") }}
                         </button>
                     </div>
                     <div class="d-grid col-6 col-md-3">
                         <button type="button" class="btn btn-primary border" @click="searchPlayers()">
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-magnifying-glass me-1"></i>
                             {{ translator.get("Search") }}
                         </button>
                     </div>
@@ -1435,7 +1436,7 @@
                             <button type="button" class="btn btn-primary btn-sm border"
                                 @click="pageSize += game.config.search.pageSize"
                                 :disabled="pageSize >= filteredPlayers.length">
-                                <i class="fa-solid fa-plus"></i>
+                                <i class="fa-solid fa-plus me-1"></i>
                                 {{ translator.get("Load more") }}
                             </button>
                         </div>
@@ -1446,13 +1447,15 @@
                             <div class="d-grid col-6 col-md-2 offset-md-4">
                                 <button type="button" class="btn btn-light" data-bs-toggle="modal"
                                     :disabled="canMakeOffer()" data-bs-target="#modal-player"
-                                    @click="modal.player = selectedPlayer">
+                                    @click="modal.selectPlayer(selectedPlayer)">
+                                    <i class="fa-solid fa-handshake me-1"></i>
                                     {{ translator.get("Make an offer") }}
                                 </button>
                             </div>
                             <div class="d-grid col-6 col-md-2">
                                 <button type="button" class="btn btn-light" data-bs-toggle="modal" :disabled="!canBuy()"
-                                    data-bs-target="#modal-player" @click="modal.player = selectedPlayer">
+                                    data-bs-target="#modal-player" @click="modal.selectPlayer(selectedPlayer)">
+                                    <i class="fa-solid fa-basket-shopping me-1"></i>
                                     {{ translator.get("Buy") }}
                                 </button>
                             </div>
@@ -1639,7 +1642,9 @@
                                 <label for="offer" class="form-label">
                                     {{ translator.get(`Offer (thousands of $)`) }}:
                                 </label>
-                                <input id="offer" type="number" min="0" step="1" class="form-control"
+                                <input id="offer" type="number" min="0" max="99999999999" step="1" maxlength="12"
+                                    class="form-control" v-model.lazy="offerInput"
+                                    oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)"
                                     @keyup="updateOffer($event.target.value)" required autofocus>
                                 <span class="small" :class="{ 'text-danger' : !offerIsValid() }">
                                     {{ getOfferDescription() }}
@@ -1653,7 +1658,7 @@
                         <i class="fa-solid fa-xmark"></i>
                         {{ translator.get("Cancel") }}
                     </button>
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" :disabled="!offerIsValid()">
                         <i class="fa-solid fa-share"></i>
                         {{ translator.get("Send") }}
                     </button>
@@ -1722,6 +1727,7 @@
 
     <script src="../ViewModels/Sections/CalendarSectionViewModel.js"></script>
     <script src="../ViewModels/Sections/ClubsSectionViewModel.js"></script>
+    <script src="../ViewModels/Sections/FinancesSectionViewModel.js"></script>
     <script src="../ViewModels/Sections/PlayersSectionViewModel.js"></script>
     <script src="../ViewModels/Sections/PlaySectionViewModel.js"></script>
     <script src="../ViewModels/Sections/SquadSectionViewModel.js"></script>
@@ -1777,6 +1783,7 @@
                 Router.addView('#management', new VueInstance('#squad', new SquadSectionViewModel(game, translator)).createApp().mount());
                 Router.addView('#management', new VueInstance('#calendar', new CalendarSectionViewModel(game, translator)).createApp().mount());
                 Router.addView('#management', new VueInstance('#standings', new StandingsSectionViewModel(game, translator)).createApp().mount());
+                Router.addView('#management', new VueInstance('#finances', new FinancesSectionViewModel(game, translator)).createApp().mount());
                 Router.addView('#management', new VueInstance('#clubs', new ClubsSectionViewModel(game, translator)).createApp().mount());
                 Router.addView('#management', new VueInstance('#players', new PlayersSectionViewModel(game, translator)).createApp().mount());
 

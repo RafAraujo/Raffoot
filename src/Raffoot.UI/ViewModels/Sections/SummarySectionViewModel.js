@@ -12,6 +12,14 @@ class SummarySectionViewModel {
         Router.goTo('play');
     }
 
+    getCurrentChampionshipEditions() {
+        const championshipEditions = this.game.currentSeason
+            .getCurrentChampionshipEditions()
+            .filter(ce => ce.championship.confederation.id == this.selectedConfederation.id);
+
+        return championshipEditions;
+    }
+
     getConfederations() {
         const confederations = this.game.currentSeason
             .getCurrentChampionshipEditions()
@@ -21,14 +29,6 @@ class SummarySectionViewModel {
             .orderBy('name');
 
         return confederations;
-    }
-
-    getCurrentChampionshipEditions() {
-        const championshipEditions = this.game.currentSeason
-            .getCurrentChampionshipEditions()
-            .filter(ce => ce.championship.confederation.id == this.selectedConfederation.id);
-
-        return championshipEditions;
     }
 
     getCurrentStageMessage(championshipEdition) {
@@ -65,10 +65,22 @@ class SummarySectionViewModel {
     _getDefaultConfederation() {
         const countryId = this.game.club?.country.id;
         let confederation = this.game.confederations.find(conf => conf.countries.map(c => c.id).includes(countryId));
-        if (!confederation) {
-            const championshipEdiiton = this.getCurrentChampionshipEditions[0];
-            confederation = championshipEdiiton.championship.confederation;
-        }
         return confederation;
+    }
+
+    getCurrentChampionshipEditions() {
+        const clubConfederation = this.game.confederations.find(conf => conf.countries.map(c => c.id).includes(this.game.club?.country.id));
+        let championshipEditions = this.game.currentSeason.getCurrentChampionshipEditions();
+        
+        let confederation = null;
+        if (championshipEditions.flatMap(ce => ce.championship).some(c => c.confederation.id === clubConfederation.id)) {
+            confederation = clubConfederation;
+        }
+        else {
+            confederation = championshipEditions.flatMap(ce => ce.championship.confederation).distinct().getRandom();
+        }
+        
+        championshipEditions = championshipEditions.filter(ce => ce.championship.confederation.id === confederation?.id);
+        return championshipEditions;
     }
 }

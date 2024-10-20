@@ -160,7 +160,7 @@ class Game {
         this._currentSeasonId = season.id;
     }
 
-    play(callback) {
+    play(speed, callback) {
         this.time = 0;
         const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
         for (const match of matches) {
@@ -169,7 +169,6 @@ class Game {
         const matchSimulations = matches.map(m => m.matchSimulation);
 
         let index = 0;
-        const speed = this.config.matchSpeed;
 
         const interval = setInterval(() => {
             let t0 = performance.now();
@@ -187,7 +186,9 @@ class Game {
                     match.finish();
                 }
 
-                callback();
+                if (callback) {
+                    callback();
+                }
             }
         }, speed);
     }

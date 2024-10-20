@@ -3,12 +3,12 @@ class PlayerModalViewModel {
         this.game = game;
         this.translator = translator;
         this.player = null;
-        this.offer = null;
         this.offerInput = null;
+        this.offer = null;
     }
 
     getErrorMessage() {
-        if (isNaN(this.offer) || this.offer < 0 || Array.from((this.offerInput ?? '').toString()).some(x => x < '0' || x > '9')) {
+        if (!this.offer || isNaN(this.offer) || this.offer < 0) {
             return this.translator.get('Invalid value');
         }
         else if (this.offer > this.game.club.money) {
@@ -18,12 +18,15 @@ class PlayerModalViewModel {
     }
 
     getOfferDescription() {
+        if (!this.offer)
+            return '';
+
         const error = this.getErrorMessage();
         if (error) {
             return error;
         }
 
-        return this.offer ? this.translator.getNumberInWords(this.offer.formatInWords()) : '';
+        return this.translator.getNumberInWords(this.offer.formatInWords());
     }
 
     offerIsValid() {
@@ -32,32 +35,18 @@ class PlayerModalViewModel {
 
     loadDefaultPlayerPhoto = Common.loadDefaultPlayerPhoto;
 
-    selectPlayer(event, player) {
-        if (this.player === player) {
-            this.unselectPlayer();
-        }
-        else {
-            this.player = player;
-            this._scroll(event);
-        }
-
-        this.offerInput = null;
+    selectPlayer(player) {
+        this.unselectPlayer();
+        this.player = player;
     }
 
     unselectPlayer() {
         this.player = null;
         this.offerInput = null;
+        this.offer = null;
     }
 
     updateOffer(value) {
         this.offer = value * 1000;
-    }
-
-    _scroll(event) {
-        const divHeight = 55;
-        const elementRect = event.currentTarget.getBoundingClientRect();
-        if (elementRect.y + elementRect.height > document.documentElement.clientHeight - divHeight) {
-            scrollBy(0, divHeight * 2);
-        }
     }
 }
