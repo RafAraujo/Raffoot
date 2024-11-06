@@ -8,5 +8,6 @@ namespace RaffootLoader.Domain.Models
 		public string Country { get; set; } = country;
 		public int Division { get; set; } = division;
 		public Continent? Continent { get; set; } = continent;
+		public bool IsPatched { get; set; } = false;
 	}
 }

@@ -5,9 +5,9 @@ namespace RaffootLoader.Services.Fifa.Abstract
 {
     public abstract class FifaService
     {
-		public static readonly int RestOfWorldLeagueId = 76;
+		protected static readonly int RestOfWorldLeagueId = 76;
 
-		public static List<League> GetLeagues()
+		protected static List<League> GetLeagues()
         {
             var leagues = new League[]
             {
@@ -80,7 +80,7 @@ namespace RaffootLoader.Services.Fifa.Abstract
             return [.. leagues];
         }
 
-		public static string GetCountryForRestOfWorldClub(Club club)
+		protected static string GetCountryForRestOfWorldClub(string clubName)
 		{
 			var tuples = new List<Tuple<string, string>>
 		    {
@@ -110,13 +110,11 @@ namespace RaffootLoader.Services.Fifa.Abstract
 			    new("Ukraine", "Shakhtar Donetsk"),
 		    };
 
-            var leagues = GetLeagues();
-
-            var tuple = tuples.Single(t => t.Item2 == club.Name);
+            var tuple = tuples.Single(t => t.Item2 == clubName);
 			return tuple.Item1;
 		}
 
-		public static string GetStandardizedClubName(string club)
+		protected static string GetStandardizedClubName(string club)
 		{
 			return club switch
 			{
@@ -140,7 +138,7 @@ namespace RaffootLoader.Services.Fifa.Abstract
 			};
 		}
 
-		public static string GetStandardizedCountryName(string country)
+		protected static string GetStandardizedCountryName(string country)
 		{
 			return country switch
 			{
@@ -160,7 +158,7 @@ namespace RaffootLoader.Services.Fifa.Abstract
 			};
 		}
 
-		public static string GetStandardizedPositionAbbreviation(string position)
+		protected static string GetStandardizedPositionAbbreviation(string position)
 		{
 			return position switch
 			{
@@ -176,7 +174,7 @@ namespace RaffootLoader.Services.Fifa.Abstract
 			};
 		}
 
-		public static string GetShortClubName(string clubName)
+		protected static string GetShortClubName(string clubName)
 		{
 			return clubName switch
 			{

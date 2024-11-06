@@ -16,7 +16,7 @@ ConfigureServices(serviceCollection);
 var serviceProvider = serviceCollection.BuildServiceProvider();
 
 var context = serviceProvider.GetService<IContext>();
-var databaseCreator = serviceProvider.GetService<IDatabaseCreator>();
+var databaseCreator = serviceProvider.GetService<IDatabaseCreatorService>();
 var imageService = serviceProvider.GetService<IImageService>();
 var imageDownloader = serviceProvider.GetService<IImageDownloaderService>();
 var imageAnalysis = serviceProvider.GetService<IImageAnalysisService>();
@@ -79,15 +79,12 @@ async Task DoAll()
 {
 	var success = ChangeYear(settings);
 	if (!success)
-	{
 		return;
-	}
+
 	context.DropDatabase();
 	await databaseCreator.CreateDatabase();
 	foreach (ImageType imageType in Enum.GetValues(typeof(ImageType)))
-	{
 		await imageDownloader.DownloadImages(imageType).ConfigureAwait(false);
-	}
 	imageAnalysis.UpdateClubsColors();
 	fileGenerator.GenerateFifaServiceFile();
 }
@@ -97,16 +94,16 @@ static void ConfigureServices(IServiceCollection services)
 {
 	var consoleAppPath = Assembly.GetExecutingAssembly().Location;
 	var baseFolder = @$"{consoleAppPath}\..\..\..\..\..\..\";
-	var dbFolder = Path.Combine(baseFolder, @"RaffootLoader\");
+	var appFolder = Path.Combine(baseFolder, @"RaffootLoader\");
 	var imagesFolder = Path.Combine(baseFolder, @"Raffoot.UI\Pages\res\image\");
 	var year = GetMaxYear();
 
-	services.AddSingleton<ISettings, Settings>(sp => new Settings(baseFolder, dbFolder, imagesFolder, year));
+	services.AddSingleton<ISettings, Settings>(sp => new Settings(baseFolder, appFolder, imagesFolder, year));
 
 	services.AddScoped<IContext, Context>();
 	services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-	services.AddScoped<IDatabaseCreator, DatabaseCreatorService>();
-	services.AddScoped<IFifaDataExtractorService, SoFifaDataExtractorService>();
+	services.AddScoped<IDatabaseCreatorService, DatabaseCreatorService>();
+	services.AddScoped<IDataExtractorService, SoFifaWebScraperService>();
 	services.AddScoped<IImageService, ImageService>();
 	services.AddScoped<IImageDownloaderService, SoFifaImageDownloaderService>();
 	services.AddScoped<IImageAnalysisService, ImageAnalysisService>();
@@ -123,9 +120,8 @@ static void WriteInstructions(ISettings settings)
 	Console.WriteLine("Choose (year {0}):", settings.Year);
 
 	foreach (ProgramOption value in Enum.GetValues(typeof(ProgramOption)).Cast<ProgramOption>().OrderBy(po => (int)po))
-	{
 		Console.WriteLine("\t[{0}] - {1}", (int)value, value);
-	}
+
 	Console.WriteLine();
 }
 
@@ -146,5 +142,5 @@ static bool ChangeYear(ISettings settings)
 	return false;
 }
 
-static int GetMinYear() => 2005;
+static int GetMinYear() => 2003;
 static int GetMaxYear() => DateTime.Now.Month < 9 ? DateTime.Now.Year : DateTime.Now.Year + 1;

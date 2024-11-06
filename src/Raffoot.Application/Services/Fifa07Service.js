@@ -134,7 +134,10 @@ class Fifa07Service {
 		const p = Player.create;
 		let x = null;
 
-		x = c("Orlando Pirates", 108, "#786664", "#FFFFFF", null);
+		const b = "#FFFFFF";
+		const w = "#000000";
+
+		x = c("Orlando Pirates", 108, "#786664", w, null);
 		p("F. Chansa", 108, 1, 31, 58, x);
 		p("T. Chabalala", 108, 4, 27, 48, x);
 		p("L. Seema", 69, 2, 26, 59, x);
@@ -156,7 +159,7 @@ class Fifa07Service {
 		p("L. Thwala", 108, 2, 24, 57, x);
 		p("T. Mnguni", 108, 2, 32, 66, x);
 
-		x = c("Kaizer Chiefs", 108, "#D18C1A", "#000000", null);
+		x = c("Kaizer Chiefs", 108, "#D18C1A", w, null);
 		p("E. Baron", 108, 1, 27, 53, x);
 		p("C. Nzama", 108, 4, 32, 54, x);
 		p("J. Tau", 108, 4, 25, 60, x);
@@ -178,7 +181,7 @@ class Fifa07Service {
 		p("L. Agyemang", 48, 15, 25, 62, x);
 		p("G. Schalkwyk", 108, 8, 24, 61, x);
 
-		x = c("Boca Juniors", 5, "#666A5A", "#FFFFFF", null);
+		x = c("Boca Juniors", 5, "#666A5A", w, null);
 		p("A. Bobadilla", 92, 1, 30, 75, x);
 		p("H. Ibarra", 5, 4, 32, 77, x);
 		p("M. Silvestre", 5, 2, 21, 78, x);
@@ -205,7 +208,7 @@ class Fifa07Service {
 		p("J. Dátolo", 5, 9, 22, 71, x);
 		p("J. Garcia", 5, 1, 19, 57, x);
 
-		x = c("River Plate", 5, "#91474F", "#FFFFFF", null);
+		x = c("River Plate", 5, "#91474F", w, null);
 		p("G. Lux", 5, 1, 23, 75, x);
 		p("P. Ferrari", 5, 5, 24, 78, x);
 		p("E. Tuzzio", 5, 2, 32, 68, x);
@@ -232,7 +235,7 @@ class Fifa07Service {
 		p("J. Talamonti", 5, 2, 24, 69, x);
 		p("G. Abán", 5, 14, 19, 63, x);
 
-		x = c("São Paulo", 16, "#C96161", "#FFFFFF", null);
+		x = c("São Paulo", 16, "#C96161", w, null);
 		p("Rogério Ceni", 16, 1, 33, 86, x);
 		p("Edcarlos", 16, 2, 21, 69, x);
 		p("André Dias", 16, 2, 27, 78, x);
@@ -257,7 +260,7 @@ class Fifa07Service {
 		p("Ramalho", 16, 7, 26, 64, x);
 		p("Ilsinho", 16, 6, 20, 72, x);
 
-		x = c("Internacional", 16, "#EA4047", "#FFFFFF", null);
+		x = c("Internacional", 16, "#EA4047", w, null);
 		p("Clêmer", 16, 1, 37, 75, x);
 		p("Índio", 16, 2, 31, 67, x);
 		p("Fabiano Eller", 16, 2, 28, 77, x);
@@ -282,7 +285,7 @@ class Fifa07Service {
 		p("Rafael Sobis", 16, 14, 21, 83, x);
 		p("Renan", 16, 1, 21, 61, x);
 
-		x = c("Corinthians", 16, "#B36262", "#FFFFFF", null);
+		x = c("Corinthians", 16, "#B36262", w, null);
 		p("Marcelo", 16, 1, 22, 68, x);
 		p("Eduardo", 16, 6, 18, 71, x);
 		p("Marcus Vinícius", 16, 2, 21, 72, x);
@@ -307,7 +310,7 @@ class Fifa07Service {
 		p("Nadson", 16, 14, 24, 73, x);
 		p("Rosinei", 16, 10, 23, 68, x);
 
-		x = c("Santos", 16, "#9B9B9B", "#000000", null);
+		x = c("Santos", 16, "#9B9B9B", w, null);
 		p("Fábio Costa", 16, 1, 28, 78, x);
 		p("Ávalos", 16, 2, 28, 70, x);
 		p("J. Manzur", 92, 2, 25, 74, x);
@@ -330,7 +333,7 @@ class Fifa07Service {
 		p("Jonas", 16, 14, 22, 73, x);
 		p("Renatinho", 16, 11, 19, 70, x);
 
-		x = c("Cruzeiro", 16, "#738ABD", "#000000", null);
+		x = c("Cruzeiro", 16, "#738ABD", w, null);
 		p("Fábio", 16, 1, 25, 81, x);
 		p("Jonathan", 16, 6, 20, 57, x);
 		p("Edu Dracena", 16, 2, 25, 79, x);
@@ -355,7 +358,7 @@ class Fifa07Service {
 		p("Araújo", 16, 14, 28, 74, x);
 		p("C. L. Vargas", 16, 6, 24, 55, x);
 
-		x = c("Fluminense", 16, "#78575A", "#FFFFFF", null);
+		x = c("Fluminense", 16, "#78575A", w, null);
 		p("Diego", 16, 1, 27, 73, x);
 		p("Rogério", 16, 6, 30, 76, x);
 		p("Thiago Silva", 16, 2, 21, 67, x);
@@ -378,7 +381,7 @@ class Fifa07Service {
 		p("Anderson", 16, 2, 19, 58, x);
 		p("Pedrinho", 16, 11, 29, 77, x);
 
-		x = c("Palmeiras", 16, "#59997C", "#000000", null);
+		x = c("Palmeiras", 16, "#59997C", w, null);
 		p("Marcos", 16, 1, 32, 81, x);
 		p("Paulo Baier", 16, 6, 31, 72, x);
 		p("Daniel", 16, 2, 33, 70, x);
@@ -403,7 +406,7 @@ class Fifa07Service {
 		p("Marcelo Costa", 16, 8, 25, 65, x);
 		p("Chiquinho", 16, 5, 23, 70, x);
 
-		x = c("Athletico Paranaense", 16, "#E75555", "#000000", null);
+		x = c("Athletico Paranaense", 16, "#E75555", w, null);
 		p("Cléber", 16, 1, 23, 65, x);
 		p("Danilo", 16, 2, 22, 73, x);
 		p("Simão", 16, 11, 21, 64, x);
@@ -426,7 +429,7 @@ class Fifa07Service {
 		p("C. Montoya", 26, 1, 40, 70, x);
 		p("Pezzolano", 120, 7, 23, 63, x);
 
-		x = c("Flamengo", 16, "#5E180F", "#FFFFFF", null);
+		x = c("Flamengo", 16, "#5E180F", w, null);
 		p("Diego", 16, 1, 24, 69, x);
 		p("Fernando", 16, 2, 26, 67, x);
 		p("Renato Silva", 16, 2, 22, 65, x);
@@ -451,7 +454,7 @@ class Fifa07Service {
 		p("Vinícius Pacheco", 16, 11, 20, 68, x);
 		p("Júnior", 16, 8, 21, 66, x);
 
-		x = c("São Caetano", 16, "#75805D", "#FFFFFF", null);
+		x = c("São Caetano", 16, "#75805D", w, null);
 		p("Mauro", 16, 1, 28, 64, x);
 		p("Neto", 16, 2, 24, 69, x);
 		p("Gustavo", 16, 2, 30, 69, x);
@@ -474,7 +477,7 @@ class Fifa07Service {
 		p("Neto Potiguar", 16, 14, 20, 71, x);
 		p("Paulo Miranda", 16, 8, 32, 66, x);
 
-		x = c("Vasco da Gama", 16, "#A99D95", "#000000", null);
+		x = c("Vasco da Gama", 16, "#A99D95", w, null);
 		p("Cássio", 16, 1, 25, 66, x);
 		p("Wagner Diniz", 16, 6, 22, 60, x);
 		p("Fábio Braz", 16, 2, 28, 60, x);
@@ -497,7 +500,7 @@ class Fifa07Service {
 		p("Claudemir", 16, 6, 21, 66, x);
 		p("Osmar", 16, 7, 21, 65, x);
 
-		x = c("Goiás", 16, "#4A7D5F", "#FFFFFF", null);
+		x = c("Goiás", 16, "#4A7D5F", w, null);
 		p("Harlei", 16, 1, 34, 74, x);
 		p("Fabiano", 16, 2, 31, 67, x);
 		p("Júlio Santos", 16, 2, 24, 66, x);
@@ -520,7 +523,7 @@ class Fifa07Service {
 		p("Rogério Corrêa", 16, 2, 27, 69, x);
 		p("Jadilson", 16, 5, 28, 73, x);
 
-		x = c("Botafogo", 16, "#A0A0A0", "#000000", null);
+		x = c("Botafogo", 16, "#A0A0A0", w, null);
 		p("Lopes", 16, 1, 23, 66, x);
 		p("Ruy", 16, 6, 28, 68, x);
 		p("R. Scheidt", 16, 2, 30, 69, x);
@@ -543,7 +546,7 @@ class Fifa07Service {
 		p("Lima", 16, 15, 24, 72, x);
 		p("Wando", 16, 14, 26, 65, x);
 
-		x = c("Atlético Mineiro", 16, "#B5B5B5", "#000000", null);
+		x = c("Atlético Mineiro", 16, "#B5B5B5", w, null);
 		p("Diego", 16, 1, 21, 49, x);
 		p("Márcio Araújo", 16, 7, 22, 67, x);
 		p("Marcos", 16, 2, 30, 66, x);
@@ -566,7 +569,7 @@ class Fifa07Service {
 		p("Tchô", 16, 11, 19, 60, x);
 		p("Adriano Júnio", 16, 5, 20, 58, x);
 
-		x = c("Grêmio", 16, "#44606F", "#FFFFFF", null);
+		x = c("Grêmio", 16, "#44606F", w, null);
 		p("R. Galatto", 16, 1, 23, 68, x);
 		p("Patrício", 16, 4, 31, 66, x);
 		p("J. Maidana", 5, 2, 34, 68, x);
@@ -589,7 +592,7 @@ class Fifa07Service {
 		p("Marcelo", 16, 1, 19, 67, x);
 		p("Romulo", 16, 15, 24, 68, x);
 
-		x = c("Ponte Preta", 16, "#CFCFCF", "#000000", null);
+		x = c("Ponte Preta", 16, "#CFCFCF", w, null);
 		p("Jean", 16, 1, 33, 72, x);
 		p("Luciano Baiano", 16, 4, 29, 68, x);
 		p("Thiago Matias", 16, 2, 24, 68, x);
@@ -612,7 +615,7 @@ class Fifa07Service {
 		p("Dionísio", 16, 11, 29, 66, x);
 		p("Luís Carlos", 16, 2, 25, 61, x);
 
-		x = c("Figueirense", 16, "#535955", "#FFFFFF", null);
+		x = c("Figueirense", 16, "#535955", w, null);
 		p("Andrey", 16, 1, 22, 66, x);
 		p("Flávio", 16, 4, 26, 64, x);
 		p("Chicão", 16, 2, 25, 66, x);
@@ -635,7 +638,7 @@ class Fifa07Service {
 		p("Fernandes", 16, 8, 28, 62, x);
 		p("Felipe Santana", 16, 2, 20, 56, x);
 
-		x = c("Juventude", 16, "#41AB67", "#000000", null);
+		x = c("Juventude", 16, "#41AB67", w, null);
 		p("André", 16, 1, 34, 70, x);
 		p("Raulen", 16, 6, 22, 66, x);
 		p("Igor", 16, 2, 26, 67, x);
@@ -658,7 +661,7 @@ class Fifa07Service {
 		p("Fabrício", 16, 2, 27, 67, x);
 		p("Éder Ceccon", 16, 15, 23, 63, x);
 
-		x = c("Paraná", 16, "#89466E", "#FFFFFF", null);
+		x = c("Paraná", 16, "#89466E", w, null);
 		p("Flávio", 16, 1, 35, 70, x);
 		p("Gustavo", 16, 2, 24, 66, x);
 		p("Edmilson", 16, 2, 28, 67, x);
@@ -681,7 +684,7 @@ class Fifa07Service {
 		p("Felipe Alves", 16, 7, 24, 64, x);
 		p("Cristiano", 16, 15, 24, 66, x);
 
-		x = c("Fortaleza", 16, "#8A90AA", "#000000", null);
+		x = c("Fortaleza", 16, "#8A90AA", w, null);
 		p("Albérico", 16, 1, 34, 63, x);
 		p("André Cunha", 16, 4, 27, 66, x);
 		p("Alan", 16, 2, 27, 65, x);
@@ -704,7 +707,7 @@ class Fifa07Service {
 		p("Chicão", 16, 7, 24, 58, x);
 		p("Eusébio", 16, 8, 20, 54, x);
 
-		x = c("Santa Cruz", 16, "#CC4C4C", "#FFFFFF", null);
+		x = c("Santa Cruz", 16, "#CC4C4C", w, null);
 		p("Guto", 16, 1, 30, 62, x);
 		p("Márcio Alemão", 16, 2, 25, 58, x);
 		p("Valença", 16, 2, 24, 66, x);
@@ -727,7 +730,7 @@ class Fifa07Service {
 		p("Paulo Rodrigues", 16, 5, 25, 70, x);
 		p("Bruno Lança", 16, 7, 23, 66, x);
 
-		x = c("DC United", 119, "#5A484A", "#FFFFFF", null);
+		x = c("DC United", 119, "#5A484A", w, null);
 		p("T. Perkins", 119, 1, 24, 69, x);
 		p("B. Namoff", 119, 4, 27, 58, x);
 		p("B. Boswell", 119, 2, 23, 68, x);
@@ -750,7 +753,7 @@ class Fifa07Service {
 		p("J. Moose", 119, 10, 22, 57, x);
 		p("A. Metcalf", 119, 15, 22, 50, x);
 
-		x = c("New England", 119, "#5B4861", "#FFFFFF", null);
+		x = c("New England", 119, "#5B4861", w, null);
 		p("M. Reis", 119, 1, 31, 74, x);
 		p("J. Heaps", 119, 4, 29, 60, x);
 		p("M. Parkhurst", 119, 2, 22, 68, x);
@@ -773,7 +776,7 @@ class Fifa07Service {
 		p("P. Haggerty", 119, 2, 23, 51, x);
 		p("A. Williamson", 119, 13, 21, 51, x);
 
-		x = c("Chicago Fire", 119, "#7AA1C0", "#000000", null);
+		x = c("Chicago Fire", 119, "#7AA1C0", w, null);
 		p("Z. Thornton", 119, 1, 32, 62, x);
 		p("C. Brown", 119, 4, 31, 60, x);
 		p("J. Curtin", 119, 2, 27, 69, x);
@@ -796,7 +799,7 @@ class Fifa07Service {
 		p("B. Plotkin", 119, 8, 21, 61, x);
 		p("J. Thorrington", 119, 10, 26, 56, x);
 
-		x = c("Sporting Kansas City", 119, "#49698D", "#FFFFFF", null);
+		x = c("Sporting Kansas City", 119, "#49698D", w, null);
 		p("B. Oshoniyi", 119, 1, 34, 62, x);
 		p("M. Groenwald", 119, 6, 23, 61, x);
 		p("J. Conrad", 119, 2, 29, 74, x);
@@ -819,7 +822,7 @@ class Fifa07Service {
 		p("L. Watson", 119, 10, 22, 57, x);
 		p("Y. Movsisyan", 9, 15, 18, 58, x);
 
-		x = c("New York RB", 119, "#AB7377", "#FFFFFF", null);
+		x = c("New York RB", 119, "#AB7377", w, null);
 		p("T. Meola", 119, 1, 37, 61, x);
 		p("M. Wynne", 119, 4, 20, 59, x);
 		p("J. Parke", 119, 2, 24, 65, x);
@@ -842,7 +845,7 @@ class Fifa07Service {
 		p("P. Canero", 102, 10, 25, 59, x);
 		p("S. Jolley", 119, 3, 30, 57, x);
 
-		x = c("Colorado Rapids", 119, "#9A7586", "#FFFFFF", null);
+		x = c("Colorado Rapids", 119, "#9A7586", w, null);
 		p("J. Cannon", 119, 1, 31, 71, x);
 		p("H. Freeman", 119, 3, 21, 64, x);
 		p("M. Petke", 119, 2, 30, 63, x);
@@ -865,7 +868,7 @@ class Fifa07Service {
 		p("F. Noel", 54, 11, 20, 55, x);
 		p("D. Wasson", 119, 7, 22, 51, x);
 
-		x = c("Dallas", 119, "#63416F", "#FFFFFF", null);
+		x = c("Dallas", 119, "#63416F", w, null);
 		p("D. Sala", 5, 1, 31, 65, x);
 		p("B. Rhine", 119, 4, 30, 54, x);
 		p("D. Moor", 119, 2, 22, 65, x);
@@ -890,7 +893,7 @@ class Fifa07Service {
 		p("C. Goodson", 119, 2, 23, 59, x);
 		p("D. Oduro", 48, 15, 20, 55, x);
 
-		x = c("Houston Dynamo", 119, "#3E2D23", "#FFFFFF", null);
+		x = c("Houston Dynamo", 119, "#3E2D23", w, null);
 		p("P. Onstad", 22, 1, 38, 72, x);
 		p("C. Waibel", 119, 4, 30, 60, x);
 		p("E. Robinson", 119, 2, 28, 62, x);
@@ -913,7 +916,7 @@ class Fifa07Service {
 		p("C. Aloisi", 119, 2, 25, 50, x);
 		p("P. Ianni", 119, 2, 21, 55, x);
 
-		x = c("LA Galaxy", 119, "#726F41", "#FFFFFF", null);
+		x = c("LA Galaxy", 119, "#726F41", w, null);
 		p("K. Hartman", 119, 1, 32, 69, x);
 		p("C. Albright", 119, 6, 27, 69, x);
 		p("T. Marshall", 61, 2, 31, 66, x);
@@ -938,7 +941,7 @@ class Fifa07Service {
 		p("K. Martino", 119, 11, 25, 59, x);
 		p("K. Veris", 119, 2, 23, 55, x);
 
-		x = c("Chivas USA", 119, "#70656F", "#FFFFFF", null);
+		x = c("Chivas USA", 119, "#70656F", w, null);
 		p("P. Burpo", 119, 1, 33, 65, x);
 		p("T. Regan", 119, 4, 25, 61, x);
 		p("J. Hernandez", 119, 2, 22, 57, x);
@@ -961,7 +964,7 @@ class Fifa07Service {
 		p("R. Ramírez", 79, 8, 36, 61, x);
 		p("O. Perez", 119, 3, 28, 53, x);
 
-		x = c("Real Salt Lake", 119, "#564243", "#FFFFFF", null);
+		x = c("Real Salt Lake", 119, "#564243", w, null);
 		p("S. Garlick", 119, 1, 34, 60, x);
 		p("N. Akwari", 119, 2, 24, 57, x);
 		p("E. Pope", 119, 2, 32, 73, x);
@@ -984,7 +987,7 @@ class Fifa07Service {
 		p("K. Novak", 119, 4, 23, 52, x);
 		p("S. Trembly", 119, 9, 24, 57, x);
 
-		x = c("Columbus Crew", 119, "#D0C155", "#000000", null);
+		x = c("Columbus Crew", 119, "#D0C155", w, null);
 		p("B. Gaudette", 119, 1, 24, 58, x);
 		p("F. Hejduk", 119, 6, 31, 70, x);
 		p("M. González", 24, 2, 26, 62, x);
@@ -1007,7 +1010,7 @@ class Fifa07Service {
 		p("N. Grabavoy", 119, 9, 22, 60, x);
 		p("C. Leitch", 119, 3, 27, 55, x);
 
-		x = c("América", 79, "#9C9173", "#000000", null);
+		x = c("América", 79, "#9C9173", w, null);
 		p("F. Ochoa", 79, 1, 20, 77, x);
 		p("J. Castro", 79, 6, 25, 77, x);
 		p("R. Rojas", 24, 2, 32, 76, x);
@@ -1032,7 +1035,7 @@ class Fifa07Service {
 		p("I. Torres", 79, 10, 22, 61, x);
 		p("E. Esqueda", 79, 14, 18, 58, x);
 
-		x = c("Guadalajara", 79, "#726968", "#FFFFFF", null);
+		x = c("Guadalajara", 79, "#726968", w, null);
 		p("O. Sánchez", 79, 1, 32, 81, x);
 		p("D. Martínez", 79, 6, 25, 76, x);
 		p("J. Magallón", 79, 2, 24, 65, x);
@@ -1057,7 +1060,7 @@ class Fifa07Service {
 		p("A. Talavera", 79, 1, 23, 66, x);
 		p("J. Garza", 79, 14, 23, 63, x);
 
-		x = c("Cruz Azul", 79, "#564474", "#FFFFFF", null);
+		x = c("Cruz Azul", 79, "#564474", w, null);
 		p("Ó. Pérez", 79, 1, 33, 74, x);
 		p("S. Carmona", 79, 4, 30, 73, x);
 		p("A. Sánchez", 79, 2, 27, 70, x);
@@ -1082,7 +1085,7 @@ class Fifa07Service {
 		p("R. Chávez", 79, 5, 21, 64, x);
 		p("J. Ramírez", 79, 15, 23, 56, x);
 
-		x = c("Toluca", 79, "#985D6B", "#FFFFFF", null);
+		x = c("Toluca", 79, "#985D6B", w, null);
 		p("H. Cristante", 5, 1, 36, 74, x);
 		p("E. Dueñas", 79, 4, 23, 71, x);
 		p("P. Da Silva", 92, 2, 27, 79, x);
@@ -1107,7 +1110,7 @@ class Fifa07Service {
 		p("J. Cruzalta", 79, 2, 28, 69, x);
 		p("M. Almazán", 79, 2, 24, 64, x);
 
-		x = c("Tigres UANL", 79, "#7B7573", "#FFFFFF", null);
+		x = c("Tigres UANL", 79, "#7B7573", w, null);
 		p("E. Hernández", 79, 1, 23, 66, x);
 		p("M. Méndez", 79, 4, 27, 77, x);
 		p("S. Balderas", 79, 2, 30, 69, x);
@@ -1132,7 +1135,7 @@ class Fifa07Service {
 		p("J. Palacios", 79, 10, 23, 61, x);
 		p("E. Cerda", 79, 14, 19, 59, x);
 
-		x = c("Monterrey", 79, "#273C57", "#FFFFFF", null);
+		x = c("Monterrey", 79, "#273C57", w, null);
 		p("C. Martínez", 79, 1, 26, 71, x);
 		p("P. Serafín", 79, 6, 31, 67, x);
 		p("F. Baloy", 91, 2, 25, 79, x);
@@ -1157,7 +1160,7 @@ class Fifa07Service {
 		p("J. Zavala", 79, 15, 18, 58, x);
 		p("W. Paredes", 79, 12, 20, 51, x);
 
-		x = c("Necaxa", 79, "#EC2446", "#FFFFFF", null);
+		x = c("Necaxa", 79, "#EC2446", w, null);
 		p("I. Vázquez", 79, 1, 23, 70, x);
 		p("O. Lucas", 79, 5, 29, 67, x);
 		p("J. Beltrán", 79, 2, 29, 80, x);
@@ -1182,7 +1185,7 @@ class Fifa07Service {
 		p("Ó. Zea", 79, 11, 23, 63, x);
 		p("L. Garcia", 79, 10, 20, 54, x);
 
-		x = c("Morelia", 79, "#B99142", "#000000", null);
+		x = c("Morelia", 79, "#B99142", w, null);
 		p("M. Muñoz", 79, 1, 26, 75, x);
 		p("H. Altamirano", 79, 4, 29, 75, x);
 		p("E. Solano", 79, 2, 27, 74, x);
@@ -1207,7 +1210,7 @@ class Fifa07Service {
 		p("P. Chávez", 79, 6, 30, 66, x);
 		p("C. Rodriguez", 79, 1, 17, 47, x);
 
-		x = c("Pachuca", 79, "#6C7CA9", "#FFFFFF", null);
+		x = c("Pachuca", 79, "#6C7CA9", w, null);
 		p("M. Calero", 26, 1, 35, 78, x);
 		p("P. Aguilar", 79, 4, 20, 63, x);
 		p("L. López", 79, 2, 22, 69, x);
@@ -1232,7 +1235,7 @@ class Fifa07Service {
 		p("J. Alfaro", 79, 7, 27, 67, x);
 		p("G. Martínez", 79, 2, 20, 59, x);
 
-		x = c("Pumas UNAM", 79, "#414856", "#FFFFFF", null);
+		x = c("Pumas UNAM", 79, "#414856", w, null);
 		p("S. Bernal", 79, 1, 36, 73, x);
 		p("I. Castro", 79, 4, 25, 74, x);
 		p("M. Palacios", 79, 2, 25, 67, x);
@@ -1257,7 +1260,7 @@ class Fifa07Service {
 		p("D. Toledo", 79, 9, 24, 66, x);
 		p("O. Pineda", 79, 6, 20, 53, x);
 
-		x = c("Atlas", 79, "#8C292D", "#FFFFFF", null);
+		x = c("Atlas", 79, "#8C292D", w, null);
 		p("M. Rodríguez", 79, 1, 28, 68, x);
 		p("J. Valenzuela", 79, 4, 22, 67, x);
 		p("F. Fuentes", 5, 2, 29, 77, x);
@@ -1282,7 +1285,7 @@ class Fifa07Service {
 		p("L. Robles", 79, 2, 19, 66, x);
 		p("R. Murguía", 79, 15, 20, 61, x);
 
-		x = c("Chiapas", 79, "#648056", "#FFFFFF", null);
+		x = c("Chiapas", 79, "#648056", w, null);
 		p("O. Ortíz", 79, 1, 30, 70, x);
 		p("J. Saavedra", 79, 6, 32, 73, x);
 		p("I. Fuentes", 24, 2, 24, 69, x);
@@ -1307,7 +1310,7 @@ class Fifa07Service {
 		p("H. Alcázar", 24, 15, 29, 70, x);
 		p("J. Manrique", 79, 3, 27, 65, x);
 
-		x = c("Veracruz", 79, "#766256", "#FFFFFF", null);
+		x = c("Veracruz", 79, "#766256", w, null);
 		p("J. Bernal", 79, 1, 26, 68, x);
 		p("J. Estrada", 79, 6, 22, 71, x);
 		p("J. Sánchez", 79, 2, 31, 68, x);
@@ -1332,7 +1335,7 @@ class Fifa07Service {
 		p("J. Ruíz", 79, 5, 30, 69, x);
 		p("M. Ledesma", 79, 10, 29, 66, x);
 
-		x = c("Atlante", 79, "#493543", "#FFFFFF", null);
+		x = c("Atlante", 79, "#493543", w, null);
 		p("F. Vilar", 5, 1, 29, 74, x);
 		p("J. Falcón", 5, 10, 26, 68, x);
 		p("J. Muñoz Mustafá", 5, 2, 26, 77, x);
@@ -1357,7 +1360,7 @@ class Fifa07Service {
 		p("C. Bermudez", 79, 6, 19, 55, x);
 		p("I. Vargas", 79, 12, 22, 56, x);
 
-		x = c("Santos Laguna", 79, "#4B614F", "#FFFFFF", null);
+		x = c("Santos Laguna", 79, "#4B614F", w, null);
 		p("M. Caranta", 5, 1, 27, 66, x);
 		p("E. Rangel", 79, 6, 24, 68, x);
 		p("E. Martínez", 92, 2, 25, 68, x);
@@ -1382,7 +1385,7 @@ class Fifa07Service {
 		p("E. Castillo", 119, 4, 19, 55, x);
 		p("A. Chávez", 79, 15, 21, 57, x);
 
-		x = c("San Luis", 79, "#829568", "#000000", null);
+		x = c("San Luis", 79, "#829568", w, null);
 		p("A. Martínez", 79, 1, 36, 66, x);
 		p("L. Olmedo", 79, 2, 25, 68, x);
 		p("A. González Tahuilán", 79, 2, 26, 67, x);
@@ -1407,7 +1410,7 @@ class Fifa07Service {
 		p("C. Sánchez", 79, 4, 26, 64, x);
 		p("P. Díaz", 79, 15, 23, 51, x);
 
-		x = c("Tecos", 79, "#E32A23", "#FFFFFF", null);
+		x = c("Tecos", 79, "#E32A23", w, null);
 		p("J. Corona", 79, 1, 25, 75, x);
 		p("A. Huerta", 79, 4, 31, 64, x);
 		p("D. Colotto", 5, 2, 25, 80, x);
@@ -1432,7 +1435,7 @@ class Fifa07Service {
 		p("E. Lillingston", 79, 15, 28, 67, x);
 		p("F. Vega", 79, 1, 18, 60, x);
 
-		x = c("Querétaro", 79, "#7B7F94", "#FFFFFF", null);
+		x = c("Querétaro", 79, "#7B7F94", w, null);
 		p("E. Cabuto", 79, 1, 30, 64, x);
 		p("J. Barrera", 79, 4, 24, 64, x);
 		p("R. Rico", 79, 2, 25, 59, x);
@@ -1457,7 +1460,7 @@ class Fifa07Service {
 		p("Á. Nájera", 26, 2, 22, 63, x);
 		p("M. Figoli", 120, 8, 21, 65, x);
 
-		x = c("Suwon Bluewings", 67, "#6F77A1", "#FFFFFF", null);
+		x = c("Suwon Bluewings", 67, "#6F77A1", w, null);
 		p("Lee Woon Jae", 67, 1, 33, 76, x);
 		p("Lee Jeong Su", 67, 2, 26, 63, x);
 		p("Lee Ssa Vic", 67, 2, 33, 70, x);
@@ -1480,7 +1483,7 @@ class Fifa07Service {
 		p("Seo Dong Hyun", 67, 15, 21, 67, x);
 		p("Lee Hyun Jin", 67, 14, 22, 67, x);
 
-		x = c("Seongnam", 67, "#494747", "#FFFFFF", null);
+		x = c("Seongnam", 67, "#494747", w, null);
 		p("Kim Yong Dae", 67, 1, 26, 76, x);
 		p("Park Jin Sub", 67, 6, 29, 69, x);
 		p("Kim Young Chul", 67, 2, 30, 78, x);
@@ -1503,7 +1506,7 @@ class Fifa07Service {
 		p("Itamar Batista", 16, 14, 26, 74, x);
 		p("Park Jae Yong", 67, 2, 20, 64, x);
 
-		x = c("Pohang Steelers", 67, "#CA8D87", "#000000", null);
+		x = c("Pohang Steelers", 67, "#CA8D87", w, null);
 		p("Jung Sung Ryong", 67, 1, 21, 53, x);
 		p("Lee Jeong Ho", 67, 2, 25, 61, x);
 		p("Cho Seong Hwan", 67, 2, 24, 66, x);
@@ -1526,7 +1529,7 @@ class Fifa07Service {
 		p("Oh Seung Beom", 67, 7, 25, 68, x);
 		p("Kim Myung Jung", 67, 10, 21, 69, x);
 
-		x = c("Busan I'Park", 67, "#D2847B", "#000000", null);
+		x = c("Busan I'Park", 67, "#D2847B", w, null);
 		p("Jung Yoo Suck", 67, 1, 28, 53, x);
 		p("Sim Jae Won", 67, 4, 29, 68, x);
 		p("Lee Kang Jin", 67, 5, 20, 71, x);
@@ -1549,7 +1552,7 @@ class Fifa07Service {
 		p("Do Hwa Seong", 67, 7, 26, 69, x);
 		p("Kim Tae Young", 67, 9, 24, 75, x);
 
-		x = c("Seoul", 67, "#A84E32", "#FFFFFF", null);
+		x = c("Seoul", 67, "#A84E32", w, null);
 		p("Kim Byung Ji", 67, 1, 36, 73, x);
 		p("Kim Han Yoon", 67, 4, 31, 68, x);
 		p("Lee Min Sung", 67, 4, 33, 70, x);
@@ -1572,7 +1575,7 @@ class Fifa07Service {
 		p("Ahn Tae Eun", 67, 2, 20, 63, x);
 		p("Kim Seong Yong", 67, 14, 21, 61, x);
 
-		x = c("Ulsan", 67, "#3263A0", "#FFFFFF", null);
+		x = c("Ulsan", 67, "#3263A0", w, null);
 		p("Kim Ji Hyuk", 67, 1, 24, 66, x);
 		p("Park Byung Gyu", 67, 4, 24, 59, x);
 		p("You Kyoung Youl", 67, 2, 27, 64, x);
@@ -1595,7 +1598,7 @@ class Fifa07Service {
 		p("Lee Hyun Min", 67, 2, 21, 60, x);
 		p("Jang Jae Wan", 67, 2, 23, 63, x);
 
-		x = c("Jeju United", 67, "#B44C49", "#FFFFFF", null);
+		x = c("Jeju United", 67, "#B44C49", w, null);
 		p("Jo Jun Ho", 67, 1, 33, 61, x);
 		p("Lee Sang Ho", 67, 4, 24, 69, x);
 		p("Cho Yong Hyung", 67, 2, 22, 70, x);
@@ -1618,7 +1621,7 @@ class Fifa07Service {
 		p("You Hyun Goo", 67, 8, 23, 64, x);
 		p("Choi Jae Young", 67, 14, 22, 60, x);
 
-		x = c("Daejeon Citizen", 67, "#6D795F", "#FFFFFF", null);
+		x = c("Daejeon Citizen", 67, "#6D795F", w, null);
 		p("Choi Eun Seong", 67, 1, 35, 66, x);
 		p("Choi Yun Yeol", 67, 2, 32, 68, x);
 		p("Min Young Ki", 67, 2, 30, 63, x);
@@ -1641,7 +1644,7 @@ class Fifa07Service {
 		p("Lee Hyoung Sang", 67, 11, 21, 68, x);
 		p("Lim Yeong Ju", 67, 7, 30, 64, x);
 
-		x = c("Daegu", 67, "#7FA0AD", "#000000", null);
+		x = c("Daegu", 67, "#7FA0AD", w, null);
 		p("Kim Tae Jin", 67, 1, 29, 62, x);
 		p("Choi Sung Hwan", 67, 2, 24, 65, x);
 		p("Park Jong Jin", 67, 2, 26, 66, x);
@@ -1664,7 +1667,7 @@ class Fifa07Service {
 		p("Lee Moon Sun", 67, 3, 23, 66, x);
 		p("Ha Dae Seong", 67, 7, 21, 68, x);
 
-		x = c("Jeonnam Dragons", 67, "#CFB500", "#000000", null);
+		x = c("Jeonnam Dragons", 67, "#CFB500", w, null);
 		p("Kim Young Kwang", 67, 1, 23, 74, x);
 		p("Lee Dong Won", 67, 2, 22, 65, x);
 		p("Yu Sang Su", 67, 2, 32, 67, x);
@@ -1687,7 +1690,7 @@ class Fifa07Service {
 		p("Kim Do Gyun", 67, 7, 28, 67, x);
 		p("Lee Wan", 67, 3, 22, 63, x);
 
-		x = c("Jeonbuk Motors", 67, "#67927A", "#000000", null);
+		x = c("Jeonbuk Motors", 67, "#67927A", w, null);
 		p("Kwoun Sun Tae", 67, 1, 21, 57, x);
 		p("Choi Chul Soon", 67, 2, 19, 59, x);
 		p("Choi Jin Chul", 67, 2, 35, 78, x);
@@ -1710,7 +1713,7 @@ class Fifa07Service {
 		p("Wang Jeong Hyeon", 67, 2, 29, 65, x);
 		p("Kim Gyeong Ryang", 67, 7, 32, 63, x);
 
-		x = c("Gyeongnam", 67, "#84512C", "#FFFFFF", null);
+		x = c("Gyeongnam", 67, "#84512C", w, null);
 		p("Lee Jeong Rae", 67, 1, 26, 51, x);
 		p("Kim Dae Geon", 67, 2, 29, 67, x);
 		p("Santos.", 16, 2, 34, 74, x);
@@ -1733,7 +1736,7 @@ class Fifa07Service {
 		p("Kim Seong Cheol", 67, 2, 26, 65, x);
 		p("Kang Ki Won", 67, 5, 24, 62, x);
 
-		x = c("Incheon United", 67, "#8C9455", "#000000", null);
+		x = c("Incheon United", 67, "#8C9455", w, null);
 		p("Seong Kyoung Mo", 67, 1, 26, 61, x);
 		p("Lee Sang Hun", 67, 2, 30, 60, x);
 		p("Lim Joong Yong", 67, 7, 31, 62, x);
@@ -1756,7 +1759,7 @@ class Fifa07Service {
 		p("Seo Min Gook", 67, 11, 22, 66, x);
 		p("Yeo Dong Won", 67, 11, 22, 63, x);
 
-		x = c("Gimcheon Sangmu", 67, "#656268", "#FFFFFF", null);
+		x = c("Gimcheon Sangmu", 67, "#656268", w, null);
 		p("Kwon Jeong Hyuk", 67, 1, 27, 67, x);
 		p("Park Yong Ho", 67, 2, 25, 61, x);
 		p("Park Yo Seb", 67, 2, 25, 60, x);
@@ -1779,7 +1782,7 @@ class Fifa07Service {
 		p("Hong Sung Yo", 67, 4, 27, 61, x);
 		p("Lee Dong Geun", 67, 7, 25, 57, x);
 
-		x = c("Salzburg", 8, "#B86D71", "#000000", null);
+		x = c("Salzburg", 8, "#B86D71", w, null);
 		p("T. Ochs", 47, 1, 24, 73, x);
 		p("L. Bodnár", 56, 2, 27, 62, x);
 		p("J. Vargas", 24, 2, 30, 76, x);
@@ -1804,7 +1807,7 @@ class Fifa07Service {
 		p("V. Janocko", 106, 8, 29, 73, x);
 		p("K. Pitak", 34, 8, 26, 69, x);
 
-		x = c("Rapid Wien", 8, "#706A36", "#FFFFFF", null);
+		x = c("Rapid Wien", 8, "#706A36", w, null);
 		p("H. Payer", 8, 1, 26, 79, x);
 		p("A. Dober", 8, 4, 20, 64, x);
 		p("M. Hiden", 8, 2, 33, 74, x);
@@ -1827,7 +1830,7 @@ class Fifa07Service {
 		p("M. Hiden", 8, 2, 28, 64, x);
 		p("V. Kavlak", 8, 8, 17, 56, x);
 
-		x = c("Austria Wien", 8, "#623B8D", "#FFFFFF", null);
+		x = c("Austria Wien", 8, "#623B8D", w, null);
 		p("S. Sáfár", 56, 1, 31, 62, x);
 		p("F. Schiemer", 8, 2, 20, 55, x);
 		p("M. Tokic", 31, 2, 30, 65, x);
@@ -1852,7 +1855,7 @@ class Fifa07Service {
 		p("F. Metz", 8, 7, 20, 42, x);
 		p("A. Ulmer", 8, 3, 20, 43, x);
 
-		x = c("Austria Klagenfurt", 8, "#947A8C", "#FFFFFF", null);
+		x = c("Austria Klagenfurt", 8, "#947A8C", w, null);
 		p("J. Schicklgruber", 8, 1, 38, 62, x);
 		p("C. Chaile", 5, 2, 31, 58, x);
 		p("M. Baur", 8, 2, 37, 73, x);
@@ -1875,7 +1878,7 @@ class Fifa07Service {
 		p("A. Baghdasaryan", 6, 2, 22, 55, x);
 		p("B. Kovacevic", 8, 7, 26, 68, x);
 
-		x = c("Mattersburg", 8, "#4FA74F", "#000000", null);
+		x = c("Mattersburg", 8, "#4FA74F", w, null);
 		p("T. Borenitsch", 8, 1, 25, 66, x);
 		p("M. Holenák", 34, 4, 30, 71, x);
 		p("G. Sedloski", 86, 4, 32, 65, x);
@@ -1898,7 +1901,7 @@ class Fifa07Service {
 		p("T. Wagner", 8, 15, 29, 66, x);
 		p("P. Steiner", 8, 2, 19, 59, x);
 
-		x = c("Wacker Innsbruck", 8, "#144C38", "#FFFFFF", null);
+		x = c("Wacker Innsbruck", 8, "#144C38", w, null);
 		p("Z. Pavlovic", 31, 1, 35, 64, x);
 		p("D. Mimm", 8, 10, 23, 50, x);
 		p("H. Eder", 8, 2, 22, 62, x);
@@ -1921,7 +1924,7 @@ class Fifa07Service {
 		p("T. Knabel", 8, 2, 26, 67, x);
 		p("F. Mader", 8, 11, 23, 58, x);
 
-		x = c("Grazer AK", 8, "#CE454B", "#FFFFFF", null);
+		x = c("Grazer AK", 8, "#CE454B", w, null);
 		p("A. Schranz", 8, 1, 27, 66, x);
 		p("T. Lechner", 8, 4, 20, 54, x);
 		p("M. Majstorovic", 8, 2, 29, 57, x);
@@ -1944,7 +1947,7 @@ class Fifa07Service {
 		p("Noh Byeong Jun", 67, 14, 26, 65, x);
 		p("S. Leitner", 8, 1, 19, 49, x);
 
-		x = c("Sturm Graz", 8, "#919191", "#000000", null);
+		x = c("Sturm Graz", 8, "#919191", w, null);
 		p("G. Szamotulski", 94, 1, 30, 58, x);
 		p("G. Neukirchner", 8, 2, 34, 63, x);
 		p("F. Verlaat", 83, 2, 38, 68, x);
@@ -1967,7 +1970,7 @@ class Fifa07Service {
 		p("M. Kreimer", 8, 15, 19, 62, x);
 		p("O. Peric", 15, 10, 19, 52, x);
 
-		x = c("Ried", 8, "#73827F", "#FFFFFF", null);
+		x = c("Ried", 8, "#73827F", w, null);
 		p("H. Berger", 8, 1, 24, 45, x);
 		p("E. Brenner", 8, 13, 31, 66, x);
 		p("O. Glasner", 8, 7, 31, 66, x);
@@ -1990,7 +1993,7 @@ class Fifa07Service {
 		p("D. Kablar", 31, 2, 28, 55, x);
 		p("M. Mehlem", 8, 2, 31, 53, x);
 
-		x = c("Rheindorf Altach", 8, "#B7A652", "#000000", null);
+		x = c("Rheindorf Altach", 8, "#B7A652", w, null);
 		p("M. Krassnitzer", 8, 1, 30, 49, x);
 		p("M. Schmid", 8, 13, 24, 43, x);
 		p("A. Guem", 8, 2, 29, 51, x);
@@ -2013,7 +2016,7 @@ class Fifa07Service {
 		p("A. Dorta", 16, 8, 31, 52, x);
 		p("D. Baldauf", 8, 3, 21, 62, x);
 
-		x = c("Anderlecht", 12, "#9B6C84", "#FFFFFF", null);
+		x = c("Anderlecht", 12, "#9B6C84", w, null);
 		p("S. Proto", 12, 1, 23, 70, x);
 		p("A. Vanden Borre", 12, 8, 18, 72, x);
 		p("R. Juhász", 56, 2, 22, 71, x);
@@ -2038,7 +2041,7 @@ class Fifa07Service {
 		p("D. Schollen", 12, 1, 28, 67, x);
 		p("V. Odjidja-Ofoe", 12, 2, 17, 62, x);
 
-		x = c("Club Brugge", 12, "#88A2AB", "#000000", null);
+		x = c("Club Brugge", 12, "#88A2AB", w, null);
 		p("S. Stijnen", 12, 1, 25, 70, x);
 		p("B. Priske", 35, 4, 29, 70, x);
 		p("B. Maertens", 12, 2, 26, 69, x);
@@ -2063,7 +2066,7 @@ class Fifa07Service {
 		p("G. Dufer", 12, 13, 24, 72, x);
 		p("D. Chavez", 93, 15, 18, 67, x);
 
-		x = c("Standard Liège", 12, "#AA844F", "#000000", null);
+		x = c("Standard Liège", 12, "#AA844F", w, null);
 		p("S. Rabret", 12, 1, 26, 63, x);
 		p("E. Deflandre", 12, 4, 32, 69, x);
 		p("O. Onyewu", 119, 2, 24, 75, x);
@@ -2088,7 +2091,7 @@ class Fifa07Service {
 		p("H. Bouchouari", 12, 14, 27, 69, x);
 		p("F. Dupré", 12, 4, 27, 66, x);
 
-		x = c("Genk", 12, "#4785B7", "#FFFFFF", null);
+		x = c("Genk", 12, "#4785B7", w, null);
 		p("L. Bailly", 12, 1, 20, 65, x);
 		p("H. Cornelis", 12, 6, 23, 68, x);
 		p("J. Caillet", 43, 2, 29, 66, x);
@@ -2111,7 +2114,7 @@ class Fifa07Service {
 		p("S. Verdonck", 12, 2, 18, 63, x);
 		p("A. Da Silva", 16, 11, 22, 62, x);
 
-		x = c("Zulte-Waregem", 12, "#B68D8F", "#000000", null);
+		x = c("Zulte-Waregem", 12, "#B68D8F", w, null);
 		p("G. de Vlieger", 12, 1, 34, 74, x);
 		p("S. Minne", 12, 4, 28, 57, x);
 		p("T. De Brul", 12, 2, 33, 66, x);
@@ -2134,7 +2137,7 @@ class Fifa07Service {
 		p("J. Vandemarliere", 12, 8, 20, 57, x);
 		p("B. Buysse", 12, 3, 19, 54, x);
 
-		x = c("Gent", 12, "#4269A2", "#FFFFFF", null);
+		x = c("Gent", 12, "#4269A2", w, null);
 		p("F. Herpoel", 12, 1, 31, 71, x);
 		p("S. Martens", 12, 15, 33, 70, x);
 		p("D. Smoje", 31, 2, 27, 71, x);
@@ -2157,7 +2160,7 @@ class Fifa07Service {
 		p("S. De Ridder", 12, 14, 19, 57, x);
 		p("B. Ruíz Gonzáles", 29, 15, 20, 53, x);
 
-		x = c("Sporting Charleroi", 12, "#A89F41", "#000000", null);
+		x = c("Sporting Charleroi", 12, "#A89F41", w, null);
 		p("B. Laquait", 43, 1, 29, 74, x);
 		p("K. Kurtz", 12, 2, 31, 69, x);
 		p("A. Daddah", 18, 7, 24, 65, x);
@@ -2180,7 +2183,7 @@ class Fifa07Service {
 		p("D. Souza de Guedes", 16, 3, 25, 62, x);
 		p("T. Detal", 12, 8, 21, 58, x);
 
-		x = c("Beerschot", 12, "#5C5676", "#FFFFFF", null);
+		x = c("Beerschot", 12, "#5C5676", w, null);
 		p("Luciano", 16, 1, 26, 64, x);
 		p("K. De Wree", 12, 6, 25, 65, x);
 		p("I. Lolo", 30, 2, 23, 66, x);
@@ -2203,7 +2206,7 @@ class Fifa07Service {
 		p("D. Agyeman", 12, 7, 20, 54, x);
 		p("T. Vleminckx", 12, 4, 19, 58, x);
 
-		x = c("Westerlo", 12, "#5E7A5B", "#FFFFFF", null);
+		x = c("Westerlo", 12, "#5E7A5B", w, null);
 		p("R. Gaspercic", 12, 1, 37, 68, x);
 		p("M. Wagemakers", 12, 10, 28, 63, x);
 		p("S. Wils", 12, 7, 23, 63, x);
@@ -2226,7 +2229,7 @@ class Fifa07Service {
 		p("W. Corstjens", 12, 2, 19, 62, x);
 		p("M. Modubi", 108, 7, 21, 55, x);
 
-		x = c("Lokeren", 12, "#918D77", "#000000", null);
+		x = c("Lokeren", 12, "#918D77", w, null);
 		p("Z. Milojevic", 104, 1, 34, 70, x);
 		p("Mady", 18, 6, 22, 58, x);
 		p("O. Doll", 12, 2, 33, 68, x);
@@ -2249,7 +2252,7 @@ class Fifa07Service {
 		p("A. Bouabe", 80, 2, 27, 59, x);
 		p("F. De Winne", 12, 2, 21, 57, x);
 
-		x = c("Sint-Truiden", 12, "#849C64", "#000000", null);
+		x = c("Sint-Truiden", 12, "#849C64", w, null);
 		p("B. Deelkens", 12, 1, 28, 64, x);
 		p("S. Debroux", 12, 4, 23, 62, x);
 		p("N. Hayen", 12, 2, 25, 63, x);
@@ -2272,7 +2275,7 @@ class Fifa07Service {
 		p("I. Stolica", 104, 15, 26, 69, x);
 		p("S. Mignolet", 12, 1, 17, 54, x);
 
-		x = c("RWDM", 12, "#8E5350", "#FFFFFF", null);
+		x = c("RWDM", 12, "#8E5350", w, null);
 		p("M. Cordier", 12, 1, 22, 65, x);
 		p("C. Bruno", 12, 4, 29, 60, x);
 		p("S. Colpaert", 12, 2, 19, 61, x);
@@ -2295,7 +2298,7 @@ class Fifa07Service {
 		p("J. Téhoué", 43, 15, 22, 57, x);
 		p("S. Kargbo", 105, 4, 19, 53, x);
 
-		x = c("Beveren", 12, "#6A9468", "#000000", null);
+		x = c("Beveren", 12, "#6A9468", w, null);
 		p("Copa", 30, 1, 26, 64, x);
 		p("Badjan", 30, 6, 24, 62, x);
 		p("D. Van Hoyweghen", 12, 2, 30, 66, x);
@@ -2318,7 +2321,7 @@ class Fifa07Service {
 		p("Pachéco", 30, 8, 24, 57, x);
 		p("Kaiper", 30, 15, 22, 62, x);
 
-		x = c("Lierse", 12, "#D2C400", "#000000", null);
+		x = c("Lierse", 12, "#D2C400", w, null);
 		p("N. Vaesen", 12, 1, 36, 69, x);
 		p("M. Andic", 104, 4, 22, 62, x);
 		p("B. Anianwu", 85, 2, 29, 59, x);
@@ -2341,7 +2344,7 @@ class Fifa07Service {
 		p("M. Eberle", 47, 2, 26, 67, x);
 		p("W. Goris", 12, 1, 20, 51, x);
 
-		x = c("SV Roeselare", 12, "#B8B8B8", "#000000", null);
+		x = c("SV Roeselare", 12, "#B8B8B8", w, null);
 		p("J. Sierens", 12, 1, 30, 63, x);
 		p("M. Monteyne", 12, 4, 21, 60, x);
 		p("J. Lahousse", 12, 2, 23, 62, x);
@@ -2364,7 +2367,7 @@ class Fifa07Service {
 		p("T. Raes", 12, 7, 18, 61, x);
 		p("K. Oris", 12, 15, 21, 57, x);
 
-		x = c("Excelsior Mouscron", 12, "#B05049", "#FFFFFF", null);
+		x = c("Excelsior Mouscron", 12, "#B05049", w, null);
 		p("P. Luzi", 43, 1, 25, 72, x);
 		p("J. Charlet", 12, 4, 24, 61, x);
 		p("G. Toyes", 43, 2, 33, 65, x);
@@ -2387,7 +2390,7 @@ class Fifa07Service {
 		p("M. Blancke", 12, 8, 18, 52, x);
 		p("O. Besengez", 12, 2, 34, 63, x);
 
-		x = c("Cercle Brugge", 12, "#00D718", "#000000", null);
+		x = c("Cercle Brugge", 12, "#00D718", w, null);
 		p("F. Vandendriessche", 12, 1, 35, 64, x);
 		p("D. Viane", 12, 2, 28, 63, x);
 		p("I. Gjuzelov", 86, 2, 30, 65, x);
@@ -2410,7 +2413,7 @@ class Fifa07Service {
 		p("B. Vandenbussche", 12, 2, 25, 59, x);
 		p("Y. Euvrard", 12, 2, 20, 48, x);
 
-		x = c("Mons", 12, "#EE712D", "#000000", null);
+		x = c("Mons", 12, "#EE712D", w, null);
 		p("C. Berthelin", 43, 1, 29, 56, x);
 		p("F. Jay", 43, 4, 29, 64, x);
 		p("D. Nibombé", 113, 2, 26, 66, x);
@@ -2433,7 +2436,7 @@ class Fifa07Service {
 		p("M. Dahmane", 43, 15, 24, 57, x);
 		p("D. Wansi", 21, 14, 24, 60, x);
 
-		x = c("Sparta Praha", 34, "#9E8781", "#000000", null);
+		x = c("Sparta Praha", 34, "#9E8781", w, null);
 		p("J. Blazek", 34, 1, 33, 74, x);
 		p("R. Zábavník", 106, 2, 25, 74, x);
 		p("T. Repka", 34, 2, 32, 68, x);
@@ -2456,7 +2459,7 @@ class Fifa07Service {
 		p("M. Hanek", 106, 2, 25, 70, x);
 		p("V. Drobny", 34, 2, 25, 74, x);
 
-		x = c("København", 35, "#606BA1", "#FFFFFF", null);
+		x = c("København", 35, "#606BA1", w, null);
 		p("J. Christiansen", 35, 1, 28, 78, x);
 		p("L. Jacobsen", 35, 4, 26, 71, x);
 		p("B. Hangeland", 88, 2, 25, 77, x);
@@ -2481,7 +2484,7 @@ class Fifa07Service {
 		p("D. Thomassen", 35, 2, 25, 67, x);
 		p("N. Hansen", 35, 2, 19, 60, x);
 
-		x = c("Brøndby", 35, "#646940", "#FFFFFF", null);
+		x = c("Brøndby", 35, "#646940", w, null);
 		p("C. Ankergren", 35, 1, 26, 65, x);
 		p("T. Rytter", 35, 4, 32, 63, x);
 		p("P. Nielsen", 35, 2, 32, 82, x);
@@ -2506,7 +2509,7 @@ class Fifa07Service {
 		p("M. Rasmussen", 35, 2, 21, 62, x);
 		p("M. Jensen", 35, 11, 18, 51, x);
 
-		x = c("AaB", 35, "#DA383E", "#FFFFFF", null);
+		x = c("AaB", 35, "#DA383E", w, null);
 		p("J. Nielsen", 35, 1, 28, 74, x);
 		p("A. Olesen", 35, 4, 32, 62, x);
 		p("D. Califf", 119, 2, 26, 68, x);
@@ -2529,7 +2532,7 @@ class Fifa07Service {
 		p("T. Enevoldsen", 35, 11, 19, 54, x);
 		p("M. Pedersen", 35, 3, 22, 55, x);
 
-		x = c("OB", 35, "#296FA4", "#FFFFFF", null);
+		x = c("OB", 35, "#296FA4", w, null);
 		p("A. Onyszko", 94, 1, 32, 66, x);
 		p("A. Aas", 88, 2, 27, 63, x);
 		p("A. Christensen", 35, 2, 28, 66, x);
@@ -2551,7 +2554,7 @@ class Fifa07Service {
 		p("M. Larsen", 35, 2, 23, 56, x);
 		p("J. Borring", 35, 9, 21, 54, x);
 
-		x = c("Nordsjælland", 35, "#F07E1B", "#000000", null);
+		x = c("Nordsjælland", 35, "#F07E1B", w, null);
 		p("K. Christensen", 35, 1, 26, 64, x);
 		p("A. Olesen", 35, 4, 24, 57, x);
 		p("M. Ribers", 35, 2, 25, 62, x);
@@ -2576,7 +2579,7 @@ class Fifa07Service {
 		p("B. Ayeni", 85, 7, 27, 65, x);
 		p("J. Richter", 35, 8, 21, 53, x);
 
-		x = c("Viborg", 35, "#64A297", "#000000", null);
+		x = c("Viborg", 35, "#64A297", w, null);
 		p("J. Alvbåge", 111, 1, 23, 61, x);
 		p("T. Frandsen", 35, 7, 30, 66, x);
 		p("R. Russell", 119, 4, 26, 63, x);
@@ -2599,7 +2602,7 @@ class Fifa07Service {
 		p("L. Kryger", 35, 14, 23, 58, x);
 		p("C. Muomaife", 85, 14, 18, 46, x);
 
-		x = c("Midtjylland", 35, "#CE353F", "#FFFFFF", null);
+		x = c("Midtjylland", 35, "#CE353F", w, null);
 		p("O. Tidman", 111, 1, 27, 60, x);
 		p("K. Afriyie", 47, 4, 24, 57, x);
 		p("K. Nielsen", 35, 2, 23, 66, x);
@@ -2622,7 +2625,7 @@ class Fifa07Service {
 		p("U. Lindkvist", 35, 4, 25, 60, x);
 		p("T. Thomasberg", 35, 7, 31, 59, x);
 
-		x = c("Esbjerg", 35, "#688697", "#FFFFFF", null);
+		x = c("Esbjerg", 35, "#688697", w, null);
 		p("J. Hoffmann", 35, 1, 35, 62, x);
 		p("K. Flittie Onstad", 88, 4, 22, 64, x);
 		p("N. Høgh", 35, 3, 22, 62, x);
@@ -2645,7 +2648,7 @@ class Fifa07Service {
 		p("J. Jensen", 35, 1, 20, 50, x);
 		p("M. Vingaard", 35, 8, 21, 54, x);
 
-		x = c("Silkeborg", 35, "#319FD4", "#000000", null);
+		x = c("Silkeborg", 35, "#319FD4", w, null);
 		p("D. Preece", 38, 1, 29, 60, x);
 		p("H. Schnedler", 35, 4, 28, 57, x);
 		p("J. Askou", 35, 2, 23, 56, x);
@@ -2668,7 +2671,7 @@ class Fifa07Service {
 		p("I. Alkhag", 35, 15, 27, 53, x);
 		p("L. Jørgensen", 35, 1, 22, 48, x);
 
-		x = c("Vejle", 35, "#A13553", "#FFFFFF", null);
+		x = c("Vejle", 35, "#A13553", w, null);
 		p("T. Rasmussen", 35, 1, 21, 61, x);
 		p("T. Christensen", 35, 2, 22, 58, x);
 		p("B. Zivkovic", 35, 2, 31, 62, x);
@@ -2691,7 +2694,7 @@ class Fifa07Service {
 		p("N. Hust", 35, 4, 27, 52, x);
 		p("D. Mijatovic", 31, 2, 21, 54, x);
 
-		x = c("Randers", 35, "#455579", "#FFFFFF", null);
+		x = c("Randers", 35, "#455579", w, null);
 		p("M. Jensen", 35, 1, 32, 56, x);
 		p("S. Pedersen", 35, 4, 27, 59, x);
 		p("J. Sandberg", 35, 2, 29, 58, x);
@@ -2716,7 +2719,7 @@ class Fifa07Service {
 		p("T. Dalgaard", 35, 15, 22, 50, x);
 		p("T. Sane", 103, 11, 20, 49, x);
 
-		x = c("Horsens", 35, "#EDCE00", "#000000", null);
+		x = c("Horsens", 35, "#EDCE00", w, null);
 		p("S. Jochumsen", 35, 1, 29, 66, x);
 		p("P. Gade", 35, 4, 28, 55, x);
 		p("M. Rieper", 35, 2, 32, 64, x);
@@ -2739,7 +2742,7 @@ class Fifa07Service {
 		p("C. Ngon a Djam", 21, 14, 26, 58, x);
 		p("C. Johansen", 35, 15, 17, 39, x);
 
-		x = c("Chelsea", 38, "#555383", "#FFFFFF", null);
+		x = c("Chelsea", 38, "#555383", w, null);
 		p("P. Cech", 34, 1, 24, 89, x);
 		p("P. Ferreira", 95, 4, 27, 83, x);
 		p("J. Terry", 38, 2, 25, 91, x);
@@ -2766,7 +2769,7 @@ class Fifa07Service {
 		p("W. Gallas", 43, 2, 28, 85, x);
 		p("J. Elmer", 112, 12, 18, 69, x);
 
-		x = c("Arsenal", 38, "#B5443C", "#FFFFFF", null);
+		x = c("Arsenal", 38, "#B5443C", w, null);
 		p("J. Lehmann", 47, 1, 36, 88, x);
 		p("E. Eboué", 30, 4, 23, 78, x);
 		p("K. Toure", 30, 2, 25, 84, x);
@@ -2793,7 +2796,7 @@ class Fifa07Service {
 		p("J. Reyes", 109, 15, 22, 82, x);
 		p("J. Aliadiere", 43, 15, 23, 70, x);
 
-		x = c("Manchester United", 38, "#D65D06", "#FFFFFF", null);
+		x = c("Manchester United", 38, "#D65D06", w, null);
 		p("E. Van der Sar", 83, 1, 35, 87, x);
 		p("G. Neville", 38, 4, 31, 81, x);
 		p("R. Ferdinand", 38, 2, 27, 88, x);
@@ -2820,7 +2823,7 @@ class Fifa07Service {
 		p("J. O'Shea", 96, 2, 25, 80, x);
 		p("T. Heaton", 38, 1, 20, 59, x);
 
-		x = c("Liverpool", 38, "#EE7177", "#000000", null);
+		x = c("Liverpool", 38, "#EE7177", w, null);
 		p("J. Reina", 109, 1, 23, 84, x);
 		p("S. Finnan", 96, 4, 30, 78, x);
 		p("J. Carragher", 38, 2, 28, 85, x);
@@ -2847,7 +2850,7 @@ class Fifa07Service {
 		p("B. Zenden", 83, 12, 29, 77, x);
 		p("G. Paletta", 5, 7, 20, 65, x);
 
-		x = c("Newcastle United", 38, "#58706A", "#FFFFFF", null);
+		x = c("Newcastle United", 38, "#58706A", w, null);
 		p("S. Given", 96, 1, 30, 84, x);
 		p("S. Carr", 96, 4, 29, 75, x);
 		p("C. Moore", 7, 2, 30, 77, x);
@@ -2874,7 +2877,7 @@ class Fifa07Service {
 		p("N. Butt", 38, 7, 31, 73, x);
 		p("T. Krul", 83, 1, 18, 67, x);
 
-		x = c("Tottenham Hotspur", 38, "#E0E2E8", "#000000", "Tottenham");
+		x = c("Tottenham Hotspur", 38, "#E0E2E8", w, "Tottenham");
 		p("P. Robinson", 38, 1, 26, 86, x);
 		p("P. Stalteri", 22, 4, 28, 75, x);
 		p("M. Dawson", 38, 2, 22, 82, x);
@@ -2901,7 +2904,7 @@ class Fifa07Service {
 		p("T. Tainio", 42, 8, 26, 77, x);
 		p("T. Dixon", 96, 15, 16, 68, x);
 
-		x = c("Blackburn Rovers", 38, "#6B9066", "#000000", null);
+		x = c("Blackburn Rovers", 38, "#6B9066", w, null);
 		p("B. Friedel", 119, 1, 35, 79, x);
 		p("L. Neill", 7, 4, 28, 78, x);
 		p("R. Nelsen", 84, 2, 28, 76, x);
@@ -2928,7 +2931,7 @@ class Fifa07Service {
 		p("A. Todd", 38, 2, 31, 59, x);
 		p("A. Taylor", 38, 2, 19, 42, x);
 
-		x = c("Everton", 38, "#2929AC", "#FFFFFF", null);
+		x = c("Everton", 38, "#2929AC", w, null);
 		p("T. Howard", 119, 1, 27, 78, x);
 		p("T. Hibbert", 38, 4, 25, 74, x);
 		p("J. Yobo", 85, 2, 25, 81, x);
@@ -2955,7 +2958,7 @@ class Fifa07Service {
 		p("A. Van der Meyde", 83, 13, 26, 80, x);
 		p("P. Boyle", 102, 3, 19, 64, x);
 
-		x = c("Manchester City", 38, "#687C91", "#FFFFFF", null);
+		x = c("Manchester City", 38, "#687C91", w, null);
 		p("A. Isaksson", 111, 1, 24, 83, x);
 		p("M. Richards", 38, 4, 18, 71, x);
 		p("R. Dunne", 96, 2, 26, 75, x);
@@ -2982,7 +2985,7 @@ class Fifa07Service {
 		p("A. Sibierski", 43, 11, 31, 73, x);
 		p("D. Sturridge", 38, 15, 17, 73, x);
 
-		x = c("Bolton Wanderers", 38, "#815580", "#FFFFFF", null);
+		x = c("Bolton Wanderers", 38, "#815580", w, null);
 		p("J. Jaaskelainen", 42, 1, 31, 81, x);
 		p("N. Hunt", 38, 4, 22, 73, x);
 		p("T. Ben Haim", 59, 2, 24, 79, x);
@@ -3009,7 +3012,7 @@ class Fifa07Service {
 		p("H. Pedersen", 35, 15, 31, 77, x);
 		p("S. Jamieson", 7, 3, 17, 48, x);
 
-		x = c("Middlesbrough", 38, "#C26363", "#FFFFFF", null);
+		x = c("Middlesbrough", 38, "#C26363", w, null);
 		p("M. Schwarzer", 7, 1, 33, 79, x);
 		p("S. Parnaby", 38, 4, 23, 71, x);
 		p("U. Ehiogu", 38, 2, 33, 77, x);
@@ -3036,7 +3039,7 @@ class Fifa07Service {
 		p("M. Christie", 38, 15, 27, 73, x);
 		p("R. Parlour", 38, 8, 33, 76, x);
 
-		x = c("West Ham United", 38, "#83595C", "#FFFFFF", null);
+		x = c("West Ham United", 38, "#83595C", w, null);
 		p("R. Green", 38, 1, 26, 76, x);
 		p("T. Mears", 38, 4, 23, 69, x);
 		p("A. Ferdinand", 38, 2, 21, 81, x);
@@ -3063,7 +3066,7 @@ class Fifa07Service {
 		p("J. Collins", 123, 2, 22, 73, x);
 		p("J. Jeffery", 38, 15, 16, 44, x);
 
-		x = c("Aston Villa", 38, "#A0A28C", "#000000", null);
+		x = c("Aston Villa", 38, "#A0A28C", w, null);
 		p("T. Sørensen", 35, 1, 30, 78, x);
 		p("A. Hughes", 87, 2, 26, 75, x);
 		p("O. Mellberg", 111, 2, 28, 80, x);
@@ -3088,7 +3091,7 @@ class Fifa07Service {
 		p("L. Hendrie", 38, 11, 29, 73, x);
 		p("C. Gardner", 38, 8, 19, 64, x);
 
-		x = c("Charlton Athletic", 38, "#813541", "#FFFFFF", null);
+		x = c("Charlton Athletic", 38, "#813541", w, null);
 		p("S. Carson", 38, 1, 20, 72, x);
 		p("L. Young", 38, 4, 26, 77, x);
 		p("T. El Karkouri", 80, 2, 29, 75, x);
@@ -3115,7 +3118,7 @@ class Fifa07Service {
 		p("M. Holland", 96, 8, 32, 76, x);
 		p("C. Bolaños", 29, 12, 22, 73, x);
 
-		x = c("Fulham", 38, "#B06363", "#FFFFFF", null);
+		x = c("Fulham", 38, "#B06363", w, null);
 		p("A. Niemi", 42, 1, 34, 81, x);
 		p("L. Rosenior", 38, 4, 21, 71, x);
 		p("Z. Knight", 38, 2, 26, 79, x);
@@ -3142,7 +3145,7 @@ class Fifa07Service {
 		p("I. Pearce", 38, 2, 32, 71, x);
 		p("S. Legwinski", 43, 7, 32, 74, x);
 
-		x = c("Portsmouth", 38, "#7582BF", "#000000", null);
+		x = c("Portsmouth", 38, "#7582BF", w, null);
 		p("D. James", 38, 1, 35, 77, x);
 		p("G. Johnson", 38, 4, 21, 73, x);
 		p("S. Campbell", 38, 2, 31, 79, x);
@@ -3169,7 +3172,7 @@ class Fifa07Service {
 		p("I. Mornar", 31, 13, 32, 70, x);
 		p("A. Begovic", 15, 1, 19, 62, x);
 
-		x = c("Wigan Athletic", 38, "#7999B1", "#000000", null);
+		x = c("Wigan Athletic", 38, "#7999B1", w, null);
 		p("C. Kirkland", 38, 1, 25, 77, x);
 		p("E. Boyce", 38, 2, 26, 69, x);
 		p("A. De Zeeuw", 83, 2, 36, 79, x);
@@ -3195,7 +3198,7 @@ class Fifa07Service {
 		p("G. Teale", 102, 10, 27, 71, x);
 		p("T. Cywka", 94, 11, 16, 52, x);
 
-		x = c("Sheffield United", 38, "#A44546", "#FFFFFF", null);
+		x = c("Sheffield United", 38, "#A44546", w, null);
 		p("P. Kenny", 96, 1, 28, 80, x);
 		p("L. Bromby", 38, 2, 26, 76, x);
 		p("C. Morgan", 38, 2, 28, 73, x);
@@ -3222,7 +3225,7 @@ class Fifa07Service {
 		p("D. Geary", 96, 6, 26, 56, x);
 		p("C. Short", 38, 2, 38, 73, x);
 
-		x = c("Reading", 38, "#A0636D", "#FFFFFF", null);
+		x = c("Reading", 38, "#A0636D", w, null);
 		p("M. Hahnemann", 119, 1, 33, 75, x);
 		p("G. Murty", 102, 6, 31, 66, x);
 		p("I. Sonko", 103, 2, 25, 75, x);
@@ -3249,7 +3252,7 @@ class Fifa07Service {
 		p("U. De La Cruz", 36, 4, 32, 73, x);
 		p("S. Church", 38, 8, 17, 52, x);
 
-		x = c("Watford", 38, "#E16C22", "#000000", null);
+		x = c("Watford", 38, "#E16C22", w, null);
 		p("B. Foster", 38, 1, 23, 69, x);
 		p("L. Doyley", 38, 4, 23, 66, x);
 		p("D. Shittu", 85, 2, 25, 68, x);
@@ -3276,7 +3279,7 @@ class Fifa07Service {
 		p("A. Bangura", 105, 8, 18, 66, x);
 		p("D. Blizzard", 38, 7, 22, 63, x);
 
-		x = c("Birmingham City", 38, "#7588BA", "#000000", null);
+		x = c("Birmingham City", 38, "#7588BA", w, null);
 		p("M. Taylor", 87, 1, 34, 73, x);
 		p("S. Kelly", 96, 4, 22, 73, x);
 		p("B. N'Gotty", 43, 2, 35, 76, x);
@@ -3301,7 +3304,7 @@ class Fifa07Service {
 		p("R. Jaidi", 115, 2, 30, 76, x);
 		p("M. Painter", 96, 2, 18, 56, x);
 
-		x = c("West Bromwich Albion", 38, "#565F77", "#FFFFFF", "West Brom");
+		x = c("West Bromwich Albion", 38, "#565F77", w, "West Brom");
 		p("P. Zuberbühler", 112, 1, 35, 70, x);
 		p("S. Watson", 38, 4, 32, 70, x);
 		p("C. Perry", 38, 2, 33, 76, x);
@@ -3326,7 +3329,7 @@ class Fifa07Service {
 		p("N. Clement", 38, 5, 27, 71, x);
 		p("T. Gaardsøe", 35, 2, 26, 73, x);
 
-		x = c("Sunderland", 38, "#A45D50", "#FFFFFF", null);
+		x = c("Sunderland", 38, "#A45D50", w, null);
 		p("B. Alnwick", 38, 1, 19, 71, x);
 		p("N. Nosworthy", 38, 4, 25, 72, x);
 		p("S. Caldwell", 102, 2, 25, 70, x);
@@ -3351,7 +3354,7 @@ class Fifa07Service {
 		p("A. Welsh", 102, 12, 23, 67, x);
 		p("K. Smith", 102, 14, 19, 58, x);
 
-		x = c("Leeds United", 38, "#95AC53", "#000000", null);
+		x = c("Leeds United", 38, "#95AC53", w, null);
 		p("N. Sullivan", 102, 1, 36, 67, x);
 		p("G. Kelly", 96, 4, 31, 68, x);
 		p("P. Butler", 96, 2, 33, 71, x);
@@ -3376,7 +3379,7 @@ class Fifa07Service {
 		p("Rui Marques", 4, 2, 28, 69, x);
 		p("I. Morris", 96, 8, 19, 54, x);
 
-		x = c("Southampton", 38, "#825550", "#FFFFFF", null);
+		x = c("Southampton", 38, "#825550", w, null);
 		p("K. Davis", 38, 1, 29, 69, x);
 		p("C. Baird", 87, 4, 24, 67, x);
 		p("C. Lundekvam", 88, 2, 33, 72, x);
@@ -3401,7 +3404,7 @@ class Fifa07Service {
 		p("K. Miller", 38, 1, 37, 57, x);
 		p("D. Prutton", 38, 8, 24, 70, x);
 
-		x = c("Crystal Palace", 38, "#718DB5", "#000000", null);
+		x = c("Crystal Palace", 38, "#718DB5", w, null);
 		p("G. Király", 56, 1, 30, 72, x);
 		p("D. Butterfield", 38, 4, 26, 67, x);
 		p("L. Cort", 38, 2, 26, 68, x);
@@ -3426,7 +3429,7 @@ class Fifa07Service {
 		p("M. Reich", 47, 10, 28, 67, x);
 		p("C. Sheringham", 38, 15, 18, 54, x);
 
-		x = c("Norwich City", 38, "#50AB2C", "#000000", null);
+		x = c("Norwich City", 38, "#50AB2C", w, null);
 		p("P. Gallacher", 102, 1, 26, 67, x);
 		p("J. Colin", 83, 4, 25, 66, x);
 		p("G. Doherty", 96, 2, 26, 69, x);
@@ -3451,7 +3454,7 @@ class Fifa07Service {
 		p("I. Henderson", 38, 14, 21, 64, x);
 		p("A. Cave-Brown", 38, 6, 17, 62, x);
 
-		x = c("Coventry City", 38, "#9D9287", "#000000", null);
+		x = c("Coventry City", 38, "#9D9287", w, null);
 		p("A. Marshall", 38, 1, 31, 69, x);
 		p("D. McNamee", 102, 4, 25, 69, x);
 		p("E. Ward", 38, 2, 21, 69, x);
@@ -3476,7 +3479,7 @@ class Fifa07Service {
 		p("A. Whing", 38, 4, 21, 60, x);
 		p("F. El Idrissi", 80, 11, 28, 63, x);
 
-		x = c("Preston North End", 38, "#5A7AA0", "#FFFFFF", null);
+		x = c("Preston North End", 38, "#5A7AA0", w, null);
 		p("C. Nash", 38, 1, 32, 67, x);
 		p("G. Alexander", 102, 4, 34, 69, x);
 		p("S. St. Ledger", 38, 2, 21, 57, x);
@@ -3501,7 +3504,7 @@ class Fifa07Service {
 		p("J. Anyinsah", 38, 13, 21, 62, x);
 		p("A. Parillon", 38, 8, 18, 49, x);
 
-		x = c("Wolverhampton Wanderers", 38, "#785D23", "#FFFFFF", "Wolverhampton");
+		x = c("Wolverhampton Wanderers", 38, "#785D23", w, "Wolverhampton");
 		p("M. Murray", 38, 1, 25, 69, x);
 		p("M. Clyde", 87, 4, 23, 64, x);
 		p("G. Breen", 96, 2, 32, 71, x);
@@ -3526,7 +3529,7 @@ class Fifa07Service {
 		p("M. Davies", 38, 13, 18, 54, x);
 		p("D. Potter", 96, 8, 21, 63, x);
 
-		x = c("Leicester City", 38, "#7398AC", "#000000", null);
+		x = c("Leicester City", 38, "#7398AC", w, null);
 		p("P. Henderson", 7, 1, 30, 64, x);
 		p("R. Stearman", 38, 2, 18, 68, x);
 		p("P. McCarthy", 96, 2, 23, 69, x);
@@ -3551,7 +3554,7 @@ class Fifa07Service {
 		p("M. Sylla", 52, 13, 29, 63, x);
 		p("J. Wesolowski", 7, 7, 18, 62, x);
 
-		x = c("Cardiff City", 38, "#858BBA", "#000000", null);
+		x = c("Cardiff City", 38, "#858BBA", w, null);
 		p("N. Alexander", 102, 1, 28, 66, x);
 		p("K. McNaughton", 102, 4, 23, 69, x);
 		p("R. Johnson", 38, 2, 23, 61, x);
@@ -3575,7 +3578,7 @@ class Fifa07Service {
 		p("R. Weston", 123, 4, 25, 67, x);
 		p("C. Gunter", 123, 4, 16, 49, x);
 
-		x = c("Derby County", 38, "#858482", "#000000", null);
+		x = c("Derby County", 38, "#858482", w, null);
 		p("S. Bywater", 38, 1, 25, 70, x);
 		p("M. Edworthy", 38, 4, 33, 73, x);
 		p("M. Johnson", 38, 2, 32, 70, x);
@@ -3600,7 +3603,7 @@ class Fifa07Service {
 		p("P. Boertien", 38, 9, 27, 61, x);
 		p("L. Grant", 38, 1, 23, 64, x);
 
-		x = c("Ipswich Town", 38, "#AA819C", "#000000", null);
+		x = c("Ipswich Town", 38, "#AA819C", w, null);
 		p("L. Price", 123, 1, 21, 68, x);
 		p("F. Wilnis", 83, 6, 35, 66, x);
 		p("R. Naylor", 38, 2, 29, 69, x);
@@ -3625,7 +3628,7 @@ class Fifa07Service {
 		p("C. Casement", 87, 2, 18, 63, x);
 		p("A. Lee", 96, 14, 27, 63, x);
 
-		x = c("Luton Town", 38, "#9FA39F", "#000000", null);
+		x = c("Luton Town", 38, "#9FA39F", w, null);
 		p("M. Beresford", 38, 1, 36, 69, x);
 		p("K. Foley", 96, 4, 21, 66, x);
 		p("C. Coyne", 7, 2, 27, 72, x);
@@ -3650,7 +3653,7 @@ class Fifa07Service {
 		p("D. Morgan", 38, 12, 22, 58, x);
 		p("Z. Barrett", 38, 1, 18, 53, x);
 
-		x = c("Stoke City", 38, "#A36C8C", "#FFFFFF", null);
+		x = c("Stoke City", 38, "#A36C8C", w, null);
 		p("S. Simonsen", 38, 1, 27, 64, x);
 		p("C. Hill", 38, 2, 27, 71, x);
 		p("M. Duberry", 38, 2, 30, 70, x);
@@ -3675,7 +3678,7 @@ class Fifa07Service {
 		p("J. Eustace", 38, 8, 27, 56, x);
 		p("A. Rooney", 96, 15, 18, 53, x);
 
-		x = c("Burnley", 38, "#75245B", "#FFFFFF", null);
+		x = c("Burnley", 38, "#75245B", w, null);
 		p("B. Jensen", 35, 1, 31, 63, x);
 		p("F. Sinclair", 61, 2, 34, 70, x);
 		p("W. Thomas", 38, 2, 27, 60, x);
@@ -3697,7 +3700,7 @@ class Fifa07Service {
 		p("J. Spicer", 38, 8, 22, 55, x);
 		p("G. Branch", 38, 5, 34, 58, x);
 
-		x = c("Sheffield Wednesday", 38, "#738289", "#FFFFFF", "Sheffield Wed.");
+		x = c("Sheffield Wednesday", 38, "#738289", w, "Sheffield Wed.");
 		p("B. Jones", 7, 1, 24, 63, x);
 		p("F. Simek", 119, 4, 21, 61, x);
 		p("G. Coughlan", 96, 2, 31, 65, x);
@@ -3722,7 +3725,7 @@ class Fifa07Service {
 		p("S. Adams", 38, 7, 25, 58, x);
 		p("T. Spurr", 38, 3, 18, 62, x);
 
-		x = c("Plymouth Argyle", 38, "#236657", "#FFFFFF", null);
+		x = c("Plymouth Argyle", 38, "#236657", w, null);
 		p("L. McCormick", 38, 1, 25, 59, x);
 		p("P. Connolly", 38, 4, 22, 66, x);
 		p("M. Doumbe", 43, 2, 26, 68, x);
@@ -3743,7 +3746,7 @@ class Fifa07Service {
 		p("R. Dickson", 38, 3, 19, 59, x);
 		p("C. Zebroski", 38, 15, 19, 54, x);
 
-		x = c("Hull City", 38, "#8A5E27", "#FFFFFF", null);
+		x = c("Hull City", 38, "#8A5E27", w, null);
 		p("B. Myhill", 38, 1, 23, 64, x);
 		p("S. Ricketts", 123, 4, 24, 68, x);
 		p("S. Collins", 38, 2, 29, 67, x);
@@ -3768,7 +3771,7 @@ class Fifa07Service {
 		p("D. Delaney", 96, 3, 24, 54, x);
 		p("J. Welsh", 38, 7, 22, 66, x);
 
-		x = c("Queens Park Rangers", 38, "#A9BCF4", "#000000", "QPR");
+		x = c("Queens Park Rangers", 38, "#A9BCF4", w, "QPR");
 		p("S. Royce", 38, 1, 34, 61, x);
 		p("M. Bignot", 38, 4, 31, 64, x);
 		p("D. Stewart", 61, 2, 25, 59, x);
@@ -3793,7 +3796,7 @@ class Fifa07Service {
 		p("A. Czerkas", 94, 15, 21, 52, x);
 		p("M. Rose", 38, 4, 30, 63, x);
 
-		x = c("Barnsley", 38, "#C2A19E", "#000000", null);
+		x = c("Barnsley", 38, "#C2A19E", w, null);
 		p("N. Colgan", 96, 1, 32, 70, x);
 		p("N. Austin", 38, 4, 23, 64, x);
 		p("A. Kay", 38, 7, 23, 62, x);
@@ -3818,7 +3821,7 @@ class Fifa07Service {
 		p("N. Joynes", 38, 15, 20, 54, x);
 		p("T. Harban", 38, 4, 22, 58, x);
 
-		x = c("Southend United", 38, "#5B7EAC", "#FFFFFF", null);
+		x = c("Southend United", 38, "#5B7EAC", w, null);
 		p("D. Flahavan", 38, 1, 27, 56, x);
 		p("S. Francis", 38, 6, 21, 57, x);
 		p("S. Prior", 38, 2, 35, 60, x);
@@ -3841,7 +3844,7 @@ class Fifa07Service {
 		p("C. Wilson", 38, 4, 27, 52, x);
 		p("J. Lawson", 38, 15, 19, 63, x);
 
-		x = c("Colchester United", 38, "#5D8E9F", "#000000", null);
+		x = c("Colchester United", 38, "#5D8E9F", w, null);
 		p("A. Davison", 87, 1, 38, 64, x);
 		p("J. White", 38, 3, 19, 61, x);
 		p("P. Baldwin", 38, 2, 23, 65, x);
@@ -3866,7 +3869,7 @@ class Fifa07Service {
 		p("M. Keith", 102, 15, 31, 59, x);
 		p("D. Wareham", 38, 9, 18, 50, x);
 
-		x = c("Nottingham Forest", 38, "#F6C3C2", "#000000", null);
+		x = c("Nottingham Forest", 38, "#F6C3C2", w, null);
 		p("P. Smith", 38, 1, 26, 64, x);
 		p("W. Morgan", 38, 2, 22, 68, x);
 		p("D. Cullip", 38, 2, 29, 60, x);
@@ -3889,7 +3892,7 @@ class Fifa07Service {
 		p("N. Harris", 38, 15, 28, 57, x);
 		p("F. Bastians", 47, 12, 18, 56, x);
 
-		x = c("Bristol City", 38, "#DA454C", "#FFFFFF", null);
+		x = c("Bristol City", 38, "#DA454C", w, null);
 		p("A. Basso", 16, 1, 31, 58, x);
 		p("B. Orr", 38, 8, 23, 55, x);
 		p("L. Carey", 102, 2, 29, 64, x);
@@ -3912,7 +3915,7 @@ class Fifa07Service {
 		p("M. Reed", 38, 1, 19, 35, x);
 		p("M. Stewart", 38, 14, 33, 63, x);
 
-		x = c("Millwall", 38, "#394C71", "#FFFFFF", null);
+		x = c("Millwall", 38, "#394C71", w, null);
 		p("L. Pidgeley", 38, 1, 22, 63, x);
 		p("M. Ross", 102, 4, 25, 62, x);
 		p("R. Shaw", 38, 2, 37, 64, x);
@@ -3935,7 +3938,7 @@ class Fifa07Service {
 		p("A. Cottrell", 38, 4, 19, 53, x);
 		p("M. Phillips", 38, 2, 23, 61, x);
 
-		x = c("Doncaster Rovers", 38, "#9F8C63", "#000000", null);
+		x = c("Doncaster Rovers", 38, "#9F8C63", w, null);
 		p("A. Blayney", 87, 1, 24, 66, x);
 		p("A. Lockwood", 38, 4, 24, 57, x);
 		p("S. Roberts", 123, 2, 26, 57, x);
@@ -3958,7 +3961,7 @@ class Fifa07Service {
 		p("A. Warrington", 38, 1, 30, 53, x);
 		p("A. Brown", 38, 8, 27, 59, x);
 
-		x = c("Swansea City", 38, "#C2C2C2", "#000000", null);
+		x = c("Swansea City", 38, "#C2C2C2", w, null);
 		p("W. Guéret", 43, 1, 32, 54, x);
 		p("K. Amankwaah", 38, 4, 24, 60, x);
 		p("A. Tate", 38, 2, 23, 62, x);
@@ -3981,7 +3984,7 @@ class Fifa07Service {
 		p("D. Way", 38, 8, 26, 63, x);
 		p("S. Macdonald", 123, 13, 18, 58, x);
 
-		x = c("Brighton & Hove Albion", 38, "#357EBA", "#FFFFFF", "Brighton");
+		x = c("Brighton & Hove Albion", 38, "#357EBA", w, "Brighton");
 		p("W. Henderson", 96, 1, 22, 62, x);
 		p("A. El-Abd", 38, 2, 21, 61, x);
 		p("A. Hinshelwood", 38, 2, 22, 62, x);
@@ -4004,7 +4007,7 @@ class Fifa07Service {
 		p("A. Frutos", 43, 12, 23, 63, x);
 		p("T. Fraser", 38, 8, 18, 47, x);
 
-		x = c("Crewe Alexandra", 38, "#908469", "#000000", null);
+		x = c("Crewe Alexandra", 38, "#908469", w, null);
 		p("B. Williams", 38, 1, 23, 63, x);
 		p("J. Otsemobor", 38, 4, 23, 62, x);
 		p("N. Cox", 38, 2, 34, 63, x);
@@ -4027,7 +4030,7 @@ class Fifa07Service {
 		p("D. Moss", 123, 4, 25, 59, x);
 		p("R. Jack", 101, 15, 33, 54, x);
 
-		x = c("Huddersfield Town", 38, "#7B8F9F", "#000000", null);
+		x = c("Huddersfield Town", 38, "#7B8F9F", w, null);
 		p("P. Rachubka", 119, 1, 25, 66, x);
 		p("D. Mirfin", 38, 2, 21, 61, x);
 		p("N. Clarke", 38, 2, 22, 65, x);
@@ -4050,7 +4053,7 @@ class Fifa07Service {
 		p("A. Hardy", 38, 4, 29, 51, x);
 		p("A. Ahmed", 38, 11, 22, 50, x);
 
-		x = c("Gillingham", 38, "#597395", "#FFFFFF", null);
+		x = c("Gillingham", 38, "#597395", w, null);
 		p("K. Jack", 114, 1, 30, 55, x);
 		p("D. Jupp", 102, 4, 31, 51, x);
 		p("I. Cox", 114, 2, 35, 62, x);
@@ -4072,7 +4075,7 @@ class Fifa07Service {
 		p("C. Easton", 38, 3, 28, 58, x);
 		p("C. Stone", 38, 8, 17, 51, x);
 
-		x = c("Scunthorpe United", 38, "#8A758E", "#FFFFFF", null);
+		x = c("Scunthorpe United", 38, "#8A758E", w, null);
 		p("J. Murphy", 96, 1, 24, 58, x);
 		p("D. Mulligan", 38, 4, 24, 55, x);
 		p("C. Byrne", 96, 4, 31, 46, x);
@@ -4095,7 +4098,7 @@ class Fifa07Service {
 		p("R. Calliste", 123, 15, 20, 43, x);
 		p("A. Butler", 38, 2, 22, 63, x);
 
-		x = c("Oldham Athletic", 38, "#DCE5EF", "#000000", null);
+		x = c("Oldham Athletic", 38, "#DCE5EF", w, null);
 		p("L. Pogliacomi", 7, 1, 30, 57, x);
 		p("C. Taylor", 38, 4, 19, 36, x);
 		p("S. Stam", 83, 2, 26, 61, x);
@@ -4118,7 +4121,7 @@ class Fifa07Service {
 		p("R. Scott", 38, 4, 32, 52, x);
 		p("C. Hall", 38, 15, 19, 52, x);
 
-		x = c("Carlisle United", 38, "#68557E", "#FFFFFF", null);
+		x = c("Carlisle United", 38, "#68557E", w, null);
 		p("K. Westwood", 38, 1, 21, 61, x);
 		p("D. Raven", 38, 2, 21, 59, x);
 		p("K. Gray", 38, 2, 34, 59, x);
@@ -4141,7 +4144,7 @@ class Fifa07Service {
 		p("S. Grand", 38, 2, 22, 59, x);
 		p("L. Joyce", 38, 8, 18, 42, x);
 
-		x = c("Bradford City", 38, "#986943", "#FFFFFF", null);
+		x = c("Bradford City", 38, "#986943", w, null);
 		p("D. Ricketts", 61, 1, 29, 59, x);
 		p("R. Edghill", 38, 4, 31, 54, x);
 		p("D. Wetherall", 38, 2, 35, 60, x);
@@ -4164,7 +4167,7 @@ class Fifa07Service {
 		p("J. Brown", 38, 15, 18, 51, x);
 		p("B. Muirhead", 38, 10, 23, 51, x);
 
-		x = c("Brentford", 38, "#BD3D3E", "#FFFFFF", null);
+		x = c("Brentford", 38, "#BD3D3E", w, null);
 		p("S. Nelson", 38, 1, 24, 61, x);
 		p("K. O'Connor", 96, 4, 24, 61, x);
 		p("A. Griffiths", 7, 2, 27, 56, x);
@@ -4187,7 +4190,7 @@ class Fifa07Service {
 		p("S. Fitzgerald", 38, 15, 26, 56, x);
 		p("G. Tomlin", 38, 9, 19, 51, x);
 
-		x = c("Blackpool", 38, "#D3B091", "#000000", null);
+		x = c("Blackpool", 38, "#D3B091", w, null);
 		p("R. Evans", 38, 1, 24, 55, x);
 		p("D. Coid", 38, 4, 24, 55, x);
 		p("M. Jackson", 38, 2, 32, 58, x);
@@ -4210,7 +4213,7 @@ class Fifa07Service {
 		p("P. Doughty", 38, 2, 19, 55, x);
 		p("A. Morrell", 38, 15, 31, 61, x);
 
-		x = c("Tranmere Rovers", 38, "#B96C5E", "#FFFFFF", null);
+		x = c("Tranmere Rovers", 38, "#B96C5E", w, null);
 		p("G. Ward", 38, 1, 36, 62, x);
 		p("R. Stockdale", 102, 4, 26, 53, x);
 		p("C. McCready", 38, 4, 24, 57, x);
@@ -4233,7 +4236,7 @@ class Fifa07Service {
 		p("M. Jones", 38, 13, 18, 46, x);
 		p("M. Johnston", 123, 2, 18, 48, x);
 
-		x = c("Northampton Town", 38, "#947469", "#FFFFFF", "Northampton");
+		x = c("Northampton Town", 38, "#947469", w, "Northampton");
 		p("L. Harper", 38, 1, 34, 56, x);
 		p("J. Crowe", 38, 4, 27, 55, x);
 		p("L. Chambers", 38, 2, 20, 59, x);
@@ -4256,7 +4259,7 @@ class Fifa07Service {
 		p("S. Cross", 38, 15, 18, 46, x);
 		p("L. Dolman", 38, 2, 18, 44, x);
 
-		x = c("Rotherham United", 38, "#A34246", "#FFFFFF", null);
+		x = c("Rotherham United", 38, "#A34246", w, null);
 		p("N. Cutler", 38, 1, 29, 58, x);
 		p("D. Worrell", 96, 4, 28, 51, x);
 		p("C. Murdock", 87, 2, 30, 57, x);
@@ -4279,7 +4282,7 @@ class Fifa07Service {
 		p("I. Sharps", 38, 2, 25, 46, x);
 		p("E. Bopp", 47, 8, 22, 52, x);
 
-		x = c("Chesterfield", 38, "#4B6095", "#FFFFFF", null);
+		x = c("Chesterfield", 38, "#4B6095", w, null);
 		p("B. Roche", 96, 1, 24, 56, x);
 		p("A. Bailey", 38, 4, 22, 54, x);
 		p("R. Hazell", 38, 2, 27, 56, x);
@@ -4302,7 +4305,7 @@ class Fifa07Service {
 		p("G. Kiss", 56, 3, 31, 50, x);
 		p("J. Lowry", 38, 4, 19, 43, x);
 
-		x = c("Leyton Orient", 38, "#9E353B", "#FFFFFF", null);
+		x = c("Leyton Orient", 38, "#9E353B", w, null);
 		p("G. Garner", 123, 1, 29, 56, x);
 		p("A. Tann", 38, 2, 24, 52, x);
 		p("C. Fortune", 38, 2, 23, 58, x);
@@ -4325,7 +4328,7 @@ class Fifa07Service {
 		p("B. Saah", 38, 8, 19, 48, x);
 		p("A. Palmer", 38, 3, 19, 34, x);
 
-		x = c("Yeovil Town", 38, "#6FAD72", "#000000", null);
+		x = c("Yeovil Town", 38, "#6FAD72", w, null);
 		p("S. Mildenhall", 38, 1, 28, 55, x);
 		p("A. Lindegaard", 38, 10, 25, 47, x);
 		p("T. Forbes", 38, 2, 24, 56, x);
@@ -4348,7 +4351,7 @@ class Fifa07Service {
 		p("D. Barker", 38, 1, 19, 40, x);
 		p("G. McCallum", 22, 8, 18, 42, x);
 
-		x = c("Port Vale", 38, "#473F30", "#FFFFFF", null);
+		x = c("Port Vale", 38, "#473F30", w, null);
 		p("M. Goodlad", 38, 1, 25, 56, x);
 		p("G. Abbey", 85, 6, 27, 51, x);
 		p("M. McGregor", 38, 2, 29, 54, x);
@@ -4371,7 +4374,7 @@ class Fifa07Service {
 		p("P. Harsley", 38, 10, 28, 49, x);
 		p("L. Prosser", 38, 2, 18, 45, x);
 
-		x = c("Cheltenham Town", 38, "#D63137", "#FFFFFF", null);
+		x = c("Cheltenham Town", 38, "#D63137", w, null);
 		p("S. Higgs", 38, 1, 29, 52, x);
 		p("J. Gill", 38, 4, 35, 49, x);
 		p("S. Duff", 87, 2, 24, 52, x);
@@ -4394,7 +4397,7 @@ class Fifa07Service {
 		p("A. Gallinagh", 38, 4, 21, 51, x);
 		p("W. Puddy", 38, 1, 18, 41, x);
 
-		x = c("AFC Bournemouth", 38, "#A23838", "#FFFFFF", null);
+		x = c("AFC Bournemouth", 38, "#A23838", w, null);
 		p("N. Moss", 38, 1, 31, 52, x);
 		p("J. Gowling", 119, 2, 22, 58, x);
 		p("E. Howe", 38, 2, 28, 58, x);
@@ -4417,7 +4420,7 @@ class Fifa07Service {
 		p("S. Maher", 96, 2, 28, 42, x);
 		p("S. Cooper", 38, 4, 22, 44, x);
 
-		x = c("Milton Keynes Dons", 38, "#E6B014", "#000000", "MK Dons");
+		x = c("Milton Keynes Dons", 38, "#E6B014", w, "MK Dons");
 		p("A. Baines", 109, 1, 34, 54, x);
 		p("J. Smith", 38, 4, 31, 55, x);
 		p("D. Diallo", 52, 2, 33, 56, x);
@@ -4440,7 +4443,7 @@ class Fifa07Service {
 		p("S. Taylor", 38, 15, 30, 51, x);
 		p("J. Hastings", 38, 15, 22, 47, x);
 
-		x = c("Walsall", 38, "#D55458", "#FFFFFF", null);
+		x = c("Walsall", 38, "#D55458", w, null);
 		p("C. Ince", 114, 1, 33, 57, x);
 		p("C. Pead", 38, 4, 24, 53, x);
 		p("A. Gerrard", 38, 2, 20, 56, x);
@@ -4463,7 +4466,7 @@ class Fifa07Service {
 		p("M. Wright", 38, 10, 24, 52, x);
 		p("A. Picken", 7, 2, 24, 52, x);
 
-		x = c("Wycombe Wanderers", 38, "#397DA4", "#FFFFFF", "Wycombe");
+		x = c("Wycombe Wanderers", 38, "#397DA4", w, "Wycombe");
 		p("R. Batista", 95, 1, 19, 51, x);
 		p("S. Stockley", 38, 4, 28, 55, x);
 		p("W. Antwi", 38, 2, 23, 54, x);
@@ -4486,7 +4489,7 @@ class Fifa07Service {
 		p("F. Talia", 7, 1, 33, 53, x);
 		p("S. Golbourne", 38, 2, 18, 53, x);
 
-		x = c("Grimsby Town", 38, "#8F6E6F", "#FFFFFF", null);
+		x = c("Grimsby Town", 38, "#8F6E6F", w, null);
 		p("P. Barnes", 38, 1, 27, 55, x);
 		p("J. McDermott", 38, 4, 37, 48, x);
 		p("J. Whittle", 38, 2, 35, 55, x);
@@ -4508,7 +4511,7 @@ class Fifa07Service {
 		p("P. Ashton", 38, 10, 20, 52, x);
 		p("M. McIntosh", 102, 2, 35, 60, x);
 
-		x = c("Hartlepool United", 38, "#91A1CD", "#000000", null);
+		x = c("Hartlepool United", 38, "#91A1CD", w, null);
 		p("D. Konstantopoulos", 49, 1, 27, 53, x);
 		p("M. Barron", 38, 4, 31, 51, x);
 		p("C. Jones", 38, 2, 19, 59, x);
@@ -4531,7 +4534,7 @@ class Fifa07Service {
 		p("W. Boland", 96, 8, 30, 55, x);
 		p("S. Turnbull", 38, 8, 19, 49, x);
 
-		x = c("Darlington 1883", 38, "#8A6562", "#FFFFFF", null);
+		x = c("Darlington 1883", 38, "#8A6562", w, null);
 		p("S. Russell", 38, 1, 23, 53, x);
 		p("D. Holloway", 38, 4, 28, 45, x);
 		p("P. Collins", 38, 4, 21, 50, x);
@@ -4554,7 +4557,7 @@ class Fifa07Service {
 		p("A. Peacock", 38, 8, 20, 46, x);
 		p("N. Maddison", 38, 8, 36, 42, x);
 
-		x = c("Peterborough United", 38, "#5E9AC6", "#000000", "Peterborough");
+		x = c("Peterborough United", 38, "#5E9AC6", w, "Peterborough");
 		p("M. Tyler", 38, 1, 29, 53, x);
 		p("D. Holden", 38, 4, 26, 50, x);
 		p("G. Branston", 38, 2, 27, 55, x);
@@ -4577,7 +4580,7 @@ class Fifa07Service {
 		p("J. Richards", 38, 15, 25, 50, x);
 		p("S. Wall", 38, 2, 19, 50, x);
 
-		x = c("Lincoln City", 38, "#E50F37", "#FFFFFF", null);
+		x = c("Lincoln City", 38, "#E50F37", w, null);
 		p("A. Marriott", 38, 1, 27, 54, x);
 		p("L. Beevers", 123, 4, 22, 49, x);
 		p("A. Moses", 38, 2, 31, 58, x);
@@ -4600,7 +4603,7 @@ class Fifa07Service {
 		p("J. Sherlock", 38, 8, 23, 42, x);
 		p("O. Warlow", 123, 12, 18, 39, x);
 
-		x = c("Shrewsbury Town", 38, "#4D5B5D", "#FFFFFF", null);
+		x = c("Shrewsbury Town", 38, "#4D5B5D", w, null);
 		p("R. Esson", 102, 1, 26, 52, x);
 		p("G. Cadwallader", 38, 2, 20, 53, x);
 		p("R. Hope", 38, 2, 28, 54, x);
@@ -4623,7 +4626,7 @@ class Fifa07Service {
 		p("D. Hall", 38, 2, 22, 44, x);
 		p("S. Leslie", 38, 11, 18, 46, x);
 
-		x = c("Swindon Town", 38, "#D16F39", "#000000", null);
+		x = c("Swindon Town", 38, "#D16F39", w, null);
 		p("P. Brezovan", 106, 1, 26, 50, x);
 		p("J. Smith", 38, 4, 22, 47, x);
 		p("J. Ifil", 38, 2, 24, 48, x);
@@ -4646,7 +4649,7 @@ class Fifa07Service {
 		p("P. Smith", 38, 1, 26, 42, x);
 		p("A. Nicholas", 38, 3, 22, 43, x);
 
-		x = c("Wrexham", 38, "#776447", "#FFFFFF", null);
+		x = c("Wrexham", 38, "#776447", w, null);
 		p("M. Ingham", 87, 1, 25, 50, x);
 		p("L. Roche", 38, 4, 25, 47, x);
 		p("S. Evans", 123, 2, 27, 50, x);
@@ -4669,7 +4672,7 @@ class Fifa07Service {
 		p("J. Newby", 38, 15, 27, 57, x);
 		p("J. Reed", 123, 15, 18, 33, x);
 
-		x = c("Bristol Rovers", 38, "#517468", "#FFFFFF", null);
+		x = c("Bristol Rovers", 38, "#517468", w, null);
 		p("S. Phillips", 38, 1, 28, 49, x);
 		p("A. Lescott", 38, 7, 27, 42, x);
 		p("C. Hinton", 38, 2, 28, 47, x);
@@ -4692,7 +4695,7 @@ class Fifa07Service {
 		p("B. Anthony", 123, 2, 21, 52, x);
 		p("M. Green", 38, 1, 16, 39, x);
 
-		x = c("Mansfield Town", 38, "#95876E", "#000000", null);
+		x = c("Mansfield Town", 38, "#95876E", w, null);
 		p("C. Muggleton", 38, 1, 37, 48, x);
 		p("J. Mullins", 38, 4, 20, 50, x);
 		p("A. John-Baptiste", 38, 2, 20, 57, x);
@@ -4715,7 +4718,7 @@ class Fifa07Service {
 		p("C. Wood", 38, 8, 19, 33, x);
 		p("A. McIntosh", 38, 2, 18, 35, x);
 
-		x = c("Boston United", 38, "#706031", "#FFFFFF", null);
+		x = c("Boston United", 38, "#706031", w, null);
 		p("A. Marriott", 38, 1, 35, 47, x);
 		p("L. Canoville", 38, 4, 25, 48, x);
 		p("P. Ellender", 38, 2, 32, 47, x);
@@ -4738,7 +4741,7 @@ class Fifa07Service {
 		p("D. N'Guessan", 43, 11, 18, 57, x);
 		p("B. Kirby", 38, 1, 19, 36, x);
 
-		x = c("Notts County", 38, "#716646", "#FFFFFF", null);
+		x = c("Notts County", 38, "#716646", w, null);
 		p("K. Pilkington", 38, 1, 32, 50, x);
 		p("G. Silk", 38, 4, 22, 49, x);
 		p("M. Edwards", 38, 2, 26, 53, x);
@@ -4761,7 +4764,7 @@ class Fifa07Service {
 		p("S. Hunt", 38, 3, 21, 43, x);
 		p("J. Sheridan", 38, 13, 19, 39, x);
 
-		x = c("Accrington Stanley", 38, "#B46C60", "#FFFFFF", null);
+		x = c("Accrington Stanley", 38, "#B46C60", w, null);
 		p("I. Dunbavin", 38, 1, 26, 49, x);
 		p("P. Cavanagh", 38, 4, 24, 42, x);
 		p("R. Williams", 38, 2, 27, 44, x);
@@ -4784,7 +4787,7 @@ class Fifa07Service {
 		p("J. N'Da", 43, 2, 20, 48, x);
 		p("J. Harris", 38, 8, 19, 40, x);
 
-		x = c("Chester City", 38, "#A97725", "#FFFFFF", null);
+		x = c("Chester City", 38, "#A97725", w, null);
 		p("J. Danby", 38, 1, 22, 47, x);
 		p("A. Westwood", 38, 2, 29, 49, x);
 		p("S. Vaughan", 38, 4, 21, 44, x);
@@ -4807,7 +4810,7 @@ class Fifa07Service {
 		p("J. Vaughan", 38, 2, 19, 48, x);
 		p("R. Ravenhill", 38, 11, 25, 46, x);
 
-		x = c("Hereford United", 38, "#BC959A", "#000000", null);
+		x = c("Hereford United", 38, "#BC959A", w, null);
 		p("W. Brown", 38, 1, 29, 50, x);
 		p("R. Rose", 38, 2, 23, 48, x);
 		p("T. Mkandawire", 75, 2, 23, 46, x);
@@ -4829,7 +4832,7 @@ class Fifa07Service {
 		p("A. Connell", 38, 15, 23, 49, x);
 		p("P. Gulliver", 84, 2, 23, 47, x);
 
-		x = c("Macclesfield Town", 38, "#6A7881", "#FFFFFF", null);
+		x = c("Macclesfield Town", 38, "#6A7881", w, null);
 		p("T. Lee", 38, 1, 20, 43, x);
 		p("D. Morley", 38, 6, 28, 40, x);
 		p("A. Teague", 38, 2, 20, 41, x);
@@ -4852,7 +4855,7 @@ class Fifa07Service {
 		p("J. Hadfield", 38, 10, 18, 47, x);
 		p("J. Mcnulty", 102, 3, 21, 40, x);
 
-		x = c("Stockport County", 38, "#6280A3", "#FFFFFF", null);
+		x = c("Stockport County", 38, "#6280A3", w, null);
 		p("J. Spencer", 38, 1, 21, 41, x);
 		p("M. Rose", 38, 3, 23, 43, x);
 		p("A. Williams", 38, 2, 21, 47, x);
@@ -4875,7 +4878,7 @@ class Fifa07Service {
 		p("A. Proudlock", 38, 15, 25, 46, x);
 		p("G. Tansey", 38, 8, 18, 40, x);
 
-		x = c("Barnet", 38, "#6F7765", "#FFFFFF", null);
+		x = c("Barnet", 38, "#6F7765", w, null);
 		p("L. Harrison", 38, 1, 34, 42, x);
 		p("I. Hendon", 38, 4, 34, 40, x);
 		p("P. Warhurst", 38, 2, 36, 50, x);
@@ -4898,7 +4901,7 @@ class Fifa07Service {
 		p("J. Norville", 114, 14, 22, 44, x);
 		p("J. Puncheon", 38, 9, 20, 45, x);
 
-		x = c("Torquay United", 38, "#5275B5", "#FFFFFF", null);
+		x = c("Torquay United", 38, "#5275B5", w, null);
 		p("N. Abbey", 38, 1, 27, 44, x);
 		p("L. Andrews", 38, 6, 24, 47, x);
 		p("C. Taylor", 38, 2, 32, 44, x);
@@ -4919,7 +4922,7 @@ class Fifa07Service {
 		p("S. Angus", 38, 2, 25, 45, x);
 		p("M. Horsell", 38, 1, 19, 42, x);
 
-		x = c("Rochdale", 38, "#5F78AD", "#FFFFFF", null);
+		x = c("Rochdale", 38, "#5F78AD", w, null);
 		p("M. Gilks", 38, 1, 24, 42, x);
 		p("S. Ramsden", 38, 6, 24, 40, x);
 		p("J. Boardman", 38, 7, 25, 37, x);
@@ -4940,7 +4943,7 @@ class Fifa07Service {
 		p("C. Moyo-Modise", 38, 14, 18, 37, x);
 		p("J. Thompson", 38, 10, 17, 39, x);
 
-		x = c("Bury", 38, "#636D70", "#FFFFFF", null);
+		x = c("Bury", 38, "#636D70", w, null);
 		p("A. Fettis", 87, 1, 35, 44, x);
 		p("J. Fitzgerald", 96, 2, 22, 43, x);
 		p("D. Challinor", 38, 2, 30, 47, x);
@@ -4963,7 +4966,7 @@ class Fifa07Service {
 		p("A. Parrish", 38, 6, 18, 37, x);
 		p("N. Adams", 38, 8, 18, 28, x);
 
-		x = c("Olympique Lyonnais", 43, "#9B698B", "#FFFFFF", "Lyon");
+		x = c("Olympique Lyonnais", 43, "#9B698B", w, "Lyon");
 		p("G. Coupet", 43, 1, 33, 92, x);
 		p("A. Réveillère", 43, 4, 26, 81, x);
 		p("Cris", 16, 2, 29, 89, x);
@@ -4990,7 +4993,7 @@ class Fifa07Service {
 		p("S. Govou", 43, 13, 26, 76, x);
 		p("K. Benzema", 43, 15, 18, 76, x);
 
-		x = c("Bordeaux", 43, "#3F3C61", "#FFFFFF", null);
+		x = c("Bordeaux", 43, "#3F3C61", w, null);
 		p("U. Ramé", 43, 1, 33, 81, x);
 		p("D. Jemmali", 115, 6, 31, 77, x);
 		p("M. Planus", 43, 2, 24, 83, x);
@@ -5015,7 +5018,7 @@ class Fifa07Service {
 		p("L. Laslandes", 43, 15, 34, 76, x);
 		p("P. Ducasse", 43, 7, 19, 63, x);
 
-		x = c("LOSC Lille", 43, "#8C4664", "#FFFFFF", null);
+		x = c("LOSC Lille", 43, "#8C4664", w, null);
 		p("T. Sylva", 103, 1, 31, 78, x);
 		p("M. Chalmé", 43, 2, 25, 74, x);
 		p("E. Tavlaridis", 49, 2, 26, 81, x);
@@ -5040,7 +5043,7 @@ class Fifa07Service {
 		p("K. Mirallas", 12, 14, 18, 73, x);
 		p("S. Robail", 43, 8, 21, 62, x);
 
-		x = c("Monaco", 43, "#E56454", "#000000", null);
+		x = c("Monaco", 43, "#E56454", w, null);
 		p("F. Roma", 60, 1, 32, 80, x);
 		p("F. Modesto", 43, 2, 27, 75, x);
 		p("G. Givet", 43, 2, 24, 85, x);
@@ -5065,7 +5068,7 @@ class Fifa07Service {
 		p("S. Grax", 43, 15, 22, 68, x);
 		p("M. Lô Sambou", 103, 7, 19, 58, x);
 
-		x = c("Paris Saint Germain", 43, "#315379", "#FFFFFF", "PSG");
+		x = c("Paris Saint Germain", 43, "#315379", w, "PSG");
 		p("M. Landreau", 43, 1, 27, 85, x);
 		p("B. Mendy", 43, 4, 24, 69, x);
 		p("D. Rozehnal", 34, 2, 25, 81, x);
@@ -5092,7 +5095,7 @@ class Fifa07Service {
 		p("J. Ateba Bilayi", 21, 3, 24, 69, x);
 		p("C. Chantôme", 43, 8, 18, 53, x);
 
-		x = c("Olympique de Marseille", 43, "#1198CC", "#000000", "Marseille");
+		x = c("Olympique de Marseille", 43, "#1198CC", w, "Marseille");
 		p("C. Carrasso", 43, 1, 24, 78, x);
 		p("H. Beye", 103, 6, 28, 81, x);
 		p("R. Zubar", 43, 2, 20, 72, x);
@@ -5119,7 +5122,7 @@ class Fifa07Service {
 		p("H. Bamogo", 43, 14, 24, 73, x);
 		p("M. Valbuena", 43, 11, 21, 70, x);
 
-		x = c("Lens", 43, "#C86F28", "#000000", null);
+		x = c("Lens", 43, "#C86F28", w, null);
 		p("C. Itandje", 43, 1, 23, 81, x);
 		p("Y. Demont", 43, 13, 28, 76, x);
 		p("A. Coulibaly", 76, 2, 25, 77, x);
@@ -5144,7 +5147,7 @@ class Fifa07Service {
 		p("D. Jabi", 52, 4, 25, 62, x);
 		p("K. Monnet-Paquet", 43, 14, 17, 52, x);
 
-		x = c("Rennes", 43, "#D65A36", "#FFFFFF", null);
+		x = c("Rennes", 43, "#D65A36", w, null);
 		p("S. Pouplin", 43, 1, 21, 70, x);
 		p("M. Melchiot", 83, 6, 29, 75, x);
 		p("G. Bourillon", 43, 2, 21, 75, x);
@@ -5169,7 +5172,7 @@ class Fifa07Service {
 		p("J. Perrier Doumbé", 21, 4, 27, 75, x);
 		p("M. Sow", 43, 15, 20, 59, x);
 
-		x = c("Auxerre", 43, "#1F63AD", "#FFFFFF", null);
+		x = c("Auxerre", 43, "#1F63AD", w, null);
 		p("F. Cool", 43, 1, 33, 79, x);
 		p("B. Sagna", 43, 4, 23, 71, x);
 		p("S. Grichting", 112, 2, 27, 78, x);
@@ -5194,7 +5197,7 @@ class Fifa07Service {
 		p("K. Lejeune", 43, 15, 21, 60, x);
 		p("A. Traoré", 18, 13, 17, 62, x);
 
-		x = c("Nantes", 43, "#C5CF13", "#000000", null);
+		x = c("Nantes", 43, "#C5CF13", w, null);
 		p("V. Stojkovic", 104, 1, 22, 78, x);
 		p("E. Cubilier", 43, 4, 27, 70, x);
 		p("M. Cetto", 5, 2, 24, 77, x);
@@ -5219,7 +5222,7 @@ class Fifa07Service {
 		p("C. Keseru", 97, 15, 19, 72, x);
 		p("D. Payet", 43, 14, 19, 61, x);
 
-		x = c("Saint-Étienne", 43, "#56AB7C", "#000000", null);
+		x = c("Saint-Étienne", 43, "#56AB7C", w, null);
 		p("J. Janot", 43, 1, 28, 78, x);
 		p("L. Diatta", 103, 4, 30, 76, x);
 		p("V. Hognon", 43, 2, 31, 79, x);
@@ -5244,7 +5247,7 @@ class Fifa07Service {
 		p("L. Sakho", 43, 14, 28, 67, x);
 		p("I. Piatti", 5, 8, 21, 70, x);
 
-		x = c("Nice", 43, "#866B54", "#FFFFFF", null);
+		x = c("Nice", 43, "#866B54", w, null);
 		p("H. Lloris", 43, 1, 19, 69, x);
 		p("R. Fanni", 43, 4, 24, 68, x);
 		p("C. Kanté", 76, 2, 26, 73, x);
@@ -5269,7 +5272,7 @@ class Fifa07Service {
 		p("S. Camara", 103, 15, 23, 70, x);
 		p("O. Apam", 85, 2, 19, 60, x);
 
-		x = c("Sochaux", 43, "#567079", "#FFFFFF", null);
+		x = c("Sochaux", 43, "#567079", w, null);
 		p("T. Richert", 43, 1, 31, 78, x);
 		p("S. Pichot", 43, 4, 29, 72, x);
 		p("S. Diawara", 103, 2, 27, 78, x);
@@ -5294,7 +5297,7 @@ class Fifa07Service {
 		p("A. Le Tallec", 43, 11, 21, 70, x);
 		p("J. Quercia", 43, 15, 19, 51, x);
 
-		x = c("Toulouse", 43, "#6E4B6B", "#FFFFFF", null);
+		x = c("Toulouse", 43, "#6E4B6B", w, null);
 		p("N. Douchez", 43, 1, 26, 70, x);
 		p("D. Congré", 43, 2, 21, 73, x);
 		p("D. Arribagé", 43, 2, 35, 74, x);
@@ -5319,7 +5322,7 @@ class Fifa07Service {
 		p("N. Taïder", 43, 7, 23, 72, x);
 		p("K. Constant", 43, 11, 19, 52, x);
 
-		x = c("Troyes", 43, "#3F849C", "#FFFFFF", null);
+		x = c("Troyes", 43, "#3F849C", w, null);
 		p("R. Le Crom", 43, 1, 31, 79, x);
 		p("J. Montero", 43, 4, 34, 75, x);
 		p("B. Kouassi", 30, 2, 31, 74, x);
@@ -5344,7 +5347,7 @@ class Fifa07Service {
 		p("A. N'Dour", 103, 8, 24, 62, x);
 		p("M. Saganowski", 94, 15, 27, 68, x);
 
-		x = c("Le Mans", 43, "#8A301E", "#FFFFFF", null);
+		x = c("Le Mans", 43, "#8A301E", w, null);
 		p("Y. Pelé", 43, 1, 23, 79, x);
 		p("O. Thomas", 43, 3, 31, 69, x);
 		p("M. Basa", 104, 2, 23, 72, x);
@@ -5369,7 +5372,7 @@ class Fifa07Service {
 		p("C. Lucau", 28, 15, 21, 70, x);
 		p("Y. Fischer", 43, 2, 31, 67, x);
 
-		x = c("Nancy", 43, "#E88484", "#000000", null);
+		x = c("Nancy", 43, "#E88484", w, null);
 		p("G. Bracigliano", 43, 1, 26, 76, x);
 		p("M. Chrétien", 43, 6, 21, 72, x);
 		p("C. Lécluse", 43, 2, 34, 73, x);
@@ -5394,7 +5397,7 @@ class Fifa07Service {
 		p("B. Gavanon", 43, 8, 25, 72, x);
 		p("G. Rudolf", 56, 14, 21, 61, x);
 
-		x = c("Lorient", 43, "#886344", "#FFFFFF", null);
+		x = c("Lorient", 43, "#886344", w, null);
 		p("F. Audard", 43, 1, 28, 75, x);
 		p("M. Boutruche", 43, 4, 29, 68, x);
 		p("S. Marchal", 43, 2, 26, 66, x);
@@ -5419,7 +5422,7 @@ class Fifa07Service {
 		p("K. Bourhani", 43, 15, 24, 71, x);
 		p("J. Barrientos", 5, 2, 24, 68, x);
 
-		x = c("Sedan", 43, "#6E5156", "#FFFFFF", null);
+		x = c("Sedan", 43, "#6E5156", w, null);
 		p("P. Regnault", 43, 1, 32, 68, x);
 		p("D. Hamed", 43, 4, 32, 64, x);
 		p("J. Hénin", 43, 2, 28, 66, x);
@@ -5444,7 +5447,7 @@ class Fifa07Service {
 		p("J. Lemoigne", 43, 8, 23, 61, x);
 		p("S. Thicot", 43, 2, 19, 67, x);
 
-		x = c("Valenciennes", 43, "#DB373E", "#FFFFFF", null);
+		x = c("Valenciennes", 43, "#DB373E", w, null);
 		p("N. Penneteau", 43, 1, 25, 77, x);
 		p("L. Liron", 43, 2, 28, 62, x);
 		p("M. Flachez", 43, 2, 33, 65, x);
@@ -5469,7 +5472,7 @@ class Fifa07Service {
 		p("L. Dufresne", 43, 15, 34, 64, x);
 		p("R. Haddad", 43, 11, 21, 70, x);
 
-		x = c("Strasbourg", 43, "#588EB8", "#000000", null);
+		x = c("Strasbourg", 43, "#588EB8", w, null);
 		p("S. Cassard", 43, 1, 33, 80, x);
 		p("Y. Deroff", 43, 6, 27, 69, x);
 		p("L. N'Diaye", 103, 2, 20, 70, x);
@@ -5492,7 +5495,7 @@ class Fifa07Service {
 		p("R. Cohade", 43, 8, 21, 70, x);
 		p("J. Devaux", 43, 2, 31, 72, x);
 
-		x = c("Metz", 43, "#E2CECE", "#000000", null);
+		x = c("Metz", 43, "#E2CECE", w, null);
 		p("C. Marichez", 43, 1, 31, 71, x);
 		p("F. Béria", 43, 6, 23, 71, x);
 		p("P. Delhommeau", 43, 2, 27, 68, x);
@@ -5515,7 +5518,7 @@ class Fifa07Service {
 		p("J. Mayebi", 21, 1, 19, 66, x);
 		p("J. Walasiak", 12, 11, 23, 73, x);
 
-		x = c("Ajaccio", 43, "#B06366", "#FFFFFF", null);
+		x = c("Ajaccio", 43, "#B06366", w, null);
 		p("F. Roux", 43, 1, 33, 66, x);
 		p("N. Dzodic", 104, 2, 29, 70, x);
 		p("F. Laurenti", 43, 4, 23, 76, x);
@@ -5538,7 +5541,7 @@ class Fifa07Service {
 		p("Y. M'Vila", 43, 8, 17, 55, x);
 		p("V. Scotte", 43, 9, 18, 55, x);
 
-		x = c("Bastia", 43, "#34668F", "#FFFFFF", null);
+		x = c("Bastia", 43, "#34668F", w, null);
 		p("A. Ejide", 85, 1, 22, 77, x);
 		p("D. Bridonneau", 43, 4, 31, 65, x);
 		p("M. Meniri", 43, 2, 29, 80, x);
@@ -5561,7 +5564,7 @@ class Fifa07Service {
 		p("A. Cherrad", 2, 15, 25, 55, x);
 		p("G. Cioni", 43, 3, 22, 60, x);
 
-		x = c("Caen", 43, "#735A62", "#FFFFFF", null);
+		x = c("Caen", 43, "#735A62", w, null);
 		p("V. Planté", 43, 1, 25, 74, x);
 		p("C. Hengbart", 43, 4, 25, 70, x);
 		p("B. Thiam", 76, 2, 32, 73, x);
@@ -5584,7 +5587,7 @@ class Fifa07Service {
 		p("S. Zubar", 43, 2, 19, 58, x);
 		p("A. Raineau", 43, 8, 20, 52, x);
 
-		x = c("Guingamp", 43, "#D14D55", "#FFFFFF", null);
+		x = c("Guingamp", 43, "#D14D55", w, null);
 		p("T. Debès", 43, 1, 32, 62, x);
 		p("J. Truchet", 43, 4, 22, 59, x);
 		p("P. Leugueun", 21, 2, 25, 64, x);
@@ -5607,7 +5610,7 @@ class Fifa07Service {
 		p("M. Kader-Coubadja", 113, 15, 27, 70, x);
 		p("N. Haquin", 43, 15, 25, 58, x);
 
-		x = c("Dijon", 43, "#DB3B56", "#FFFFFF", null);
+		x = c("Dijon", 43, "#DB3B56", w, null);
 		p("B. Mouko", 28, 1, 27, 68, x);
 		p("M. Tacalfred", 43, 4, 25, 65, x);
 		p("A. Ba", 103, 2, 29, 66, x);
@@ -5630,7 +5633,7 @@ class Fifa07Service {
 		p("F. Perraud", 43, 1, 24, 62, x);
 		p("B. Ponge", 43, 2, 21, 57, x);
 
-		x = c("Montpellier", 43, "#98868C", "#000000", null);
+		x = c("Montpellier", 43, "#98868C", w, null);
 		p("L. Pionnier", 43, 1, 24, 66, x);
 		p("J. Mainfroi", 43, 4, 23, 60, x);
 		p("F. Mendy", 43, 2, 32, 69, x);
@@ -5653,7 +5656,7 @@ class Fifa07Service {
 		p("V. Beduer", 43, 2, 19, 56, x);
 		p("N. Godemèche", 43, 7, 22, 70, x);
 
-		x = c("Stade de Reims", 43, "#F9C1C0", "#000000", null);
+		x = c("Stade de Reims", 43, "#F9C1C0", w, null);
 		p("J. Liébus", 43, 1, 27, 70, x);
 		p("O. Fontenette", 43, 6, 24, 59, x);
 		p("L. Jeannel", 43, 2, 30, 67, x);
@@ -5676,7 +5679,7 @@ class Fifa07Service {
 		p("C. Tourenne", 43, 8, 34, 67, x);
 		p("N. Farsanne", 43, 15, 25, 55, x);
 
-		x = c("Châteauroux", 43, "#915176", "#FFFFFF", null);
+		x = c("Châteauroux", 43, "#915176", w, null);
 		p("V. Fernandez", 43, 1, 31, 72, x);
 		p("E. Viator", 43, 2, 24, 66, x);
 		p("S. Bates", 104, 2, 24, 65, x);
@@ -5699,7 +5702,7 @@ class Fifa07Service {
 		p("D. Sidibé", 76, 7, 24, 72, x);
 		p("P. Moreau", 43, 2, 32, 67, x);
 
-		x = c("Créteil", 43, "#5E92BE", "#000000", null);
+		x = c("Créteil", 43, "#5E92BE", w, null);
 		p("R. Trivino", 43, 1, 29, 64, x);
 		p("J. Pérez", 43, 4, 24, 62, x);
 		p("Nuno Mendes", 95, 2, 28, 71, x);
@@ -5722,7 +5725,7 @@ class Fifa07Service {
 		p("F. Khenniche", 43, 8, 24, 59, x);
 		p("Y. Dobo", 43, 5, 28, 62, x);
 
-		x = c("Istres", 43, "#716EA0", "#FFFFFF", null);
+		x = c("Istres", 43, "#716EA0", w, null);
 		p("R. Riou", 43, 1, 26, 60, x);
 		p("R. Suriano", 43, 4, 24, 64, x);
 		p("M. Doumbia", 30, 2, 25, 66, x);
@@ -5745,7 +5748,7 @@ class Fifa07Service {
 		p("Y. Zambernardi", 43, 2, 28, 64, x);
 		p("S. Bakour", 2, 8, 24, 64, x);
 
-		x = c("Gueugnon", 43, "#707657", "#FFFFFF", null);
+		x = c("Gueugnon", 43, "#707657", w, null);
 		p("R. Peiser", 43, 1, 26, 60, x);
 		p("J. Rodrigues", 43, 4, 25, 60, x);
 		p("P. Correia", 43, 2, 34, 67, x);
@@ -5768,7 +5771,7 @@ class Fifa07Service {
 		p("M. Louhkiar", 43, 12, 22, 59, x);
 		p("J. White", 119, 15, 24, 58, x);
 
-		x = c("Le Havre", 43, "#426085", "#FFFFFF", null);
+		x = c("Le Havre", 43, "#426085", w, null);
 		p("S. Mandanda", 43, 1, 21, 70, x);
 		p("M. Baca", 43, 2, 23, 60, x);
 		p("M. Seck", 103, 2, 26, 63, x);
@@ -5791,7 +5794,7 @@ class Fifa07Service {
 		p("A. Gauvin", 43, 2, 32, 71, x);
 		p("K. Anin", 43, 7, 19, 58, x);
 
-		x = c("Amiens SC", 43, "#A4A4A4", "#000000", null);
+		x = c("Amiens SC", 43, "#A4A4A4", w, null);
 		p("C. Merville", 43, 1, 24, 64, x);
 		p("T. Lahaye", 43, 4, 23, 61, x);
 		p("F. Casartelli", 5, 4, 29, 62, x);
@@ -5814,7 +5817,7 @@ class Fifa07Service {
 		p("S. Hernandez", 43, 3, 26, 58, x);
 		p("G. Perchet", 43, 9, 22, 55, x);
 
-		x = c("Grenoble Foot 38", 43, "#2562A6", "#FFFFFF", null);
+		x = c("Grenoble Foot 38", 43, "#2562A6", w, null);
 		p("G. Wimbée", 43, 1, 34, 75, x);
 		p("M. Robin", 43, 10, 28, 67, x);
 		p("Matheus", 60, 2, 24, 62, x);
@@ -5837,7 +5840,7 @@ class Fifa07Service {
 		p("F. Dja Djédjé", 43, 15, 20, 64, x);
 		p("N. Kacemi", 80, 4, 28, 57, x);
 
-		x = c("Stade Brestois 29", 43, "#C5383D", "#FFFFFF", null);
+		x = c("Stade Brestois 29", 43, "#C5383D", w, null);
 		p("S. Elana", 43, 1, 25, 63, x);
 		p("Y. Bourgis", 43, 2, 26, 64, x);
 		p("J. Charpenet", 43, 2, 29, 65, x);
@@ -5860,7 +5863,7 @@ class Fifa07Service {
 		p("Y. Adnane", 43, 15, 20, 56, x);
 		p("B. Pereira De Carvalho", 103, 15, 24, 46, x);
 
-		x = c("Niort", 43, "#427DBA", "#FFFFFF", null);
+		x = c("Niort", 43, "#427DBA", w, null);
 		p("D. Klein", 43, 1, 32, 52, x);
 		p("R. Vincelot", 43, 4, 20, 53, x);
 		p("J. Chapuis", 43, 2, 31, 60, x);
@@ -5883,7 +5886,7 @@ class Fifa07Service {
 		p("F. Seidou", 43, 15, 19, 50, x);
 		p("L. Gamboa", 43, 12, 20, 53, x);
 
-		x = c("Tours", 43, "#8EADB5", "#000000", null);
+		x = c("Tours", 43, "#8EADB5", w, null);
 		p("A. Raimbault", 43, 1, 30, 56, x);
 		p("D. Leray", 43, 4, 22, 61, x);
 		p("M. Benatia", 43, 2, 19, 62, x);
@@ -5906,7 +5909,7 @@ class Fifa07Service {
 		p("C. Himmer", 43, 8, 30, 52, x);
 		p("R. Mareval", 43, 2, 23, 52, x);
 
-		x = c("Libourne", 43, "#2F4FA2", "#FFFFFF", null);
+		x = c("Libourne", 43, "#2F4FA2", w, null);
 		p("C. Potel", 43, 1, 32, 53, x);
 		p("L. Astier", 43, 2, 27, 45, x);
 		p("J. Douence", 43, 2, 34, 57, x);
@@ -5929,7 +5932,7 @@ class Fifa07Service {
 		p("R. Rambier", 43, 4, 24, 53, x);
 		p("A. Moura", 12, 7, 20, 47, x);
 
-		x = c("FC Bayern München", 47, "#A05C86", "#FFFFFF", "Bayern München");
+		x = c("FC Bayern München", 47, "#A05C86", w, "Bayern München");
 		p("O. Kahn", 47, 1, 37, 88, x);
 		p("W. Sagnol", 43, 6, 29, 86, x);
 		p("D. Van Buyten", 12, 2, 28, 87, x);
@@ -5956,7 +5959,7 @@ class Fifa07Service {
 		p("C. Lell", 47, 4, 21, 67, x);
 		p("M. Hummels", 47, 2, 17, 56, x);
 
-		x = c("Werder Bremen", 47, "#48A574", "#000000", null);
+		x = c("Werder Bremen", 47, "#48A574", w, null);
 		p("T. Wiese", 47, 1, 24, 82, x);
 		p("C. Fritz", 47, 6, 25, 77, x);
 		p("P. Mertesacker", 47, 2, 21, 85, x);
@@ -5983,7 +5986,7 @@ class Fifa07Service {
 		p("L. Andreasen", 35, 2, 23, 73, x);
 		p("A. Bischoff", 43, 11, 18, 52, x);
 
-		x = c("Schalke 04", 47, "#3570B0", "#FFFFFF", null);
+		x = c("Schalke 04", 47, "#3570B0", w, null);
 		p("F. Rost", 47, 1, 33, 85, x);
 		p("Rafinha", 16, 6, 20, 78, x);
 		p("M. Bordon", 16, 2, 30, 87, x);
@@ -6008,7 +6011,7 @@ class Fifa07Service {
 		p("C. Pander", 47, 3, 22, 72, x);
 		p("S. Boenisch", 47, 5, 19, 59, x);
 
-		x = c("Borussia Dortmund", 47, "#E7CE00", "#000000", "B. Dortmund");
+		x = c("Borussia Dortmund", 47, "#E7CE00", w, "B. Dortmund");
 		p("R. Weidenfeller", 47, 1, 25, 84, x);
 		p("P. Degen", 112, 6, 23, 75, x);
 		p("C. Wörns", 47, 2, 34, 84, x);
@@ -6033,7 +6036,7 @@ class Fifa07Service {
 		p("S. Tyrala", 47, 11, 18, 71, x);
 		p("D. Vrzogic", 47, 3, 16, 56, x);
 
-		x = c("Hamburger SV", 47, "#3163A9", "#FFFFFF", null);
+		x = c("Hamburger SV", 47, "#3163A9", w, null);
 		p("S. Kirschstein", 47, 1, 26, 78, x);
 		p("M. Mahdavikia", 58, 6, 28, 82, x);
 		p("J. Mathijsen", 83, 2, 26, 72, x);
@@ -6058,7 +6061,7 @@ class Fifa07Service {
 		p("A. Laas", 47, 9, 22, 69, x);
 		p("Ä. Ben-Hatira", 47, 11, 17, 61, x);
 
-		x = c("Bayer 04 Leverkusen", 47, "#A26E48", "#FFFFFF", "Bayer Leverkusen");
+		x = c("Bayer 04 Leverkusen", 47, "#A26E48", w, "Bayer Leverkusen");
 		p("H. Butt", 47, 1, 32, 79, x);
 		p("G. Castro", 109, 4, 19, 73, x);
 		p("Juan", 16, 2, 27, 85, x);
@@ -6083,7 +6086,7 @@ class Fifa07Service {
 		p("A. Madouni", 43, 2, 25, 72, x);
 		p("B. Fernandez", 47, 1, 21, 60, x);
 
-		x = c("Borussia Mönchengladbach", 47, "#9E9E9E", "#000000", "B. M'gladbach");
+		x = c("Borussia Mönchengladbach", 47, "#9E9E9E", w, "B. M'gladbach");
 		p("K. Keller", 119, 1, 36, 83, x);
 		p("K. Bøgelund", 35, 4, 25, 75, x);
 		p("B. Svensson", 35, 2, 26, 78, x);
@@ -6108,7 +6111,7 @@ class Fifa07Service {
 		p("F. Daems", 12, 5, 27, 73, x);
 		p("R. Fleßers", 47, 7, 19, 57, x);
 
-		x = c("VfB Stuttgart", 47, "#DB7151", "#000000", null);
+		x = c("VfB Stuttgart", 47, "#DB7151", w, null);
 		p("T. Hildebrand", 47, 1, 27, 82, x);
 		p("M. Babbel", 47, 2, 33, 76, x);
 		p("F. Meira", 95, 2, 28, 85, x);
@@ -6133,7 +6136,7 @@ class Fifa07Service {
 		p("B. Zivkovic", 31, 2, 30, 73, x);
 		p("B. Nehrig", 47, 15, 19, 58, x);
 
-		x = c("Hertha BSC", 47, "#3F71A6", "#FFFFFF", null);
+		x = c("Hertha BSC", 47, "#3F71A6", w, null);
 		p("C. Fiedler", 47, 1, 31, 78, x);
 		p("A. Friedrich", 47, 4, 27, 81, x);
 		p("J. Simunic", 31, 2, 28, 82, x);
@@ -6158,7 +6161,7 @@ class Fifa07Service {
 		p("R. Müller", 47, 2, 19, 55, x);
 		p("S. Lakic", 31, 15, 22, 69, x);
 
-		x = c("VfL Wolfsburg", 47, "#71B62F", "#000000", null);
+		x = c("VfL Wolfsburg", 47, "#71B62F", w, null);
 		p("S. Jentzsch", 47, 1, 30, 79, x);
 		p("F. Quiroga", 5, 2, 28, 80, x);
 		p("K. Hofland", 83, 2, 27, 81, x);
@@ -6183,7 +6186,7 @@ class Fifa07Service {
 		p("R. Hoogendorp", 83, 15, 31, 76, x);
 		p("S. Müller", 47, 11, 21, 49, x);
 
-		x = c("Eintracht Frankfurt", 47, "#E5363F", "#FFFFFF", null);
+		x = c("Eintracht Frankfurt", 47, "#E5363F", w, null);
 		p("O. Nikolov", 86, 1, 32, 76, x);
 		p("P. Ochs", 47, 4, 22, 74, x);
 		p("S. Kyrgiakos", 49, 2, 26, 79, x);
@@ -6208,7 +6211,7 @@ class Fifa07Service {
 		p("M. Russ", 47, 2, 20, 70, x);
 		p("M. Rehmer", 47, 2, 34, 75, x);
 
-		x = c("Hannover 96", 47, "#60A96F", "#000000", null);
+		x = c("Hannover 96", 47, "#60A96F", w, null);
 		p("R. Enke", 47, 1, 28, 84, x);
 		p("S. Cherundolo", 119, 6, 27, 76, x);
 		p("F. Fahrenhorst", 47, 2, 28, 77, x);
@@ -6233,7 +6236,7 @@ class Fifa07Service {
 		p("H. Hahne", 47, 15, 20, 56, x);
 		p("E. Jendrisek", 106, 15, 19, 68, x);
 
-		x = c("Nürnberg", 47, "#B12537", "#FFFFFF", null);
+		x = c("Nürnberg", 47, "#B12537", w, null);
 		p("R. Schäfer", 47, 1, 27, 78, x);
 		p("D. Reinhardt", 47, 2, 21, 71, x);
 		p("Gláuber", 16, 2, 22, 76, x);
@@ -6258,7 +6261,7 @@ class Fifa07Service {
 		p("J. Kristiansen", 35, 11, 24, 70, x);
 		p("L. Benko", 31, 14, 22, 65, x);
 
-		x = c("DSC Arminia Bielefeld", 47, "#5C86A4", "#FFFFFF", "Arminia Bielefeld");
+		x = c("DSC Arminia Bielefeld", 47, "#5C86A4", w, "Arminia Bielefeld");
 		p("M. Hain", 47, 1, 33, 76, x);
 		p("B. Korzynietz", 47, 6, 26, 75, x);
 		p("H. Westermann", 47, 2, 22, 75, x);
@@ -6283,7 +6286,7 @@ class Fifa07Service {
 		p("A. Wichniarek", 94, 15, 29, 71, x);
 		p("T. Danneberg", 47, 7, 20, 66, x);
 
-		x = c("VfL Bochum 1848", 47, "#317AB5", "#FFFFFF", null);
+		x = c("VfL Bochum 1848", 47, "#317AB5", w, null);
 		p("P. Skov-Jensen", 35, 1, 35, 73, x);
 		p("D. Pallas", 112, 4, 25, 70, x);
 		p("P. Drsek", 34, 2, 29, 73, x);
@@ -6308,7 +6311,7 @@ class Fifa07Service {
 		p("D. Imhof", 22, 7, 28, 65, x);
 		p("I. Ilicevic", 31, 11, 19, 69, x);
 
-		x = c("FSV Mainz 05", 47, "#D14F56", "#FFFFFF", null);
+		x = c("FSV Mainz 05", 47, "#D14F56", w, null);
 		p("D. Wache", 47, 1, 32, 80, x);
 		p("C. Demirtas", 47, 6, 22, 70, x);
 		p("M. Friedrich", 47, 2, 26, 82, x);
@@ -6333,7 +6336,7 @@ class Fifa07Service {
 		p("C. Casey", 119, 15, 24, 69, x);
 		p("T. Damm", 47, 15, 22, 58, x);
 
-		x = c("Alemannia Aachen", 47, "#B0A02E", "#000000", null);
+		x = c("Alemannia Aachen", 47, "#B0A02E", w, null);
 		p("K. Nicht", 47, 1, 24, 74, x);
 		p("S. Pinto", 95, 13, 25, 73, x);
 		p("M. Sichone", 124, 2, 29, 73, x);
@@ -6358,7 +6361,7 @@ class Fifa07Service {
 		p("S. Dum", 47, 3, 19, 65, x);
 		p("Y. Balaban", 47, 8, 22, 60, x);
 
-		x = c("Energie Cottbus", 47, "#EF7445", "#000000", null);
+		x = c("Energie Cottbus", 47, "#EF7445", w, null);
 		p("G. Tremmel", 47, 1, 27, 72, x);
 		p("V. da Silva", 16, 2, 32, 74, x);
 		p("K. McKenna", 22, 7, 26, 68, x);
@@ -6383,7 +6386,7 @@ class Fifa07Service {
 		p("M. Dworrak", 47, 14, 28, 66, x);
 		p("S. Baumgart", 47, 15, 34, 67, x);
 
-		x = c("FC Köln", 47, "#995559", "#FFFFFF", null);
+		x = c("FC Köln", 47, "#995559", w, null);
 		p("S. Wessels", 47, 1, 27, 74, x);
 		p("C. Cullmann", 47, 4, 30, 66, x);
 		p("A. Mitreski", 86, 2, 25, 71, x);
@@ -6406,7 +6409,7 @@ class Fifa07Service {
 		p("S. Gambino", 60, 14, 22, 69, x);
 		p("B. Finke", 47, 1, 23, 62, x);
 
-		x = c("MSV Duisburg", 47, "#5C6893", "#FFFFFF", null);
+		x = c("MSV Duisburg", 47, "#5C6893", w, null);
 		p("G. Koch", 47, 1, 34, 73, x);
 		p("C. Weber", 47, 6, 23, 70, x);
 		p("B. Schlicke", 47, 4, 25, 73, x);
@@ -6429,7 +6432,7 @@ class Fifa07Service {
 		p("M. Daun", 47, 15, 25, 63, x);
 		p("N. Aygün", 116, 2, 26, 68, x);
 
-		x = c("SC Freiburg", 47, "#403D41", "#FFFFFF", null);
+		x = c("SC Freiburg", 47, "#403D41", w, null);
 		p("A. Walke", 47, 1, 23, 66, x);
 		p("S. Olajengbesi", 85, 2, 25, 71, x);
 		p("O. Khizaneishvili", 46, 2, 24, 70, x);
@@ -6452,7 +6455,7 @@ class Fifa07Service {
 		p("Cafú", 20, 13, 28, 66, x);
 		p("O. Ampomah", 48, 15, 21, 61, x);
 
-		x = c("Hansa Rostock", 47, "#A28398", "#000000", null);
+		x = c("Hansa Rostock", 47, "#A28398", w, null);
 		p("M. Schober", 47, 1, 30, 77, x);
 		p("M. Hartmann", 47, 3, 31, 66, x);
 		p("Gledson", 16, 2, 26, 69, x);
@@ -6475,7 +6478,7 @@ class Fifa07Service {
 		p("D. Langen", 47, 6, 25, 60, x);
 		p("P. Klandt", 47, 1, 22, 62, x);
 
-		x = c("Kaiserslautern", 47, "#E72C36", "#FFFFFF", null);
+		x = c("Kaiserslautern", 47, "#E72C36", w, null);
 		p("J. Macho", 8, 1, 28, 74, x);
 		p("S. Müller", 47, 10, 26, 69, x);
 		p("M. Béda", 43, 2, 24, 71, x);
@@ -6498,7 +6501,7 @@ class Fifa07Service {
 		p("A. Karadas", 88, 14, 24, 71, x);
 		p("S. Lexa", 8, 10, 29, 67, x);
 
-		x = c("Karlsruher SC", 47, "#145A9C", "#FFFFFF", null);
+		x = c("Karlsruher SC", 47, "#145A9C", w, null);
 		p("M. Miller", 47, 1, 24, 68, x);
 		p("T. Kies", 47, 4, 30, 68, x);
 		p("M. Eggimann", 112, 2, 25, 73, x);
@@ -6521,7 +6524,7 @@ class Fifa07Service {
 		p("E. Kapllani", 1, 15, 23, 62, x);
 		p("B. Barg", 47, 2, 21, 59, x);
 
-		x = c("1860 München", 47, "#A6A6A6", "#000000", null);
+		x = c("1860 München", 47, "#A6A6A6", w, null);
 		p("M. Hofmann", 47, 1, 33, 71, x);
 		p("M. Ghvinianidze", 46, 2, 19, 68, x);
 		p("T. Hoffmann", 47, 2, 31, 70, x);
@@ -6544,7 +6547,7 @@ class Fifa07Service {
 		p("H. Cerny", 8, 10, 32, 67, x);
 		p("F. Johnson", 47, 13, 18, 58, x);
 
-		x = c("SpVgg Greuther Fürth", 47, "#27AA57", "#000000", "Greuther Fürth");
+		x = c("SpVgg Greuther Fürth", 47, "#27AA57", w, "Greuther Fürth");
 		p("B. Mavric", 107, 1, 36, 71, x);
 		p("D. Kelhar", 107, 4, 22, 64, x);
 		p("T. Kleine", 47, 2, 28, 72, x);
@@ -6567,7 +6570,7 @@ class Fifa07Service {
 		p("B. Barut", 116, 7, 23, 59, x);
 		p("T. Achenbach", 47, 5, 23, 62, x);
 
-		x = c("Erzgebirge Aue", 47, "#8F8584", "#000000", null);
+		x = c("Erzgebirge Aue", 47, "#8F8584", w, null);
 		p("T. Bobel", 94, 1, 31, 72, x);
 		p("U. Ehlers", 47, 2, 30, 69, x);
 		p("J. Emmerich", 47, 2, 32, 69, x);
@@ -6590,7 +6593,7 @@ class Fifa07Service {
 		p("A. Keller", 47, 1, 29, 62, x);
 		p("T. Klinka", 34, 15, 29, 67, x);
 
-		x = c("Wacker Burghausen", 47, "#888888", "#000000", null);
+		x = c("Wacker Burghausen", 47, "#888888", w, null);
 		p("U. Gospodarek", 47, 1, 32, 76, x);
 		p("M. Wiesinger", 47, 10, 33, 67, x);
 		p("V. Jeknic", 104, 2, 22, 68, x);
@@ -6613,7 +6616,7 @@ class Fifa07Service {
 		p("M. Palionis", 73, 7, 19, 56, x);
 		p("D. Satılmış", 112, 3, 27, 56, x);
 
-		x = c("Rot-Weiss Essen", 47, "#E81F22", "#FFFFFF", null);
+		x = c("Rot-Weiss Essen", 47, "#E81F22", w, null);
 		p("K. Zaza", 80, 1, 31, 65, x);
 		p("M. Bemben", 47, 4, 30, 64, x);
 		p("T. Kläsener", 47, 2, 29, 64, x);
@@ -6636,7 +6639,7 @@ class Fifa07Service {
 		p("Paulo Sérgio", 95, 11, 30, 61, x);
 		p("S. Calik", 47, 15, 20, 58, x);
 
-		x = c("Eintracht Braunschweig", 47, "#9C997A", "#000000", "E. Braunschweig");
+		x = c("Eintracht Braunschweig", 47, "#9C997A", w, "E. Braunschweig");
 		p("T. Stuckmann", 47, 1, 25, 69, x);
 		p("B. Siegert", 47, 6, 24, 61, x);
 		p("M. Husterer", 47, 2, 23, 65, x);
@@ -6659,7 +6662,7 @@ class Fifa07Service {
 		p("P. Bick", 47, 8, 29, 64, x);
 		p("L. Siegismund", 47, 2, 19, 57, x);
 
-		x = c("FC Augsburg", 47, "#BA6C46", "#FFFFFF", null);
+		x = c("FC Augsburg", 47, "#BA6C46", w, null);
 		p("Z. Miletic", 31, 1, 38, 57, x);
 		p("I. Hertzsch", 47, 2, 28, 70, x);
 		p("S. Dreßler", 47, 2, 30, 65, x);
@@ -6682,7 +6685,7 @@ class Fifa07Service {
 		p("S. Neuhaus", 47, 1, 28, 59, x);
 		p("I. Knez", 5, 2, 31, 62, x);
 
-		x = c("Kickers Offenbach", 47, "#F16459", "#000000", null);
+		x = c("Kickers Offenbach", 47, "#F16459", w, null);
 		p("I. Kresic", 31, 1, 39, 65, x);
 		p("R. Yildirim", 47, 10, 30, 65, x);
 		p("D. Schumann", 47, 2, 29, 68, x);
@@ -6705,7 +6708,7 @@ class Fifa07Service {
 		p("C. Pospischil", 47, 10, 21, 61, x);
 		p("L. Weißenfeldt", 47, 4, 26, 58, x);
 
-		x = c("Paderborn", 47, "#487DA9", "#FFFFFF", null);
+		x = c("Paderborn", 47, "#487DA9", w, null);
 		p("T. Starke", 47, 1, 25, 63, x);
 		p("D. Fall", 47, 4, 28, 60, x);
 		p("R. Brouwers", 83, 2, 24, 67, x);
@@ -6728,7 +6731,7 @@ class Fifa07Service {
 		p("D. Esajas", 83, 15, 25, 63, x);
 		p("Fumaca", 16, 11, 29, 58, x);
 
-		x = c("Unterhaching", 47, "#8F6483", "#FFFFFF", null);
+		x = c("Unterhaching", 47, "#8F6483", w, null);
 		p("P. Heerwagen", 47, 1, 23, 59, x);
 		p("C. Sträßer", 47, 6, 25, 52, x);
 		p("S. Frühbeis", 47, 2, 27, 65, x);
@@ -6751,7 +6754,7 @@ class Fifa07Service {
 		p("N. Frommer", 47, 15, 28, 63, x);
 		p("N. Feldhahn", 47, 2, 19, 46, x);
 
-		x = c("Koblenz", 47, "#97774C", "#FFFFFF", null);
+		x = c("Koblenz", 47, "#97774C", w, null);
 		p("M. Gurski", 47, 1, 27, 59, x);
 		p("B. Evers", 83, 4, 27, 54, x);
 		p("J. Grenier", 119, 2, 26, 49, x);
@@ -6774,7 +6777,7 @@ class Fifa07Service {
 		p("J. Rahn", 47, 15, 20, 43, x);
 		p("J. Olumide", 85, 14, 18, 46, x);
 
-		x = c("Carl Zeiss Jena", 47, "#9E9479", "#000000", null);
+		x = c("Carl Zeiss Jena", 47, "#9E9479", w, null);
 		p("C. Person", 47, 1, 25, 57, x);
 		p("T. Wachsmuth", 47, 2, 19, 53, x);
 		p("H. Hasse", 47, 2, 30, 61, x);
@@ -6797,7 +6800,7 @@ class Fifa07Service {
 		p("T. Werner", 47, 14, 20, 55, x);
 		p("P. De Napoli", 112, 15, 30, 59, x);
 
-		x = c("Olympiakos Piraeus", 49, "#EA656A", "#000000", null);
+		x = c("Olympiakos Piraeus", 49, "#EA656A", w, null);
 		p("A. Nikopolidis", 49, 1, 34, 84, x);
 		p("M. Żewłakow", 94, 4, 30, 68, x);
 		p("A. Ouaddou", 80, 2, 27, 78, x);
@@ -6822,7 +6825,7 @@ class Fifa07Service {
 		p("N. Castillo", 120, 10, 22, 73, x);
 		p("M. Né", 30, 8, 22, 76, x);
 
-		x = c("Panathinaikos", 49, "#50A27A", "#000000", null);
+		x = c("Panathinaikos", 49, "#50A27A", w, null);
 		p("M. Galinovic", 104, 1, 29, 70, x);
 		p("N. Morris", 108, 2, 25, 73, x);
 		p("L. Vintra", 49, 2, 25, 74, x);
@@ -6847,7 +6850,7 @@ class Fifa07Service {
 		p("F. Darlas", 49, 3, 22, 67, x);
 		p("S. Leontiou", 49, 3, 21, 65, x);
 
-		x = c("AEK Athens", 49, "#937E22", "#FFFFFF", null);
+		x = c("AEK Athens", 49, "#937E22", w, null);
 		p("S. Sorrentino", 60, 1, 27, 65, x);
 		p("M. Pautasso", 5, 4, 27, 65, x);
 		p("V. Moras", 49, 2, 24, 56, x);
@@ -6872,7 +6875,7 @@ class Fifa07Service {
 		p("G. Manduca", 16, 14, 26, 66, x);
 		p("Y. Alexopoulos", 49, 2, 29, 49, x);
 
-		x = c("PAOK", 49, "#8D8779", "#000000", null);
+		x = c("PAOK", 49, "#8D8779", w, null);
 		p("D. Fernandes", 95, 1, 22, 54, x);
 		p("C. Zegarra", 93, 13, 29, 65, x);
 		p("N. Arambatzis", 49, 2, 21, 58, x);
@@ -6897,7 +6900,7 @@ class Fifa07Service {
 		p("C. Barcauan", 97, 2, 27, 68, x);
 		p("S. Tsoulakos", 49, 15, 18, 60, x);
 
-		x = c("Inter", 60, "#14329E", "#FFFFFF", null);
+		x = c("Inter", 60, "#14329E", w, null);
 		p("Júlio César", 16, 1, 26, 79, x);
 		p("J. Zanetti", 5, 6, 32, 86, x);
 		p("I. Córdoba", 26, 3, 29, 82, x);
@@ -6924,7 +6927,7 @@ class Fifa07Service {
 		p("J. Cruz", 5, 15, 31, 84, x);
 		p("B. Valerio", 60, 2, 32, 83, x);
 
-		x = c("Milan", 60, "#7A283D", "#FFFFFF", null);
+		x = c("Milan", 60, "#7A283D", w, null);
 		p("Dida", 16, 1, 32, 88, x);
 		p("Cafu", 16, 4, 36, 83, x);
 		p("A. Nesta", 60, 2, 30, 91, x);
@@ -6950,7 +6953,7 @@ class Fifa07Service {
 		p("J. Vogel", 112, 8, 29, 74, x);
 		p("A. Costacurta", 60, 2, 40, 77, x);
 
-		x = c("Roma", 60, "#9E5B2B", "#FFFFFF", null);
+		x = c("Roma", 60, "#9E5B2B", w, null);
 		p("Doni", 16, 1, 26, 71, x);
 		p("C. Panucci", 60, 4, 33, 77, x);
 		p("P. Mexès", 43, 2, 24, 84, x);
@@ -6975,7 +6978,7 @@ class Fifa07Service {
 		p("M. Ferrari", 60, 2, 26, 73, x);
 		p("A. Rosi", 60, 5, 19, 67, x);
 
-		x = c("Fiorentina", 60, "#895688", "#FFFFFF", null);
+		x = c("Fiorentina", 60, "#895688", w, null);
 		p("S. Frey", 43, 1, 26, 82, x);
 		p("T. Ujfalusi", 34, 2, 28, 82, x);
 		p("D. Dainelli", 60, 2, 27, 77, x);
@@ -7000,7 +7003,7 @@ class Fifa07Service {
 		p("M. Gobbi", 60, 8, 26, 69, x);
 		p("V. Avramov", 104, 1, 27, 71, x);
 
-		x = c("Lazio", 60, "#C6C69D", "#000000", null);
+		x = c("Lazio", 60, "#C6C69D", w, null);
 		p("A. Peruzzi", 60, 1, 36, 83, x);
 		p("M. Oddo", 60, 6, 30, 80, x);
 		p("S. Siviglia", 60, 2, 33, 73, x);
@@ -7025,7 +7028,7 @@ class Fifa07Service {
 		p("R. Baronio", 60, 8, 28, 78, x);
 		p("M. Diakitè", 43, 2, 19, 77, x);
 
-		x = c("Palermo", 60, "#8E8576", "#000000", null);
+		x = c("Palermo", 60, "#8E8576", w, null);
 		p("F. Agliardi", 60, 1, 23, 71, x);
 		p("C. Zaccardo", 60, 4, 24, 81, x);
 		p("C. Bovo", 60, 2, 23, 70, x);
@@ -7050,7 +7053,7 @@ class Fifa07Service {
 		p("R. Guana", 60, 9, 25, 73, x);
 		p("D. Godeas", 60, 15, 30, 73, x);
 
-		x = c("Torino", 60, "#AD6144", "#FFFFFF", null);
+		x = c("Torino", 60, "#AD6144", w, null);
 		p("C. Abbiati", 60, 1, 28, 85, x);
 		p("G. Comotto", 60, 6, 28, 72, x);
 		p("I. Franceschini", 60, 2, 29, 77, x);
@@ -7075,7 +7078,7 @@ class Fifa07Service {
 		p("A. Pagotto", 60, 1, 32, 62, x);
 		p("M. Di Loreto", 60, 2, 31, 78, x);
 
-		x = c("Chievo", 60, "#A09035", "#000000", null);
+		x = c("Chievo", 60, "#A09035", w, null);
 		p("V. Sicignano", 60, 1, 31, 82, x);
 		p("F. Moro", 60, 4, 30, 74, x);
 		p("D. Mandelli", 60, 2, 29, 74, x);
@@ -7100,7 +7103,7 @@ class Fifa07Service {
 		p("M. Marcolini", 60, 8, 30, 65, x);
 		p("V. Obinna", 85, 14, 19, 74, x);
 
-		x = c("Sampdoria", 60, "#466390", "#FFFFFF", null);
+		x = c("Sampdoria", 60, "#466390", w, null);
 		p("L. Castellazzi", 60, 1, 30, 71, x);
 		p("C. Zenoni", 60, 13, 29, 72, x);
 		p("A. Palombo", 60, 9, 24, 76, x);
@@ -7125,7 +7128,7 @@ class Fifa07Service {
 		p("P. Accardi", 60, 3, 23, 66, x);
 		p("S. Foti", 60, 15, 17, 74, x);
 
-		x = c("Udinese", 60, "#8C8467", "#000000", null);
+		x = c("Udinese", 60, "#8C8467", w, null);
 		p("M. De Sanctis", 60, 1, 29, 80, x);
 		p("D. Zenoni", 60, 10, 29, 77, x);
 		p("C. Natali", 60, 2, 27, 74, x);
@@ -7149,7 +7152,7 @@ class Fifa07Service {
 		p("P. Morosini", 60, 8, 19, 58, x);
 		p("G. Paoletti", 60, 1, 28, 47, x);
 
-		x = c("Livorno", 60, "#934A48", "#FFFFFF", null);
+		x = c("Livorno", 60, "#934A48", w, null);
 		p("M. Amelia", 60, 1, 24, 83, x);
 		p("D. Balleri", 60, 2, 37, 79, x);
 		p("F. Galante", 60, 2, 32, 78, x);
@@ -7173,7 +7176,7 @@ class Fifa07Service {
 		p("I. Bakayoko", 30, 15, 29, 62, x);
 		p("Filippini A.", 60, 8, 32, 73, x);
 
-		x = c("Parma", 60, "#6A6555", "#FFFFFF", null);
+		x = c("Parma", 60, "#6A6555", w, null);
 		p("L. Bucci", 60, 1, 37, 72, x);
 		p("F. Coly", 103, 4, 32, 71, x);
 		p("Couto", 95, 2, 36, 82, x);
@@ -7198,7 +7201,7 @@ class Fifa07Service {
 		p("A. Bocchetti", 60, 3, 26, 57, x);
 		p("F. Virgili", 60, 1, 20, 57, x);
 
-		x = c("Siena", 60, "#C7C5BF", "#000000", null);
+		x = c("Siena", 60, "#C7C5BF", w, null);
 		p("A. Manninger", 8, 1, 29, 73, x);
 		p("V. Bertotto", 60, 4, 33, 73, x);
 		p("D. Portanova", 60, 2, 27, 73, x);
@@ -7223,7 +7226,7 @@ class Fifa07Service {
 		p("E. Brevi", 60, 8, 36, 64, x);
 		p("G. Zajc", 107, 15, 18, 68, x);
 
-		x = c("Cagliari", 60, "#80475D", "#FFFFFF", null);
+		x = c("Cagliari", 60, "#80475D", w, null);
 		p("A. Chimenti", 60, 1, 36, 73, x);
 		p("F. Pisano", 60, 4, 20, 74, x);
 		p("M. Canini", 60, 3, 21, 66, x);
@@ -7248,7 +7251,7 @@ class Fifa07Service {
 		p("A. Cossu", 60, 15, 26, 64, x);
 		p("A. Cocco", 60, 15, 20, 66, x);
 
-		x = c("Ascoli", 60, "#9D5949", "#FFFFFF", null);
+		x = c("Ascoli", 60, "#9D5949", w, null);
 		p("G. Pagliuca", 60, 1, 39, 75, x);
 		p("P. Foglio", 60, 2, 30, 76, x);
 		p("M. Pecorari", 60, 2, 28, 61, x);
@@ -7273,7 +7276,7 @@ class Fifa07Service {
 		p("S. Pesce", 60, 8, 23, 64, x);
 		p("D. Raffaello", 60, 15, 18, 57, x);
 
-		x = c("Empoli", 60, "#4F78AE", "#FFFFFF", null);
+		x = c("Empoli", 60, "#4F78AE", w, null);
 		p("D. Balli", 60, 1, 38, 71, x);
 		p("S. Lucchini", 60, 2, 25, 70, x);
 		p("A. Raggi", 60, 2, 22, 68, x);
@@ -7298,7 +7301,7 @@ class Fifa07Service {
 		p("D. Matteini", 60, 15, 24, 63, x);
 		p("D. Buzzegoli", 60, 8, 23, 59, x);
 
-		x = c("Atalanta", 60, "#566787", "#FFFFFF", null);
+		x = c("Atalanta", 60, "#566787", w, null);
 		p("A. Calderoni", 60, 1, 30, 73, x);
 		p("Adriano", 16, 2, 24, 66, x);
 		p("S. Loria", 60, 5, 29, 72, x);
@@ -7323,7 +7326,7 @@ class Fifa07Service {
 		p("F. Tissone", 5, 8, 19, 67, x);
 		p("A. Ferrari", 60, 1, 20, 49, x);
 
-		x = c("ACR Messina", 60, "#D5A37D", "#000000", null);
+		x = c("ACR Messina", 60, "#D5A37D", w, null);
 		p("M. Storari", 60, 1, 28, 68, x);
 		p("F. Cristante", 60, 2, 29, 73, x);
 		p("Zoro", 30, 2, 25, 67, x);
@@ -7348,7 +7351,7 @@ class Fifa07Service {
 		p("G. Ferla", 60, 1, 18, 63, x);
 		p("G. Calà", 60, 2, 17, 52, x);
 
-		x = c("Catania", 60, "#926F8A", "#FFFFFF", null);
+		x = c("Catania", 60, "#926F8A", w, null);
 		p("A. Pantanelli", 60, 1, 35, 66, x);
 		p("C. Silvestri", 60, 6, 31, 63, x);
 		p("P. Bianco", 60, 2, 28, 68, x);
@@ -7373,7 +7376,7 @@ class Fifa07Service {
 		p("M. Biso", 60, 8, 29, 51, x);
 		p("R. Nardini", 60, 5, 23, 43, x);
 
-		x = c("Reggina", 60, "#724434", "#FFFFFF", null);
+		x = c("Reggina", 60, "#724434", w, null);
 		p("I. Pelizzoli", 60, 1, 25, 75, x);
 		p("M. Lanzaro", 60, 2, 24, 74, x);
 		p("G. De Rosa", 60, 4, 33, 81, x);
@@ -7398,7 +7401,7 @@ class Fifa07Service {
 		p("F. Ceravolo", 60, 14, 19, 59, x);
 		p("S. Missiroli", 60, 11, 20, 67, x);
 
-		x = c("Juventus", 60, "#C3C3C3", "#000000", null);
+		x = c("Juventus", 60, "#C3C3C3", w, null);
 		p("G. Buffon", 60, 1, 28, 93, x);
 		p("J. Zebina", 43, 6, 27, 73, x);
 		p("A. Birindelli", 60, 4, 31, 75, x);
@@ -7423,7 +7426,7 @@ class Fifa07Service {
 		p("N. Legrottaglie", 60, 2, 28, 75, x);
 		p("C. Marchisio", 60, 8, 20, 69, x);
 
-		x = c("Bologna", 60, "#704E5D", "#FFFFFF", null);
+		x = c("Bologna", 60, "#704E5D", w, null);
 		p("F. Antonioli", 60, 1, 36, 64, x);
 		p("D. Daino", 60, 4, 29, 63, x);
 		p("L. Mezzano", 60, 2, 28, 68, x);
@@ -7446,7 +7449,7 @@ class Fifa07Service {
 		p("V. Smit", 104, 3, 26, 56, x);
 		p("E. Brioschi", 60, 4, 31, 64, x);
 
-		x = c("Genoa", 60, "#8D5627", "#FFFFFF", null);
+		x = c("Genoa", 60, "#8D5627", w, null);
 		p("Rubinho", 16, 1, 23, 71, x);
 		p("F. Bega", 60, 2, 31, 69, x);
 		p("C. Stellini", 60, 5, 32, 65, x);
@@ -7469,7 +7472,7 @@ class Fifa07Service {
 		p("L. Fusco", 60, 2, 28, 59, x);
 		p("M. Tarallo", 60, 15, 25, 63, x);
 
-		x = c("Napoli", 60, "#52627C", "#FFFFFF", null);
+		x = c("Napoli", 60, "#52627C", w, null);
 		p("G. Iezzo", 60, 1, 32, 70, x);
 		p("R. Maldonado", 92, 2, 26, 65, x);
 		p("P. Cannavaro", 60, 2, 25, 76, x);
@@ -7492,7 +7495,7 @@ class Fifa07Service {
 		p("J. Inacio Pia'", 16, 15, 24, 68, x);
 		p("G. Schettino", 60, 7, 22, 52, x);
 
-		x = c("Lecce", 60, "#407380", "#FFFFFF", null);
+		x = c("Lecce", 60, "#407380", w, null);
 		p("F. Benussi", 60, 1, 24, 70, x);
 		p("M. Angelo", 16, 4, 25, 69, x);
 		p("S. Diamoutene", 76, 4, 23, 70, x);
@@ -7515,7 +7518,7 @@ class Fifa07Service {
 		p("C. Arrieta", 60, 4, 26, 62, x);
 		p("P. Osvaldo", 5, 14, 20, 58, x);
 
-		x = c("Brescia", 60, "#789CAE", "#000000", null);
+		x = c("Brescia", 60, "#789CAE", w, null);
 		p("M. Ambrosio", 60, 1, 33, 74, x);
 		p("G. Martínez", 29, 4, 26, 69, x);
 		p("D. Zoboli", 60, 2, 24, 66, x);
@@ -7538,7 +7541,7 @@ class Fifa07Service {
 		p("S. Nsereko", 47, 10, 16, 63, x);
 		p("S. Dallamano", 60, 2, 22, 56, x);
 
-		x = c("Bari 1908", 60, "#A33E3F", "#FFFFFF", null);
+		x = c("Bari 1908", 60, "#A33E3F", w, null);
 		p("J. Gillet", 12, 1, 27, 66, x);
 		p("M. Anaclerio", 60, 4, 24, 63, x);
 		p("M. Esposito", 60, 4, 26, 62, x);
@@ -7561,7 +7564,7 @@ class Fifa07Service {
 		p("M. Fusani", 60, 8, 26, 69, x);
 		p("C. Gervasoni", 60, 2, 24, 52, x);
 
-		x = c("Cesena", 60, "#9B9B9B", "#000000", null);
+		x = c("Cesena", 60, "#9B9B9B", w, null);
 		p("L. Turci", 60, 1, 36, 75, x);
 		p("R. Biserni", 60, 7, 27, 57, x);
 		p("M. Zaninelli", 60, 2, 29, 68, x);
@@ -7584,7 +7587,7 @@ class Fifa07Service {
 		p("N. Ravaglia", 60, 1, 17, 52, x);
 		p("M. Arrigoni", 60, 4, 17, 58, x);
 
-		x = c("Treviso", 60, "#BC763A", "#000000", null);
+		x = c("Treviso", 60, "#BC763A", w, null);
 		p("A. Zancopé", 60, 1, 34, 64, x);
 		p("M. Mallus", 60, 4, 21, 58, x);
 		p("R. Gissi", 60, 2, 26, 52, x);
@@ -7607,7 +7610,7 @@ class Fifa07Service {
 		p("R. Chiappara", 60, 10, 32, 63, x);
 		p("Wilker", 16, 15, 19, 53, x);
 
-		x = c("Rimini", 60, "#AE6B73", "#FFFFFF", null);
+		x = c("Rimini", 60, "#AE6B73", w, null);
 		p("S. Handanovic", 107, 1, 22, 71, x);
 		p("R. Vitiello", 60, 3, 23, 58, x);
 		p("E. Milone", 60, 2, 30, 67, x);
@@ -7629,7 +7632,7 @@ class Fifa07Service {
 		p("A. Barusso", 48, 10, 21, 55, x);
 		p("R. Bischeri", 60, 12, 25, 60, x);
 
-		x = c("Mantova", 60, "#B54D50", "#FFFFFF", null);
+		x = c("Mantova", 60, "#B54D50", w, null);
 		p("P. Brivio", 60, 1, 37, 61, x);
 		p("S. Sacchetti", 60, 6, 33, 65, x);
 		p("D. Mezzanotti", 60, 2, 35, 64, x);
@@ -7652,7 +7655,7 @@ class Fifa07Service {
 		p("L. Franchini", 60, 2, 22, 47, x);
 		p("A. Valentini", 60, 1, 18, 47, x);
 
-		x = c("Vicenza", 60, "#F0585A", "#000000", null);
+		x = c("Vicenza", 60, "#F0585A", w, null);
 		p("M. Guardalben", 60, 1, 32, 73, x);
 		p("D. Martinelli", 60, 8, 24, 66, x);
 		p("F. Scardina", 60, 2, 24, 56, x);
@@ -7675,7 +7678,7 @@ class Fifa07Service {
 		p("N. Spironelli", 60, 1, 17, 55, x);
 		p("L. Vitiello", 60, 8, 20, 58, x);
 
-		x = c("Arezzo", 60, "#7C6A63", "#FFFFFF", null);
+		x = c("Arezzo", 60, "#7C6A63", w, null);
 		p("N. Bremec", 109, 1, 28, 61, x);
 		p("F. Galeoto", 60, 2, 34, 61, x);
 		p("E. Terra", 60, 3, 28, 61, x);
@@ -7698,7 +7701,7 @@ class Fifa07Service {
 		p("S. Lombardi", 60, 7, 29, 44, x);
 		p("F. Viviani", 60, 11, 24, 61, x);
 
-		x = c("Modena", 60, "#575033", "#FFFFFF", null);
+		x = c("Modena", 60, "#575033", w, null);
 		p("G. Frezzolini", 60, 1, 30, 61, x);
 		p("N. Frey", 60, 2, 22, 71, x);
 		p("L. Ungari", 60, 2, 31, 67, x);
@@ -7721,7 +7724,7 @@ class Fifa07Service {
 		p("C. Luisi", 60, 7, 29, 52, x);
 		p("M. Bellesia", 60, 11, 19, 49, x);
 
-		x = c("Triestina", 60, "#DD304A", "#FFFFFF", null);
+		x = c("Triestina", 60, "#DD304A", w, null);
 		p("G. Rossi", 60, 1, 27, 61, x);
 		p("M. Pivotto", 60, 2, 31, 66, x);
 		p("Lima", 3, 2, 26, 62, x);
@@ -7744,7 +7747,7 @@ class Fifa07Service {
 		p("L. Rossetti", 60, 9, 25, 59, x);
 		p("P. Kalambay", 60, 8, 22, 52, x);
 
-		x = c("Crotone", 60, "#535065", "#FFFFFF", null);
+		x = c("Crotone", 60, "#535065", w, null);
 		p("S. Soviero", 60, 1, 32, 68, x);
 		p("F. Rossi", 60, 2, 28, 43, x);
 		p("N. Petrilli", 60, 7, 19, 42, x);
@@ -7767,7 +7770,7 @@ class Fifa07Service {
 		p("G. Plasmati", 60, 15, 23, 61, x);
 		p("S. Piocelle", 43, 10, 27, 68, x);
 
-		x = c("Pescara", 60, "#346F99", "#FFFFFF", null);
+		x = c("Pescara", 60, "#346F99", w, null);
 		p("M. Tardioli", 60, 1, 35, 66, x);
 		p("D. Delli Carri", 60, 4, 34, 66, x);
 		p("N. Gonnella", 60, 2, 30, 65, x);
@@ -7790,7 +7793,7 @@ class Fifa07Service {
 		p("M. De Martis", 60, 2, 31, 58, x);
 		p("I. Vellucci", 60, 14, 19, 53, x);
 
-		x = c("Piacenza", 60, "#E9544D", "#000000", null);
+		x = c("Piacenza", 60, "#E9544D", w, null);
 		p("M. Cassano", 60, 1, 22, 60, x);
 		p("A. Nef", 112, 4, 24, 60, x);
 		p("H. Campagnaro", 60, 2, 26, 60, x);
@@ -7813,7 +7816,7 @@ class Fifa07Service {
 		p("M. Stella", 60, 11, 25, 55, x);
 		p("T. Bianchi", 60, 8, 17, 40, x);
 
-		x = c("Spezia", 60, "#B4B4B4", "#000000", null);
+		x = c("Spezia", 60, "#B4B4B4", w, null);
 		p("N. Santoni", 60, 1, 27, 74, x);
 		p("D. Addona", 60, 4, 23, 52, x);
 		p("R. Maltagliati", 60, 2, 37, 65, x);
@@ -7836,7 +7839,7 @@ class Fifa07Service {
 		p("M. Pelatti", 60, 14, 28, 61, x);
 		p("M. Varricchio", 60, 15, 29, 56, x);
 
-		x = c("Hellas Verona", 60, "#344F59", "#FFFFFF", null);
+		x = c("Hellas Verona", 60, "#344F59", w, null);
 		p("G. Pegolo", 60, 1, 25, 59, x);
 		p("L. Sibilano", 60, 2, 28, 69, x);
 		p("M. Turati", 60, 2, 24, 61, x);
@@ -7859,7 +7862,7 @@ class Fifa07Service {
 		p("L. Greco", 60, 8, 19, 52, x);
 		p("William", 16, 15, 28, 69, x);
 
-		x = c("AlbinoLeffe", 60, "#95ADCA", "#000000", null);
+		x = c("AlbinoLeffe", 60, "#95ADCA", w, null);
 		p("P. Acerbis", 60, 1, 25, 73, x);
 		p("R. Colombo", 60, 2, 23, 59, x);
 		p("A. Dal Canto", 60, 4, 31, 62, x);
@@ -7882,7 +7885,7 @@ class Fifa07Service {
 		p("A. Cristiano", 60, 14, 21, 56, x);
 		p("N. Ferrari", 60, 15, 22, 49, x);
 
-		x = c("Frosinone", 60, "#6F8E86", "#000000", null);
+		x = c("Frosinone", 60, "#6F8E86", w, null);
 		p("M. Zappino", 60, 1, 25, 54, x);
 		p("N. Pagani", 60, 4, 28, 54, x);
 		p("A. Mengoni", 60, 2, 22, 62, x);
@@ -7905,7 +7908,7 @@ class Fifa07Service {
 		p("M. Carlini", 60, 10, 19, 51, x);
 		p("V. Di Bari", 60, 2, 23, 52, x);
 
-		x = c("Ajax", 83, "#C6A5AA", "#000000", null);
+		x = c("Ajax", 83, "#C6A5AA", w, null);
 		p("M. Stekelenburg", 83, 1, 23, 76, x);
 		p("J. Heitinga", 83, 2, 22, 76, x);
 		p("J. Stam", 83, 2, 33, 86, x);
@@ -7932,7 +7935,7 @@ class Fifa07Service {
 		p("G. Ogararu", 97, 4, 26, 68, x);
 		p("J. Vertonghen", 83, 8, 19, 67, x);
 
-		x = c("PSV", 83, "#D38D74", "#000000", null);
+		x = c("PSV", 83, "#D38D74", w, null);
 		p("Gomes", 16, 1, 25, 81, x);
 		p("M. Lamey", 83, 2, 26, 74, x);
 		p("E. Addo", 48, 2, 27, 73, x);
@@ -7957,7 +7960,7 @@ class Fifa07Service {
 		p("M. Reiziger", 83, 4, 33, 79, x);
 		p("Lee Nguyen", 119, 14, 19, 60, x);
 
-		x = c("Feyenoord", 83, "#9D8562", "#000000", null);
+		x = c("Feyenoord", 83, "#9D8562", w, null);
 		p("H. Timmer", 83, 1, 34, 73, x);
 		p("S. Greene", 83, 2, 24, 76, x);
 		p("R. Vlaar", 83, 2, 21, 79, x);
@@ -7982,7 +7985,7 @@ class Fifa07Service {
 		p("A. Boussaboun", 80, 14, 27, 69, x);
 		p("S. Pardo", 24, 9, 24, 72, x);
 
-		x = c("AZ Alkmaar", 83, "#782332", "#FFFFFF", null);
+		x = c("AZ Alkmaar", 83, "#782332", w, null);
 		p("Joey Didulica", 31, 1, 28, 74, x);
 		p("D. Mendes da Silva", 83, 4, 23, 67, x);
 		p("K. Jaliens", 83, 2, 27, 69, x);
@@ -8007,7 +8010,7 @@ class Fifa07Service {
 		p("P. Ikedia", 85, 14, 25, 70, x);
 		p("J. Lens", 83, 15, 18, 57, x);
 
-		x = c("NAC Breda", 83, "#5D5527", "#FFFFFF", null);
+		x = c("NAC Breda", 83, "#5D5527", w, null);
 		p("E. Zoetebier", 83, 1, 36, 63, x);
 		p("K. Elshot", 110, 4, 28, 61, x);
 		p("R. Penders", 83, 2, 30, 74, x);
@@ -8032,7 +8035,7 @@ class Fifa07Service {
 		p("M. Rigters", 83, 15, 22, 60, x);
 		p("R. Veenstra", 83, 15, 18, 56, x);
 
-		x = c("FC Utrecht", 83, "#823A41", "#FFFFFF", null);
+		x = c("FC Utrecht", 83, "#823A41", w, null);
 		p("M. Vorm", 83, 1, 22, 70, x);
 		p("D. Tiendalli", 83, 10, 20, 62, x);
 		p("A. Schut", 83, 2, 25, 69, x);
@@ -8057,7 +8060,7 @@ class Fifa07Service {
 		p("J. Terol", 83, 1, 26, 69, x);
 		p("N. Maachi", 83, 14, 20, 62, x);
 
-		x = c("FC Twente", 83, "#E32C44", "#FFFFFF", null);
+		x = c("FC Twente", 83, "#E32C44", w, null);
 		p("S. Boschker", 83, 1, 35, 76, x);
 		p("R. Wielaert", 83, 2, 27, 68, x);
 		p("P. Niemeyer", 47, 2, 22, 63, x);
@@ -8082,7 +8085,7 @@ class Fifa07Service {
 		p("B. Sibum", 83, 8, 23, 64, x);
 		p("L. Wilkshire", 7, 13, 24, 66, x);
 
-		x = c("Vitesse", 83, "#8A7A34", "#FFFFFF", null);
+		x = c("Vitesse", 83, "#8A7A34", w, null);
 		p("H. Wapenaar", 83, 1, 36, 71, x);
 		p("G. Swerts", 12, 10, 23, 67, x);
 		p("R. Knol", 83, 2, 25, 69, x);
@@ -8107,7 +8110,7 @@ class Fifa07Service {
 		p("P. Fränkel", 110, 12, 29, 67, x);
 		p("C. Van Mourik", 83, 13, 20, 52, x);
 
-		x = c("SC Heerenveen", 83, "#657FAF", "#FFFFFF", null);
+		x = c("SC Heerenveen", 83, "#657FAF", w, null);
 		p("B. Vandenbussche", 12, 1, 24, 69, x);
 		p("G. Zuiverloon", 83, 4, 19, 68, x);
 		p("P. Hansson", 111, 2, 29, 68, x);
@@ -8132,7 +8135,7 @@ class Fifa07Service {
 		p("B. Waterman", 83, 1, 22, 66, x);
 		p("A. Boersma", 83, 15, 24, 58, x);
 
-		x = c("Roda JC Kerkrade", 83, "#D1B525", "#000000", null);
+		x = c("Roda JC Kerkrade", 83, "#D1B525", w, null);
 		p("V. Kujovic", 104, 1, 27, 68, x);
 		p("D. De Fauw", 12, 4, 24, 62, x);
 		p("P. Kah", 88, 2, 25, 73, x);
@@ -8157,7 +8160,7 @@ class Fifa07Service {
 		p("H. Rudge", 83, 2, 28, 69, x);
 		p("O. Rompelberg", 83, 4, 19, 54, x);
 
-		x = c("NEC", 83, "#8D7A70", "#FFFFFF", null);
+		x = c("NEC", 83, "#8D7A70", w, null);
 		p("G. Babos", 56, 1, 31, 76, x);
 		p("M. Nalbantoglu", 83, 4, 22, 62, x);
 		p("P. Wisgerhof", 83, 2, 26, 71, x);
@@ -8180,7 +8183,7 @@ class Fifa07Service {
 		p("R. Worm", 83, 11, 20, 61, x);
 		p("B. Bakker", 83, 2, 20, 59, x);
 
-		x = c("Willem II", 83, "#AC7344", "#FFFFFF", null);
+		x = c("Willem II", 83, "#AC7344", w, null);
 		p("T. Peersman", 12, 1, 26, 68, x);
 		p("N. Wau", 83, 4, 25, 67, x);
 		p("T. Bælum", 35, 2, 28, 71, x);
@@ -8205,7 +8208,7 @@ class Fifa07Service {
 		p("R. Holman", 83, 2, 19, 55, x);
 		p("S. Nieuwendaal", 83, 8, 20, 59, x);
 
-		x = c("FC Groningen", 83, "#219C6F", "#000000", null);
+		x = c("FC Groningen", 83, "#219C6F", w, null);
 		p("B. Roorda", 83, 1, 33, 67, x);
 		p("Bruno Silva", 120, 4, 26, 63, x);
 		p("G. Sankoh", 105, 2, 23, 63, x);
@@ -8228,7 +8231,7 @@ class Fifa07Service {
 		p("O. Svejdik", 34, 2, 23, 56, x);
 		p("D. Holla", 83, 8, 18, 58, x);
 
-		x = c("ADO Den Haag", 83, "#5D8724", "#FFFFFF", null);
+		x = c("ADO Den Haag", 83, "#5D8724", w, null);
 		p("S. Postma", 83, 1, 29, 71, x);
 		p("S. Vreven", 12, 4, 32, 67, x);
 		p("A. Martha", 83, 2, 24, 62, x);
@@ -8253,7 +8256,7 @@ class Fifa07Service {
 		p("D. Rijaard", 83, 6, 29, 65, x);
 		p("R. Zwinkels", 83, 1, 23, 58, x);
 
-		x = c("Heracles Almelo", 83, "#949A9C", "#000000", null);
+		x = c("Heracles Almelo", 83, "#949A9C", w, null);
 		p("M. Pieckenhagen", 47, 1, 34, 69, x);
 		p("R. de Vries", 83, 8, 26, 65, x);
 		p("P. Reekers", 83, 4, 24, 64, x);
@@ -8277,7 +8280,7 @@ class Fifa07Service {
 		p("M. Smit", 83, 4, 30, 64, x);
 		p("M. Höcher", 83, 11, 21, 58, x);
 
-		x = c("Sparta Rotterdam", 83, "#9D8973", "#000000", null);
+		x = c("Sparta Rotterdam", 83, "#9D8973", w, null);
 		p("R. Ponk", 83, 1, 34, 68, x);
 		p("S. De Roover", 12, 6, 21, 52, x);
 		p("S. Olfers", 83, 2, 24, 65, x);
@@ -8302,7 +8305,7 @@ class Fifa07Service {
 		p("A. Ayodele", 85, 2, 17, 49, x);
 		p("E. van Bueren", 83, 7, 28, 52, x);
 
-		x = c("RKC Waalwijk", 83, "#ABB565", "#000000", null);
+		x = c("RKC Waalwijk", 83, "#ABB565", w, null);
 		p("R. van Dijk", 83, 1, 37, 72, x);
 		p("P. van Diemen", 83, 8, 34, 72, x);
 		p("V. Teixeira", 83, 2, 32, 66, x);
@@ -8325,7 +8328,7 @@ class Fifa07Service {
 		p("R. Donk", 83, 2, 20, 58, x);
 		p("F. van Mosselveld", 83, 2, 22, 64, x);
 
-		x = c("Excelsior", 83, "#C45D69", "#FFFFFF", null);
+		x = c("Excelsior", 83, "#C45D69", w, null);
 		p("T. Zwarthoed", 83, 1, 23, 63, x);
 		p("S. Bandjar", 83, 4, 21, 59, x);
 		p("C. Gyan", 48, 4, 27, 64, x);
@@ -8350,7 +8353,7 @@ class Fifa07Service {
 		p("G. Rothman", 83, 11, 22, 51, x);
 		p("R. Buikema", 83, 9, 30, 64, x);
 
-		x = c("Brann", 88, "#EE7A7F", "#000000", null);
+		x = c("Brann", 88, "#EE7A7F", w, null);
 		p("H. Opdal", 88, 1, 24, 71, x);
 		p("B. Dahl", 88, 6, 28, 67, x);
 		p("Ó. Bjarnason", 57, 2, 31, 70, x);
@@ -8373,7 +8376,7 @@ class Fifa07Service {
 		p("A. Björnsson", 57, 2, 24, 69, x);
 		p("M. Memelli", 1, 15, 26, 59, x);
 
-		x = c("Vålerenga", 88, "#5972A9", "#FFFFFF", null);
+		x = c("Vålerenga", 88, "#5972A9", w, null);
 		p("Á. Arason", 57, 1, 31, 73, x);
 		p("J. Storbæk", 88, 6, 27, 68, x);
 		p("R. Johnsen", 88, 2, 37, 74, x);
@@ -8398,7 +8401,7 @@ class Fifa07Service {
 		p("M. Fellah", 88, 11, 17, 60, x);
 		p("J. Horn", 88, 2, 19, 61, x);
 
-		x = c("Rosenborg", 88, "#939393", "#000000", null);
+		x = c("Rosenborg", 88, "#939393", w, null);
 		p("L. Hirschfeld", 22, 1, 27, 71, x);
 		p("C. Basma", 88, 4, 33, 67, x);
 		p("B. Kvarme", 88, 2, 34, 69, x);
@@ -8423,7 +8426,7 @@ class Fifa07Service {
 		p("E. Johnsen", 88, 1, 26, 67, x);
 		p("S. Mathisen", 88, 2, 18, 52, x);
 
-		x = c("Lillestrøm", 88, "#7D6B06", "#FFFFFF", null);
+		x = c("Lillestrøm", 88, "#7D6B06", w, null);
 		p("H. Müller", 47, 1, 28, 66, x);
 		p("D. Johansen", 35, 4, 26, 63, x);
 		p("A. Rambekk", 88, 8, 29, 65, x);
@@ -8446,7 +8449,7 @@ class Fifa07Service {
 		p("E. Bertheussen", 88, 2, 22, 61, x);
 		p("C. Kali", 43, 4, 22, 52, x);
 
-		x = c("Viking", 88, "#8B3A2D", "#FFFFFF", null);
+		x = c("Viking", 88, "#8B3A2D", w, null);
 		p("M. Asper", 111, 1, 32, 63, x);
 		p("J. Tengesdal", 88, 6, 27, 66, x);
 		p("P. Abelsson", 111, 2, 29, 66, x);
@@ -8469,7 +8472,7 @@ class Fifa07Service {
 		p("T. Pereira", 88, 3, 32, 63, x);
 		p("K. Sola", 88, 3, 20, 57, x);
 
-		x = c("Lyn", 88, "#756A61", "#FFFFFF", null);
+		x = c("Lyn", 88, "#756A61", w, null);
 		p("E. Gustafsson", 111, 1, 29, 64, x);
 		p("R. Daugaard", 35, 4, 29, 60, x);
 		p("T. Berntsen", 88, 2, 32, 64, x);
@@ -8492,7 +8495,7 @@ class Fifa07Service {
 		p("M. Simonsen", 88, 12, 17, 54, x);
 		p("K. Madsen", 88, 2, 17, 59, x);
 
-		x = c("Start", 88, "#4885C9", "#FFFFFF", null);
+		x = c("Start", 88, "#4885C9", w, null);
 		p("R. Nilssen", 88, 1, 30, 60, x);
 		p("S. Pedersen", 88, 4, 31, 60, x);
 		p("A. Håland", 88, 2, 28, 66, x);
@@ -8517,7 +8520,7 @@ class Fifa07Service {
 		p("J. Mathisen", 88, 15, 19, 62, x);
 		p("D. Hanssen", 88, 8, 27, 58, x);
 
-		x = c("Stabæk", 88, "#817646", "#FFFFFF", null);
+		x = c("Stabæk", 88, "#817646", w, null);
 		p("J. Knudsen", 88, 1, 31, 63, x);
 		p("M. Skjønsberg", 88, 2, 23, 63, x);
 		p("I. Olsen", 88, 2, 28, 71, x);
@@ -8540,7 +8543,7 @@ class Fifa07Service {
 		p("T. Haugstad", 88, 14, 20, 58, x);
 		p("K. Aoudia", 88, 15, 20, 62, x);
 
-		x = c("Fredrikstad", 88, "#DD5159", "#FFFFFF", null);
+		x = c("Fredrikstad", 88, "#DD5159", w, null);
 		p("R. Shaaban", 111, 1, 31, 70, x);
 		p("P. Gerrbrand", 111, 2, 25, 67, x);
 		p("T. Szekeres", 56, 3, 33, 61, x);
@@ -8563,7 +8566,7 @@ class Fifa07Service {
 		p("Y. MacDonald", 29, 15, 19, 57, x);
 		p("B. West", 119, 14, 28, 63, x);
 
-		x = c("Odd", 88, "#A2A2A2", "#000000", null);
+		x = c("Odd", 88, "#A2A2A2", w, null);
 		p("R. Jarstein", 88, 1, 21, 70, x);
 		p("P. Nilsson", 111, 2, 23, 69, x);
 		p("T. Hansén", 88, 2, 32, 59, x);
@@ -8586,7 +8589,7 @@ class Fifa07Service {
 		p("A. Rød", 88, 15, 20, 49, x);
 		p("M. Lundeberg", 88, 15, 17, 55, x);
 
-		x = c("Tromsø", 88, "#B57720", "#000000", null);
+		x = c("Tromsø", 88, "#B57720", w, null);
 		p("S. Ramovic", 47, 1, 27, 63, x);
 		p("B. Kibebe", 111, 2, 24, 62, x);
 		p("C. Steen", 88, 2, 28, 59, x);
@@ -8609,7 +8612,7 @@ class Fifa07Service {
 		p("R. Jenssen", 88, 12, 18, 55, x);
 		p("J. Walltin", 88, 8, 32, 60, x);
 
-		x = c("HamKam", 88, "#67B881", "#000000", null);
+		x = c("HamKam", 88, "#67B881", w, null);
 		p("I. Rønningen", 88, 1, 31, 68, x);
 		p("S. Cooreman", 12, 10, 29, 63, x);
 		p("J. Pasoja", 42, 2, 29, 62, x);
@@ -8632,7 +8635,7 @@ class Fifa07Service {
 		p("V. Bjerke", 88, 8, 26, 59, x);
 		p("J. Rise", 88, 3, 18, 56, x);
 
-		x = c("Molde", 88, "#2E81BC", "#FFFFFF", null);
+		x = c("Molde", 88, "#2E81BC", w, null);
 		p("J. Larsen", 88, 1, 23, 63, x);
 		p("T. Strande", 88, 4, 35, 56, x);
 		p("M. Andreasson", 111, 2, 27, 65, x);
@@ -8655,7 +8658,7 @@ class Fifa07Service {
 		p("R. Ertsås", 88, 15, 19, 56, x);
 		p("M. Bakke", 88, 6, 25, 54, x);
 
-		x = c("Sandefjord", 88, "#6E4466", "#FFFFFF", null);
+		x = c("Sandefjord", 88, "#6E4466", w, null);
 		p("E. Pettersen", 88, 1, 26, 53, x);
 		p("O. Tobiasen", 35, 2, 30, 57, x);
 		p("B. Madsen", 88, 2, 24, 59, x);
@@ -8680,7 +8683,7 @@ class Fifa07Service {
 		p("K. Arkivuo", 42, 14, 23, 57, x);
 		p("H. Nwosu", 85, 15, 26, 56, x);
 
-		x = c("Legia Warszawa", 94, "#4D7144", "#FFFFFF", null);
+		x = c("Legia Warszawa", 94, "#4D7144", w, null);
 		p("Ł. Fabiański", 94, 1, 21, 73, x);
 		p("W. Szala", 94, 4, 30, 67, x);
 		p("Hugo Alcântara", 16, 2, 26, 70, x);
@@ -8705,7 +8708,7 @@ class Fifa07Service {
 		p("M. Baldé", 103, 2, 20, 66, x);
 		p("A. Jędrzejczyk", 94, 2, 18, 56, x);
 
-		x = c("Wisła Kraków", 94, "#A17B44", "#FFFFFF", null);
+		x = c("Wisła Kraków", 94, "#A17B44", w, null);
 		p("M. Pawełek", 94, 1, 25, 71, x);
 		p("M. Baszczyński", 94, 4, 29, 69, x);
 		p("A. Głowacki", 94, 2, 27, 71, x);
@@ -8730,7 +8733,7 @@ class Fifa07Service {
 		p("M. Penksa", 106, 14, 32, 59, x);
 		p("T. Dawidowski", 94, 13, 28, 63, x);
 
-		x = c("Zagłębie Lubin", 94, "#C09E61", "#000000", null);
+		x = c("Zagłębie Lubin", 94, "#C09E61", w, null);
 		p("M. Liberda", 94, 1, 29, 66, x);
 		p("Filipe", 16, 4, 21, 61, x);
 		p("M. Stasiak", 94, 2, 25, 66, x);
@@ -8753,7 +8756,7 @@ class Fifa07Service {
 		p("T. Višević", 15, 2, 25, 56, x);
 		p("I. Sunday", 85, 8, 26, 59, x);
 
-		x = c("Korona Kielce", 94, "#9E6A16", "#FFFFFF", null);
+		x = c("Korona Kielce", 94, "#9E6A16", w, null);
 		p("M. Mielcarz", 94, 1, 25, 69, x);
 		p("P. Golański", 94, 2, 23, 57, x);
 		p("Hernani", 16, 2, 22, 67, x);
@@ -8776,7 +8779,7 @@ class Fifa07Service {
 		p("M. Kowalczyk", 94, 15, 29, 59, x);
 		p("M. Drzymont", 94, 2, 24, 63, x);
 
-		x = c("Wisła Płock", 94, "#4D80C7", "#FFFFFF", null);
+		x = c("Wisła Płock", 94, "#4D80C7", w, null);
 		p("R. Gubiec", 94, 1, 27, 63, x);
 		p("N. Zivković", 104, 4, 27, 61, x);
 		p("Ž. Belada", 104, 2, 29, 60, x);
@@ -8799,7 +8802,7 @@ class Fifa07Service {
 		p("J. Skrzypiec", 94, 1, 30, 49, x);
 		p("T. Michálek", 34, 8, 28, 58, x);
 
-		x = c("Polonia Warszawa", 94, "#A97D62", "#000000", null);
+		x = c("Polonia Warszawa", 94, "#A97D62", w, null);
 		p("S. Przyrowski", 94, 1, 24, 63, x);
 		p("V. Lazarevski", 86, 2, 23, 56, x);
 		p("R. Mynar", 34, 4, 31, 63, x);
@@ -8822,7 +8825,7 @@ class Fifa07Service {
 		p("D. Gęsior", 94, 7, 36, 68, x);
 		p("M. Lička", 34, 11, 28, 60, x);
 
-		x = c("Lech Poznań", 94, "#5786B7", "#FFFFFF", null);
+		x = c("Lech Poznań", 94, "#5786B7", w, null);
 		p("P. Linka", 94, 1, 20, 55, x);
 		p("M. Wasilewski", 94, 4, 26, 57, x);
 		p("D. Kucharski", 94, 4, 21, 55, x);
@@ -8845,7 +8848,7 @@ class Fifa07Service {
 		p("J. Wilk", 94, 9, 20, 55, x);
 		p("I. Micanski", 17, 14, 20, 64, x);
 
-		x = c("Pogoń Szczecin", 94, "#704425", "#FFFFFF", null);
+		x = c("Pogoń Szczecin", 94, "#704425", w, null);
 		p("R. Majdan", 94, 1, 34, 67, x);
 		p("Julcimar", 16, 3, 27, 60, x);
 		p("Anderson", 16, 2, 24, 62, x);
@@ -8868,7 +8871,7 @@ class Fifa07Service {
 		p("Danilo", 16, 14, 19, 60, x);
 		p("L. Éderson", 16, 15, 26, 63, x);
 
-		x = c("Cracovia Kraków", 94, "#FE6969", "#000000", null);
+		x = c("Cracovia Kraków", 94, "#FE6969", w, null);
 		p("S. Olszewski", 94, 1, 32, 63, x);
 		p("J. Wiśniewski", 94, 4, 32, 59, x);
 		p("M. Karwan", 94, 2, 27, 61, x);
@@ -8891,7 +8894,7 @@ class Fifa07Service {
 		p("T. Wacek", 94, 2, 29, 57, x);
 		p("T. Moskała", 94, 14, 29, 69, x);
 
-		x = c("Arka Gdynia", 94, "#99A878", "#000000", null);
+		x = c("Arka Gdynia", 94, "#99A878", w, null);
 		p("N. Witkowski", 94, 1, 24, 56, x);
 		p("T. Sokołowski", 94, 4, 29, 63, x);
 		p("P. Jawny", 94, 2, 34, 54, x);
@@ -8914,7 +8917,7 @@ class Fifa07Service {
 		p("G. Niciński", 94, 15, 33, 60, x);
 		p("G. Pilch", 94, 15, 29, 59, x);
 
-		x = c("Bełchatów", 94, "#8FB62E", "#000000", null);
+		x = c("Bełchatów", 94, "#8FB62E", w, null);
 		p("Ł. Sapela", 94, 1, 23, 61, x);
 		p("G. Fonfara", 94, 4, 23, 64, x);
 		p("E. Cecot", 94, 2, 31, 63, x);
@@ -8937,7 +8940,7 @@ class Fifa07Service {
 		p("B. Hinc", 94, 10, 29, 60, x);
 		p("M. Truszkowski", 94, 15, 22, 58, x);
 
-		x = c("Górnik Zabrze", 94, "#9C6379", "#FFFFFF", null);
+		x = c("Górnik Zabrze", 94, "#9C6379", w, null);
 		p("M. Mańka", 94, 1, 28, 53, x);
 		p("B. Radler", 94, 4, 23, 61, x);
 		p("J. Cios", 94, 2, 29, 60, x);
@@ -8960,7 +8963,7 @@ class Fifa07Service {
 		p("M. Dudziński", 94, 15, 28, 57, x);
 		p("D. Jarka", 94, 15, 18, 52, x);
 
-		x = c("Górnik Łęczna", 94, "#8AB918", "#000000", null);
+		x = c("Górnik Łęczna", 94, "#8AB918", w, null);
 		p("P. Tytoń", 94, 1, 19, 59, x);
 		p("P. Kulig", 94, 4, 25, 57, x);
 		p("M. Pawelec", 94, 7, 20, 55, x);
@@ -8983,7 +8986,7 @@ class Fifa07Service {
 		p("L. Kćira", 31, 2, 23, 57, x);
 		p("V. Sandulović", 104, 2, 29, 54, x);
 
-		x = c("ŁKS Łódź", 94, "#EA4A60", "#000000", null);
+		x = c("ŁKS Łódź", 94, "#EA4A60", w, null);
 		p("B. Wyparło", 94, 1, 31, 53, x);
 		p("S. Przybyszewski", 94, 3, 25, 54, x);
 		p("T. Hajto", 94, 4, 33, 68, x);
@@ -9006,7 +9009,7 @@ class Fifa07Service {
 		p("R. Sierant", 94, 8, 23, 53, x);
 		p("T. Cerić", 15, 2, 28, 60, x);
 
-		x = c("Odra Wodzislaw Slaski", 94, "#A46C45", "#FFFFFF", null);
+		x = c("Odra Wodzislaw Slaski", 94, "#A46C45", w, null);
 		p("K. Pilarz", 94, 1, 25, 55, x);
 		p("M. Krysiński", 94, 4, 29, 58, x);
 		p("D. Dudek", 94, 7, 31, 63, x);
@@ -9029,7 +9032,7 @@ class Fifa07Service {
 		p("P. Szymiczek", 94, 2, 25, 61, x);
 		p("L. Knapp", 34, 8, 29, 52, x);
 
-		x = c("Widzew Łódź", 94, "#B19765", "#000000", null);
+		x = c("Widzew Łódź", 94, "#B19765", w, null);
 		p("B. Fabiniak", 94, 1, 23, 58, x);
 		p("R. Kłos", 94, 3, 24, 57, x);
 		p("J. Rzeźniczak", 94, 2, 19, 63, x);
@@ -9052,7 +9055,7 @@ class Fifa07Service {
 		p("P. Stawarczyk", 94, 2, 22, 53, x);
 		p("S. Napoleoni", 60, 14, 20, 59, x);
 
-		x = c("Porto", 95, "#557C8F", "#FFFFFF", null);
+		x = c("Porto", 95, "#557C8F", w, null);
 		p("Helton", 16, 1, 28, 82, x);
 		p("Bosingwa", 27, 7, 23, 71, x);
 		p("Pepe", 16, 2, 23, 77, x);
@@ -9079,7 +9082,7 @@ class Fifa07Service {
 		p("Bruno Moraes", 16, 15, 21, 70, x);
 		p("Diogo Valente", 95, 12, 21, 68, x);
 
-		x = c("Benfica", 95, "#AD9A71", "#000000", null);
+		x = c("Benfica", 95, "#AD9A71", w, null);
 		p("Moreira", 95, 1, 24, 76, x);
 		p("Nélson", 20, 4, 23, 67, x);
 		p("Luisão", 16, 2, 25, 79, x);
@@ -9104,7 +9107,7 @@ class Fifa07Service {
 		p("Mantorras", 4, 15, 24, 73, x);
 		p("Moretto", 16, 1, 28, 72, x);
 
-		x = c("Sporting CP", 95, "#288F65", "#FFFFFF", null);
+		x = c("Sporting CP", 95, "#288F65", w, null);
 		p("Ricardo", 95, 1, 30, 77, x);
 		p("Abel", 95, 4, 27, 70, x);
 		p("Tonel", 95, 2, 26, 72, x);
@@ -9130,7 +9133,7 @@ class Fifa07Service {
 		p("Douala", 21, 14, 27, 76, x);
 		p("Miguel Veloso", 95, 2, 20, 61, x);
 
-		x = c("Sporting Braga", 95, "#7D5648", "#FFFFFF", null);
+		x = c("Sporting Braga", 95, "#7D5648", w, null);
 		p("Paulo Santos", 95, 1, 33, 68, x);
 		p("Luís Filipe", 95, 4, 27, 67, x);
 		p("Paulo Jorge", 95, 2, 26, 68, x);
@@ -9155,7 +9158,7 @@ class Fifa07Service {
 		p("Carlos Fernandes", 95, 3, 28, 62, x);
 		p("Bruno Gama", 95, 11, 18, 68, x);
 
-		x = c("União de Leiria", 95, "#D66F70", "#000000", null);
+		x = c("União de Leiria", 95, "#D66F70", w, null);
 		p("Fernando", 16, 1, 27, 71, x);
 		p("Éder", 16, 4, 25, 66, x);
 		p("Marcos António", 16, 2, 23, 66, x);
@@ -9180,7 +9183,7 @@ class Fifa07Service {
 		p("Renato", 95, 2, 33, 68, x);
 		p("Hugo Faria", 95, 7, 23, 59, x);
 
-		x = c("Boavista", 95, "#979E69", "#000000", null);
+		x = c("Boavista", 95, "#979E69", w, null);
 		p("P. Jehle", 72, 1, 24, 64, x);
 		p("Marquinho", 16, 4, 23, 62, x);
 		p("K. Cissé", 43, 2, 21, 68, x);
@@ -9204,7 +9207,7 @@ class Fifa07Service {
 		p("Hugo Monteiro", 95, 13, 21, 63, x);
 		p("Ricardo Silva", 95, 2, 30, 71, x);
 
-		x = c("Nacional", 95, "#BD8F3A", "#000000", null);
+		x = c("Nacional", 95, "#BD8F3A", w, null);
 		p("D. Benaglio", 112, 1, 22, 70, x);
 		p("Patacas", 95, 4, 28, 63, x);
 		p("Ávalos", 5, 2, 28, 73, x);
@@ -9229,7 +9232,7 @@ class Fifa07Service {
 		p("Adilson", 53, 8, 23, 57, x);
 		p("Adriano", 16, 14, 20, 51, x);
 
-		x = c("Académica", 95, "#A1A1A1", "#000000", null);
+		x = c("Académica", 95, "#A1A1A1", w, null);
 		p("Pedro Roma", 95, 1, 35, 65, x);
 		p("F. Sonkaya", 116, 4, 24, 67, x);
 		p("Litos", 95, 2, 32, 72, x);
@@ -9254,7 +9257,7 @@ class Fifa07Service {
 		p("Miguel Pedro", 95, 13, 22, 67, x);
 		p("M. Pavlovic", 104, 7, 22, 65, x);
 
-		x = c("Marítimo", 95, "#956A45", "#FFFFFF", null);
+		x = c("Marítimo", 95, "#956A45", w, null);
 		p("Marcos", 16, 1, 30, 71, x);
 		p("Zé Gomes", 95, 4, 29, 62, x);
 		p("A. Von Schwedler", 24, 2, 26, 72, x);
@@ -9279,7 +9282,7 @@ class Fifa07Service {
 		p("Fernando", 95, 2, 25, 62, x);
 		p("Fábio", 16, 1, 27, 62, x);
 
-		x = c("B-SAD", 95, "#4A6C98", "#FFFFFF", null);
+		x = c("B-SAD", 95, "#4A6C98", w, null);
 		p("Costinha", 95, 1, 32, 69, x);
 		p("Amaral", 16, 4, 28, 64, x);
 		p("Rolando", 20, 2, 20, 67, x);
@@ -9303,7 +9306,7 @@ class Fifa07Service {
 		p("Eliseu", 95, 15, 22, 59, x);
 		p("Ruben Amorim", 95, 8, 21, 66, x);
 
-		x = c("Vitória FC", 95, "#76A738", "#000000", null);
+		x = c("Vitória FC", 95, "#76A738", w, null);
 		p("Marco Tábuas", 95, 1, 29, 67, x);
 		p("Janício", 20, 4, 26, 63, x);
 		p("Hugo", 95, 2, 29, 70, x);
@@ -9328,7 +9331,7 @@ class Fifa07Service {
 		p("N'Diaye", 103, 4, 23, 56, x);
 		p("Veríssimo", 95, 2, 29, 63, x);
 
-		x = c("Estrela Amadora", 95, "#B99144", "#000000", null);
+		x = c("Estrela Amadora", 95, "#B99144", w, null);
 		p("Paulo Lopes", 95, 1, 28, 63, x);
 		p("Tony", 43, 4, 25, 67, x);
 		p("Fonte", 95, 2, 22, 65, x);
@@ -9353,7 +9356,7 @@ class Fifa07Service {
 		p("Pedro Simões", 95, 7, 31, 64, x);
 		p("Jones", 16, 15, 21, 66, x);
 
-		x = c("Paços de Ferreira", 95, "#6C753D", "#FFFFFF", null);
+		x = c("Paços de Ferreira", 95, "#6C753D", w, null);
 		p("Pedro", 95, 1, 31, 58, x);
 		p("Primo", 95, 4, 29, 61, x);
 		p("Geraldo", 95, 2, 25, 60, x);
@@ -9378,7 +9381,7 @@ class Fifa07Service {
 		p("Jean Carlos", 16, 14, 27, 61, x);
 		p("Paiva", 95, 15, 19, 54, x);
 
-		x = c("Beira-Mar", 95, "#BFAC39", "#000000", null);
+		x = c("Beira-Mar", 95, "#BFAC39", w, null);
 		p("Angelov", 17, 1, 27, 63, x);
 		p("Ribeiro", 95, 4, 27, 57, x);
 		p("Jorge Silva", 95, 2, 30, 68, x);
@@ -9403,7 +9406,7 @@ class Fifa07Service {
 		p("Danrlei", 16, 1, 33, 67, x);
 		p("André Leão", 95, 8, 21, 51, x);
 
-		x = c("Naval 1º de Maio", 95, "#5E9058", "#FFFFFF", null);
+		x = c("Naval 1º de Maio", 95, "#5E9058", w, null);
 		p("Taborda", 95, 1, 28, 63, x);
 		p("Mário Sérgio", 95, 4, 24, 63, x);
 		p("Orestes", 16, 2, 25, 62, x);
@@ -9428,7 +9431,7 @@ class Fifa07Service {
 		p("Carlitos", 95, 7, 25, 57, x);
 		p("Fábio Lima", 16, 11, 25, 64, x);
 
-		x = c("Desportivo Aves", 95, "#9E7123", "#FFFFFF", null);
+		x = c("Desportivo Aves", 95, "#9E7123", w, null);
 		p("Rui Faria", 95, 1, 25, 65, x);
 		p("Sérgio Carvalho", 95, 4, 29, 62, x);
 		p("Sérgio Nunes", 95, 2, 31, 69, x);
@@ -9453,7 +9456,7 @@ class Fifa07Service {
 		p("Mércio", 16, 8, 26, 61, x);
 		p("Marcelo", 16, 9, 28, 58, x);
 
-		x = c("Celtic", 102, "#65B58F", "#000000", null);
+		x = c("Celtic", 102, "#65B58F", w, null);
 		p("A. Boruc", 94, 1, 26, 82, x);
 		p("M. Wilson", 102, 4, 22, 71, x);
 		p("D. Baldé", 52, 2, 30, 78, x);
@@ -9480,7 +9483,7 @@ class Fifa07Service {
 		p("P. Telfer", 102, 10, 34, 62, x);
 		p("E. Sno", 83, 7, 19, 55, x);
 
-		x = c("Rangers", 102, "#586DB5", "#FFFFFF", null);
+		x = c("Rangers", 102, "#586DB5", w, null);
 		p("L. Letizi", 43, 1, 33, 72, x);
 		p("P. Bardsley", 38, 2, 21, 70, x);
 		p("J. Rodriguez", 43, 2, 28, 79, x);
@@ -9507,7 +9510,7 @@ class Fifa07Service {
 		p("A. Hutton", 102, 4, 21, 66, x);
 		p("L. Martin", 38, 12, 19, 61, x);
 
-		x = c("Hearts", 102, "#B17376", "#000000", null);
+		x = c("Hearts", 102, "#B17376", w, null);
 		p("C. Gordon", 102, 1, 23, 79, x);
 		p("R. Neilson", 102, 4, 26, 70, x);
 		p("S. Pressley", 102, 2, 32, 77, x);
@@ -9532,7 +9535,7 @@ class Fifa07Service {
 		p("I. Tall", 103, 4, 25, 63, x);
 		p("M. Zaliukas", 73, 7, 22, 61, x);
 
-		x = c("Aberdeen", 102, "#E73347", "#FFFFFF", null);
+		x = c("Aberdeen", 102, "#E73347", w, null);
 		p("J. Langfield", 102, 1, 26, 57, x);
 		p("M. Hart", 102, 6, 26, 64, x);
 		p("R. Anderson", 102, 2, 27, 72, x);
@@ -9557,7 +9560,7 @@ class Fifa07Service {
 		p("K. Macaulay", 102, 8, 20, 53, x);
 		p("D. Daal", 83, 14, 21, 58, x);
 
-		x = c("Hibernian", 102, "#248755", "#FFFFFF", null);
+		x = c("Hibernian", 102, "#248755", w, null);
 		p("Z. Małkowski", 94, 1, 28, 65, x);
 		p("S. Whittaker", 102, 4, 22, 75, x);
 		p("O. Kondé", 112, 2, 26, 65, x);
@@ -9582,7 +9585,7 @@ class Fifa07Service {
 		p("G. Beuzelin", 43, 8, 27, 67, x);
 		p("M. Zemmama", 80, 8, 22, 60, x);
 
-		x = c("Kilmarnock", 102, "#72696E", "#FFFFFF", null);
+		x = c("Kilmarnock", 102, "#72696E", w, null);
 		p("G. Smith", 102, 1, 23, 57, x);
 		p("J. Fowler", 102, 6, 25, 68, x);
 		p("G. Greer", 102, 4, 25, 66, x);
@@ -9607,7 +9610,7 @@ class Fifa07Service {
 		p("S. Murray", 102, 12, 23, 68, x);
 		p("J. Adams", 102, 8, 18, 50, x);
 
-		x = c("Motherwell", 102, "#BF6E36", "#000000", null);
+		x = c("Motherwell", 102, "#BF6E36", w, null);
 		p("G. Smith", 102, 1, 23, 57, x);
 		p("M. Corrigan", 102, 4, 28, 70, x);
 		p("B. McLean", 87, 2, 21, 60, x);
@@ -9632,7 +9635,7 @@ class Fifa07Service {
 		p("S. McGarry", 102, 14, 26, 60, x);
 		p("B. Donnelly", 102, 2, 19, 55, x);
 
-		x = c("Inverness CT", 102, "#798067", "#FFFFFF", null);
+		x = c("Inverness CT", 102, "#798067", w, null);
 		p("M. Brown", 102, 1, 25, 64, x);
 		p("R. Tokely", 102, 6, 27, 67, x);
 		p("G. Munro", 102, 2, 25, 63, x);
@@ -9657,7 +9660,7 @@ class Fifa07Service {
 		p("R. McAllister", 102, 15, 17, 49, x);
 		p("S. McCaffrey", 102, 2, 27, 66, x);
 
-		x = c("Dundee United", 102, "#894416", "#FFFFFF", null);
+		x = c("Dundee United", 102, "#894416", w, null);
 		p("D. Stillie", 102, 1, 32, 62, x);
 		p("L. Mair", 102, 2, 25, 66, x);
 		p("D. McCracken", 102, 2, 24, 66, x);
@@ -9682,7 +9685,7 @@ class Fifa07Service {
 		p("G. Cameron", 102, 11, 18, 52, x);
 		p("D. Goodwillie", 102, 15, 17, 63, x);
 
-		x = c("Falkirk", 102, "#19346C", "#FFFFFF", null);
+		x = c("Falkirk", 102, "#19346C", w, null);
 		p("S. Higgins", 7, 1, 30, 63, x);
 		p("J. Ross", 102, 10, 30, 65, x);
 		p("C. Ireland", 102, 2, 30, 64, x);
@@ -9707,7 +9710,7 @@ class Fifa07Service {
 		p("R. McStay", 102, 8, 20, 56, x);
 		p("S. Arfield", 102, 9, 17, 49, x);
 
-		x = c("Dunfermline Athletic", 102, "#536E69", "#FFFFFF", null);
+		x = c("Dunfermline Athletic", 102, "#536E69", w, null);
 		p("R. McKenzie", 102, 1, 30, 62, x);
 		p("G. Shields", 102, 4, 29, 61, x);
 		p("S. Thomson", 102, 2, 34, 63, x);
@@ -9732,7 +9735,7 @@ class Fifa07Service {
 		p("N. Whelan", 38, 15, 31, 62, x);
 		p("F. Daquin", 43, 14, 27, 56, x);
 
-		x = c("St. Mirren", 102, "#A39981", "#000000", null);
+		x = c("St. Mirren", 102, "#A39981", w, null);
 		p("C. Smith", 102, 1, 20, 62, x);
 		p("D. van Zanten", 96, 6, 24, 63, x);
 		p("J. Potter", 102, 2, 26, 65, x);
@@ -9757,7 +9760,7 @@ class Fifa07Service {
 		p("R. Brittain", 102, 8, 22, 61, x);
 		p("A. Reid", 102, 6, 25, 59, x);
 
-		x = c("FC Barcelona", 109, "#AD6A2E", "#FFFFFF", null);
+		x = c("FC Barcelona", 109, "#AD6A2E", w, null);
 		p("Valdés", 109, 1, 24, 84, x);
 		p("G. Zambrotta", 60, 4, 29, 86, x);
 		p("Puyol", 109, 2, 28, 89, x);
@@ -9784,7 +9787,7 @@ class Fifa07Service {
 		p("Ezquerro", 109, 15, 29, 76, x);
 		p("G. dos Santos", 79, 11, 17, 70, x);
 
-		x = c("Real Madrid", 109, "#938D54", "#000000", null);
+		x = c("Real Madrid", 109, "#938D54", w, null);
 		p("Casillas", 109, 1, 25, 89, x);
 		p("Cicinho", 16, 4, 26, 79, x);
 		p("Sergio Ramos", 109, 2, 20, 85, x);
@@ -9811,7 +9814,7 @@ class Fifa07Service {
 		p("Juanfran", 109, 13, 21, 73, x);
 		p("Pavón", 109, 2, 26, 83, x);
 
-		x = c("Valencia", 109, "#CB914B", "#000000", null);
+		x = c("Valencia", 109, "#CB914B", w, null);
 		p("Cañizares", 109, 1, 36, 88, x);
 		p("Miguel", 95, 4, 26, 80, x);
 		p("R. Ayala", 5, 2, 33, 86, x);
@@ -9836,7 +9839,7 @@ class Fifa07Service {
 		p("S. Fiore", 60, 10, 31, 80, x);
 		p("Silva", 109, 9, 20, 77, x);
 
-		x = c("Sevilla", 109, "#C7683B", "#000000", null);
+		x = c("Sevilla", 109, "#C7683B", w, null);
 		p("Palop", 109, 1, 32, 80, x);
 		p("Daniel Alves", 16, 4, 23, 80, x);
 		p("J. Escudé", 43, 2, 26, 79, x);
@@ -9861,7 +9864,7 @@ class Fifa07Service {
 		p("Martí", 109, 8, 31, 70, x);
 		p("Duda", 95, 9, 26, 76, x);
 
-		x = c("Atlético Madrid", 109, "#9A7089", "#FFFFFF", null);
+		x = c("Atlético Madrid", 109, "#9A7089", w, null);
 		p("L. Franco", 5, 1, 29, 80, x);
 		p("G. Seitaridis", 49, 4, 25, 77, x);
 		p("Pablo", 109, 2, 24, 83, x);
@@ -9886,7 +9889,7 @@ class Fifa07Service {
 		p("Gabi", 109, 7, 22, 70, x);
 		p("Miguel", 109, 9, 20, 68, x);
 
-		x = c("Osasuna", 109, "#95633E", "#FFFFFF", null);
+		x = c("Osasuna", 109, "#95633E", w, null);
 		p("Ricardo", 109, 1, 34, 83, x);
 		p("Javi Flaño", 109, 4, 21, 70, x);
 		p("Cuéllar", 109, 2, 24, 80, x);
@@ -9911,7 +9914,7 @@ class Fifa07Service {
 		p("Izquierdo", 109, 4, 25, 73, x);
 		p("Nacho Monreal", 109, 2, 22, 62, x);
 
-		x = c("Villarreal", 109, "#8F7965", "#FFFFFF", null);
+		x = c("Villarreal", 109, "#8F7965", w, null);
 		p("S. Viera", 120, 1, 23, 72, x);
 		p("Javi Venta", 109, 4, 30, 73, x);
 		p("Quique Álvarez", 109, 2, 30, 74, x);
@@ -9936,7 +9939,7 @@ class Fifa07Service {
 		p("David Fuster", 109, 10, 24, 67, x);
 		p("Marcos", 109, 9, 19, 72, x);
 
-		x = c("Athletic Club", 109, "#8E6866", "#FFFFFF", null);
+		x = c("Athletic Club", 109, "#8E6866", w, null);
 		p("Aranzubia", 109, 1, 26, 78, x);
 		p("Iraola", 109, 6, 24, 74, x);
 		p("Sarriegi", 109, 2, 27, 76, x);
@@ -9961,7 +9964,7 @@ class Fifa07Service {
 		p("Aduriz", 109, 15, 25, 75, x);
 		p("Casas", 109, 3, 24, 73, x);
 
-		x = c("Real Betis", 109, "#878E3A", "#000000", null);
+		x = c("Real Betis", 109, "#878E3A", w, null);
 		p("Doblas", 109, 1, 25, 74, x);
 		p("Melli", 109, 2, 22, 70, x);
 		p("Juanito", 109, 2, 29, 83, x);
@@ -9986,7 +9989,7 @@ class Fifa07Service {
 		p("R. Oliveira", 16, 15, 26, 83, x);
 		p("Óscar López", 109, 4, 26, 69, x);
 
-		x = c("Espanyol", 109, "#BC7F65", "#000000", null);
+		x = c("Espanyol", 109, "#BC7F65", w, null);
 		p("C. Kameni", 21, 1, 22, 81, x);
 		p("P. Zabaleta", 5, 10, 21, 77, x);
 		p("Lacruz", 109, 6, 28, 73, x);
@@ -10011,7 +10014,7 @@ class Fifa07Service {
 		p("Sergio Sánchez", 109, 4, 20, 66, x);
 		p("Julián", 109, 11, 19, 63, x);
 
-		x = c("Real Zaragoza", 109, "#BA5819", "#FFFFFF", null);
+		x = c("Real Zaragoza", 109, "#BA5819", w, null);
 		p("César", 109, 1, 34, 80, x);
 		p("Cuartero", 109, 6, 30, 71, x);
 		p("Sergio", 109, 2, 29, 75, x);
@@ -10036,7 +10039,7 @@ class Fifa07Service {
 		p("Lafita", 109, 10, 21, 73, x);
 		p("Chus Herrero", 109, 2, 22, 52, x);
 
-		x = c("Deportivo La Coruña", 109, "#B09480", "#000000", null);
+		x = c("Deportivo La Coruña", 109, "#B09480", w, null);
 		p("D. Aouate", 59, 1, 28, 74, x);
 		p("Barragan", 109, 4, 19, 74, x);
 		p("Arbeloa", 109, 2, 23, 72, x);
@@ -10061,7 +10064,7 @@ class Fifa07Service {
 		p("J. De Guzman", 22, 7, 25, 69, x);
 		p("Iago", 109, 11, 22, 73, x);
 
-		x = c("Levante", 109, "#815D52", "#FFFFFF", null);
+		x = c("Levante", 109, "#815D52", w, null);
 		p("P. Cavallero", 5, 1, 32, 79, x);
 		p("Descarga", 109, 4, 29, 73, x);
 		p("F. Déhu", 43, 2, 33, 75, x);
@@ -10086,7 +10089,7 @@ class Fifa07Service {
 		p("Alexis", 109, 2, 32, 74, x);
 		p("Riga", 48, 14, 24, 70, x);
 
-		x = c("Getafe", 109, "#729596", "#000000", null);
+		x = c("Getafe", 109, "#729596", w, null);
 		p("R. Abbondanzieri", 5, 1, 33, 84, x);
 		p("C. Contra", 97, 6, 30, 76, x);
 		p("Tena", 109, 2, 28, 77, x);
@@ -10111,7 +10114,7 @@ class Fifa07Service {
 		p("V. Paunovic", 104, 14, 28, 75, x);
 		p("Alberto Aguilar", 109, 8, 21, 74, x);
 
-		x = c("Celta de Vigo", 109, "#CC6B89", "#000000", null);
+		x = c("Celta de Vigo", 109, "#CC6B89", w, null);
 		p("Pinto", 109, 1, 30, 78, x);
 		p("Angel", 109, 4, 25, 74, x);
 		p("M. Lequi", 5, 2, 25, 75, x);
@@ -10136,7 +10139,7 @@ class Fifa07Service {
 		p("Yago", 30, 4, 26, 72, x);
 		p("Jonathan Vila", 109, 9, 20, 60, x);
 
-		x = c("Recreativo Huelva", 109, "#BEA68F", "#000000", null);
+		x = c("Recreativo Huelva", 109, "#BEA68F", w, null);
 		p("J. López Vallejo", 109, 1, 30, 77, x);
 		p("Edu Moya", 109, 4, 25, 66, x);
 		p("César Arzo", 109, 2, 20, 76, x);
@@ -10161,7 +10164,7 @@ class Fifa07Service {
 		p("Ramón", 109, 2, 31, 70, x);
 		p("Pablo Oliveira", 109, 2, 20, 49, x);
 
-		x = c("Gimnàstic Tarragona", 109, "#9B784B", "#FFFFFF", null);
+		x = c("Gimnàstic Tarragona", 109, "#9B784B", w, null);
 		p("A. Bizzarri", 5, 1, 28, 74, x);
 		p("Ruz", 109, 4, 20, 64, x);
 		p("Llera", 109, 2, 26, 76, x);
@@ -10186,7 +10189,7 @@ class Fifa07Service {
 		p("Marco", 109, 2, 29, 69, x);
 		p("Morales", 109, 8, 30, 71, x);
 
-		x = c("Mallorca", 109, "#CA7617", "#000000", null);
+		x = c("Mallorca", 109, "#CA7617", w, null);
 		p("Prats", 109, 1, 34, 76, x);
 		p("Varela", 109, 4, 26, 71, x);
 		p("Ramis", 109, 2, 21, 72, x);
@@ -10211,7 +10214,7 @@ class Fifa07Service {
 		p("Rafita", 109, 7, 23, 62, x);
 		p("Tuni", 109, 9, 24, 66, x);
 
-		x = c("Racing Santander", 109, "#9B9157", "#000000", null);
+		x = c("Racing Santander", 109, "#9B9157", w, null);
 		p("Toño", 109, 1, 26, 71, x);
 		p("Pinillos", 109, 4, 31, 71, x);
 		p("E. Garay", 5, 2, 19, 65, x);
@@ -10236,7 +10239,7 @@ class Fifa07Service {
 		p("Cristian", 109, 3, 23, 53, x);
 		p("Aitor", 109, 4, 20, 55, x);
 
-		x = c("Real Sociedad", 109, "#817257", "#FFFFFF", null);
+		x = c("Real Sociedad", 109, "#817257", w, null);
 		p("Riesgo", 109, 1, 22, 72, x);
 		p("A. Lopez Rekarte", 109, 4, 30, 75, x);
 		p("Labaka", 109, 2, 25, 74, x);
@@ -10261,7 +10264,7 @@ class Fifa07Service {
 		p("Mikel Gonzalez", 109, 4, 20, 60, x);
 		p("Jauregi", 109, 2, 32, 73, x);
 
-		x = c("Málaga", 109, "#878D69", "#000000", null);
+		x = c("Málaga", 109, "#878D69", w, null);
 		p("Arnau", 109, 1, 31, 69, x);
 		p("Jesús Gámez", 109, 4, 21, 57, x);
 		p("Cesar Navas", 109, 2, 26, 69, x);
@@ -10284,7 +10287,7 @@ class Fifa07Service {
 		p("Couñago", 109, 15, 26, 68, x);
 		p("Molinero", 109, 4, 20, 72, x);
 
-		x = c("Cádiz", 109, "#7F833A", "#FFFFFF", null);
+		x = c("Cádiz", 109, "#7F833A", w, null);
 		p("Armando", 109, 1, 35, 73, x);
 		p("L. Vella", 5, 4, 25, 70, x);
 		p("Abraham Paz", 109, 2, 27, 75, x);
@@ -10307,7 +10310,7 @@ class Fifa07Service {
 		p("Ezequiel", 109, 3, 20, 61, x);
 		p("Miguel Ángel", 109, 15, 22, 61, x);
 
-		x = c("Deportivo Alavés", 109, "#3056B0", "#FFFFFF", null);
+		x = c("Deportivo Alavés", 109, "#3056B0", w, null);
 		p("R. Bonano", 5, 1, 36, 76, x);
 		p("Edu Alonso", 109, 4, 32, 68, x);
 		p("Pablo Casar", 109, 2, 27, 76, x);
@@ -10330,7 +10333,7 @@ class Fifa07Service {
 		p("M. Lacen", 43, 9, 22, 61, x);
 		p("Coromina", 109, 6, 31, 66, x);
 
-		x = c("Almería", 109, "#B18240", "#000000", null);
+		x = c("Almería", 109, "#B18240", w, null);
 		p("S. Westerveld", 83, 1, 31, 75, x);
 		p("Bruno Saltor", 109, 4, 25, 51, x);
 		p("W. Acasiete", 93, 2, 28, 66, x);
@@ -10353,7 +10356,7 @@ class Fifa07Service {
 		p("Bermudo", 109, 3, 27, 67, x);
 		p("Mairata", 109, 4, 27, 63, x);
 
-		x = c("Real Valladolid", 109, "#75523F", "#FFFFFF", null);
+		x = c("Real Valladolid", 109, "#75523F", w, null);
 		p("Alberto", 109, 1, 37, 74, x);
 		p("Pedro López", 109, 4, 22, 68, x);
 		p("De la Cuesta", 26, 2, 23, 71, x);
@@ -10376,7 +10379,7 @@ class Fifa07Service {
 		p("Chema", 109, 10, 30, 69, x);
 		p("Rafa", 109, 7, 21, 65, x);
 
-		x = c("Xerez", 109, "#778A69", "#000000", null);
+		x = c("Xerez", 109, "#778A69", w, null);
 		p("Julio Iglesias", 109, 1, 33, 68, x);
 		p("De Coz", 109, 6, 26, 63, x);
 		p("David Prieto", 109, 2, 23, 68, x);
@@ -10399,7 +10402,7 @@ class Fifa07Service {
 		p("Selu", 109, 2, 29, 76, x);
 		p("Raúl Medina", 109, 8, 23, 67, x);
 
-		x = c("Numancia", 109, "#865F70", "#FFFFFF", null);
+		x = c("Numancia", 109, "#865F70", w, null);
 		p("Juan Pablo", 109, 1, 27, 70, x);
 		p("Felipe", 109, 6, 30, 70, x);
 		p("Ortega", 109, 2, 25, 67, x);
@@ -10422,7 +10425,7 @@ class Fifa07Service {
 		p("Fran Moreno", 109, 15, 22, 65, x);
 		p("Pavón", 109, 2, 22, 65, x);
 
-		x = c("CAP Ciudad de Murcia", 109, "#B3581A", "#FFFFFF", null);
+		x = c("CAP Ciudad de Murcia", 109, "#B3581A", w, null);
 		p("José Juan", 109, 1, 26, 67, x);
 		p("Varela", 109, 4, 32, 67, x);
 		p("Cristian Díaz", 5, 2, 30, 68, x);
@@ -10445,7 +10448,7 @@ class Fifa07Service {
 		p("L. Assemoassa", 43, 2, 25, 67, x);
 		p("Raúl Sánchez", 109, 2, 25, 68, x);
 
-		x = c("Albacete", 109, "#AA7561", "#FFFFFF", null);
+		x = c("Albacete", 109, "#AA7561", w, null);
 		p("Valbuena", 109, 1, 31, 66, x);
 		p("Ferrón", 109, 4, 27, 68, x);
 		p("Santi", 109, 2, 32, 69, x);
@@ -10468,7 +10471,7 @@ class Fifa07Service {
 		p("Diego Alegre", 109, 4, 24, 66, x);
 		p("César Cortés", 24, 14, 22, 67, x);
 
-		x = c("Real Murcia", 109, "#A06A44", "#FFFFFF", null);
+		x = c("Real Murcia", 109, "#A06A44", w, null);
 		p("Notario", 109, 1, 33, 69, x);
 		p("Juanma", 109, 6, 28, 67, x);
 		p("Ochoa", 109, 2, 27, 69, x);
@@ -10491,7 +10494,7 @@ class Fifa07Service {
 		p("Abel", 109, 8, 24, 67, x);
 		p("Aranda", 109, 15, 25, 71, x);
 
-		x = c("Sporting Gijón", 109, "#E45D1D", "#000000", null);
+		x = c("Sporting Gijón", 109, "#E45D1D", w, null);
 		p("Roberto", 109, 1, 27, 67, x);
 		p("Sastre", 109, 4, 30, 67, x);
 		p("Jorge", 109, 15, 22, 67, x);
@@ -10514,7 +10517,7 @@ class Fifa07Service {
 		p("Pedro", 109, 8, 22, 66, x);
 		p("Jony López", 109, 2, 19, 61, x);
 
-		x = c("Elche", 109, "#B98E63", "#000000", null);
+		x = c("Elche", 109, "#B98E63", w, null);
 		p("W. Caballero", 5, 1, 24, 71, x);
 		p("Mario", 109, 4, 25, 67, x);
 		p("Fernando Niño", 109, 2, 31, 69, x);
@@ -10537,7 +10540,7 @@ class Fifa07Service {
 		p("Alberto", 109, 14, 28, 68, x);
 		p("R. Peragón", 109, 15, 28, 69, x);
 
-		x = c("Tenerife", 109, "#78777F", "#FFFFFF", null);
+		x = c("Tenerife", 109, "#78777F", w, null);
 		p("Bernardo", 109, 1, 26, 63, x);
 		p("Marc Bertrán", 109, 4, 24, 66, x);
 		p("Culebras", 109, 2, 27, 67, x);
@@ -10560,7 +10563,7 @@ class Fifa07Service {
 		p("Navas", 109, 1, 28, 67, x);
 		p("Kirian", 109, 2, 21, 63, x);
 
-		x = c("Vecindario", 109, "#9B9B9B", "#000000", null);
+		x = c("Vecindario", 109, "#9B9B9B", w, null);
 		p("Santi Lampón", 109, 1, 33, 57, x);
 		p("Rondo", 52, 4, 30, 62, x);
 		p("Urzelai", 109, 2, 29, 68, x);
@@ -10583,7 +10586,7 @@ class Fifa07Service {
 		p("Yeray", 109, 8, 28, 58, x);
 		p("Aitor Goñi", 109, 8, 27, 64, x);
 
-		x = c("Hércules", 109, "#94823B", "#000000", null);
+		x = c("Hércules", 109, "#94823B", w, null);
 		p("K. Agassa", 113, 1, 27, 68, x);
 		p("Redondo", 109, 4, 29, 60, x);
 		p("R. Schiavi", 5, 2, 33, 66, x);
@@ -10606,7 +10609,7 @@ class Fifa07Service {
 		p("Urbano", 109, 2, 31, 60, x);
 		p("Moisés", 109, 15, 34, 64, x);
 
-		x = c("Real Madrid II", 109, "#9F8458", "#000000", null);
+		x = c("Real Madrid II", 109, "#9F8458", w, null);
 		p("Codina", 109, 1, 24, 66, x);
 		p("Palencia", 109, 6, 22, 67, x);
 		p("Jeffrey", 83, 2, 21, 60, x);
@@ -10629,7 +10632,7 @@ class Fifa07Service {
 		p("Thaer", 63, 14, 21, 66, x);
 		p("Adrián González", 109, 8, 18, 64, x);
 
-		x = c("Castellón", 109, "#9C7B52", "#FFFFFF", null);
+		x = c("Castellón", 109, "#9C7B52", w, null);
 		p("Xavi Oliva", 109, 1, 30, 66, x);
 		p("Pedro Hernández", 109, 4, 27, 60, x);
 		p("Mora", 109, 2, 25, 65, x);
@@ -10652,7 +10655,7 @@ class Fifa07Service {
 		p("Nakor", 109, 15, 28, 64, x);
 		p("Epitié", 52, 15, 29, 62, x);
 
-		x = c("CP Ejido", 109, "#6CA3AF", "#000000", null);
+		x = c("CP Ejido", 109, "#6CA3AF", w, null);
 		p("Kike", 109, 1, 35, 57, x);
 		p("Cristian", 109, 2, 24, 65, x);
 		p("Tena", 109, 2, 24, 61, x);
@@ -10675,7 +10678,7 @@ class Fifa07Service {
 		p("Keko", 109, 15, 33, 74, x);
 		p("Mikel Rico", 109, 8, 21, 58, x);
 
-		x = c("Lorca", 109, "#3F6F9C", "#FFFFFF", null);
+		x = c("Lorca", 109, "#3F6F9C", w, null);
 		p("Jáuregui", 109, 1, 31, 69, x);
 		p("Juanpa", 109, 2, 27, 71, x);
 		p("Robles", 109, 2, 27, 63, x);
@@ -10698,7 +10701,7 @@ class Fifa07Service {
 		p("Kiko", 109, 15, 28, 67, x);
 		p("Gorka De Carlos", 109, 15, 28, 60, x);
 
-		x = c("Las Palmas", 109, "#8A8A55", "#000000", null);
+		x = c("Las Palmas", 109, "#8A8A55", w, null);
 		p("Pindado", 109, 1, 30, 63, x);
 		p("David García", 109, 4, 24, 59, x);
 		p("Víctor Alfonso", 109, 2, 34, 57, x);
@@ -10721,7 +10724,7 @@ class Fifa07Service {
 		p("Santamaría", 109, 1, 21, 51, x);
 		p("Ione", 109, 2, 20, 56, x);
 
-		x = c("Salamanca", 109, "#A69E86", "#000000", null);
+		x = c("Salamanca", 109, "#A69E86", w, null);
 		p("Felip", 109, 1, 29, 62, x);
 		p("Raúl Gañán", 109, 4, 31, 55, x);
 		p("David Charcos", 109, 2, 31, 59, x);
@@ -10744,7 +10747,7 @@ class Fifa07Service {
 		p("Tomás", 109, 12, 27, 55, x);
 		p("Jorge Pina", 109, 12, 23, 55, x);
 
-		x = c("Ponferradina", 109, "#AF945B", "#000000", null);
+		x = c("Ponferradina", 109, "#AF945B", w, null);
 		p("Sierra", 109, 1, 22, 59, x);
 		p("Chupri", 109, 2, 25, 56, x);
 		p("Bornes", 109, 2, 31, 64, x);
@@ -10767,7 +10770,7 @@ class Fifa07Service {
 		p("I. Risso Thomaset", 120, 15, 21, 58, x);
 		p("Carletes", 109, 15, 22, 60, x);
 
-		x = c("Malmö FF", 111, "#43A1DD", "#000000", null);
+		x = c("Malmö FF", 111, "#43A1DD", w, null);
 		p("J. Sandkvist", 111, 1, 25, 66, x);
 		p("U. Vinzents", 35, 6, 29, 68, x);
 		p("O. Persson", 111, 2, 28, 70, x);
@@ -10790,7 +10793,7 @@ class Fifa07Service {
 		p("M. Pode", 111, 15, 20, 64, x);
 		p("J. Nilsson-Guiomar", 111, 6, 21, 60, x);
 
-		x = c("Djurgården", 111, "#B5834C", "#000000", null);
+		x = c("Djurgården", 111, "#B5834C", w, null);
 		p("P. Tourray", 45, 1, 26, 65, x);
 		p("M. Concha", 111, 6, 26, 69, x);
 		p("T. Kuivasto", 42, 2, 30, 72, x);
@@ -10813,7 +10816,7 @@ class Fifa07Service {
 		p("F. Magro", 112, 11, 27, 65, x);
 		p("N. Rasck", 111, 6, 37, 61, x);
 
-		x = c("Hammarby", 111, "#AEA51B", "#000000", null);
+		x = c("Hammarby", 111, "#AEA51B", w, null);
 		p("A. Covic", 7, 1, 31, 62, x);
 		p("S. Sleyman", 111, 4, 26, 63, x);
 		p("P. Marteinsson", 57, 2, 32, 66, x);
@@ -10836,7 +10839,7 @@ class Fifa07Service {
 		p("L. Chanko", 111, 8, 26, 65, x);
 		p("E. Johansson", 111, 10, 30, 62, x);
 
-		x = c("IFK Göteborg", 111, "#A1986C", "#000000", null);
+		x = c("IFK Göteborg", 111, "#A1986C", w, null);
 		p("B. Andersson", 111, 1, 39, 69, x);
 		p("A. Johansson", 111, 6, 23, 62, x);
 		p("M. Bjärsmyr", 111, 2, 20, 66, x);
@@ -10858,7 +10861,7 @@ class Fifa07Service {
 		p("S. Wowoah", 111, 9, 30, 65, x);
 		p("G. Svensson", 111, 4, 19, 58, x);
 
-		x = c("AIK", 111, "#4E6537", "#FFFFFF", null);
+		x = c("AIK", 111, "#4E6537", w, null);
 		p("D. Öhrlund", 111, 1, 26, 62, x);
 		p("M. Jonsson", 111, 6, 25, 64, x);
 		p("N. Sandberg", 111, 2, 27, 67, x);
@@ -10881,7 +10884,7 @@ class Fifa07Service {
 		p("M. Moström", 111, 13, 23, 62, x);
 		p("D. Mendes", 16, 15, 25, 59, x);
 
-		x = c("Helsingborg", 111, "#9D6A7F", "#FFFFFF", null);
+		x = c("Helsingborg", 111, "#9D6A7F", w, null);
 		p("D. Andersson", 111, 1, 33, 65, x);
 		p("E. Wahlstedt", 111, 6, 30, 59, x);
 		p("A. Jakobsson", 111, 2, 33, 71, x);
@@ -10904,7 +10907,7 @@ class Fifa07Service {
 		p("T. Neemelo", 39, 15, 24, 60, x);
 		p("F. Svanbäck", 42, 15, 27, 55, x);
 
-		x = c("Elfsborg", 111, "#C5B00F", "#000000", null);
+		x = c("Elfsborg", 111, "#C5B00F", w, null);
 		p("J. Wiland", 111, 1, 25, 66, x);
 		p("J. Karlsson", 111, 4, 31, 60, x);
 		p("J. Sjöberg", 111, 2, 25, 64, x);
@@ -10927,7 +10930,7 @@ class Fifa07Service {
 		p("D. Mobaeck", 111, 14, 26, 57, x);
 		p("M. Falk-Olander", 111, 2, 19, 53, x);
 
-		x = c("Halmstad", 111, "#789091", "#000000", null);
+		x = c("Halmstad", 111, "#789091", w, null);
 		p("C. Johansson", 111, 1, 34, 61, x);
 		p("P. Larsson", 111, 4, 22, 57, x);
 		p("T. Zvirgzdauskas", 73, 2, 31, 58, x);
@@ -10950,7 +10953,7 @@ class Fifa07Service {
 		p("M. Andersson", 111, 11, 25, 58, x);
 		p("P. Johansson", 111, 3, 28, 60, x);
 
-		x = c("Kalmar", 111, "#D3795B", "#000000", null);
+		x = c("Kalmar", 111, "#D3795B", w, null);
 		p("P. Wastå", 111, 1, 30, 63, x);
 		p("D. Pettersson", 111, 10, 30, 63, x);
 		p("J. Lantz", 111, 2, 29, 66, x);
@@ -10973,7 +10976,7 @@ class Fifa07Service {
 		p("B. Koroma", 105, 15, 21, 58, x);
 		p("R. Elm", 111, 9, 18, 61, x);
 
-		x = c("Gefle", 111, "#5D6D79", "#FFFFFF", null);
+		x = c("Gefle", 111, "#5D6D79", w, null);
 		p("M. Hugosson", 111, 1, 32, 58, x);
 		p("A. Revahl", 111, 4, 28, 60, x);
 		p("M. Thuresson", 111, 2, 25, 61, x);
@@ -10996,7 +10999,7 @@ class Fifa07Service {
 		p("P. Bergqvist", 111, 1, 31, 58, x);
 		p("P. Österberg", 111, 8, 23, 53, x);
 
-		x = c("Häcken", 111, "#847B37", "#FFFFFF", null);
+		x = c("Häcken", 111, "#847B37", w, null);
 		p("C. Källqvist", 111, 1, 22, 61, x);
 		p("D. Marek", 111, 10, 27, 59, x);
 		p("J. Dixon", 70, 2, 24, 65, x);
@@ -11019,7 +11022,7 @@ class Fifa07Service {
 		p("F. Holster", 111, 11, 18, 54, x);
 		p("M. Berglöv", 111, 1, 19, 54, x);
 
-		x = c("Örgryte", 111, "#784D3F", "#FFFFFF", null);
+		x = c("Örgryte", 111, "#784D3F", w, null);
 		p("D. Last", 111, 1, 37, 61, x);
 		p("Valter", 16, 4, 27, 63, x);
 		p("E. Storm", 111, 2, 26, 64, x);
@@ -11042,7 +11045,7 @@ class Fifa07Service {
 		p("H. Scheweleff", 42, 15, 23, 54, x);
 		p("M. Dahlin", 111, 2, 24, 57, x);
 
-		x = c("GAIS", 111, "#9B8230", "#000000", null);
+		x = c("GAIS", 111, "#9B8230", w, null);
 		p("D. Jankulovski", 111, 1, 28, 60, x);
 		p("D. Blomgren", 111, 4, 23, 59, x);
 		p("M. Östberg", 111, 2, 28, 56, x);
@@ -11065,7 +11068,7 @@ class Fifa07Service {
 		p("M. Dohlsten", 111, 8, 20, 57, x);
 		p("T. Rosenkvist", 111, 15, 31, 64, x);
 
-		x = c("Öster", 111, "#8CA78C", "#000000", null);
+		x = c("Öster", 111, "#8CA78C", w, null);
 		p("B. Stringheim", 111, 1, 30, 53, x);
 		p("T. Backman", 111, 10, 26, 57, x);
 		p("T. Hughes", 22, 2, 25, 60, x);
@@ -11088,7 +11091,7 @@ class Fifa07Service {
 		p("E. Tengroth", 111, 4, 19, 51, x);
 		p("E. Nouri", 111, 6, 20, 51, x);
 
-		x = c("Basel", 112, "#A8672A", "#FFFFFF", null);
+		x = c("Basel", 112, "#A8672A", w, null);
 		p("F. Costanzo", 5, 1, 25, 75, x);
 		p("R. Zanni", 112, 4, 26, 64, x);
 		p("D. Majstorovic", 111, 2, 29, 84, x);
@@ -11113,7 +11116,7 @@ class Fifa07Service {
 		p("C. Carignano", 5, 15, 23, 71, x);
 		p("S. Grippo", 60, 8, 17, 59, x);
 
-		x = c("Zürich", 112, "#4A5160", "#FFFFFF", null);
+		x = c("Zürich", 112, "#4A5160", w, null);
 		p("J. Leoni", 112, 1, 22, 70, x);
 		p("F. Stahel", 112, 4, 21, 65, x);
 		p("H. Tihinen", 42, 2, 29, 79, x);
@@ -11136,7 +11139,7 @@ class Fifa07Service {
 		p("D. Da Costa", 112, 1, 20, 60, x);
 		p("D. Stucki", 112, 3, 24, 65, x);
 
-		x = c("Grasshopper", 112, "#3587BF", "#FFFFFF", null);
+		x = c("Grasshopper", 112, "#3587BF", w, null);
 		p("F. Coltorti", 112, 1, 25, 73, x);
 		p("S. Sutter", 112, 6, 20, 63, x);
 		p("M. Langkamp", 47, 2, 22, 70, x);
@@ -11161,7 +11164,7 @@ class Fifa07Service {
 		p("Eduardo", 16, 15, 25, 83, x);
 		p("Diego León", 109, 9, 22, 63, x);
 
-		x = c("Young Boys", 112, "#D9B314", "#000000", null);
+		x = c("Young Boys", 112, "#D9B314", w, null);
 		p("M. Wölfli", 112, 1, 23, 63, x);
 		p("C. Schwegler", 112, 4, 22, 66, x);
 		p("T. Calvano", 16, 2, 25, 65, x);
@@ -11184,7 +11187,7 @@ class Fifa07Service {
 		p("X. Hochstrasser", 112, 7, 17, 51, x);
 		p("D. Redzepi", 112, 2, 18, 54, x);
 
-		x = c("Sion", 112, "#DC3027", "#FFFFFF", null);
+		x = c("Sion", 112, "#DC3027", w, null);
 		p("F. Borer", 112, 1, 34, 65, x);
 		p("Carlitos", 95, 13, 23, 64, x);
 		p("S. Meoli", 60, 2, 25, 63, x);
@@ -11207,7 +11210,7 @@ class Fifa07Service {
 		p("E. Di Zenzo", 112, 9, 26, 59, x);
 		p("M. Dabo", 30, 9, 23, 50, x);
 
-		x = c("Thun", 112, "#E43C49", "#FFFFFF", null);
+		x = c("Thun", 112, "#E43C49", w, null);
 		p("P. Bettoni", 112, 1, 30, 54, x);
 		p("L. Dosek", 34, 4, 27, 67, x);
 		p("S. Hodzic", 15, 2, 27, 62, x);
@@ -11230,7 +11233,7 @@ class Fifa07Service {
 		p("M. Schönenberger", 112, 2, 20, 59, x);
 		p("V. Jese", 31, 2, 25, 57, x);
 
-		x = c("St. Gallen", 112, "#1F8B55", "#FFFFFF", null);
+		x = c("St. Gallen", 112, "#1F8B55", w, null);
 		p("S. Razzetti", 60, 1, 34, 65, x);
 		p("M. Zellweger", 112, 4, 32, 58, x);
 		p("J. Koubsky", 34, 2, 23, 66, x);
@@ -11253,7 +11256,7 @@ class Fifa07Service {
 		p("M. Maric", 112, 2, 22, 58, x);
 		p("M. Costanzo", 112, 15, 18, 49, x);
 
-		x = c("Aarau", 112, "#B59898", "#000000", null);
+		x = c("Aarau", 112, "#B59898", w, null);
 		p("M. Colomba", 112, 1, 28, 63, x);
 		p("J. Tcheutchoua", 21, 2, 25, 62, x);
 		p("S. Christ", 112, 2, 32, 62, x);
@@ -11276,7 +11279,7 @@ class Fifa07Service {
 		p("S. Burki", 112, 13, 20, 57, x);
 		p("M. Fotheringham", 102, 8, 22, 64, x);
 
-		x = c("Luzern", 112, "#618C93", "#000000", null);
+		x = c("Luzern", 112, "#618C93", w, null);
 		p("D. Zibung", 112, 1, 22, 56, x);
 		p("P. Bader", 112, 4, 23, 52, x);
 		p("L. Mettomo", 21, 2, 29, 69, x);
@@ -11299,7 +11302,7 @@ class Fifa07Service {
 		p("J. Mamone", 5, 2, 23, 58, x);
 		p("M. Diethelm", 112, 3, 21, 54, x);
 
-		x = c("FC Schaffhausen", 112, "#D2C516", "#000000", null);
+		x = c("FC Schaffhausen", 112, "#D2C516", w, null);
 		p("M. Herzog", 112, 1, 26, 61, x);
 		p("F. Geiser", 112, 4, 23, 61, x);
 		p("D. Sereinig", 112, 2, 24, 55, x);
@@ -11321,7 +11324,7 @@ class Fifa07Service {
 		p("D. Senn", 112, 10, 22, 55, x);
 		p("H. Bochud", 112, 2, 26, 53, x);
 
-		x = c("Lugano", 112, "#4D4D4E", "#FFFFFF", null);
+		x = c("Lugano", 112, "#4D4D4E", w, null);
 		p("G. Proietti", 60, 1, 29, 49, x);
 		p("Y. Bolay", 112, 4, 18, 44, x);
 		p("D. Rota", 112, 2, 35, 60, x);
@@ -11344,7 +11347,7 @@ class Fifa07Service {
 		p("S. Negrinelli", 112, 8, 18, 46, x);
 		p("M. Elia", 112, 15, 18, 50, x);
 
-		x = c("Fenerbahçe", 116, "#8F795E", "#FFFFFF", null);
+		x = c("Fenerbahçe", 116, "#8F795E", w, null);
 		p("R. Reçber", 116, 1, 33, 80, x);
 		p("Serkan", 116, 10, 22, 76, x);
 		p("C. Arat", 116, 2, 22, 74, x);
@@ -11369,7 +11372,7 @@ class Fifa07Service {
 		p("Ö. Turacı", 116, 2, 24, 76, x);
 		p("M. Hacıoğlu", 116, 14, 27, 68, x);
 
-		x = c("Galatasaray", 116, "#CE805B", "#000000", null);
+		x = c("Galatasaray", 116, "#CE805B", w, null);
 		p("F. Mondragón", 26, 1, 35, 87, x);
 		p("C. Haspolatlı", 116, 7, 26, 67, x);
 		p("R. Song", 21, 2, 29, 81, x);
@@ -11394,7 +11397,7 @@ class Fifa07Service {
 		p("M. Carrusca", 5, 9, 22, 73, x);
 		p("A. Akman", 116, 8, 29, 75, x);
 
-		x = c("Beşiktaş", 116, "#BF7474", "#000000", null);
+		x = c("Beşiktaş", 116, "#BF7474", w, null);
 		p("V. Runje", 31, 1, 30, 74, x);
 		p("İ. Toraman", 116, 4, 24, 74, x);
 		p("G. Zan", 116, 2, 24, 74, x);
@@ -11419,7 +11422,7 @@ class Fifa07Service {
 		p("M. Doğan", 47, 2, 30, 66, x);
 		p("M. Sedef", 116, 9, 18, 66, x);
 
-		x = c("Trabzonspor", 116, "#68597A", "#FFFFFF", null);
+		x = c("Trabzonspor", 116, "#68597A", w, null);
 		p("Jefferson", 16, 1, 23, 74, x);
 		p("U. Bayraktar", 116, 6, 20, 52, x);
 		p("F. Akyel", 116, 6, 28, 71, x);
@@ -11442,7 +11445,7 @@ class Fifa07Service {
 		p("U. Bulut", 116, 15, 23, 70, x);
 		p("U. Bayraktar", 116, 12, 20, 65, x);
 
-		x = c("Manisaspor", 116, "#A96C60", "#FFFFFF", null);
+		x = c("Manisaspor", 116, "#A96C60", w, null);
 		p("B. Ataman", 116, 1, 32, 71, x);
 		p("S. Borbiconi", 43, 2, 27, 78, x);
 		p("P. Johana", 34, 2, 29, 74, x);
@@ -11465,7 +11468,7 @@ class Fifa07Service {
 		p("G. Varol", 116, 9, 25, 67, x);
 		p("S. Özkan", 116, 15, 20, 63, x);
 
-		x = c("Kayserispor", 116, "#B88151", "#000000", null);
+		x = c("Kayserispor", 116, "#B88151", w, null);
 		p("D. Ivankov", 17, 1, 30, 75, x);
 		p("T. Cora", 116, 6, 22, 62, x);
 		p("A. Toscalı", 116, 2, 25, 71, x);
@@ -11488,7 +11491,7 @@ class Fifa07Service {
 		p("H. Kavianpour", 58, 8, 27, 68, x);
 		p("N. Kıldır", 116, 1, 27, 65, x);
 
-		x = c("Denizlispor", 116, "#306549", "#FFFFFF", null);
+		x = c("Denizlispor", 116, "#306549", w, null);
 		p("S. Hamidou", 21, 1, 32, 73, x);
 		p("A. Çağıran", 116, 6, 28, 53, x);
 		p("E. Güraçar", 116, 2, 31, 71, x);
@@ -11511,7 +11514,7 @@ class Fifa07Service {
 		p("B. Ertuğrul", 116, 2, 27, 66, x);
 		p("M. Keçeli", 116, 9, 27, 73, x);
 
-		x = c("Sivasspor", 116, "#E02D47", "#FFFFFF", null);
+		x = c("Sivasspor", 116, "#E02D47", w, null);
 		p("M. Petkovic", 7, 1, 29, 72, x);
 		p("H. Yurt", 116, 4, 28, 63, x);
 		p("Hakkı", 116, 2, 31, 72, x);
@@ -11534,7 +11537,7 @@ class Fifa07Service {
 		p("Y. Elmacı", 116, 10, 24, 66, x);
 		p("A. Vardar", 116, 1, 28, 68, x);
 
-		x = c("Kayseri Erciyesspor", 116, "#6796B7", "#000000", null);
+		x = c("Kayseri Erciyesspor", 116, "#6796B7", w, null);
 		p("K. Fadhel", 115, 1, 29, 69, x);
 		p("H. Kocabal", 116, 9, 27, 60, x);
 		p("C. Kargın", 116, 2, 28, 63, x);
@@ -11557,7 +11560,7 @@ class Fifa07Service {
 		p("Ö. Ateş", 116, 2, 24, 63, x);
 		p("M. Boyraz", 116, 15, 24, 64, x);
 
-		x = c("Sakaryaspor", 116, "#4C735D", "#FFFFFF", null);
+		x = c("Sakaryaspor", 116, "#4C735D", w, null);
 		p("L. Martínez", 26, 1, 27, 73, x);
 		p("S. Bahadir", 116, 2, 29, 64, x);
 		p("S. Usta", 116, 2, 24, 71, x);
@@ -11580,7 +11583,7 @@ class Fifa07Service {
 		p("L. Kayatekin", 116, 2, 27, 63, x);
 		p("H. Özmert", 116, 7, 21, 59, x);
 
-		x = c("Gaziantepspor", 116, "#C72336", "#FFFFFF", null);
+		x = c("Gaziantepspor", 116, "#C72336", w, null);
 		p("K. Hasagic", 15, 1, 25, 72, x);
 		p("C. Zurita", 5, 6, 26, 67, x);
 		p("A. Aşıkoğlu", 116, 2, 23, 69, x);
@@ -11603,7 +11606,7 @@ class Fifa07Service {
 		p("O. Dağlaroğlu", 116, 1, 26, 69, x);
 		p("M. Kızıltan", 116, 4, 25, 61, x);
 
-		x = c("Gençlerbirliği", 116, "#8A5651", "#FFFFFF", null);
+		x = c("Gençlerbirliği", 116, "#8A5651", w, null);
 		p("G. Tokgöz", 116, 1, 27, 71, x);
 		p("E. Özbey", 116, 6, 28, 65, x);
 		p("F. Risp", 111, 2, 25, 74, x);
@@ -11626,7 +11629,7 @@ class Fifa07Service {
 		p("R. Öztürk", 116, 1, 29, 57, x);
 		p("M. Kalkan", 116, 14, 20, 56, x);
 
-		x = c("Rizespor", 116, "#849B96", "#000000", null);
+		x = c("Rizespor", 116, "#849B96", w, null);
 		p("Z. Zdravkov", 17, 1, 35, 69, x);
 		p("R. Tjikuzu", 82, 6, 26, 70, x);
 		p("El Tabei", 37, 6, 30, 62, x);
@@ -11649,7 +11652,7 @@ class Fifa07Service {
 		p("E. Açıkgöz", 116, 2, 21, 61, x);
 		p("A. Kuzu", 116, 14, 20, 63, x);
 
-		x = c("Ankaragücü", 116, "#988F25", "#000000", null);
+		x = c("Ankaragücü", 116, "#988F25", w, null);
 		p("O. Uşak", 116, 1, 25, 65, x);
 		p("A. Dereli", 116, 6, 25, 61, x);
 		p("H. Kutlu", 116, 2, 34, 64, x);
@@ -11672,7 +11675,7 @@ class Fifa07Service {
 		p("B. Karaduman", 116, 7, 21, 58, x);
 		p("M. Erdoğan", 116, 11, 17, 50, x);
 
-		x = c("Ankaraspor", 116, "#91718A", "#FFFFFF", null);
+		x = c("Ankaraspor", 116, "#91718A", w, null);
 		p("H. Arıkan", 116, 1, 23, 67, x);
 		p("M. Yoldaş", 12, 4, 23, 61, x);
 		p("R. Tunç", 116, 2, 30, 64, x);
@@ -11695,7 +11698,7 @@ class Fifa07Service {
 		p("M. Yılmaz", 116, 14, 27, 65, x);
 		p("E. Bahtiyaroğlu", 116, 2, 20, 57, x);
 
-		x = c("Konyaspor", 116, "#58947A", "#000000", null);
+		x = c("Konyaspor", 116, "#58947A", w, null);
 		p("Ö. Öngün", 116, 1, 27, 72, x);
 		p("Y. Çelik", 116, 6, 31, 65, x);
 		p("A. El Saka", 80, 2, 32, 71, x);
@@ -11718,7 +11721,7 @@ class Fifa07Service {
 		p("L. Nalıncı", 116, 8, 18, 63, x);
 		p("E. Ergin", 116, 7, 25, 63, x);
 
-		x = c("Bursaspor", 116, "#628460", "#FFFFFF", null);
+		x = c("Bursaspor", 116, "#628460", w, null);
 		p("Ö. Çatkıç", 116, 1, 31, 72, x);
 		p("E. Korkmaz", 116, 2, 23, 66, x);
 		p("Ö. Erdoğan", 116, 2, 28, 71, x);
@@ -11741,7 +11744,7 @@ class Fifa07Service {
 		p("Y. Tuncer", 116, 4, 21, 54, x);
 		p("İ. Dağaşan", 116, 7, 22, 64, x);
 
-		x = c("Antalyaspor", 116, "#F0656C", "#000000", null);
+		x = c("Antalyaspor", 116, "#F0656C", w, null);
 		p("Cordoba", 26, 1, 36, 73, x);
 		p("L. Yücel", 116, 4, 25, 60, x);
 		p("J. Bieniuk", 94, 2, 27, 66, x);

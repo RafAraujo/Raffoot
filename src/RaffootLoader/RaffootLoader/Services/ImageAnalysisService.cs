@@ -35,7 +35,7 @@ namespace RaffootLoader.Services
 					{
 						using var bitmap = BitmapService.ConvertToBitmap(path);
 						var backgroundColor = BitmapService.GetAverageColor([bitmap]);
-						var foregroundColor = BitmapService.PerceivedBrightness(backgroundColor) > 130 ? Color.Black : Color.White;
+						var foregroundColor = backgroundColor.GetBrightness() > 0.4 ? Color.Black : Color.White;
 
 						club.BackgroundColor = backgroundColor.ToHexString();
 						club.ForegroundColor = foregroundColor.ToHexString();

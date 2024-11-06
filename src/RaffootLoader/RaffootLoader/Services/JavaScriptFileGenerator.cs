@@ -1,7 +1,6 @@
 ﻿using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Enums;
 using RaffootLoader.Domain.Interfaces.Services;
-using RaffootLoader.Services.Fifa.Abstract;
 using RaffootLoader.Utils;
 using System.Text;
 
@@ -43,11 +42,14 @@ namespace RaffootLoader.Services
 				sb.AppendLine("\t\tconst p = Player.create;");
 				sb.AppendLine("\t\tlet x = null;");
 				sb.AppendLine();
+				sb.AppendLine("\t\tconst b = \"#FFFFFF\";");
+				sb.AppendLine("\t\tconst w = \"#000000\";");
+				sb.AppendLine();
 
 				var countryNames = countries.Select(c => c.Name).ToList();
 				var positions = context.Positions.Select(p => p.Abbreviation).ToList();
 
-				var leagues = context.Leagues;
+				var leagues = context.Leagues.OrderBy(l => l.IsPatched);
 				var clubs = context.Clubs;
 				var players = context.Players;
 
@@ -58,23 +60,16 @@ namespace RaffootLoader.Services
 
 					foreach (var club in leagueClubs)
 					{
-						if (country == null && league.Country == "Rest of World")
-						{
-							country = countries.Single(c => c.Name == FifaService.GetCountryForRestOfWorldClub(club));
-						}
-
-						var shortName = FifaService.GetShortClubName(club.Name);
-
-						sb.AppendLine(string.Format("\t\tx = c(\"{0}\", {1}, \"{2}\", \"{3}\", {4});",
+						sb.AppendLine(string.Format("\t\tx = c(\"{0}\", {1}, \"{2}\", {3}, {4});",
 							club.Name,
 							countryNames.IndexOf(country.Name) + 1,
 							club.BackgroundColor,
-							club.ForegroundColor,
-							string.IsNullOrEmpty(shortName) ? "null" : $"\"{shortName}\""));
+							club.ForegroundColor == "FFFFFF" ? "b" : "w",
+							string.IsNullOrEmpty(club.ShortName) ? "null" : $"\"{club.ShortName}\""));
 
 						foreach (var player in players.Where(p => p.ClubId == club.ExternalId))
 						{
-							var position = FifaService.GetStandardizedPositionAbbreviation(player.Positions.First());
+							var position = player.Positions.First();
 
 							var countryId = countryNames.IndexOf(player.Country) + 1;
 							var positionId = positions.IndexOf(position) + 1;

@@ -1,7 +1,6 @@
 ﻿using LiteDB;
 using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Models;
-using RaffootLoader.Services.Fifa.Abstract;
 using RaffootLoader.Utils;
 
 namespace RaffootLoader.Data
@@ -18,7 +17,7 @@ namespace RaffootLoader.Data
 
 		public IEnumerable<Club> Clubs
 		{
-			get => GetClubsWithStandardizedName();
+			get => clubRepository.GetAll();
 		}
 
 		public IEnumerable<League> Leagues
@@ -28,12 +27,12 @@ namespace RaffootLoader.Data
 
 		public IEnumerable<Player> Players
 		{
-			get => GetPlayersWithStandardizedCountryName();
+			get => playerRepository.GetAll();
 		}
 
 		public IEnumerable<Country> Countries
 		{
-			get => GetCountriesWithStandardizedName();
+			get => countryRepository.GetAll();
 		}
 
 		public IEnumerable<Position> Positions
@@ -72,9 +71,8 @@ namespace RaffootLoader.Data
 				Console.WriteLine("Dropping database...");
 
 				if (File.Exists(settings.DbPath))
-				{
 					File.Move(settings.DbPath, $"{settings.DbPath}.old", true);
-				}
+
 				File.Delete(settings.DbPath);
 			}
 			catch (Exception ex)
@@ -93,30 +91,6 @@ namespace RaffootLoader.Data
 		{
 			var repository = new Repository<T>(settings);
 			repository.InsertMany(items);
-		}
-
-		private IEnumerable<Club> GetClubsWithStandardizedName()
-		{
-			var clubs = clubRepository.GetAll();
-			foreach (var club in clubs)
-				club.Name = FifaService.GetStandardizedClubName(club.Name);
-			return clubs;
-		}
-
-		private IEnumerable<Player> GetPlayersWithStandardizedCountryName()
-		{
-			var players = playerRepository.GetAll();
-			foreach (var player in players)
-				player.Country = FifaService.GetStandardizedCountryName(player.Country);
-			return players;
-		}
-
-		private IEnumerable<Country> GetCountriesWithStandardizedName()
-		{
-			var countries = countryRepository.GetAll();
-			foreach (var country in countries)
-				country.Name = FifaService.GetStandardizedCountryName(country.Name);
-			return countries;
 		}
 	}
 }

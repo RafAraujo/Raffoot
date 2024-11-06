@@ -16,7 +16,18 @@ namespace RaffootLoader.Utils
             return text == CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
         }
 
-        public static string ToTitleCase(this string text)
+		public static string RemoveDiacritics(this string text)
+		{
+			var withDiacritics = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇçÑñ";
+			var withoutDiacritcs = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCcNn";
+
+			for (var i = 0; i < withDiacritics.Length; i++)
+				text = text.Replace(withDiacritics[i], withoutDiacritcs[i]);
+
+			return text;
+		}
+
+		public static string ToTitleCase(this string text)
         {
             return _cultureInfo.TextInfo.ToTitleCase(text);
         }

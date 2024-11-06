@@ -15,9 +15,7 @@ namespace RaffootLoader.Services
 			var dto = new ImageInfoDto(null, null);
 
 			if (string.IsNullOrEmpty(country.Flag))
-			{
 				return dto;
-			}
 			
 			var url = country.Flag.Split(' ')[2];
 			var fileName = $"{country.Name}{Path.GetExtension(url)}";
@@ -32,9 +30,7 @@ namespace RaffootLoader.Services
 			var dto = new ImageInfoDto(null, null);
 			
 			if (string.IsNullOrEmpty(club.Logo))
-			{
 				return dto;
-			}
 
 			var url = club.Logo.Split(' ')[2];
 			var countryName = _leagues.Single(l => l.ExternalId == club.LeagueId).Country;
@@ -43,6 +39,9 @@ namespace RaffootLoader.Services
 			var extension = Path.GetExtension(url) ?? _defaultExtension;
 			var fileName = $"{name}{extension}";
 			var filePath = Path.Combine(settings.ImagesFolder, "clubs", fileName);
+
+			if (!File.Exists(filePath))
+				return dto;
 			
 			dto = new ImageInfoDto(url, filePath);
 			return dto;
@@ -53,9 +52,7 @@ namespace RaffootLoader.Services
 			var dtos = new List<ImageInfoDto>();
 
 			if (club.Kits.Count == 0)
-			{
 				return dtos;
-			}
 
 			var country = _leagues.Single(l => club.LeagueId == l.ExternalId).Country;
 			var baseFolder = Path.Combine(settings.ImagesFolder, "kits", settings.Year.ToString());
@@ -81,11 +78,9 @@ namespace RaffootLoader.Services
 			var dto = new ImageInfoDto(null, null);
 
 			if (string.IsNullOrEmpty(player.Photo))
-			{
 				return dto;
-			}
 			
-			var url = player.Photo.Split(' ')[2];
+			var url = player.Photo.Contains(' ') ? player.Photo.Split(' ')[2] : player.Photo;
 			var fileName = $"{player.Id}{Path.GetExtension(url)}";
 			var filePath = Path.Combine(settings.ImagesFolder, "players", settings.Year.ToString(), fileName);
 
