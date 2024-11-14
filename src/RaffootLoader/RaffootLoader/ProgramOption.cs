@@ -4,16 +4,12 @@
     {
         DoAll = -1,
 
+        ChangeDataSource,
         ChangeYear,
-        DropDatabase,
         CreateDatabase,
-        DownloadFlags,
-        DownloadLogos,
-        DownloadPhotos,
-        DownloadKits,
+        DownloadImages,
         UpdateClubsColors,
         GenerateFifaServiceFile,
-
         CheckClubsWithoutLogo,
 
         Exit = 99

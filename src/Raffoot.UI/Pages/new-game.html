@@ -52,11 +52,22 @@
                     <legend>{{ translator.get("Choose your club") }}</legend>
                     <div class="row mb-3">
                         <div class="col">
+                            <label for="mode" class="form-label">{{ translator.get("Mode") }}</label>
+                            <select id="mode" class="form-control" required autocomplete="off"
+                                v-model.lazy="selectedMode" @change="loadYears()">
+                                <option v-for="(mode, index) in modes" :key="mode" :value="mode">
+                                    {{ mode }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
                             <label for="year" class="form-label">{{ translator.get("Year") }}</label>
                             <select id="year" class="form-control" required autocomplete="off"
-                                v-model.lazy="selectedYear" @change="createGame($event.target.value)">
+                                v-model.lazy="selectedYear" @change="createGame()">
                                 <option></option>
-                                <option v-for="(year, index) in getYears()" :key="year" :value="year">
+                                <option v-for="(year, index) in years" :key="year" :value="year">
                                     {{ year }}
                                 </option>
                             </select>
@@ -162,7 +173,10 @@
     <script src="../../Raffoot.Application/GameFactory.js"></script>
     
     <script src="../../Raffoot.Application/Services/GameService.js"></script>
+    <script src="../../Raffoot.Application/Services/SeedService.js"></script>
 
+    <script src="../../Raffoot.Application/Services/Fifa03Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa04Service.js"></script>
     <script src="../../Raffoot.Application/Services/Fifa05Service.js"></script>
     <script src="../../Raffoot.Application/Services/Fifa06Service.js"></script>
     <script src="../../Raffoot.Application/Services/Fifa07Service.js"></script>
@@ -184,8 +198,9 @@
     <script src="../../Raffoot.Application/Services/Fifa23Service.js"></script>
     <script src="../../Raffoot.Application/Services/Fifa24Service.js"></script>
     <script src="../../Raffoot.Application/Services/Fifa25Service.js"></script>
+
+    <script src="../../Raffoot.Application/Services/Fm24Service.js"></script>
     
-    <script src="../../Raffoot.Application/Services/FifaService.js"></script>
     <script src="../../Raffoot.Application/Services/TranslatorService.js"></script>
 
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
@@ -207,23 +222,26 @@
                 gameName: '',
                 isCreatingGame: false,
                 message: { text: '', type: 'primary' },
+                modes: ['Default', 'Brazil'],
+                selectedMode: 'Default',
                 selectedYear: null,
                 theme: Config.theme,
                 translator: new TranslatorService(),
+                years: [],
             }
         },
         methods: {
-            createGame(year) {
-                if (!year)
-                    return;
+            createGame() {
                 this.isCreatingGame = true;
-                this.game = gameService.create('', year);
+                this.game = gameService.create(this.selectedMode, this.selectedYear, '');
                 this.game.config.theme = this.theme;
                 this.isCreatingGame = false;
             },
-            fifaServiceExists(year) {
+            serviceExists(year) {
                 try {
-                    eval(`Fifa${(year).toString().substring(2)}Service`);
+                    const prefix = this.selectedMode === 'Default' ? 'Fifa' : "Fm";
+                    const name = `${prefix}${year.toString().substring(2)}Service`;
+                    eval(name);
                     return true;
                 }
                 catch {
@@ -238,30 +256,30 @@
                 countries = countries.map(c => ({ id: c.id, name: this.translator.get(c.name) })).orderBy('name');
                 return countries;
             },
-            getYears() {
+            loadYears() {
                 const maxYear = Config.years.max;
                 const minYear = Config.years.min;
 
                 const years = [];
                 for (let year = maxYear; year >= minYear; year--)
-                    if (this.fifaServiceExists(year)) {
+                    if (this.serviceExists(year)) {
                         years.push(year);
                         if (!this.selectedYear) {
                             this.selectedYear = year;
                         }
                     }
 
-                return years;
-            },
-            setClub(id) {
-                if (!this.game)
-                    return;
-                this.game.club = this.game.clubs.find(c => c.id === parseInt(id));
+                this.years = years;
             },
             setCountry(id) {
                 if (!this.game)
                     return;
                 this.game.country = this.game.countries.find(c => c.id === parseInt(id));
+            },
+            setClub(id) {
+                if (!this.game)
+                    return;
+                this.game.club = this.game.clubs.find(c => c.id === parseInt(id));
             },
             setTheme() {
                 this.theme = this.themeInverse;
@@ -296,6 +314,7 @@
             document.documentElement.setAttribute('data-bs-theme', this.theme);
         },
         async mounted() {
+            this.loadYears();
             if (this.selectedYear)
                 this.createGame(this.selectedYear);
         },

@@ -21,6 +21,10 @@ html, body {
     min-height: 100%;
 }
 
+.modal-content {
+    color: black;
+}
+
 html[data-bs-theme="dark"] {
     table.table {
 
@@ -192,6 +196,7 @@ table.table {
     }
 
     td img.flag {
+        height: 1.5em;
         max-height: 1.5em;
     }
 

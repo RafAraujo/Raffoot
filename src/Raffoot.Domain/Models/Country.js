@@ -31,6 +31,10 @@ class Country {
     }
 
     getFlagURL() {
-        return `${Config.folders.flagFolder}/${this.name}.png`;
+        const game = Context.game;
+        const extension = game.mode === 'Default' ? 'png' : 'svg';
+        const file = `${this.name}.${extension}`;
+        const url = `${Config.resourcesFolder}/image/modes/${game.mode}/countries/${file}`;
+        return url;
     }
 }

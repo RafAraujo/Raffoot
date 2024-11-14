@@ -10,34 +10,18 @@ namespace RaffootLoader.Data
 		IRepository<League> leagueRepository,
 		IRepository<Club> clubRepository,
 		IRepository<Player> playerRepository,
-		IRepository<Country> countryRepository,
-		IRepository<Translation> translationRepository) : IContext
+		IRepository<Country> countryRepository) : IContext
 	{
-		private IEnumerable<Position> _positions;
+		private IEnumerable<Position> positions;
 
-		public IEnumerable<Club> Clubs
-		{
-			get => clubRepository.GetAll();
-		}
-
-		public IEnumerable<League> Leagues
-		{
-			get => leagueRepository.GetAll();
-		}
-
-		public IEnumerable<Player> Players
-		{
-			get => playerRepository.GetAll();
-		}
-
-		public IEnumerable<Country> Countries
-		{
-			get => countryRepository.GetAll();
-		}
+		public IEnumerable<Club> Clubs => clubRepository.GetAll();
+		public IEnumerable<League> Leagues => leagueRepository.GetAll();
+		public IEnumerable<Player> Players => playerRepository.GetAll();
+		public IEnumerable<Country> Countries => countryRepository.GetAll();
 
 		public IEnumerable<Position> Positions
 		{
-			get => _positions ??=
+			get => positions ??=
 			[
 				new(1, "Goalkeeper", "GK"),
 				new(2, "Centre-Back", "CB"),
@@ -57,23 +41,12 @@ namespace RaffootLoader.Data
 			];
 		}
 
-		public IEnumerable<Translation> Translations
-		{
-			get => translationRepository.GetAll();
-		}
-
-		public bool DatabaseExists() => File.Exists(settings.DbPath);
-
 		public void DropDatabase()
 		{
 			try
 			{
-				Console.WriteLine("Dropping database...");
-
 				if (File.Exists(settings.DbPath))
 					File.Move(settings.DbPath, $"{settings.DbPath}.old", true);
-
-				File.Delete(settings.DbPath);
 			}
 			catch (Exception ex)
 			{

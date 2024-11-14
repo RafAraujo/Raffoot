@@ -1,5 +1,5 @@
 class Game {
-    constructor(name, firstYear) {
+    constructor(mode, firstYear, name) {
         this.name = name;
         this.firstYear = firstYear;
 
@@ -38,9 +38,11 @@ class Game {
         this.matchSimulationStatistics = [];
 
         this.messages = [];
+        this.mode = mode;
+        this.isFantasyMode = this.mode !== 'Default' || year < 2005;
 
         this.config = {
-            fullScreen: Config.fullScreen,
+            fullScreen: false,
             language: Config.language,
             matchSpeed: Config.matchSpeedOptions.ultraFast,
             search: {

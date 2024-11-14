@@ -19,6 +19,8 @@ class Club {
         this._formationId = null;
     }
 
+    static minimumPlayersInSquad = 18;
+
     static create(name, countryId, backgroundColor, foregroundColor, shortName) {
         const colors = {
             background: backgroundColor,
@@ -152,15 +154,19 @@ class Club {
     getKitsURLs() {
         const urlList = [];
         const descriptions = ['Home', 'Away', 'Goalkeeper', 'Alternative'];
+        const game = Context.game;
         for (let i = 1; i <= 4; i++) {
-            const url = `${Config.folders.kitFolder}/${Context.game.firstYear}/${this.country.name}/${this.name.replace('/', '-')}/${i}.png`;
+            const url = `${Config.resourcesFolder}/image/modes/${game.mode}/kits/${game.firstYear}/${this.country.name}/${this.name.replace('/', '-')}/${i}.png`;
             urlList.push({ url: url, description: descriptions[i - 1]});
         }
         return urlList;
     }
 
     getLogoURL() {
-        return `${Config.folders.logoFolder}/${this.country.name} - ${this.name.replace('/', '-')}.png`;
+        const game = Context.game;
+        const file = `${this.country.name} - ${this.name.replace('/', '-')}.png`;
+        const url = `${Config.resourcesFolder}/image/modes/${game.mode}/clubs/${file}`;
+        return url;
     }
 
     getBestPlayersWithoutGoalkeeper(count) {

@@ -4,8 +4,6 @@ namespace RaffootLoader.Data.Interfaces
 {
     public interface IRepository<T>
     {
-        string TableName { get; set; }
-
         bool Delete(int id);
         IEnumerable<T> Find(Expression<Func<T, bool>> filter);
         IEnumerable<T> GetAll();

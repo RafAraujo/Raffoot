@@ -23,7 +23,7 @@ class Championship {
         return Context.game.championships[id - 1];
     }
 
-    static seed() {
+    static seed(isFantasyMode) {
         const nationalCup = ChampionshipType.find('national', 'cup');
         const nationalLeague = ChampionshipType.find('national', 'league');
         const nationalSupercup = ChampionshipType.find('national', 'supercup');
@@ -50,6 +50,9 @@ class Championship {
 
             Championship.create(`${confederation.name} Supercup`, nationalSupercup, null, confederation.id, 1, 2);
         }
+
+        if (isFantasyMode)
+            return;
 
         const continents = Context.game.continents.filter(con => con.clubs.length > 16);
 

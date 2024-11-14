@@ -43,16 +43,14 @@ class Player {
     }
 
     static _calculateBaseWage(overall) {
-        overall = Math.min(overall - 50, 50);
-        let wage = Math.pow(overall, 3) * 10;
-        const minimumValue = 10 * 1000;
+        let wage = Math.pow(overall / 20, 9);
+        const minimumValue = 2000;
         wage = Math.max(minimumValue, wage);
         return Math.round(wage);
     }
 
     static _calculateMarketValue(overall, age, position) {
-        overall =  Math.min(overall - 50, 50);
-        const reference = Math.pow(overall, 4) * (overall / 1.5);
+        const reference = Math.pow(overall / 20, 10) * Math.pow(Math.log(overall), 2);
         const ageFactor = (32 - age) * reference * 0.1;
         const positionFactor = (position.line - 1) * (reference * 0.03);
         const minimumValue = 100 * 1000;
@@ -179,8 +177,9 @@ class Player {
     }
 
     getPhotoURL() {
-        const file = `${this.id}.png` ?? '0.svg';
-        const url = `${Config.folders.photoFolder}/${Context.game.firstYear}/${file}`;
+        const game = Context.game;
+        const file = `${this.id}.png`;
+        const url = `${Config.resourcesFolder}/image/modes/${game.mode}/players/${game.firstYear}/${file}`;
         return url;
     }
 

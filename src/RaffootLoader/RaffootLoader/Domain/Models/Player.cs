@@ -13,6 +13,6 @@
 		public int ClubId { get; set; }
         public string Photo { get; set; }
         public int JerseyNumber { get; set; }
-        public string Foot { get; set; }
+        public bool OnLoan { get; set; }
     }
 }

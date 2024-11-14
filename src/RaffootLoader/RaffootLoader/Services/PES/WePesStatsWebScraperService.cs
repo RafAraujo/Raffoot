@@ -1,18 +1,19 @@
 ﻿using HtmlAgilityPack;
 using RaffootLoader.Data.Interfaces;
+using RaffootLoader.Domain.Enums;
 using RaffootLoader.Domain.Interfaces.Services;
 using RaffootLoader.Domain.Models;
+using RaffootLoader.Services.Abstract;
 using RaffootLoader.Services.DTO;
-using RaffootLoader.Services.Fifa.Abstract;
 using RaffootLoader.Utils;
-using System.Net;
 
 namespace RaffootLoader.Services.PES
 {
 	public class WePesStatsWebScraperService(ISettings settings) : PesService, IDataExtractorService
 	{
 		private const string BaseUrl = "https://wepesstats.rf.gd/";
-		private readonly HttpClient client = GetHttpClient();
+		private const string cookies = "__cf_bm=CtwvzsNeT7HZfb.cOQEGynM3XJXxpbOWAmFuq8dOViI-1728050460-1.0.1.1-pnnN9.tI5EgPU.pic_N0yH1D9Uj.FEhhc36dXoF9xfmQfeY58Ilhiemna5svmZ.bAdRjjsrz.14KuTsoT0iOkA";
+		private readonly HttpClient client = GetHttpClient(BaseUrl, cookies);
 
 		private readonly List<League> leagues = [];
 		private readonly List<Club> clubs = [];
@@ -34,47 +35,27 @@ namespace RaffootLoader.Services.PES
 			return database;
 		}
 
-		private string GetUrl()
-		{
-			var gameName = string.Empty;
-
-			switch (settings.Year)
-			{
-				case 2003:
-					gameName = "pes3";
-					break;
-				case 2004:
-					gameName = "pes4";
-					break;
-			}
-
-			var url = $"{BaseUrl}{gameName}.php";
-
-			return url;
-		}
-
 		private async Task<List<Player>> GetData()
 		{
-			var players = new List<Player>();
+			var baseUrl = $"{BaseUrl}pes{settings.Year.ToString().Last()}.php";
+			var doc = await GetHtmlDocument(client, baseUrl);
+			var lastLink = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'pagination')]/a[last()]");
+			var maxPage = int.Parse(lastLink.InnerText);
 
 			Console.WriteLine();
 
-			var url = GetUrl();
-
-			var doc = await GetHtmlDocument(url);
-			var divPagination = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'pagination')]");
-			var lastLink = divPagination.SelectSingleNode(".//a[last()]");
-			var maxPage = int.Parse(lastLink.InnerText);
-
 			for (var page = 1; page <= maxPage; page++)
 			{
-				url = $"{url}?page={page}";
-				doc = await GetHtmlDocument(url);
-
+				var url = $"{baseUrl}?page={page}";
+				doc = await GetHtmlDocument(client, url);
 				GetData(doc);
 
 				ConsoleUtils.ShowProgress(page, maxPage, $"Players: ");
 			}
+
+			foreach (var player in players)
+				if (!countries.Any(c => c.Name == player.Country))
+					countries.Add(new Country(player.Country, null, leagues.FirstOrDefault(l => l.Country == player.Country)?.Continent.ToString()));
 
 			Console.WriteLine();
 
@@ -83,45 +64,83 @@ namespace RaffootLoader.Services.PES
 
 		private void GetData(HtmlDocument doc)
 		{
-			var table = doc.DocumentNode.SelectSingleNode("//table[2]");
-			var tbody = table.Descendants().First(n => n.Name == "tbody");
-			var rows = tbody.Descendants().Where(n => n.Name == "tr");
+			var table = doc.DocumentNode.SelectSingleNode("(//table)[3]");
+
+			var header = table.SelectNodes("./thead/tr/th");
+			var rows = table.SelectNodes("./tbody/tr");
 
 			foreach (var tr in rows)
 			{
-				var cells = tr.Descendants().Where(n => n.Name == "td").ToList();
+				var cells = tr.SelectNodes("./td");
 
-				var clubName = cells[5].InnerText;
+				var clubName = GetStandardizedClubName(cells[GetIndex("Team")].InnerText.Trim());
+				var league = GetLeagueByClubName(clubName);
+
+				if (league == null)
+					continue;
+
+				if (!leagues.Any(l => l.ExternalId == league.ExternalId))
+					leagues.Add(league);
+
 				if (!clubs.Any(c => c.Name == clubName))
-					clubs.Add(new Club { Name = clubName });
+					clubs.Add(new Club { ExternalId = clubs.Count + 1, Name = clubName, LeagueId = league.ExternalId });
 
-				var countryName = GetStandardizedCountryName(cells[6].InnerText);
-				if (!countries.Any(c => c.Name == countryName))
-					countries.Add(new Country(countryName, null, null));
+				var countryName = GetStandardizedCountryName(cells[GetIndex("Nationality")].InnerText);
 
-				var position = GetStandardizedPositionAbbreviation(cells[9].InnerText, cells[8].InnerText);
-				var overall = int.Parse(cells[11].InnerText);
+				var position = GetStandardizedPositionAbbreviation(cells[GetIndex("Position")].InnerText, cells[GetIndex("Foot")].InnerText);
+				var overall = int.Parse(cells[GetIndex("Overall Rating")].InnerText);
 
 				var player = new Player
 				{
-					ExternalId = int.Parse(cells[0].InnerText),
-					Name = cells[1].InnerText,
-					Age = int.Parse(cells[2].InnerText),
+					ExternalId = int.Parse(cells[GetIndex("ID")].InnerText),
+					Name = cells[GetIndex("Name")].InnerText,
+					Age = int.Parse(cells[GetIndex("Age")].InnerText),
 					Country = countryName,
 					Positions = [position],
 					Overall = overall,
 					Potential = overall,
+					ClubId = clubs.Single(c => c.Name == clubName).ExternalId
 				};
 
 				players.Add(player);
 			}
+
+			int GetIndex(string columnName) => header.IndexOf(header.First(n => n.InnerText.StartsWith(columnName)));
 		}
 
-		public static string GetStandardizedPositionAbbreviation(string position, string foot)
+		private League GetLeagueByClubName(string clubName)
+		{
+			var leaguesClubs = new List<Tuple<League, List<string>, List<int>>>
+			{
+				new(new(1, "Argentina", 1, Continent.America), ["Boca Juniors", "River Plate"], [2003]),
+				new(new(2, "Brazil", 1, Continent.America), [], []),
+
+				new(new(3, "Belgium", 1, Continent.Europe), ["Anderlecht", "Club Brugge"], [2003]),
+				new(new(4, "Czechia", 1, Continent.Europe), ["Sparta Praha"], [2003]),
+				new(new(5, "England", 1, Continent.Europe), ["Arsenal", "Aston Villa", "Birmingham City", "Blackburn Rovers", "Bolton Wanderers", "Charlton Athletic", "Chelsea", "Crystal Palace", "Everton", "Fulham", "Liverpool", "Manchester City", "Manchester United", "Middlesbrough", "Newcastle United", "Norwich City", "Portsmouth", "Southampton", "Tottenham Hotspur", "West Bromich Albion", "Leeds United", "West Ham United"], [2003, 2004]),
+				new(new(6, "France", 1, Continent.Europe), ["Ajaccio", "Monaco", "Auxerre", "Bastia", "Bordeaux", "Caen", "Istres", "LOSC Lille", "Olympique Lyonnais", "Metz", "Nantes", "Nice", "Olympique de Marseille", "Paris Saint Germain", "Lens", "Rennes", "Saint-Étienne", "Sochaux", "Strasbourg", "Toulouse"], [2003, 2004]),
+				new(new(7, "Germany", 1, Continent.Europe), ["Arminia Bielefeld", "Bayer 04 Leverkusen", "FC Bayern München", "VfL Bochum 1848", "Borussia Dortmund", "Borussia Mönchengladbach", "SC Freiburg", "Hamburger SV", "Hannover 96", "Hansa Rostock", "Hertha Berlin", "Kaiserslautern", "Mainz", "Nürnberg", "Schalke 04", "VfB Stuttgart", "VfL Wolfsburg", "Werder Bremen"], [2003, 2004]),
+				new(new(8, "Greece", 1, Continent.Europe), ["AEK Athens", "Olympiakos Piraeus", "Panathinaikos"], [2003]),
+				new(new(9, "Italy", 1, Continent.Europe), ["Atalanta", "Bologna", "Brescia", "Cagliari", "Chievo", "Fiorentina", "Inter", "Juventus", "Lazio", "Lecce", "Livorno", "ACR Messina", "Milan", "Palermo", "Parma", "Perugia", "Reggina", "Roma", "Sampdoria", "Siena", "Udinese"], [2003, 2004]),
+				new(new(10, "Netherlands", 1, Continent.Europe), ["ADO Den Haag", "Ajax", "AZ Alkmaar", "De Graafschap", "FC Den Bosch", "Feyenoord", "FC Groningen", "SC Heerenveen", "NAC Breda", "NEC", "PSV", "RKC Waalwijk", "Roda JC Kerkrade", "RBC Roosendaal", "FC Twente", "FC Utrecht", "Willem II", "Vitesse"], [2003, 2004]),
+				new(new(11, "Portugal", 1, Continent.Europe), ["Benfica", "Porto", "Sporting CP"], [2003]),
+				new(new(12, "Russia", 1, Continent.Europe), ["Lokomotiv Moskva", "Spartak Moskva"], [2003]),
+				new(new(13, "Scotland", 1, Continent.Europe), ["Celtic", "Rangers"], [2003]),
+				new(new(14, "Spain", 1, Continent.Europe), ["Albacete", "Athletic Club", "Atlético Madrid", "FC Barcelona", "Celta de Vigo", "Deportivo La Coruña", "Espanyol", "Getafe", "Levante", "Málaga", "Mallorca", "Numancia", "Osasuna", "Racing Santander", "Real Betis", "Real Madrid", "Real Sociedad", "Real Zaragoza", "Sevilla", "Valencia", "Villarreal"], [2003, 2004]),
+				new(new(15, "Türkiye", 1, Continent.Europe), ["Beşiktaş", "Galatasaray", "Fenerbahçe"], [2003]),
+			};
+
+			var tuple = leaguesClubs.SingleOrDefault(lc => lc.Item2.Contains(clubName) && lc.Item3.Contains(settings.Year));
+			return tuple?.Item1;
+		}
+
+		private static string GetStandardizedPositionAbbreviation(string position, string foot)
 		{
 			return (position, foot) switch
 			{
 				("SW", "Left") or ("SW", "Right") => "CB",
+				("CBT", "Left") or ("CBT", "Right") => "CB",
+				("CBW", "Left") or ("CBW", "Right") => "CB",
 				("SB", "Left") => "LB",
 				("SB", "Right") => "RB",
 				("DMF", "Left") or ("DMF", "Right") => "CDM",
@@ -129,53 +148,11 @@ namespace RaffootLoader.Services.PES
 				("SMF", "Left") => "LM",
 				("SMF", "Right") => "RM",
 				("OMF", "Left") or ("OMF", "Right") => "CAM",
-				("WG", "Left") => "LW",
-				("WG", "Right") => "RW",
+				("WG", "Left") or ("WF", "Left") => "LW",
+				("WG", "Right") or ("WF", "Right") => "RW",
 				("CF", "Left") or ("CF", "Right") => "ST",
 				_ => position,
 			};
-		}
-
-		private async Task<HtmlDocument> GetHtmlDocument(string url)
-		{
-			HttpResponseMessage message;
-			HtmlDocument doc;
-			try
-			{
-				message = await client.GetAsync(url).ConfigureAwait(false);
-				message.EnsureSuccessStatusCode();
-				var html = await message.Content.ReadAsStringAsync().ConfigureAwait(false);
-				doc = new HtmlDocument();
-				doc.LoadHtml(html);
-			}
-			catch (HttpRequestException ex)
-			{
-				ConsoleUtils.ShowException(ex);
-				ConsoleUtils.WriteWarning("Waiting...");
-
-				await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
-				return await GetHtmlDocument(url).ConfigureAwait(false);
-			}
-
-			return doc;
-		}
-
-		private static HttpClient GetHttpClient()
-		{
-			var cookieContainer = new CookieContainer();
-			var handler = new HttpClientHandler
-			{
-				UseCookies = true,
-				CookieContainer = cookieContainer,
-			};
-
-			var client = new HttpClient(handler);
-			client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36");
-
-			var cookie = new Cookie("__test", "d95ad17f468c0aa8f93602c795af214b");
-			cookieContainer.Add(new Uri(BaseUrl), cookie);
-
-			return client;
 		}
 	}
 }

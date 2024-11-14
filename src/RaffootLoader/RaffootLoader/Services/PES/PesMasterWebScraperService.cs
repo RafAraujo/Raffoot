@@ -2,13 +2,13 @@
 using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Interfaces.Services;
 using RaffootLoader.Domain.Models;
+using RaffootLoader.Services.Abstract;
 using RaffootLoader.Services.DTO;
-using RaffootLoader.Services.Fifa.Abstract;
 using RaffootLoader.Utils;
 
 namespace RaffootLoader.Services.PES
 {
-	public class PesMasterWebScraperService(ISettings settings) : PesService, IDataExtractorService
+    public class PesMasterWebScraperService(ISettings settings) : PesService, IDataExtractorService
 	{
 		private const string BaseUrl = "https://www.pesmaster.com/";
 		private readonly HttpClient client = GetHttpClient();
@@ -44,12 +44,9 @@ namespace RaffootLoader.Services.PES
 				ConsoleUtils.ShowProgress(++current, leagues.Count, $"Getting {league.Country} clubs: ");
 
 				var url = GetLeagueUrl(league);
-				var doc = await GetHtmlDocument(url).ConfigureAwait(false);
+				var doc = await GetHtmlDocument(client, url).ConfigureAwait(false);
 
-				if (settings.Year < 2020)
-					return GetClubsFromTable(doc, league);
-				else
-					return GetClubsFromDiv(doc, league);
+				return GetClubs(doc, league);
 			}
 
 			ConsoleUtils.ShowProgress(current, leagues.Count, $"Clubs: ");
@@ -57,67 +54,33 @@ namespace RaffootLoader.Services.PES
 			return clubs;
 		}
 
-		private static List<Club> GetClubsFromTable(HtmlDocument doc, League league)
+		private List<Club> GetClubs(HtmlDocument doc, League league)
 		{
 			var clubs = new List<Club>();
 
-			var table = doc.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "table");
-			if (table == null)
+			var xpath = settings.Year < 2020 ? "(//table)[1]/tbody/tr" : "(//div[contains(@class, 'team-block-container')])[1]/div[contains(@class, 'team-block')]";
+			var nodes = doc.DocumentNode.SelectNodes(xpath);
+			if (nodes == null)
 				return clubs;
 
-			var tbody = table.Descendants().First(n => n.Name == "tbody");
-			var rows = tbody.Descendants().Where(n => n.Name == "tr");
-
-			foreach (var tr in rows)
+			foreach (var node in nodes)
 			{
-				var cells = tr.Descendants().Where(n => n.Name == "td").ToList();
-				var link = cells[0].Descendants().First(n => n.Name == "a");
+				xpath = settings.Year < 2020 ? "./td//a" : ".//a";
+				var link = node.SelectSingleNode(xpath);
+
+				var clubName = settings.Year < 2020 ? link.InnerText : node.GetAttributeValue("data-name", default(string));
 
 				var club = new Club
 				{
 					LeagueId = league.ExternalId,
 					ExternalId = int.Parse(link.GetAttributeValue("href", default(string)).Split("/")[4]),
-					Name = GetStandardizedClubName(link.InnerText),
+					Name = GetStandardizedClubName(clubName),
 				};
 
 				clubs.Add(club);
 			}
 
 			return clubs;
-		}
-
-		private static List<Club> GetClubsFromDiv(HtmlDocument doc, League league)
-		{
-			var clubs = new List<Club>();
-
-			var divContainer = doc.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "div" && n.HasClass("team-block-container"));
-			if (divContainer == null)
-				return clubs;
-
-			var divs = divContainer.Descendants().Where(n => n.Name == "div" && n.HasClass("team-block"));
-
-			foreach (var div in divs)
-			{
-				var link = div.Descendants().First(n => n.Name == "a");
-
-				var club = new Club
-				{
-					LeagueId = league.ExternalId,
-					ExternalId = int.Parse(link.GetAttributeValue("href", default(string)).Split("/")[4]),
-					Name = GetStandardizedClubName(div.GetAttributeValue("data-name", default(string))),
-				};
-
-				clubs.Add(club);
-			}
-
-			return clubs;
-		}
-
-		private string GetClubUrl(Club club)
-		{
-			var clubNameWNormalized = club.Name.ToLower().Replace(' ', '-').RemoveDiacritics();
-			var url = $"{BaseUrl}{clubNameWNormalized}/pes-{settings.Year}/{"team/"}{club.ExternalId}/";
-			return url;
 		}
 
 		private string GetLeagueUrl(League league)
@@ -140,8 +103,8 @@ namespace RaffootLoader.Services.PES
 			{
 				ConsoleUtils.ShowProgress(++current, clubs.Count, $"Getting {club.Name} players: ");
 
-				var url = GetClubUrl(club);
-				var doc = await GetHtmlDocument(url).ConfigureAwait(false);
+				var url = $"{BaseUrl}{club.Name.ToLower().Replace(' ', '-').RemoveDiacritics()}/pes-{settings.Year}/{"team/"}{club.ExternalId}/";
+				var doc = await GetHtmlDocument(client, url).ConfigureAwait(false);
 
 				var clubPlayers = GetPlayers(doc, leagues);
 
@@ -161,18 +124,16 @@ namespace RaffootLoader.Services.PES
 		{
 			var players = new List<Player>();
 
-			var table = doc.DocumentNode.Descendants().First(n => n.Name == "table" && n.Id == "search-result-table");
-			var tbody = table.Descendants().First(n => n.Name == "tbody");
-			var rows = tbody.Descendants().Where(n => n.Name == "tr");
+			var rows = doc.DocumentNode.SelectNodes("(//table[@id='search-result-table'])[1]/tbody/tr");
 
 			foreach (var tr in rows)
 			{
 				var player = new Player();
 
-				var cells = tr.Descendants().Where(n => n.Name == "td").ToList();
+				var cells = tr.SelectNodes("./td");
 
-				var linkPlayer = cells[0].Descendants().First(n => n.Name == "a");
-				var imgCountry = cells[2].Descendants().First(n => n.Name == "img");
+				var linkPlayer = cells[0].SelectSingleNode(".//a");
+				var imgCountry = cells[2].SelectSingleNode(".//img");
 
 				player.ExternalId = int.Parse(linkPlayer.GetAttributeValue("href", default(string)).Split("/")[4]);
 				player.Name = linkPlayer.InnerText;
@@ -187,7 +148,7 @@ namespace RaffootLoader.Services.PES
 					countries.Add(country);
 				}
 
-				var position = cells[5].Descendants().First(n => n.Name == "span").InnerText;
+				var position = cells[5].SelectSingleNode(".//span").InnerText;
 				player.Positions.Add(GetStandardizedPositionAbbreviation(position));
 
 				player.Age = int.Parse(cells[3].InnerText);
@@ -195,7 +156,7 @@ namespace RaffootLoader.Services.PES
 				player.Potential = player.Overall;
 				player.JerseyNumber = int.Parse(cells[1].InnerText);
 
-				var imgPlayer = cells[0].Descendants().FirstOrDefault(n => n.Name == "img");
+				var imgPlayer = cells[0].SelectSingleNode(".//img");
 				player.Photo = imgPlayer?.GetAttributeValue("data-src", default(string));
 				if (!string.IsNullOrEmpty(player.Photo))
 					player.Photo = new Uri(new Uri(BaseUrl), player.Photo).ToString();
@@ -204,37 +165,6 @@ namespace RaffootLoader.Services.PES
 			}
 
 			return players;
-		}
-
-		private async Task<HtmlDocument> GetHtmlDocument(string url)
-		{
-			HttpResponseMessage message;
-			HtmlDocument doc;
-			try
-			{
-				message = await client.GetAsync(url).ConfigureAwait(false);
-				message.EnsureSuccessStatusCode();
-				var html = await message.Content.ReadAsStringAsync().ConfigureAwait(false);
-				doc = new HtmlDocument();
-				doc.LoadHtml(html);
-			}
-			catch (HttpRequestException ex)
-			{
-				ConsoleUtils.ShowException(ex);
-				ConsoleUtils.WriteWarning("Waiting...");
-
-				await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
-				return await GetHtmlDocument(url).ConfigureAwait(false);
-			}
-
-			return doc;
-		}
-
-		private static HttpClient GetHttpClient()
-		{
-			var client = new HttpClient();
-			client.DefaultRequestHeaders.Add("User-Agent", "C# App");
-			return client;
 		}
 	}
 }

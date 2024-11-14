@@ -9,10 +9,11 @@
 *.user
 *.userosscache
 *.sln.docstates
-src/Raffoot.UI/Pages/res/image/kits
-src/Raffoot.UI/Pages/res/image/players/*
-!src/Raffoot.UI/Pages/res/image/players/0.svg
-src/RaffootLoader/*.db
+src/Raffoot.UI/Pages/res/image/modes/brazil/players
+src/Raffoot.UI/Pages/res/image/modes/default/kits
+src/Raffoot.UI/Pages/res/image/modes/default/players
+!src/Raffoot.UI/Pages/res/image/modes/default/players/0.svg
+src/RaffootLoader/Databases/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

@@ -3,16 +3,15 @@ using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Enums;
 using RaffootLoader.Domain.Interfaces.Services;
 using RaffootLoader.Domain.Models;
+using RaffootLoader.Services.Abstract;
 using RaffootLoader.Services.DTO;
-using RaffootLoader.Services.Fifa.Abstract;
-using RaffootLoader.Utils;
 using System.Data;
 using System.Text;
 
 namespace RaffootLoader.Services.Fifa
 {
-	// https://www.soccergaming.com/index.php?threads/fifa-dbs-since-fifa-98-download.6469756/
-	public class ExcelReaderService(ISettings settings) : FifaService, IDataExtractorService
+    // https://www.soccergaming.com/index.php?threads/fifa-dbs-since-fifa-98-download.6469756/
+    public class ExcelReaderService(ISettings settings) : FifaService, IDataExtractorService
 	{
 		private List<Country> countries = [];
 
@@ -41,7 +40,7 @@ namespace RaffootLoader.Services.Fifa
 		private DataSet ReadFile()
 		{
 			var fileName = $"Fifa {settings.Year.ToString()[2..]}";
-			var filePath = Path.Combine(settings.AppFolder, "Resources", fileName, $"{fileName}.xlsx");
+			var filePath = Path.Combine(settings.ConsoleAppFolder, "Resources", fileName, $"{fileName}.xlsx");
 
 			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 

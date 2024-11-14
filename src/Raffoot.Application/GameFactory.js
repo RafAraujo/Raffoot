@@ -1,11 +1,8 @@
 class GameFactory {
-	static create(name, year = null) {
-		if (year == null) {
-			year = Config.years.default;
-		}
-
-		Context.game = new Game(name, year);
-		const service = new FifaService(year);
+	static create(mode, year, name) {
+		Context.game = new Game(mode, year, name);
+		const service = new SeedService(mode, year);
+		const isFantasyMode = Context.game.isFantasyMode;
 
 		let t0 = performance.now();
 		Continent.seed();
@@ -13,10 +10,10 @@ class GameFactory {
 
 		t0 = performance.now();
 		service.seedCountries();
-		console.log(`SoFifaService.seedCountries() took ${(performance.now() - t0)} milliseconds.`);
+		console.log(`service.seedCountries() took ${(performance.now() - t0)} milliseconds.`);
 
 		t0 = performance.now();
-		Confederation.seed();
+		Confederation.seed(isFantasyMode);
 		console.log(`Confederation.seed() took ${(performance.now() - t0)} milliseconds.`);
 
 		t0 = performance.now();
@@ -37,14 +34,14 @@ class GameFactory {
 
 		t0 = performance.now();
 		service.seedClubs();
-		console.log(`SoFifaService.seedClubs() took ${(performance.now() - t0)} milliseconds.`);
+		console.log(`service.seedClubs() took ${(performance.now() - t0)} milliseconds.`);
 
 		t0 = performance.now();
 		ChampionshipType.seed();
 		console.log(`ChampionshipType.seed() took ${(performance.now() - t0)} milliseconds.`);
 
 		t0 = performance.now();
-		Championship.seed();
+		Championship.seed(isFantasyMode);
 		console.log(`Championship.seed() took ${(performance.now() - t0)} milliseconds.`);
 
 		t0 = performance.now();

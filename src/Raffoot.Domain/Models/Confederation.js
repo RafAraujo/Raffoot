@@ -8,7 +8,6 @@ class Confederation {
 
     static create(continent, name, countryNames, continentalCupSpots) {
         const countryIds = countryNames.map(cn => Country.getByName(cn)).filter(c => c).map(c => c.id);
-        const clubs = Context.game.clubs.filter(c => countryIds.includes(c.country.id));
         const confederation = new Confederation(name, continent.id, countryIds, continentalCupSpots);
         confederation.id = Context.game.confederations.push(confederation);
 
@@ -25,10 +24,15 @@ class Confederation {
         return Context.game.confederations.find(c => c.name === name);
     }
 
-    static seed() {
+    static seed(isFantasyMode) {
         const america = Continent.getByName('America');
         const asia = Continent.getByName('Asia');
         const europe = Continent.getByName('Europe');
+
+        if (isFantasyMode) {
+            Confederation.create(america, 'Fantasy', Context.game.countries.filter(c => c.continent != null).map(c => c.name), [4, 4]);
+            return;
+        }
 
         Confederation.create(america, 'Argentina', ['Argentina'], [4, 3]);
         Confederation.create(america, 'Brazil', ['Brazil'], [4, 3]);

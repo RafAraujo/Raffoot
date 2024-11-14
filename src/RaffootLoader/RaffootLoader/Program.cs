@@ -7,7 +7,6 @@ using RaffootLoader.Domain.Interfaces;
 using RaffootLoader.Domain.Interfaces.Services;
 using RaffootLoader.Integration.GoogleTranslator;
 using RaffootLoader.Services;
-using RaffootLoader.Services.Fifa;
 using RaffootLoader.Utils;
 using System.Reflection;
 
@@ -30,35 +29,24 @@ string line;
 while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
 {
 	if (!int.TryParse(line, out int option))
-	{
 		continue;
-	}
 
 	switch ((ProgramOption)option)
 	{
 		case ProgramOption.DoAll:
 			await DoAll().ConfigureAwait(false);
 			break;
+		case ProgramOption.ChangeDataSource:
+			ChangeDataSource(settings);
+			break;
 		case ProgramOption.ChangeYear:
 			ChangeYear(settings);
-			break;
-		case ProgramOption.DropDatabase:
-			context.DropDatabase();
 			break;
 		case ProgramOption.CreateDatabase:
 			await databaseCreator.CreateDatabase();
 			break;
-		case ProgramOption.DownloadFlags:
-			await imageDownloader.DownloadImages(ImageType.Flag).ConfigureAwait(false);
-			break;
-		case ProgramOption.DownloadLogos:
-			await imageDownloader.DownloadImages(ImageType.Logo).ConfigureAwait(false);
-			break;
-		case ProgramOption.DownloadPhotos:
-			await imageDownloader.DownloadImages(ImageType.Photo).ConfigureAwait(false);
-			break;
-		case ProgramOption.DownloadKits:
-			await imageDownloader.DownloadImages(ImageType.Kit).ConfigureAwait(false);
+		case ProgramOption.DownloadImages:
+			await imageDownloader.DownloadImages().ConfigureAwait(false);
 			break;
 		case ProgramOption.UpdateClubsColors:
 			imageAnalysis.UpdateClubsColors();
@@ -77,14 +65,13 @@ while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
 
 async Task DoAll()
 {
-	var success = ChangeYear(settings);
-	if (!success)
-		return;
+	List<Func<ISettings, bool>> methods = [ChangeDataSource, ChangeYear];
+	foreach (var method in methods)
+		if (!method(settings))
+			return;
 
-	context.DropDatabase();
-	await databaseCreator.CreateDatabase();
-	foreach (ImageType imageType in Enum.GetValues(typeof(ImageType)))
-		await imageDownloader.DownloadImages(imageType).ConfigureAwait(false);
+	await databaseCreator.CreateDatabase().ConfigureAwait(false);
+	await imageDownloader.DownloadImages().ConfigureAwait(false);
 	imageAnalysis.UpdateClubsColors();
 	fileGenerator.GenerateFifaServiceFile();
 }
@@ -93,19 +80,16 @@ async Task DoAll()
 static void ConfigureServices(IServiceCollection services)
 {
 	var consoleAppPath = Assembly.GetExecutingAssembly().Location;
-	var baseFolder = @$"{consoleAppPath}\..\..\..\..\..\..\";
-	var appFolder = Path.Combine(baseFolder, @"RaffootLoader\");
-	var imagesFolder = Path.Combine(baseFolder, @"Raffoot.UI\Pages\res\image\");
-	var year = GetMaxYear();
+	var gameBaseFolder = @$"{consoleAppPath}\..\..\..\..\..\..\";
+	var consoleAppFolder = Path.Combine(gameBaseFolder, @"RaffootLoader\");
 
-	services.AddSingleton<ISettings, Settings>(sp => new Settings(baseFolder, appFolder, imagesFolder, year));
+	services.AddSingleton<ISettings, Settings>(sp => new Settings(gameBaseFolder, consoleAppFolder));
 
 	services.AddScoped<IContext, Context>();
 	services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 	services.AddScoped<IDatabaseCreatorService, DatabaseCreatorService>();
-	services.AddScoped<IDataExtractorService, SoFifaWebScraperService>();
 	services.AddScoped<IImageService, ImageService>();
-	services.AddScoped<IImageDownloaderService, SoFifaImageDownloaderService>();
+	services.AddScoped<IImageDownloaderService, ImageDownloaderService>();
 	services.AddScoped<IImageAnalysisService, ImageAnalysisService>();
 	services.AddScoped<ITranslatorApi, GoogleTranslator>();
 	services.AddScoped<IJavaScriptFileGenerator, JavaScriptFileGenerator>();
@@ -125,22 +109,38 @@ static void WriteInstructions(ISettings settings)
 	Console.WriteLine();
 }
 
+static bool ChangeDataSource(ISettings settings)
+{
+	Console.WriteLine("\nEnter the data source");
+	foreach (DataSource value in Enum.GetValues(typeof(DataSource)))
+		Console.WriteLine("{0} - {1}", (int)value, value.ToString());
+
+	if (int.TryParse(Console.ReadLine(), out int dataSource))
+	{
+		if (Enum.IsDefined(typeof(DataSource), dataSource))
+		{
+			settings.DataSource = (DataSource)dataSource;
+			return true;
+		}
+	}
+
+	ConsoleUtils.WriteError("Invalid option");
+	return false;
+}
+
 static bool ChangeYear(ISettings settings)
 {
-	Console.WriteLine("\n{0} ({1} - {2}):", "Enter the year", GetMinYear(), GetMaxYear());
+	Console.WriteLine("\n{0} ({1} - {2}):", "Enter the year", settings.MinYear, settings.MaxYear);
 
 	if (int.TryParse(Console.ReadLine(), out int year))
 	{
-		if (year >= GetMinYear() && year <= GetMaxYear())
+		if (year >= settings.MinYear && year <= settings.MaxYear)
 		{
 			settings.Year = year;
 			return true;
 		}
 	}
 
-	ConsoleUtils.WriteError("Invalid year");
+	ConsoleUtils.WriteError("Invalid option");
 	return false;
 }
-
-static int GetMinYear() => 2003;
-static int GetMaxYear() => DateTime.Now.Month < 9 ? DateTime.Now.Year : DateTime.Now.Year + 1;

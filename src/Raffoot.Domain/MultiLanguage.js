@@ -298,6 +298,7 @@ const MultiLanguage =
     "Million": "Milhão",
     "Millions": "Milhões",
     "Minimum": "Mínimo",
+    "Mode": "Modo",
     "Moldova": "Moldávia",
     "Money": "Dinheiro",
     "Montenegro": "Montenegro",

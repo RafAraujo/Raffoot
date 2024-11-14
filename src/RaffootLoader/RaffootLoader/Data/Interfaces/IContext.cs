@@ -10,7 +10,6 @@ namespace RaffootLoader.Data.Interfaces
         IEnumerable<Player> Players { get; }
         IEnumerable<Position> Positions { get; }
 
-        bool DatabaseExists();
         void DropDatabase();
         bool DropCollection(string name);
         void InsertMany<T>(IEnumerable<T> items) where T : Entity;

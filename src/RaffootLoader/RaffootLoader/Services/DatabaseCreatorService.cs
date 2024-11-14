@@ -1,8 +1,10 @@
 ﻿using RaffootLoader.Data.Interfaces;
+using RaffootLoader.Domain.Enums;
 using RaffootLoader.Domain.Interfaces.Services;
 using RaffootLoader.Domain.Models;
 using RaffootLoader.Services.DTO;
 using RaffootLoader.Services.Fifa;
+using RaffootLoader.Services.FM;
 using RaffootLoader.Services.PES;
 using RaffootLoader.Utils;
 
@@ -14,24 +16,17 @@ namespace RaffootLoader.Services
 		{
 			try
 			{
-				if (context.DatabaseExists())
-				{
-					Console.WriteLine("Database already exists");
-					return;
-				}
-				else
-				{
-					Console.WriteLine("Creating database...");
-				}
+				context.DropDatabase();
+
+				Console.WriteLine("Creating database...");
 
 				var mapping = GetMappings();
-				var service = mapping.Item2;
 
-				var db = await service.GetDatabase().ConfigureAwait(false);
+				var db = await mapping.Item1.GetDatabase().ConfigureAwait(false);
 
-				if (mapping.Item3 != null)
+				if (mapping.Item2 != null)
 				{
-					var altDb = await mapping.Item3.GetDatabase().ConfigureAwait(false);
+					var altDb = await mapping.Item2.GetDatabase().ConfigureAwait(false);
 					PatchDatabase(db, altDb);
 				}
 
@@ -39,6 +34,8 @@ namespace RaffootLoader.Services
 				context.InsertMany(db.Clubs);
 				context.InsertMany(db.Players);
 				context.InsertMany(db.Countries);
+
+				File.Delete($"{settings.DbPath}.old");
 			}
 			catch (Exception ex)
 			{
@@ -46,7 +43,7 @@ namespace RaffootLoader.Services
 			}
 		}
 
-		private Tuple<int, IDataExtractorService, IDataExtractorService> GetMappings()
+		private Tuple<IDataExtractorService, IDataExtractorService> GetMappings()
 		{
 			var wePesStatsWebScraperService = new WePesStatsWebScraperService(settings);
 			var excelReaderService = new ExcelReaderService(settings);
@@ -54,46 +51,46 @@ namespace RaffootLoader.Services
 			var soFifaWebScraperService = new SoFifaWebScraperService(settings);
 			var pesMasterWebScraperService = new PesMasterWebScraperService(settings);
 
-			var mappings = new List<Tuple<int, IDataExtractorService, IDataExtractorService>>
+			var fmInsiderWebScraperService = new FmInsideWebScraperService(settings);
+
+			var mappings = new List<Tuple<int, DataSource, IDataExtractorService, IDataExtractorService>>
 			{
-				new(2003, wePesStatsWebScraperService, excelReaderService),
-				new(2004, wePesStatsWebScraperService, excelReaderService),
+				new(2003, DataSource.FifaPes, wePesStatsWebScraperService, null),
+				new(2004, DataSource.FifaPes, wePesStatsWebScraperService, null),
+				new(2005, DataSource.FifaPes, fifaIndexWebScraperService, null),
+				new(2006, DataSource.FifaPes, fifaIndexWebScraperService, null),
+				new(2007, DataSource.FifaPes, soFifaWebScraperService, null),
+				new(2008, DataSource.FifaPes, soFifaWebScraperService, null),
+				new(2009, DataSource.FifaPes, soFifaWebScraperService, null),
+				new(2010, DataSource.FifaPes, soFifaWebScraperService, null),
+				new(2011, DataSource.FifaPes, soFifaWebScraperService, null),
+				new(2012, DataSource.FifaPes, soFifaWebScraperService, null),
+				new(2013, DataSource.FifaPes, soFifaWebScraperService, null),
+				new(2014, DataSource.FifaPes, soFifaWebScraperService, null),
+				new(2015, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2016, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2017, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2018, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2019, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2020, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2021, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2022, DataSource.FifaPes, soFifaWebScraperService, null),
+				new(2023, DataSource.FifaPes, soFifaWebScraperService, null),
+				new(2024, DataSource.FifaPes, soFifaWebScraperService, null),
+				new(2025, DataSource.FifaPes, soFifaWebScraperService, null),
 
-				new(2005, fifaIndexWebScraperService, null),
-				new(2006, fifaIndexWebScraperService, null),
-
-				new(2007, soFifaWebScraperService, null),
-				new(2008, soFifaWebScraperService, null),
-				new(2009, soFifaWebScraperService, null),
-				new(2010, soFifaWebScraperService, null),
-				new(2011, soFifaWebScraperService, null),
-				new(2012, soFifaWebScraperService, null),
-				new(2013, soFifaWebScraperService, null),
-				new(2014, soFifaWebScraperService, null),
-
-				new(2015, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2016, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2017, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2018, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2019, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2020, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2021, soFifaWebScraperService, pesMasterWebScraperService),
-
-				new(2022, soFifaWebScraperService, null),
-				new(2023, soFifaWebScraperService, null),
-				new(2024, soFifaWebScraperService, null),
-				new(2025, soFifaWebScraperService, null),
+				new(2024, DataSource.FootballManager, fmInsiderWebScraperService, null),
 			};
 
-			var mapping = mappings.Single(m => m.Item1 == settings.Year);
-			return mapping;
+			var mapping = mappings.Single(m => m.Item1 == settings.Year && m.Item2 == settings.DataSource);
+			return new Tuple<IDataExtractorService, IDataExtractorService>(mapping.Item3, mapping.Item4);
 		}
 
 		private static void PatchDatabase(DatabaseDto mainDb, DatabaseDto altDb)
 		{
-			var pesLeaguesCountries = altDb.Leagues.Select(l => l.Country).Distinct().ToList();
+			var altLeaguesCountries = altDb.Leagues.Select(l => l.Country).Distinct().ToList();
 
-			var leaguesToRemove = mainDb.Leagues.Where(l => pesLeaguesCountries.Contains(l.Country)).ToList();
+			var leaguesToRemove = mainDb.Leagues.Where(l => altLeaguesCountries.Contains(l.Country)).ToList();
 			var clubsToRemove = mainDb.Clubs.Where(c => leaguesToRemove.Select(l => l.ExternalId).Contains(c.LeagueId)).ToList();
 			var playersToRemove = mainDb.Players.Where(p => clubsToRemove.Select(l => l.ExternalId).Contains(p.ClubId)).ToList();
 

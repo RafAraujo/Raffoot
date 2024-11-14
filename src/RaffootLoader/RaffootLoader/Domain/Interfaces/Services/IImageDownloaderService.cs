@@ -4,6 +4,6 @@ namespace RaffootLoader.Domain.Interfaces.Services
 {
 	public interface IImageDownloaderService
 	{
-		Task DownloadImages(ImageType imageType);
+		Task DownloadImages();
 	}
 }

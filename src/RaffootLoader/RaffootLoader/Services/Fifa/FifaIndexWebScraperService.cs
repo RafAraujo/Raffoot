@@ -2,17 +2,17 @@
 using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Interfaces.Services;
 using RaffootLoader.Domain.Models;
+using RaffootLoader.Services.Abstract;
 using RaffootLoader.Services.DTO;
-using RaffootLoader.Services.Fifa.Abstract;
 using RaffootLoader.Utils;
-using System.Net;
 
 namespace RaffootLoader.Services.Fifa
 {
-	public class FifaIndexWebScraperService(ISettings settings) : FifaService, IDataExtractorService
+    public class FifaIndexWebScraperService(ISettings settings) : FifaService, IDataExtractorService
 	{
 		private const string BaseUrl = "https://fifaindex.com/";
-		private readonly HttpClient client = GetHttpClient();
+		private const string cookies = "_gid=GA1.2.1176454803.1730869752; usprivacy=1YNY; _lr_env_src_ats=false; panoramaId_expiry=1730956152343; _cc_id=c103089bb27918931e2b1f78c1bb95cd; _scor_uid=18e75ebe943d45b09b6deacee55ea2a5; _li_dcdm_c=.fifaindex.com; _lc2_fpi=ccdfaad9d699--01j8crs8n8cae8b8r12t5aqfnn; _lc2_fpi_meta=%7B%22w%22%3A1727005500072%7D; _lr_retry_request=true; _gat_UA-67914106-1=1; _ga_JNP72VLH86=GS1.1.1730909958.4.0.1730909958.0.0.0; _ga=GA1.1.1470241376.1730869752";
+		private readonly HttpClient client = GetHttpClient(BaseUrl, cookies);
 
 		private List<Country> countries = [];
 
@@ -45,22 +45,21 @@ namespace RaffootLoader.Services.Fifa
 				ConsoleUtils.ShowProgress(++current, leagues.Count, $"Getting {league.Country} clubs: ");
 
 				var url = $"{BaseUrl}teams/fifa{settings.Year.ToString()[2..]}/?league={league.ExternalId}";
-				var doc = await GetHtmlDocument(url).ConfigureAwait(false);
+				var doc = await GetHtmlDocument(client, url).ConfigureAwait(false);
 
-				var table = doc.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "table");
+				var table = doc.DocumentNode.SelectSingleNode("//table");
 				if (table == null || doc.DocumentNode.OuterHtml.Contains("Select a valid choice"))
 					continue;
 
-				var tbody = table.Descendants().First(n => n.Name == "tbody");
-				var rows = tbody.Descendants().Where(n => n.Name == "tr");
+				var rows = table.SelectNodes(".//tbody/tr");
 
 				foreach (var tr in rows)
 				{
-					var cells = tr.Descendants().Where(n => n.Name == "td").ToList();
-					if (tr.HasClass("d-lg-none") || cells.Count == 0)
+					var cells = tr.SelectNodes("./td");
+					if (tr.HasClass("d-lg-none") || cells == null)
 						continue;
 
-					var link = cells[1].Descendants().First(n => n.Name == "a");
+					var link = cells[1].SelectSingleNode(".//a[1]");
 
 					var leagueExternalId = league.ExternalId;
 					var clubName = GetStandardizedClubName(link.InnerText);
@@ -85,6 +84,21 @@ namespace RaffootLoader.Services.Fifa
 			ConsoleUtils.ShowProgress(current, leagues.Count, $"Clubs: ");
 
 			return clubs;
+		}
+
+		private async Task<HtmlDocument> GetHtmlDocument(Club club)
+		{
+			var clubName = club.Name
+				.Replace(" ", string.Empty)
+				.Replace("'", string.Empty)
+				.Replace("&", string.Empty)
+				.Replace("+", string.Empty)
+				.Replace("/", "-")
+				.Replace(".", "-");
+
+			var url = $"{BaseUrl}{"team/"}{club.ExternalId}/{clubName}/fifa{settings.Year.ToString()[2..]}/";
+			var doc = await GetHtmlDocument(client, url).ConfigureAwait(false);
+			return doc;
 		}
 
 		private async Task<List<Player>> GetPlayers(List<League> leagues, List<Club> clubs)
@@ -113,42 +127,19 @@ namespace RaffootLoader.Services.Fifa
 			return players;
 		}
 
-		private async Task<HtmlDocument> GetHtmlDocument(Club club)
-		{
-			var clubName = club.Name
-				.Replace(" ", string.Empty)
-				.Replace("'", string.Empty)
-				.Replace("&", string.Empty)
-				.Replace("+", string.Empty)
-				.Replace("/", "-")
-				.Replace(".", "-");
-
-			var url = $"{BaseUrl}{"team/"}{club.ExternalId}/{clubName}/fifa{settings.Year.ToString()[2..]}/";
-			var doc = await GetHtmlDocument(url).ConfigureAwait(false);
-			return doc;
-		}
-
-		private static IEnumerable<HtmlNode> GetPlayersHtmlNodes(HtmlDocument doc)
-		{
-			var table = doc.DocumentNode.Descendants().First(n => n.Name == "table");
-			var tbody = table.Descendants().First(n => n.Name == "tbody");
-			var rows = tbody.Descendants().Where(n => n.Name == "tr");
-			return rows;
-		}
-
 		private List<Player> GetPlayers(HtmlDocument doc, List<League> leagues)
 		{
 			var players = new List<Player>();
-			var rows = GetPlayersHtmlNodes(doc);
+			var rows = doc.DocumentNode.SelectNodes("(//table[1])/tbody/tr");
 
 			foreach (var tr in rows)
 			{
 				var player = new Player();
 
-				var cells = tr.Descendants().Where(n => n.Name == "td").ToList();
+				var cells = tr.SelectNodes("./td");
 
-				var linkPlayer = cells[5].Descendants().First(n => n.Name == "a");
-				var imgCountry = cells[3].Descendants().First(n => n.Name == "img");
+				var linkPlayer = cells[5].SelectSingleNode(".//a");
+				var imgCountry = cells[3].SelectSingleNode(".//img");
 
 				player.ExternalId = int.Parse(linkPlayer.GetAttributeValue("href", default(string)).Split("/")[2]);
 				player.Name = linkPlayer.InnerText;
@@ -161,63 +152,21 @@ namespace RaffootLoader.Services.Fifa
 					countries.Add(country);
 				}
 
-				foreach (var span in cells[6].Descendants().Where(n => n.Name == "span"))
+				foreach (var span in cells[6].SelectNodes(".//span"))
 					player.Positions.Add(GetStandardizedPositionAbbreviation(span.InnerText));
 
 				player.Age = int.Parse(cells[7].InnerText);
 
-				var overallList = cells[4].Descendants().Where(n => n.Name == "span").ToList();
+				var overallList = cells[4].SelectNodes(".//span");
 				player.Overall = int.Parse(overallList[0].InnerText);
 				player.Potential = int.Parse(overallList[1].InnerText);
 				player.JerseyNumber = int.Parse(cells[0].InnerText);
-				player.Photo = cells[2].Descendants().First(n => n.Name == "img").GetAttributeValue("srcset", default(string));
+				player.Photo = cells[2].SelectSingleNode(".//img").GetAttributeValue("srcset", default(string));
 
 				players.Add(player);
 			}
 
 			return players;
-		}
-
-		private async Task<HtmlDocument> GetHtmlDocument(string url)
-		{
-			HttpResponseMessage message;
-			HtmlDocument doc;
-			try
-			{
-				message = await client.GetAsync(url).ConfigureAwait(false);
-				message.EnsureSuccessStatusCode();
-				var html = await message.Content.ReadAsStringAsync().ConfigureAwait(false);
-				doc = new HtmlDocument();
-				doc.LoadHtml(html);
-			}
-			catch (HttpRequestException ex)
-			{
-				ConsoleUtils.ShowException(ex);
-				ConsoleUtils.WriteWarning("Waiting...");
-
-				await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
-				return await GetHtmlDocument(url).ConfigureAwait(false);
-			}
-
-			return doc;
-		}
-
-		private static HttpClient GetHttpClient()
-		{
-			var cookieContainer = new CookieContainer();
-			var handler = new HttpClientHandler
-			{
-				UseCookies = true,
-				CookieContainer = cookieContainer,
-			};
-
-			var client = new HttpClient(handler);
-			client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36");
-
-			var cookie = new Cookie("__cf_bm", "CtwvzsNeT7HZfb.cOQEGynM3XJXxpbOWAmFuq8dOViI-1728050460-1.0.1.1-pnnN9.tI5EgPU.pic_N0yH1D9Uj.FEhhc36dXoF9xfmQfeY58Ilhiemna5svmZ.bAdRjjsrz.14KuTsoT0iOkA");
-			cookieContainer.Add(new Uri(BaseUrl), cookie);
-
-			return client;
 		}
 	}
 }

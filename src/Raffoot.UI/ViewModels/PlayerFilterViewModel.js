@@ -17,7 +17,7 @@ class PlayerFilterViewModel {
             maximum: Config.player.maxOverall,
         };
         this.marketValue = {
-            maximum: 300
+            maximum: 350
         };
         this.forSale = false;
     }
