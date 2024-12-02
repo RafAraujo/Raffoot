@@ -20,6 +20,7 @@ class ColorsModalViewModel {
     }
 
     setBackground(color) {
+        debugger;
         this.colors.background = color;
         this.game.club.colors.backgroundCustom = this.colors.background;
         document.body.style.backgroundColor = color;
@@ -38,7 +39,9 @@ class ColorsModalViewModel {
             return;
         }
 
-        document.body.style.backgroundColor = this.game.club.colors.backgroundCustom;
-        document.body.style.color = this.game.club.colors.foregroundCustom;
+        if (!this.game.club.colors.backgroundCustom)
+            document.body.style.backgroundColor = this.game.club.colors.backgroundCustom;
+        if (!this.game.club.colors.foregroundCustom)
+            document.body.style.color = this.game.club.colors.foregroundCustom;
     }
 }

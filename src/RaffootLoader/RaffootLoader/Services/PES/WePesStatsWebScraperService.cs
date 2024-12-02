@@ -20,7 +20,7 @@ namespace RaffootLoader.Services.PES
 		private readonly List<Player> players = [];
 		private readonly List<Country> countries = [];
 
-		public async Task<DatabaseDto> GetDatabase()
+		public async Task<DatabaseDto> GetDatabaseDto()
 		{
 			var database = new DatabaseDto();
 

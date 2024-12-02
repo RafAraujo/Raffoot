@@ -44,33 +44,28 @@ class PlayersSectionViewModel {
 
     searchPlayers() {
         let players = Context.game.players;
-        const playerFilter = this.playerFilter;
+        const filter = this.playerFilter;
 
-        if (playerFilter.name) {
-            const name = playerFilter.name.trim().toLowerCase().removeAccents();
+        if (filter.name) {
+            const name = filter.name.trim().toLowerCase().removeAccents();
             players = this.game.players.filter(p => p.name.toLowerCase().removeAccents().includes(name));
         }
 
-        players = players.filter(p => p.age >= playerFilter.age.minimum && p.age <= this.playerFilter.age.maximum);
-        players = players.filter(p => p.overall >= playerFilter.overall.minimum && p.overall <= this.playerFilter.overall.maximum);
+        players = players.filter(p => p.age >= filter.age.minimum && p.age <= this.playerFilter.age.maximum);
+        players = players.filter(p => p.overall >= filter.overall.minimum && p.overall <= this.playerFilter.overall.maximum);
 
-        if (playerFilter.countryId) {
-            players = players.filter(p => p.country.id === playerFilter.countryId);
-        }
+        if (filter.countryId)
+            players = players.filter(p => p.country.id === filter.countryId);
 
-        if (playerFilter.fieldRegionId) {
-            players = players.filter(p => p.position.fieldRegion.id === playerFilter.fieldRegionId);
-        }
+        if (filter.fieldRegionId)
+            players = players.filter(p => p.position.fieldRegion.id === filter.fieldRegionId);
 
-        if (playerFilter.positionId) {
-            players = players.filter(p => p.position.id === playerFilter.positionId);
-        }
+        if (filter.positionId)
+            players = players.filter(p => p.position.id === filter.positionId);
 
-        playerFilter.marketValue.maximum = window['market-value'].value;
-        players = players.filter(p => p.marketValue <= playerFilter.marketValue.maximum * 1000 * 1000);
-        if (playerFilter.forSale) {
+        players = players.filter(p => p.marketValue <= filter.marketValue.currentValue * filter.marketValue.unit);
+        if (filter.forSale)
             players = players.filter(p => p.forSale === true);
-        }
 
         players = players.orderBy('-overall', 'name');
         this.filteredPlayers = players;

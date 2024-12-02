@@ -11,12 +11,12 @@ namespace RaffootLoader.Services.Fifa
     public class FifaIndexWebScraperService(ISettings settings) : FifaService, IDataExtractorService
 	{
 		private const string BaseUrl = "https://fifaindex.com/";
-		private const string cookies = "_gid=GA1.2.1176454803.1730869752; usprivacy=1YNY; _lr_env_src_ats=false; panoramaId_expiry=1730956152343; _cc_id=c103089bb27918931e2b1f78c1bb95cd; _scor_uid=18e75ebe943d45b09b6deacee55ea2a5; _li_dcdm_c=.fifaindex.com; _lc2_fpi=ccdfaad9d699--01j8crs8n8cae8b8r12t5aqfnn; _lc2_fpi_meta=%7B%22w%22%3A1727005500072%7D; _lr_retry_request=true; _gat_UA-67914106-1=1; _ga_JNP72VLH86=GS1.1.1730909958.4.0.1730909958.0.0.0; _ga=GA1.1.1470241376.1730869752";
+		private const string cookies = "usprivacy=1YNY; _lr_env_src_ats=false; _cc_id=c103089bb27918931e2b1f78c1bb95cd; _scor_uid=18e75ebe943d45b09b6deacee55ea2a5; _li_dcdm_c=.fifaindex.com; _lc2_fpi=ccdfaad9d699--01j8crs8n8cae8b8r12t5aqfnn; _lc2_fpi_meta=%7B%22w%22%3A1727005500072%7D; _lr_retry_request=true; _gid=GA1.2.1365892259.1731625431; panoramaId_expiry=1731711831438; __gads=ID=fde8756baa827782:T=1730869754:RT=1731628219:S=ALNI_MYY_hBiDVdLte07gejakwcWWAEp2w; __gpi=UID=00000a67d069d280:T=1730869754:RT=1731628219:S=ALNI_MYdKJRFZrUPhVtEgeU_-qHH6M_LdQ; __eoi=ID=d564381f0d83c8f3:T=1730869754:RT=1731628219:S=AA-AfjZryjMEOiEbdBE5pfDwPKCJ; _gat_UA-67914106-1=1; _ga_JNP72VLH86=GS1.1.1731628241.7.1.1731628247.0.0.0; _ga=GA1.1.1470241376.1730869752; ccuid=5dfbcf3b-883a-427f-bb27-d65a16d42b7d";
 		private readonly HttpClient client = GetHttpClient(BaseUrl, cookies);
 
 		private List<Country> countries = [];
 
-		public async Task<DatabaseDto> GetDatabase()
+		public async Task<DatabaseDto> GetDatabaseDto()
 		{
 			var database = new DatabaseDto();
 
@@ -72,8 +72,8 @@ namespace RaffootLoader.Services.Fifa
 
 					var club = new Club
 					{
-						LeagueId = leagueExternalId,
 						ExternalId = int.Parse(link.GetAttributeValue("href", default(string)).Split("/")[2]),
+						LeagueId = leagueExternalId,
 						Name = clubName,
 					};
 

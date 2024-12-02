@@ -1,23 +1,17 @@
-﻿using LiteDB;
-using RaffootLoader.Data.Interfaces;
+﻿using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Models;
 using RaffootLoader.Utils;
 
 namespace RaffootLoader.Data
 {
-	public class Context(
-		ISettings settings,
-		IRepository<League> leagueRepository,
-		IRepository<Club> clubRepository,
-		IRepository<Player> playerRepository,
-		IRepository<Country> countryRepository) : IContext
+	public class Context(ISettings settings, IRepository repository) : IContext
 	{
 		private IEnumerable<Position> positions;
 
-		public IEnumerable<Club> Clubs => clubRepository.GetAll();
-		public IEnumerable<League> Leagues => leagueRepository.GetAll();
-		public IEnumerable<Player> Players => playerRepository.GetAll();
-		public IEnumerable<Country> Countries => countryRepository.GetAll();
+		public IEnumerable<Club> Clubs => repository.GetAll<Club>();
+		public IEnumerable<League> Leagues => repository.GetAll<League>();
+		public IEnumerable<Player> Players => repository.GetAll<Player>();
+		public IEnumerable<Country> Countries => repository.GetAll<Country>();
 
 		public IEnumerable<Position> Positions
 		{
@@ -54,16 +48,6 @@ namespace RaffootLoader.Data
 			}
 		}
 
-		public bool DropCollection(string name)
-		{
-			using var db = new LiteDatabase(settings.DbPath);
-			return db.DropCollection(name);
-		}
-
-		public void InsertMany<T>(IEnumerable<T> items) where T : Entity
-		{
-			var repository = new Repository<T>(settings);
-			repository.InsertMany(items);
-		}
+		public void InsertMany<T>(IEnumerable<T> items) where T : Entity => repository.InsertMany(items);
 	}
 }

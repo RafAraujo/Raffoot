@@ -1,52 +1,127 @@
 ﻿using HtmlAgilityPack;
+using RaffootLoader.Data;
 using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Interfaces.Services;
 using RaffootLoader.Domain.Models;
 using RaffootLoader.Services.Abstract;
 using RaffootLoader.Services.DTO;
 using RaffootLoader.Utils;
+using System.Diagnostics;
+using System.Text;
 
 namespace RaffootLoader.Services.FM
 {
 	public class FmInsideWebScraperService(ISettings settings) : WebScraperServiceBase, IDataExtractorService
 	{
+		private static readonly string BaseUrl = "https://fminside.net/";
 		private readonly HttpClient client = GetHttpClient();
+		private readonly string dbPath = string.Concat(settings.DbPath, ".temp");
 
-		private List<Country> countries = [];
+		private Repository repository;
 
-		public async Task<DatabaseDto> GetDatabase()
+		public async Task<DatabaseDto> GetDatabaseDto()
 		{
 			var database = new DatabaseDto();
 
-			var leagues = GetLeagues();
-
-			foreach (var league in leagues)
+			try
 			{
-				var filePath = Path.Combine(settings.ConsoleAppFolder, "Resources", "FM", $"{league.Country}.html");
-				var doc = GetHtmlDocument(filePath);
-				var clubs = GetClubs(doc, league);
-				var players = await GetPlayers(league, clubs).ConfigureAwait(false);
-				countries = [.. countries.OrderBy(c => c.Name)];
+				repository = new(dbPath);
+
+				await ResumeProcessing().ConfigureAwait(false);
 
 				database.Year = settings.Year;
-				database.Leagues.AddRange(leagues);
-				database.Clubs.AddRange(clubs);
-				database.Players.AddRange(players);
-				database.Countries.AddRange(countries);
+				database.Leagues = GetEntitiesWithoutId<League>();
+				database.Clubs = GetEntitiesWithoutId<Club>();
+				database.Players = GetEntitiesWithoutId<Player>();
+				database.Countries = GetEntitiesWithoutId<Country>();
+			}
+			catch (OperationCanceledException)
+			{
+				throw;
+			}
+			catch (Exception)
+			{
+				File.Move(dbPath, string.Concat(dbPath, ".error"));
+				throw;
 			}
 
 			return database;
 		}
 
-		private List<League> GetLeagues()
+		private void CreateDatabaseIfNotExists()
 		{
-			var folder = Path.Combine(settings.ConsoleAppFolder, "Resources", "FM");
-			var files = Directory.GetFiles(folder, "*.html");
-			var leagues = files.Select((f, i) => new League(i + 1, Path.GetFileNameWithoutExtension(f), 1, null)).ToList();
-			return leagues;
+			if (!File.Exists(dbPath))
+			{
+				Console.WriteLine("Reading HTML file...");
+				var filePath = Path.Combine(settings.ConsoleAppFolder, "Resources", "FM", "World.html");
+				var doc = GetHtmlDocument(filePath);
+
+				Console.WriteLine("Getting clubs...");
+				var clubs = GetClubs(doc);
+				repository.InsertMany(clubs);
+			}
 		}
 
-		private static List<Club> GetClubs(HtmlDocument doc, League league)
+		private async Task ResumeProcessing()
+		{
+			CreateDatabaseIfNotExists();
+
+			var clubs = repository.GetAll<Club>().ToList();
+			var pendingClubs = clubs.Where(c => !c.IsProcessingFinished).ToList();
+
+			var current = clubs.Count - pendingClubs.Count;
+
+			foreach (var club in pendingClubs)
+			{
+				ConsoleUtils.ShowProgress(++current, clubs.Count, $"Getting {club.Name} players: ");
+
+				var players = await GetPlayers(club).ConfigureAwait(false);
+
+				repository.InsertMany(players);
+				club.IsProcessingFinished = true;
+				repository.Update(club);
+
+				if (current % 80 == 0)
+				{
+					var cancel = CheckForCancellation();
+					if (cancel)
+						throw new OperationCanceledException();
+				}
+			}
+
+			ConsoleUtils.ShowProgress(current, clubs.Count, $"Players: ");
+
+			Console.WriteLine("\nRemoving duplicate players...");
+			RemoveDuplicatePlayers();
+		}
+
+		private static bool CheckForCancellation()
+		{
+			Console.WriteLine("\nCancel? [y/n]");
+
+			var stopwatch = Stopwatch.StartNew();
+			var sb = new StringBuilder();
+
+			while (stopwatch.Elapsed < TimeSpan.FromSeconds(5))
+			{
+				if (Console.KeyAvailable)
+				{
+					var key = Console.ReadKey();
+					if (key.Key == ConsoleKey.Enter)
+					{
+						Console.WriteLine();
+						return sb.ToString().Equals("y", StringComparison.CurrentCultureIgnoreCase);
+					}
+					sb.Append(key.KeyChar);
+				}
+				Thread.Sleep(TimeSpan.FromMilliseconds(50));
+			}
+
+			Console.WriteLine();
+			return false;
+		}
+
+		private static List<Club> GetClubs(HtmlDocument doc)
 		{
 			var clubs = new List<Club>();
 
@@ -58,7 +133,7 @@ namespace RaffootLoader.Services.FM
 				var linkName = ul.SelectSingleNode("./li[contains(@class, 'club')]/span[contains(@class, 'name')]/b/a");
 				var liLeague = ul.SelectSingleNode("./li[contains(@class, 'league')]");
 
-				var logo = string.Format("{0}{1}", "https://", spanLogo.GetAttributeValue("style", default(string)).Split(' ')[1][6..].TrimEnd(')'));
+				var logo = string.Format("https://{0}", spanLogo.GetAttributeValue("style", default(string)).Split(' ')[1][6..].TrimEnd(')'));
 				var externalId = int.Parse(Path.GetFileNameWithoutExtension(logo));
 
 				if (clubs.Any(c => c.ExternalId == externalId))
@@ -69,8 +144,7 @@ namespace RaffootLoader.Services.FM
 					ExternalId = externalId,
 					Name = linkName.InnerText,
 					Logo = logo,
-					LeagueId = league.ExternalId,
-					Link = linkName.GetAttributeValue("href", default(string)),
+					Link = new Uri(new Uri(BaseUrl), linkName.GetAttributeValue("href", default(string))).ToString(),
 				};
 
 				clubs.Add(club);
@@ -79,46 +153,49 @@ namespace RaffootLoader.Services.FM
 			return clubs;
 		}
 
-		private async Task<List<Player>> GetPlayers(League league, List<Club> clubs)
+		private async Task<List<Player>> GetPlayers(Club club)
 		{
 			var players = new List<Player>();
 
-			var current = 0;
+			var doc = await GetHtmlDocument(client, club.Link).ConfigureAwait(false);
 
-			foreach (var club in clubs)
+			var liListClubInfo = doc.DocumentNode.SelectNodes("//div[@id='club_info']/div[@id='club']//ul[1]/li");
+			var country = liListClubInfo[4].SelectSingleNode("./span[contains(@class, 'value')]").InnerText;
+			var status = liListClubInfo[7].SelectSingleNode("./span[contains(@class, 'value')]").InnerText;
+
+			var leagues = repository.GetAll<League>();
+			var league = leagues.SingleOrDefault(l => l.Country == country);
+			if (league == null)
 			{
-				ConsoleUtils.ShowProgress(++current, clubs.Count, $"Getting {club.Name} players: ");
-
-				var doc = await GetHtmlDocument(client, club.Link).ConfigureAwait(false);
-
-				var nodesFullSquad = doc.DocumentNode.SelectNodes("(//div[@id='player_table'][.//h2[text()='Full Squad']])//ul[contains(@class, 'player')]");
-				if (nodesFullSquad == null)
-					continue;
-
-				var onLoan = new List<Player>();
-				var nodesOnLoan = doc.DocumentNode.SelectNodes("(//div[@id='player_table'][.//h2[text()='On loan']])//ul[contains(@class, 'player')]");
-				if (nodesOnLoan != null)
-					onLoan = GetPlayers(nodesOnLoan, club, league);
-
-				var fullSquad = GetPlayers(nodesFullSquad, club, league);
-
-				foreach (var player in fullSquad)
-					if (onLoan.Any(p => player.ExternalId == p.ExternalId))
-						player.OnLoan = true;
-
-				players.AddRange(fullSquad);
+				var leagueExternalId = leagues.Count + 1;
+				league = new League(leagueExternalId, country, 1, null);
+				repository.Insert(league);
 			}
 
-			RemoveDuplicatePlayers(players);
-			RemoveClubsWithFewPlayers(clubs, players);
+			club.LeagueId = league.ExternalId;
+			club.Status = status;
 
-			ConsoleUtils.ShowProgress(current, clubs.Count, $"Players: ");
-			Console.WriteLine();
+			var nodesFullSquad = doc.DocumentNode.SelectNodes("(//div[@id='player_table'][.//h2[text()='Full Squad']])//ul[contains(@class, 'player')]");
+			if (nodesFullSquad == null)
+				return players;
+
+			var onLoan = new List<Player>();
+			var nodesOnLoan = doc.DocumentNode.SelectNodes("(//div[@id='player_table'][.//h2[text()='On loan']])//ul[contains(@class, 'player')]");
+			if (nodesOnLoan != null)
+				onLoan = GetPlayers(nodesOnLoan, club);
+
+			var fullSquad = GetPlayers(nodesFullSquad, club);
+
+			foreach (var player in fullSquad)
+				if (onLoan.Any(p => player.ExternalId == p.ExternalId))
+					player.OnLoan = true;
+
+			players.AddRange(fullSquad);
 
 			return players;
 		}
 
-		private List<Player> GetPlayers(HtmlNodeCollection nodes, Club club, League league)
+		private List<Player> GetPlayers(HtmlNodeCollection nodes, Club club)
 		{
 			var players = new List<Player>();
 
@@ -153,11 +230,11 @@ namespace RaffootLoader.Services.FM
 					Photo = photo,
 				};
 
-				if (!countries.Any(c => c.Name == player.Country))
+				var countries = repository.GetAll<Country>();
+				if (!countries.Any(c => c.Name == player.Country) && !string.IsNullOrEmpty(player.Country))
 				{
 					var flag = string.Format("{0}{1}", "https://", imgCountry.GetAttributeValue("src", default(string)).TrimStart([.. "//"]));
-					var continent = league.Continent;
-					countries.Add(new Country(player.Country, flag, continent.ToString()));
+					repository.Insert(new Country(player.Country, flag, null));
 				}
 
 				players.Add(player);
@@ -166,23 +243,15 @@ namespace RaffootLoader.Services.FM
 			return players;
 		}
 
-		private static void RemoveDuplicatePlayers(List<Player> players)
+		private void RemoveDuplicatePlayers()
 		{
-			var groupedByExternalId = players.GroupBy(p => p.ExternalId);
-			foreach (var group in groupedByExternalId.Where(g => g.Count() > 1))
-				players.Remove(group.Single(p => !p.OnLoan));
-		}
+			var players = repository.GetAll<Player>();
 
-		private static void RemoveClubsWithFewPlayers(List<Club> clubs, List<Player> players)
-		{
-			foreach (var club in clubs.ToList())
+			var groupedByExternalId = players.GroupBy(p => p.ExternalId).Where(g => g.Count() > 1);
+			foreach (var group in groupedByExternalId)
 			{
-				var clubPlayers = players.Where(p => p.ClubId == club.ExternalId);
-				if (clubPlayers.Count() < Club.MinimumPlayersInSquad)
-				{
-					players.RemoveAll(p => p.ClubId == club.ExternalId);
-					clubs.Remove(club);
-				}
+				var player = group.Single(p => !p.OnLoan);
+				repository.Delete<Player>(player.Id);
 			}
 		}
 
@@ -204,6 +273,14 @@ namespace RaffootLoader.Services.FM
 				"AML" => "LW",
 				_ => position,
 			};
+		}
+
+		private List<T> GetEntitiesWithoutId<T>() where T : Entity
+		{
+			var entities = repository.GetAll<T>();
+			foreach (var entity in entities)
+				entity.Id = 0;
+			return entities;
 		}
 	}
 }

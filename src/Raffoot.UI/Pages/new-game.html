@@ -23,22 +23,7 @@
                 </a>
             </div>
         </header>
-        <div class="container" v-if="isCreatingGame">
-            <div class="row mt-3">
-                <div class="col">
-                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                        {{ translator.get("Processing...") }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="container">
-            <div class="row mt-3 mb-3">
-                <div class="col text-center">
-                    <h1 class="text-center">Raffoot</h1>
-                </div>
-            </div>
             <div class="row mb-3" :class="{ 'd-none' : !message.text }">
                 <div class="col">
                     <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`" role="alert">
@@ -47,16 +32,21 @@
                     </div>
                 </div>
             </div>
+            <div class="row mt-3 mb-3">
+                <div class="col text-center">
+                    <h1 class="text-center">Raffoot</h1>
+                </div>
+            </div>
             <form id="form" action="home.html" @submit.prevent="startGame()">
                 <fieldset>
                     <legend>{{ translator.get("Choose your club") }}</legend>
                     <div class="row mb-3">
                         <div class="col">
-                            <label for="mode" class="form-label">{{ translator.get("Mode") }}</label>
-                            <select id="mode" class="form-control" required autocomplete="off"
-                                v-model.lazy="selectedMode" @change="loadYears()">
-                                <option v-for="(mode, index) in modes" :key="mode" :value="mode">
-                                    {{ mode }}
+                            <label for="data-source" class="form-label">{{ translator.get("Data Source") }}</label>
+                            <select id="data-source" class="form-control" required autocomplete="off"
+                                v-model.lazy="selectedDataSource" @change="loadYears()">
+                                <option v-for="(dataSource, index) in dataSources" :key="dataSource" :value="dataSource">
+                                    {{ dataSource }}
                                 </option>
                             </select>
                         </div>
@@ -79,14 +69,9 @@
                             <select id="country" class="form-select" required autocomplete="off"
                                 @change="setCountry($event.target.value)">
                                 <option></option>
-                                <template v-for="continent in getContinents()">
-                                    <optgroup :label="continent.name">
-                                        <option v-for="country in getPlayableCountriesByContinent(continent.id)"
-                                            :key="country.id" :value="country.id">
-                                            {{ country.name }}
-                                        </option>
-                                    </optgroup>
-                                </template>
+                                <option v-for="country in getPlayableCountries()" :key="country.id" :value="country.id">
+                                    {{ country.name }}
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -136,6 +121,7 @@
     </div>
 
     <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/ArrayExtensions.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/ColorHelper.js"></script>
     <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/DateExtensions.js"></script>
     <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/NumberExtensions.js"></script>
     <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/Random.js"></script>
@@ -171,7 +157,7 @@
     <script src="../../Raffoot.Domain/MultiLanguage.js"></script>
 
     <script src="../../Raffoot.Application/GameFactory.js"></script>
-    
+
     <script src="../../Raffoot.Application/Services/GameService.js"></script>
     <script src="../../Raffoot.Application/Services/SeedService.js"></script>
 
@@ -199,8 +185,8 @@
     <script src="../../Raffoot.Application/Services/Fifa24Service.js"></script>
     <script src="../../Raffoot.Application/Services/Fifa25Service.js"></script>
 
-    <script src="../../Raffoot.Application/Services/Fm24Service.js"></script>
-    
+    <script src="../../Raffoot.Application/Services/FM24Service.js"></script>
+
     <script src="../../Raffoot.Application/Services/TranslatorService.js"></script>
 
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
@@ -222,8 +208,8 @@
                 gameName: '',
                 isCreatingGame: false,
                 message: { text: '', type: 'primary' },
-                modes: ['Default', 'Brazil'],
-                selectedMode: 'Default',
+                dataSources: Config.dataSources,
+                selectedDataSource: Config.dataSources[0],
                 selectedYear: null,
                 theme: Config.theme,
                 translator: new TranslatorService(),
@@ -231,16 +217,27 @@
             }
         },
         methods: {
+            clearMessage() {
+                this.message = { text: '', type: 'primary' };
+            },
             createGame() {
-                this.isCreatingGame = true;
-                this.game = gameService.create(this.selectedMode, this.selectedYear, '');
-                this.game.config.theme = this.theme;
-                this.isCreatingGame = false;
+                try {
+                    if (!this.selectedYear)
+                        return;
+
+                    this.isCreatingGame = true;
+                    this.game = gameService.create(this.selectedDataSource, this.selectedYear, '');
+                    this.game.config.theme = this.theme;
+                    this.isCreatingGame = false;
+                }
+                catch (error) {
+                    this.message = { text: error, type: 'danger' };
+                    throw error;
+                }
             },
             serviceExists(year) {
                 try {
-                    const prefix = this.selectedMode === 'Default' ? 'Fifa' : "Fm";
-                    const name = `${prefix}${year.toString().substring(2)}Service`;
+                    const name = `${this.selectedDataSource}${year.toString().substring(2)}Service`;
                     eval(name);
                     return true;
                 }
@@ -251,14 +248,16 @@
             getContinents() {
                 return this.game?.continents.map(c => ({ id: c.id, name: this.translator.get(c.name) }));
             },
-            getPlayableCountriesByContinent(continentId) {
-                let countries = this.game?.getPlayableCountriesByContinent(continentId);
-                countries = countries.map(c => ({ id: c.id, name: this.translator.get(c.name) })).orderBy('name');
+            getPlayableCountries() {
+                let countries = this.game?.getPlayableCountries();
+                countries = countries?.map(c => ({ id: c.id, name: this.translator.get(c.name) })).orderBy('name');
                 return countries;
             },
             loadYears() {
                 const maxYear = Config.years.max;
                 const minYear = Config.years.min;
+
+                this.selectedYear = null;
 
                 const years = [];
                 for (let year = maxYear; year >= minYear; year--)
@@ -266,6 +265,7 @@
                         years.push(year);
                         if (!this.selectedYear) {
                             this.selectedYear = year;
+                            this.createGame();
                         }
                     }
 
@@ -283,7 +283,7 @@
             },
             setTheme() {
                 this.theme = this.themeInverse;
-                localStorage.setItem('theme', this.theme)
+                localStorage.setItem('theme', this.theme);
             },
             async startGame() {
                 try {
@@ -312,11 +312,11 @@
         },
         async created() {
             document.documentElement.setAttribute('data-bs-theme', this.theme);
+            this.message = { text: this.translator.get('Processing...'), type: 'primary' };
         },
         async mounted() {
             this.loadYears();
-            if (this.selectedYear)
-                this.createGame(this.selectedYear);
+            this.clearMessage();
         },
         beforeUpdate: () => t0 = performance.now(),
         updated: () => console.log(`Update took ${(performance.now() - t0)} milliseconds.`),

@@ -36,11 +36,11 @@ namespace RaffootLoader.Services
 
 			var url = club.Logo.Contains(' ') ? club.Logo.Split(' ')[2] : club.Logo;
 			var countryName = Leagues.Single(l => l.ExternalId == club.LeagueId).Country;
-			var name = $"{countryName} - {club.GetFileName()}";
+			var name = club.GetFileName();
 
 			var extension = Path.GetExtension(url) ?? defaultExtension;
 			var fileName = $"{name}{extension}";
-			var filePath = Path.Combine(settings.ImagesFolder, "clubs", fileName);
+			var filePath = Path.Combine(settings.ImagesFolder, "clubs", countryName, fileName);
 			
 			dto = new ImageInfoDto(url, filePath);
 			return dto;
@@ -85,16 +85,6 @@ namespace RaffootLoader.Services
 
 			dto = new ImageInfoDto(url, filePath);
 			return dto;
-		}
-
-		public void CheckClubsWithoutLogo()
-		{
-			foreach (var club in context.Clubs)
-			{
-				var imageInfo = GetLogo(club);
-				if (!File.Exists(imageInfo.FilePath))
-					Console.WriteLine("{0} without logo", club.Name);
-			}
 		}
 	}
 }

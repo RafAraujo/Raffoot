@@ -9,7 +9,10 @@ class Player {
         this.energy = energy;
     }
 
-    static create(name, countryId, positionId, age, overall, club) {
+    static create(name, countryId, positionId, age, overall, club = null) {
+        if (!club)
+            club = Context.game.clubs.last();
+
         const energy = 100;
         const player = new Player(name, countryId, positionId, age, overall, club.id, energy);
         player.id = Context.game.players.push(player);
@@ -179,7 +182,7 @@ class Player {
     getPhotoURL() {
         const game = Context.game;
         const file = `${this.id}.png`;
-        const url = `${Config.resourcesFolder}/image/modes/${game.mode}/players/${game.firstYear}/${file}`;
+        const url = `${Config.resourcesFolder}/image/data sources/${game.dataSource}/players/${game.firstYear}/${file}`;
         return url;
     }
 

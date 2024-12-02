@@ -1291,11 +1291,11 @@
                                 :max="config.player.maxAge" v-model.lazy="playerFilter.age.maximum">
                         </div>
                         <div class="col-3">
-                            <label for="minimu-overall" class="form-label">
+                            <label for="minimum-overall" class="form-label">
                                 {{ `${translator.get("Overall")} (${translator.get("Minimum").toLowerCase()})`
                                 }}
                             </label>
-                            <input id="minimu-overall" type="number" class="form-control"
+                            <input id="minimum-overall" type="number" class="form-control"
                                 :min="config.player.minOverall" :max="config.player.maxOverall"
                                 v-model.lazy="playerFilter.overall.minimum">
                         </div>
@@ -1315,11 +1315,13 @@
                                 {{ `${translator.get("Market Value")}
                                 (${translator.get("Maximum").toLowerCase()})` }}
                             </label>
-                            <input id="market-value" type="range" min="1" :max="playerFilter.marketValue.maximum"
-                                :value="playerFilter.marketValue.maximum" class="form-range"
-                                oninput="this.nextElementSibling.value = this.value">
+                            <input id="market-value" type="range" class="form-range" min="0"
+                                :max="playerFilter.marketValue.maximum" :step="playerFilter.marketValue.step"
+                                :data-unit="playerFilter.marketValue.unit"
+                                v-model.lazy="playerFilter.marketValue.currentValue"
+                                oninput="this.nextElementSibling.value = parseInt(this.value * this.getAttribute('data-unit')).formatAbbreviated()">
                             <output class="d-block" style="margin-top: -12px;"
-                                :value="playerFilter.marketValue.maximum"></output>
+                                :value="parseInt(playerFilter.marketValue.currentValue * playerFilter.marketValue.unit).formatAbbreviated()"></output>
                         </div>
                         <div class="col-6">
                             <div class="form-check form-switch">
@@ -1557,7 +1559,7 @@
                                     {{ translator.get('Background color') }}</label>
                                 <input id="background-color" type="color" class="form-control form-control-color"
                                     @change="setBackground($event.target.value)"
-                                    :value="game.club.colors.backgroundCustom">
+                                    :value="game.club.colors.backgroundCustom ?? '#FFFFFF'">
                             </div>
                             <div class="col-6">
                                 <label for="foreground-color" class="form-label">
@@ -1565,7 +1567,7 @@
                                 </label>
                                 <input id="foreground-color" type="color" class="form-control form-control-color"
                                     @change="setForeground($event.target.value)"
-                                    :value="game.club.colors.foregroundCustom">
+                                    :value="game.club.colors.foregroundCustom ?? '#000000'">
                             </div>
                         </div>
                         <div class="row">
@@ -1671,6 +1673,7 @@
     <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/lz-string/lz-string.min.js"></script>
 
     <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/ArrayExtensions.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/ColorHelper.js"></script>
     <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/DateExtensions.js"></script>
     <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/ImageHelper.js"></script>
     <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/NumberExtensions.js"></script>

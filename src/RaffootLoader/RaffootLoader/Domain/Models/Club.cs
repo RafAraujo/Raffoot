@@ -2,20 +2,17 @@
 {
 	public class Club : Entity
 	{
-		public static readonly int MinimumPlayersInSquad = 18;
-
 		public int ExternalId { get; set; }
 		public int LeagueId { get; set; }
 		public string Name { get; set; }
+		public string Status { get; set; }
 		public string Logo { get; set; }
 		public List<string> Kits { get; set; } = [];
 		public string BackgroundColor { get; set; }
 		public string ForegroundColor { get; set; }
 		public string Link { get; set; }
+		public bool IsProcessingFinished { get; set; }
 
-		public string GetFileName()
-		{
-			return Name.Replace('/', '-');
-		}
+		public string GetFileName() => Name.Replace('/', '-');
 	}
 }

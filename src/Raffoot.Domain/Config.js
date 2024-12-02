@@ -28,9 +28,10 @@ const Config = (function () {
         continentalCup: {
             maxClubCount: 32,
         },
+        dataSources: ['Fifa', 'FM'],
         delayBeforeSummary: 1000,
         files: {
-            defaultPlayerPhoto: `${ResourcesFolder}/image/modes/default/players/0.svg`,
+            defaultPlayerPhoto: `${ResourcesFolder}/image/data sources/Fifa/players/0.svg`,
         },
         indexedDbName: 'Raffoot',
         mockScript: '../../Raffoot.Infrastructure/Raffoot.Data/Mock.js',

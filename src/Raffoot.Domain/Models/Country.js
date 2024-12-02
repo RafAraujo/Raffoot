@@ -32,9 +32,9 @@ class Country {
 
     getFlagURL() {
         const game = Context.game;
-        const extension = game.mode === 'Default' ? 'png' : 'svg';
+        const extension = Context.game.dataSource === 'Fifa' ? 'png' : 'svg';
         const file = `${this.name}.${extension}`;
-        const url = `${Config.resourcesFolder}/image/modes/${game.mode}/countries/${file}`;
+        const url = `${Config.resourcesFolder}/image/data sources/${game.dataSource}/countries/${file}`;
         return url;
     }
 }

@@ -12,7 +12,7 @@ namespace RaffootLoader.Services
 
 		public async Task DownloadImages()
 		{
-			foreach (ImageType imageType in Enum.GetValues(typeof(ImageType)))
+			foreach (var imageType in Enum.GetValues<ImageType>())
 				await DownloadImages(imageType).ConfigureAwait(false);
 		}
 
@@ -20,45 +20,65 @@ namespace RaffootLoader.Services
 		{
 			var tasks = new List<Task>();
 
-			try
-			{
-				Console.WriteLine($"Downloading {imageType.ToString().ToLower()}s...");
+			Console.WriteLine($"Downloading {imageType.ToString().ToLower()}s...");
 
-				var imagesInfos = GetImagesInfos(imageType);
-				imagesInfos = imagesInfos.Where(dto => !string.IsNullOrEmpty(dto.FilePath) && !File.Exists(dto.FilePath)).ToList();
-				tasks = imagesInfos.Select(dto => DownloadFile(dto.Url, dto.FilePath)).ToList();
-				await Task.WhenAll(tasks).ConfigureAwait(false);
-			}
-			catch (Exception ex)
+			var imagesInfos = GetImagesInfos(imageType);
+			imagesInfos = imagesInfos.Where(dto => !string.IsNullOrEmpty(dto.FilePath) && !File.Exists(dto.FilePath)).ToList();
+
+			var batchSize = 1000;
+			for (var i = 0; i < imagesInfos.Count; i += batchSize)
 			{
-				ConsoleUtils.ShowException(ex);
+				var currentBatch = imagesInfos.Skip(i).Take(batchSize);
+				var batchTasks = currentBatch.Select(dto =>
+				{
+					var batchTask = DownloadFile(dto.Url, dto.FilePath);
+					tasks.Add(batchTask);
+					return batchTask;
+				});
+
+				try
+				{
+					await Task.WhenAll(batchTasks).ConfigureAwait(false);
+				}
+				catch (Exception ex)
+				{
+					ConsoleUtils.ShowException(ex);
+				}
 			}
-			finally
-			{
-				Console.WriteLine("\tSuccess: {0}", tasks.Count(t => t.IsCompletedSuccessfully));
-				Console.WriteLine("\tFailed: {0}", tasks.Count(t => t.IsFaulted));
-				Console.WriteLine("\tTotal: {0}", tasks.Count);
-			}
+
+			Console.WriteLine("\tSuccess: {0}", tasks.Count(t => t.IsCompletedSuccessfully));
+			Console.WriteLine("\tFailed: {0}", tasks.Count(t => t.IsFaulted));
+			Console.WriteLine("\tTotal: {0}", tasks.Count);
 		}
 
-		private IEnumerable<ImageInfoDto> GetImagesInfos(ImageType imageType)
+		private List<ImageInfoDto> GetImagesInfos(ImageType imageType)
 		{
 			return imageType switch
 			{
-				ImageType.Flag => context.Countries.Select(imageService.GetFlag),
-				ImageType.Logo => context.Clubs.Select(imageService.GetLogo),
-				ImageType.Kit => context.Clubs.SelectMany(imageService.GetKits),
-				ImageType.Photo => context.Players.Select(imageService.GetPhoto),
+				ImageType.Flag => context.Countries.Select(imageService.GetFlag).ToList(),
+				ImageType.Logo => context.Clubs.Select(imageService.GetLogo).ToList(),
+				ImageType.Kit => context.Clubs.SelectMany(imageService.GetKits).ToList(),
+				ImageType.Photo => context.Players.Select(imageService.GetPhoto).ToList(),
 				_ => [],
 			};
 		}
 
 		private async Task DownloadFile(string url, string filePath)
 		{
-			using var stream = await client.GetStreamAsync(url).ConfigureAwait(false);
-			Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-			using var fileStream = new FileStream(filePath, FileMode.OpenOrCreate);
-			await stream.CopyToAsync(fileStream);
+			try
+			{
+				using var stream = await client.GetStreamAsync(url).ConfigureAwait(false);
+				Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+				using var fileStream = new FileStream(filePath, FileMode.CreateNew);
+				await stream.CopyToAsync(fileStream);
+			}
+			catch (Exception ex)
+			{
+				var message = string.Format("{0}: {1}", Path.GetFileNameWithoutExtension(filePath), ex.Message);
+				ConsoleUtils.WriteError(message);
+				throw;
+			}
+
 		}
 	}
 }

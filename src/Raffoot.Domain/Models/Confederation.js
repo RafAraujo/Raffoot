@@ -30,13 +30,13 @@ class Confederation {
         const europe = Continent.getByName('Europe');
 
         if (isFantasyMode) {
-            Confederation.create(america, 'Fantasy', Context.game.countries.filter(c => c.continent != null).map(c => c.name), [4, 4]);
+            Confederation.create(america, 'Fantasy', Context.game.countries.map(c => c.name), [0, 0]);
             return;
         }
 
         Confederation.create(america, 'Argentina', ['Argentina'], [4, 3]);
         Confederation.create(america, 'Brazil', ['Brazil'], [4, 3]);
-        Confederation.create(america, 'North America', ['Mexico', 'United States'], [4, 3]);
+        Confederation.create(america, 'North America', ['Canada', 'Mexico', 'United States'], [4, 3]);
         Confederation.create(america, 'South America', ['Bolivia', 'Colombia', 'Ecuador', 'Paraguay', 'Peru', 'Uruguay', 'Venezuela'], [4, 3]);
 
         Confederation.create(asia, 'Australia', ['Australia', 'South Africa', 'United Arab Emirates'], [4, 3]);
@@ -50,7 +50,7 @@ class Confederation {
         Confederation.create(europe, 'Italy', ['Italy'], [4, 1]);
         Confederation.create(europe, 'Portugal', ['Portugal'], [3, 2]);
         Confederation.create(europe, 'Spain', ['Spain'], [4, 1]);
-        Confederation.create(europe, 'BeNe', ['Belgium', 'Netherlands'], [3, 2]);
+        Confederation.create(europe, 'Benelux', ['Belgium', 'Netherlands', 'Luxembourg'], [3, 2]);
         Confederation.create(europe, 'British Isles', ['Republic of Ireland', 'Scotland'], [1, 2]);
         Confederation.create(europe, 'Centre Europe', ['Austria', 'Czechia', 'Switzerland'], [1, 2]);
         Confederation.create(europe, 'Eastern Europe', ['Croatia', 'Poland', 'Romania', 'Ukraine'], [1, 2]);
@@ -70,7 +70,7 @@ class Confederation {
         return this.countries.flatMap(c => c.clubs);
     }
 
-    get playable() {
+    get isPlayable() {
         return this.clubs.length > Config.nationalLeague.minClubCount;
     }
     

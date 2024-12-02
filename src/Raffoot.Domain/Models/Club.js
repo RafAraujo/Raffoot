@@ -19,15 +19,10 @@ class Club {
         this._formationId = null;
     }
 
-    static minimumPlayersInSquad = 18;
+    static minimumPlayersInSquad = 16;
 
-    static create(name, countryId, backgroundColor, foregroundColor, shortName) {
-        const colors = {
-            background: backgroundColor,
-            backgroundCustom: backgroundColor,
-            foreground: foregroundColor,
-            foregroundCustom: foregroundColor
-        };
+    static create(name, countryId, backgroundColor, shortName = null) {
+        const colors = Club._getColors(backgroundColor);
         const club = new Club(name, countryId, colors, shortName);
         club.id = Context.game.clubs.push(club);
         return club;
@@ -39,6 +34,19 @@ class Club {
 
     static getByName(name) {
         return Context.game.clubs.find(c => c.name === name);
+    }
+
+    static _getColors(backgroundColor) {
+        const foregroundColor = backgroundColor ? ColorHelper.getTextColorBasedOnBackground(backgroundColor) : null;
+
+        const colors = {
+            background: backgroundColor,
+            backgroundCustom: backgroundColor,
+            foreground: foregroundColor,
+            foregroundCustom: foregroundColor
+        };
+
+        return colors;
     }
 
     get country() {
@@ -57,8 +65,12 @@ class Club {
         return this.playersOnField.find(p => p.position.isGoalkeeper);
     }
 
+    get isPlayable() {
+        return this.players.length >= Club.minimumPlayersInSquad;
+    }
+
     get marketValue() {
-        return this.players.map(p => p.marketValue).sum();
+        return this.players.length > 0 ? this.players.map(p => p.marketValue).sum() : 0;
     }
 
     get overall() {
@@ -156,7 +168,7 @@ class Club {
         const descriptions = ['Home', 'Away', 'Goalkeeper', 'Alternative'];
         const game = Context.game;
         for (let i = 1; i <= 4; i++) {
-            const url = `${Config.resourcesFolder}/image/modes/${game.mode}/kits/${game.firstYear}/${this.country.name}/${this.name.replace('/', '-')}/${i}.png`;
+            const url = `${Config.resourcesFolder}/image/data sources/${game.dataSource}/kits/${game.firstYear}/${this.country.name}/${this.name.replace('/', '-')}/${i}.png`;
             urlList.push({ url: url, description: descriptions[i - 1]});
         }
         return urlList;
@@ -164,8 +176,8 @@ class Club {
 
     getLogoURL() {
         const game = Context.game;
-        const file = `${this.country.name} - ${this.name.replace('/', '-')}.png`;
-        const url = `${Config.resourcesFolder}/image/modes/${game.mode}/clubs/${file}`;
+        const file = `${this.name.replace('/', '-')}.png`;
+        const url = `${Config.resourcesFolder}/image/data sources/${game.dataSource}/clubs/${this.country.name}/${file}`;
         return url;
     }
 

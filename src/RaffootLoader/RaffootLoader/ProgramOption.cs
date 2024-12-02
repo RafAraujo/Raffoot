@@ -10,7 +10,6 @@
         DownloadImages,
         UpdateClubsColors,
         GenerateFifaServiceFile,
-        CheckClubsWithoutLogo,
 
         Exit = 99
     }

@@ -15,7 +15,7 @@ namespace RaffootLoader.Services.Fifa
 
 		private List<Country> countries = [];
 
-		public async Task<DatabaseDto> GetDatabase()
+		public async Task<DatabaseDto> GetDatabaseDto()
 		{
 			var database = new DatabaseDto();
 
@@ -162,7 +162,7 @@ namespace RaffootLoader.Services.Fifa
 				}
 
 				foreach (var linkPosition in cells[1].SelectNodes(".//a[@rel='nofollow']"))
-					player.Positions.Add(linkPosition.InnerText);
+					player.Positions.Add(GetStandardizedPositionAbbreviation(linkPosition.InnerText));
 
 				player.Age = int.Parse(cells[2].InnerText);
 				player.Overall = int.Parse(cells[3].SelectSingleNode(".//em").InnerText);

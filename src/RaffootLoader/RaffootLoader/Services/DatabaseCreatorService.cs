@@ -22,11 +22,11 @@ namespace RaffootLoader.Services
 
 				var mapping = GetMappings();
 
-				var db = await mapping.Item1.GetDatabase().ConfigureAwait(false);
+				var db = await mapping.Item1.GetDatabaseDto().ConfigureAwait(false);
 
 				if (mapping.Item2 != null)
 				{
-					var altDb = await mapping.Item2.GetDatabase().ConfigureAwait(false);
+					var altDb = await mapping.Item2.GetDatabaseDto().ConfigureAwait(false);
 					PatchDatabase(db, altDb);
 				}
 
@@ -35,11 +35,17 @@ namespace RaffootLoader.Services
 				context.InsertMany(db.Players);
 				context.InsertMany(db.Countries);
 
-				File.Delete($"{settings.DbPath}.old");
+				Console.WriteLine("Database created with success");
+			}
+			catch (OperationCanceledException ex)
+			{
+				ConsoleUtils.WriteWarning(ex.Message);
+				throw;
 			}
 			catch (Exception ex)
 			{
 				ConsoleUtils.ShowException(ex);
+				throw;
 			}
 		}
 
@@ -51,35 +57,35 @@ namespace RaffootLoader.Services
 			var soFifaWebScraperService = new SoFifaWebScraperService(settings);
 			var pesMasterWebScraperService = new PesMasterWebScraperService(settings);
 
-			var fmInsiderWebScraperService = new FmInsideWebScraperService(settings);
+			var fmInsideWebScraperService = new FmInsideWebScraperService(settings);
 
 			var mappings = new List<Tuple<int, DataSource, IDataExtractorService, IDataExtractorService>>
 			{
-				new(2003, DataSource.FifaPes, wePesStatsWebScraperService, null),
-				new(2004, DataSource.FifaPes, wePesStatsWebScraperService, null),
-				new(2005, DataSource.FifaPes, fifaIndexWebScraperService, null),
-				new(2006, DataSource.FifaPes, fifaIndexWebScraperService, null),
-				new(2007, DataSource.FifaPes, soFifaWebScraperService, null),
-				new(2008, DataSource.FifaPes, soFifaWebScraperService, null),
-				new(2009, DataSource.FifaPes, soFifaWebScraperService, null),
-				new(2010, DataSource.FifaPes, soFifaWebScraperService, null),
-				new(2011, DataSource.FifaPes, soFifaWebScraperService, null),
-				new(2012, DataSource.FifaPes, soFifaWebScraperService, null),
-				new(2013, DataSource.FifaPes, soFifaWebScraperService, null),
-				new(2014, DataSource.FifaPes, soFifaWebScraperService, null),
-				new(2015, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2016, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2017, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2018, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2019, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2020, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2021, DataSource.FifaPes, soFifaWebScraperService, pesMasterWebScraperService),
-				new(2022, DataSource.FifaPes, soFifaWebScraperService, null),
-				new(2023, DataSource.FifaPes, soFifaWebScraperService, null),
-				new(2024, DataSource.FifaPes, soFifaWebScraperService, null),
-				new(2025, DataSource.FifaPes, soFifaWebScraperService, null),
+				new(2003, DataSource.Fifa, wePesStatsWebScraperService, null),
+				new(2004, DataSource.Fifa, wePesStatsWebScraperService, null),
+				new(2005, DataSource.Fifa, fifaIndexWebScraperService, null),
+				new(2006, DataSource.Fifa, fifaIndexWebScraperService, null),
+				new(2007, DataSource.Fifa, soFifaWebScraperService, null),
+				new(2008, DataSource.Fifa, soFifaWebScraperService, null),
+				new(2009, DataSource.Fifa, soFifaWebScraperService, null),
+				new(2010, DataSource.Fifa, soFifaWebScraperService, null),
+				new(2011, DataSource.Fifa, soFifaWebScraperService, null),
+				new(2012, DataSource.Fifa, soFifaWebScraperService, null),
+				new(2013, DataSource.Fifa, soFifaWebScraperService, null),
+				new(2014, DataSource.Fifa, soFifaWebScraperService, null),
+				new(2015, DataSource.Fifa, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2016, DataSource.Fifa, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2017, DataSource.Fifa, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2018, DataSource.Fifa, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2019, DataSource.Fifa, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2020, DataSource.Fifa, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2021, DataSource.Fifa, soFifaWebScraperService, pesMasterWebScraperService),
+				new(2022, DataSource.Fifa, soFifaWebScraperService, null),
+				new(2023, DataSource.Fifa, soFifaWebScraperService, null),
+				new(2024, DataSource.Fifa, soFifaWebScraperService, null),
+				new(2025, DataSource.Fifa, soFifaWebScraperService, null),
 
-				new(2024, DataSource.FootballManager, fmInsiderWebScraperService, null),
+				new(2024, DataSource.FM, fmInsideWebScraperService, null),
 			};
 
 			var mapping = mappings.Single(m => m.Item1 == settings.Year && m.Item2 == settings.DataSource);
@@ -104,18 +110,17 @@ namespace RaffootLoader.Services
 			{
 				var altLeague = altDb.Leagues.Single(l => l.ExternalId == altClub.LeagueId);
 				var mainLeague = mainDb.Leagues.Single(l => l.Country == altLeague.Country && l.Division == altLeague.Division);
-				mainLeague.IsPatched = true;
 
 				var clubExternalId = mainDb.Clubs.Any(c => c.ExternalId == altClub.ExternalId) ? altClub.ExternalId * -1 : altClub.ExternalId;
 
-				var fifaClub = clubsToRemove.SingleOrDefault(c => c.Name == altClub.Name && c.LeagueId == mainLeague.ExternalId);
+				var mainClub = clubsToRemove.SingleOrDefault(c => c.Name == altClub.Name && c.LeagueId == mainLeague.ExternalId);
 				var club = new Club
 				{
 					ExternalId = clubExternalId,
 					LeagueId = mainLeague.ExternalId,
 					Name = altClub.Name,
-					Logo = fifaClub?.Logo,
-					Kits = fifaClub?.Kits,
+					Logo = mainClub?.Logo,
+					Kits = mainClub?.Kits,
 				};
 
 				mainDb.Clubs.Add(club);

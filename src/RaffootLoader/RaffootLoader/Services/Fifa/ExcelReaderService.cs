@@ -15,7 +15,7 @@ namespace RaffootLoader.Services.Fifa
 	{
 		private List<Country> countries = [];
 
-		public async Task<DatabaseDto> GetDatabase()
+		public async Task<DatabaseDto> GetDatabaseDto()
 		{
 			var database = new DatabaseDto();
 

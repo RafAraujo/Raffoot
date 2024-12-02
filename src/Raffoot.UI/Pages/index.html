@@ -41,7 +41,7 @@
             <div class="row mb-3">
                 <div class="col-9 d-grid mx-auto">
                     <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`" data-bs-toggle="modal"
-                        data-bs-target="#modal-games" @click="hideMessage()">
+                        data-bs-target="#modal-games" @click="clearMessage()">
                         <i class="fa-solid fa-folder-open"></i>
                         {{ translator.get("Load game") }}
                     </button>
@@ -50,7 +50,7 @@
             <div class="row mb-3">
                 <div class="col-9 d-grid mx-auto">
                     <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`" data-bs-toggle="modal"
-                        data-bs-target="#modal-import" @click="hideMessage()">
+                        data-bs-target="#modal-import" @click="clearMessage()">
                         <i class="fa-solid fa-file-import"></i>
                         {{ translator.get("Import game") }}
                     </button>
@@ -95,7 +95,7 @@
                                     <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`"
                                         role="alert">
                                         {{ message.text }}
-                                        <button type="button" class="btn-close" @click="hideMessage()"
+                                        <button type="button" class="btn-close" @click="clearMessage()"
                                             aria-label="Close"></button>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@
                                     <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`"
                                         role="alert">
                                         {{ message.text }}
-                                        <button type="button" class="btn-close" @click="hideMessage()"
+                                        <button type="button" class="btn-close" @click="clearMessage()"
                                             aria-label="Close"></button>
                                     </div>
                                 </div>
@@ -207,7 +207,7 @@
             }
         },
         methods: {
-            hideMessage() {
+            clearMessage() {
                 this.message = { text: '', type: 'primary' };
             },
             async deleteGame() {

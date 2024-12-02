@@ -31,11 +31,11 @@ class Championship {
         const continentalSupercup = ChampionshipType.find('continental', 'supercup');
         const worldCup = ChampionshipType.find('world', 'cup');
 
-        const confederations = Context.game.confederations.filter(c => c.playable);
+        const confederations = Context.game.confederations.filter(c => c.isPlayable);
 
         for (const confederation of confederations) {
             const countryIds = confederation.countries.map(c => Country.getByName(c.name)).map(c => c.id);
-            const clubs = Context.game.clubs.filter(c => countryIds.some(id => c.country.id === id));
+            const clubs = Context.game.clubs.filter(c => c.isPlayable && countryIds.some(id => c.country.id === id));
             const cupClubCount = Championship.getCupClubCount(clubs.length);
             Championship.create(`${confederation.name} Cup`, nationalCup, null, confederation.id, 1, cupClubCount);
 

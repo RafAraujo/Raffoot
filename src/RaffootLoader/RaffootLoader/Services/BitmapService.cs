@@ -34,9 +34,7 @@ namespace RaffootLoader.Services
                         var color = bitmap.GetPixel(i, j);
 
                         if (new[] { color.R, color.G, color.B }.All(c => c == 0 || c == 255))
-                        {
                             continue;
-                        }
 
                         r += color.R;
                         g += color.G;

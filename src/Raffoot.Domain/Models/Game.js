@@ -1,5 +1,5 @@
 class Game {
-    constructor(mode, firstYear, name) {
+    constructor(dataSource, firstYear, name) {
         this.name = name;
         this.firstYear = firstYear;
 
@@ -37,9 +37,10 @@ class Game {
         this.matchSimulationEvents = [];
         this.matchSimulationStatistics = [];
 
-        this.messages = [];
-        this.mode = mode;
+        this.dataSource = dataSource;
         this.isFantasyMode = this.mode !== 'Default' || year < 2005;
+        
+        this.messages = [];
 
         this.config = {
             fullScreen: false,
@@ -133,15 +134,10 @@ class Game {
         return position;
     }
 
-    getPlayableCountriesByContinent(continentId) {
-        const countryIds = Context.game.countries.filter(c => c.continent?.id === continentId).map(c => c.id);
-
-        const countries =
-            this.currentSeason.getNationalLeagues()
-                .flatMap(ce => ce.championship.countries)
-                .distinct()
-                .filter(c => countryIds.includes(c.id));
-
+    getPlayableCountries() {
+        const nationalLeagues = this.currentSeason.getNationalLeagues();
+        const clubs = nationalLeagues.flatMap(ce => ce.clubs);
+        const countries = clubs.map(c => c.country).distinct();
         return countries;
     }
 

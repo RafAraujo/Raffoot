@@ -1,7 +1,7 @@
 class GameFactory {
-	static create(mode, year, name) {
-		Context.game = new Game(mode, year, name);
-		const service = new SeedService(mode, year);
+	static create(dataSource, year, name) {
+		Context.game = new Game(dataSource, year, name);
+		const service = new SeedService(dataSource, year);
 		const isFantasyMode = Context.game.isFantasyMode;
 
 		let t0 = performance.now();
@@ -49,7 +49,7 @@ class GameFactory {
 		console.log(`_definePromotionAndRelegation() took ${(performance.now() - t0)} milliseconds.`);
 
 		t0 = performance.now();
-		GameFactory._arrangeSquads(Context.game.clubs);
+		GameFactory._arrangeSquads();
 		console.log(`_arrangeSquads() took ${(performance.now() - t0)} milliseconds.`);;
 
 		t0 = performance.now();
@@ -61,7 +61,7 @@ class GameFactory {
 
 	static _definePromotionAndRelegation() {
 		const allNationalLeagues = Context.game.championships.filter(c => c.isNationalLeague);
-		const confederations = Context.game.confederations.filter(c => c.playable);
+		const confederations = Context.game.confederations.filter(c => c.isPlayable);
 
 		for (const confederation of confederations) {
 			const nationalLeagues = allNationalLeagues.filter(c => c.confederation.id === confederation.id);
@@ -87,7 +87,8 @@ class GameFactory {
 	}
 
 	static _arrangeSquads() {
-		for (const club of Context.game.clubs) {
+		const clubs = Context.game.clubs.filter(c => c.isPlayable);
+		for (const club of clubs) {
 			club.arrangePlayers();
 			club.receive(club.playerWages * 18);
 		}

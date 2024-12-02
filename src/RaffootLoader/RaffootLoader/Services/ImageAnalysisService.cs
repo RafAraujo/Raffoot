@@ -1,13 +1,12 @@
 ﻿using RaffootLoader.Data.Interfaces;
 using RaffootLoader.Domain.Interfaces.Services;
-using RaffootLoader.Domain.Models;
 using RaffootLoader.Utils;
 using System.Drawing;
 using System.Text;
 
 namespace RaffootLoader.Services
 {
-	public class ImageAnalysisService(IContext context, IImageService imageService, IRepository<Club> clubRepository) : IImageAnalysisService
+	public class ImageAnalysisService(IContext context, IImageService imageService, IRepository repository) : IImageAnalysisService
 	{
 		public void UpdateClubsColors()
 		{
@@ -27,8 +26,11 @@ namespace RaffootLoader.Services
 				var sb = new StringBuilder();
 				_ = Parallel.ForEach(clubs, club =>
 				{
-					var logoPath = imageService.GetLogo(club).FilePath;
-					var mainKitPath = imageService.GetKits(club).FirstOrDefault()?.FilePath;
+					var logo = imageService.GetLogo(club);
+					var kits = imageService.GetKits(club);
+
+					var logoPath = logo.FilePath;
+					var mainKitPath = kits.FirstOrDefault()?.FilePath;
 					var path = File.Exists(mainKitPath) ? mainKitPath : logoPath;
 
 					if (File.Exists(path) && OperatingSystem.IsWindows())
@@ -46,7 +48,7 @@ namespace RaffootLoader.Services
 				var current = 0;
 				foreach (var club in clubs)
 				{
-					clubRepository.Update(club);
+					repository.Update(club);
 					ConsoleUtils.ShowProgress(++current, clubs.Count(), "Updating database: ");
 				}
 				Console.WriteLine();

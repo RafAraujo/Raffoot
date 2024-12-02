@@ -5,7 +5,7 @@ class Season {
         this._championshipTypeIds = championshipTypeIds;
         this._championshipEditionsIds = [];
         this._seasonDateIds = [];
-        this._currentSeasonDateIndex = 0; ''
+        this._currentSeasonDateIndex = 0;
     }
 
     static create(year, isFirst, championshipTypes) {
@@ -199,7 +199,9 @@ class Season {
     }
 
     _defineChampionshipEditionClubs(championshipEdition) {
-        let eligibleClubs = Context.game.clubs;
+        let eligibleClubs = Context.game.clubs.filter(c => c.isPlayable);
+        if (eligibleClubs.length === 0)
+            throw new Error();
 
         if (championshipEdition.championship.countries != null) {
             eligibleClubs = eligibleClubs.filter(club => championshipEdition.championship.countries.some(country => club.country.id === country.id));
@@ -234,11 +236,9 @@ class Season {
 
     _isTotallyScheduled(championshipType) {
         const scheduledDates = this.seasonDates.filter(sd => sd.championshipType === championshipType).length;
-        const neededDates = this.championshipEditions
-            .filter(ce => ce.championship.championshipType === championshipType)
-            .map(ce => ce.championship.getDateCount())
-            .max();
-
+        const championshipEditions = this.championshipEditions.filter(ce => ce.championship.championshipType === championshipType);
+        const listDateCount = championshipEditions.map(ce => ce.championship.getDateCount());
+        const neededDates = listDateCount.max();
         return scheduledDates === neededDates;
     }
 }

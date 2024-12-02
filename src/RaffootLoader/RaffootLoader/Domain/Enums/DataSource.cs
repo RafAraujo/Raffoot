@@ -2,7 +2,7 @@
 {
 	public enum DataSource
 	{
-		FifaPes,
-		FootballManager
+		Fifa,
+		FM
 	}
 }

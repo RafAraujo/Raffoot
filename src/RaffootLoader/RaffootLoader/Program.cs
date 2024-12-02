@@ -54,9 +54,6 @@ while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
 		case ProgramOption.GenerateFifaServiceFile:
 			fileGenerator.GenerateFifaServiceFile();
 			break;
-		case ProgramOption.CheckClubsWithoutLogo:
-			imageService.CheckClubsWithoutLogo();
-			break;
 	}
 
 	Console.WriteLine();
@@ -65,15 +62,23 @@ while ((line = Console.ReadLine()) != ((int)ProgramOption.Exit).ToString())
 
 async Task DoAll()
 {
-	List<Func<ISettings, bool>> methods = [ChangeDataSource, ChangeYear];
-	foreach (var method in methods)
-		if (!method(settings))
-			return;
+	try
+	{
+		List<Func<ISettings, bool>> methods = [ChangeDataSource, ChangeYear];
+		foreach (var method in methods)
+			if (!method(settings))
+				return;
 
-	await databaseCreator.CreateDatabase().ConfigureAwait(false);
-	await imageDownloader.DownloadImages().ConfigureAwait(false);
-	imageAnalysis.UpdateClubsColors();
-	fileGenerator.GenerateFifaServiceFile();
+		await databaseCreator.CreateDatabase().ConfigureAwait(false);
+		await imageDownloader.DownloadImages().ConfigureAwait(false);
+		imageAnalysis.UpdateClubsColors();
+		fileGenerator.GenerateFifaServiceFile();
+	}
+	catch (OperationCanceledException) { }
+	catch (Exception ex)
+	{
+		ConsoleUtils.ShowException(ex);
+	}
 }
 
 // https://stackoverflow.com/questions/70628314/injecting-primitive-type-in-constructor-of-generic-type-using-microsoft-di
@@ -84,9 +89,9 @@ static void ConfigureServices(IServiceCollection services)
 	var consoleAppFolder = Path.Combine(gameBaseFolder, @"RaffootLoader\");
 
 	services.AddSingleton<ISettings, Settings>(sp => new Settings(gameBaseFolder, consoleAppFolder));
-
+	
 	services.AddScoped<IContext, Context>();
-	services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+	services.AddScoped<IRepository, DefaultRepository>();
 	services.AddScoped<IDatabaseCreatorService, DatabaseCreatorService>();
 	services.AddScoped<IImageService, ImageService>();
 	services.AddScoped<IImageDownloaderService, ImageDownloaderService>();
@@ -103,7 +108,7 @@ static void WriteInstructions(ISettings settings)
 	Console.ResetColor();
 	Console.WriteLine("Choose (year {0}):", settings.Year);
 
-	foreach (ProgramOption value in Enum.GetValues(typeof(ProgramOption)).Cast<ProgramOption>().OrderBy(po => (int)po))
+	foreach (var value in Enum.GetValues<ProgramOption>().Cast<ProgramOption>().OrderBy(po => (int)po))
 		Console.WriteLine("\t[{0}] - {1}", (int)value, value);
 
 	Console.WriteLine();
@@ -112,7 +117,7 @@ static void WriteInstructions(ISettings settings)
 static bool ChangeDataSource(ISettings settings)
 {
 	Console.WriteLine("\nEnter the data source");
-	foreach (DataSource value in Enum.GetValues(typeof(DataSource)))
+	foreach (var value in Enum.GetValues<DataSource>())
 		Console.WriteLine("{0} - {1}", (int)value, value.ToString());
 
 	if (int.TryParse(Console.ReadLine(), out int dataSource))

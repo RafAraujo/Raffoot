@@ -9,6 +9,5 @@ namespace RaffootLoader.Domain.Interfaces.Services
 		ImageInfoDto GetLogo(Club club);
 		IEnumerable<ImageInfoDto> GetKits(Club club);
 		ImageInfoDto GetPhoto(Player player);
-		void CheckClubsWithoutLogo();
 	}
 }

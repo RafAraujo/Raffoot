@@ -1,12 +1,9 @@
-﻿using HtmlAgilityPack;
-using RaffootLoader.Services.DTO;
-using RaffootLoader.Utils;
-using System.Net;
+﻿using RaffootLoader.Services.DTO;
 
 namespace RaffootLoader.Domain.Interfaces.Services
 {
-    public interface IDataExtractorService
-    {
-        Task<DatabaseDto> GetDatabase();
+	public interface IDataExtractorService
+	{
+		Task<DatabaseDto> GetDatabaseDto();
 	}
 }

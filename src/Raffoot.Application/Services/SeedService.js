@@ -1,12 +1,11 @@
 class SeedService {
-    constructor(mode, year) {
-        this.mode = mode;
+    constructor(dataSource, year) {
+        this.dataSource = dataSource;
         this.year = year;
     }
 
     getService() {
-        const prefix = this.mode === 'Default' ? 'Fifa' : 'Fm';
-        const name = `${prefix}${this.year.toString().substring(2)}Service`;
+        const name = `${this.dataSource}${this.year.toString().substring(2)}Service`;
         return eval(name);
     }
 
