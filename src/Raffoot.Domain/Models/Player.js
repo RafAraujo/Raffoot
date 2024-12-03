@@ -7,6 +7,7 @@ class Player {
         this.overall = overall;
         this._clubId = clubId;
         this.energy = energy;
+        this.condition = Config.player.conditions.getRandom();
     }
 
     static create(name, countryId, positionId, age, overall, club = null) {
@@ -80,6 +81,11 @@ class Player {
 
     get club() {
         return Club.getById(this._clubId);
+    }
+
+    get conditionDescription() {
+        const index = this.condition + 2;
+        return ['A', 'B', 'C', 'D', 'E'][index];
     }
 
     get country() {

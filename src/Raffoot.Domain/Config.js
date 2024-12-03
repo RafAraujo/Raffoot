@@ -54,6 +54,7 @@ const Config = (function () {
             pageSize: 50,
         },
         player: {
+            conditions: [-2, -1, 0, 1, 2],
             minAge: 15,
             maxAge: 45,
             minOverall: 1,

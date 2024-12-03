@@ -9,12 +9,14 @@
 *.user
 *.userosscache
 *.sln.docstates
-src/Raffoot.UI/Pages/res/image/data sources/FM/
-src/Raffoot.UI/Pages/res/image/data sources/Fifa/clubs/
-src/Raffoot.UI/Pages/res/image/data sources/Fifa/kits/
-src/Raffoot.UI/Pages/res/image/data sources/Fifa/players/
+src/Raffoot.UI/Pages/res/image/data sources/FM/clubs/*
+!src/Raffoot.UI/Pages/res/image/data sources/FM/clubs/Brazil/
+!src/Raffoot.UI/Pages/res/image/data sources/FM/clubs/Brazil/*
+
+src/Raffoot.UI/Pages/res/image/data sources/Fifa/kits/*
+src/Raffoot.UI/Pages/res/image/data sources/Fifa/players/*
 !src/Raffoot.UI/Pages/res/image/data sources/Fifa/players/0.svg
-src/RaffootLoader/Databases/
+src/RaffootLoader/Databases/*
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
