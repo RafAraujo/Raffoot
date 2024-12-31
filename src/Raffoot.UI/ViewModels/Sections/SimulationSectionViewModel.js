@@ -5,27 +5,30 @@ class SimulationSectionViewModel {
     }
 
     getBallTrajectory() {
-        const previous = this.currentMatch.matchSimulation.previousBallPossessor;
-        const current = this.currentMatch.matchSimulation.ballPossessor;
-        const isClubAway = this.currentMatch.matchSimulation.ballPossessor.club.id === this.currentMatch.clubAway.id;
+        const previousBallPossessor = this.currentMatch.matchSimulation.previousBallPossessor;
+        const currentBallPossessor = this.currentMatch.matchSimulation.ballPossessor;
+
+        const previousBallPossessorClubIsHome = this.currentMatch.matchSimulation.previousBallPossessor.club.id === this.currentMatch.clubHome.id;
+        const currentBallPossessorClubIsHome = this.currentMatch.matchSimulation.ballPossessor.club.id === this.currentMatch.clubHome.id;
+
         const isSuccessful = this.currentMatch.matchSimulation.currentAction.isSuccessful;
 
-        const origin = { column: previous.fieldLocalization.column, line: previous.fieldLocalization.line };
-        const destination = { column: current.fieldLocalization.column, line: current.fieldLocalization.line };
+        const origin = { column: previousBallPossessor.fieldLocalization.column, line: previousBallPossessor.fieldLocalization.line };
+        const destination = { column: currentBallPossessor.fieldLocalization.column, line: currentBallPossessor.fieldLocalization.line };
 
-        if (isClubAway) {
+        if (!currentBallPossessorClubIsHome) {
             destination.line = 11 - destination.line;
             destination.column = 4 - destination.column;
         }
 
-        if ((isClubAway && isSuccessful) || (!isClubAway && !isSuccessful)) {
+        if ((!currentBallPossessorClubIsHome && isSuccessful) || (currentBallPossessorClubIsHome && !isSuccessful)) {
             origin.line = 11 - origin.line;
             origin.column = 4 - origin.column;
         }
 
         const trajectory = [
-            { top: `${origin.column * 60 + 25}px`, left: `${origin.line * 45}px` },
-            { top: `${destination.column * 60 + 25}px`, left: `${destination.line * 45}px` },
+            { top: `${origin.column * 60 + 25}px`, left: `${origin.line * 45 + (previousBallPossessorClubIsHome ? 20 : 0)}px` },
+            { top: `${destination.column * 60 + 25}px`, left: `${destination.line * 45 + (currentBallPossessorClubIsHome ? 20 : 0)}px` },
         ];
 
         return trajectory;

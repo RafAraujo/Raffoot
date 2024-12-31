@@ -7,7 +7,7 @@ class MatchSimulationAction {
         this.evaluation = {
             failure: 0,
             success: 0,
-            result: 0
+            result: 0,
         };
 
         this._matchSimulationEventIds = [];
