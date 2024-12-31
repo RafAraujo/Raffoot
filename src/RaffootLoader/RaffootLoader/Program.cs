@@ -91,7 +91,7 @@ static void ConfigureServices(IServiceCollection services)
 	services.AddSingleton<ISettings, Settings>(sp => new Settings(gameBaseFolder, consoleAppFolder));
 	
 	services.AddScoped<IContext, Context>();
-	services.AddScoped<IRepository, DefaultRepository>();
+	services.AddScoped<IRepository, Repository>();
 	services.AddScoped<IDatabaseCreatorService, DatabaseCreatorService>();
 	services.AddScoped<IImageService, ImageService>();
 	services.AddScoped<IImageDownloaderService, ImageDownloaderService>();

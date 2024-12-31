@@ -36,6 +36,9 @@ const Config = (function () {
         indexedDbName: 'Raffoot',
         mockScript: '../../Raffoot.Infrastructure/Raffoot.Data/Mock.js',
         matchSpeedOptions: {
+            ultraSlow: 10000,
+            verySlow: 5000,
+            slow: 2000,
             normal: 1000,
             fast: 500,
             veryFast: 250,

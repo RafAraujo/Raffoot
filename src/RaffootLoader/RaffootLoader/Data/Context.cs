@@ -6,14 +6,13 @@ namespace RaffootLoader.Data
 {
 	public class Context(ISettings settings, IRepository repository) : IContext
 	{
-		private IEnumerable<Position> positions;
+		private List<Position> positions;
 
-		public IEnumerable<Club> Clubs => repository.GetAll<Club>();
-		public IEnumerable<League> Leagues => repository.GetAll<League>();
-		public IEnumerable<Player> Players => repository.GetAll<Player>();
-		public IEnumerable<Country> Countries => repository.GetAll<Country>();
+		public List<Club> Clubs => repository.GetAll<Club>();
+		public List<Player> Players => repository.GetAll<Player>();
+		public List<Country> Countries => repository.GetAll<Country>();
 
-		public IEnumerable<Position> Positions
+		public List<Position> Positions
 		{
 			get => positions ??=
 			[

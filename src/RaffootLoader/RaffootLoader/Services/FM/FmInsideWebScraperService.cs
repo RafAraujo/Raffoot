@@ -25,12 +25,12 @@ namespace RaffootLoader.Services.FM
 
 			try
 			{
-				repository = new(dbPath);
+				var customSettings = new Settings(settings.GameBaseFolder, settings.ConsoleAppFolder, $"{settings.DbPath}.temp");
+				repository = new(customSettings);
 
 				await ResumeProcessing().ConfigureAwait(false);
 
 				database.Year = settings.Year;
-				database.Leagues = GetEntitiesWithoutId<League>();
 				database.Clubs = GetEntitiesWithoutId<Club>();
 				database.Players = GetEntitiesWithoutId<Player>();
 				database.Countries = GetEntitiesWithoutId<Country>();
@@ -163,16 +163,7 @@ namespace RaffootLoader.Services.FM
 			var country = liListClubInfo[4].SelectSingleNode("./span[contains(@class, 'value')]").InnerText;
 			var status = liListClubInfo[7].SelectSingleNode("./span[contains(@class, 'value')]").InnerText;
 
-			var leagues = repository.GetAll<League>();
-			var league = leagues.SingleOrDefault(l => l.Country == country);
-			if (league == null)
-			{
-				var leagueExternalId = leagues.Count + 1;
-				league = new League(leagueExternalId, country, 1, null);
-				repository.Insert(league);
-			}
-
-			club.LeagueId = league.ExternalId;
+			club.Country = country;
 			club.Status = status;
 
 			var nodesFullSquad = doc.DocumentNode.SelectNodes("(//div[@id='player_table'][.//h2[text()='Full Squad']])//ul[contains(@class, 'player')]");

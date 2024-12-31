@@ -30,7 +30,6 @@ namespace RaffootLoader.Services
 					PatchDatabase(db, altDb);
 				}
 
-				context.InsertMany(db.Leagues);
 				context.InsertMany(db.Clubs);
 				context.InsertMany(db.Players);
 				context.InsertMany(db.Countries);
@@ -94,10 +93,8 @@ namespace RaffootLoader.Services
 
 		private static void PatchDatabase(DatabaseDto mainDb, DatabaseDto altDb)
 		{
-			var altLeaguesCountries = altDb.Leagues.Select(l => l.Country).Distinct().ToList();
-
-			var leaguesToRemove = mainDb.Leagues.Where(l => altLeaguesCountries.Contains(l.Country)).ToList();
-			var clubsToRemove = mainDb.Clubs.Where(c => leaguesToRemove.Select(l => l.ExternalId).Contains(c.LeagueId)).ToList();
+			var altCountries = altDb.Clubs.Select(c => c.Country).Distinct().ToList();
+			var clubsToRemove = mainDb.Clubs.Where(c => altCountries.Contains(c.Country)).ToList();
 			var playersToRemove = mainDb.Players.Where(p => clubsToRemove.Select(l => l.ExternalId).Contains(p.ClubId)).ToList();
 
 			if (clubsToRemove.Count > 0)
@@ -108,16 +105,13 @@ namespace RaffootLoader.Services
 
 			foreach (var altClub in altDb.Clubs)
 			{
-				var altLeague = altDb.Leagues.Single(l => l.ExternalId == altClub.LeagueId);
-				var mainLeague = mainDb.Leagues.Single(l => l.Country == altLeague.Country && l.Division == altLeague.Division);
-
 				var clubExternalId = mainDb.Clubs.Any(c => c.ExternalId == altClub.ExternalId) ? altClub.ExternalId * -1 : altClub.ExternalId;
 
-				var mainClub = clubsToRemove.SingleOrDefault(c => c.Name == altClub.Name && c.LeagueId == mainLeague.ExternalId);
+				var mainClub = clubsToRemove.SingleOrDefault(c => c.Name == altClub.Name && c.Country == altClub.Country);
 				var club = new Club
 				{
 					ExternalId = clubExternalId,
-					LeagueId = mainLeague.ExternalId,
+					Country = altClub.Country,
 					Name = altClub.Name,
 					Logo = mainClub?.Logo,
 					Kits = mainClub?.Kits,

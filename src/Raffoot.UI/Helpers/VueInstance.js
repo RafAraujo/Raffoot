@@ -64,6 +64,9 @@ class VueInstance {
     }
 
     _updated() {
+        if (this.updated)
+            this.updated();
+
         const time = performance.now() - this._t0;
         const message = `[${this.name}] Update took ${time} milliseconds.`;
         console.log(message);

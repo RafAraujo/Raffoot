@@ -168,7 +168,7 @@ class Fifa23Service {
 		const c = Club.create;
 		const p = Player.create;
 
-		c("Mamelodi Sundowns", 135, "#D4BA27");
+		c("Mamelodi Sundowns", 135, "#D2B928");
 		p("R. Williams", 135, 1, 30, 73);
 		p("T. Morena", 135, 4, 28, 70);
 		p("G. Kekana", 135, 2, 29, 67);
@@ -198,7 +198,7 @@ class Fifa23Service {
 		p("P. Shalulile", 104, 15, 28, 74);
 		p("B. Onyango", 82, 2, 27, 69);
 
-		c("Orlando Pirates", 135, "#3D3638");
+		c("Orlando Pirates", 135, "#3E3839");
 		p("R. Ofori", 58, 1, 28, 72);
 		p("O. Ndah", 107, 2, 24, 70);
 		p("T. Xoki", 135, 2, 27, 69);
@@ -228,7 +228,7 @@ class Fifa23Service {
 		p("T. Lorch", 135, 13, 28, 73);
 		p("T. Monare", 135, 8, 32, 66);
 
-		c("Kaizer Chiefs", 135, "#BF8839");
+		c("Kaizer Chiefs", 135, "#BD8739");
 		p("B. Petersen", 135, 1, 28, 70);
 		p("D. Solomons", 135, 4, 23, 65);
 		p("Z. Kwinika", 135, 2, 28, 66);
@@ -258,7 +258,7 @@ class Fifa23Service {
 		p("S. Radebe", 135, 8, 22, 58);
 		p("I. Khune", 135, 1, 35, 71);
 
-		c("River Plate", 7, "#C0A0A0");
+		c("River Plate", 7, "#C0A1A1");
 		p("F. Armani", 7, 1, 35, 79);
 		p("M. Casco", 7, 3, 34, 77);
 		p("E. Mammana", 7, 2, 26, 75);
@@ -318,7 +318,7 @@ class Fifa23Service {
 		p("A. Sández", 7, 3, 21, 68);
 		p("G. Aranda", 7, 2, 21, 65);
 
-		c("Racing Club", 7, "#90B3C3");
+		c("Racing Club", 7, "#8FB1C1");
 		p("G. Arias", 27, 1, 34, 78);
 		p("I. Pillud", 7, 4, 36, 69);
 		p("L. Sigali", 7, 2, 35, 77);
@@ -348,7 +348,7 @@ class Fifa23Service {
 		p("M. Quiroz", 7, 7, 20, 63);
 		p("R. Fernández", 7, 12, 16, 60);
 
-		c("Independiente", 7, "#CD2424");
+		c("Independiente", 7, "#CC2525");
 		p("M. Álvarez", 7, 1, 33, 71);
 		p("A. Vigo", 7, 4, 23, 70);
 		p("S. Barreto", 7, 2, 23, 74);
@@ -378,7 +378,7 @@ class Fifa23Service {
 		p("S. Ayala", 7, 15, 20, 60);
 		p("J. D'Angelo", 7, 7, 21, 60);
 
-		c("Estudiantes", 7, "#CD7C7D");
+		c("Estudiantes", 7, "#CC7D7E");
 		p("M. Andújar", 7, 1, 38, 74);
 		p("L. Godoy", 7, 4, 27, 75);
 		p("J. Morel", 114, 2, 24, 70);
@@ -407,7 +407,7 @@ class Fifa23Service {
 		p("G. Piñeiro", 7, 8, 21, 62);
 		p("B. Orosco", 7, 11, 24, 61);
 
-		c("Vélez Sarsfield", 7, "#BBBDC7");
+		c("Vélez Sarsfield", 7, "#BABCC6");
 		p("L. Burián", 153, 1, 38, 73);
 		p("T. Guidara", 7, 4, 26, 71);
 		p("M. de los Santos", 153, 2, 29, 72);
@@ -497,7 +497,7 @@ class Fifa23Service {
 		p("F. Ortellado", 7, 2, 21, 64);
 		p("L. Varaldo", 7, 15, 20, 63);
 
-		c("Colón", 7, "#794340");
+		c("Colón", 7, "#784440");
 		p("I. Chicco", 7, 1, 26, 71);
 		p("G. Nardelli", 7, 4, 22, 66);
 		p("F. Garcés", 7, 2, 22, 73);
@@ -527,7 +527,7 @@ class Fifa23Service {
 		p("T. Sandoval", 7, 15, 23, 64);
 		p("T. Moschión", 7, 7, 22, 62);
 
-		c("Newell's Old Boys", 7, "#713534");
+		c("Newell's Old Boys", 7, "#733736");
 		p("L. Morales", 7, 1, 22, 72);
 		p("A. Méndez", 153, 4, 26, 70);
 		p("C. Lema", 7, 2, 32, 75);
@@ -557,7 +557,7 @@ class Fifa23Service {
 		p("N. Funez", 7, 15, 21, 60);
 		p("M. Campagnaro", 7, 3, 19, 60);
 
-		c("Godoy Cruz", 7, "#486AB0");
+		c("Godoy Cruz", 7, "#496BAF");
 		p("D. Rodríguez", 7, 1, 33, 71);
 		p("P. Barrios", 7, 2, 32, 70);
 		p("G. Ferrari", 7, 2, 25, 71);
@@ -587,7 +587,7 @@ class Fifa23Service {
 		p("T. Castro Ponce", 7, 11, 21, 63);
 		p("G. Vega", 7, 8, 20, 62);
 
-		c("Atlético Tucumán", 7, "#ABC2D2");
+		c("Atlético Tucumán", 7, "#AAC1D1");
 		p("C. Lampe", 16, 1, 35, 74);
 		p("M. Garay", 7, 4, 23, 69);
 		p("B. Bianchi", 7, 2, 33, 73);
@@ -617,7 +617,7 @@ class Fifa23Service {
 		p("K. Isa", 7, 15, 21, 60);
 		p("N. Romero", 7, 2, 18, 61);
 
-		c("Defensa y Justicia", 7, "#D6B93E");
+		c("Defensa y Justicia", 7, "#D4B83F");
 		p("E. Unsain", 7, 1, 27, 75);
 		p("N. Tripichio", 7, 4, 26, 72);
 		p("A. Frías", 7, 2, 24, 74);
@@ -647,7 +647,7 @@ class Fifa23Service {
 		p("E. Cannavó", 7, 8, 20, 60);
 		p("F. Marco", 7, 2, 19, 60);
 
-		c("Tigre", 7, "#483278");
+		c("Tigre", 7, "#4A357A");
 		p("G. Marinelli", 7, 1, 32, 71);
 		p("L. Blondel", 7, 4, 25, 72);
 		p("V. Cabrera", 7, 2, 29, 69);
@@ -675,7 +675,7 @@ class Fifa23Service {
 		p("F. Zenobio", 7, 1, 22, 59);
 		p("G. Flores", 7, 15, 20, 59);
 
-		c("Argentinos Juniors", 7, "#CB514D");
+		c("Argentinos Juniors", 7, "#CA524E");
 		p("F. Lanzillotta", 7, 1, 29, 70);
 		p("K. Mac Allister", 7, 2, 24, 74);
 		p("M. Torrén", 7, 2, 33, 73);
@@ -702,7 +702,7 @@ class Fifa23Service {
 		p("L. Ovando", 7, 15, 19, 61);
 		p("M. Acosta", 7, 1, 20, 60);
 
-		c("Gimnasia La Plata", 7, "#B8B8C0");
+		c("Gimnasia La Plata", 7, "#B8B8BF");
 		p("R. Rey", 7, 1, 31, 75);
 		p("G. Enrique", 7, 4, 22, 69);
 		p("L. Morales", 7, 2, 31, 73);
@@ -732,7 +732,7 @@ class Fifa23Service {
 		p("G. Gonzalez", 7, 4, 19, 59);
 		p("A. Steimbach", 7, 10, 19, 59);
 
-		c("Rosario Central", 7, "#94955A");
+		c("Rosario Central", 7, "#94955C");
 		p("G. Servio", 7, 1, 30, 71);
 		p("D. Martínez", 7, 4, 32, 71);
 		p("J. Báez", 114, 2, 31, 72);
@@ -762,7 +762,7 @@ class Fifa23Service {
 		p("A. Marinelli", 7, 10, 23, 64);
 		p("L. Martínez Dupuy", 98, 15, 21, 64);
 
-		c("Platense", 7, "#BAB9B7");
+		c("Platense", 7, "#BAB8B7");
 		p("M. Ledesma", 7, 1, 25, 69);
 		p("N. Morgantini", 7, 4, 27, 66);
 		p("R. González", 7, 2, 31, 68);
@@ -792,7 +792,7 @@ class Fifa23Service {
 		p("N. Casasola", 7, 7, 21, 62);
 		p("A. Alcorcel", 7, 1, 21, 61);
 
-		c("Huracán", 7, "#CBC4C5");
+		c("Huracán", 7, "#CAC3C3");
 		p("L. Cháves", 7, 1, 26, 72);
 		p("G. Soto", 27, 4, 28, 68);
 		p("F. Tobio", 7, 2, 32, 69);
@@ -820,7 +820,7 @@ class Fifa23Service {
 		p("R. Ferrario", 7, 1, 22, 60);
 		p("J. Gauto", 7, 9, 18, 62);
 
-		c("Unión Santa Fe", 7, "#CE9090");
+		c("Unión Santa Fe", 7, "#CD9090");
 		p("S. Mele", 153, 1, 24, 72);
 		p("F. Vera", 7, 4, 24, 70);
 		p("F. Calderón", 7, 2, 24, 71);
@@ -850,7 +850,7 @@ class Fifa23Service {
 		p("N. Paz", 7, 4, 19, 61);
 		p("D. González", 7, 1, 19, 60);
 
-		c("San Lorenzo", 7, "#743A5D");
+		c("San Lorenzo", 7, "#743B5D");
 		p("A. Batalla", 7, 1, 26, 70);
 		p("A. Giay", 7, 6, 18, 66);
 		p("F. Gattoni", 7, 2, 23, 70);
@@ -910,7 +910,7 @@ class Fifa23Service {
 		p("M. González", 7, 10, 20, 60);
 		p("J. Eseiza", 7, 3, 20, 60);
 
-		c("Central Cordoba SdE", 7, "#858689");
+		c("Central Cordoba SdE", 7, "#868689");
 		p("C. Rigamonti", 7, 1, 35, 70);
 		p("I. Ramírez", 114, 4, 27, 69);
 		p("F. Pereyra", 7, 2, 32, 70);
@@ -940,7 +940,7 @@ class Fifa23Service {
 		p("J. Gómez", 7, 4, 22, 61);
 		p("G. Torres", 7, 15, 22, 61);
 
-		c("Sarmiento", 7, "#476E63");
+		c("Sarmiento", 7, "#4A6F65");
 		p("S. Meza", 7, 1, 22, 68);
 		p("G. Bettini", 7, 4, 29, 68);
 		p("G. Sauro", 7, 2, 32, 69);
@@ -970,7 +970,7 @@ class Fifa23Service {
 		p("N. Femia", 7, 8, 25, 60);
 		p("L. Garnier", 7, 4, 39, 59);
 
-		c("Aldosivi", 7, "#809D43");
+		c("Aldosivi", 7, "#7F9C44");
 		p("J. Devecchi", 7, 1, 26, 72);
 		p("R. Lucero", 7, 4, 20, 64);
 		p("M. López Quintana", 114, 2, 26, 67);
@@ -1000,7 +1000,7 @@ class Fifa23Service {
 		p("A. Lastra", 7, 1, 21, 61);
 		p("S. Laquidain", 7, 3, 20, 60);
 
-		c("Barracas Central", 7, "#D09191");
+		c("Barracas Central", 7, "#D09696");
 		p("R. Saracho", 7, 1, 28, 67);
 		p("B. Blasi", 7, 4, 26, 70);
 		p("B. Salvareschi", 7, 2, 23, 68);
@@ -1030,7 +1030,7 @@ class Fifa23Service {
 		p("A. Juárez", 7, 9, 17, 62);
 		p("M. Puig", 7, 7, 21, 60);
 
-		c("Patronato", 7, "#773D42");
+		c("Patronato", 7, "#774044");
 		p("F. Altamirano", 7, 1, 26, 73);
 		p("R. Lozano", 7, 4, 24, 69);
 		p("F. Álvarez", 7, 2, 22, 67);
@@ -1060,7 +1060,7 @@ class Fifa23Service {
 		p("J. Barinaga", 7, 8, 22, 61);
 		p("J. Barreto", 7, 15, 22, 60);
 
-		c("Arsenal de Sarandi", 7, "#9A9AAD");
+		c("Arsenal de Sarandi", 7, "#9A99AC");
 		p("A. Medina", 7, 1, 35, 70);
 		p("C. Chimino", 7, 4, 34, 68);
 		p("G. Goñi", 7, 2, 23, 68);
@@ -1088,7 +1088,7 @@ class Fifa23Service {
 		p("E. Viveros", 7, 10, 19, 59);
 		p("B. Báez", 7, 15, 22, 59);
 
-		c("The Strongest", 16, "#6B5936");
+		c("The Strongest", 16, "#6B5A37");
 		p("G. Viscarra", 16, 1, 29, 66);
 		p("S. Torres", 16, 4, 32, 66);
 		p("G. Castillo", 153, 2, 31, 67);
@@ -1113,7 +1113,7 @@ class Fifa23Service {
 		p("A. Jusino", 16, 2, 29, 67);
 		p("L. Demiquel", 16, 4, 22, 65);
 
-		c("Always Ready", 16, "#C1B0AE");
+		c("Always Ready", 16, "#C2B1AF");
 		p("L. Claros", 16, 1, 24, 61);
 		p("D. Medina", 16, 4, 20, 65);
 		p("M. Enoumba", 16, 2, 29, 70);
@@ -1135,7 +1135,7 @@ class Fifa23Service {
 		p("P. Vaca", 16, 4, 20, 63);
 		p("G. Añasgo", 7, 3, 25, 63);
 
-		c("Wilstermann", 16, "#A33340");
+		c("Wilstermann", 16, "#A33542");
 		p("B. Poveda", 16, 1, 18, 64);
 		p("R. Ballivián", 16, 10, 30, 66);
 		p("S. Echeverría", 7, 2, 32, 66);
@@ -1162,7 +1162,7 @@ class Fifa23Service {
 		p("C. Chávez", 7, 11, 36, 65);
 		p("M. Colque", 16, 2, 19, 59);
 
-		c("Royal Pari", 16, "#D64646");
+		c("Royal Pari", 16, "#D54746");
 		p("J. Araúz", 16, 1, 27, 65);
 		p("W. Saucedo", 16, 4, 25, 64);
 		p("J. Virreira", 16, 2, 25, 62);
@@ -1186,7 +1186,7 @@ class Fifa23Service {
 		p("D. Isita", 16, 10, 19, 60);
 		p("A. Moreno", 16, 2, 19, 53);
 
-		c("Guabirá", 16, "#BA2730");
+		c("Guabirá", 16, "#B92831");
 		p("E. Arauz", 16, 1, 32, 63);
 		p("F. Supayabe", 16, 4, 26, 67);
 		p("N. Amarilla", 114, 2, 34, 66);
@@ -1215,7 +1215,7 @@ class Fifa23Service {
 		p("B. Parada", 16, 10, 18, 59);
 		p("J. Zampiery", 16, 4, 32, 62);
 
-		c("Independiente Petrolero", 16, "#C57B7B", "I. Petrolero");
+		c("Independiente Petrolero", 16, "#C47B7B", "I. Petrolero");
 		p("H. Ayala", 16, 1, 27, 62);
 		p("R. Fernández", 16, 10, 19, 59);
 		p("E. Velasquez", 16, 2, 23, 64);
@@ -1236,7 +1236,7 @@ class Fifa23Service {
 		p("D. Quintela", 16, 1, 20, 57);
 		p("M. Romero", 16, 15, 20, 58);
 
-		c("Oriente Petrolero", 16, "#9FB0A0");
+		c("Oriente Petrolero", 16, "#A1B1A2");
 		p("W. Quiñónez", 114, 1, 33, 67);
 		p("M. Caire", 7, 4, 33, 69);
 		p("W. Soleto", 16, 4, 26, 64);
@@ -1263,7 +1263,7 @@ class Fifa23Service {
 		p("F. Rosales", 16, 1, 21, 58);
 		p("M. Ríos", 16, 10, 29, 66);
 
-		c("Flamengo", 18, "#7E373A");
+		c("Flamengo", 18, "#7F3A3D");
 		p("Héniton Pires", 18, 1, 26, 80);
 		p("Estevão Candeira", 18, 4, 26, 75);
 		p("Gérson Damesio", 18, 2, 30, 74);
@@ -1285,7 +1285,7 @@ class Fifa23Service {
 		p("Marlon Nideiro", 18, 11, 26, 73);
 		p("Leôncio Lobeiro", 18, 13, 22, 70);
 
-		c("Palmeiras", 18, "#376F59");
+		c("Palmeiras", 18, "#39705B");
 		p("Lucas Mantela", 18, 1, 22, 82);
 		p("Victorio Jabim", 18, 4, 26, 77);
 		p("Guto Costinho", 18, 2, 34, 73);
@@ -1329,7 +1329,7 @@ class Fifa23Service {
 		p("Alminho Boas", 18, 7, 26, 72);
 		p("Jailson Oliva", 18, 4, 30, 70);
 
-		c("Athletico Paranaense", 18, "#8C3434");
+		c("Club Athletico Paranaense", 18, "#8B3434");
 		p("Fred Aníbão", 18, 1, 30, 76);
 		p("Duirval Diniz", 18, 2, 26, 75);
 		p("Josué Chiamulera", 18, 2, 30, 82);
@@ -1351,7 +1351,7 @@ class Fifa23Service {
 		p("Melvin Regalito", 18, 11, 30, 68);
 		p("Botelhinonsa", 18, 4, 22, 67);
 
-		c("Internacional", 18, "#C83B42");
+		c("Internacional", 18, "#C73C44");
 		p("Gabri Prestão", 18, 1, 30, 79);
 		p("Adnan Vidual", 18, 4, 30, 79);
 		p("Zervandro", 18, 2, 22, 78);
@@ -1373,7 +1373,7 @@ class Fifa23Service {
 		p("Gustavo Pastinho", 18, 15, 30, 67);
 		p("Welliton Helmes", 18, 11, 22, 66);
 
-		c("Bragantino", 18, "#D4C3C4");
+		c("Bragantino", 18, "#D3C2C3");
 		p("Emelvinson", 18, 1, 34, 79);
 		p("Hediselton", 18, 4, 22, 78);
 		p("Rafael Cachoira", 18, 2, 22, 75);
@@ -1395,7 +1395,7 @@ class Fifa23Service {
 		p("Wilsson Rosito", 18, 11, 26, 65);
 		p("Alson Botelho", 18, 7, 22, 69);
 
-		c("Corinthians", 18, "#CECDCB");
+		c("Corinthians", 18, "#CDCCCA");
 		p("Simão Donatinho", 18, 1, 26, 75);
 		p("Maikel Catarino", 18, 4, 26, 80);
 		p("Eminho Moringa", 18, 2, 34, 71);
@@ -1417,7 +1417,7 @@ class Fifa23Service {
 		p("Jadenilson Baia", 18, 6, 34, 67);
 		p("Silaldo Taffarel", 18, 8, 30, 67);
 
-		c("Santos", 18, "#D6D6D5");
+		c("Santos", 18, "#D4D4D3");
 		p("Pierrino Faria", 18, 1, 38, 76);
 		p("Silvosinho", 18, 4, 26, 73);
 		p("Vanderleiton", 18, 2, 22, 72);
@@ -1439,7 +1439,7 @@ class Fifa23Service {
 		p("Claudio Mouria", 18, 11, 30, 67);
 		p("Luis Paezinho", 18, 2, 26, 65);
 
-		c("São Paulo", 18, "#BDB4B3");
+		c("São Paulo", 18, "#BDB3B2");
 		p("André Milazisco", 18, 1, 26, 72);
 		p("Mauri Borgho", 18, 4, 30, 74);
 		p("Ailton Valpaços", 18, 2, 30, 72);
@@ -1461,7 +1461,7 @@ class Fifa23Service {
 		p("Césario Limberg", 18, 2, 26, 69);
 		p("Nosberto Vila", 18, 4, 26, 69);
 
-		c("Fluminense", 18, "#6F565D");
+		c("Fluminense", 18, "#70575E");
 		p("Kaíquão Castro", 18, 1, 26, 75);
 		p("Hugo Rubiães", 18, 7, 26, 72);
 		p("Vinicius Cardenha", 18, 4, 30, 74);
@@ -1483,7 +1483,7 @@ class Fifa23Service {
 		p("Estevãtinho", 18, 11, 30, 66);
 		p("Nito Carbelho", 18, 15, 30, 64);
 
-		c("Ceará", 18, "#7F7F7E");
+		c("Ceará", 18, "#80807F");
 		p("Nelsildo Reis", 18, 1, 22, 76);
 		p("Kelivelson", 18, 7, 26, 72);
 		p("Hugo Goiteira", 18, 2, 30, 73);
@@ -1505,7 +1505,7 @@ class Fifa23Service {
 		p("Edenildo Lagoas", 18, 4, 22, 67);
 		p("Nascimentardo", 18, 11, 22, 70);
 
-		c("Atlético GO", 18, "#B63440");
+		c("Atlético GO", 18, "#B53542");
 		p("Nilson Alfarinho", 18, 1, 38, 74);
 		p("Mauro Cildinho", 18, 4, 26, 74);
 		p("Davi Parrela", 18, 2, 22, 75);
@@ -1527,7 +1527,7 @@ class Fifa23Service {
 		p("Diogildo Peixe", 18, 11, 22, 69);
 		p("Freddy Cardouso", 18, 11, 22, 67);
 
-		c("Fortaleza", 18, "#7D5674");
+		c("Fortaleza", 18, "#7C5675");
 		p("Vítor Angulho", 18, 1, 26, 70);
 		p("Marlinito Dias", 18, 7, 26, 70);
 		p("Mardial Cunha", 18, 2, 22, 73);
@@ -1549,7 +1549,7 @@ class Fifa23Service {
 		p("Kaio Aldair", 18, 4, 30, 68);
 		p("Bernard Alemão", 18, 7, 30, 65);
 
-		c("Cuiabá", 18, "#9EA94B");
+		c("Cuiabá", 18, "#9DA84B");
 		p("Adrizinho Bastos", 18, 1, 34, 70);
 		p("Jesus Andradaldo", 18, 4, 30, 75);
 		p("Leandro Pestanha", 18, 2, 26, 67);
@@ -1571,7 +1571,7 @@ class Fifa23Service {
 		p("Claudio Silbeiro", 18, 15, 26, 67);
 		p("Dillson Teixeiro", 18, 15, 26, 63);
 
-		c("América Mineiro", 18, "#2E6340");
+		c("América Mineiro", 18, "#2F6441");
 		p("João Bruinheira", 18, 1, 34, 72);
 		p("Lúcio Corteijo", 18, 4, 34, 76);
 		p("Emu Teixeira", 18, 2, 38, 73);
@@ -1593,7 +1593,7 @@ class Fifa23Service {
 		p("Vasquão Junior", 18, 2, 34, 64);
 		p("Josi Mouraldo", 18, 11, 30, 62);
 
-		c("Universidad Católica", 27, "#BCC0C6", "U. Católica");
+		c("Universidad Católica", 27, "#BBBFC5", "U. Católica");
 		p("S. Pérez", 27, 1, 31, 71);
 		p("M. Isla", 27, 4, 34, 76);
 		p("B. Ampuero", 27, 2, 28, 68);
@@ -1619,7 +1619,7 @@ class Fifa23Service {
 		p("C. Finch", 27, 2, 20, 57);
 		p("C. Cuevas", 27, 12, 27, 67);
 
-		c("Colo-Colo", 27, "#C5C1C1");
+		c("Colo-Colo", 27, "#C3BFBF");
 		p("B. Cortés", 27, 1, 27, 72);
 		p("Ó. Opazo", 27, 4, 31, 70);
 		p("M. Falcón", 153, 2, 25, 71);
@@ -1650,7 +1650,7 @@ class Fifa23Service {
 		p("L. Soto", 27, 8, 19, 58);
 		p("C. Villanueva", 27, 11, 23, 65);
 
-		c("Everton", 27, "#616D87");
+		c("Everton", 27, "#616D86");
 		p("F. De Paul", 27, 1, 31, 73);
 		p("R. Echeverría", 27, 2, 27, 73);
 		p("J. Barroso", 7, 2, 37, 72);
@@ -1678,7 +1678,7 @@ class Fifa23Service {
 		p("C. Díaz", 27, 2, 22, 54);
 		p("P. Campos", 27, 13, 22, 58);
 
-		c("Ñublense", 27, "#AB3743");
+		c("Ñublense", 27, "#AC3B47");
 		p("N. Pérez", 153, 1, 32, 69);
 		p("B. Cerezo", 27, 2, 27, 67);
 		p("N. Vargas", 27, 2, 28, 68);
@@ -1708,7 +1708,7 @@ class Fifa23Service {
 		p("B. Pino", 27, 3, 20, 57);
 		p("G. Gajardo", 27, 1, 20, 57);
 
-		c("Unión Española", 27, "#A53D39");
+		c("Unión Española", 27, "#A53F3B");
 		p("L. Mejía", 112, 1, 31, 72);
 		p("S. Magnasco", 27, 4, 29, 68);
 		p("J. Villagra", 27, 2, 21, 68);
@@ -1736,7 +1736,7 @@ class Fifa23Service {
 		p("I. Jara", 27, 11, 25, 67);
 		p("J. Sierra", 27, 15, 25, 61);
 
-		c("Antofagasta", 27, "#8E97C4");
+		c("Antofagasta", 27, "#8F97C4");
 		p("D. Sánchez", 27, 1, 35, 71);
 		p("B. Nieto", 27, 4, 24, 68);
 		p("A. Robles", 27, 2, 28, 64);
@@ -1765,7 +1765,7 @@ class Fifa23Service {
 		p("C. Díaz Ferrada", 27, 7, 19, 55);
 		p("J. Cisternas", 27, 1, 19, 54);
 
-		c("Unión La Calera", 27, "#A53335");
+		c("Unión La Calera", 27, "#A63538");
 		p("I. Arce", 7, 1, 30, 67);
 		p("C. Vilches", 27, 2, 38, 68);
 		p("H. Sanhueza", 27, 2, 26, 63);
@@ -1821,7 +1821,7 @@ class Fifa23Service {
 		p("J. Torres", 30, 4, 18, 58);
 		p("J. Uribe", 30, 1, 20, 58);
 
-		c("Deportes Tolima", 30, "#BB7458");
+		c("Deportes Tolima", 30, "#BA7458");
 		p("W. Cuesta", 30, 1, 29, 70);
 		p("J. Marulanda", 30, 4, 26, 68);
 		p("J. Quiñónes", 30, 2, 32, 70);
@@ -1846,7 +1846,7 @@ class Fifa23Service {
 		p("F. Mosquera", 30, 7, 27, 66);
 		p("L. Riascos", 30, 4, 21, 65);
 
-		c("Junior", 30, "#BA828C");
+		c("Junior FC", 30, "#B9838D");
 		p("S. Viera", 153, 1, 39, 74);
 		p("W. Pacheco", 30, 4, 27, 71);
 		p("D. Rosero", 30, 2, 28, 70);
@@ -1872,7 +1872,7 @@ class Fifa23Service {
 		p("H. Martínez", 30, 2, 24, 65);
 		p("S. Araujo", 30, 1, 25, 60);
 
-		c("América de Cali", 30, "#C73943");
+		c("América de Cali", 30, "#C63C46");
 		p("J. Graterol", 156, 1, 25, 75);
 		p("E. Mena", 30, 10, 24, 70);
 		p("M. Torres", 30, 2, 26, 70);
@@ -1900,7 +1900,7 @@ class Fifa23Service {
 		p("D. Quintero", 30, 1, 24, 60);
 		p("L. Mosquera", 30, 8, 20, 60);
 
-		c("Deportivo Cali", 30, "#34744F");
+		c("Deportivo Cali", 30, "#377652");
 		p("H. Acevedo", 30, 1, 25, 68);
 		p("A. Gutiérrez", 30, 4, 24, 69);
 		p("G. Burdisso", 7, 2, 33, 71);
@@ -1930,7 +1930,7 @@ class Fifa23Service {
 		p("G. Cabezas", 30, 8, 19, 62);
 		p("J. Lasso", 30, 1, 20, 59);
 
-		c("Independiente Medellín", 30, "#842D2F", "I. Medellín");
+		c("Independiente Medellín", 30, "#873133", "I. Medellín");
 		p("A. Mosquera", 30, 1, 30, 74);
 		p("J. Arboleda", 30, 4, 32, 68);
 		p("V. Moreno", 30, 2, 27, 70);
@@ -1953,7 +1953,7 @@ class Fifa23Service {
 		p("Y. Díaz", 30, 7, 24, 63);
 		p("W. Asprilla", 30, 1, 23, 61);
 
-		c("La Equidad", 30, "#489B67");
+		c("La Equidad", 30, "#499B67");
 		p("W. Ortega", 153, 1, 27, 68);
 		p("C. Arboleda", 30, 4, 36, 68);
 		p("D. Polanco", 30, 2, 23, 67);
@@ -1982,7 +1982,7 @@ class Fifa23Service {
 		p("N. Barona", 30, 12, 24, 62);
 		p("A. Pérez", 30, 1, 23, 62);
 
-		c("Independiente del Valle", 43, "#2D2E32", "I. del Valle");
+		c("Independiente del Valle", 43, "#2F3034", "I. del Valle");
 		p("M. Ramírez", 43, 1, 21, 72);
 		p("M. Fernández", 27, 10, 26, 67);
 		p("M. Carabajal", 7, 2, 25, 72);
@@ -2009,7 +2009,7 @@ class Fifa23Service {
 		p("Y. Medina", 43, 9, 17, 57);
 		p("P. Mercado", 43, 8, 18, 59);
 
-		c("Barcelona Guayaquil", 43, "#D5A927", "Barcelona SC");
+		c("Barcelona Guayaquil", 43, "#D3A928", "Barcelona SC");
 		p("J. Burrai", 7, 1, 31, 75);
 		p("P. Velasco", 43, 4, 29, 68);
 		p("C. Rodríguez", 153, 2, 32, 69);
@@ -2035,7 +2035,7 @@ class Fifa23Service {
 		p("E. Emanuele", 43, 8, 18, 57);
 		p("J. Corozo", 43, 11, 17, 57);
 
-		c("Emelec", 43, "#4C5A8C");
+		c("Emelec", 43, "#4D5B8C");
 		p("P. Ortíz", 43, 1, 32, 72);
 		p("R. Caicedo", 43, 4, 32, 69);
 		p("E. Guevara", 43, 2, 32, 66);
@@ -2060,7 +2060,7 @@ class Fifa23Service {
 		p("M. Caicedo", 43, 9, 30, 65);
 		p("J. Quintero", 43, 2, 23, 66);
 
-		c("LDU Quito", 43, "#BEBEBB");
+		c("LDU Quito", 43, "#BDBCBA");
 		p("A. Gabbarini", 7, 1, 36, 66);
 		p("J. Quintero", 43, 4, 32, 67);
 		p("F. Guerra", 43, 2, 30, 68);
@@ -2080,7 +2080,7 @@ class Fifa23Service {
 		p("D. Romero", 43, 4, 21, 61);
 		p("B. Heras", 43, 1, 27, 67);
 
-		c("Universidad Católica", 43, "#80AED3", "U. Católica");
+		c("Universidad Católica", 43, "#80AED2", "U. Católica");
 		p("D. Cuero", 43, 1, 27, 67);
 		p("G. Anangonó", 43, 4, 24, 66);
 		p("A. Ordóñez", 43, 2, 28, 65);
@@ -2108,7 +2108,7 @@ class Fifa23Service {
 		p("J. Chalá", 43, 15, 18, 58);
 		p("J. Bone", 43, 8, 18, 58);
 
-		c("9 de Octubre", 43, "#B6C2CB");
+		c("9 de Octubre", 43, "#B5C1C9");
 		p("J. Pinos", 43, 1, 32, 68);
 		p("M. Cangá", 43, 4, 33, 66);
 		p("M. Lucas", 43, 2, 29, 65);
@@ -2128,7 +2128,7 @@ class Fifa23Service {
 		p("G. Mina", 43, 3, 26, 63);
 		p("L. Usca", 43, 1, 22, 60);
 
-		c("Delfin", 43, "#485291");
+		c("Delfin", 43, "#4B5491");
 		p("M. Banguera", 43, 1, 36, 67);
 		p("A. Burbano", 43, 4, 28, 63);
 		p("F. Queiroz", 153, 2, 24, 66);
@@ -2149,7 +2149,7 @@ class Fifa23Service {
 		p("C. Ortíz", 43, 1, 29, 65);
 		p("D. Corozo", 43, 1, 34, 61);
 
-		c("Mushuc Runa", 43, "#583C3E");
+		c("Mushuc Runa", 43, "#593D3F");
 		p("A. Pabón", 43, 1, 26, 67);
 		p("F. Carabalí", 43, 4, 26, 65);
 		p("D. Quilumba", 43, 2, 33, 65);
@@ -2201,7 +2201,7 @@ class Fifa23Service {
 		p("A. Leone", 98, 2, 18, 54);
 		p("C. Jennings", 152, 15, 25, 56);
 
-		c("Atlanta United", 152, "#573132");
+		c("Atlanta United", 152, "#573233");
 		p("R. Gudiño", 98, 1, 26, 74);
 		p("R. Hernández", 156, 4, 24, 64);
 		p("J. Sánchez Purata", 98, 2, 24, 68);
@@ -2262,7 +2262,7 @@ class Fifa23Service {
 		p("R. Odada", 82, 7, 21, 51);
 		p("J. Rafanello", 152, 15, 22, 54);
 
-		c("Minnesota United", 152, "#424344");
+		c("Minnesota United", 152, "#424444");
 		p("D. St. Clair", 24, 1, 25, 71);
 		p("D. Taylor", 152, 4, 24, 62);
 		p("M. Boxall", 106, 2, 33, 69);
@@ -2294,7 +2294,7 @@ class Fifa23Service {
 		p("E. Dick", 152, 1, 27, 58);
 		p("P. Weah", 88, 10, 18, 59);
 
-		c("Portland Timbers", 152, "#3D564A");
+		c("Portland Timbers", 152, "#3E564A");
 		p("A. Ivačič", 134, 1, 28, 69);
 		p("Z. McGraw", 152, 2, 25, 64);
 		p("L. Mabiala", 33, 2, 34, 69);
@@ -2355,7 +2355,7 @@ class Fifa23Service {
 		p("A. Thomas", 122, 1, 23, 57);
 		p("S. Kitahara", 152, 7, 19, 52);
 
-		c("Columbus Crew", 152, "#D1BB24");
+		c("Columbus Crew", 152, "#CFBA25");
 		p("E. Room", 38, 1, 33, 73);
 		p("S. Moreira", 53, 4, 27, 70);
 		p("J. Mensah", 58, 2, 31, 72);
@@ -2386,7 +2386,7 @@ class Fifa23Service {
 		p("J. Morris", 152, 3, 23, 52);
 		p("M. Farsi", 24, 4, 22, 62);
 
-		c("New York City", 152, "#7184A0");
+		c("New York City", 152, "#71849F");
 		p("S. Johnson", 152, 1, 33, 73);
 		p("T. Gray", 152, 4, 19, 65);
 		p("Thiago Martins", 18, 2, 27, 71);
@@ -2413,7 +2413,7 @@ class Fifa23Service {
 		p("A. Tinnerholm", 140, 4, 31, 72);
 		p("M. Pellegrini", 7, 9, 22, 69);
 
-		c("CF Montréal", 152, "#353637");
+		c("CF Montréal", 152, "#363637");
 		p("S. Breza", 24, 1, 24, 64);
 		p("J. Waterman", 24, 2, 26, 67);
 		p("R. Camacho", 53, 2, 31, 70);
@@ -2445,7 +2445,7 @@ class Fifa23Service {
 		p("L. Ketterer", 152, 1, 28, 58);
 		p("T. Giraldo", 24, 8, 19, 48);
 
-		c("San Jose Earthquakes", 152, "#2E3953", "SJ Earthquakes");
+		c("San Jose Earthquakes", 152, "#2F3A54", "SJ Earthquakes");
 		p("J. Marcinkowski", 152, 1, 25, 66);
 		p("T. Thompson", 152, 4, 26, 64);
 		p("Rodrigues", 18, 2, 24, 66);
@@ -2476,7 +2476,7 @@ class Fifa23Service {
 		p("S. Haji", 152, 10, 22, 59);
 		p("O. Bouda", 20, 9, 22, 55);
 
-		c("DC United", 152, "#3D3A3A");
+		c("DC United", 152, "#3E3C3B");
 		p("D. Ochoa", 98, 1, 21, 67);
 		p("A. Najar", 68, 2, 29, 70);
 		p("S. Birnbaum", 152, 2, 31, 69);
@@ -2508,7 +2508,7 @@ class Fifa23Service {
 		p("J. Hopkins", 152, 11, 18, 52);
 		p("K. Fletcher", 152, 12, 16, 52);
 
-		c("New York RB", 152, "#A3333C");
+		c("New York RB", 152, "#A2343D");
 		p("Carlos Coronel", 18, 1, 25, 73);
 		p("K. Duncan", 152, 6, 24, 71);
 		p("S. Nealis", 152, 2, 25, 70);
@@ -2539,7 +2539,7 @@ class Fifa23Service {
 		p("S. Sserwadda", 149, 8, 19, 53);
 		p("J. LaCava", 152, 15, 21, 57);
 
-		c("New England", 152, "#3B3D4E");
+		c("New England", 152, "#3B3E4F");
 		p("Đ. Petrović", 129, 1, 22, 67);
 		p("B. Bye", 152, 4, 26, 71);
 		p("A. Farrell", 152, 2, 30, 69);
@@ -2571,7 +2571,7 @@ class Fifa23Service {
 		p("B. Reveno", 152, 2, 23, 57);
 		p("E. Kizza", 149, 15, 23, 59);
 
-		c("Dallas", 152, "#973B54");
+		c("Dallas", 152, "#963B54");
 		p("M. Paes", 105, 1, 24, 69);
 		p("E. Twumasi", 58, 4, 25, 63);
 		p("M. Hedges", 152, 2, 32, 72);
@@ -2603,7 +2603,7 @@ class Fifa23Service {
 		p("T. Roberts", 152, 11, 21, 60);
 		p("N. Norris", 152, 3, 17, 54);
 
-		c("LA Galaxy", 152, "#BCBBBB");
+		c("LA Galaxy", 152, "#BABABA");
 		p("J. Bond", 46, 1, 29, 68);
 		p("J. Araujo", 98, 4, 20, 70);
 		p("S. Coulibaly", 53, 2, 26, 65);
@@ -2635,7 +2635,7 @@ class Fifa23Service {
 		p("C. Dunbar", 152, 9, 19, 57);
 		p("J. Villafaña", 152, 3, 32, 67);
 
-		c("Orlando City", 152, "#46428B");
+		c("Orlando City", 152, "#47428B");
 		p("P. Gallese", 115, 1, 32, 74);
 		p("Ruan", 18, 4, 27, 67);
 		p("Antônio Carlos", 18, 2, 29, 70);
@@ -2666,7 +2666,7 @@ class Fifa23Service {
 		p("J. Lynn", 152, 15, 22, 54);
 		p("Alexandre Pato", 18, 15, 32, 71);
 
-		c("Austin", 152, "#29613E");
+		c("Austin", 152, "#2A613F");
 		p("B. Stuver", 152, 1, 31, 69);
 		p("N. Lima", 152, 4, 27, 68);
 		p("J. Cascante", 34, 2, 28, 67);
@@ -2695,7 +2695,7 @@ class Fifa23Service {
 		p("D. Las", 152, 1, 20, 52);
 		p("J. Stroud", 152, 10, 25, 61);
 
-		c("Nashville SC", 152, "#C4C148");
+		c("Nashville SC", 152, "#C3C049");
 		p("J. Willis", 152, 1, 33, 70);
 		p("S. Moore", 152, 4, 25, 72);
 		p("W. Zimmerman", 152, 2, 29, 76);
@@ -2724,7 +2724,7 @@ class Fifa23Service {
 		p("A. Longmire", 152, 2, 22, 52);
 		p("W. Meyer", 152, 1, 24, 54);
 
-		c("Vancouver Whitecaps", 152, "#B7B5B7", "Whitecaps");
+		c("Vancouver Whitecaps", 152, "#B7B5B6", "Whitecaps");
 		p("C. Cropper", 152, 1, 29, 64);
 		p("J. Nerwinski", 152, 2, 27, 64);
 		p("R. Veselinović", 129, 2, 23, 68);
@@ -2756,7 +2756,7 @@ class Fifa23Service {
 		p("E. Brienza", 24, 14, 20, 52);
 		p("Janio Bikel", 65, 7, 27, 69);
 
-		c("Toronto", 152, "#574648");
+		c("Toronto", 152, "#584749");
 		p("Q. Westberg", 152, 1, 36, 63);
 		p("R. Laryea", 24, 6, 27, 72);
 		p("S. O'Neill", 152, 2, 28, 64);
@@ -2785,7 +2785,7 @@ class Fifa23Service {
 		p("I. Achara", 107, 9, 24, 60);
 		p("G. Ranjitsingh", 146, 1, 28, 60);
 
-		c("Colorado Rapids", 152, "#53343B");
+		c("Colorado Rapids", 152, "#53353C");
 		p("W. Yarbrough", 152, 1, 33, 69);
 		p("K. Rosenberry", 152, 2, 28, 69);
 		p("L. Abubakar", 58, 2, 27, 69);
@@ -2817,7 +2817,7 @@ class Fifa23Service {
 		p("D. Yapi", 152, 15, 17, 49);
 		p("B. Galván", 7, 9, 21, 65);
 
-		c("Sporting Kansas City", 152, "#818FAB");
+		c("Sporting Kansas City", 152, "#818EAA");
 		p("J. Pulskamp", 152, 1, 21, 65);
 		p("G. Zusi", 152, 4, 35, 67);
 		p("N. Isimat-Mirin", 53, 2, 30, 68);
@@ -2846,7 +2846,7 @@ class Fifa23Service {
 		p("G. Kinda", 76, 8, 28, 69);
 		p("K. Rad", 152, 2, 21, 56);
 
-		c("Houston Dynamo", 152, "#B84631");
+		c("Houston Dynamo", 152, "#B74632");
 		p("S. Clark", 152, 1, 36, 71);
 		p("G. Dorsey", 152, 10, 23, 61);
 		p("T. Parker", 152, 2, 29, 66);
@@ -2876,7 +2876,7 @@ class Fifa23Service {
 		p("Thiago", 18, 9, 21, 55);
 		p("B. Raines", 152, 7, 17, 50);
 
-		c("Charlotte", 152, "#4C90BC");
+		c("Charlotte", 152, "#4F92BC");
 		p("K. Kahlina", 36, 1, 29, 65);
 		p("H. Afful", 58, 4, 36, 66);
 		p("A. Malanda", 53, 2, 20, 63);
@@ -2908,7 +2908,7 @@ class Fifa23Service {
 		p("Vinicius Mello", 18, 15, 19, 60);
 		p("A. Armour", 152, 3, 19, 52);
 
-		c("Real Salt Lake", 152, "#743A43");
+		c("Real Salt Lake", 152, "#743B44");
 		p("Z. MacMath", 152, 1, 30, 66);
 		p("A. Herrera", 152, 4, 25, 69);
 		p("J. Glad", 152, 2, 25, 68);
@@ -2940,7 +2940,7 @@ class Fifa23Service {
 		p("J. Dewsnup", 152, 1, 18, 55);
 		p("G. Beavers", 152, 1, 17, 52);
 
-		c("Inter Miami", 152, "#BB97AC");
+		c("Inter Miami", 152, "#BA97AC");
 		p("D. Callender", 152, 1, 24, 63);
 		p("D. Yedlin", 152, 4, 28, 70);
 		p("D. Lowe", 78, 2, 29, 68);
@@ -2972,7 +2972,7 @@ class Fifa23Service {
 		p("I. Fray", 152, 2, 19, 56);
 		p("H. Neville", 120, 4, 20, 55);
 
-		c("Cincinnati", 152, "#364975");
+		c("Cincinnati", 152, "#374A75");
 		p("R. Celentano", 152, 1, 21, 65);
 		p("A. Powell", 78, 4, 27, 65);
 		p("N. Hagglund", 152, 2, 29, 66);
@@ -3003,7 +3003,7 @@ class Fifa23Service {
 		p("R. Matarrita", 34, 3, 27, 71);
 		p("E. Louro", 152, 1, 26, 60);
 
-		c("Chicago Fire", 152, "#2F3650");
+		c("Chicago Fire", 152, "#2F3750");
 		p("G. Slonina", 152, 1, 18, 66);
 		p("B. Sekulić", 133, 4, 30, 67);
 		p("M. Pineda", 152, 2, 24, 66);
@@ -3033,7 +3033,7 @@ class Fifa23Service {
 		p("M. Rodríguez", 152, 15, 19, 50);
 		p("S. Oregel", 152, 8, 17, 51);
 
-		c("Nacional", 153, "#D8D6D8");
+		c("Nacional", 153, "#D6D5D6");
 		p("S. Rochet", 153, 1, 29, 78);
 		p("J. Rodriguez", 153, 4, 25, 72);
 		p("M. Laborda", 153, 2, 22, 69);
@@ -3063,7 +3063,7 @@ class Fifa23Service {
 		p("J. Gutiérrez", 153, 14, 20, 62);
 		p("I. Suárez", 153, 1, 20, 61);
 
-		c("Liverpool", 153, "#38527C");
+		c("Liverpool", 153, "#3C557D");
 		p("S. Britos", 153, 1, 34, 67);
 		p("G. Martirena", 153, 4, 22, 70);
 		p("F. Pereira", 153, 2, 22, 72);
@@ -3091,7 +3091,7 @@ class Fifa23Service {
 		p("M. Silva", 153, 8, 17, 59);
 		p("A. Aires", 153, 15, 18, 59);
 
-		c("River Plate", 153, "#978184");
+		c("River Plate", 153, "#988386");
 		p("S. Ichazo", 153, 1, 30, 70);
 		p("M. Pereira", 153, 4, 38, 69);
 		p("S. Brunelli", 153, 2, 24, 68);
@@ -3119,7 +3119,7 @@ class Fifa23Service {
 		p("J. Arbio", 153, 1, 19, 58);
 		p("F. Vidal", 153, 3, 19, 57);
 
-		c("Peñarol", 153, "#7B6D2D");
+		c("Peñarol", 153, "#7B6D2E");
 		p("K. Dawson", 153, 1, 30, 74);
 		p("M. Aguirregaray", 153, 4, 33, 69);
 		p("H. Menosse", 153, 2, 35, 72);
@@ -3144,7 +3144,7 @@ class Fifa23Service {
 		p("J. Lima", 153, 1, 23, 61);
 		p("P. López", 153, 2, 20, 59);
 
-		c("Cerro Largo", 153, "#9BA1B7");
+		c("Cerro Largo", 153, "#9BA0B6");
 		p("L. Álvarez", 153, 1, 37, 68);
 		p("A. Romero", 153, 2, 24, 66);
 		p("R. García", 153, 7, 33, 67);
@@ -3168,7 +3168,7 @@ class Fifa23Service {
 		p("L. Casiani", 156, 4, 20, 61);
 		p("C. Franco", 153, 15, 23, 62);
 
-		c("Wanderers", 153, "#80807E");
+		c("Wanderers", 153, "#80807F");
 		p("M. Silveira", 153, 1, 22, 66);
 		p("J. Acosta", 153, 4, 28, 69);
 		p("E. García", 153, 2, 32, 67);
@@ -3225,7 +3225,7 @@ class Fifa23Service {
 		p("L. Colmenarez", 156, 4, 33, 61);
 		p("A. Rodrigues", 156, 8, 20, 59);
 
-		c("Deportivo Táchira", 156, "#8C773C");
+		c("Deportivo Táchira", 156, "#8B773D");
 		p("C. Varela", 156, 1, 22, 68);
 		p("P. Camacho", 156, 4, 31, 66);
 		p("J. Quintero", 156, 2, 21, 65);
@@ -3255,7 +3255,7 @@ class Fifa23Service {
 		p("C. Paraco", 156, 9, 18, 60);
 		p("I. Contreras", 156, 3, 18, 61);
 
-		c("Caracas", 156, "#A63D2F");
+		c("Caracas", 156, "#A53E30");
 		p("A. Baroja", 156, 1, 32, 70);
 		p("D. Rivillo", 156, 4, 25, 66);
 		p("C. Rivero", 156, 2, 29, 67);
@@ -3284,7 +3284,7 @@ class Fifa23Service {
 		p("D. Castillo", 156, 7, 24, 60);
 		p("B. Albizo", 156, 15, 19, 58);
 
-		c("Deportivo La Guaira", 156, "#D74F37");
+		c("Deportivo La Guaira", 156, "#D55037");
 		p("C. Olses", 156, 1, 21, 67);
 		p("K. Silva", 156, 4, 28, 67);
 		p("F. La Mantía", 156, 2, 26, 67);
@@ -3315,7 +3315,7 @@ class Fifa23Service {
 		p("J. Mijares", 156, 8, 19, 57);
 		p("C. Flores", 156, 1, 31, 63);
 
-		c("Estudiantes Mérida", 156, "#BE8F94");
+		c("Estudiantes Mérida", 156, "#BD8E94");
 		p("A. Araque", 156, 1, 26, 68);
 		p("M. Guaramato", 156, 4, 28, 67);
 		p("W. Díaz", 156, 2, 37, 64);
@@ -3344,7 +3344,7 @@ class Fifa23Service {
 		p("W. Barrios", 156, 15, 21, 61);
 		p("J. Ardila", 156, 8, 16, 53);
 
-		c("Hermanos Colmenares", 156, "#7490BF");
+		c("Inter de Barinas", 156, "#7490BD");
 		p("L. Terán", 156, 1, 28, 64);
 		p("F. Uviedo", 156, 4, 26, 64);
 		p("J. Osorio", 156, 2, 31, 65);
@@ -3373,7 +3373,7 @@ class Fifa23Service {
 		p("J. Alvarado", 156, 10, 20, 61);
 		p("L. Barco", 156, 8, 20, 61);
 
-		c("Libertad", 114, "#999998");
+		c("Libertad", 114, "#999897");
 		p("M. Silva", 153, 1, 39, 75);
 		p("I. Piris", 114, 4, 33, 74);
 		p("D. Viera", 114, 2, 31, 72);
@@ -3403,7 +3403,7 @@ class Fifa23Service {
 		p("A. Bareiro", 114, 10, 33, 70);
 		p("H. Martínez", 114, 7, 22, 67);
 
-		c("Cerro Porteño", 114, "#783E6F");
+		c("Cerro Porteño", 114, "#784070");
 		p("Jean", 18, 1, 26, 75);
 		p("A. Espínola", 114, 4, 31, 70);
 		p("J. Patiño", 114, 2, 32, 66);
@@ -3435,7 +3435,7 @@ class Fifa23Service {
 		p("A. Nuñez", 114, 4, 17, 56);
 		p("J. Noguera", 114, 9, 20, 61);
 
-		c("Olimpia", 114, "#ACACAB");
+		c("Olimpia", 114, "#ABABAA");
 		p("G. Olveira", 153, 1, 29, 71);
 		p("V. Salazar", 7, 4, 29, 71);
 		p("S. Salcedo", 114, 2, 24, 68);
@@ -3466,7 +3466,7 @@ class Fifa23Service {
 		p("H. Quintana", 114, 8, 20, 65);
 		p("D. Duarte", 114, 15, 20, 63);
 
-		c("Nacional Asunción", 114, "#CAC8C8");
+		c("Nacional Asunción", 114, "#C9C6C7");
 		p("S. Rojas", 114, 1, 26, 72);
 		p("C. Nuñez", 114, 2, 26, 65);
 		p("B. Cabrera", 114, 2, 25, 64);
@@ -3496,7 +3496,7 @@ class Fifa23Service {
 		p("J. González", 114, 10, 19, 59);
 		p("R. Vera", 114, 8, 26, 64);
 
-		c("Guaireña", 114, "#A0B7C6");
+		c("Guaireña", 114, "#9FB5C4");
 		p("H. Espínola", 114, 1, 30, 65);
 		p("A. Giménez", 114, 4, 29, 64);
 		p("M. Paniagua", 114, 2, 35, 69);
@@ -3517,7 +3517,7 @@ class Fifa23Service {
 		p("O. Toledo", 114, 1, 23, 59);
 		p("A. Marín", 114, 15, 22, 64);
 
-		c("General Caballero JLM", 114, "#D24449");
+		c("General Caballero JLM", 114, "#D1454A");
 		p("J. Alfonso", 114, 1, 32, 63);
 		p("M. Mareco", 114, 4, 28, 63);
 		p("O. Barreto", 114, 2, 24, 65);
@@ -3538,7 +3538,7 @@ class Fifa23Service {
 		p("G. Arévalos", 114, 1, 37, 64);
 		p("L. Guillén", 114, 1, 21, 58);
 
-		c("Sol de América", 114, "#3757A7");
+		c("Sol de América", 114, "#3858A6");
 		p("L. Ojeda", 7, 1, 32, 66);
 		p("G. Giménez", 114, 4, 35, 64);
 		p("J. Cáceres", 114, 8, 20, 60);
@@ -3558,7 +3558,7 @@ class Fifa23Service {
 		p("L. Franco", 114, 1, 22, 61);
 		p("D. Aranda", 114, 1, 20, 56);
 
-		c("Melgar", 115, "#772B2E");
+		c("Melgar", 115, "#772C2F");
 		p("C. Cáceda", 115, 1, 30, 75);
 		p("A. Ramos", 115, 4, 23, 68);
 		p("A. Deneumostier", 115, 2, 23, 70);
@@ -3588,7 +3588,7 @@ class Fifa23Service {
 		p("D. Rodríguez", 115, 4, 20, 58);
 		p("R. Bettocchi", 115, 1, 20, 57);
 
-		c("Alianza Lima", 115, "#838392");
+		c("Alianza Lima", 115, "#838493");
 		p("Á. Campos", 115, 1, 29, 69);
 		p("Y. Vílchez", 115, 2, 27, 68);
 		p("P. Míguez", 153, 2, 35, 67);
@@ -3617,7 +3617,7 @@ class Fifa23Service {
 		p("S. Pineau", 27, 15, 19, 60);
 		p("J. Medina", 115, 1, 29, 65);
 
-		c("Sporting Cristal", 115, "#4EA6D4");
+		c("Sporting Cristal", 115, "#50A6D3");
 		p("A. Duarte", 115, 1, 28, 69);
 		p("J. Madrid", 115, 4, 25, 69);
 		p("G. Chávez", 115, 2, 23, 68);
@@ -3641,7 +3641,7 @@ class Fifa23Service {
 		p("M. Távara", 115, 8, 23, 70);
 		p("L. Díaz", 115, 2, 18, 58);
 
-		c("Cienciano", 115, "#B93331");
+		c("Cienciano", 115, "#B83533");
 		p("P. Zubczuk", 115, 1, 27, 65);
 		p("J. Estrada", 115, 4, 25, 71);
 		p("C. Beltrán", 7, 2, 31, 67);
@@ -3669,7 +3669,7 @@ class Fifa23Service {
 		p("L. Checco", 115, 8, 18, 58);
 		p("K. Aparicio", 115, 2, 29, 66);
 
-		c("Sport Boys", 115, "#DBA3B5");
+		c("Sport Boys", 115, "#D9A2B4");
 		p("P. Álvarez", 115, 1, 28, 69);
 		p("L. Garro", 115, 4, 25, 66);
 		p("R. Cuba", 115, 4, 30, 67);
@@ -3697,7 +3697,7 @@ class Fifa23Service {
 		p("X. Moreno", 115, 8, 18, 58);
 		p("A. García", 115, 11, 19, 58);
 
-		c("Ayacucho", 115, "#CACAC6");
+		c("Ayacucho", 115, "#CAC9C6");
 		p("A. Vidal", 115, 1, 27, 68);
 		p("J. Toledo", 115, 4, 26, 65);
 		p("A. Salazar", 115, 4, 27, 66);
@@ -3724,7 +3724,7 @@ class Fifa23Service {
 		p("A. Ccorahua", 115, 1, 21, 59);
 		p("G. Loayza", 115, 8, 20, 62);
 
-		c("Melbourne Victory", 9, "#2B323B");
+		c("Melbourne Victory", 9, "#2F353F");
 		p("P. Izzo", 9, 1, 27, 67);
 		p("S. Nigro", 9, 4, 25, 61);
 		p("M. Spiranovic", 9, 2, 34, 66);
@@ -3754,7 +3754,7 @@ class Fifa23Service {
 		p("A. Taleb", 9, 1, 19, 49);
 		p("L. Pršo", 9, 11, 21, 57);
 
-		c("Western Sydney Wanderers", 9, "#5D2C31", "Western Sydney");
+		c("Western Sydney Wanderers", 9, "#5C2C31", "Western Sydney");
 		p("L. Thomas", 9, 1, 30, 69);
 		p("G. Cléùr", 9, 4, 24, 60);
 		p("T. Mrčela", 9, 2, 31, 65);
@@ -3783,7 +3783,7 @@ class Fifa23Service {
 		p("N. Blair", 9, 15, 18, 50);
 		p("J. Warshawsky", 9, 1, 17, 52);
 
-		c("Melbourne City", 9, "#7096B3");
+		c("Melbourne City", 9, "#7096B2");
 		p("T. Glover", 9, 1, 24, 63);
 		p("C. Talbot", 9, 4, 21, 60);
 		p("C. Good", 9, 2, 29, 69);
@@ -3809,7 +3809,7 @@ class Fifa23Service {
 		p("J. Hall", 46, 2, 24, 57);
 		p("K. Stokes", 9, 2, 19, 55);
 
-		c("Western United", 9, "#2E493C");
+		c("Western United", 9, "#2F493C");
 		p("J. Young", 46, 1, 36, 68);
 		p("J. Risdon", 9, 4, 29, 70);
 		p("J. Tratt", 9, 2, 27, 60);
@@ -3839,7 +3839,7 @@ class Fifa23Service {
 		p("J. Najdovski", 9, 15, 17, 51);
 		p("T. Imai", 79, 2, 31, 66);
 
-		c("Sydney FC", 9, "#518BBB");
+		c("Sydney FC", 9, "#528BB9");
 		p("A. Redmayne", 9, 1, 33, 65);
 		p("R. Grant", 9, 4, 31, 69);
 		p("J. Donachie", 9, 2, 29, 63);
@@ -3866,7 +3866,7 @@ class Fifa23Service {
 		p("J. Girdwood-Reich", 9, 7, 18, 54);
 		p("A. Le Fondre", 46, 15, 35, 68);
 
-		c("Wellington Phoenix", 9, "#918527");
+		c("Wellington Phoenix", 9, "#908527");
 		p("O. Sail", 106, 1, 26, 68);
 		p("C. Elliot", 106, 4, 22, 61);
 		p("S. Wootton", 46, 2, 30, 65);
@@ -3890,7 +3890,7 @@ class Fifa23Service {
 		p("O. van Hattum", 106, 15, 20, 55);
 		p("N. Karunaratne", 106, 12, 19, 54);
 
-		c("Adelaide United", 9, "#972C38");
+		c("Adelaide United", 9, "#962D38");
 		p("J. Gauci", 9, 1, 21, 66);
 		p("Javi López", 137, 4, 36, 71);
 		p("B. Warland", 9, 2, 25, 61);
@@ -3919,7 +3919,7 @@ class Fifa23Service {
 		p("P. Madanha", 9, 10, 17, 55);
 		p("L. Jovanović", 9, 15, 17, 52);
 
-		c("Central Coast Mariners", 9, "#A38640");
+		c("Central Coast Mariners", 9, "#A38743");
 		p("D. Vukovic", 9, 1, 37, 68);
 		p("T. Aquilina", 9, 4, 21, 62);
 		p("N. Triantis", 9, 2, 19, 57);
@@ -3945,7 +3945,7 @@ class Fifa23Service {
 		p("A. Jok", 9, 15, 21, 53);
 		p("S. Kuzevski", 9, 4, 21, 51);
 
-		c("Newcastle Jets", 9, "#B29C73");
+		c("Newcastle Jets", 9, "#B09B72");
 		p("M. Weier", 9, 1, 25, 59);
 		p("C. Jenkinson", 46, 4, 30, 67);
 		p("J. Elsey", 9, 2, 28, 63);
@@ -3971,7 +3971,7 @@ class Fifa23Service {
 		p("T. Buhagiar", 9, 15, 24, 62);
 		p("M. Adus", 9, 7, 19, 48);
 
-		c("Perth Glory", 9, "#623C5B");
+		c("Perth Glory", 9, "#623D5C");
 		p("L. Reddy", 9, 1, 40, 62);
 		p("R. Williams", 9, 10, 28, 67);
 		p("J. Muir", 9, 2, 20, 54);
@@ -4001,7 +4001,7 @@ class Fifa23Service {
 		p("P. Niyongabire", 21, 10, 22, 56);
 		p("T. Ostler", 9, 15, 20, 54);
 
-		c("Macarthur", 9, "#8F8B71");
+		c("Macarthur", 9, "#8F8A70");
 		p("F. Kurto", 117, 1, 31, 65);
 		p("M. Millar", 9, 6, 25, 65);
 		p("T. Uskok", 9, 2, 31, 64);
@@ -4029,7 +4029,7 @@ class Fifa23Service {
 		p("J. Drew", 9, 15, 18, 47);
 		p("R. Youlley", 9, 8, 17, 46);
 
-		c("Brisbane Roar", 9, "#AC4F2B");
+		c("Brisbane Roar", 9, "#AB4F2B");
 		p("J. Holmes", 9, 1, 25, 59);
 		p("J. Hingert", 9, 4, 31, 62);
 		p("S. Neville", 9, 2, 33, 64);
@@ -4054,7 +4054,7 @@ class Fifa23Service {
 		p("L. Duke", 9, 1, 17, 49);
 		p("H. Hore", 9, 10, 22, 59);
 
-		c("Shandong Taishan", 28, "#D3693A");
+		c("Shandong Taishan", 28, "#D1693A");
 		p("Wang Dalei", 28, 1, 33, 71);
 		p("Wang Tong", 28, 4, 29, 66);
 		p("Shi Ke", 28, 2, 29, 68);
@@ -4084,7 +4084,7 @@ class Fifa23Service {
 		p("Liao Lisheng", 28, 8, 29, 63);
 		p("Zhao Jianfei", 28, 2, 23, 55);
 
-		c("Wuhan Three Towns", 28, "#4A5685", "Three Towns");
+		c("Wuhan Three Towns", 28, "#4B5785", "Three Towns");
 		p("Liu Dianzuo", 28, 1, 32, 68);
 		p("Deng Hanwen", 28, 4, 27, 69);
 		p("Liu Yiming", 28, 2, 27, 63);
@@ -4114,7 +4114,7 @@ class Fifa23Service {
 		p("He Tongshuai", 28, 8, 22, 50);
 		p("Xu Haoyang", 28, 9, 23, 58);
 
-		c("Shanghai Port", 28, "#962837");
+		c("Shanghai Port", 28, "#962938");
 		p("Yan Junling", 28, 1, 31, 73);
 		p("Feng Jin", 28, 6, 28, 62);
 		p("Wang Shenchao", 28, 2, 33, 64);
@@ -4144,7 +4144,7 @@ class Fifa23Service {
 		p("Cai Huikang", 28, 7, 32, 64);
 		p("Oscar", 18, 11, 30, 81);
 
-		c("Beijing Guoan", 28, "#2F4630");
+		c("Beijing Guoan", 28, "#304731");
 		p("Hou Sen", 28, 1, 33, 62);
 		p("Wang Gang", 28, 4, 33, 65);
 		p("Zhang Chengdong", 28, 2, 33, 66);
@@ -4204,7 +4204,7 @@ class Fifa23Service {
 		p("Zhou Junchen", 28, 9, 22, 57);
 		p("Zhu Baojie", 28, 9, 32, 64);
 
-		c("Changchun Yatai", 28, "#AC3843");
+		c("Changchun Yatai", 28, "#AD3B46");
 		p("Wu Yake", 28, 1, 31, 65);
 		p("Liao Chengjian", 28, 4, 28, 55);
 		p("Cui Qi", 28, 2, 24, 57);
@@ -4234,7 +4234,7 @@ class Fifa23Service {
 		p("Wang Huapeng", 28, 6, 22, 51);
 		p("Song Ziwenhao", 28, 8, 19, 47);
 
-		c("Shenzhen", 28, "#CC6D41");
+		c("Shenzhen", 28, "#CB6D42");
 		p("Zhang Lu", 28, 1, 34, 63);
 		p("Huang Ruifeng", 28, 6, 22, 57);
 		p("Pei Shuai", 28, 2, 29, 62);
@@ -4264,7 +4264,7 @@ class Fifa23Service {
 		p("Zhang Junye", 28, 9, 20, 47);
 		p("Ji Jiabao", 28, 1, 19, 50);
 
-		c("Henan", 28, "#853039");
+		c("Henan FC", 28, "#853139");
 		p("Wang Guoming", 28, 1, 32, 62);
 		p("M. Dilmurat", 28, 4, 24, 63);
 		p("T. Šunjić", 17, 2, 33, 73);
@@ -4294,7 +4294,7 @@ class Fifa23Service {
 		p("Chen Keqiang", 28, 8, 22, 50);
 		p("Shi Chenglong", 28, 1, 23, 55);
 
-		c("Zhejiang", 28, "#356944");
+		c("Zhejiang", 28, "#366A45");
 		p("Zhao Bo", 28, 1, 28, 60);
 		p("Gao Tianyu", 28, 4, 21, 58);
 		p("Leung Nokhang", 69, 2, 27, 62);
@@ -4324,7 +4324,7 @@ class Fifa23Service {
 		p("Zhong Haoran", 28, 8, 27, 48);
 		p("Liu Haofan", 28, 2, 18, 49);
 
-		c("Chengdu Rongcheng", 28, "#95353E", "Rongcheng");
+		c("Chengdu Rongcheng", 28, "#95363F", "Rongcheng");
 		p("Geng Xiaofeng", 28, 1, 34, 58);
 		p("Gan Rui", 28, 6, 37, 61);
 		p("R. Windbichler", 10, 2, 31, 67);
@@ -4354,7 +4354,7 @@ class Fifa23Service {
 		p("Wang Hanlin", 28, 7, 32, 50);
 		p("Xing Yu", 28, 1, 26, 52);
 
-		c("Wuhan Changjiang", 28, "#DE8C43");
+		c("Wuhan Changjiang FC", 28, "#DD8B44");
 		p("Wang Zhifeng", 28, 1, 25, 59);
 		p("Ming Tian", 28, 4, 27, 67);
 		p("Bruno Viana", 18, 2, 27, 77);
@@ -4384,7 +4384,7 @@ class Fifa23Service {
 		p("Li Chao", 28, 2, 34, 58);
 		p("Wen Da", 28, 10, 22, 50);
 
-		c("Guangzhou City", 28, "#99ACB7");
+		c("Guangzhou City", 28, "#98ACB6");
 		p("Cheng Yuelei", 28, 1, 34, 61);
 		p("Tang Miao", 28, 6, 31, 70);
 		p("Zhang Jinliang", 28, 2, 23, 56);
@@ -4414,7 +4414,7 @@ class Fifa23Service {
 		p("Su Yuliang", 28, 13, 17, 49);
 		p("Wu Junjie", 28, 3, 19, 46);
 
-		c("Cangzhou Mighty Lions", 28, "#2E4C93", "Mighty Lions");
+		c("Cangzhou Mighty Lions FC", 28, "#2F4D93");
 		p("Shao Puliang", 28, 1, 32, 62);
 		p("Piao Shihao", 28, 6, 30, 64);
 		p("Liu Yang", 28, 2, 31, 61);
@@ -4444,7 +4444,7 @@ class Fifa23Service {
 		p("S. Abdusalam", 28, 8, 28, 49);
 		p("Guo Yunqi", 28, 8, 25, 48);
 
-		c("Tianjin Jinmen Tiger", 28, "#C4C8D0", "Jinmen Tiger");
+		c("Tianjin Jinmen Tiger", 28, "#C3C7CE", "Jinmen Tiger");
 		p("Fang Jingqi", 28, 1, 29, 60);
 		p("Wang Jianan", 28, 4, 29, 59);
 		p("Yang Fan", 28, 2, 26, 56);
@@ -4474,7 +4474,7 @@ class Fifa23Service {
 		p("Song Yue", 28, 2, 30, 51);
 		p("Piao Taoyu", 28, 8, 29, 53);
 
-		c("Guangzhou", 28, "#A8383C");
+		c("Guangzhou FC", 28, "#A83A3E");
 		p("Liu Shibo", 28, 1, 25, 56);
 		p("Wang Shilong", 28, 4, 21, 55);
 		p("Wu Shaocong", 28, 2, 22, 60);
@@ -4504,7 +4504,7 @@ class Fifa23Service {
 		p("Zheng Shengxiong", 28, 8, 23, 50);
 		p("Hao Junmin", 28, 7, 35, 67);
 
-		c("Meizhou Hakka", 28, "#90353D");
+		c("Meizhou Hakka", 28, "#90373F");
 		p("Hou Yu", 28, 1, 31, 60);
 		p("Wang Wei", 28, 4, 33, 63);
 		p("R. Dugalić", 129, 2, 29, 70);
@@ -4534,7 +4534,7 @@ class Fifa23Service {
 		p("Cai Haochang", 28, 7, 23, 50);
 		p("Deng Xiongtao", 28, 1, 19, 48);
 
-		c("Dalian Professional", 28, "#2F96CE");
+		c("Dalian Professional", 28, "#3196CC");
 		p("Zhang Chong", 28, 1, 34, 61);
 		p("Tong Lei", 28, 4, 24, 62);
 		p("Dong Yanfeng", 28, 2, 26, 60);
@@ -4564,7 +4564,7 @@ class Fifa23Service {
 		p("Wang Xianjun", 28, 2, 22, 56);
 		p("Ning Hao", 28, 15, 37, 48);
 
-		c("Hebei", 28, "#9F362C");
+		c("Hebei FC", 28, "#9F372D");
 		p("Bao Yaxiong", 28, 1, 25, 56);
 		p("Liu Jing", 28, 4, 25, 53);
 		p("Zhang Junzhe", 28, 2, 31, 59);
@@ -4594,7 +4594,7 @@ class Fifa23Service {
 		p("Liao Wei", 28, 10, 23, 48);
 		p("Zhao Ziye", 28, 13, 18, 46);
 
-		c("Bengaluru", 72, "#4A447D");
+		c("Bengaluru", 72, "#4B447D");
 		p("G. Singh Sandhu", 72, 1, 30, 63);
 		p("P. Das", 72, 4, 28, 58);
 		p("S. Jhingan", 72, 2, 28, 64);
@@ -4624,7 +4624,7 @@ class Fifa23Service {
 		p("H. Singh", 72, 15, 20, 48);
 		p("A. Gope", 72, 1, 22, 50);
 
-		c("ATK Mohun Bagan", 72, "#72675B");
+		c("ATK Mohun Bagan", 72, "#73675B");
 		p("V. Kaith", 72, 1, 25, 57);
 		p("A. Rai", 72, 4, 23, 59);
 		p("P. Kotal", 72, 2, 28, 61);
@@ -4653,7 +4653,7 @@ class Fifa23Service {
 		p("Tiri", 137, 2, 30, 65);
 		p("R. Rana", 72, 11, 19, 47);
 
-		c("Kerala Blasters", 72, "#C9B932");
+		c("Kerala Blasters", 72, "#C8B832");
 		p("P. Gill", 72, 1, 21, 57);
 		p("S. Singh", 72, 4, 27, 56);
 		p("H. Ruivah", 72, 2, 21, 57);
@@ -4681,7 +4681,7 @@ class Fifa23Service {
 		p("G. Singh", 72, 8, 20, 49);
 		p("M. Khan", 72, 1, 20, 48);
 
-		c("Mumbai City", 72, "#5388B3");
+		c("Mumbai City", 72, "#5388B2");
 		p("P. Lachenpa", 72, 1, 24, 54);
 		p("R. Bheke", 72, 2, 31, 59);
 		p("R. Griffiths", 9, 2, 34, 65);
@@ -4708,7 +4708,7 @@ class Fifa23Service {
 		p("B. Roy", 72, 1, 28, 52);
 		p("A. Khan", 72, 11, 21, 46);
 
-		c("Hyderabad", 72, "#BC9F23");
+		c("Hyderabad", 72, "#BB9E23");
 		p("G. Singh", 72, 1, 22, 54);
 		p("N. Poojary", 72, 13, 26, 56);
 		p("Odei", 137, 2, 32, 68);
@@ -4738,7 +4738,7 @@ class Fifa23Service {
 		p("L. Chhangte", 72, 8, 21, 47);
 		p("L. Jongte", 72, 1, 19, 48);
 
-		c("Chennaiyin", 72, "#393E8C");
+		c("Chennaiyin", 72, "#3B3F8C");
 		p("D. Majumder", 72, 1, 34, 56);
 		p("A. Kumar", 72, 4, 25, 55);
 		p("F. Diagne", 128, 2, 32, 68);
@@ -4768,7 +4768,7 @@ class Fifa23Service {
 		p("S. Das", 72, 7, 26, 54);
 		p("M. Rafique", 72, 4, 31, 57);
 
-		c("Goa", 72, "#E56936");
+		c("Goa", 72, "#E36936");
 		p("D. Singh Moirangthem", 72, 1, 21, 57);
 		p("S. Fernandes", 72, 4, 29, 60);
 		p("Marc Valiente", 137, 2, 35, 69);
@@ -4798,7 +4798,7 @@ class Fifa23Service {
 		p("L. Rebello", 72, 2, 21, 49);
 		p("HP Lalremruata", 72, 11, 20, 47);
 
-		c("Jamshedpur", 72, "#8E404A");
+		c("Jamshedpur", 72, "#8E414B");
 		p("T. Rehenesh", 72, 1, 29, 60);
 		p("L. Renthlei", 72, 4, 23, 58);
 		p("P. Chaudhari", 72, 2, 32, 56);
@@ -4823,7 +4823,7 @@ class Fifa23Service {
 		p("V. Yadav", 72, 1, 20, 48);
 		p("S. Mandi", 72, 3, 20, 47);
 
-		c("Odisha FC", 72, "#322E34");
+		c("Odisha FC", 72, "#322F34");
 		p("A. Singh", 72, 1, 29, 61);
 		p("N. Gahlot", 72, 2, 21, 55);
 		p("O. Malik", 9, 7, 31, 59);
@@ -4853,7 +4853,7 @@ class Fifa23Service {
 		p("L. Sailung", 72, 4, 21, 52);
 		p("R. Dobriyal", 72, 15, 20, 47);
 
-		c("NorthEast United", 72, "#C7C4C5");
+		c("NorthEast United", 72, "#C7C4C4");
 		p("A. Bhattacharya", 72, 1, 32, 61);
 		p("J. Zoherliana", 72, 4, 23, 52);
 		p("G. Bora", 72, 2, 23, 54);
@@ -4883,7 +4883,7 @@ class Fifa23Service {
 		p("G. Nigam", 72, 9, 24, 48);
 		p("N. Deka", 72, 1, 19, 48);
 
-		c("East Bengal", 72, "#C95D30");
+		c("East Bengal", 72, "#C85D31");
 		p("K. Singh", 72, 1, 26, 55);
 		p("S. Golui", 72, 2, 24, 53);
 		p("Lalchungnunga", 72, 2, 21, 52);
@@ -4910,7 +4910,7 @@ class Fifa23Service {
 		p("T. Das", 72, 9, 22, 48);
 		p("H. Jangra", 72, 15, 17, 50);
 
-		c("Ulsan", 84, "#575469");
+		c("Ulsan HD FC", 84, "#585469");
 		p("Jo Hyeon Woo", 84, 1, 30, 73);
 		p("Kim Tae Hwan", 84, 4, 32, 72);
 		p("Kim Kee Hee", 84, 2, 32, 69);
@@ -4940,7 +4940,7 @@ class Fifa23Service {
 		p("Park Chu Young", 84, 15, 36, 62);
 		p("Kim Sung Joon", 84, 8, 34, 65);
 
-		c("Jeonbuk Motors", 84, "#3A6C4F");
+		c("Jeonbuk Motors", 84, "#3D6E51");
 		p("Song Bum Keun", 84, 1, 24, 70);
 		p("Kim Moon Hwan", 84, 4, 26, 70);
 		p("Park Jin Sub", 84, 2, 26, 66);
@@ -4970,7 +4970,7 @@ class Fifa23Service {
 		p("Park Joon Beom", 84, 15, 21, 54);
 		p("Park Jin Seong", 84, 3, 21, 57);
 
-		c("Jeju United", 84, "#EB783D");
+		c("Jeju United", 84, "#E9783E");
 		p("Kim Dong Joon", 84, 1, 27, 70);
 		p("Kim Bong Soo", 84, 2, 22, 59);
 		p("Kim Oh Gyu", 84, 2, 33, 67);
@@ -5000,7 +5000,7 @@ class Fifa23Service {
 		p("Kim Bum Su", 84, 13, 22, 54);
 		p("Kim Keun Bae", 84, 1, 35, 58);
 
-		c("Pohang Steelers", 84, "#744840");
+		c("Pohang Steelers", 84, "#744841");
 		p("Kang Hyeon Mu", 84, 1, 27, 70);
 		p("Shin Kwang Hoon", 84, 4, 35, 67);
 		p("Park Seung Wook", 84, 4, 25, 67);
@@ -5030,7 +5030,7 @@ class Fifa23Service {
 		p("Kwon Ki Pyo", 84, 10, 25, 53);
 		p("Park Geon Woo", 84, 4, 20, 50);
 
-		c("Seoul", 84, "#6D3E3D");
+		c("Seoul", 84, "#6D3E3E");
 		p("Yang Han Been", 84, 1, 30, 70);
 		p("Yoon Jong Gyu", 84, 4, 24, 65);
 		p("Lee Han Beom", 84, 2, 20, 62);
@@ -5090,7 +5090,7 @@ class Fifa23Service {
 		p("You Ju An", 84, 15, 23, 59);
 		p("Yang Sang Min", 84, 2, 38, 57);
 
-		c("Incheon United", 84, "#394682");
+		c("Incheon United", 84, "#3A4782");
 		p("Kim Dong Heon", 84, 1, 25, 61);
 		p("Kim Jun Yub", 84, 6, 34, 65);
 		p("Kim Dong Min", 84, 2, 27, 65);
@@ -5120,7 +5120,7 @@ class Fifa23Service {
 		p("Kim Min Seok", 84, 12, 19, 51);
 		p("Oh Jae Suk", 84, 6, 32, 65);
 
-		c("Daegu", 84, "#84B2C6");
+		c("Daegu", 84, "#84B1C4");
 		p("Oh Seung Hoon", 84, 1, 34, 68);
 		p("Lee Tae Hee", 84, 6, 30, 62);
 		p("Jeong Tae Wook", 84, 2, 25, 70);
@@ -5150,7 +5150,7 @@ class Fifa23Service {
 		p("Park Yong Hui", 84, 13, 20, 51);
 		p("Park Byung Hyun", 84, 2, 29, 60);
 
-		c("Suwon", 84, "#703741");
+		c("Suwon", 84, "#703841");
 		p("Yoo Hyun", 84, 1, 37, 64);
 		p("Lee Yong", 84, 4, 35, 66);
 		p("Shin Se Gye", 84, 2, 31, 64);
@@ -5180,7 +5180,7 @@ class Fifa23Service {
 		p("Kim Ju Yeop", 84, 6, 22, 57);
 		p("Hwang Soon Min", 84, 5, 31, 63);
 
-		c("Seongnam", 84, "#3B3B3B");
+		c("Seongnam", 84, "#3C3C3C");
 		p("Kim Young Kwang", 84, 1, 39, 70);
 		p("Lee Si Young", 84, 6, 25, 68);
 		p("Ma Sang Hoon", 84, 2, 30, 65);
@@ -5210,7 +5210,7 @@ class Fifa23Service {
 		p("Kang Eui Bin", 84, 2, 24, 57);
 		p("Kim Ji Soo", 84, 2, 17, 61);
 
-		c("Gangwon", 84, "#E36346");
+		c("Gangwon", 84, "#E16347");
 		p("Yu Sang Hun", 84, 1, 33, 68);
 		p("Kim Jin Ho", 84, 6, 22, 59);
 		p("Rim Chang Woo", 84, 2, 30, 65);
@@ -5240,7 +5240,7 @@ class Fifa23Service {
 		p("D. Islamović", 100, 15, 28, 67);
 		p("Galego", 18, 11, 25, 63);
 
-		c("Gimcheon Sangmu", 84, "#A2424B");
+		c("Gimcheon Sangmu FC", 84, "#A1434C");
 		p("Mun Kyung Gun", 84, 1, 27, 63);
 		p("Lee You Hyeon", 84, 4, 25, 66);
 		p("Park Ji Soo", 84, 2, 28, 70);
@@ -5267,7 +5267,7 @@ class Fifa23Service {
 		p("Ji Eon Hak", 84, 11, 28, 62);
 		p("Kim Jun Beom", 84, 8, 24, 61);
 
-		c("Al Hilal", 126, "#394197");
+		c("Al Hilal", 126, "#3B4297");
 		p("A. Al Mayoof", 126, 1, 35, 71);
 		p("S. Abdulhamid", 126, 4, 22, 71);
 		p("Jang Hyeon Soo", 84, 2, 30, 75);
@@ -5299,7 +5299,7 @@ class Fifa23Service {
 		p("H. Al Watyan", 126, 1, 25, 60);
 		p("M. Al Khaibari", 126, 2, 20, 52);
 
-		c("Al Nassr", 126, "#BFBE6B");
+		c("Al Nassr", 126, "#BEBD6B");
 		p("D. Ospina", 30, 1, 33, 80);
 		p("S. Al Ghannam", 126, 4, 28, 72);
 		p("A. Al Amri", 126, 2, 25, 71);
@@ -5361,7 +5361,7 @@ class Fifa23Service {
 		p("A. Bahusayn", 126, 8, 21, 54);
 		p("O. Al Mermish", 126, 1, 18, 51);
 
-		c("Al Shabab", 126, "#C5C0BE");
+		c("Al Shabab", 126, "#C4BFBE");
 		p("Kim Seung Gyu", 84, 1, 31, 70);
 		p("F. Al Sagour", 126, 4, 26, 67);
 		p("Iago", 18, 2, 30, 72);
@@ -5425,7 +5425,7 @@ class Fifa23Service {
 		p("O. Al Othman", 126, 13, 19, 51);
 		p("A. Al Enazi", 126, 13, 19, 50);
 
-		c("Al Ettifaq", 126, "#3D815F");
+		c("Al Ettifaq", 126, "#3F8261");
 		p("Paulo Victor", 18, 1, 35, 74);
 		p("S. Al Muwallad", 126, 4, 31, 64);
 		p("M. Tisserand", 33, 2, 29, 73);
@@ -5456,7 +5456,7 @@ class Fifa23Service {
 		p("H. Al Farhan", 126, 8, 24, 53);
 		p("N. Hazazi", 126, 10, 20, 51);
 
-		c("Al Raed", 126, "#923E42");
+		c("Al Raed", 126, "#924044");
 		p("S. Lung", 121, 1, 33, 73);
 		p("A. Al Fahad", 126, 2, 28, 64);
 		p("M. Salem", 126, 2, 36, 65);
@@ -5484,7 +5484,7 @@ class Fifa23Service {
 		p("M. Sanyor", 126, 1, 20, 52);
 		p("M. Al Hurayji", 126, 1, 22, 51);
 
-		c("Al Taawon", 126, "#D0BA28");
+		c("Al Taawoun FC", 126, "#CEB928");
 		p("Mailson", 18, 1, 25, 71);
 		p("T. Abdullah", 126, 4, 26, 62);
 		p("Z. Al Sahafi", 126, 2, 28, 66);
@@ -5515,7 +5515,7 @@ class Fifa23Service {
 		p("Y. Al Hassan", 94, 9, 21, 54);
 		p("F. Al Mutairi", 126, 8, 22, 51);
 
-		c("Damac", 126, "#B32E2E");
+		c("Damac", 126, "#B22E2F");
 		p("M. Zeghba", 3, 1, 31, 73);
 		p("A. Hawsawi", 126, 4, 26, 60);
 		p("F. Chafaï", 3, 2, 32, 71);
@@ -5545,7 +5545,7 @@ class Fifa23Service {
 		p("A. Al Shahrani", 126, 11, 27, 58);
 		p("B. Al Shahrani", 126, 1, 21, 50);
 
-		c("Al Fayha", 126, "#CA4F2A");
+		c("Al Fayha", 126, "#C94F2A");
 		p("V. Stojković", 129, 1, 38, 74);
 		p("M. Al Baqawi", 126, 4, 26, 60);
 		p("S. Al Khaibari", 126, 2, 32, 67);
@@ -5576,7 +5576,7 @@ class Fifa23Service {
 		p("F. Al Masrahi", 126, 1, 29, 62);
 		p("R. Al Muwainea", 126, 1, 22, 49);
 
-		c("Al Wahda", 126, "#BD393B");
+		c("Al Wahda", 126, "#BC3B3D");
 		p("Munir", 102, 1, 33, 73);
 		p("H. Al Jayzani", 126, 4, 29, 60);
 		p("Botía", 137, 2, 33, 68);
@@ -5608,7 +5608,7 @@ class Fifa23Service {
 		p("A. Noor", 138, 9, 23, 57);
 		p("I. Hawsawi", 126, 3, 20, 55);
 
-		c("Abha", 126, "#A1B7C9");
+		c("Abha", 126, "#A0B6C8");
 		p("D. Epassy", 23, 1, 29, 68);
 		p("F. Al Jumayah", 126, 4, 27, 61);
 		p("A. Atouchi", 102, 2, 30, 67);
@@ -5638,7 +5638,7 @@ class Fifa23Service {
 		p("M. Al Zahrani", 126, 11, 27, 55);
 		p("O. Al Ruwaili", 126, 15, 23, 54);
 
-		c("Al Tai", 126, "#A5AAAF");
+		c("Al Tai", 126, "#A5A9AE");
 		p("Victor Braga", 18, 1, 30, 68);
 		p("C. Fai", 23, 4, 29, 70);
 		p("A. Al Sultan", 126, 2, 22, 56);
@@ -5670,7 +5670,7 @@ class Fifa23Service {
 		p("B. Al Enazi", 126, 1, 22, 55);
 		p("I. Al Ali", 126, 3, 21, 53);
 
-		c("Al Adalah", 126, "#C2C3C6");
+		c("Al Adalah FC", 126, "#C1C1C5");
 		p("M. Mijatović", 100, 1, 34, 66);
 		p("A. Al Haider", 126, 4, 25, 60);
 		p("M. Angha", 141, 2, 28, 67);
@@ -5702,7 +5702,7 @@ class Fifa23Service {
 		p("A. Al Yousef", 126, 15, 19, 51);
 		p("M. Abo Abd", 126, 11, 20, 55);
 
-		c("Al Khaleej", 126, "#D8C125");
+		c("Al Khaleej", 126, "#D6C025");
 		p("Douglas Friedrich", 18, 1, 33, 70);
 		p("H. Al Nowaiqi", 126, 6, 25, 58);
 		p("A. Al Shanqeeti", 126, 2, 23, 54);
@@ -5734,7 +5734,7 @@ class Fifa23Service {
 		p("T. Al Hajji", 126, 1, 23, 53);
 		p("M. Al Abdullah", 126, 10, 19, 51);
 
-		c("Al Batin", 126, "#62A8E0");
+		c("Al Batin", 126, "#62A7DE");
 		p("M. Hurais", 126, 1, 25, 50);
 		p("B. Al Huwaidi", 126, 4, 20, 53);
 		p("M. Naji", 126, 2, 28, 59);
@@ -5794,7 +5794,7 @@ class Fifa23Service {
 		p("S. Abdullah", 151, 3, 23, 59);
 		p("O. Saeed", 151, 4, 23, 58);
 
-		c("Salzburg", 10, "#D0B9B3");
+		c("Salzburg", 10, "#CEB8B2");
 		p("P. Köhn", 141, 1, 24, 71);
 		p("A. Dedić", 17, 4, 19, 68);
 		p("O. Solet", 53, 2, 22, 75);
@@ -5824,7 +5824,7 @@ class Fifa23Service {
 		p("B. Okoh", 141, 2, 19, 66);
 		p("L. Agyekum", 58, 11, 18, 59);
 
-		c("Sturm Graz", 10, "#808288");
+		c("Sturm Graz", 10, "#808287");
 		p("J. Siebenhandl", 10, 1, 32, 71);
 		p("J. Gazibegović", 17, 4, 22, 69);
 		p("D. Affengruber", 10, 2, 21, 69);
@@ -5854,7 +5854,7 @@ class Fifa23Service {
 		p("P. Komposch", 10, 2, 21, 60);
 		p("C. Giuliani", 10, 1, 23, 62);
 
-		c("LASK Linz", 10, "#9C927A");
+		c("LASK Linz", 10, "#9B927A");
 		p("A. Schlager", 10, 1, 26, 72);
 		p("F. Stojković", 100, 4, 29, 72);
 		p("P. Ziereis", 57, 2, 29, 70);
@@ -5883,7 +5883,7 @@ class Fifa23Service {
 		p("F. Valencia", 30, 7, 20, 61);
 		p("T. Anselm", 10, 15, 22, 64);
 
-		c("Rapid Wien", 10, "#7A9886");
+		c("SK Rapid", 10, "#7A9886");
 		p("N. Hedl", 10, 1, 21, 68);
 		p("M. Koscelnik", 133, 4, 27, 66);
 		p("L. Querfeld", 10, 2, 18, 62);
@@ -5913,7 +5913,7 @@ class Fifa23Service {
 		p("B. Unger", 10, 1, 23, 61);
 		p("N. Sattlberger", 10, 7, 18, 58);
 
-		c("Austria Wien", 10, "#4C3671");
+		c("Austria Wien", 10, "#4D3771");
 		p("C. Früchtl", 57, 1, 22, 67);
 		p("R. Ranftl", 10, 6, 30, 68);
 		p("L. Mühl", 57, 2, 25, 70);
@@ -5943,7 +5943,7 @@ class Fifa23Service {
 		p("M. Huskovic", 10, 15, 19, 64);
 		p("M. Raguž", 10, 15, 24, 68);
 
-		c("Wolfsberger AC", 10, "#BEBCB9");
+		c("Wolfsberger AC", 10, "#BCBBB8");
 		p("H. Bonmann", 57, 1, 28, 65);
 		p("A. Jasic", 10, 4, 19, 67);
 		p("D. Baumgartner", 10, 2, 25, 70);
@@ -5970,7 +5970,7 @@ class Fifa23Service {
 		p("P. Müller", 10, 8, 19, 56);
 		p("F. Tauchhammer", 10, 4, 20, 58);
 
-		c("Hartberg", 10, "#425C8E");
+		c("Hartberg", 10, "#455E8F");
 		p("R. Swete", 10, 1, 32, 67);
 		p("P. Farkas", 10, 4, 29, 68);
 		p("M. Steinwender", 10, 2, 22, 64);
@@ -6000,7 +6000,7 @@ class Fifa23Service {
 		p("P. Erhardt", 10, 7, 28, 63);
 		p("F. Wilfinger", 10, 8, 18, 54);
 
-		c("Ried", 10, "#42574D");
+		c("Ried", 10, "#485C53");
 		p("S. Şahin-Radlinger", 10, 1, 29, 69);
 		p("D. Ungar", 10, 2, 22, 62);
 		p("J. Turi", 10, 2, 20, 61);
@@ -6029,7 +6029,7 @@ class Fifa23Service {
 		p("B. Beganović", 17, 10, 17, 53);
 		p("N. Stosic", 10, 7, 22, 64);
 
-		c("WSG Tirol", 10, "#8FB4AB");
+		c("WSG Tirol", 10, "#8FB3AB");
 		p("F. Oswald", 57, 1, 31, 67);
 		p("A. Ranacher", 10, 10, 23, 61);
 		p("R. Behounek", 10, 2, 25, 67);
@@ -6059,7 +6059,7 @@ class Fifa23Service {
 		p("T. Geris", 10, 15, 19, 52);
 		p("J. Forst", 10, 15, 19, 54);
 
-		c("Austria Klagenfurt", 10, "#662F8D");
+		c("Austria Klagenfurt", 10, "#672F8C");
 		p("P. Menzel", 57, 1, 23, 66);
 		p("C. Wernitznig", 10, 4, 32, 66);
 		p("T. Mahrer", 10, 2, 32, 66);
@@ -6089,7 +6089,7 @@ class Fifa23Service {
 		p("D. Puntigam", 10, 1, 18, 54);
 		p("E. Metu", 10, 8, 19, 58);
 
-		c("Austria Lustenau", 10, "#3BA261");
+		c("Austria Lustenau", 10, "#3CA161");
 		p("D. Schierl", 10, 1, 27, 65);
 		p("F. Gmeiner", 10, 4, 25, 63);
 		p("Anderson", 18, 4, 24, 65);
@@ -6115,7 +6115,7 @@ class Fifa23Service {
 		p("A. Bačić", 10, 8, 18, 53);
 		p("Y. Bellache", 3, 11, 19, 59);
 
-		c("Rheindorf Altach", 10, "#B4B3B0");
+		c("Rheindorf Altach", 10, "#B3B3B0");
 		p("T. Casali", 10, 1, 26, 66);
 		p("J. Jurcec", 36, 9, 21, 63);
 		p("F. Strauss", 10, 2, 21, 64);
@@ -6145,7 +6145,7 @@ class Fifa23Service {
 		p("R. Rikal", 10, 9, 19, 57);
 		p("D. Reiter", 10, 10, 24, 64);
 
-		c("Club Brugge", 13, "#2A527A");
+		c("Club Brugge", 13, "#2C547B");
 		p("S. Mignolet", 13, 1, 34, 81);
 		p("D. Odoi", 58, 4, 34, 73);
 		p("B. Mechele", 13, 2, 29, 76);
@@ -6175,7 +6175,7 @@ class Fifa23Service {
 		p("M. Rits", 13, 7, 28, 77);
 		p("L. Audoor", 13, 8, 18, 63);
 
-		c("Gent", 13, "#7783A3");
+		c("Gent", 13, "#7682A3");
 		p("P. Nardi", 53, 1, 28, 73);
 		p("J. Okumu", 82, 2, 25, 73);
 		p("M. Ngadeu", 23, 2, 31, 75);
@@ -6205,7 +6205,7 @@ class Fifa23Service {
 		p("J. Hauge", 110, 9, 22, 73);
 		p("C. De Schrevel", 13, 1, 20, 59);
 
-		c("Antwerp", 13, "#AC363A");
+		c("Antwerp", 13, "#AC383C");
 		p("J. Butez", 53, 1, 27, 77);
 		p("R. De Laet", 13, 4, 33, 73);
 		p("T. Alderweireld", 13, 2, 33, 82);
@@ -6235,7 +6235,7 @@ class Fifa23Service {
 		p("Z. Van Den Bosch", 13, 2, 18, 58);
 		p("R. Nainggolan", 13, 8, 34, 75);
 
-		c("Genk", 13, "#2E59AE");
+		c("Genk", 13, "#2F59AD");
 		p("M. Vandevoordt", 13, 1, 20, 72);
 		p("D. Muñoz", 30, 4, 26, 76);
 		p("C. Cuesta", 30, 2, 23, 73);
@@ -6265,7 +6265,7 @@ class Fifa23Service {
 		p("M. Didden", 13, 2, 20, 61);
 		p("M. Penders", 13, 1, 16, 55);
 
-		c("Anderlecht", 13, "#43366F");
+		c("Anderlecht", 13, "#44376F");
 		p("H. Van Crombrugge", 13, 1, 29, 76);
 		p("Z. Debast", 13, 2, 18, 66);
 		p("W. Hoedt", 105, 2, 28, 75);
@@ -6295,7 +6295,7 @@ class Fifa23Service {
 		p("B. Verbruggen", 105, 1, 19, 66);
 		p("K. Sardella", 13, 4, 20, 65);
 
-		c("Union Saint-Gilloise", 13, "#C09C2E", "Union SG");
+		c("Union Saint-Gilloise", 13, "#BF9B2E", "Union SG");
 		p("A. Moris", 92, 1, 32, 74);
 		p("I. Kandouss", 102, 2, 24, 70);
 		p("C. Burgess", 46, 2, 30, 73);
@@ -6322,7 +6322,7 @@ class Fifa23Service {
 		p("J. Imbrechts", 140, 1, 20, 59);
 		p("O. El Azzouzi", 105, 7, 21, 64);
 
-		c("Standard Liège", 13, "#B43C42");
+		c("Standard Liège", 13, "#B44045");
 		p("A. Bodart", 13, 1, 24, 72);
 		p("N. Dussenne", 13, 2, 30, 72);
 		p("M. Bokadi", 33, 2, 26, 70);
@@ -6352,7 +6352,7 @@ class Fifa23Service {
 		p("L. Noubi", 13, 2, 17, 58);
 		p("J. Nekadio", 33, 2, 20, 60);
 
-		c("Mechelen", 13, "#BE8337");
+		c("Mechelen", 13, "#BC8338");
 		p("G. Coucke", 13, 1, 23, 69);
 		p("S. Walsh", 105, 4, 27, 69);
 		p("J. Vanlerberghe", 13, 2, 26, 70);
@@ -6382,7 +6382,7 @@ class Fifa23Service {
 		p("M. Robberechts", 13, 13, 18, 59);
 		p("D. Asare", 13, 7, 17, 54);
 
-		c("Sporting Charleroi", 13, "#595855");
+		c("Sporting Charleroi", 13, "#5A5956");
 		p("H. Koffi", 20, 1, 25, 73);
 		p("J. Bager", 41, 2, 25, 69);
 		p("S. Andreou", 39, 2, 19, 66);
@@ -6410,7 +6410,7 @@ class Fifa23Service {
 		p("M. Delavallée", 13, 1, 18, 56);
 		p("M. Chiacig", 13, 1, 18, 54);
 
-		c("Kortrijk", 13, "#C5383D");
+		c("Kortrijk", 13, "#C53D42");
 		p("M. Ilić", 129, 1, 24, 70);
 		p("O. Sych", 150, 4, 21, 63);
 		p("D. Dessoleil", 13, 2, 29, 70);
@@ -6440,7 +6440,7 @@ class Fifa23Service {
 		p("M. Deman", 13, 1, 20, 59);
 		p("E. Ocansey", 58, 9, 24, 66);
 
-		c("OH Leuven", 13, "#CDC9C7");
+		c("OH Leuven", 13, "#CCC7C6");
 		p("V. Cojocaru", 121, 1, 26, 68);
 		p("L. Patris", 13, 2, 21, 67);
 		p("E. Pletinckx", 13, 2, 21, 67);
@@ -6468,7 +6468,7 @@ class Fifa23Service {
 		p("A. Buksa", 117, 15, 19, 60);
 		p("P. Ngawa", 13, 2, 30, 67);
 
-		c("Sint-Truiden", 13, "#B09F49");
+		c("Sint-Truiden", 13, "#AF9F49");
 		p("D. Schmidt", 79, 1, 30, 69);
 		p("W. Janssens", 13, 2, 26, 66);
 		p("T. Leistner", 57, 2, 31, 70);
@@ -6495,7 +6495,7 @@ class Fifa23Service {
 		p("A. Librici", 13, 8, 17, 53);
 		p("F. Kaya", 57, 15, 22, 64);
 
-		c("Westerlo", 13, "#CFB228");
+		c("Westerlo", 13, "#CEB128");
 		p("S. Bolat", 148, 1, 33, 72);
 		p("B. Reynolds", 152, 4, 21, 66);
 		p("R. Seigers", 13, 2, 24, 70);
@@ -6525,7 +6525,7 @@ class Fifa23Service {
 		p("M. N'Diaye", 94, 7, 32, 62);
 		p("K. Mabea", 35, 3, 23, 59);
 
-		c("KV Oostende", 13, "#A6433D");
+		c("KV Oostende", 13, "#A5433E");
 		p("G. Hubert", 13, 1, 28, 69);
 		p("O. Urhoghide", 46, 2, 21, 64);
 		p("A. Tanghe", 13, 2, 23, 67);
@@ -6555,7 +6555,7 @@ class Fifa23Service {
 		p("V. Koziello", 53, 8, 26, 68);
 		p("M. Berte", 13, 13, 20, 60);
 
-		c("Cercle Brugge", 13, "#3D5442");
+		c("Cercle Brugge", 13, "#3F5645");
 		p("R. Majecki", 117, 1, 22, 70);
 		p("B. Popovic", 129, 2, 22, 65);
 		p("C. Ravych", 13, 2, 19, 59);
@@ -6585,7 +6585,7 @@ class Fifa23Service {
 		p("S. Bruzzese", 13, 1, 33, 65);
 		p("D. Velkovski", 19, 3, 27, 66);
 
-		c("Zulte-Waregem", 13, "#CBB1B1");
+		c("Zulte-Waregem", 13, "#CAB0B0");
 		p("L. Bostyn", 13, 1, 28, 68);
 		p("A. Ciranni", 13, 6, 26, 70);
 		p("M. Tambedou", 128, 2, 19, 64);
@@ -6615,7 +6615,7 @@ class Fifa23Service {
 		p("S. Van Damme", 13, 1, 19, 57);
 		p("D. Demuynck", 13, 9, 18, 60);
 
-		c("AS Eupen", 13, "#D7D7D5");
+		c("AS Eupen", 13, "#D5D5D4");
 		p("L. Moser", 57, 1, 22, 66);
 		p("Y. Van Genechten", 13, 4, 21, 63);
 		p("B. Lambert", 13, 2, 22, 67);
@@ -6645,7 +6645,7 @@ class Fifa23Service {
 		p("D. Gassama", 96, 12, 18, 61);
 		p("A. Keita", 64, 11, 20, 62);
 
-		c("RFC Seraing", 13, "#903E3E");
+		c("RFC Seraing", 13, "#8F3E3E");
 		p("G. Dietsch", 53, 1, 21, 67);
 		p("J. Mansoni", 13, 6, 26, 64);
 		p("D. Opare", 58, 6, 31, 67);
@@ -6675,7 +6675,7 @@ class Fifa23Service {
 		p("E. Ifoni", 107, 15, 22, 60);
 		p("M. Dembélé", 53, 2, 23, 61);
 
-		c("Dinamo Zagreb", 36, "#384173");
+		c("Dinamo Zagreb", 36, "#3A4374");
 		p("D. Livaković", 36, 1, 27, 80);
 		p("S. Ristovski", 108, 4, 30, 74);
 		p("J. Šutalo", 36, 2, 22, 76);
@@ -6703,7 +6703,7 @@ class Fifa23Service {
 		p("D. Zagorac", 36, 1, 35, 65);
 		p("M. Brkljača", 36, 11, 17, 62);
 
-		c("Hajduk Split", 36, "#E3DBDC");
+		c("Hajduk Split", 36, "#E1DADB");
 		p("L. Kalinić", 36, 1, 32, 74);
 		p("D. Mikanović", 36, 4, 28, 68);
 		p("C. Awaziem", 107, 2, 25, 72);
@@ -6733,7 +6733,7 @@ class Fifa23Service {
 		p("D. Prpić", 36, 2, 18, 62);
 		p("R. Pukstas", 152, 8, 17, 60);
 
-		c("APOEL", 39, "#95905F");
+		c("APOEL", 39, "#969161");
 		p("V. Belec", 134, 1, 32, 70);
 		p("I. Chebake", 102, 4, 32, 70);
 		p("José Crespo", 137, 2, 35, 70);
@@ -6763,7 +6763,7 @@ class Fifa23Service {
 		p("M. Sušić", 17, 4, 31, 67);
 		p("G. Kvilitaia", 56, 15, 28, 73);
 
-		c("Slavia Praha", 40, "#D3787A");
+		c("Slavia Praha", 40, "#D1787A");
 		p("A. Mandous", 40, 1, 30, 75);
 		p("D. Douděra", 40, 10, 24, 72);
 		p("A. Ousou", 140, 2, 22, 73);
@@ -6792,7 +6792,7 @@ class Fifa23Service {
 		p("D. Hovorka", 40, 2, 28, 72);
 		p("J. Bořil", 40, 3, 31, 72);
 
-		c("Sparta Praha", 40, "#883340");
+		c("Sparta Praha", 40, "#883541");
 		p("D. Holec", 133, 1, 27, 72);
 		p("J. Mejdr", 40, 4, 27, 70);
 		p("A. Sørensen", 41, 2, 26, 72);
@@ -6822,7 +6822,7 @@ class Fifa23Service {
 		p("A. Vindheim", 110, 6, 26, 69);
 		p("M. Heča", 40, 1, 31, 72);
 
-		c("Viktoria Plzeň", 40, "#8A425C");
+		c("Viktoria Plzeň", 40, "#8A445D");
 		p("J. Staněk", 40, 1, 26, 78);
 		p("L. Holík", 40, 4, 24, 71);
 		p("L. Pernica", 40, 2, 32, 73);
@@ -6849,7 +6849,7 @@ class Fifa23Service {
 		p("R. Řezník", 40, 4, 33, 72);
 		p("J. Kliment", 40, 15, 28, 70);
 
-		c("København", 41, "#C6C8CC");
+		c("F.C. København", 41, "#C5C7CB");
 		p("K. Grabara", 117, 1, 23, 74);
 		p("E. Jelert", 41, 4, 19, 67);
 		p("D. Vavro", 133, 2, 26, 73);
@@ -6879,7 +6879,7 @@ class Fifa23Service {
 		p("Zeca", 60, 7, 33, 74);
 		p("A. Amoo", 107, 13, 20, 66);
 
-		c("Midtjylland", 41, "#342D2C");
+		c("FC Midtjylland", 41, "#352D2D");
 		p("J. Lössl", 41, 1, 33, 72);
 		p("J. Andersson", 140, 4, 25, 72);
 		p("E. Sviatchenko", 41, 2, 30, 75);
@@ -6909,7 +6909,7 @@ class Fifa23Service {
 		p("Júnior Brumado", 18, 15, 23, 69);
 		p("A. Nibe", 41, 8, 19, 57);
 
-		c("Brøndby", 41, "#D0B12B");
+		c("Brøndby IF", 41, "#CEB02C");
 		p("M. Hermansen", 41, 1, 21, 71);
 		p("J. Gammelby", 41, 4, 27, 66);
 		p("A. Maxsø", 41, 2, 28, 72);
@@ -6939,7 +6939,7 @@ class Fifa23Service {
 		p("K. Mensah", 41, 3, 31, 66);
 		p("O. Fallenius", 140, 15, 20, 57);
 
-		c("AGF", 41, "#C9BDBD");
+		c("AGF", 41, "#C7BBBC");
 		p("J. Hansen", 41, 1, 37, 73);
 		p("T. Mølgaard", 41, 6, 25, 68);
 		p("T. Kristensen", 41, 2, 20, 65);
@@ -6967,7 +6967,7 @@ class Fifa23Service {
 		p("A. Beck", 41, 8, 18, 55);
 		p("O. Lund", 41, 2, 31, 64);
 
-		c("AaB", 41, "#D98184");
+		c("AaB", 41, "#D78184");
 		p("T. Sander", 41, 1, 17, 60);
 		p("K. Ludewig", 57, 4, 22, 64);
 		p("D. Granli", 110, 2, 28, 67);
@@ -6996,7 +6996,7 @@ class Fifa23Service {
 		p("J. Posavec", 36, 1, 26, 68);
 		p("Y. Nadrani", 53, 2, 25, 67);
 
-		c("Randers", 41, "#84B0CF");
+		c("Randers FC", 41, "#84AFCD");
 		p("P. Carlgren", 140, 1, 30, 71);
 		p("M. Kallesøe", 41, 4, 25, 68);
 		p("S. Graves", 41, 2, 23, 66);
@@ -7023,7 +7023,7 @@ class Fifa23Service {
 		p("A. Stankovic", 41, 1, 27, 56);
 		p("M. Isah", 107, 13, 17, 54);
 
-		c("Silkeborg", 41, "#C03539");
+		c("Silkeborg IF", 41, "#BF373B");
 		p("N. Larsen", 41, 1, 31, 70);
 		p("O. Sonne", 41, 4, 21, 65);
 		p("T. Salquist", 41, 2, 27, 70);
@@ -7052,7 +7052,7 @@ class Fifa23Service {
 		p("G. Dahl", 41, 3, 26, 61);
 		p("N. Pedersen", 41, 9, 20, 53);
 
-		c("Nordsjælland", 41, "#BD332F");
+		c("Nordsjælland", 41, "#BC3531");
 		p("A. Hansen", 41, 1, 26, 68);
 		p("O. Villadsen", 41, 4, 20, 67);
 		p("K. Hansen", 41, 2, 33, 68);
@@ -7082,7 +7082,7 @@ class Fifa23Service {
 		p("E. Roback", 140, 12, 19, 55);
 		p("K. Barslund", 41, 2, 18, 50);
 
-		c("OB", 41, "#9EA3C3");
+		c("OB", 41, "#A0A5C3");
 		p("M. Hansen", 41, 1, 32, 67);
 		p("N. Mickelson", 144, 4, 22, 62);
 		p("M. Ivančević", 129, 2, 23, 63);
@@ -7112,7 +7112,7 @@ class Fifa23Service {
 		p("A. Adelgaard", 41, 3, 18, 55);
 		p("M. Ejdum", 41, 8, 17, 54);
 
-		c("Viborg", 41, "#2B4F38");
+		c("Viborg FF", 41, "#2D503A");
 		p("L. Lund", 41, 1, 22, 66);
 		p("A. Gaaei", 41, 4, 19, 57);
 		p("N. Bürgy", 141, 2, 26, 66);
@@ -7138,7 +7138,7 @@ class Fifa23Service {
 		p("M. Agnarsson", 50, 3, 18, 55);
 		p("K. Kiilerich", 41, 1, 16, 53);
 
-		c("Lyngby", 41, "#4E5A8C");
+		c("Lyngby Boldklub", 41, "#505C8D");
 		p("M. Kikkenborg", 41, 1, 22, 61);
 		p("K. Jørgensen", 41, 6, 22, 66);
 		p("P. Gregor", 41, 2, 28, 62);
@@ -7168,7 +7168,7 @@ class Fifa23Service {
 		p("A. Bjelland", 41, 2, 33, 65);
 		p("A. Finnbogason", 71, 15, 33, 71);
 
-		c("Horsens", 41, "#A98B31");
+		c("Horsens", 41, "#A88B32");
 		p("M. Delač", 36, 1, 29, 63);
 		p("T. Santos", 41, 10, 23, 63);
 		p("M. Jensen", 41, 2, 25, 64);
@@ -7194,7 +7194,7 @@ class Fifa23Service {
 		p("A. Nehme", 41, 9, 18, 54);
 		p("A. Hermansen", 41, 1, 18, 52);
 
-		c("Manchester City", 46, "#6999C1");
+		c("Manchester City", 46, "#6999C0");
 		p("Ederson", 18, 1, 28, 89);
 		p("K. Walker", 46, 4, 32, 85);
 		p("Rúben Dias", 118, 2, 25, 88);
@@ -7223,7 +7223,7 @@ class Fifa23Service {
 		p("A. Robertson", 46, 8, 19, 58);
 		p("M. Rogers", 46, 12, 19, 66);
 
-		c("Chelsea", 46, "#3B4672");
+		c("Chelsea", 46, "#3D4773");
 		p("Kepa", 137, 1, 27, 81);
 		p("Azpilicueta", 137, 2, 32, 82);
 		p("T. Chalobah", 46, 2, 22, 76);
@@ -7256,7 +7256,7 @@ class Fifa23Service {
 		p("L. Hall", 46, 8, 17, 60);
 		p("J. Castillo", 105, 5, 22, 62);
 
-		c("Liverpool", 46, "#952C2F");
+		c("Liverpool", 46, "#952D2F");
 		p("Alisson", 18, 1, 29, 89);
 		p("T. Alexander-Arnold", 46, 4, 23, 86);
 		p("J. Matip", 23, 2, 30, 84);
@@ -7289,7 +7289,7 @@ class Fifa23Service {
 		p("Stefan Bajcetic", 137, 7, 17, 61);
 		p("K. Gordon", 46, 13, 17, 62);
 
-		c("Manchester United", 46, "#BC3044");
+		c("Manchester United", 46, "#BB3145");
 		p("De Gea", 137, 1, 31, 87);
 		p("Diogo Dalot", 118, 4, 23, 80);
 		p("R. Varane", 53, 2, 29, 85);
@@ -7324,7 +7324,7 @@ class Fifa23Service {
 		p("R. Vitek", 40, 1, 18, 60);
 		p("P. Jones", 46, 2, 30, 72);
 
-		c("Tottenham Hotspur", 46, "#E3DFDC", "Tottenham");
+		c("Tottenham Hotspur", 46, "#E2DDDB", "Tottenham");
 		p("H. Lloris", 53, 1, 35, 86);
 		p("Emerson Royal", 18, 6, 23, 77);
 		p("C. Romero", 7, 2, 24, 83);
@@ -7355,7 +7355,7 @@ class Fifa23Service {
 		p("J. Bowden", 120, 8, 20, 63);
 		p("A. Devine", 46, 11, 17, 61);
 
-		c("Arsenal", 46, "#A73F48");
+		c("Arsenal", 46, "#A64049");
 		p("A. Ramsdale", 46, 1, 24, 82);
 		p("B. White", 46, 2, 24, 80);
 		p("W. Saliba", 53, 2, 21, 81);
@@ -7387,7 +7387,7 @@ class Fifa23Service {
 		p("L. Sousa", 46, 3, 17, 58);
 		p("G. Lewis", 110, 9, 22, 59);
 
-		c("Aston Villa", 46, "#66405B");
+		c("Aston Villa", 46, "#67425C");
 		p("E. Martínez", 7, 1, 29, 84);
 		p("M. Cash", 117, 4, 24, 79);
 		p("E. Konsa", 46, 2, 24, 79);
@@ -7421,7 +7421,7 @@ class Fifa23Service {
 		p("L. Bogarde", 105, 2, 18, 58);
 		p("S. Swinkels", 105, 2, 18, 56);
 
-		c("West Ham United", 46, "#7E4A59");
+		c("West Ham United", 46, "#7E4B59");
 		p("Ł. Fabiański", 117, 1, 37, 81);
 		p("V. Coufal", 40, 4, 29, 79);
 		p("K. Zouma", 53, 2, 27, 80);
@@ -7452,7 +7452,7 @@ class Fifa23Service {
 		p("J. Baptiste", 46, 2, 18, 57);
 		p("F. Potts", 46, 7, 18, 56);
 
-		c("Leicester City", 46, "#425E90");
+		c("Leicester City", 46, "#435E90");
 		p("D. Ward", 158, 1, 29, 75);
 		p("T. Castagne", 13, 4, 26, 78);
 		p("J. Evans", 109, 2, 34, 79);
@@ -7522,7 +7522,7 @@ class Fifa23Service {
 		p("J. White", 46, 11, 19, 59);
 		p("M. Ndiweni", 46, 15, 18, 58);
 
-		c("Wolverhampton Wanderers", 46, "#DAA520", "Wolverhampton");
+		c("Wolverhampton Wanderers", 46, "#D9A420", "Wolverhampton");
 		p("José Sá", 118, 1, 29, 81);
 		p("Jonny", 137, 4, 28, 77);
 		p("N. Collins", 120, 2, 21, 75);
@@ -7557,7 +7557,7 @@ class Fifa23Service {
 		p("O. Tipton", 46, 2, 18, 52);
 		p("Christian Marques", 118, 2, 19, 60);
 
-		c("Everton", 46, "#304F78");
+		c("Everton", 46, "#325079");
 		p("J. Pickford", 46, 1, 28, 82);
 		p("N. Patterson", 127, 4, 20, 69);
 		p("C. Coady", 46, 2, 29, 79);
@@ -7590,7 +7590,7 @@ class Fifa23Service {
 		p("A. Lonergan", 46, 1, 38, 62);
 		p("T. Cannon", 46, 15, 19, 59);
 
-		c("Crystal Palace", 46, "#784155");
+		c("Crystal Palace", 46, "#784357");
 		p("Guaita", 137, 1, 35, 79);
 		p("J. Ward", 46, 4, 32, 74);
 		p("J. Andersen", 41, 2, 26, 78);
@@ -7621,7 +7621,7 @@ class Fifa23Service {
 		p("V. Akinwale", 46, 15, 17, 56);
 		p("T. Adaramola", 120, 3, 18, 58);
 
-		c("Leeds United", 46, "#BFBFBE");
+		c("Leeds United", 46, "#BEBEBD");
 		p("I. Meslier", 53, 1, 22, 77);
 		p("R. Kristensen", 41, 4, 24, 77);
 		p("R. Koch", 57, 2, 25, 76);
@@ -7652,7 +7652,7 @@ class Fifa23Service {
 		p("D. Gyabi", 46, 8, 18, 59);
 		p("Mateo Joseph", 137, 15, 18, 61);
 
-		c("Nottingham Forest", 46, "#B12324");
+		c("Nottingham Forest", 46, "#B12425");
 		p("D. Henderson", 46, 1, 25, 79);
 		p("S. Aurier", 35, 4, 29, 78);
 		p("S. Cook", 46, 2, 31, 72);
@@ -7687,7 +7687,7 @@ class Fifa23Service {
 		p("O. Hammond", 46, 8, 19, 54);
 		p("H. Arter", 120, 7, 32, 65);
 
-		c("Brighton & Hove Albion", 46, "#7592AD", "Brighton");
+		c("Brighton & Hove Albion", 46, "#7591AB", "Brighton");
 		p("Robert Sánchez", 137, 1, 24, 78);
 		p("P. Groß", 57, 8, 31, 78);
 		p("A. Webster", 46, 2, 27, 76);
@@ -7719,7 +7719,7 @@ class Fifa23Service {
 		p("J. Hinchy", 46, 8, 19, 53);
 		p("T. McGill", 46, 1, 22, 57);
 
-		c("Fulham", 46, "#CECCCA");
+		c("Fulham", 46, "#CCC9C8");
 		p("B. Leno", 57, 1, 30, 80);
 		p("K. Tete", 105, 4, 26, 75);
 		p("T. Adarabioyo", 46, 2, 24, 76);
@@ -7780,7 +7780,7 @@ class Fifa23Service {
 		p("W. Caballero", 7, 1, 40, 69);
 		p("R. Finnigan", 46, 8, 18, 55);
 
-		c("Brentford", 46, "#C07679");
+		c("Brentford", 46, "#BF7678");
 		p("David Raya", 137, 1, 26, 77);
 		p("K. Ajer", 110, 2, 24, 75);
 		p("E. Pinnock", 78, 2, 29, 76);
@@ -7812,7 +7812,7 @@ class Fifa23Service {
 		p("A. Gilbert", 120, 12, 20, 60);
 		p("A. Pressley", 127, 15, 20, 60);
 
-		c("AFC Bournemouth", 46, "#802E32");
+		c("AFC Bournemouth", 46, "#812F33");
 		p("Neto", 18, 1, 32, 81);
 		p("R. Fredericks", 46, 4, 29, 74);
 		p("C. Mepham", 158, 2, 24, 71);
@@ -7842,7 +7842,7 @@ class Fifa23Service {
 		p("O. Bevan", 158, 2, 18, 57);
 		p("D. Brooks", 158, 13, 24, 75);
 
-		c("Watford", 46, "#CFB021");
+		c("Watford", 46, "#CDAF21");
 		p("D. Bachmann", 10, 1, 27, 72);
 		p("Mario Gaspar", 137, 4, 31, 77);
 		p("C. Kabasele", 13, 2, 31, 74);
@@ -7906,7 +7906,7 @@ class Fifa23Service {
 		p("W. Norris", 46, 1, 28, 65);
 		p("O. Dodgson", 46, 3, 19, 60);
 
-		c("Norwich City", 46, "#D0CE40");
+		c("Norwich City", 46, "#CECD40");
 		p("T. Krul", 105, 1, 34, 76);
 		p("M. Aarons", 46, 4, 22, 74);
 		p("A. Omobamidele", 120, 2, 20, 70);
@@ -7938,7 +7938,7 @@ class Fifa23Service {
 		p("D. Barden", 158, 1, 21, 57);
 		p("F. Clarke", 46, 11, 19, 61);
 
-		c("Sheffield United", 46, "#C37D85");
+		c("Sheffield United", 46, "#C17D84");
 		p("W. Foderingham", 46, 1, 31, 74);
 		p("G. Baldock", 60, 6, 29, 71);
 		p("A. Ahmedhodžić", 17, 2, 23, 72);
@@ -7970,7 +7970,7 @@ class Fifa23Service {
 		p("O. Arblaster", 46, 8, 18, 53);
 		p("A. Hackford", 46, 15, 18, 59);
 
-		c("Middlesbrough", 46, "#CD4353");
+		c("Middlesbrough", 46, "#CC4555");
 		p("Z. Steffen", 152, 1, 27, 76);
 		p("T. Smith", 46, 6, 30, 71);
 		p("D. Fry", 46, 2, 24, 73);
@@ -8002,7 +8002,7 @@ class Fifa23Service {
 		p("D. Fisher", 46, 6, 28, 70);
 		p("P. Willis", 46, 9, 19, 53);
 
-		c("West Bromwich Albion", 46, "#7E8290", "West Brom");
+		c("West Bromwich Albion", 46, "#7D828F", "West Brom");
 		p("A. Palmer", 46, 1, 25, 67);
 		p("D. Furlong", 46, 4, 26, 72);
 		p("K. Bartley", 46, 2, 31, 71);
@@ -8034,7 +8034,7 @@ class Fifa23Service {
 		p("R. Richards", 46, 12, 18, 56);
 		p("S. Shotton", 46, 2, 21, 53);
 
-		c("Blackburn Rovers", 46, "#8A98B9");
+		c("Blackburn Rovers", 46, "#8A98B8");
 		p("T. Kaminski", 13, 1, 29, 73);
 		p("C. Brittain", 46, 6, 24, 69);
 		p("Daniel Ayala", 137, 2, 31, 70);
@@ -8066,7 +8066,7 @@ class Fifa23Service {
 		p("J. Hilton", 46, 1, 22, 57);
 		p("J. Harlock", 46, 8, 19, 58);
 
-		c("Coventry City", 46, "#8EA9BB");
+		c("Coventry City", 46, "#91ABBC");
 		p("B. Wilson", 46, 1, 29, 66);
 		p("J. Eccles", 46, 7, 22, 65);
 		p("M. Rose", 127, 2, 26, 69);
@@ -8098,7 +8098,7 @@ class Fifa23Service {
 		p("M. Rus", 121, 11, 19, 57);
 		p("M. Hilßner", 57, 13, 27, 62);
 
-		c("Preston North End", 46, "#C6C6CA");
+		c("Preston North End", 46, "#C5C5C8");
 		p("F. Woodman", 46, 1, 25, 75);
 		p("B. Potts", 46, 6, 27, 69);
 		p("J. Storey", 46, 2, 24, 69);
@@ -8129,7 +8129,7 @@ class Fifa23Service {
 		p("J. Slater", 120, 5, 17, 56);
 		p("L. Coulton", 127, 5, 19, 54);
 
-		c("Queens Park Rangers", 46, "#829EB9", "QPR");
+		c("Queens Park Rangers", 46, "#819DB8", "QPR");
 		p("S. Dieng", 128, 1, 27, 72);
 		p("E. Laird", 46, 4, 20, 71);
 		p("J. Dunne", 120, 2, 24, 70);
@@ -8161,7 +8161,7 @@ class Fifa23Service {
 		p("A. Drewe", 46, 6, 21, 53);
 		p("S. Flaherty", 46, 11, 20, 57);
 
-		c("Millwall", 46, "#393D52");
+		c("Millwall", 46, "#3C4154");
 		p("G. Long", 46, 1, 28, 67);
 		p("D. McNamara", 120, 6, 23, 69);
 		p("C. Cresswell", 46, 2, 19, 68);
@@ -8190,7 +8190,7 @@ class Fifa23Service {
 		p("N. Boateng", 46, 13, 19, 57);
 		p("R. Sandford", 46, 1, 23, 55);
 
-		c("Hull City", 46, "#78502F");
+		c("Hull City", 46, "#785030");
 		p("N. Baxter", 46, 1, 23, 69);
 		p("C. Christie", 120, 4, 29, 71);
 		p("Tobias Figueiredo", 118, 2, 28, 68);
@@ -8222,7 +8222,7 @@ class Fifa23Service {
 		p("J. Emmanuel", 46, 4, 24, 67);
 		p("T. Lo-Tutala", 53, 1, 19, 55);
 
-		c("Reading", 46, "#7E90AE");
+		c("Reading", 46, "#7E8FAE");
 		p("J. Lumley", 46, 1, 27, 68);
 		p("A. Yiadom", 58, 6, 30, 72);
 		p("T. Holmes", 46, 2, 22, 67);
@@ -8254,7 +8254,7 @@ class Fifa23Service {
 		p("F. Azeez", 46, 15, 21, 63);
 		p("L. Moore", 78, 2, 29, 68);
 
-		c("Stoke City", 46, "#CF8689");
+		c("Stoke City", 46, "#CD8689");
 		p("J. Bursik", 46, 1, 21, 68);
 		p("D. Sterling", 46, 6, 22, 68);
 		p("C. Taylor", 46, 2, 20, 64);
@@ -8286,7 +8286,7 @@ class Fifa23Service {
 		p("M. Baker", 158, 2, 19, 58);
 		p("E. Tezgel", 46, 15, 16, 56);
 
-		c("Birmingham City", 46, "#36558D");
+		c("Birmingham City", 46, "#39578D");
 		p("J. Ruddy", 46, 1, 35, 71);
 		p("M. Colin", 53, 6, 30, 71);
 		p("D. Sanderson", 46, 2, 22, 67);
@@ -8318,7 +8318,7 @@ class Fifa23Service {
 		p("T. Campbell", 46, 8, 20, 51);
 		p("R. Stirk", 158, 7, 21, 60);
 
-		c("Bristol City", 46, "#B5464B");
+		c("Bristol City", 46, "#B5484D");
 		p("M. O'Leary", 46, 1, 25, 67);
 		p("M. Sykes", 120, 6, 24, 68);
 		p("Z. Vyner", 46, 2, 25, 67);
@@ -8348,7 +8348,7 @@ class Fifa23Service {
 		p("D. Kadji", 46, 7, 18, 55);
 		p("D. Idehen", 46, 2, 19, 56);
 
-		c("Luton Town", 46, "#B85246");
+		c("Luton Town", 46, "#B65246");
 		p("E. Horvath", 152, 1, 27, 71);
 		p("J. Bree", 46, 6, 24, 71);
 		p("T. Lockyer", 158, 2, 27, 71);
@@ -8379,7 +8379,7 @@ class Fifa23Service {
 		p("C. Lawless", 46, 7, 20, 53);
 		p("E. McJannet", 120, 11, 18, 54);
 
-		c("Swansea City", 46, "#CAC9C8");
+		c("Swansea City", 46, "#C9C8C7");
 		p("S. Benda", 57, 1, 23, 65);
 		p("M. Sorinola", 46, 5, 21, 63);
 		p("N. Wood", 46, 2, 20, 64);
@@ -8411,7 +8411,7 @@ class Fifa23Service {
 		p("T. Rushesha", 158, 6, 19, 56);
 		p("L. Webb", 158, 1, 20, 55);
 
-		c("Sunderland", 46, "#B5757F");
+		c("Sunderland", 46, "#B4757F");
 		p("A. Patterson", 46, 1, 22, 68);
 		p("L. Gooch", 152, 6, 26, 66);
 		p("L. O'Nien", 46, 7, 27, 67);
@@ -8443,7 +8443,7 @@ class Fifa23Service {
 		p("Z. Johnson", 46, 4, 17, 51);
 		p("C. Pye", 46, 3, 18, 54);
 
-		c("Wigan Athletic", 46, "#72809D");
+		c("Wigan Athletic", 46, "#73809D");
 		p("J. Jones", 46, 1, 33, 64);
 		p("T. Darikwa", 160, 6, 30, 69);
 		p("J. Whatmough", 46, 2, 25, 69);
@@ -8475,7 +8475,7 @@ class Fifa23Service {
 		p("S. Smith", 158, 8, 21, 53);
 		p("C. Sze", 46, 15, 18, 52);
 
-		c("Huddersfield Town", 46, "#728EB1");
+		c("Huddersfield Town", 46, "#728EB0");
 		p("L. Nicholls", 46, 1, 29, 74);
 		p("O. Turton", 46, 4, 29, 67);
 		p("T. Lees", 46, 2, 31, 70);
@@ -8507,7 +8507,7 @@ class Fifa23Service {
 		p("B. Spencer", 109, 4, 18, 59);
 		p("L. Ayina", 53, 2, 19, 55);
 
-		c("Cardiff City", 46, "#294A9F");
+		c("Cardiff City", 46, "#2E4EA0");
 		p("R. Allsop", 46, 1, 30, 68);
 		p("M. Romeo", 6, 4, 26, 68);
 		p("P. Ng", 46, 2, 26, 68);
@@ -8539,7 +8539,7 @@ class Fifa23Service {
 		p("R. Luthra", 46, 1, 20, 53);
 		p("O. Denham", 158, 2, 20, 57);
 
-		c("Rotherham United", 46, "#AB3E44");
+		c("Rotherham United", 46, "#AA3F45");
 		p("V. Johansson", 140, 1, 23, 68);
 		p("B. Norton-Cuffy", 46, 4, 18, 65);
 		p("G. Hall", 46, 2, 30, 67);
@@ -8566,7 +8566,7 @@ class Fifa23Service {
 		p("J. Hull", 46, 2, 20, 54);
 		p("R. Hemfrey", 127, 1, 20, 51);
 
-		c("Blackpool", 46, "#D25D34");
+		c("Blackpool", 46, "#D15E36");
 		p("C. Maxwell", 158, 1, 31, 68);
 		p("C. Connolly", 46, 4, 24, 67);
 		p("M. Ekpiteta", 46, 2, 26, 71);
@@ -8598,7 +8598,7 @@ class Fifa23Service {
 		p("B. Holmes", 46, 15, 19, 54);
 		p("S. Moore", 46, 1, 27, 59);
 
-		c("Sheffield Wednesday", 46, "#727FAC", "Sheffield Wed.");
+		c("Sheffield Wednesday", 46, "#727EAC", "Sheffield Wed.");
 		p("D. Stockdale", 46, 1, 36, 68);
 		p("L. Palmer", 127, 6, 30, 68);
 		p("M. McGuinness", 120, 2, 21, 67);
@@ -8625,7 +8625,7 @@ class Fifa23Service {
 		p("B. Heneghan", 46, 2, 28, 65);
 		p("A. Famewo", 46, 2, 23, 65);
 
-		c("Derby County", 46, "#B5B4B3");
+		c("Derby County", 46, "#B3B3B1");
 		p("J. Wildsmith", 46, 1, 26, 66);
 		p("K. Smith", 46, 8, 31, 66);
 		p("C. Forsyth", 127, 3, 33, 66);
@@ -8653,7 +8653,7 @@ class Fifa23Service {
 		p("K. Oduroh", 46, 4, 19, 56);
 		p("D. Robinson", 109, 8, 17, 54);
 
-		c("Ipswich Town", 46, "#3A4574");
+		c("Ipswich Town", 46, "#3B4674");
 		p("C. Walton", 46, 1, 26, 69);
 		p("W. Burns", 158, 6, 27, 69);
 		p("J. Donacien", 124, 2, 28, 67);
@@ -8682,7 +8682,7 @@ class Fifa23Service {
 		p("L. Evans", 158, 8, 27, 67);
 		p("N. Hayes", 46, 1, 23, 56);
 
-		c("Peterborough United", 46, "#306197", "Peterborough");
+		c("Peterborough United", 46, "#316297", "Peterborough");
 		p("L. Bergström", 52, 1, 19, 62);
 		p("J. Ward", 46, 6, 26, 67);
 		p("F. Kent", 46, 2, 26, 67);
@@ -8712,7 +8712,7 @@ class Fifa23Service {
 		p("W. Lakin", 46, 1, 18, 52);
 		p("W. Blackmore", 46, 1, 20, 51);
 
-		c("Plymouth Argyle", 46, "#4D5C56");
+		c("Plymouth Argyle", 46, "#4E5C56");
 		p("M. Cooper", 46, 1, 22, 70);
 		p("J. Edwards", 46, 6, 31, 67);
 		p("J. Wilson", 158, 2, 33, 67);
@@ -8741,7 +8741,7 @@ class Fifa23Service {
 		p("K. Edworthy", 46, 15, 16, 51);
 		p("C. Roberts", 46, 8, 16, 49);
 
-		c("Wycombe Wanderers", 46, "#366182", "Wycombe");
+		c("Wycombe Wanderers", 46, "#386283", "Wycombe");
 		p("M. Stryjek", 117, 1, 25, 68);
 		p("J. Grimmer", 127, 2, 28, 64);
 		p("A. Mawson", 46, 2, 28, 70);
@@ -8771,7 +8771,7 @@ class Fifa23Service {
 		p("A. Al-Hamadi", 75, 15, 20, 57);
 		p("C. Hagan", 46, 15, 20, 54);
 
-		c("Portsmouth", 46, "#3A5D99");
+		c("Portsmouth", 46, "#3A5D98");
 		p("J. Griffiths", 46, 1, 20, 65);
 		p("Z. Swanson", 46, 4, 21, 63);
 		p("S. Raggett", 46, 2, 28, 68);
@@ -8801,7 +8801,7 @@ class Fifa23Service {
 		p("J. Rafferty", 120, 4, 28, 66);
 		p("L. Thompson", 158, 8, 27, 65);
 
-		c("Bolton Wanderers", 46, "#C0C0BE");
+		c("Bolton Wanderers", 46, "#BFBFBD");
 		p("J. Trafford", 46, 1, 19, 66);
 		p("C. Bradley", 109, 6, 18, 66);
 		p("G. Jones", 158, 2, 26, 64);
@@ -8828,7 +8828,7 @@ class Fifa23Service {
 		p("O. Beck", 158, 5, 19, 61);
 		p("G. Sithole", 46, 15, 19, 56);
 
-		c("Charlton Athletic", 46, "#B43A3C");
+		c("Charlton Athletic", 46, "#B33B3C");
 		p("A. Maynard-Brewer", 9, 1, 23, 63);
 		p("M. Egbo", 46, 4, 24, 65);
 		p("R. Inniss", 46, 2, 27, 64);
@@ -8885,7 +8885,7 @@ class Fifa23Service {
 		p("E. Bennett", 46, 6, 33, 66);
 		p("G. Nurse", 46, 5, 23, 65);
 
-		c("Barnsley", 46, "#BE2A39");
+		c("Barnsley", 46, "#BD2B3A");
 		p("B. Collins", 46, 1, 25, 68);
 		p("J. Williams", 46, 6, 22, 67);
 		p("T. Edwards", 46, 2, 23, 67);
@@ -8914,7 +8914,7 @@ class Fifa23Service {
 		p("J. Sraha", 46, 2, 19, 53);
 		p("J. Searle", 106, 1, 21, 53);
 
-		c("Oxford United", 46, "#BDA567");
+		c("Oxford United", 46, "#BCA467");
 		p("S. Eastwood", 46, 1, 33, 62);
 		p("D. Anderson", 139, 4, 27, 66);
 		p("S. Findlay", 127, 2, 26, 66);
@@ -8944,7 +8944,7 @@ class Fifa23Service {
 		p("J. Johnson", 46, 8, 17, 52);
 		p("E. Brearey", 46, 1, 18, 50);
 
-		c("Milton Keynes Dons", 46, "#BAB9B8", "MK Dons");
+		c("Milton Keynes Dons", 46, "#B9B8B7", "MK Dons");
 		p("J. Cumming", 46, 1, 22, 66);
 		p("D. Oyegoke", 46, 6, 19, 59);
 		p("J. Tucker", 46, 2, 22, 65);
@@ -8971,7 +8971,7 @@ class Fifa23Service {
 		p("D. Burns", 120, 13, 19, 62);
 		p("D. Lewington", 46, 2, 38, 65);
 
-		c("Fleetwood Town", 46, "#B6545A");
+		c("Fleetwood Town", 46, "#B6575D");
 		p("J. Lynch", 46, 1, 29, 65);
 		p("S. Rooney", 127, 4, 25, 67);
 		p("T. Nsiala", 33, 2, 30, 66);
@@ -9001,7 +9001,7 @@ class Fifa23Service {
 		p("C. Thiam", 46, 4, 20, 56);
 		p("M. McMillan", 46, 15, 19, 55);
 
-		c("Port Vale", 46, "#B5B5B4");
+		c("Port Vale", 46, "#B4B3B2");
 		p("J. Stevens", 46, 1, 24, 64);
 		p("G. Massey", 46, 10, 29, 64);
 		p("W. Forrester", 46, 2, 21, 61);
@@ -9031,7 +9031,7 @@ class Fifa23Service {
 		p("S. Robinson", 46, 6, 20, 59);
 		p("D. Agyakwa", 105, 2, 20, 56);
 
-		c("Exeter City", 46, "#CD6B6B");
+		c("Exeter City", 46, "#CD706F");
 		p("J. Blackman", 46, 1, 28, 66);
 		p("J. Caprice", 46, 6, 29, 64);
 		p("J. Key", 46, 6, 22, 65);
@@ -9057,7 +9057,7 @@ class Fifa23Service {
 		p("H. King", 46, 6, 17, 51);
 		p("Pedro Borges", 118, 8, 16, 50);
 
-		c("Lincoln City", 46, "#C0737B");
+		c("Lincoln City", 46, "#BF737A");
 		p("C. Rushworth", 46, 1, 20, 65);
 		p("R. Poole", 158, 2, 24, 65);
 		p("T. Eyoma", 46, 4, 22, 63);
@@ -9087,7 +9087,7 @@ class Fifa23Service {
 		p("B. Brooks", 120, 8, 18, 52);
 		p("E. Ahui", 46, 7, 18, 51);
 
-		c("Cambridge United", 46, "#CA8337");
+		c("Cambridge United", 46, "#C88338");
 		p("W. Mannion", 46, 1, 24, 56);
 		p("G. Williams", 46, 4, 29, 65);
 		p("J. Okedina", 46, 2, 21, 64);
@@ -9114,7 +9114,7 @@ class Fifa23Service {
 		p("G. McConnell", 120, 11, 17, 53);
 		p("M. Jobe", 46, 2, 19, 52);
 
-		c("Burton Albion", 46, "#D5C325");
+		c("Burton Albion", 46, "#D3C225");
 		p("B. Garratt", 46, 1, 28, 64);
 		p("J. Brayford", 46, 2, 34, 65);
 		p("S. Hughes", 46, 2, 25, 64);
@@ -9144,7 +9144,7 @@ class Fifa23Service {
 		p("C. Williams", 46, 9, 18, 55);
 		p("J. Niemczyk", 117, 9, 18, 51);
 
-		c("Bristol Rovers", 46, "#6F7E99");
+		c("Bristol Rovers", 46, "#707F99");
 		p("J. Belshaw", 46, 1, 31, 65);
 		p("B. Thomas", 46, 2, 21, 64);
 		p("J. Connolly", 46, 2, 20, 63);
@@ -9174,7 +9174,7 @@ class Fifa23Service {
 		p("Z. Westbrooke", 46, 8, 25, 59);
 		p("N. Anderton", 46, 3, 26, 61);
 
-		c("Forest Green Rovers", 46, "#74953F", "Forest Green");
+		c("Forest Green Rovers", 46, "#749440", "Forest Green");
 		p("L. McGee", 46, 1, 26, 63);
 		p("C. O'Keeffe", 120, 6, 24, 65);
 		p("O. Casey", 46, 2, 21, 62);
@@ -9204,7 +9204,7 @@ class Fifa23Service {
 		p("M. Stevens", 46, 15, 24, 65);
 		p("U. Godwin-Malife", 46, 2, 22, 63);
 
-		c("Morecambe", 46, "#964045");
+		c("Morecambe", 46, "#974347");
 		p("C. Ripley", 46, 1, 29, 65);
 		p("R. Cooney", 46, 4, 22, 64);
 		p("F. Rawson", 46, 2, 25, 62);
@@ -9231,7 +9231,7 @@ class Fifa23Service {
 		p("C. Duffus", 120, 15, 26, 57);
 		p("C. Rooney", 46, 8, 17, 50);
 
-		c("Cheltenham Town", 46, "#B82E3F");
+		c("Cheltenham Town", 46, "#B72E3F");
 		p("L. Southwood", 109, 1, 24, 67);
 		p("R. Broom", 158, 8, 25, 65);
 		p("S. Long", 120, 2, 27, 64);
@@ -9259,7 +9259,7 @@ class Fifa23Service {
 		p("G. Lloyd", 46, 15, 22, 59);
 		p("W. Ferry", 120, 5, 22, 62);
 
-		c("Accrington Stanley", 46, "#BE313F");
+		c("Accrington Stanley", 46, "#BD3441");
 		p("T. Savin", 46, 1, 21, 63);
 		p("M. Clark", 158, 4, 23, 64);
 		p("R. Astley", 158, 2, 20, 62);
@@ -9289,7 +9289,7 @@ class Fifa23Service {
 		p("M. Nottingham", 123, 2, 33, 66);
 		p("J. Rich-Baghuelou", 9, 2, 22, 61);
 
-		c("Salford City", 46, "#CA3134");
+		c("Salford City", 46, "#C93135");
 		p("T. King", 158, 1, 27, 64);
 		p("L. Bolton", 46, 4, 22, 63);
 		p("T. Vassell", 46, 2, 25, 64);
@@ -9318,7 +9318,7 @@ class Fifa23Service {
 		p("A. Eastham", 46, 2, 31, 64);
 		p("L. Shephard", 158, 4, 27, 63);
 
-		c("Bradford City", 46, "#A35B37");
+		c("Bradford City", 46, "#A35C39");
 		p("H. Lewis", 46, 1, 24, 65);
 		p("B. Halliday", 46, 4, 26, 62);
 		p("M. Platt", 46, 2, 24, 63);
@@ -9347,7 +9347,7 @@ class Fifa23Service {
 		p("H. Richardson", 46, 1, 18, 51);
 		p("E. Osadebe", 120, 8, 25, 61);
 
-		c("Northampton Town", 46, "#AC9392", "Northampton");
+		c("Northampton Town", 46, "#AB9392", "Northampton");
 		p("L. Burge", 46, 1, 29, 64);
 		p("A. McGowan", 46, 4, 25, 64);
 		p("S. Sherring", 46, 2, 22, 62);
@@ -9373,7 +9373,7 @@ class Fifa23Service {
 		p("J. Dadge", 46, 1, 17, 52);
 		p("J. Tomlinson", 46, 2, 16, 50);
 
-		c("Walsall", 46, "#C52B3D");
+		c("Walsall", 46, "#C42C3E");
 		p("O. Evans", 158, 1, 25, 62);
 		p("L. Bennett", 46, 6, 20, 63);
 		p("H. White", 46, 2, 27, 61);
@@ -9400,7 +9400,7 @@ class Fifa23Service {
 		p("J. Riley", 46, 6, 25, 63);
 		p("J. Labadie", 46, 8, 31, 61);
 
-		c("Crawley Town", 46, "#AD3536");
+		c("Crawley Town", 46, "#AC3537");
 		p("E. Balcombe", 46, 1, 22, 60);
 		p("T. Johnson", 46, 6, 21, 58);
 		p("L. Francillette", 53, 2, 23, 62);
@@ -9430,7 +9430,7 @@ class Fifa23Service {
 		p("J. Davis", 46, 13, 20, 56);
 		p("D. Robson", 158, 1, 20, 50);
 
-		c("Stevenage", 46, "#8C3B3F");
+		c("Stevenage", 46, "#8C3C40");
 		p("T. Ashby-Hammond", 46, 1, 23, 61);
 		p("L. James-Wildin", 6, 6, 24, 62);
 		p("D. Sweeney", 46, 2, 28, 64);
@@ -9455,7 +9455,7 @@ class Fifa23Service {
 		p("H. Smith", 46, 15, 17, 51);
 		p("S. Tinubu", 46, 7, 17, 50);
 
-		c("Barrow", 46, "#7FA2B7");
+		c("Barrow", 46, "#80A2B6");
 		p("P. Farman", 46, 1, 32, 62);
 		p("T. Warren", 46, 4, 23, 63);
 		p("G. Ray", 158, 2, 28, 62);
@@ -9481,7 +9481,7 @@ class Fifa23Service {
 		p("P. Żuk", 117, 4, 21, 58);
 		p("B. Smales-Braithwaite", 46, 15, 20, 54);
 
-		c("AFC Wimbledon", 46, "#486A92");
+		c("AFC Wimbledon", 46, "#496A92");
 		p("N. Tzanev", 106, 1, 25, 62);
 		p("C. Gunter", 158, 6, 32, 61);
 		p("P. Kalambayi", 46, 2, 22, 62);
@@ -9511,7 +9511,7 @@ class Fifa23Service {
 		p("N. Young-Coombes", 46, 15, 19, 61);
 		p("W. Jääskeläinen", 52, 1, 23, 61);
 
-		c("Stockport County", 46, "#2D5C94");
+		c("Stockport County", 46, "#2F5D94");
 		p("B. Hinchliffe", 46, 1, 34, 60);
 		p("J. Brown", 120, 6, 24, 62);
 		p("A. Wright", 46, 7, 26, 58);
@@ -9536,7 +9536,7 @@ class Fifa23Service {
 		p("C. Johnson", 46, 8, 17, 53);
 		p("D. Okwute", 120, 15, 19, 53);
 
-		c("Doncaster Rovers", 46, "#C48185");
+		c("Doncaster Rovers", 46, "#C38185");
 		p("J. Mitchell", 46, 1, 27, 62);
 		p("K. Knoyle", 46, 4, 25, 63);
 		p("R. Williams", 46, 2, 23, 63);
@@ -9564,7 +9564,7 @@ class Fifa23Service {
 		p("L. Ravenhill", 109, 7, 19, 56);
 		p("B. Bottomley", 46, 1, 19, 53);
 
-		c("Colchester United", 46, "#949ABF");
+		c("Colchester United", 46, "#9399BE");
 		p("S. Hornby", 46, 1, 27, 60);
 		p("J. Tchamadeu", 46, 4, 18, 62);
 		p("L. Chambers", 46, 2, 36, 61);
@@ -9594,7 +9594,7 @@ class Fifa23Service {
 		p("G. Kennedy", 46, 7, 19, 57);
 		p("C. Owens", 109, 8, 24, 57);
 
-		c("Mansfield Town", 46, "#B88137");
+		c("Mansfield Town", 46, "#B78138");
 		p("C. Pym", 46, 1, 27, 63);
 		p("J. Bowery", 46, 15, 30, 61);
 		p("E. Hewitt", 158, 2, 28, 63);
@@ -9622,7 +9622,7 @@ class Fifa23Service {
 		p("C. Collins", 46, 2, 17, 54);
 		p("C. Davies", 46, 11, 18, 53);
 
-		c("Leyton Orient", 46, "#9B2A2E");
+		c("Leyton Orient", 46, "#9B2C31");
 		p("L. Vigouroux", 27, 1, 28, 65);
 		p("T. James", 158, 4, 26, 63);
 		p("O. Beckles", 61, 2, 30, 65);
@@ -9650,7 +9650,7 @@ class Fifa23Service {
 		p("R. Byrne", 46, 1, 19, 55);
 		p("J. Tanga", 46, 10, 18, 54);
 
-		c("Tranmere Rovers", 46, "#C4C6C6");
+		c("Tranmere Rovers", 46, "#C3C5C4");
 		p("R. Doohan", 127, 1, 24, 63);
 		p("J. Dacres-Cogley", 46, 6, 26, 66);
 		p("D. Simeu", 46, 2, 20, 63);
@@ -9680,7 +9680,7 @@ class Fifa23Service {
 		p("A. Lomax", 46, 10, 18, 50);
 		p("J. Williams", 46, 8, 19, 50);
 
-		c("Gillingham", 46, "#356CA9");
+		c("Gillingham", 46, "#386DA9");
 		p("G. Morris", 46, 1, 38, 62);
 		p("W. Wright", 46, 4, 25, 61);
 		p("M. Ehmer", 57, 2, 30, 61);
@@ -9707,7 +9707,7 @@ class Fifa23Service {
 		p("F. Carter", 46, 2, 18, 54);
 		p("J. Gbode", 46, 15, 17, 53);
 
-		c("Grimsby Town", 46, "#7E7C7B");
+		c("Grimsby Town", 46, "#7E7B7B");
 		p("M. Crocombe", 106, 1, 28, 62);
 		p("M. Efete", 33, 4, 25, 59);
 		p("L. Waterfall", 46, 2, 31, 63);
@@ -9734,7 +9734,7 @@ class Fifa23Service {
 		p("E. Khouri", 46, 9, 19, 53);
 		p("S. Scannell", 120, 10, 31, 59);
 
-		c("Harrogate Town", 46, "#C89E3C");
+		c("Harrogate Town", 46, "#C69D3C");
 		p("P. Jameson", 46, 1, 29, 58);
 		p("K. Ramsay", 46, 6, 21, 62);
 		p("W. Burrell", 46, 2, 32, 62);
@@ -9764,7 +9764,7 @@ class Fifa23Service {
 		p("M. Wright", 46, 10, 24, 59);
 		p("D. Angus", 46, 15, 28, 57);
 
-		c("Crewe Alexandra", 46, "#C72D2D");
+		c("Crewe Alexandra", 46, "#C6302F");
 		p("A. Okonkwo", 46, 1, 20, 64);
 		p("K. Mellor", 46, 4, 31, 59);
 		p("L. Offord", 46, 2, 22, 63);
@@ -9792,7 +9792,7 @@ class Fifa23Service {
 		p("C. Ainley", 46, 11, 24, 62);
 		p("C. Colkett", 46, 8, 25, 60);
 
-		c("Newport County", 46, "#B17A32");
+		c("Newport County", 46, "#B07A32");
 		p("J. Day", 46, 1, 31, 60);
 		p("C. Norman", 46, 6, 26, 64);
 		p("D. Drysdale", 46, 2, 22, 61);
@@ -9822,7 +9822,7 @@ class Fifa23Service {
 		p("T. Stokes", 158, 15, 17, 51);
 		p("E. Ovendale", 158, 1, 17, 51);
 
-		c("Swindon Town", 46, "#A32933");
+		c("Swindon Town", 46, "#A32A34");
 		p("S. Brynn", 46, 1, 21, 60);
 		p("R. Hutton", 46, 4, 23, 62);
 		p("C. Brennan", 120, 2, 22, 60);
@@ -9851,7 +9851,7 @@ class Fifa23Service {
 		p("J. Copland", 46, 1, 17, 51);
 		p("A. Dworzak", 46, 8, 17, 50);
 
-		c("Hartlepool United", 46, "#8994AE");
+		c("Hartlepool United", 46, "#8994AD");
 		p("B. Killip", 46, 1, 26, 62);
 		p("R. Tumilty", 127, 6, 25, 60);
 		p("M. Niang", 128, 7, 22, 59);
@@ -9879,7 +9879,7 @@ class Fifa23Service {
 		p("E. Taylor", 46, 10, 19, 51);
 		p("L. Stephenson", 46, 2, 16, 49);
 
-		c("Carlisle United", 46, "#313649");
+		c("Carlisle United", 46, "#32374A");
 		p("T. Holý", 40, 1, 30, 62);
 		p("F. Back", 46, 6, 19, 60);
 		p("M. Feeney", 46, 2, 23, 62);
@@ -9909,7 +9909,7 @@ class Fifa23Service {
 		p("B. Dickenson", 46, 9, 29, 61);
 		p("J. Dixon", 46, 8, 21, 51);
 
-		c("Sutton United", 46, "#BC9A3E");
+		c("Sutton United", 46, "#BB993F");
 		p("J. Rose", 46, 1, 27, 60);
 		p("E. Boldewijn", 105, 9, 29, 62);
 		p("J. Kizzi", 46, 4, 29, 62);
@@ -9939,7 +9939,7 @@ class Fifa23Service {
 		p("J. Barden", 46, 4, 29, 60);
 		p("C. Rowe", 46, 2, 26, 57);
 
-		c("Rochdale", 46, "#384967");
+		c("Rochdale", 46, "#394B69");
 		p("R. O'Donnell", 46, 1, 33, 62);
 		p("J. Keohane", 120, 5, 31, 62);
 		p("S. Graham", 46, 2, 21, 60);
@@ -9967,7 +9967,7 @@ class Fifa23Service {
 		p("J. Scanlon", 46, 8, 18, 52);
 		p("C. Slicker", 127, 1, 19, 52);
 
-		c("Wrexham", 46, "#BD2737");
+		c("Wrexham", 46, "#BD2938");
 		p("M. Howard", 46, 1, 35, 63);
 		p("A. Forde", 120, 6, 28, 62);
 		p("A. Hayden", 46, 2, 25, 65);
@@ -9997,7 +9997,7 @@ class Fifa23Service {
 		p("K. Evans", 158, 11, 18, 50);
 		p("D. Davies", 158, 5, 17, 52);
 
-		c("HJK", 52, "#9E9AAF");
+		c("HJK", 52, "#9E99AE");
 		p("C. Hazard", 109, 1, 24, 65);
 		p("A. Hoskonen", 52, 2, 25, 64);
 		p("M. Tenho", 52, 2, 27, 66);
@@ -10027,7 +10027,7 @@ class Fifa23Service {
 		p("R. Riski", 52, 15, 30, 66);
 		p("V. Moren", 52, 2, 31, 64);
 
-		c("Paris Saint Germain", 53, "#645F6C", "PSG");
+		c("Paris Saint Germain", 53, "#645F6D", "PSG");
 		p("G. Donnarumma", 77, 1, 23, 88);
 		p("A. Hakimi", 102, 4, 23, 84);
 		p("Sergio Ramos", 137, 2, 36, 84);
@@ -10054,7 +10054,7 @@ class Fifa23Service {
 		p("Sergio Rico", 137, 1, 28, 75);
 		p("A. Letellier", 53, 1, 31, 68);
 
-		c("Olympique Lyonnais", 53, "#C1B6B8", "Lyon");
+		c("Olympique Lyonnais", 53, "#C0B5B7", "Lyon");
 		p("A. Lopes", 118, 1, 31, 82);
 		p("M. Gusto", 53, 4, 19, 75);
 		p("J. Boateng", 57, 2, 33, 78);
@@ -10087,7 +10087,7 @@ class Fifa23Service {
 		p("Y. Soumaré", 53, 13, 22, 63);
 		p("P. Mboup", 128, 12, 19, 63);
 
-		c("Monaco", 53, "#BE7C85");
+		c("Monaco", 53, "#BD7D86");
 		p("A. Nübel", 57, 1, 25, 78);
 		p("Vanderson", 18, 4, 21, 76);
 		p("A. Disasi", 53, 2, 24, 78);
@@ -10116,7 +10116,7 @@ class Fifa23Service {
 		p("F. Lemaréchal", 53, 8, 18, 63);
 		p("Y. Lienard", 53, 1, 19, 60);
 
-		c("Nice", 53, "#4E3030");
+		c("Nice", 53, "#4E3130");
 		p("K. Schmeichel", 41, 1, 35, 83);
 		p("Y. Atal", 3, 4, 26, 76);
 		p("J. Todibo", 53, 2, 22, 79);
@@ -10146,7 +10146,7 @@ class Fifa23Service {
 		p("B. Bouanani", 53, 10, 17, 65);
 		p("T. Boulhendi", 3, 1, 21, 63);
 
-		c("Rennes", 53, "#C23235");
+		c("Rennes", 53, "#C23437");
 		p("S. Mandanda", 53, 1, 37, 79);
 		p("H. Traoré", 94, 4, 30, 80);
 		p("J. Rodon", 158, 2, 24, 74);
@@ -10176,7 +10176,7 @@ class Fifa23Service {
 		p("W. Omari", 53, 2, 22, 75);
 		p("R. Bourlès", 53, 8, 19, 61);
 
-		c("Olympique de Marseille", 53, "#CDCCCE", "Marseille");
+		c("Olympique de Marseille", 53, "#CBCBCD", "Marseille");
 		p("Pau López", 137, 1, 27, 80);
 		p("C. Mbemba", 33, 2, 27, 80);
 		p("L. Balerdi", 7, 2, 23, 75);
@@ -10211,7 +10211,7 @@ class Fifa23Service {
 		p("A. Caprice", 53, 4, 17, 61);
 		p("A. Harit", 102, 9, 25, 77);
 
-		c("LOSC Lille", 53, "#A43F48");
+		c("LOSC Lille", 53, "#A34149");
 		p("L. Chevalier", 53, 1, 20, 71);
 		p("B. Diakité", 53, 4, 21, 71);
 		p("José Fonte", 118, 2, 38, 80);
@@ -10269,7 +10269,7 @@ class Fifa23Service {
 		p("T. Sainte-Luce", 53, 3, 23, 67);
 		p("D. Bertaud", 53, 1, 24, 74);
 
-		c("Strasbourg", 53, "#405495");
+		c("Strasbourg", 53, "#415595");
 		p("M. Sels", 13, 1, 30, 79);
 		p("C. Dagba", 53, 4, 23, 74);
 		p("G. Nyamsi", 53, 2, 25, 75);
@@ -10296,7 +10296,7 @@ class Fifa23Service {
 		p("A. Pierre", 67, 1, 21, 58);
 		p("R. Risser", 53, 1, 17, 60);
 
-		c("Lens", 53, "#D0902E");
+		c("Lens", 53, "#CF902E");
 		p("B. Samba", 32, 1, 28, 75);
 		p("P. Frankowski", 117, 5, 27, 76);
 		p("J. Gradit", 53, 2, 29, 75);
@@ -10323,7 +10323,7 @@ class Fifa23Service {
 		p("J. Cabot", 53, 10, 28, 75);
 		p("W. Faríñez", 156, 1, 24, 73);
 
-		c("Nantes", 53, "#DBBE39");
+		c("Nantes", 53, "#D9BD39");
 		p("A. Lafont", 53, 1, 23, 80);
 		p("F. Centonze", 53, 6, 26, 75);
 		p("Andrei Girotto", 18, 2, 30, 77);
@@ -10354,7 +10354,7 @@ class Fifa23Service {
 		p("S. Yepie Yepie", 53, 9, 19, 59);
 		p("J. Diaz", 53, 2, 18, 55);
 
-		c("Stade Brestois 29", 53, "#C8373B");
+		c("Stade Brestois 29", 53, "#C7383C");
 		p("M. Bizot", 105, 1, 31, 76);
 		p("N. Fadiga", 128, 4, 22, 68);
 		p("B. Chardonnet", 53, 2, 27, 74);
@@ -10381,7 +10381,7 @@ class Fifa23Service {
 		p("J. Escartin", 53, 2, 19, 62);
 		p("A. Camblan", 53, 12, 19, 62);
 
-		c("Toulouse", 53, "#BCB9C1");
+		c("Toulouse", 53, "#BBB8C0");
 		p("M. Dupé", 53, 1, 29, 75);
 		p("M. Desler", 41, 4, 27, 71);
 		p("A. Rouault", 53, 2, 21, 73);
@@ -10410,7 +10410,7 @@ class Fifa23Service {
 		p("G. Restes", 53, 1, 17, 60);
 		p("R. Healey", 46, 15, 27, 73);
 
-		c("Troyes", 53, "#3251B0");
+		c("Troyes", 53, "#3252AF");
 		p("G. Gallon", 53, 1, 29, 74);
 		p("T. Baldé", 53, 4, 20, 69);
 		p("J. Porozo", 43, 2, 21, 69);
@@ -10443,7 +10443,7 @@ class Fifa23Service {
 		p("T. Zoukrou", 53, 2, 19, 59);
 		p("A. Ahmed Fatah", 140, 9, 18, 58);
 
-		c("Stade de Reims", 53, "#AF4E4E");
+		c("Stade de Reims", 53, "#AE5050");
 		p("Y. Diouf", 53, 1, 22, 71);
 		p("M. Busi", 13, 4, 22, 70);
 		p("A. Gravillon", 53, 2, 24, 74);
@@ -10475,7 +10475,7 @@ class Fifa23Service {
 		p("Y. Dukuly", 9, 9, 19, 55);
 		p("I. Diakité", 64, 4, 18, 65);
 
-		c("Angers SCO", 53, "#535150");
+		c("Angers SCO", 53, "#545352");
 		p("P. Bernardoni", 53, 1, 25, 75);
 		p("Y. Valery", 53, 4, 23, 70);
 		p("C. Hountondji", 14, 2, 28, 73);
@@ -10508,7 +10508,7 @@ class Fifa23Service {
 		p("Z. Ould Khaled", 53, 7, 22, 64);
 		p("L. Diony", 53, 15, 29, 72);
 
-		c("Auxerre", 53, "#BFC2C8");
+		c("Auxerre", 53, "#BEC1C6");
 		p("B. Costil", 53, 1, 34, 74);
 		p("P. Joly", 53, 4, 22, 61);
 		p("Jubal", 18, 2, 28, 73);
@@ -10540,7 +10540,7 @@ class Fifa23Service {
 		p("M. Ben Fredj", 147, 15, 22, 58);
 		p("S. Laiton", 53, 1, 22, 64);
 
-		c("Lorient", 53, "#C3652C");
+		c("Lorient", 53, "#C1662E");
 		p("Y. Mvogo", 141, 1, 28, 76);
 		p("G. Kalulu", 33, 4, 24, 70);
 		p("J. Laporte", 53, 2, 28, 74);
@@ -10569,7 +10569,7 @@ class Fifa23Service {
 		p("K. Nagera", 53, 15, 20, 63);
 		p("T. Bartouche-Selbonne", 53, 1, 25, 57);
 
-		c("Clermont", 53, "#932840");
+		c("Clermont", 53, "#932941");
 		p("M. Diaw", 128, 1, 29, 69);
 		p("J. Bela", 5, 9, 29, 70);
 		p("A. Seidu", 58, 2, 22, 68);
@@ -10598,7 +10598,7 @@ class Fifa23Service {
 		p("B. Diallo", 53, 3, 21, 56);
 		p("S. Cissé", 53, 2, 19, 56);
 
-		c("Ajaccio", 53, "#A77E81");
+		c("Ajaccio", 53, "#A67E81");
 		p("B. Leroy", 53, 1, 33, 73);
 		p("M. Alphonse", 53, 4, 32, 70);
 		p("O. Gonzalez", 23, 2, 24, 71);
@@ -10629,7 +10629,7 @@ class Fifa23Service {
 		p("A. Ndiaye", 53, 10, 31, 62);
 		p("G. Quilichini", 53, 1, 19, 56);
 
-		c("Saint-Étienne", 53, "#2B7D5C");
+		c("Saint-Étienne", 53, "#2D7E5E");
 		p("E. Green", 46, 1, 21, 72);
 		p("Sergi Palencia", 137, 4, 26, 70);
 		p("A. Briançon", 53, 2, 27, 71);
@@ -10661,7 +10661,7 @@ class Fifa23Service {
 		p("N. Raveyre", 53, 1, 17, 56);
 		p("L. Calodat", 53, 3, 20, 62);
 
-		c("Bordeaux", 53, "#4F5055");
+		c("Bordeaux", 53, "#505156");
 		p("G. Poussin", 53, 1, 23, 68);
 		p("C. Michelin", 53, 4, 25, 71);
 		p("S. Gregersen", 110, 2, 27, 71);
@@ -10689,7 +10689,7 @@ class Fifa23Service {
 		p("J. Vetro", 53, 15, 18, 56);
 		p("D. Rouyard", 53, 1, 22, 61);
 
-		c("Metz", 53, "#5D2929");
+		c("Metz", 53, "#5E292A");
 		p("A. Oukidja", 3, 1, 33, 72);
 		p("K. Kouao", 35, 4, 24, 68);
 		p("B. Kouyaté", 94, 2, 25, 71);
@@ -10717,7 +10717,7 @@ class Fifa23Service {
 		p("M. Caillard", 53, 1, 28, 68);
 		p("L. Raillot", 53, 7, 18, 57);
 
-		c("Paris", 53, "#2A2E38");
+		c("Paris", 53, "#2B2F38");
 		p("I. Filipović", 36, 1, 27, 66);
 		p("S. Chergui", 53, 2, 23, 67);
 		p("K. Dabila", 35, 2, 25, 68);
@@ -10745,7 +10745,7 @@ class Fifa23Service {
 		p("O. Nkambadio", 53, 1, 19, 58);
 		p("T. Gardies", 53, 1, 21, 53);
 
-		c("Caen", 53, "#574B68");
+		c("Caen", 53, "#594D6A");
 		p("A. Mandrea", 3, 1, 25, 70);
 		p("H. Vandermersch", 53, 6, 23, 68);
 		p("E. Ntim", 58, 2, 26, 66);
@@ -10776,7 +10776,7 @@ class Fifa23Service {
 		p("I. Mohamed", 31, 7, 21, 55);
 		p("S. Ewange", 23, 4, 21, 57);
 
-		c("Sochaux", 53, "#ACA941");
+		c("Sochaux", 53, "#AAA841");
 		p("M. Prévot", 53, 1, 25, 70);
 		p("J. Faussurier", 53, 4, 35, 71);
 		p("I. Aaneba", 53, 2, 23, 67);
@@ -10807,7 +10807,7 @@ class Fifa23Service {
 		p("S. Alvero", 53, 7, 20, 54);
 		p("K. Agro", 53, 1, 20, 53);
 
-		c("Dijon", 53, "#AB3C41");
+		c("Dijon", 53, "#A93D42");
 		p("B. Reynet", 53, 1, 31, 70);
 		p("C. Traoré", 94, 4, 27, 67);
 		p("S. Coulibaly", 94, 2, 27, 69);
@@ -10839,7 +10839,7 @@ class Fifa23Service {
 		p("R. El Khamali", 53, 11, 20, 56);
 		p("I. Camara", 128, 12, 24, 58);
 
-		c("Amiens SC", 53, "#C0BDBE");
+		c("Amiens SC", 53, "#BFBCBE");
 		p("R. Gurtner", 53, 1, 35, 69);
 		p("A. Leautey", 53, 13, 26, 69);
 		p("F. Mendy", 128, 2, 21, 65);
@@ -10866,7 +10866,7 @@ class Fifa23Service {
 		p("M. Bariki", 53, 13, 22, 53);
 		p("M. Rongier", 53, 1, 20, 55);
 
-		c("Guingamp", 53, "#A82628");
+		c("Guingamp", 53, "#A72628");
 		p("E. Basilio", 53, 1, 27, 67);
 		p("V. Manceau", 53, 2, 32, 73);
 		p("D. Gomis", 128, 2, 27, 62);
@@ -10894,7 +10894,7 @@ class Fifa23Service {
 		p("M. Baaloudj", 3, 15, 21, 53);
 		p("M. Sitti", 53, 7, 22, 61);
 
-		c("Valenciennes", 53, "#C6394C");
+		c("Valenciennes", 53, "#C53B4D");
 		p("G. Larsonneur", 53, 1, 25, 73);
 		p("A. Linguet", 53, 6, 22, 64);
 		p("M. Debuchy", 53, 2, 36, 70);
@@ -10923,7 +10923,7 @@ class Fifa23Service {
 		p("A. Penin", 53, 4, 19, 57);
 		p("L. Nomel", 53, 10, 24, 57);
 
-		c("Nîmes", 53, "#CD3844");
+		c("Nîmes", 53, "#CC3C47");
 		p("A. Maraval", 53, 1, 28, 67);
 		p("T. Vargas", 53, 6, 22, 67);
 		p("M. de Gevigney", 53, 2, 22, 66);
@@ -10949,7 +10949,7 @@ class Fifa23Service {
 		p("M. Doucouré", 94, 15, 22, 64);
 		p("A. Nazih", 53, 1, 20, 62);
 
-		c("Grenoble Foot 38", 53, "#3C609B");
+		c("Grenoble Foot 38", 53, "#3D609A");
 		p("B. Maubleu", 53, 1, 32, 69);
 		p("J. Gaspar", 53, 4, 25, 67);
 		p("M. Diarra", 128, 2, 24, 67);
@@ -10981,7 +10981,7 @@ class Fifa23Service {
 		p("Z. Labyad", 53, 15, 22, 56);
 		p("O. Boissy", 128, 15, 23, 59);
 
-		c("Le Havre", 53, "#58768B");
+		c("Le Havre", 53, "#59768B");
 		p("A. Desmas", 53, 1, 28, 69);
 		p("O. El Hajjam", 102, 4, 31, 71);
 		p("A. Sangante", 128, 2, 20, 64);
@@ -11012,7 +11012,7 @@ class Fifa23Service {
 		p("É. Logbo", 53, 15, 18, 53);
 		p("S. Soumah", 64, 15, 18, 54);
 
-		c("Niort", 53, "#365494");
+		c("Niort", 53, "#385595");
 		p("M. Michel", 53, 1, 30, 69);
 		p("J. Moutachy", 53, 4, 24, 64);
 		p("I. Conté", 64, 2, 26, 64);
@@ -11042,7 +11042,7 @@ class Fifa23Service {
 		p("T. Sako", 53, 2, 19, 54);
 		p("P. Endong Bilias", 23, 2, 19, 55);
 
-		c("Laval", 53, "#C2683D");
+		c("Laval", 53, "#C1693F");
 		p("A. Sauvage", 53, 1, 30, 66);
 		p("A. Gonçalves", 53, 6, 36, 67);
 		p("Y. Baldé", 53, 2, 29, 64);
@@ -11072,7 +11072,7 @@ class Fifa23Service {
 		p("H. Mouali", 3, 3, 24, 62);
 		p("Junior Mendes", 137, 15, 20, 56);
 
-		c("Rodez", 53, "#8A2E29");
+		c("Rodez", 53, "#8A2F29");
 		p("L. Mpasi", 33, 1, 27, 66);
 		p("M. Senaya", 53, 6, 21, 61);
 		p("É. Vandenabeele", 53, 2, 30, 66);
@@ -11104,7 +11104,7 @@ class Fifa23Service {
 		p("T. Secchi", 53, 1, 25, 58);
 		p("W. Younoussa", 23, 7, 20, 63);
 
-		c("Quevilly Rouen", 53, "#D22E2E");
+		c("Quevilly Rouen", 53, "#D12F2F");
 		p("N. Lemaître", 53, 1, 25, 66);
 		p("A. Sissoko", 53, 4, 25, 67);
 		p("S. Ben Youssef", 147, 2, 33, 66);
@@ -11133,7 +11133,7 @@ class Fifa23Service {
 		p("R. Boulais", 53, 1, 20, 53);
 		p("S. El Khiar", 53, 11, 21, 54);
 
-		c("Pau", 53, "#AD9B31");
+		c("Pau", 53, "#AB9A32");
 		p("A. Olliero", 53, 1, 26, 67);
 		p("E. Koffi", 35, 4, 27, 67);
 		p("N. Sow", 53, 2, 23, 60);
@@ -11161,7 +11161,7 @@ class Fifa23Service {
 		p("Q. Galvez-Diarra", 53, 1, 20, 57);
 		p("M. Ros", 53, 4, 20, 58);
 
-		c("Annecy", 53, "#692429");
+		c("Annecy", 53, "#69252A");
 		p("F. Escales", 53, 1, 26, 65);
 		p("F. Lajugie", 53, 2, 26, 62);
 		p("K. Mouanga", 53, 2, 21, 61);
@@ -11190,7 +11190,7 @@ class Fifa23Service {
 		p("K. Farade", 53, 15, 26, 62);
 		p("A. Phliponeau", 53, 7, 22, 63);
 
-		c("Bastia", 53, "#3E487A");
+		c("Bastia", 53, "#40497B");
 		p("J. Placide", 67, 1, 34, 64);
 		p("K. Van Den Kerkhof", 53, 6, 26, 64);
 		p("D. Guidi", 53, 2, 26, 65);
@@ -11217,7 +11217,7 @@ class Fifa23Service {
 		p("I. Dramé", 53, 2, 23, 59);
 		p("M. Camara", 128, 8, 19, 60);
 
-		c("FC Bayern München", 57, "#C43637", "Bayern München");
+		c("FC Bayern München", 57, "#C33839", "Bayern München");
 		p("S. Ulreich", 57, 1, 33, 75);
 		p("B. Pavard", 53, 4, 26, 80);
 		p("D. Upamecano", 53, 2, 23, 82);
@@ -11244,7 +11244,7 @@ class Fifa23Service {
 		p("G. Marusic", 36, 2, 19, 59);
 		p("A. Ibrahimovic", 57, 11, 16, 59);
 
-		c("Borussia Dortmund", 57, "#A18A27", "B. Dortmund");
+		c("Borussia Dortmund", 57, "#A08A29", "B. Dortmund");
 		p("G. Kobel", 141, 1, 24, 84);
 		p("T. Meunier", 13, 4, 30, 78);
 		p("N. Süle", 57, 2, 26, 85);
@@ -11279,7 +11279,7 @@ class Fifa23Service {
 		p("L. Semić", 57, 4, 18, 61);
 		p("N. Collins", 57, 2, 18, 61);
 
-		c("RB Leipzig", 57, "#D5BEBD");
+		c("RB Leipzig", 57, "#D4BEBD");
 		p("J. Blaswich", 57, 1, 31, 73);
 		p("M. Simakan", 53, 2, 22, 78);
 		p("W. Orban", 70, 2, 29, 82);
@@ -11306,7 +11306,7 @@ class Fifa23Service {
 		p("S. Ba", 57, 3, 18, 60);
 		p("Ø. Nyland", 110, 1, 31, 69);
 
-		c("Bayer 04 Leverkusen", 57, "#A43541", "Bayer Leverkusen");
+		c("Bayer 04 Leverkusen", 57, "#A33641", "Bayer Leverkusen");
 		p("L. Hrádecký", 52, 1, 32, 82);
 		p("E. Tapsoba", 20, 2, 23, 81);
 		p("J. Tah", 57, 2, 26, 81);
@@ -11337,7 +11337,7 @@ class Fifa23Service {
 		p("A. Azhil", 57, 7, 21, 64);
 		p("M. Neutgens", 57, 1, 18, 57);
 
-		c("Borussia Mönchengladbach", 57, "#AEB6B1", "B. M'gladbach");
+		c("Borussia Mönchengladbach", 57, "#AEB5B1", "B. M'gladbach");
 		p("Y. Sommer", 141, 1, 33, 86);
 		p("J. Scally", 152, 4, 19, 72);
 		p("M. Friedrich", 57, 2, 26, 77);
@@ -11372,7 +11372,7 @@ class Fifa23Service {
 		p("F. Dimmer", 57, 1, 17, 60);
 		p("M. Brüll", 57, 1, 19, 60);
 
-		c("Eintracht Frankfurt", 57, "#C7C6C5");
+		c("Eintracht Frankfurt", 57, "#C6C5C4");
 		p("K. Trapp", 57, 1, 31, 86);
 		p("J. Dina Ebimbe", 53, 10, 21, 72);
 		p("Tuta", 18, 2, 22, 77);
@@ -11406,7 +11406,7 @@ class Fifa23Service {
 		p("J. Schröder", 57, 5, 19, 57);
 		p("Nacho Ferri", 137, 15, 17, 61);
 
-		c("VfL Wolfsburg", 57, "#75AF5B");
+		c("VfL Wolfsburg", 57, "#75AE5C");
 		p("K. Casteels", 13, 1, 30, 84);
 		p("R. Baku", 57, 4, 24, 79);
 		p("S. Bornauw", 13, 2, 23, 75);
@@ -11437,7 +11437,7 @@ class Fifa23Service {
 		p("N. Klinger", 57, 1, 26, 62);
 		p("L. Ambros", 40, 11, 18, 60);
 
-		c("SC Freiburg", 57, "#A84C4F");
+		c("SC Freiburg", 57, "#A74D50");
 		p("M. Flekken", 105, 1, 29, 80);
 		p("L. Kübler", 57, 4, 29, 74);
 		p("M. Ginter", 57, 2, 28, 82);
@@ -11467,7 +11467,7 @@ class Fifa23Service {
 		p("R. Wagner", 57, 8, 18, 64);
 		p("N. Atubolu", 57, 1, 20, 65);
 
-		c("TSG Hoffenheim", 57, "#2F5296");
+		c("TSG Hoffenheim", 57, "#325497");
 		p("O. Baumann", 57, 1, 32, 83);
 		p("P. Kadeřábek", 40, 6, 30, 77);
 		p("O. Kabak", 148, 2, 22, 74);
@@ -11501,7 +11501,7 @@ class Fifa23Service {
 		p("N. König", 57, 2, 19, 59);
 		p("J. Quarshie", 57, 2, 17, 60);
 
-		c("FC Augsburg", 57, "#A45A58");
+		c("FC Augsburg", 57, "#A35B59");
 		p("R. Gikiewicz", 117, 1, 34, 77);
 		p("R. Gumny", 117, 4, 24, 72);
 		p("M. Bauer", 57, 2, 22, 72);
@@ -11533,7 +11533,7 @@ class Fifa23Service {
 		p("A. Zehnter", 57, 3, 17, 60);
 		p("Cheon Seong Hoon", 84, 15, 21, 58);
 
-		c("FSV Mainz 05", 57, "#AE2C37");
+		c("FSV Mainz 05", 57, "#AE2D38");
 		p("R. Zentner", 57, 1, 27, 76);
 		p("S. Widmer", 141, 6, 29, 77);
 		p("S. Bell", 57, 2, 30, 75);
@@ -11564,7 +11564,7 @@ class Fifa23Service {
 		p("P. Schulz", 57, 7, 17, 58);
 		p("B. Gruda", 57, 15, 18, 59);
 
-		c("FC Köln", 57, "#C67677");
+		c("FC Köln", 57, "#C47778");
 		p("M. Schwäbe", 57, 1, 27, 77);
 		p("B. Schmitz", 57, 4, 27, 75);
 		p("L. Kilian", 57, 2, 22, 74);
@@ -11598,7 +11598,7 @@ class Fifa23Service {
 		p("J. Schwirten", 57, 8, 20, 58);
 		p("M. Schmid", 57, 15, 19, 60);
 
-		c("VfB Stuttgart", 57, "#DAC5C7");
+		c("VfB Stuttgart", 57, "#D9C6C7");
 		p("F. Müller", 57, 1, 24, 75);
 		p("Silas", 33, 10, 23, 75);
 		p("K. Mavropanos", 60, 2, 24, 78);
@@ -11630,7 +11630,7 @@ class Fifa23Service {
 		p("N. Glaus", 141, 1, 20, 56);
 		p("M. Hoppe", 57, 4, 18, 58);
 
-		c("FC Union Berlin", 57, "#C76A6A");
+		c("FC Union Berlin", 57, "#C66A6A");
 		p("F. Rønnow", 41, 1, 29, 76);
 		p("C. Trimmel", 10, 6, 35, 77);
 		p("P. Jaeckel", 57, 2, 23, 74);
@@ -11663,7 +11663,7 @@ class Fifa23Service {
 		p("A. Kemlein", 57, 7, 17, 58);
 		p("M. Bruns", 57, 2, 18, 57);
 
-		c("Hertha BSC", 57, "#8B90A1");
+		c("Hertha BSC", 57, "#8B8FA0");
 		p("O. Christensen", 41, 1, 23, 73);
 		p("J. Kenny", 46, 4, 25, 74);
 		p("A. Rogel", 153, 2, 24, 71);
@@ -11698,7 +11698,7 @@ class Fifa23Service {
 		p("R. Jarstein", 110, 1, 37, 72);
 		p("V. Darida", 40, 8, 31, 74);
 
-		c("Schalke 04", 57, "#313D75");
+		c("Schalke 04", 57, "#323E75");
 		p("A. Schwolow", 57, 1, 30, 75);
 		p("C. Brunner", 141, 4, 28, 74);
 		p("M. Yoshida", 79, 2, 33, 72);
@@ -11731,7 +11731,7 @@ class Fifa23Service {
 		p("J. Heekeren", 57, 1, 21, 63);
 		p("J. Schell", 57, 2, 22, 60);
 
-		c("Werder Bremen", 57, "#779F90");
+		c("Werder Bremen", 57, "#789F90");
 		p("J. Pavlenka", 40, 1, 30, 78);
 		p("M. Weiser", 57, 6, 28, 74);
 		p("A. Pieper", 57, 2, 24, 75);
@@ -11761,7 +11761,7 @@ class Fifa23Service {
 		p("M. Backhaus", 57, 1, 18, 58);
 		p("L. Lord", 57, 1, 18, 58);
 
-		c("VfL Bochum 1848", 57, "#26415E");
+		c("VfL Bochum 1848", 57, "#27425F");
 		p("M. Riemann", 57, 1, 33, 79);
 		p("C. Gamboa", 34, 4, 32, 72);
 		p("E. Mašović", 129, 2, 23, 71);
@@ -11792,7 +11792,7 @@ class Fifa23Service {
 		p("M. Johansson", 140, 1, 23, 66);
 		p("P. Grave", 57, 1, 21, 55);
 
-		c("Hamburger SV", 57, "#AEB2B7");
+		c("Hamburger SV", 57, "#ADB2B6");
 		p("D. Heuer Fernandes", 118, 1, 29, 74);
 		p("W. Mikelbrencis", 53, 4, 18, 65);
 		p("J. David", 57, 2, 22, 67);
@@ -11821,7 +11821,7 @@ class Fifa23Service {
 		p("O. Megeed", 44, 12, 16, 58);
 		p("E. Krahn", 57, 7, 18, 59);
 
-		c("Fortuna Düsseldorf", 57, "#932F37");
+		c("Fortuna Düsseldorf", 57, "#943139");
 		p("F. Kastenmeier", 57, 1, 25, 69);
 		p("M. Zimmermann", 57, 4, 30, 71);
 		p("A. Hoffmann", 57, 2, 29, 72);
@@ -11853,7 +11853,7 @@ class Fifa23Service {
 		p("D. Savic", 57, 4, 17, 60);
 		p("M. Mansfeld", 57, 15, 21, 57);
 
-		c("DSC Arminia Bielefeld", 57, "#354D7C", "Arminia Bielefeld");
+		c("DSC Arminia Bielefeld", 57, "#364E7C", "Arminia Bielefeld");
 		p("M. Fraisl", 10, 1, 29, 71);
 		p("L. Klünter", 57, 4, 26, 71);
 		p("O. Hüsing", 57, 2, 29, 72);
@@ -11881,7 +11881,7 @@ class Fifa23Service {
 		p("B. Kanuric", 10, 8, 19, 58);
 		p("G. Bello", 152, 3, 20, 67);
 
-		c("Darmstadt 98", 57, "#324873");
+		c("Darmstadt 98", 57, "#344A74");
 		p("M. Schuhen", 57, 1, 29, 73);
 		p("P. Pfeiffer", 57, 2, 22, 72);
 		p("J. Müller", 57, 2, 28, 69);
@@ -11940,7 +11940,7 @@ class Fifa23Service {
 		p("M. Schulze", 57, 1, 21, 59);
 		p("T. Müller", 57, 2, 27, 66);
 
-		c("Sandhausen", 57, "#C6C5C4");
+		c("Sandhausen", 57, "#C5C4C3");
 		p("P. Drewes", 57, 1, 29, 72);
 		p("B. Ajdini", 85, 4, 29, 68);
 		p("D. Dumić", 17, 2, 30, 69);
@@ -11972,7 +11972,7 @@ class Fifa23Service {
 		p("B. Schieber", 57, 2, 18, 52);
 		p("T. Königsmann", 57, 1, 25, 64);
 
-		c("Heidenheim", 57, "#933954");
+		c("Heidenheim", 57, "#933A55");
 		p("K. Müller", 57, 1, 31, 71);
 		p("M. Busch", 57, 4, 27, 71);
 		p("P. Mainka", 57, 2, 27, 72);
@@ -12034,7 +12034,7 @@ class Fifa23Service {
 		p("A. Pululu", 5, 9, 23, 68);
 		p("N. Žebrauskas", 91, 4, 20, 55);
 
-		c("Nürnberg", 57, "#533235");
+		c("Nürnberg", 57, "#543337");
 		p("C. Mathenia", 57, 1, 30, 72);
 		p("J. Gyamerah", 57, 4, 27, 69);
 		p("C. Schindler", 57, 2, 32, 72);
@@ -12066,7 +12066,7 @@ class Fifa23Service {
 		p("B. Kayo", 152, 8, 19, 62);
 		p("J. Nischalke", 57, 15, 19, 60);
 
-		c("Hannover 96", 57, "#B03E40");
+		c("Hannover 96", 57, "#B04043");
 		p("R. Zieler", 57, 1, 33, 74);
 		p("S. Muroya", 79, 4, 28, 69);
 		p("P. Neumann", 57, 2, 24, 70);
@@ -12097,7 +12097,7 @@ class Fifa23Service {
 		p("F. Evina", 23, 9, 21, 64);
 		p("T. Momuluh", 57, 13, 20, 58);
 
-		c("St. Pauli", 57, "#4E433A");
+		c("St. Pauli", 57, "#4F443B");
 		p("N. Vasilj", 17, 1, 26, 70);
 		p("M. Saliakas", 60, 4, 25, 71);
 		p("A. Dźwigała", 117, 2, 26, 67);
@@ -12129,7 +12129,7 @@ class Fifa23Service {
 		p("N. Jessen", 57, 8, 18, 57);
 		p("N. Kukanda", 57, 12, 19, 57);
 
-		c("Hansa Rostock", 57, "#31466E");
+		c("Hansa Rostock", 57, "#32486F");
 		p("M. Kolke", 57, 1, 31, 72);
 		p("N. Neidhart", 57, 4, 27, 68);
 		p("R. Malone", 152, 2, 29, 68);
@@ -12161,7 +12161,7 @@ class Fifa23Service {
 		p("M. Hagemoser", 57, 1, 19, 58);
 		p("T. Meißner", 57, 2, 31, 66);
 
-		c("Kaiserslautern", 57, "#A93133");
+		c("Kaiserslautern", 57, "#A93234");
 		p("A. Luthe", 57, 1, 35, 74);
 		p("E. Durm", 57, 4, 30, 71);
 		p("B. Tomiak", 57, 2, 23, 69);
@@ -12193,7 +12193,7 @@ class Fifa23Service {
 		p("E. Wohlgemuth", 57, 1, 20, 52);
 		p("R. Klingenburg", 57, 7, 28, 66);
 
-		c("Jahn Regensburg", 57, "#D2C4BF");
+		c("Jahn Regensburg", 57, "#D1C3BD");
 		p("D. Stojanović", 108, 1, 28, 68);
 		p("K. Faber", 57, 4, 24, 66);
 		p("J. Elvedi", 141, 2, 25, 68);
@@ -12222,7 +12222,7 @@ class Fifa23Service {
 		p("A. Yıldırım", 57, 10, 27, 66);
 		p("D. Vizinger", 36, 15, 24, 67);
 
-		c("Karlsruher SC", 57, "#2D427C");
+		c("Karlsruher SC", 57, "#2F447D");
 		p("M. Gersbeck", 57, 1, 27, 71);
 		p("S. Jung", 57, 4, 32, 68);
 		p("S. Ambrosius", 58, 2, 23, 69);
@@ -12254,7 +12254,7 @@ class Fifa23Service {
 		p("L. Jensen", 57, 8, 25, 64);
 		p("L. Bolay", 57, 3, 19, 55);
 
-		c("Holstein Kiel", 57, "#5F6389");
+		c("Holstein Kiel", 57, "#616489");
 		p("T. Dähne", 57, 1, 28, 70);
 		p("M. Schulz", 57, 7, 27, 68);
 		p("H. Wahl", 57, 2, 28, 70);
@@ -12286,7 +12286,7 @@ class Fifa23Service {
 		p("T. Weiner", 57, 1, 23, 60);
 		p("L. Wolf", 57, 11, 20, 59);
 
-		c("Eintracht Braunschweig", 57, "#9F9851", "E. Braunschweig");
+		c("Eintracht Braunschweig", 57, "#9F9752", "E. Braunschweig");
 		p("J. Fejzić", 17, 1, 36, 69);
 		p("J. Marx", 57, 6, 27, 67);
 		p("N. De Medina", 13, 2, 24, 67);
@@ -12314,7 +12314,7 @@ class Fifa23Service {
 		p("L. Schulze-Kökelsum", 57, 1, 20, 54);
 		p("N. Kijewski", 57, 5, 26, 65);
 
-		c("Magdeburg", 57, "#4A75B7");
+		c("Magdeburg", 57, "#4A75B6");
 		p("D. Reimann", 57, 1, 25, 68);
 		p("H. Bockhorn", 149, 4, 27, 68);
 		p("C. Piccini", 77, 2, 29, 72);
@@ -12346,7 +12346,7 @@ class Fifa23Service {
 		p("M. Cacutalua", 57, 2, 27, 66);
 		p("Ö. Beyaz", 148, 11, 18, 64);
 
-		c("Saarbrücken", 57, "#363A4B");
+		c("Saarbrücken", 57, "#373B4C");
 		p("D. Batz", 57, 1, 31, 69);
 		p("M. Frantz", 57, 8, 35, 65);
 		p("B. Thoelke", 57, 2, 30, 65);
@@ -12376,7 +12376,7 @@ class Fifa23Service {
 		p("L. Boeder", 57, 2, 25, 65);
 		p("T. Schwede", 57, 5, 28, 63);
 
-		c("1860 München", 57, "#BAC3CB");
+		c("1860 München", 57, "#B9C2CA");
 		p("M. Hiller", 57, 1, 25, 69);
 		p("C. Lannert", 57, 4, 24, 65);
 		p("L. Morgalla", 57, 2, 17, 64);
@@ -12406,7 +12406,7 @@ class Fifa23Service {
 		p("L. Knöferl", 57, 11, 19, 58);
 		p("K. Goden", 57, 4, 23, 62);
 
-		c("Ingolstadt", 57, "#782833");
+		c("Ingolstadt", 57, "#772933");
 		p("M. Funk", 57, 1, 26, 64);
 		p("M. Costly", 57, 4, 26, 66);
 		p("V. Musliu", 108, 2, 27, 68);
@@ -12435,7 +12435,7 @@ class Fifa23Service {
 		p("F. Keidel", 57, 8, 19, 52);
 		p("M. Neuberger", 57, 2, 22, 60);
 
-		c("Waldhof Mannheim", 57, "#2D415A", "Waldhof 07");
+		c("Waldhof Mannheim", 57, "#2F425A", "Waldhof 07");
 		p("M. Behrens", 57, 1, 25, 67);
 		p("L. Jans", 92, 4, 29, 67);
 		p("J. Riedel", 57, 2, 30, 65);
@@ -12465,7 +12465,7 @@ class Fifa23Service {
 		p("M. Lutz", 57, 2, 21, 51);
 		p("F. Butscher", 57, 8, 19, 50);
 
-		c("Dynamo Dresden", 57, "#BA8233");
+		c("Dynamo Dresden", 57, "#B88233");
 		p("S. Drljača", 57, 1, 23, 64);
 		p("M. Akoto", 58, 4, 24, 65);
 		p("C. Kammerknecht", 57, 2, 22, 64);
@@ -12495,7 +12495,7 @@ class Fifa23Service {
 		p("J. Lewald", 57, 2, 23, 64);
 		p("Park Kyu Hyun", 84, 3, 21, 60);
 
-		c("Erzgebirge Aue", 57, "#514077");
+		c("Erzgebirge Aue", 57, "#524177");
 		p("M. Männel", 57, 1, 34, 69);
 		p("A. Barylla", 57, 4, 25, 66);
 		p("A. Sorge", 57, 2, 29, 63);
@@ -12525,7 +12525,7 @@ class Fifa23Service {
 		p("E. Huth", 57, 15, 25, 64);
 		p("F. Schädlich", 57, 4, 18, 57);
 
-		c("Zwickau", 57, "#D9585C");
+		c("Zwickau", 57, "#D8595D");
 		p("M. Sprang", 57, 1, 21, 60);
 		p("N. Butzen", 57, 4, 29, 66);
 		p("R. Ziegele", 57, 2, 25, 64);
@@ -12554,7 +12554,7 @@ class Fifa23Service {
 		p("R. Assibey-Mensah", 57, 14, 22, 60);
 		p("J. Brinkies", 57, 1, 29, 67);
 
-		c("Meppen", 57, "#4365A0");
+		c("Meppen", 57, "#4567A0");
 		p("J. Kersken", 57, 1, 21, 64);
 		p("M. Ballmert", 57, 4, 28, 64);
 		p("J. Fedl", 57, 2, 23, 63);
@@ -12584,7 +12584,7 @@ class Fifa23Service {
 		p("S. Puttkammer", 57, 2, 33, 64);
 		p("L. Kugland", 57, 3, 22, 51);
 
-		c("Rot-Weiss Essen", 57, "#CDBDB9");
+		c("Rot-Weiss Essen", 57, "#CBBCB8");
 		p("J. Golz", 57, 1, 23, 63);
 		p("A. Wiegel", 57, 4, 30, 65);
 		p("D. Heber", 57, 2, 27, 64);
@@ -12614,7 +12614,7 @@ class Fifa23Service {
 		p("A. Loubongo-M'Boungou", 57, 9, 21, 60);
 		p("I. Young", 152, 9, 24, 65);
 
-		c("MSV Duisburg", 57, "#8A888F");
+		c("MSV Duisburg", 57, "#89888F");
 		p("V. Müller", 57, 1, 21, 67);
 		p("J. Bitter", 57, 4, 25, 63);
 		p("S. Mai", 57, 2, 28, 67);
@@ -12644,7 +12644,7 @@ class Fifa23Service {
 		p("G. Wild", 57, 11, 26, 60);
 		p("L. Raeder", 57, 1, 28, 63);
 
-		c("Viktoria Köln", 57, "#7B2E32");
+		c("Viktoria Köln", 57, "#7B3034");
 		p("B. Voll", 57, 1, 21, 65);
 		p("P. Koronkiewicz", 57, 4, 31, 65);
 		p("J. Siebert", 57, 2, 20, 65);
@@ -12674,7 +12674,7 @@ class Fifa23Service {
 		p("L. Marseiler", 57, 9, 25, 65);
 		p("I. Altuntas", 57, 4, 19, 56);
 
-		c("Elversberg", 57, "#B9B8B5");
+		c("Elversberg", 57, "#B7B6B4");
 		p("N. Kristof", 10, 1, 22, 64);
 		p("R. Fellhauer", 57, 4, 24, 65);
 		p("M. Correia", 118, 2, 33, 67);
@@ -12703,7 +12703,7 @@ class Fifa23Service {
 		p("E. Dacaj", 57, 8, 25, 60);
 		p("L. Dürholtz", 57, 8, 28, 62);
 
-		c("Osnabrück", 57, "#6A4A86");
+		c("Osnabrück", 57, "#6E4E88");
 		p("P. Kühn", 57, 1, 29, 67);
 		p("O. Traoré", 57, 4, 24, 64);
 		p("M. Gyamfi", 57, 2, 22, 64);
@@ -12732,7 +12732,7 @@ class Fifa23Service {
 		p("B. Šatkus", 91, 2, 21, 59);
 		p("K. Wiethaup", 57, 11, 16, 59);
 
-		c("Wehen Wiesbaden", 57, "#4B3132");
+		c("Wehen Wiesbaden", 57, "#4C3333");
 		p("F. Stritzel", 57, 1, 28, 65);
 		p("S. Mockenhaupt", 57, 2, 30, 66);
 		p("F. Carstens", 57, 2, 23, 65);
@@ -12762,7 +12762,7 @@ class Fifa23Service {
 		p("N. Elouarti", 57, 7, 17, 52);
 		p("M. Robotta", 57, 4, 17, 54);
 
-		c("Borussia Dortmund II", 57, "#A18B29", "B. Dortmund II");
+		c("Borussia Dortmund II", 57, "#A18B2A", "B. Dortmund II");
 		p("L. Unbehaun", 57, 1, 21, 65);
 		p("F. Pfanne", 57, 7, 27, 64);
 		p("N. Dams", 57, 2, 32, 65);
@@ -12789,7 +12789,7 @@ class Fifa23Service {
 		p("A. Ercan", 57, 7, 21, 57);
 		p("N. Lübcke", 57, 1, 22, 60);
 
-		c("Hallescher FC", 57, "#CA2730");
+		c("Hallescher FC", 57, "#C92932");
 		p("F. Gebhardt", 57, 1, 20, 64);
 		p("N. Kreuzer", 57, 6, 29, 67);
 		p("J. Nietfeld", 57, 2, 28, 65);
@@ -12817,7 +12817,7 @@ class Fifa23Service {
 		p("A. Rühlemann", 57, 8, 17, 51);
 		p("A. Bolyki", 70, 9, 27, 63);
 
-		c("Verl", 57, "#898484");
+		c("Verl", 57, "#898584");
 		p("N. Thiede", 57, 1, 23, 64);
 		p("N. Ochojski", 57, 4, 23, 64);
 		p("T. Paetow", 57, 2, 26, 63);
@@ -12847,7 +12847,7 @@ class Fifa23Service {
 		p("N. Zografakis", 60, 12, 22, 61);
 		p("L. Bürger", 57, 8, 22, 61);
 
-		c("VfB Oldenburg", 57, "#393C55");
+		c("VfB Oldenburg", 57, "#3A3D56");
 		p("S. Mielitz", 57, 1, 32, 64);
 		p("D. Ndure", 57, 4, 22, 63);
 		p("M. Appiah", 57, 2, 34, 63);
@@ -12877,7 +12877,7 @@ class Fifa23Service {
 		p("K. Kaissis", 57, 11, 25, 62);
 		p("C. Buchtmann", 57, 8, 30, 66);
 
-		c("Freiburg II", 57, "#A74C50");
+		c("Freiburg II", 57, "#A74D50");
 		p("N. Sauter", 57, 1, 19, 62);
 		p("M. Rosenfelder", 57, 2, 19, 63);
 		p("S. Braun-Schumacher", 57, 2, 33, 64);
@@ -12906,7 +12906,7 @@ class Fifa23Service {
 		p("A. Hoti", 85, 2, 19, 63);
 		p("N. Wagner", 57, 2, 17, 53);
 
-		c("Bayreuth", 57, "#DEB22E");
+		c("Bayreuth", 57, "#DCB12E");
 		p("S. Kolbe", 57, 1, 26, 64);
 		p("L. Hemmerich", 57, 4, 24, 64);
 		p("F. Weber", 57, 2, 27, 63);
@@ -12936,7 +12936,7 @@ class Fifa23Service {
 		p("M. Heinrich", 57, 10, 24, 62);
 		p("L. Petzold", 57, 1, 20, 55);
 
-		c("AEK Athens", 60, "#856F2C");
+		c("AEK Athens", 60, "#86702F");
 		p("G. Athanasiadis", 60, 1, 29, 74);
 		p("L. Rota", 60, 4, 24, 70);
 		p("D. Vida", 36, 2, 33, 76);
@@ -12966,7 +12966,7 @@ class Fifa23Service {
 		p("S. Zuber", 141, 9, 30, 74);
 		p("N. Eliasson", 140, 10, 26, 73);
 
-		c("Panathinaikos", 60, "#7B9283");
+		c("Panathinaikos", 60, "#7B9284");
 		p("A. Brignoli", 77, 1, 30, 75);
 		p("G. Kotsiras", 60, 4, 29, 72);
 		p("B. Schenkeveld", 105, 2, 30, 74);
@@ -12996,7 +12996,7 @@ class Fifa23Service {
 		p("A. Trouillet", 53, 8, 21, 70);
 		p("Aitor", 137, 12, 26, 75);
 
-		c("PAOK", 60, "#8B8A89");
+		c("PAOK", 60, "#8C8B8A");
 		p("D. Kotarski", 36, 1, 22, 69);
 		p("Joan Sastre", 137, 4, 25, 71);
 		p("S. Ingason", 71, 2, 28, 75);
@@ -13026,7 +13026,7 @@ class Fifa23Service {
 		p("C. Talichmanidis", 60, 1, 21, 59);
 		p("G. Michailidis", 60, 2, 22, 71);
 
-		c("Ferencváros", 70, "#8A998F");
+		c("Ferencvárosi Torna Club", 70, "#89988E");
 		p("D. Dibusz", 70, 1, 31, 74);
 		p("E. Botka", 70, 4, 27, 70);
 		p("S. Mmaee", 102, 2, 25, 71);
@@ -13054,7 +13054,7 @@ class Fifa23Service {
 		p("G. Kharaishvili", 56, 11, 25, 66);
 		p("B. Vécsei", 70, 8, 28, 69);
 
-		c("Inter", 77, "#353D5E");
+		c("Inter", 77, "#353E5E");
 		p("A. Onana", 23, 1, 26, 82);
 		p("M. Škriniar", 133, 2, 27, 86);
 		p("S. de Vrij", 105, 2, 30, 84);
@@ -13084,7 +13084,7 @@ class Fifa23Service {
 		p("V. Carboni", 7, 11, 17, 60);
 		p("Gabriel Brazão", 18, 1, 21, 65);
 
-		c("Juventus", 77, "#949393");
+		c("Juventus", 77, "#939392");
 		p("W. Szczęsny", 117, 1, 32, 86);
 		p("Danilo", 18, 4, 30, 81);
 		p("Bremer", 18, 2, 25, 83);
@@ -13117,7 +13117,7 @@ class Fifa23Service {
 		p("M. Aké", 53, 12, 21, 70);
 		p("Kaio Jorge", 18, 15, 20, 71);
 
-		c("Milan", 77, "#542B2A");
+		c("Milan", 77, "#542C2C");
 		p("C. Tătărușanu", 121, 1, 36, 76);
 		p("P. Kalulu", 53, 2, 22, 78);
 		p("M. Gabbia", 77, 2, 22, 72);
@@ -13149,7 +13149,7 @@ class Fifa23Service {
 		p("D. Calabria", 77, 4, 25, 80);
 		p("M. Lazetić", 129, 15, 18, 65);
 
-		c("Napoli", 77, "#326ABF");
+		c("Napoli", 77, "#326ABE");
 		p("A. Meret", 77, 1, 25, 79);
 		p("G. Di Lorenzo", 77, 4, 28, 82);
 		p("Juan Jesus", 18, 2, 31, 76);
@@ -13177,7 +13177,7 @@ class Fifa23Service {
 		p("A. Rrahmani", 85, 2, 28, 80);
 		p("K. Kvaratskhelia", 56, 12, 21, 79);
 
-		c("Roma", 77, "#98444A");
+		c("Roma", 77, "#98454B");
 		p("Rui Patrício", 118, 1, 34, 81);
 		p("G. Mancini", 77, 2, 26, 81);
 		p("C. Smalling", 46, 2, 32, 82);
@@ -13210,7 +13210,7 @@ class Fifa23Service {
 		p("P. Boer", 77, 1, 20, 60);
 		p("B. Tahirovic", 140, 8, 19, 62);
 
-		c("Atalanta", 77, "#435969");
+		c("Atalanta", 77, "#445A69");
 		p("J. Musso", 7, 1, 28, 81);
 		p("Rafael Tolói", 77, 2, 31, 81);
 		p("M. Demiral", 148, 2, 24, 77);
@@ -13238,7 +13238,7 @@ class Fifa23Service {
 		p("S. Muratore", 77, 8, 24, 63);
 		p("N. Zortea", 77, 6, 23, 68);
 
-		c("Lazio", 77, "#67C9D2");
+		c("Lazio", 77, "#68C8D0");
 		p("I. Provedel", 77, 1, 28, 78);
 		p("M. Lazzari", 77, 4, 28, 79);
 		p("Patric", 137, 2, 29, 76);
@@ -13264,7 +13264,7 @@ class Fifa23Service {
 		p("M. Adamonis", 91, 1, 25, 64);
 		p("M. Fares", 3, 12, 26, 72);
 
-		c("Fiorentina", 77, "#4A345F");
+		c("Fiorentina", 77, "#4B3660");
 		p("P. Terracciano", 77, 1, 32, 78);
 		p("Dodô", 18, 4, 23, 76);
 		p("L. Martínez Quarta", 7, 2, 26, 76);
@@ -13294,7 +13294,7 @@ class Fifa23Service {
 		p("M. Cerofolini", 77, 1, 23, 60);
 		p("L. Ranieri", 77, 3, 23, 70);
 
-		c("Udinese", 77, "#80807F");
+		c("Udinese", 77, "#80817F");
 		p("M. Silvestri", 77, 1, 31, 79);
 		p("N. Pérez", 7, 2, 22, 75);
 		p("J. Bijol", 134, 2, 23, 73);
@@ -13322,7 +13322,7 @@ class Fifa23Service {
 		p("Leonardo Buta", 118, 5, 20, 60);
 		p("E. Piana", 77, 1, 18, 53);
 
-		c("Sassuolo", 77, "#2B6948");
+		c("Sassuolo", 77, "#2D6B4A");
 		p("A. Consigli", 77, 1, 35, 80);
 		p("J. Toljan", 57, 4, 27, 73);
 		p("M. Erlić", 36, 2, 24, 74);
@@ -13355,7 +13355,7 @@ class Fifa23Service {
 		p("J. Antiste", 53, 15, 19, 68);
 		p("B. Oddei", 77, 10, 19, 64);
 
-		c("Bologna", 77, "#683740");
+		c("Bologna", 77, "#6A3942");
 		p("Ł. Skorupski", 117, 1, 31, 76);
 		p("S. Posch", 10, 2, 25, 75);
 		p("A. Soumaoro", 53, 2, 30, 73);
@@ -13387,7 +13387,7 @@ class Fifa23Service {
 		p("A. Raimondo", 77, 15, 18, 63);
 		p("M. Motolese", 77, 2, 18, 57);
 
-		c("Monza", 77, "#C34148");
+		c("Monza", 77, "#C24148");
 		p("M. Di Gregorio", 77, 1, 24, 75);
 		p("A. Izzo", 77, 2, 30, 74);
 		p("L. Caldirola", 77, 2, 31, 73);
@@ -13422,7 +13422,7 @@ class Fifa23Service {
 		p("A. Sorrentino", 77, 1, 20, 63);
 		p("M. Scozzarella", 77, 8, 34, 68);
 
-		c("Salernitana", 77, "#572F30");
+		c("Salernitana", 77, "#583131");
 		p("L. Sepe", 77, 1, 31, 73);
 		p("D. Bronn", 147, 2, 27, 72);
 		p("N. Gyömbér", 133, 2, 29, 71);
@@ -13455,7 +13455,7 @@ class Fifa23Service {
 		p("A. Iervolino", 77, 8, 19, 55);
 		p("A. Sorrentino", 77, 1, 17, 53);
 
-		c("Torino", 77, "#76424A");
+		c("Torino", 77, "#79474E");
 		p("V. Milinković-Savić", 129, 1, 25, 74);
 		p("K. Djidji", 35, 2, 29, 72);
 		p("P. Schuurs", 105, 2, 22, 76);
@@ -13486,7 +13486,7 @@ class Fifa23Service {
 		p("S. Wade", 46, 5, 19, 62);
 		p("M. Fiorenza", 77, 1, 19, 48);
 
-		c("Hellas Verona", 77, "#31466A");
+		c("Hellas Verona", 77, "#34486B");
 		p("L. Montipò", 77, 1, 26, 76);
 		p("F. Ceccherini", 77, 2, 30, 75);
 		p("K. Günter", 57, 2, 27, 77);
@@ -13518,7 +13518,7 @@ class Fifa23Service {
 		p("I. Sulemana Kakari", 58, 7, 19, 65);
 		p("A. Berardi", 77, 1, 31, 62);
 
-		c("Sampdoria", 77, "#3F5B8F");
+		c("Sampdoria", 77, "#435E91");
 		p("E. Audero", 77, 1, 25, 78);
 		p("O. Colley", 55, 2, 29, 74);
 		p("J. Murillo", 30, 2, 30, 73);
@@ -13548,7 +13548,7 @@ class Fifa23Service {
 		p("T. Segovia", 156, 8, 19, 61);
 		p("S. Trimboli", 77, 8, 20, 56);
 
-		c("Empoli", 77, "#33689B");
+		c("Empoli", 77, "#35699C");
 		p("G. Vicario", 77, 1, 25, 79);
 		p("P. Stojanović", 134, 4, 26, 74);
 		p("S. Luperto", 77, 2, 25, 73);
@@ -13578,7 +13578,7 @@ class Fifa23Service {
 		p("L. Tonelli", 77, 2, 32, 71);
 		p("M. Destro", 77, 15, 31, 74);
 
-		c("Cremonese", 77, "#B04D57");
+		c("Cremonese", 77, "#B04E58");
 		p("M. Carnesecchi", 77, 1, 22, 75);
 		p("E. Aiwu", 10, 2, 21, 67);
 		p("M. Bianchetti", 77, 2, 29, 72);
@@ -13611,7 +13611,7 @@ class Fifa23Service {
 		p("D. Ciezkowski", 117, 1, 21, 51);
 		p("M. Ndiaye", 128, 2, 20, 57);
 
-		c("Lecce", 77, "#C76637");
+		c("Lecce", 77, "#C66637");
 		p("W. Falcone", 77, 1, 27, 72);
 		p("V. Gendrey", 53, 4, 22, 69);
 		p("M. Pongračić", 36, 2, 24, 74);
@@ -13646,7 +13646,7 @@ class Fifa23Service {
 		p("M. Lemmens", 13, 4, 20, 59);
 		p("J. Björkengren", 140, 7, 23, 63);
 
-		c("Spezia", 77, "#C0C1BF");
+		c("Spezia", 77, "#BFC0BE");
 		p("J. Zoet", 105, 1, 31, 71);
 		p("E. Ampadu", 158, 7, 21, 73);
 		p("J. Kiwior", 117, 2, 22, 72);
@@ -13675,7 +13675,7 @@ class Fifa23Service {
 		p("A. Nguiamba", 53, 8, 23, 64);
 		p("B. Drągowski", 117, 1, 24, 76);
 
-		c("Genoa", 77, "#77393D");
+		c("Genoa", 77, "#783A3E");
 		p("Josep Martínez", 137, 1, 24, 71);
 		p("S. Hefti", 141, 4, 24, 74);
 		p("M. Bani", 77, 2, 28, 71);
@@ -13704,7 +13704,7 @@ class Fifa23Service {
 		p("M. Portanova", 77, 8, 22, 70);
 		p("N. Maksimović", 129, 2, 30, 71);
 
-		c("Venezia", 77, "#2E2E2B");
+		c("Venezia", 77, "#2E2E2C");
 		p("J. Joronen", 52, 1, 29, 72);
 		p("M. Svoboda", 10, 2, 23, 66);
 		p("P. Wiśniewski", 117, 2, 23, 67);
@@ -13734,7 +13734,7 @@ class Fifa23Service {
 		p("A. Candela", 77, 4, 22, 61);
 		p("Bruno Bertinato", 18, 1, 24, 58);
 
-		c("Parma", 77, "#9D9C9A");
+		c("Parma", 77, "#9C9C9A");
 		p("L. Chichizola", 7, 1, 32, 70);
 		p("E. Delprato", 77, 4, 22, 68);
 		p("Y. Osorio", 156, 2, 28, 70);
@@ -13764,7 +13764,7 @@ class Fifa23Service {
 		p("D. Camara", 35, 8, 20, 58);
 		p("A. Hainaut", 53, 8, 20, 53);
 
-		c("Cagliari", 77, "#79324A");
+		c("Cagliari", 77, "#7A344B");
 		p("B. Radunović", 129, 1, 26, 68);
 		p("G. Zappa", 77, 4, 22, 68);
 		p("E. Goldaniga", 77, 2, 28, 71);
@@ -13793,7 +13793,7 @@ class Fifa23Service {
 		p("G. Ciocci", 77, 1, 22, 54);
 		p("A. Griger", 133, 15, 18, 58);
 
-		c("Benevento", 77, "#AF712B");
+		c("Benevento", 77, "#AD702B");
 		p("A. Paleari", 77, 1, 29, 72);
 		p("G. Letizia", 77, 4, 32, 73);
 		p("M. Leverbe", 53, 2, 25, 73);
@@ -13823,7 +13823,7 @@ class Fifa23Service {
 		p("A. Basit", 58, 8, 22, 52);
 		p("P. Thiam", 128, 15, 20, 57);
 
-		c("Ascoli", 77, "#7E7D7D");
+		c("Ascoli", 77, "#7F7E7D");
 		p("E. Guarna", 77, 1, 36, 64);
 		p("D. Quaranta", 77, 2, 25, 64);
 		p("Eric Botteghin", 18, 2, 34, 73);
@@ -13853,7 +13853,7 @@ class Fifa23Service {
 		p("N. Leali", 77, 1, 29, 70);
 		p("F. Palazzino", 77, 13, 18, 58);
 
-		c("Pisa", 77, "#2C3552");
+		c("Pisa", 77, "#2E3753");
 		p("Nicolas", 18, 1, 34, 69);
 		p("A. Calabresi", 77, 4, 26, 69);
 		p("H. Hermannsson", 71, 2, 27, 68);
@@ -13883,7 +13883,7 @@ class Fifa23Service {
 		p("A. Rus", 121, 2, 26, 67);
 		p("G. Piccinini", 77, 7, 21, 60);
 
-		c("Reggina", 77, "#6C2932");
+		c("Reggina", 77, "#6C2A33");
 		p("F. Ravaglia", 77, 1, 22, 65);
 		p("N. Pierozzi", 77, 4, 20, 64);
 		p("M. Camporese", 77, 2, 30, 70);
@@ -13913,7 +13913,7 @@ class Fifa23Service {
 		p("T. Aglietti", 77, 1, 22, 58);
 		p("A. Galabinov", 19, 15, 33, 67);
 
-		c("Como", 77, "#538CB2");
+		c("Como", 77, "#538CB1");
 		p("S. Ghidotti", 77, 1, 22, 52);
 		p("L. Vignali", 77, 4, 26, 69);
 		p("C. Odenthal", 105, 2, 21, 66);
@@ -13943,7 +13943,7 @@ class Fifa23Service {
 		p("L. Zanotti", 77, 1, 28, 63);
 		p("M. Gatto", 77, 9, 26, 62);
 
-		c("Frosinone", 77, "#A69838");
+		c("Frosinone", 77, "#A59739");
 		p("S. Turati", 77, 1, 20, 67);
 		p("M. Sampirisi", 77, 2, 29, 70);
 		p("F. Lucioni", 77, 2, 34, 71);
@@ -13973,7 +13973,7 @@ class Fifa23Service {
 		p("G. Marcianò", 77, 1, 22, 57);
 		p("A. Traoré", 53, 8, 21, 57);
 
-		c("Palermo", 77, "#AB7F91");
+		c("Palermo", 77, "#AA7F91");
 		p("M. Pigliacelli", 77, 1, 29, 72);
 		p("A. Matějů", 40, 4, 26, 72);
 		p("I. Nedelcearu", 121, 2, 26, 69);
@@ -14003,7 +14003,7 @@ class Fifa23Service {
 		p("M. Doda", 2, 4, 21, 55);
 		p("G. Grotta", 77, 1, 17, 56);
 
-		c("Bari 1908", 77, "#CCBBBC");
+		c("Bari 1908", 77, "#CBB9BA");
 		p("E. Caprile", 77, 1, 20, 69);
 		p("R. Pucino", 77, 4, 31, 69);
 		p("V. Di Cesare", 77, 2, 39, 68);
@@ -14033,7 +14033,7 @@ class Fifa23Service {
 		p("G. Gigliotti", 53, 2, 32, 66);
 		p("G. Cangiano", 77, 12, 20, 59);
 
-		c("Ternana", 77, "#6E5A4B");
+		c("Ternana", 77, "#6F5A4C");
 		p("A. Iannarilli", 77, 1, 31, 67);
 		p("S. Diakité", 53, 4, 22, 65);
 		p("F. Sørensen", 41, 2, 30, 70);
@@ -14119,7 +14119,7 @@ class Fifa23Service {
 		p("A. Corsi", 77, 10, 33, 64);
 		p("A. Lai", 77, 1, 21, 54);
 
-		c("SPAL", 77, "#85A8C1");
+		c("SPAL", 77, "#85A7C0");
 		p("E. Alfonso", 77, 1, 34, 67);
 		p("L. Dickmann", 77, 4, 25, 72);
 		p("P. Peda", 117, 2, 20, 60);
@@ -14148,7 +14148,7 @@ class Fifa23Service {
 		p("M. Arena", 77, 2, 23, 53);
 		p("A. Abou", 102, 8, 24, 56);
 
-		c("Perugia", 77, "#AE3437");
+		c("Perugia", 77, "#AD3538");
 		p("S. Gori", 77, 1, 26, 67);
 		p("F. Sgarbi", 77, 2, 24, 66);
 		p("M. Curado", 7, 2, 27, 67);
@@ -14178,7 +14178,7 @@ class Fifa23Service {
 		p("S. Righetti", 77, 5, 20, 57);
 		p("A. Abibi", 2, 1, 25, 55);
 
-		c("Modena", 77, "#CCAD2B");
+		c("Modena", 77, "#CBAC2C");
 		p("R. Gagno", 77, 1, 24, 67);
 		p("M. Coppolaro", 77, 4, 25, 67);
 		p("T. Silvestri", 77, 2, 30, 65);
@@ -14208,7 +14208,7 @@ class Fifa23Service {
 		p("T. Battistella", 77, 8, 20, 60);
 		p("M. Piacentini", 77, 2, 23, 62);
 
-		c("Südtirol", 77, "#C3BFBD");
+		c("Südtirol", 77, "#C2BDBB");
 		p("G. Poluzzi", 77, 1, 34, 64);
 		p("M. Curto", 77, 2, 23, 63);
 		p("A. Masiello", 77, 2, 36, 69);
@@ -14238,7 +14238,7 @@ class Fifa23Service {
 		p("S. Davi", 77, 3, 22, 61);
 		p("S. Harrasser", 77, 1, 16, 51);
 
-		c("Cittadella", 77, "#9F2D49");
+		c("Cittadella", 77, "#9E2E4A");
 		p("E. Kastrati", 2, 1, 25, 66);
 		p("T. Cassandro", 77, 4, 22, 60);
 		p("R. Perticone", 77, 2, 35, 66);
@@ -14267,7 +14267,7 @@ class Fifa23Service {
 		p("F. Manfrin", 77, 1, 18, 53);
 		p("E. Baldini", 77, 15, 25, 65);
 
-		c("Ajax", 105, "#A36670");
+		c("Ajax", 105, "#A46871");
 		p("R. Pasveer", 105, 1, 38, 77);
 		p("D. Rensch", 105, 4, 19, 74);
 		p("J. Timber", 105, 2, 21, 80);
@@ -14296,7 +14296,7 @@ class Fifa23Service {
 		p("Y. Baas", 105, 3, 19, 64);
 		p("M. Ihattaren", 105, 11, 20, 72);
 
-		c("PSV", 105, "#BF8A8A");
+		c("PSV", 105, "#BE8A8A");
 		p("W. Benítez", 7, 1, 29, 80);
 		p("Mauro Júnior", 18, 4, 23, 76);
 		p("André Ramalho", 18, 2, 30, 75);
@@ -14328,7 +14328,7 @@ class Fifa23Service {
 		p("D. Sealy", 152, 12, 19, 62);
 		p("O. Boscagli", 53, 2, 24, 77);
 
-		c("Feyenoord", 105, "#B0787B");
+		c("Feyenoord", 105, "#B0797B");
 		p("J. Bijlow", 105, 1, 24, 78);
 		p("L. Geertruida", 105, 4, 21, 77);
 		p("G. Trauner", 10, 2, 30, 79);
@@ -14358,7 +14358,7 @@ class Fifa23Service {
 		p("D. Remie", 105, 1, 19, 55);
 		p("Y. Amyn", 57, 12, 18, 65);
 
-		c("AZ Alkmaar", 105, "#B22C2C");
+		c("Alkmaar Zaanstreek", 105, "#B22E2F");
 		p("H. Verhulst", 105, 1, 29, 69);
 		p("P. Hatzidiakos", 60, 4, 25, 73);
 		p("S. Beukema", 105, 2, 23, 73);
@@ -14387,7 +14387,7 @@ class Fifa23Service {
 		p("I. Griffith", 105, 13, 20, 60);
 		p("B. Martins Indi", 105, 2, 30, 75);
 
-		c("FC Utrecht", 105, "#BA8588");
+		c("FC Utrecht", 105, "#B98587");
 		p("V. Barkas", 60, 1, 28, 69);
 		p("S. Klaiber", 139, 4, 27, 72);
 		p("M. van der Hoorn", 105, 2, 29, 73);
@@ -14419,7 +14419,7 @@ class Fifa23Service {
 		p("T. St. Jago", 105, 2, 22, 70);
 		p("A. Zagré", 53, 3, 20, 65);
 
-		c("FC Twente", 105, "#DA4C4F");
+		c("FC Twente", 105, "#D94C4F");
 		p("L. Unnerstall", 57, 1, 31, 79);
 		p("J. Brenet", 105, 4, 28, 72);
 		p("M. Hilgers", 105, 2, 21, 71);
@@ -14448,7 +14448,7 @@ class Fifa23Service {
 		p("I. El Maach", 102, 1, 22, 61);
 		p("S. Karssies", 105, 1, 19, 57);
 
-		c("Vitesse", 105, "#83722E");
+		c("Vitesse", 105, "#847431");
 		p("D. Reiziger", 105, 1, 21, 61);
 		p("C. Arcus", 67, 6, 26, 71);
 		p("M. Meulensteen", 105, 2, 22, 68);
@@ -14478,7 +14478,7 @@ class Fifa23Service {
 		p("S. van Duivenbooden", 105, 15, 20, 58);
 		p("N. van Haveren", 105, 1, 18, 56);
 
-		c("NEC", 105, "#A9353D");
+		c("NEC", 105, "#A8363E");
 		p("J. Cillessen", 105, 1, 33, 80);
 		p("B. van Rooij", 105, 4, 21, 67);
 		p("Iván Márquez", 137, 2, 28, 70);
@@ -14506,7 +14506,7 @@ class Fifa23Service {
 		p("N. Rossen", 105, 8, 16, 58);
 		p("R. Roefs", 105, 1, 19, 57);
 
-		c("SC Heerenveen", 105, "#8493BF");
+		c("SC Heerenveen", 105, "#8493BE");
 		p("A. Noppert", 105, 1, 28, 75);
 		p("M. van Ewijk", 105, 6, 21, 73);
 		p("S. van Beek", 105, 2, 27, 71);
@@ -14532,7 +14532,7 @@ class Fifa23Service {
 		p("K. van der Veldt", 105, 2, 19, 59);
 		p("A. Ismaïl", 105, 15, 17, 57);
 
-		c("Fortuna Sittard", 105, "#DAD024");
+		c("Fortuna Sittard", 105, "#D9CF26");
 		p("I. Pandur", 36, 1, 22, 72);
 		p("Ivo Pinto", 118, 4, 32, 66);
 		p("Ximo Navarro", 137, 4, 32, 74);
@@ -14561,7 +14561,7 @@ class Fifa23Service {
 		p("N. Cissé", 10, 10, 19, 57);
 		p("N. Akşit", 148, 2, 20, 57);
 
-		c("Sparta Rotterdam", 105, "#D38383");
+		c("Sparta Rotterdam", 105, "#D38585");
 		p("N. Olij", 105, 1, 26, 69);
 		p("S. Sambo", 105, 4, 20, 65);
 		p("B. Vriends", 105, 2, 31, 67);
@@ -14593,7 +14593,7 @@ class Fifa23Service {
 		p("J. Meerstadt", 105, 7, 20, 59);
 		p("D. Vianello", 105, 2, 19, 58);
 
-		c("FC Groningen", 105, "#92B099");
+		c("FC Groningen", 105, "#92AF99");
 		p("M. Verrips", 105, 1, 25, 68);
 		p("N. Kasanwirjo", 105, 4, 20, 69);
 		p("M. te Wierik", 105, 2, 30, 68);
@@ -14624,7 +14624,7 @@ class Fifa23Service {
 		p("J. Meijster", 105, 1, 17, 57);
 		p("T. van Bergen", 105, 15, 18, 56);
 
-		c("FC Emmen", 105, "#D57B83");
+		c("FC Emmen", 105, "#D37A83");
 		p("M. van der Hart", 105, 1, 28, 67);
 		p("M. Bouchouari", 13, 4, 21, 62);
 		p("M. Araujo", 115, 2, 27, 68);
@@ -14656,7 +14656,7 @@ class Fifa23Service {
 		p("J. Hardeveld", 105, 3, 27, 64);
 		p("M. Kieftenbeld", 105, 7, 32, 68);
 
-		c("Go Ahead Eagles", 105, "#C96C2A");
+		c("Go Ahead Eagles", 105, "#C86C2B");
 		p("J. de Lange", 105, 1, 24, 66);
 		p("M. Deijl", 105, 4, 24, 65);
 		p("J. Amofa", 105, 2, 23, 66);
@@ -14686,7 +14686,7 @@ class Fifa23Service {
 		p("P. Saathof", 105, 8, 18, 56);
 		p("S. Jansen", 105, 1, 17, 54);
 
-		c("RKC Waalwijk", 105, "#D0C82E");
+		c("RKC Waalwijk", 105, "#CEC72E");
 		p("E. Vaessen", 105, 1, 26, 67);
 		p("J. Lelieveld", 105, 6, 24, 67);
 		p("J. Gaari", 38, 2, 28, 65);
@@ -14714,7 +14714,7 @@ class Fifa23Service {
 		p("J. Kesting", 105, 1, 21, 59);
 		p("M. Spenkelink", 105, 1, 25, 58);
 
-		c("SC Cambuur", 105, "#C6BE2D");
+		c("SC Cambuur", 105, "#C4BC2E");
 		p("João Virgínia", 118, 1, 22, 67);
 		p("D. Schmidt", 105, 4, 30, 66);
 		p("M. Tol", 105, 2, 24, 64);
@@ -14743,7 +14743,7 @@ class Fifa23Service {
 		p("M. Smit", 105, 15, 19, 59);
 		p("B. Minnema", 105, 1, 20, 56);
 
-		c("Excelsior", 105, "#3E3232");
+		c("Excelsior", 105, "#403233");
 		p("S. van Gassel", 105, 1, 25, 67);
 		p("S. Horemans", 13, 4, 24, 66);
 		p("R. El Yaakoubi", 105, 2, 26, 66);
@@ -14771,7 +14771,7 @@ class Fifa23Service {
 		p("B. Vugts", 105, 9, 20, 59);
 		p("S. Nieuwpoort", 105, 2, 29, 65);
 
-		c("FC Volendam", 105, "#AF7049");
+		c("FC Volendam", 105, "#AE704A");
 		p("F. Stanković", 129, 1, 20, 67);
 		p("B. Plat", 105, 2, 22, 63);
 		p("X. Mbuyamba", 105, 2, 20, 63);
@@ -14801,7 +14801,7 @@ class Fifa23Service {
 		p("D. Payne", 105, 4, 19, 57);
 		p("K. van Oevelen", 105, 1, 18, 54);
 
-		c("Bodø / Glimt", 110, "#C5994E");
+		c("Bodø / Glimt", 110, "#C4984F");
 		p("N. Haikin", 122, 1, 26, 72);
 		p("A. Sampsted", 71, 4, 24, 70);
 		p("B. Moe", 110, 2, 30, 71);
@@ -14830,7 +14830,7 @@ class Fifa23Service {
 		p("B. Johnsplass", 110, 4, 18, 54);
 		p("S. Fet", 110, 8, 25, 68);
 
-		c("Molde", 110, "#3B5494");
+		c("Molde", 110, "#3C5594");
 		p("J. Karlstrøm", 110, 1, 25, 67);
 		p("M. Linnes", 110, 6, 30, 72);
 		p("B. Hansen", 41, 2, 28, 69);
@@ -14860,7 +14860,7 @@ class Fifa23Service {
 		p("K. Haraldseid", 110, 6, 28, 64);
 		p("M. Ellingsen", 110, 7, 27, 67);
 
-		c("Rosenborg", 110, "#C4C3C2");
+		c("Rosenborg", 110, "#C2C2C0");
 		p("A. Hansen", 110, 1, 32, 72);
 		p("L. Cornic", 110, 6, 21, 60);
 		p("E. Reitan", 110, 6, 24, 68);
@@ -14883,7 +14883,7 @@ class Fifa23Service {
 		p("J. Augustinsson", 140, 5, 26, 65);
 		p("S. Vecchia", 140, 12, 27, 70);
 
-		c("Lillestrøm", 110, "#DEC320");
+		c("Lillestrøm", 110, "#DDC221");
 		p("M. Christiansen", 110, 1, 21, 68);
 		p("L. Ranger", 110, 6, 23, 64);
 		p("E. Garnås", 110, 2, 27, 66);
@@ -14910,7 +14910,7 @@ class Fifa23Service {
 		p("H. Skogvold", 110, 9, 17, 54);
 		p("I. Cissé", 35, 2, 18, 54);
 
-		c("Viking", 110, "#34374B");
+		c("Viking", 110, "#373A4E");
 		p("P. Gunnarsson", 71, 1, 21, 67);
 		p("S. Bjørshol", 110, 4, 28, 66);
 		p("V. Vevatne", 110, 2, 27, 66);
@@ -14939,7 +14939,7 @@ class Fifa23Service {
 		p("E. Austbø", 110, 15, 17, 54);
 		p("S. Auklend", 110, 12, 19, 59);
 
-		c("Vålerenga", 110, "#3D4CA3");
+		c("Vålerenga", 110, "#3D4DA2");
 		p("M. Sjøeng", 110, 1, 20, 63);
 		p("V. Hedenstad", 110, 4, 31, 69);
 		p("S. Strandberg", 110, 2, 31, 71);
@@ -14963,7 +14963,7 @@ class Fifa23Service {
 		p("S. Strand-Kolbjørnsen", 110, 1, 18, 53);
 		p("C. Borchgrevink", 110, 4, 23, 65);
 
-		c("Sarpsborg 08", 110, "#5A6CAF");
+		c("Sarpsborg 08", 110, "#5A6DAE");
 		p("A. Kristiansen", 110, 1, 32, 63);
 		p("E. Wichne", 110, 4, 25, 64);
 		p("B. Utvik", 110, 2, 26, 64);
@@ -14993,7 +14993,7 @@ class Fifa23Service {
 		p("K. Opseth", 110, 15, 32, 61);
 		p("G. Mogensen", 41, 15, 21, 61);
 
-		c("Strømsgodset", 110, "#363D52");
+		c("Strømsgodset", 110, "#3C4256");
 		p("V. Myhra", 110, 1, 25, 69);
 		p("L. Vilsvik", 110, 4, 33, 66);
 		p("A. Leifsson", 71, 2, 23, 64);
@@ -15021,7 +15021,7 @@ class Fifa23Service {
 		p("J. Therkelsen", 110, 8, 19, 52);
 		p("K. Krasniqi", 85, 8, 21, 60);
 
-		c("Odd", 110, "#C8BABA");
+		c("Odd", 110, "#C7B9B9");
 		p("L. Wahlstedt", 140, 1, 22, 68);
 		p("E. Ruud", 110, 4, 38, 66);
 		p("O. Bjørtuft", 110, 2, 23, 65);
@@ -15047,7 +15047,7 @@ class Fifa23Service {
 		p("J. Skau", 110, 8, 19, 55);
 		p("A. Diomande", 110, 15, 32, 66);
 
-		c("Aalesund", 110, "#C5573A");
+		c("Aalesund", 110, "#C3573B");
 		p("S. Grytebust", 110, 1, 32, 68);
 		p("P. Golubović", 129, 6, 27, 65);
 		p("B. Šerbečić", 17, 2, 24, 66);
@@ -15076,7 +15076,7 @@ class Fifa23Service {
 		p("S. Holte", 110, 2, 19, 54);
 		p("A. Ammitzbøll", 41, 15, 23, 60);
 
-		c("Kristiansund", 110, "#434556");
+		c("Kristiansund", 110, "#444657");
 		p("S. McDermott", 120, 1, 29, 67);
 		p("S. Nilsen", 110, 6, 25, 64);
 		p("S. Jarl", 110, 2, 22, 60);
@@ -15106,7 +15106,7 @@ class Fifa23Service {
 		p("H. Bruseth", 110, 8, 18, 53);
 		p("M. Mawa", 110, 15, 25, 64);
 
-		c("Tromsø", 110, "#C2898C");
+		c("Tromsø", 110, "#C1898C");
 		p("J. Haugaard", 41, 1, 30, 64);
 		p("N. Vesterlund", 41, 6, 23, 64);
 		p("A. Jenssen", 110, 2, 28, 63);
@@ -15135,7 +15135,7 @@ class Fifa23Service {
 		p("D. Bassi", 110, 9, 17, 53);
 		p("O. Opsahl", 110, 5, 20, 58);
 
-		c("Haugesund", 110, "#B0BFCC");
+		c("Haugesund", 110, "#AFBECB");
 		p("E. Selvik", 110, 1, 24, 64);
 		p("P. Therkildsen", 41, 4, 24, 64);
 		p("A. Bærtelsen", 41, 2, 22, 63);
@@ -15160,7 +15160,7 @@ class Fifa23Service {
 		p("V. Solheim", 110, 8, 17, 50);
 		p("S. Liseth", 110, 11, 24, 62);
 
-		c("HamKam", 110, "#DDE4E0");
+		c("HamKam", 110, "#DCE2DE");
 		p("N. Hagen", 63, 1, 25, 63);
 		p("A. Melgalvis", 110, 6, 32, 65);
 		p("H. Opsahl", 110, 2, 19, 61);
@@ -15187,7 +15187,7 @@ class Fifa23Service {
 		p("T. Kristiansen", 110, 2, 16, 50);
 		p("J. Dunn", 24, 2, 21, 60);
 
-		c("Sandefjord", 110, "#3B4A9D");
+		c("Sandefjord", 110, "#3B4A9C");
 		p("J. Storevik", 110, 1, 25, 65);
 		p("M. Haakenstad", 110, 4, 28, 63);
 		p("J. Taaje", 110, 2, 24, 64);
@@ -15217,7 +15217,7 @@ class Fifa23Service {
 		p("W. Njie", 110, 15, 19, 54);
 		p("S. Foss", 110, 2, 23, 63);
 
-		c("Jerv", 110, "#E0A850");
+		c("Jerv", 110, "#DEA750");
 		p("Ø. Øvretveit", 110, 1, 28, 63);
 		p("T. Wichne", 110, 6, 25, 62);
 		p("O. Kolskogen", 110, 2, 21, 63);
@@ -15242,7 +15242,7 @@ class Fifa23Service {
 		p("B. Kristiansen", 110, 2, 19, 54);
 		p("T. Ness", 110, 8, 23, 55);
 
-		c("Lech Poznań", 117, "#2F4981");
+		c("Lech Poznań", 117, "#304A81");
 		p("F. Bednarek", 117, 1, 29, 67);
 		p("Joel Pereira", 118, 4, 25, 69);
 		p("F. Dagerstål", 140, 2, 25, 69);
@@ -15272,7 +15272,7 @@ class Fifa23Service {
 		p("M. Czekała", 117, 11, 18, 55);
 		p("B. Douglas", 127, 3, 32, 68);
 
-		c("Legia Warszawa", 117, "#CACAC9");
+		c("Legia Warszawa", 117, "#C9C9C7");
 		p("K. Tobiasz", 117, 1, 19, 66);
 		p("L. Rose", 97, 2, 30, 66);
 		p("A. Jędrzejczyk", 117, 2, 34, 70);
@@ -15301,7 +15301,7 @@ class Fifa23Service {
 		p("P. Sokołowski", 117, 7, 27, 67);
 		p("B. Kramer", 134, 15, 26, 66);
 
-		c("Raków Częstochowa", 117, "#7D3F6D", "Raków");
+		c("Raków Częstochowa", 117, "#7D406D", "Raków");
 		p("V. Kovacević", 17, 1, 24, 70);
 		p("M. Rundić", 129, 2, 30, 66);
 		p("Z. Arsenić", 36, 2, 28, 67);
@@ -15331,7 +15331,7 @@ class Fifa23Service {
 		p("T. Petrášek", 40, 2, 30, 69);
 		p("A. Niewulis", 117, 2, 33, 68);
 
-		c("Pogoń Szczecin", 117, "#462C35");
+		c("Pogoń Szczecin", 117, "#462C36");
 		p("D. Stipica", 36, 1, 31, 71);
 		p("J. Bartkowski", 117, 4, 30, 67);
 		p("K. Triantafyllopoulos", 60, 2, 29, 67);
@@ -15361,7 +15361,7 @@ class Fifa23Service {
 		p("K. Kostorz", 117, 15, 22, 58);
 		p("M. Kowal", 117, 1, 19, 54);
 
-		c("Jagiellonia Białystok", 117, "#C25F4A", "Jagiellonia");
+		c("Jagiellonia Białystok", 117, "#C05F4A", "Jagiellonia");
 		p("Z. Alomerović", 129, 1, 31, 67);
 		p("T. Přikryl", 40, 10, 29, 67);
 		p("M. Skrzypczak", 117, 2, 21, 61);
@@ -15391,7 +15391,7 @@ class Fifa23Service {
 		p("B. Żynel", 117, 1, 24, 60);
 		p("K. Tabiś", 117, 6, 22, 60);
 
-		c("Piast Gliwice", 117, "#73466D");
+		c("Piast Gliwice", 117, "#72466E");
 		p("F. Plach", 133, 1, 30, 69);
 		p("T. Mokwa", 117, 4, 29, 62);
 		p("A. Mosór", 117, 2, 19, 65);
@@ -15421,7 +15421,7 @@ class Fifa23Service {
 		p("T. Huk", 133, 2, 27, 65);
 		p("T. Kostadinov", 108, 11, 26, 63);
 
-		c("Lechia Gdańsk", 117, "#628E79");
+		c("Lechia Gdańsk", 117, "#648F7B");
 		p("D. Kuciak", 133, 1, 37, 69);
 		p("D. Stec", 10, 4, 28, 64);
 		p("M. Nalepa", 117, 2, 29, 66);
@@ -15450,7 +15450,7 @@ class Fifa23Service {
 		p("K. Okoniewski", 117, 15, 17, 51);
 		p("B. Brzęk", 117, 4, 16, 52);
 
-		c("Wisła Płock", 117, "#2B4F93");
+		c("Wisła Płock", 117, "#2D5093");
 		p("K. Kamiński", 117, 1, 31, 65);
 		p("A. Pawlak", 117, 4, 20, 62);
 		p("J. Rzeźniczak", 117, 2, 35, 65);
@@ -15480,7 +15480,7 @@ class Fifa23Service {
 		p("O. Lodziński", 117, 1, 18, 51);
 		p("A. Szczutowski", 117, 15, 21, 58);
 
-		c("Cracovia Kraków", 117, "#C1797B");
+		c("Cracovia Kraków", 117, "#BF797B");
 		p("K. Niemczycki", 117, 1, 22, 64);
 		p("D. Jablonský", 40, 2, 30, 65);
 		p("M. Rodin", 36, 2, 26, 67);
@@ -15510,7 +15510,7 @@ class Fifa23Service {
 		p("Thiago", 18, 9, 25, 63);
 		p("K. Ogorzały", 117, 9, 21, 60);
 
-		c("Zagłębie Lubin", 117, "#AF4729");
+		c("Zagłębie Lubin", 117, "#AE472A");
 		p("K. Bieszczad", 117, 1, 19, 63);
 		p("B. Kopacz", 117, 4, 30, 66);
 		p("A. Ławniczak", 117, 2, 23, 64);
@@ -15540,7 +15540,7 @@ class Fifa23Service {
 		p("S. Živec", 134, 9, 31, 65);
 		p("J. Żubrowski", 117, 7, 30, 64);
 
-		c("Górnik Zabrze", 117, "#BCBBBC");
+		c("Górnik Zabrze", 117, "#BBBABB");
 		p("D. Bielica", 117, 1, 23, 64);
 		p("K. Szcześniak", 117, 2, 21, 59);
 		p("E. Bergström", 140, 2, 29, 65);
@@ -15567,7 +15567,7 @@ class Fifa23Service {
 		p("R. Janicki", 117, 2, 29, 67);
 		p("J. Ciućka", 117, 15, 19, 53);
 
-		c("Radomiak Radom", 117, "#355A41");
+		c("Radomiak Radom", 117, "#365B42");
 		p("G. Kobylak", 117, 1, 20, 62);
 		p("Pedro Justiniano", 65, 2, 22, 63);
 		p("Raphael Rossi", 18, 2, 31, 69);
@@ -15595,7 +15595,7 @@ class Fifa23Service {
 		p("D. Jakubik", 117, 6, 32, 65);
 		p("J. Snopczyński", 117, 11, 16, 55);
 
-		c("Śląsk Wrocław", 117, "#2E613F");
+		c("Śląsk Wrocław", 117, "#316342");
 		p("M. Szromnik", 117, 1, 29, 67);
 		p("P. Janasik", 117, 6, 24, 66);
 		p("Verdasca", 118, 2, 25, 65);
@@ -15651,7 +15651,7 @@ class Fifa23Service {
 		p("A. Dębiński", 117, 2, 17, 55);
 		p("Fábio Nunes", 118, 5, 29, 65);
 
-		c("Stal Mielec", 117, "#C1C3C5");
+		c("Stal Mielec", 117, "#C0C1C4");
 		p("B. Mrozek", 117, 1, 22, 63);
 		p("M. Wolski", 117, 6, 25, 64);
 		p("A. Kasperkiewicz", 117, 2, 27, 63);
@@ -15680,7 +15680,7 @@ class Fifa23Service {
 		p("K. Kardyś", 117, 10, 19, 55);
 		p("A. Soboń", 117, 11, 19, 56);
 
-		c("Miedź Legnica", 117, "#31439C");
+		c("Miedź Legnica", 117, "#31439B");
 		p("M. Abramowicz", 117, 1, 29, 59);
 		p("C. Martínez", 42, 4, 28, 66);
 		p("N. Mijušković", 100, 2, 30, 65);
@@ -15710,7 +15710,7 @@ class Fifa23Service {
 		p("D. Drachal", 117, 9, 17, 54);
 		p("M. Llano", 7, 4, 22, 62);
 
-		c("Warta Poznań", 117, "#255540");
+		c("Warta Poznań", 117, "#275641");
 		p("A. Lis", 117, 1, 30, 64);
 		p("D. Stavropoulos", 60, 2, 25, 67);
 		p("D. Szymonowicz", 117, 2, 26, 66);
@@ -15735,7 +15735,7 @@ class Fifa23Service {
 		p("B. Kieliba", 117, 2, 31, 63);
 		p("S. Sarbinowski", 117, 8, 18, 52);
 
-		c("Korona Kielce", 117, "#D9662D");
+		c("Korona Kielce", 117, "#D7672F");
 		p("M. Zapytowski", 117, 1, 21, 59);
 		p("A. Danek", 117, 4, 27, 61);
 		p("M. Trojak", 117, 2, 28, 64);
@@ -15765,7 +15765,7 @@ class Fifa23Service {
 		p("Nono", 137, 10, 31, 67);
 		p("E. Shikavka", 12, 15, 29, 63);
 
-		c("Benfica", 118, "#D52E39");
+		c("Benfica", 118, "#D3313B");
 		p("O. Vlachodimos", 60, 1, 28, 81);
 		p("A. Bah", 41, 4, 24, 78);
 		p("António Silva", 118, 2, 18, 75);
@@ -15829,7 +15829,7 @@ class Fifa23Service {
 		p("Bernardo Folha", 118, 8, 20, 64);
 		p("João Mendes", 118, 3, 22, 61);
 
-		c("Sporting CP", 118, "#6D9885");
+		c("Sporting CP", 118, "#6D9784");
 		p("Adán", 137, 1, 35, 81);
 		p("Pedro Porro", 137, 6, 22, 82);
 		p("Gonçalo Inácio", 118, 2, 20, 79);
@@ -15861,7 +15861,7 @@ class Fifa23Service {
 		p("José Marsà", 137, 2, 20, 67);
 		p("André Paulo", 118, 1, 25, 65);
 
-		c("Sporting Braga", 118, "#C8454C");
+		c("Sporting Braga", 118, "#C7464D");
 		p("Matheus", 18, 1, 29, 79);
 		p("Fabiano Souza", 18, 4, 22, 73);
 		p("Vítor Tormena", 18, 2, 26, 76);
@@ -15893,7 +15893,7 @@ class Fifa23Service {
 		p("Dinis Pinto", 118, 4, 21, 62);
 		p("Guilherme Soares", 118, 2, 21, 62);
 
-		c("Gil Vicente", 118, "#BF3032");
+		c("Gil Vicente", 118, "#BE3133");
 		p("S. Kritsyuk", 122, 1, 31, 76);
 		p("Danilo Veiga", 118, 4, 19, 68);
 		p("Lucas Cunha", 18, 2, 25, 72);
@@ -15924,7 +15924,7 @@ class Fifa23Service {
 		p("Né Lopes", 118, 2, 22, 62);
 		p("André Simões", 118, 8, 18, 62);
 
-		c("Casa Pia", 118, "#32312F");
+		c("Casa Pia", 118, "#333230");
 		p("Ricardo Batista", 118, 1, 35, 72);
 		p("Lucas Soares", 18, 6, 24, 69);
 		p("João Nunes", 118, 2, 26, 73);
@@ -15952,7 +15952,7 @@ class Fifa23Service {
 		p("C. Antoine", 67, 15, 30, 64);
 		p("Diogo Pinto", 118, 13, 23, 63);
 
-		c("Vitória SC", 118, "#CFCDCA");
+		c("Vitória SC", 118, "#CFCDC9");
 		p("Bruno Varela", 118, 1, 27, 74);
 		p("Zé Carlos", 118, 6, 20, 67);
 		p("André Amaro", 118, 2, 19, 68);
@@ -16016,7 +16016,7 @@ class Fifa23Service {
 		p("Zarzana", 137, 13, 20, 63);
 		p("Pedro Teixeira", 118, 1, 20, 61);
 
-		c("Boavista", 118, "#7F7978");
+		c("Boavista", 118, "#7E7978");
 		p("Bracali", 18, 1, 41, 71);
 		p("Pedro Malheiro", 118, 6, 21, 67);
 		p("R. Cannon", 152, 2, 24, 72);
@@ -16047,7 +16047,7 @@ class Fifa23Service {
 		p("Berna", 118, 8, 18, 60);
 		p("Joel Silva", 118, 8, 19, 60);
 
-		c("Famalicão", 118, "#C4C4C4");
+		c("Famalicão", 118, "#C3C3C3");
 		p("Luiz Júnior", 18, 1, 21, 72);
 		p("Alexandre Penetra", 118, 2, 20, 69);
 		p("Riccieli", 18, 2, 23, 71);
@@ -16077,7 +16077,7 @@ class Fifa23Service {
 		p("Benny", 118, 7, 21, 61);
 		p("Gustavo Sá", 118, 8, 17, 60);
 
-		c("Rio Ave", 118, "#5D9386");
+		c("Rio Ave", 118, "#5F9487");
 		p("Jhonatan", 18, 1, 31, 71);
 		p("Costinha", 118, 4, 22, 68);
 		p("Josué Sá", 118, 2, 30, 71);
@@ -16106,7 +16106,7 @@ class Fifa23Service {
 		p("Paulo Vitor", 18, 13, 23, 64);
 		p("Lucas Flores", 18, 1, 19, 60);
 
-		c("Estoril", 118, "#CEA72E");
+		c("Estoril", 118, "#CDA62F");
 		p("Daniel Figueira", 118, 1, 23, 73);
 		p("Tiago Santos", 118, 4, 19, 66);
 		p("Bernardo Vital", 118, 2, 21, 71);
@@ -16134,7 +16134,7 @@ class Fifa23Service {
 		p("Serginho", 118, 13, 21, 64);
 		p("João Oliveira", 118, 1, 19, 62);
 
-		c("Portimonense", 118, "#767575");
+		c("Portimonense", 118, "#757474");
 		p("K. Nakamura", 79, 1, 27, 71);
 		p("F. Moufi", 102, 4, 26, 73);
 		p("Pedrão", 18, 2, 25, 70);
@@ -16163,7 +16163,7 @@ class Fifa23Service {
 		p("Pastor", 18, 4, 22, 61);
 		p("Gustavo Klismahn", 18, 7, 22, 60);
 
-		c("Vizela", 118, "#5EA2B8");
+		c("Vizela", 118, "#5EA1B6");
 		p("F. Buntić", 36, 1, 25, 69);
 		p("Tomás Silva", 118, 4, 22, 66);
 		p("Ivanildo Fernandes", 118, 2, 26, 70);
@@ -16225,7 +16225,7 @@ class Fifa23Service {
 		p("Gonçalo Pinto", 118, 1, 22, 61);
 		p("Edu Borges", 118, 2, 20, 60);
 
-		c("Paços de Ferreira", 118, "#D8C11F");
+		c("Paços de Ferreira", 118, "#D7C020");
 		p("Jordi", 18, 1, 28, 71);
 		p("J. Delgado", 27, 4, 29, 69);
 		p("E. Ferigra", 43, 2, 23, 67);
@@ -16255,7 +16255,7 @@ class Fifa23Service {
 		p("Mauro Couto", 118, 12, 16, 61);
 		p("José Oliveira", 118, 1, 20, 60);
 
-		c("Arouca", 118, "#CDC02C");
+		c("Arouca", 118, "#CCBE2D");
 		p("I. De Arruabarrena", 153, 1, 25, 68);
 		p("Tiago Esgaio", 118, 4, 26, 70);
 		p("João Basso", 18, 2, 25, 72);
@@ -16283,7 +16283,7 @@ class Fifa23Service {
 		p("Bruno Marques", 18, 15, 23, 62);
 		p("Rafael Fernandes", 118, 2, 20, 61);
 
-		c("Santa Clara", 118, "#B42525");
+		c("Santa Clara", 118, "#B32626");
 		p("Marco Pereira", 118, 1, 35, 74);
 		p("P. Sagna", 128, 4, 31, 70);
 		p("K. Boateng", 145, 2, 25, 71);
@@ -16345,7 +16345,7 @@ class Fifa23Service {
 		p("G. Tetteh", 120, 13, 17, 52);
 		p("A. Emakhu", 120, 15, 18, 54);
 
-		c("St Patrick's", 120, "#C74750");
+		c("St Patrick's", 120, "#C64751");
 		p("D. Rogers", 120, 1, 28, 62);
 		p("S. Curtis", 120, 6, 16, 58);
 		p("H. Brockbank", 46, 2, 23, 60);
@@ -16370,7 +16370,7 @@ class Fifa23Service {
 		p("A. Murphy", 120, 8, 17, 53);
 		p("B. McCormack", 120, 11, 19, 57);
 
-		c("Derry City", 120, "#CC4C4F");
+		c("Derry City", 120, "#CA4C4F");
 		p("B. Maher", 120, 1, 21, 61);
 		p("R. Boyce", 120, 4, 21, 60);
 		p("S. McEleney", 120, 2, 31, 59);
@@ -16400,7 +16400,7 @@ class Fifa23Service {
 		p("C. Harkin", 109, 8, 26, 61);
 		p("C. Whelan", 120, 15, 22, 59);
 
-		c("Sligo Rovers", 120, "#973033");
+		c("Sligo Rovers", 120, "#973235");
 		p("R. Brush", 46, 1, 37, 56);
 		p("J. Brannefalk", 140, 4, 24, 57);
 		p("N. Pijnaker", 106, 2, 23, 64);
@@ -16429,7 +16429,7 @@ class Fifa23Service {
 		p("C. Walsh", 120, 1, 17, 52);
 		p("É. Clancy", 120, 2, 18, 50);
 
-		c("Dundalk", 120, "#BBB8B7");
+		c("Dundalk", 120, "#BAB7B6");
 		p("N. Sheppard", 158, 1, 21, 62);
 		p("L. Macari", 127, 4, 20, 60);
 		p("S. Bone", 46, 2, 23, 59);
@@ -16450,7 +16450,7 @@ class Fifa23Service {
 		p("P. Cherrie", 127, 1, 38, 55);
 		p("E. Adegboyega", 120, 2, 18, 53);
 
-		c("Bohemians", 120, "#5A3636");
+		c("Bohemians", 120, "#5A3736");
 		p("J. Talbot", 120, 1, 25, 64);
 		p("J. Kerr", 127, 2, 24, 56);
 		p("R. Feely", 120, 4, 25, 58);
@@ -16474,7 +16474,7 @@ class Fifa23Service {
 		p("J. O'Sullivan", 120, 10, 28, 62);
 		p("L. Dehl", 57, 11, 20, 60);
 
-		c("Shelbourne", 120, "#D22E3E");
+		c("Shelbourne", 120, "#D02F3F");
 		p("C. Kearns", 120, 1, 24, 57);
 		p("J. Wilson", 120, 6, 23, 57);
 		p("S. Negru", 120, 2, 19, 54);
@@ -16503,7 +16503,7 @@ class Fifa23Service {
 		p("G. Arubi", 120, 15, 18, 51);
 		p("L. Temple", 120, 2, 17, 51);
 
-		c("Finn Harps", 120, "#326FBD");
+		c("Finn Harps", 120, "#336FBC");
 		p("J. McKeown", 120, 1, 32, 61);
 		p("E. Boyle", 120, 4, 25, 60);
 		p("José Carrillo", 137, 2, 27, 57);
@@ -16531,7 +16531,7 @@ class Fifa23Service {
 		p("N. Logue", 120, 8, 22, 46);
 		p("D. Webster", 120, 2, 32, 59);
 
-		c("Drogheda United", 120, "#9B4D60");
+		c("Drogheda United", 120, "#9A4E61");
 		p("C. McCabe", 120, 1, 25, 57);
 		p("G. Poynton", 120, 4, 24, 57);
 		p("B. Curtis", 120, 2, 18, 52);
@@ -16556,7 +16556,7 @@ class Fifa23Service {
 		p("V. Arong", 107, 15, 17, 51);
 		p("E. Haddock", 120, 2, 17, 50);
 
-		c("UCD", 120, "#4887B1");
+		c("UCD", 120, "#4887B0");
 		p("K. Moore", 120, 1, 19, 56);
 		p("M. Gallagher", 120, 4, 21, 55);
 		p("J. Keaney", 120, 7, 23, 59);
@@ -16606,7 +16606,7 @@ class Fifa23Service {
 		p("M. Danciu", 121, 10, 20, 57);
 		p("D. Rusu", 99, 1, 31, 63);
 
-		c("CFR Cluj", 121, "#732E2D");
+		c("CFR Cluj", 121, "#743030");
 		p("S. Scuffet", 77, 1, 26, 71);
 		p("C. Manea", 121, 4, 24, 69);
 		p("Yuri Matias", 18, 2, 27, 68);
@@ -16636,7 +16636,7 @@ class Fifa23Service {
 		p("R. Bălan", 121, 2, 22, 59);
 		p("A. Gîdea", 121, 13, 22, 57);
 
-		c("FCSB", 121, "#E63B47");
+		c("FCSB", 121, "#E43C47");
 		p("Ș. Târnovanu", 121, 1, 22, 68);
 		p("A. Pantea", 121, 4, 18, 66);
 		p("J. Dawa", 23, 2, 26, 64);
@@ -16666,7 +16666,7 @@ class Fifa23Service {
 		p("A. Dumiter", 121, 15, 23, 62);
 		p("R. Bouhenna", 3, 2, 31, 63);
 
-		c("Rapid Bucuresti", 121, "#83394D");
+		c("Rapid Bucuresti", 121, "#833B4E");
 		p("H. Moldovan", 121, 1, 24, 70);
 		p("R. Onea", 121, 4, 24, 65);
 		p("C. Săpunaru", 121, 2, 38, 68);
@@ -16696,7 +16696,7 @@ class Fifa23Service {
 		p("Y. Bnou-Marzouk", 102, 15, 26, 61);
 		p("J. Papeau", 53, 11, 26, 65);
 
-		c("Sepsi", 121, "#C16068");
+		c("Sepsi", 121, "#C06168");
 		p("R. Niczuly", 121, 1, 26, 68);
 		p("R. Dimitrov", 19, 4, 33, 65);
 		p("B. Niňaj", 133, 2, 28, 67);
@@ -16725,7 +16725,7 @@ class Fifa23Service {
 		p("Á. Nistor", 121, 11, 17, 55);
 		p("R. Varga", 70, 9, 32, 67);
 
-		c("SSC Farul", 121, "#2E65AC");
+		c("FCV Farul Constanța", 121, "#3166AC");
 		p("M. Aioani", 121, 1, 22, 70);
 		p("A. Mboko", 13, 4, 24, 62);
 		p("I. Larie", 121, 2, 35, 66);
@@ -16755,7 +16755,7 @@ class Fifa23Service {
 		p("Ș. Mușat", 121, 1, 21, 51);
 		p("D. Grosu", 121, 4, 20, 55);
 
-		c("Voluntari", 121, "#5AA2E3");
+		c("Voluntari", 121, "#5CA2E1");
 		p("M. Popa", 121, 1, 21, 65);
 		p("C. Achim", 121, 2, 26, 62);
 		p("P. Matricardi", 7, 2, 28, 65);
@@ -16785,7 +16785,7 @@ class Fifa23Service {
 		p("N. Aliji", 2, 5, 28, 63);
 		p("F. Bălan", 121, 8, 20, 55);
 
-		c("UTA Arad", 121, "#D6363F");
+		c("UTA Arad", 121, "#D5363F");
 		p("F. Iacob", 121, 1, 28, 66);
 		p("M. Vukčević", 100, 4, 29, 65);
 		p("A. Chindriș", 121, 2, 23, 64);
@@ -16815,7 +16815,7 @@ class Fifa23Service {
 		p("C. Negoescu", 121, 10, 19, 54);
 		p("C. Maxim", 121, 4, 19, 52);
 
-		c("Universitatea Cluj", 121, "#CCC9CA");
+		c("Universitatea Cluj", 121, "#CBC8C9");
 		p("P. Iliev", 19, 1, 30, 65);
 		p("R. Romeo", 77, 4, 32, 62);
 		p("F. Ilie", 121, 2, 30, 62);
@@ -16845,7 +16845,7 @@ class Fifa23Service {
 		p("D. Tescan", 121, 13, 22, 60);
 		p("A. Miron", 121, 2, 28, 67);
 
-		c("U Craiova 1948", 121, "#284088");
+		c("U Craiova 1948", 121, "#284187");
 		p("R. Popa", 121, 1, 19, 65);
 		p("R. Negru", 121, 4, 23, 66);
 		p("André Duarte", 118, 2, 24, 64);
@@ -16875,7 +16875,7 @@ class Fifa23Service {
 		p("V. Blănuță", 99, 15, 20, 57);
 		p("D. Albu", 121, 7, 21, 64);
 
-		c("Argeş", 121, "#583B74");
+		c("Argeş", 121, "#593D75");
 		p("A. Greab", 121, 1, 30, 66);
 		p("A. Tofan", 121, 4, 25, 66);
 		p("M. Constantin", 121, 2, 37, 65);
@@ -16901,7 +16901,7 @@ class Fifa23Service {
 		p("G. Micle", 121, 1, 20, 61);
 		p("A. Florescu", 121, 15, 20, 52);
 
-		c("Botoşani", 121, "#CAC7C9");
+		c("Botoşani", 121, "#C8C6C7");
 		p("E. Pap", 121, 1, 28, 66);
 		p("S. Sno", 105, 4, 26, 64);
 		p("A. Șeroni", 121, 2, 35, 63);
@@ -16931,7 +16931,7 @@ class Fifa23Service {
 		p("A. Patache", 121, 4, 34, 60);
 		p("A. Moescu", 121, 2, 21, 54);
 
-		c("Hermannstadt", 121, "#CAC9C7");
+		c("Hermannstadt", 121, "#C9C8C6");
 		p("V. Muțiu", 121, 1, 27, 63);
 		p("M. Butean", 121, 4, 25, 66);
 		p("F. Bejan", 121, 2, 31, 65);
@@ -16958,7 +16958,7 @@ class Fifa23Service {
 		p("M. Babić", 36, 15, 23, 60);
 		p("K. Letica", 36, 1, 25, 67);
 
-		c("Chindia Târgovişte", 121, "#B0474A");
+		c("Chindia Târgovişte", 121, "#B0494C");
 		p("C. Căbuz", 121, 1, 26, 67);
 		p("T. Căpușă", 121, 4, 24, 65);
 		p("D. Celea", 121, 2, 26, 65);
@@ -16988,7 +16988,7 @@ class Fifa23Service {
 		p("A. Jipa", 121, 8, 20, 52);
 		p("A. Petre", 121, 8, 17, 50);
 
-		c("Petrolul 52", 121, "#D3C02C");
+		c("Petrolul 52", 121, "#D2BF2E");
 		p("O. Vâlceanu", 121, 1, 25, 67);
 		p("G. Pashov", 19, 6, 32, 64);
 		p("Félix Mathaus", 22, 2, 27, 62);
@@ -17017,7 +17017,7 @@ class Fifa23Service {
 		p("R. Horj", 121, 2, 26, 61);
 		p("I. Tolea", 121, 8, 19, 51);
 
-		c("Mioveni", 121, "#CCB254");
+		c("Mioveni", 121, "#CAB154");
 		p("I. Popescu", 121, 1, 28, 61);
 		p("D. Oancea", 121, 6, 25, 65);
 		p("I. Balaur", 121, 2, 33, 63);
@@ -17047,7 +17047,7 @@ class Fifa23Service {
 		p("V. Mitrea", 121, 8, 21, 56);
 		p("I. Burnea", 121, 5, 29, 60);
 
-		c("Celtic", 127, "#7E9884");
+		c("Celtic", 127, "#7F9885");
 		p("J. Hart", 46, 1, 35, 75);
 		p("J. Juranović", 36, 4, 26, 75);
 		p("C. Carter-Vickers", 152, 2, 24, 75);
@@ -17077,7 +17077,7 @@ class Fifa23Service {
 		p("C. McGregor", 127, 7, 29, 77);
 		p("S. Robertson", 127, 8, 20, 61);
 
-		c("Rangers", 127, "#2D4B9D");
+		c("Rangers", 127, "#2F4C9D");
 		p("A. McGregor", 127, 1, 40, 74);
 		p("J. Tavernier", 46, 4, 30, 78);
 		p("L. King", 127, 2, 18, 60);
@@ -17107,7 +17107,7 @@ class Fifa23Service {
 		p("J. Souttar", 127, 2, 25, 72);
 		p("C. Goldson", 46, 2, 29, 75);
 
-		c("Hearts", 127, "#53383E");
+		c("Hearts", 127, "#54393F");
 		p("C. Gordon", 127, 1, 39, 74);
 		p("M. Smith", 109, 4, 33, 68);
 		p("T. Sibbick", 46, 2, 23, 67);
@@ -17137,7 +17137,7 @@ class Fifa23Service {
 		p("L. Boyce", 109, 15, 31, 70);
 		p("B. Baningime", 33, 8, 23, 70);
 
-		c("Hibernian", 127, "#4B775A");
+		c("Hibernian", 127, "#4D775B");
 		p("D. Marshall", 127, 1, 37, 69);
 		p("C. Cadden", 127, 4, 25, 68);
 		p("R. Porteous", 127, 2, 23, 70);
@@ -17167,7 +17167,7 @@ class Fifa23Service {
 		p("A. McGeady", 120, 9, 36, 67);
 		p("R. Hauge", 110, 10, 20, 58);
 
-		c("Aberdeen", 127, "#912F39");
+		c("Aberdeen", 127, "#92313B");
 		p("K. Roos", 105, 1, 30, 69);
 		p("J. Richardson", 46, 4, 21, 62);
 		p("R. McCrorie", 127, 2, 24, 69);
@@ -17194,7 +17194,7 @@ class Fifa23Service {
 		p("L. Harvey", 127, 15, 17, 53);
 		p("D. Lobban", 127, 11, 16, 53);
 
-		c("Dundee United", 127, "#CD5C28");
+		c("Dundee United", 127, "#CC5C29");
 		p("M. Birighitti", 9, 1, 31, 68);
 		p("K. Freeman", 127, 6, 22, 62);
 		p("L. Smith", 127, 2, 26, 64);
@@ -17222,7 +17222,7 @@ class Fifa23Service {
 		p("D. Watson", 127, 15, 18, 54);
 		p("P. Pawlett", 127, 13, 31, 64);
 
-		c("Motherwell", 127, "#B6683A");
+		c("Motherwell", 127, "#B5683B");
 		p("L. Kelly", 127, 1, 26, 70);
 		p("P. McGinn", 127, 4, 31, 68);
 		p("S. Johansen", 110, 2, 26, 66);
@@ -17250,7 +17250,7 @@ class Fifa23Service {
 		p("A. Oxborough", 46, 1, 24, 58);
 		p("S. Fox", 127, 1, 35, 61);
 
-		c("St. Johnstone", 127, "#3A4F97");
+		c("St. Johnstone", 127, "#3A4F96");
 		p("R. Matthews", 46, 1, 28, 65);
 		p("D. Wright", 46, 6, 27, 62);
 		p("A. Mitchell", 46, 2, 20, 64);
@@ -17310,7 +17310,7 @@ class Fifa23Service {
 		p("J. Dorsett", 46, 2, 20, 62);
 		p("C. Doidge", 158, 15, 29, 65);
 
-		c("Livingston", 127, "#C8A225");
+		c("Livingston", 127, "#C6A126");
 		p("S. George", 46, 1, 24, 64);
 		p("N. Devlin", 127, 4, 28, 66);
 		p("J. Fitzwater", 46, 2, 24, 65);
@@ -17387,7 +17387,7 @@ class Fifa23Service {
 		p("T. Olusanya", 46, 15, 24, 57);
 		p("D. Reid", 127, 8, 17, 56);
 
-		c("Real Madrid", 137, "#CDCCCB");
+		c("Real Madrid", 137, "#CBCBCA");
 		p("T. Courtois", 13, 1, 30, 90);
 		p("Carvajal", 137, 4, 30, 84);
 		p("A. Rüdiger", 57, 2, 29, 87);
@@ -17457,7 +17457,7 @@ class Fifa23Service {
 		p("Fabio Blanco", 137, 13, 18, 62);
 		p("C. Riad", 102, 2, 19, 61);
 
-		c("Atlético Madrid", 137, "#BE8185");
+		c("Atlético Madrid", 137, "#BD8185");
 		p("J. Oblak", 134, 1, 29, 89);
 		p("N. Molina", 7, 10, 24, 78);
 		p("S. Savić", 100, 2, 31, 84);
@@ -17492,7 +17492,7 @@ class Fifa23Service {
 		p("Pablo Barrios", 137, 8, 19, 62);
 		p("Manu Lama", 137, 2, 21, 61);
 
-		c("Sevilla", 137, "#DDDAD9");
+		c("Sevilla", 137, "#DCD9D8");
 		p("Y. Bounou", 102, 1, 31, 84);
 		p("G. Montiel", 7, 4, 25, 79);
 		p("N. Gudelj", 129, 7, 30, 79);
@@ -17525,7 +17525,7 @@ class Fifa23Service {
 		p("Alberto Flores", 137, 1, 18, 60);
 		p("Adrián González", 137, 1, 22, 59);
 
-		c("Villarreal", 137, "#CED022");
+		c("Villarreal", 137, "#CDCE23");
 		p("G. Rulli", 7, 1, 30, 82);
 		p("Kiko Femenía", 137, 4, 31, 74);
 		p("Raúl Albiol", 137, 2, 36, 82);
@@ -17552,7 +17552,7 @@ class Fifa23Service {
 		p("Jorge Cuenca", 137, 2, 22, 73);
 		p("Iker Álvarez", 4, 1, 20, 63);
 
-		c("Athletic Club", 137, "#B56D71");
+		c("Athletic Club", 137, "#B46D71");
 		p("Unai Simón", 137, 1, 25, 83);
 		p("De Marcos", 137, 4, 33, 78);
 		p("Yeray", 137, 2, 27, 80);
@@ -17584,7 +17584,7 @@ class Fifa23Service {
 		p("Sillero", 137, 2, 24, 63);
 		p("Álex Padilla", 137, 1, 18, 62);
 
-		c("Real Betis", 137, "#70A083");
+		c("Real Betis", 137, "#6FA083");
 		p("Rui Silva", 118, 1, 28, 80);
 		p("Y. Sabaly", 128, 4, 29, 77);
 		p("G. Pezzella", 7, 2, 31, 76);
@@ -17619,7 +17619,7 @@ class Fifa23Service {
 		p("Fran Delgado", 137, 4, 20, 61);
 		p("Dani Pérez", 137, 8, 16, 61);
 
-		c("Real Sociedad", 137, "#8791A9");
+		c("Real Sociedad", 137, "#8891A9");
 		p("Álex Remiro", 137, 1, 27, 82);
 		p("Gorosabel", 137, 4, 25, 77);
 		p("Zubeldia", 137, 2, 25, 78);
@@ -17654,7 +17654,7 @@ class Fifa23Service {
 		p("Pablo Marín", 137, 11, 18, 60);
 		p("Arana", 137, 1, 20, 58);
 
-		c("Getafe", 137, "#2B4898");
+		c("Getafe", 137, "#2C4998");
 		p("David Soria", 137, 1, 29, 82);
 		p("D. Suárez", 153, 6, 34, 77);
 		p("D. Djené", 145, 2, 30, 78);
@@ -17684,7 +17684,7 @@ class Fifa23Service {
 		p("Alex Rodríguez", 137, 4, 20, 58);
 		p("Álex Revuelta", 137, 2, 22, 62);
 
-		c("Celta de Vigo", 137, "#75A3AF");
+		c("Celta de Vigo", 137, "#75A2AE");
 		p("A. Marchesín", 7, 1, 34, 79);
 		p("Hugo Mallo", 137, 4, 31, 77);
 		p("J. Aidoo", 58, 2, 26, 78);
@@ -17719,7 +17719,7 @@ class Fifa23Service {
 		p("Hugo Sotelo", 137, 10, 18, 59);
 		p("Pablo Durán", 137, 15, 21, 58);
 
-		c("Espanyol", 137, "#628FC3");
+		c("Espanyol", 137, "#628FC2");
 		p("B. Lecomte", 53, 1, 31, 76);
 		p("Óscar Gil", 137, 4, 24, 76);
 		p("Calero", 137, 2, 26, 75);
@@ -17754,7 +17754,7 @@ class Fifa23Service {
 		p("Nabil Touaizi", 102, 15, 21, 63);
 		p("Recasens", 137, 2, 20, 61);
 
-		c("Valencia", 137, "#CCCBCA");
+		c("Valencia", 137, "#CBCAC8");
 		p("G. Mamardashvili", 56, 1, 21, 78);
 		p("Thierry Correia", 118, 4, 23, 76);
 		p("Gabriel Paulista", 18, 2, 31, 82);
@@ -17789,7 +17789,7 @@ class Fifa23Service {
 		p("Joseda", 137, 4, 20, 61);
 		p("Jaume", 137, 1, 31, 74);
 
-		c("Osasuna", 137, "#7F2D35");
+		c("Osasuna", 137, "#7F2F37");
 		p("Sergio Herrera", 137, 1, 29, 78);
 		p("Nacho Vidal", 137, 4, 27, 75);
 		p("Unai García", 137, 2, 29, 75);
@@ -17824,7 +17824,7 @@ class Fifa23Service {
 		p("Marc Llinares", 137, 3, 22, 58);
 		p("Herrando", 137, 2, 21, 58);
 
-		c("Rayo Vallecano", 137, "#BD9C9A");
+		c("Rayo Vallecano", 137, "#BC9B99");
 		p("S. Dimitrievski", 108, 1, 28, 79);
 		p("I. Balliu", 2, 4, 30, 75);
 		p("F. Lejeune", 53, 2, 31, 77);
@@ -17857,7 +17857,7 @@ class Fifa23Service {
 		p("Pablo Muñoz", 137, 11, 18, 60);
 		p("Diego Méndez", 137, 2, 18, 60);
 
-		c("Cádiz", 137, "#DACD33");
+		c("Cádiz", 137, "#D8CB34");
 		p("J. Ledesma", 7, 1, 29, 80);
 		p("Zaldúa", 137, 4, 30, 75);
 		p("Luís Hernández", 137, 2, 33, 74);
@@ -17892,7 +17892,7 @@ class Fifa23Service {
 		p("K. Etta Eyong", 23, 7, 18, 61);
 		p("Kikín", 137, 4, 19, 63);
 
-		c("Mallorca", 137, "#852A2C");
+		c("Mallorca", 137, "#852B2C");
 		p("P. Rajković", 129, 1, 26, 78);
 		p("Pablo Maffeo", 137, 6, 24, 78);
 		p("M. Valjent", 133, 2, 26, 75);
@@ -17961,7 +17961,7 @@ class Fifa23Service {
 		p("Kike Ríos", 137, 2, 22, 62);
 		p("Mikel Carro", 137, 8, 23, 61);
 
-		c("Girona", 137, "#B96366");
+		c("Girona", 137, "#B86467");
 		p("Juan Carlos", 137, 1, 34, 73);
 		p("Arnau Martínez", 137, 6, 19, 74);
 		p("S. Bueno", 153, 2, 23, 73);
@@ -17995,7 +17995,7 @@ class Fifa23Service {
 		p("Iker Piedra", 137, 1, 20, 62);
 		p("Lluc Matas", 137, 1, 20, 61);
 
-		c("Almería", 137, "#C96768");
+		c("Almería", 137, "#C76767");
 		p("Fernando", 137, 1, 32, 76);
 		p("H. Mendes", 53, 4, 24, 71);
 		p("Rodrigo Ely", 18, 2, 28, 75);
@@ -18027,7 +18027,7 @@ class Fifa23Service {
 		p("David Cuenca", 137, 3, 20, 62);
 		p("D. Vraciu", 121, 11, 20, 60);
 
-		c("Elche", 137, "#C6C9C4");
+		c("Elche", 137, "#C5C8C2");
 		p("Edgar Badia", 137, 1, 30, 80);
 		p("Pol Lirola", 137, 4, 24, 75);
 		p("H. Palacios", 30, 4, 29, 73);
@@ -18059,7 +18059,7 @@ class Fifa23Service {
 		p("B. Knežević", 129, 11, 20, 57);
 		p("Jesús López", 137, 1, 19, 58);
 
-		c("Levante", 137, "#4D2E41");
+		c("Levante", 137, "#4D2F41");
 		p("Dani Cárdenas", 137, 1, 25, 74);
 		p("Son", 137, 4, 28, 71);
 		p("Postigo", 137, 2, 33, 71);
@@ -18120,7 +18120,7 @@ class Fifa23Service {
 		p("Álex Balboa", 47, 8, 21, 60);
 		p("Tomás Mendes", 137, 8, 17, 60);
 
-		c("SD Eibar", 137, "#453650");
+		c("SD Eibar", 137, "#483953");
 		p("L. Zidane", 53, 1, 24, 69);
 		p("Álvaro Tejero", 137, 4, 25, 72);
 		p("Frederico Venâncio", 118, 2, 29, 73);
@@ -18149,7 +18149,7 @@ class Fifa23Service {
 		p("San Nicolás", 137, 1, 21, 58);
 		p("Unai Ruiz", 137, 1, 22, 57);
 
-		c("Las Palmas", 137, "#D6B927");
+		c("Las Palmas", 137, "#D5B827");
 		p("Álvaro Valles", 137, 1, 24, 70);
 		p("Alex Suárez", 137, 2, 29, 68);
 		p("Sidnei", 18, 2, 32, 77);
@@ -18181,7 +18181,7 @@ class Fifa23Service {
 		p("Borja Llarena", 137, 15, 23, 61);
 		p("Ale García", 137, 10, 19, 60);
 
-		c("Granada", 137, "#B36A77");
+		c("Granada", 137, "#B26976");
 		p("Raúl Fernández", 137, 1, 34, 69);
 		p("Ricard", 137, 4, 22, 67);
 		p("Miguel Rubio", 137, 2, 24, 68);
@@ -18213,7 +18213,7 @@ class Fifa23Service {
 		p("Bryan", 137, 9, 20, 63);
 		p("Ángel Jiménez", 137, 1, 20, 63);
 
-		c("Tenerife", 137, "#BBBFC8");
+		c("Tenerife", 137, "#BBBEC7");
 		p("Juan Soriano", 137, 1, 24, 71);
 		p("J. Mellot", 53, 4, 28, 70);
 		p("N. Šipčić", 100, 2, 27, 67);
@@ -18245,7 +18245,7 @@ class Fifa23Service {
 		p("Dylan Perera", 137, 11, 19, 61);
 		p("Matías Cedrés", 137, 4, 22, 60);
 
-		c("Burgos", 137, "#CDCDCC");
+		c("Burgos", 137, "#CCCCCB");
 		p("Caro", 137, 1, 28, 73);
 		p("Raúl Navarro", 137, 4, 28, 68);
 		p("Córdoba", 137, 2, 27, 69);
@@ -18274,7 +18274,7 @@ class Fifa23Service {
 		p("del Cerro", 137, 8, 18, 61);
 		p("Pol Bassa", 137, 3, 19, 61);
 
-		c("Sporting Gijón", 137, "#BA6A6F");
+		c("Sporting Gijón", 137, "#B96A6F");
 		p("Diego Mariño", 137, 1, 32, 70);
 		p("Guille Rosas", 137, 4, 22, 65);
 		p("Insua", 137, 2, 28, 68);
@@ -18306,7 +18306,7 @@ class Fifa23Service {
 		p("Jordi Pola", 137, 2, 22, 62);
 		p("F. Bloch", 53, 1, 22, 59);
 
-		c("Real Oviedo", 137, "#3A4262");
+		c("Real Oviedo", 137, "#3B4362");
 		p("Tomeu Nadal", 137, 1, 33, 67);
 		p("Lucas Ahijado", 137, 4, 27, 66);
 		p("Rodri Tarín", 137, 2, 25, 68);
@@ -18370,7 +18370,7 @@ class Fifa23Service {
 		p("Sergio Díaz", 137, 1, 24, 62);
 		p("E. Dueñas", 45, 11, 21, 61);
 
-		c("Real Zaragoza", 137, "#BBBDC7");
+		c("Real Zaragoza", 137, "#BABCC6");
 		p("C. Álvarez", 7, 1, 36, 73);
 		p("Fran Gámez", 137, 4, 30, 71);
 		p("Lluís López", 137, 2, 25, 69);
@@ -18402,7 +18402,7 @@ class Fifa23Service {
 		p("Vaquero", 137, 8, 18, 60);
 		p("Miguel Operé", 137, 2, 21, 60);
 
-		c("Huesca", 137, "#64384E");
+		c("Huesca", 137, "#64394F");
 		p("Andrés Fernández", 137, 1, 35, 74);
 		p("Juanjo Nieto", 137, 4, 27, 70);
 		p("Rubén Pulido", 137, 2, 21, 65);
@@ -18434,7 +18434,7 @@ class Fifa23Service {
 		p("Almerge", 137, 4, 21, 61);
 		p("Miguel Sanz", 137, 1, 19, 59);
 
-		c("Leganés", 137, "#A8BCD7");
+		c("Leganés", 137, "#A8BCD6");
 		p("Riesgo", 137, 1, 38, 66);
 		p("A. Nyom", 23, 4, 34, 73);
 		p("Jorge Sáenz", 137, 2, 25, 67);
@@ -18465,7 +18465,7 @@ class Fifa23Service {
 		p("Javi Garrido", 137, 1, 18, 59);
 		p("Belman", 137, 1, 23, 64);
 
-		c("Málaga", 137, "#66A1C1");
+		c("Málaga", 137, "#66A1C0");
 		p("Manolo Reina", 137, 1, 37, 69);
 		p("Juanfran", 137, 4, 33, 67);
 		p("E. Burgos", 7, 2, 30, 66);
@@ -18525,7 +18525,7 @@ class Fifa23Service {
 		p("N. Fedotov", 150, 1, 22, 59);
 		p("Àlex Baño", 137, 1, 22, 59);
 
-		c("UD Ibiza", 137, "#658DBB");
+		c("UD Ibiza", 137, "#678DBB");
 		p("Daniel Fuzato", 18, 1, 24, 66);
 		p("Fran Grima", 137, 4, 35, 65);
 		p("Martín", 137, 2, 22, 66);
@@ -18555,7 +18555,7 @@ class Fifa23Service {
 		p("Chanza", 137, 1, 24, 62);
 		p("César", 137, 7, 21, 61);
 
-		c("Albacete", 137, "#C4BEBE");
+		c("Albacete", 137, "#C3BDBD");
 		p("Bernabé", 137, 1, 29, 67);
 		p("Alvaro Rodríguez", 137, 4, 27, 67);
 		p("M. Djetei", 23, 2, 27, 66);
@@ -18586,7 +18586,7 @@ class Fifa23Service {
 		p("Raúl Valdés", 137, 1, 18, 58);
 		p("Tommy", 137, 1, 19, 57);
 
-		c("Racing Santander", 137, "#C6CBC3");
+		c("Racing Santander", 137, "#C5CAC2");
 		p("Miquel Parera", 137, 1, 26, 67);
 		p("Unai Medina", 137, 4, 32, 67);
 		p("Pol Moreno", 137, 2, 28, 66);
@@ -18618,7 +18618,7 @@ class Fifa23Service {
 		p("A. Jabbari", 102, 15, 22, 58);
 		p("Dani González", 137, 11, 20, 57);
 
-		c("Lugo", 137, "#BB6E70");
+		c("Lugo", 137, "#BA6E70");
 		p("Óscar Whalley", 137, 1, 28, 71);
 		p("Loureiro", 137, 4, 25, 68);
 		p("Alberto", 137, 2, 29, 65);
@@ -18650,7 +18650,7 @@ class Fifa23Service {
 		p("C. Cotos", 156, 11, 22, 59);
 		p("Álex Ramos", 137, 8, 22, 56);
 
-		c("Mirandés", 137, "#732E35");
+		c("Mirandés", 137, "#732F36");
 		p("Alfonso Herrero", 137, 1, 28, 67);
 		p("Raúl Parra", 137, 4, 22, 65);
 		p("Álex Martín", 137, 2, 24, 65);
@@ -18680,7 +18680,7 @@ class Fifa23Service {
 		p("Nico Gudiño", 137, 2, 22, 60);
 		p("Caropitche", 65, 15, 21, 59);
 
-		c("Villarreal II", 137, "#CECF22");
+		c("Villarreal II", 137, "#CDCE22");
 		p("F. Jörgensen", 41, 1, 20, 67);
 		p("Migue Leal", 137, 4, 25, 66);
 		p("De La Fuente", 137, 2, 23, 67);
@@ -18712,7 +18712,7 @@ class Fifa23Service {
 		p("Espigares", 137, 2, 17, 58);
 		p("Rubén Gómez", 137, 1, 20, 59);
 
-		c("FC Andorra", 137, "#906F66");
+		c("FC Andorra", 137, "#8F6F66");
 		p("Raúl Lizoain", 137, 1, 31, 71);
 		p("Álex Petxa", 137, 4, 25, 66);
 		p("Diego Alende", 137, 2, 24, 68);
@@ -18742,7 +18742,7 @@ class Fifa23Service {
 		p("Pau Casadesús", 137, 4, 19, 58);
 		p("Marc Bombardó", 137, 2, 16, 56);
 
-		c("Malmö FF", 140, "#68A7D6");
+		c("Malmö FF", 140, "#69A7D5");
 		p("J. Dahlin", 140, 1, 35, 70);
 		p("F. Beijmo", 140, 4, 24, 69);
 		p("L. Nielsen", 41, 2, 34, 69);
@@ -18772,7 +18772,7 @@ class Fifa23Service {
 		p("A. Nalić", 17, 11, 24, 66);
 		p("M. Ellborg", 140, 1, 19, 54);
 
-		c("Hammarby", 140, "#D3DAD1");
+		c("Hammarby", 140, "#D1D8D0");
 		p("O. Dovin", 140, 1, 19, 64);
 		p("S. Sandberg", 140, 4, 28, 66);
 		p("E. Kurtulus", 140, 2, 22, 68);
@@ -18825,7 +18825,7 @@ class Fifa23Service {
 		p("A. Doumbouya", 64, 13, 19, 57);
 		p("L. Tagesson", 140, 4, 20, 56);
 
-		c("AIK", 140, "#3B3A30");
+		c("AIK", 140, "#3B3B31");
 		p("K. Nordfeldt", 140, 1, 33, 72);
 		p("M. Lustig", 140, 4, 35, 68);
 		p("A. Milošević", 140, 2, 30, 71);
@@ -18851,7 +18851,7 @@ class Fifa23Service {
 		p("A. Fesshaie", 140, 15, 18, 52);
 		p("V. Andersson", 140, 12, 17, 53);
 
-		c("Elfsborg", 140, "#C59321");
+		c("Elfsborg", 140, "#C49222");
 		p("H. Valdimarsson", 71, 1, 20, 61);
 		p("J. Larsson", 140, 4, 32, 73);
 		p("L. Väisänen", 52, 2, 24, 69);
@@ -18881,7 +18881,7 @@ class Fifa23Service {
 		p("J. Cooper-Love", 140, 15, 20, 60);
 		p("K. Holmén", 140, 8, 20, 55);
 
-		c("Häcken", 140, "#695D2D");
+		c("Häcken", 140, "#685D2D");
 		p("P. Abrahamsson", 140, 1, 33, 68);
 		p("V. Lunddal", 71, 4, 20, 65);
 		p("J. Hammar", 140, 2, 28, 67);
@@ -18909,7 +18909,7 @@ class Fifa23Service {
 		p("A. Youssef", 140, 11, 21, 61);
 		p("F. Trpcevski", 108, 13, 19, 54);
 
-		c("IFK Göteborg", 140, "#6A6BAA");
+		c("IFK Göteborg", 140, "#6C6DAA");
 		p("W. Hahn", 139, 1, 30, 68);
 		p("E. Salomonsson", 140, 4, 33, 67);
 		p("C. Johansson", 140, 2, 28, 67);
@@ -18938,7 +18938,7 @@ class Fifa23Service {
 		p("L. Carlstrand", 140, 15, 17, 53);
 		p("A. Benediktsson", 71, 1, 19, 56);
 
-		c("Norrköping", 140, "#C7C9CB");
+		c("Norrköping", 140, "#C5C7CA");
 		p("O. Jansson", 140, 1, 31, 71);
 		p("D. Eid", 110, 4, 23, 64);
 		p("L. Wahlqvist", 140, 2, 25, 68);
@@ -18968,7 +18968,7 @@ class Fifa23Service {
 		p("K. Khazeni", 140, 8, 27, 60);
 		p("W. Jakobsson", 140, 1, 20, 56);
 
-		c("Sirius", 140, "#405784");
+		c("Sirius", 140, "#425884");
 		p("T. Vaiho", 140, 1, 33, 62);
 		p("A. Bjarnason", 71, 13, 26, 61);
 		p("F. Rogić", 140, 8, 29, 66);
@@ -18998,7 +18998,7 @@ class Fifa23Service {
 		p("P. Nwadike", 140, 2, 23, 61);
 		p("D. Mitov Nilsson", 108, 1, 31, 66);
 
-		c("GIF Sundsvall", 140, "#2F4E99");
+		c("GIF Sundsvall", 140, "#315099");
 		p("O. Jonsson", 140, 1, 25, 58);
 		p("R. Lundström", 140, 6, 32, 66);
 		p("A. Blomqvist", 140, 2, 27, 64);
@@ -19023,7 +19023,7 @@ class Fifa23Service {
 		p("A. Andersson", 140, 1, 31, 63);
 		p("L. Hallenius", 140, 15, 33, 67);
 
-		c("Kalmar", 140, "#E0414D");
+		c("Kalmar", 140, "#DE424F");
 		p("Ricardo Friedrich", 18, 1, 29, 65);
 		p("J. Karlsson", 140, 4, 21, 59);
 		p("L. Sætra", 110, 2, 30, 67);
@@ -19048,7 +19048,7 @@ class Fifa23Service {
 		p("I. Bjerkebo", 140, 15, 19, 56);
 		p("L. Rhöse", 140, 3, 21, 54);
 
-		c("Helsingborg", 140, "#DD262C");
+		c("Helsingborg", 140, "#DB272C");
 		p("K. Joelsson", 140, 1, 24, 62);
 		p("P. Rejnhold", 41, 4, 26, 61);
 		p("C. Widell", 140, 2, 19, 62);
@@ -19078,7 +19078,7 @@ class Fifa23Service {
 		p("S. Bengtsson", 140, 3, 18, 56);
 		p("N. Arvidsson", 140, 1, 19, 54);
 
-		c("Värnamo", 140, "#DEDBDC");
+		c("Värnamo", 140, "#DDDBDB");
 		p("P. Vaitsiakhovich", 12, 1, 32, 64);
 		p("F. Winsth", 140, 4, 31, 63);
 		p("R. Tihi", 52, 2, 20, 64);
@@ -19108,7 +19108,7 @@ class Fifa23Service {
 		p("F. Junior Adjei", 58, 9, 18, 53);
 		p("J. Kenneryd", 140, 2, 18, 53);
 
-		c("Varberg BoIS", 140, "#476553");
+		c("Varberg BoIS", 140, "#486554");
 		p("F. Andersson", 140, 1, 33, 63);
 		p("A. Boman", 140, 6, 20, 62);
 		p("J. Lindner", 140, 2, 31, 64);
@@ -19138,7 +19138,7 @@ class Fifa23Service {
 		p("D. Bendrik", 140, 6, 19, 53);
 		p("P. Mårtensson", 140, 1, 28, 58);
 
-		c("Mjällby", 140, "#E6CA32");
+		c("Mjällby", 140, "#E4C933");
 		p("S. Brolin", 140, 1, 21, 66);
 		p("A. Ståhl", 140, 6, 27, 64);
 		p("N. Eile", 140, 2, 19, 62);
@@ -19164,7 +19164,7 @@ class Fifa23Service {
 		p("Y. Abdulazeez", 107, 15, 20, 60);
 		p("A. Petersson", 140, 8, 21, 58);
 
-		c("Degerfors", 140, "#D23E42");
+		c("Degerfors", 140, "#D13F44");
 		p("A. Whiteman", 46, 1, 23, 63);
 		p("G. Granath", 140, 2, 25, 62);
 		p("G. Lagerbielke", 140, 2, 22, 61);
@@ -19190,7 +19190,7 @@ class Fifa23Service {
 		p("O. Wallin", 140, 2, 20, 55);
 		p("R. Mukiibi", 149, 2, 30, 61);
 
-		c("Young Boys", 141, "#BAA63F");
+		c("Young Boys", 141, "#B9A53F");
 		p("D. von Ballmoos", 141, 1, 27, 74);
 		p("L. Blum", 141, 4, 20, 61);
 		p("F. Lustenberger", 141, 2, 34, 71);
@@ -19219,7 +19219,7 @@ class Fifa23Service {
 		p("E. Petignat", 141, 7, 22, 55);
 		p("M. Chaiwa", 159, 7, 18, 55);
 
-		c("Basel", 141, "#823F65");
+		c("Basel", 141, "#813F65");
 		p("M. Hitz", 141, 1, 34, 78);
 		p("M. Lang", 141, 4, 31, 70);
 		p("Arnau Comas", 137, 2, 22, 66);
@@ -19249,7 +19249,7 @@ class Fifa23Service {
 		p("L. Chipperfield", 141, 8, 18, 57);
 		p("E. Essiam", 58, 8, 18, 55);
 
-		c("Servette", 141, "#60353E");
+		c("Servette", 141, "#613740");
 		p("J. Frick", 141, 1, 29, 70);
 		p("M. Diallo", 53, 4, 25, 62);
 		p("S. Rouiller", 141, 2, 31, 68);
@@ -19279,7 +19279,7 @@ class Fifa23Service {
 		p("S. Deana", 141, 1, 32, 59);
 		p("T. Magnin", 141, 4, 18, 55);
 
-		c("Zürich", 141, "#C4C6C9");
+		c("Zürich", 141, "#C3C5C8");
 		p("Y. Brecher", 141, 1, 29, 73);
 		p("L. Kamberi", 141, 2, 22, 60);
 		p("N. Katić", 36, 2, 25, 70);
@@ -19309,7 +19309,7 @@ class Fifa23Service {
 		p("S. Hodza", 141, 6, 19, 53);
 		p("M. Reichmuth", 141, 8, 18, 54);
 
-		c("Sion", 141, "#A53746");
+		c("Sion", 141, "#A53947");
 		p("H. Lindner", 10, 1, 31, 75);
 		p("N. Lavanchy", 141, 4, 28, 72);
 		p("D. Cavaré", 53, 2, 27, 66);
@@ -19338,7 +19338,7 @@ class Fifa23Service {
 		p("José Aguilar", 137, 8, 21, 52);
 		p("A. Zagré", 20, 15, 18, 50);
 
-		c("Lugano", 141, "#534646");
+		c("Lugano", 141, "#544847");
 		p("A. Saipi", 141, 1, 21, 66);
 		p("A. Arigoni", 141, 4, 23, 63);
 		p("L. Mai", 57, 2, 22, 66);
@@ -19368,7 +19368,7 @@ class Fifa23Service {
 		p("N. De Queiroz", 141, 2, 19, 55);
 		p("A. Morosoli", 141, 1, 17, 52);
 
-		c("Luzern", 141, "#483B52");
+		c("Luzern", 141, "#493D53");
 		p("M. Müller", 57, 1, 28, 73);
 		p("M. Dräger", 147, 4, 26, 70);
 		p("D. Simani", 2, 2, 30, 66);
@@ -19398,7 +19398,7 @@ class Fifa23Service {
 		p("S. Ottiger", 141, 4, 19, 53);
 		p("R. Radtke", 141, 1, 20, 53);
 
-		c("Grasshopper", 141, "#828BAA");
+		c("Grasshopper", 141, "#828BA9");
 		p("J. Hammel", 141, 1, 21, 55);
 		p("B. Bolla", 70, 6, 22, 65);
 		p("A. Seko", 79, 2, 22, 67);
@@ -19426,7 +19426,7 @@ class Fifa23Service {
 		p("D. Kacuri", 141, 11, 18, 55);
 		p("F. De Carvalho", 141, 12, 18, 51);
 
-		c("St. Gallen", 141, "#326842");
+		c("St. Gallen", 141, "#356944");
 		p("L. Zigi", 58, 1, 25, 72);
 		p("B. Stillhart", 141, 2, 28, 67);
 		p("L. Stergiou", 141, 2, 20, 67);
@@ -19456,7 +19456,7 @@ class Fifa23Service {
 		p("R. Alves", 141, 11, 20, 62);
 		p("B. Dumrath", 57, 1, 18, 53);
 
-		c("Winterthur", 141, "#9D2B2C");
+		c("Winterthur", 141, "#9D2B2D");
 		p("T. Fayulu", 141, 1, 22, 63);
 		p("A. Gantenbein", 141, 4, 21, 60);
 		p("G. Lekaj", 85, 2, 32, 62);
@@ -19484,7 +19484,7 @@ class Fifa23Service {
 		p("A. Dakaj", 141, 7, 20, 57);
 		p("A. Abaz", 141, 1, 20, 52);
 
-		c("Galatasaray", 148, "#9D5A3A");
+		c("Galatasaray", 148, "#9C5A3A");
 		p("F. Muslera", 153, 1, 36, 80);
 		p("S. Boey", 53, 4, 21, 72);
 		p("V. Nelsson", 41, 2, 23, 75);
@@ -19515,7 +19515,7 @@ class Fifa23Service {
 		p("Ö. Aksaka", 148, 7, 19, 63);
 		p("J. Yılmaz", 148, 1, 17, 57);
 
-		c("Fenerbahçe", 148, "#8B8A53");
+		c("Fenerbahçe", 148, "#8B8953");
 		p("A. Bayındır", 148, 1, 24, 78);
 		p("B. Osayi-Samuel", 107, 4, 24, 74);
 		p("S. Aziz", 148, 2, 31, 74);
@@ -19544,7 +19544,7 @@ class Fifa23Service {
 		p("E. Çetin", 148, 1, 19, 55);
 		p("Bruma", 118, 12, 27, 76);
 
-		c("Trabzonspor", 148, "#707087");
+		c("Trabzonspor", 148, "#717188");
 		p("U. Çakır", 148, 1, 26, 80);
 		p("J. Larsen", 41, 4, 31, 75);
 		p("Marc Bartra", 137, 2, 31, 81);
@@ -19576,7 +19576,7 @@ class Fifa23Service {
 		p("Bruno Peres", 18, 4, 32, 74);
 		p("K. Şen", 148, 8, 20, 60);
 
-		c("Beşiktaş", 148, "#D0CECD");
+		c("Beşiktaş", 148, "#CFCDCC");
 		p("M. Günok", 148, 1, 33, 72);
 		p("V. Rosier", 53, 4, 25, 77);
 		p("T. Sanuç", 148, 2, 22, 67);
@@ -19603,7 +19603,7 @@ class Fifa23Service {
 		p("E. Bilgin", 148, 1, 18, 62);
 		p("O. Akgün", 148, 12, 20, 60);
 
-		c("İstanbul Başakşehir", 148, "#D95730");
+		c("İstanbul Başakşehir", 148, "#D65831");
 		p("V. Babacan", 148, 1, 33, 70);
 		p("Júnior Caiçara", 18, 4, 33, 75);
 		p("Léo Duarte", 18, 2, 25, 73);
@@ -19630,7 +19630,7 @@ class Fifa23Service {
 		p("Ş. Özbayraklı", 148, 4, 32, 67);
 		p("M. Özil", 57, 11, 33, 77);
 
-		c("Ankaragücü", 148, "#736F3B");
+		c("Ankaragücü", 148, "#726F3C");
 		p("B. Güngördü", 148, 1, 26, 65);
 		p("K. Malcuit", 53, 4, 30, 74);
 		p("U. Radaković", 129, 2, 28, 69);
@@ -19662,7 +19662,7 @@ class Fifa23Service {
 		p("Ş. Çetin", 57, 8, 21, 62);
 		p("A. Babacan", 148, 2, 24, 63);
 
-		c("Adana Demirspor", 148, "#396395");
+		c("Adana Demirspor", 148, "#3B6595");
 		p("E. Özbir", 148, 1, 32, 70);
 		p("J. Svensson", 110, 4, 29, 77);
 		p("S. Akaydin", 148, 2, 28, 67);
@@ -19694,7 +19694,7 @@ class Fifa23Service {
 		p("S. Kavrazlı", 148, 13, 20, 60);
 		p("G. Khabuliani", 56, 14, 18, 59);
 
-		c("Antalyaspor", 148, "#CE8485");
+		c("Antalyaspor", 148, "#CD8486");
 		p("A. Uysal", 148, 1, 28, 64);
 		p("B. Balcı", 148, 4, 22, 68);
 		p("C. Luyindama", 33, 2, 28, 72);
@@ -19723,7 +19723,7 @@ class Fifa23Service {
 		p("S. Gümüş", 57, 10, 28, 67);
 		p("M. Erdilman", 148, 8, 18, 55);
 
-		c("Alanyaspor", 148, "#595337");
+		c("Alanyaspor", 148, "#5A5438");
 		p("R. Rúnarsson", 71, 1, 27, 71);
 		p("Pedro Pereira", 118, 6, 24, 74);
 		p("F. Bayır", 148, 2, 22, 60);
@@ -19754,7 +19754,7 @@ class Fifa23Service {
 		p("Y. Bahadir", 13, 4, 19, 58);
 		p("C. Çelik", 148, 8, 20, 57);
 
-		c("Kasımpaşa", 148, "#696C74");
+		c("Kasımpaşa", 148, "#696C75");
 		p("E. Taşkıran", 148, 1, 32, 68);
 		p("F. Hadergjonaj", 85, 4, 27, 71);
 		p("J. Bruma", 105, 2, 30, 71);
@@ -19781,7 +19781,7 @@ class Fifa23Service {
 		p("B. Kalkan", 108, 12, 19, 56);
 		p("A. Demirel", 148, 11, 19, 60);
 
-		c("Fatih Karagümrük", 148, "#632930");
+		c("Fatih Karagümrük", 148, "#642B31");
 		p("E. Viviano", 77, 1, 36, 71);
 		p("D. Biraschi", 77, 2, 27, 72);
 		p("S. Caulker", 131, 2, 30, 73);
@@ -19807,7 +19807,7 @@ class Fifa23Service {
 		p("S. Onur", 148, 11, 19, 60);
 		p("E. Tatlı", 148, 8, 19, 63);
 
-		c("Kayserispor", 148, "#B84C2D");
+		c("Kayserispor", 148, "#B74C2E");
 		p("B. Bayazit", 105, 1, 23, 67);
 		p("O. Bulut", 148, 4, 28, 69);
 		p("M. Hosseini", 74, 2, 26, 69);
@@ -19890,7 +19890,7 @@ class Fifa23Service {
 		p("B. Yardımcı", 148, 4, 29, 65);
 		p("O. Ülgün", 148, 7, 24, 59);
 
-		c("Sivasspor", 148, "#965F5E");
+		c("Sivasspor", 148, "#955F5E");
 		p("A. Vural", 148, 1, 31, 68);
 		p("E. Yeşilyurt", 57, 10, 28, 66);
 		p("D. Goutas", 60, 2, 28, 68);
@@ -19947,7 +19947,7 @@ class Fifa23Service {
 		p("O. Babuscu", 10, 11, 18, 61);
 		p("B. Küpelikılınç", 57, 4, 19, 59);
 
-		c("Ümraniyespor", 148, "#A03B38");
+		c("Ümraniyespor", 148, "#9F3C39");
 		p("S. Kırıntılı", 148, 1, 37, 68);
 		p("S. Popov", 19, 4, 31, 68);
 		p("Allyson", 18, 2, 31, 69);
@@ -19975,7 +19975,7 @@ class Fifa23Service {
 		p("M. Yılmaz", 148, 4, 23, 63);
 		p("A. Demir", 148, 1, 25, 51);
 
-		c("Giresunspor", 148, "#698B82");
+		c("Giresunspor", 148, "#6A8B82");
 		p("O. Piri", 148, 1, 27, 66);
 		p("H. Bilazer", 148, 4, 27, 64);
 		p("R. Arias", 153, 2, 29, 69);
@@ -20002,7 +20002,7 @@ class Fifa23Service {
 		p("F. Yılmaz", 148, 2, 20, 57);
 		p("T. Ülvan", 148, 4, 21, 57);
 
-		c("İstanbulspor", 148, "#C6AC1E");
+		c("İstanbulspor", 148, "#C5AC1E");
 		p("D. Jensen", 41, 1, 30, 68);
 		p("O. Berber", 148, 4, 30, 66);
 		p("M. Yeşil", 148, 2, 24, 62);
@@ -20030,7 +20030,7 @@ class Fifa23Service {
 		p("A. Čajić", 17, 8, 29, 59);
 		p("V. Temel", 148, 7, 19, 56);
 
-		c("Dynamo Kyiv", 150, "#ABB3C4");
+		c("Dynamo Kyiv", 150, "#AAB3C3");
 		p("G. Bushchan", 150, 1, 28, 75);
 		p("T. Kędziora", 117, 4, 28, 74);
 		p("I. Zabarnyi", 150, 2, 19, 73);
@@ -20060,7 +20060,7 @@ class Fifa23Service {
 		p("A. Tsarenko", 150, 11, 18, 63);
 		p("O. Yatsyk", 150, 8, 19, 62);
 
-		c("Shakhtar Donetsk", 150, "#965622");
+		c("Shakhtar Donetsk", 150, "#965623");
 		p("A. Trubin", 150, 1, 20, 72);
 		p("Y. Konoplia", 150, 4, 22, 68);
 		p("V. Bondar", 150, 2, 23, 70);

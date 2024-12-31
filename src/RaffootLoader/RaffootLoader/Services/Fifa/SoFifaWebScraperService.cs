@@ -26,7 +26,6 @@ namespace RaffootLoader.Services.Fifa
 			countries = [.. countries.OrderBy(c => c.Name)];
 
 			database.Year = settings.Year;
-			database.Leagues = leagues;
 			database.Clubs = clubs;
 			database.Players = players;
 			database.Countries = countries;
@@ -76,9 +75,9 @@ namespace RaffootLoader.Services.Fifa
 					var link = tr.SelectSingleNode("./td[2]//a");
 					var club = new Club
 					{
-						LeagueId = league.ExternalId,
 						ExternalId = int.Parse(link.GetAttributeValue("href", default(string)).Split("/")[2]),
 						Name = link.InnerText,
+						Country = league.Country,
 					};
 					clubs.Add(club);
 				}

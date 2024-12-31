@@ -29,7 +29,6 @@ namespace RaffootLoader.Services.Fifa
 			var team = players.Where(p => p.ClubId == 44).ToList();
 
 			database.Year = settings.Year;
-			database.Leagues = leagues;
 			database.Clubs = clubs;
 			database.Players = players;
 			database.Countries = countries;
@@ -102,9 +101,10 @@ namespace RaffootLoader.Services.Fifa
 			foreach (DataRow row in dt.Rows)
 			{
 				var leagueId = int.Parse(row["leagueid"].ToString());
+				var country = leagues.Single(l => l.ExternalId == leagueId).Country;
 
 				var club = clubs.Single(c => c.ExternalId == int.Parse(row["teamid"].ToString()));
-				club.LeagueId = leagueId;
+				club.Country = country;
 
 				if (!leagues.Any(l => l.ExternalId == leagueId))
 					clubs.Remove(club);

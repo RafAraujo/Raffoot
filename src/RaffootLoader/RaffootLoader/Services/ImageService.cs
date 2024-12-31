@@ -5,11 +5,8 @@ using RaffootLoader.Services.DTO;
 
 namespace RaffootLoader.Services
 {
-	public class ImageService(ISettings settings, IContext context) : IImageService
+	public class ImageService(ISettings settings) : IImageService
 	{
-		private List<League> leagues = [];
-		private List<League> Leagues => leagues.Count > 0 ? leagues : leagues = context.Leagues.ToList();
-
 		private readonly string defaultExtension = ".png";
 
 		public ImageInfoDto GetFlag(Country country)
@@ -35,13 +32,12 @@ namespace RaffootLoader.Services
 				return dto;
 
 			var url = club.Logo.Contains(' ') ? club.Logo.Split(' ')[2] : club.Logo;
-			var countryName = Leagues.Single(l => l.ExternalId == club.LeagueId).Country;
 			var name = club.GetFileName();
 
 			var extension = Path.GetExtension(url) ?? defaultExtension;
 			var fileName = $"{name}{extension}";
-			var filePath = Path.Combine(settings.ImagesFolder, "clubs", countryName, fileName);
-			
+			var filePath = Path.Combine(settings.ImagesFolder, "clubs", club.Country, fileName);
+
 			dto = new ImageInfoDto(url, filePath);
 			return dto;
 		}
@@ -53,9 +49,8 @@ namespace RaffootLoader.Services
 			if (club.Kits.Count == 0)
 				return dtos;
 
-			var country = Leagues.Single(l => club.LeagueId == l.ExternalId).Country;
 			var baseFolder = Path.Combine(settings.ImagesFolder, "kits", settings.Year.ToString());
-			var countryFolder = Path.Combine(baseFolder, country);
+			var countryFolder = Path.Combine(baseFolder, club.Country);
 
 			var clubFolder = Path.Combine(countryFolder, club.GetFileName());
 

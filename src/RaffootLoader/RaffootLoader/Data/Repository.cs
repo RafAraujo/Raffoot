@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace RaffootLoader.Data
 {
-	public class Repository(string dbPath) : IRepository
+	public class Repository(ISettings settings) : IRepository
 	{
 		public bool Delete<T>(int id)
 		{
@@ -76,6 +76,6 @@ namespace RaffootLoader.Data
 			return collection.Upsert(entity);
 		}
 
-		protected virtual LiteDatabase GetLiteDatabase() => new(dbPath);
+		protected virtual LiteDatabase GetLiteDatabase() => new(settings.DbPath);
 	}
 }

@@ -43,21 +43,19 @@ namespace RaffootLoader.Services
 				var countryNames = countries.Select(c => c.Name).ToList();
 				var positions = context.Positions.Select(p => p.Abbreviation).ToList();
 
-				var leagues = context.Leagues.OrderBy(l => l.Id);
 				var clubs = context.Clubs.OrderBy(c => c.Id);
 				var players = context.Players.OrderBy(p => p.Id);
 
 				if (settings.DataSource == DataSource.FM)
-					clubs = clubs.Where(c => c.LeagueId == leagues.Single(l => l.Country == "Brazil").ExternalId).OrderBy(c => c.Id);
+					clubs = clubs.Where(c => c.Country == "Brazil").OrderBy(c => c.Id);
 
 				foreach (var club in clubs)
 				{
-					var countryName = leagues.Single(l => l.ExternalId == club.LeagueId).Country;
 					var clubShortName = GetShortClubName(club.Name);
 
 					sb.AppendLine(string.Format("\t\tc(\"{0}\", {1}, {2}{3}",
 						club.Name,
-						countryNames.IndexOf(countryName) + 1,
+						countryNames.IndexOf(club.Country) + 1,
 						string.IsNullOrEmpty(club.BackgroundColor) ? "null" : $"\"{club.BackgroundColor}\"",
 						string.IsNullOrEmpty(clubShortName) ? ");" : $", \"{clubShortName}\");"));
 

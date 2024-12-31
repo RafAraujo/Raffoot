@@ -26,32 +26,32 @@ class FieldLocalization {
 
 	static seed() {
 		FieldLocalization.create('GK', 'GK', 0, 2);
-		FieldLocalization.create('LCB', 'CB', 2, 1);
-		FieldLocalization.create('CB', 'CB', 2, 2);
-		FieldLocalization.create('RCB', 'CB', 2, 3);
-		FieldLocalization.create('LB', 'LB', 3, 0);
-		FieldLocalization.create('RB', 'RB', 3, 4);
-		FieldLocalization.create('LWB', 'LWB', 4, 0);
-		FieldLocalization.create('RWB', 'RWB', 4, 4);
-		FieldLocalization.create('LDM', 'CDM', 5, 1);
-		FieldLocalization.create('CDM', 'CDM', 5, 2);
-		FieldLocalization.create('RDM', 'CDM', 5, 3);
-		FieldLocalization.create('LCM', 'CM', 6, 1);
-		FieldLocalization.create('CM', 'CM', 6, 2);
-		FieldLocalization.create('RCM', 'CM', 6, 3);
-		FieldLocalization.create('LM', 'LM', 7, 0);
-		FieldLocalization.create('RM', 'RM', 7, 4);
-		FieldLocalization.create('LAM', 'CAM', 8, 1);
-		FieldLocalization.create('CAM', 'CAM', 8, 2);
-		FieldLocalization.create('RAM', 'CAM', 8, 3);
-		FieldLocalization.create('LW', 'LW', 9, 0);
-		FieldLocalization.create('RW', 'RW', 9, 4);
-		FieldLocalization.create('LF', 'CF', 10, 1);
-		FieldLocalization.create('CF', 'CF', 10, 2);
-		FieldLocalization.create('RF', 'CF', 10, 3);
-		FieldLocalization.create('LS', 'ST', 11, 1);
-		FieldLocalization.create('ST', 'ST', 11, 2);
-		FieldLocalization.create('RS', 'ST', 11, 3);
+		FieldLocalization.create('LCB', 'CB', 1, 1);
+		FieldLocalization.create('CB', 'CB', 1, 2);
+		FieldLocalization.create('RCB', 'CB', 1, 3);
+		FieldLocalization.create('LB', 'LB', 2, 0);
+		FieldLocalization.create('RB', 'RB', 2, 4);
+		FieldLocalization.create('LWB', 'LWB', 3, 0);
+		FieldLocalization.create('RWB', 'RWB', 3, 4);
+		FieldLocalization.create('LDM', 'CDM', 4, 1);
+		FieldLocalization.create('CDM', 'CDM', 4, 2);
+		FieldLocalization.create('RDM', 'CDM', 4, 3);
+		FieldLocalization.create('LCM', 'CM', 5, 1);
+		FieldLocalization.create('CM', 'CM', 5, 2);
+		FieldLocalization.create('RCM', 'CM', 5, 3);
+		FieldLocalization.create('LM', 'LM', 6, 0);
+		FieldLocalization.create('RM', 'RM', 6, 4);
+		FieldLocalization.create('LAM', 'CAM', 7, 1);
+		FieldLocalization.create('CAM', 'CAM', 7, 2);
+		FieldLocalization.create('RAM', 'CAM', 7, 3);
+		FieldLocalization.create('LW', 'LW', 8, 0);
+		FieldLocalization.create('RW', 'RW', 8, 4);
+		FieldLocalization.create('LF', 'CF', 9, 1);
+		FieldLocalization.create('CF', 'CF', 9, 2);
+		FieldLocalization.create('RF', 'CF', 9, 3);
+		FieldLocalization.create('LS', 'ST', 10, 1);
+		FieldLocalization.create('ST', 'ST', 10, 2);
+		FieldLocalization.create('RS', 'ST', 10, 3);
 		FieldLocalization.create('SUB', null, null, null);
 		FieldLocalization.create('RES', null, null, null);
 	}
@@ -69,7 +69,7 @@ class FieldLocalization {
 	}
 
 	get reverse() {
-		return new FieldLocalization(this.position.id, 11 - this.line, this.column === 2 ? 2 : 5 - this.column, this.name);
+		return Context.game.fieldLocalizations.find(fl => fl.line === 11 - this.line && fl.column === 4 - this.column);
 	}
 
 	get side() {

@@ -100,6 +100,44 @@
                         </div>
                     </div>
                 </template>
+                <div class="row" v-if="currentMatch">
+                    <div class="col">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="lineup lineup-horizontal">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="field position-relative" style="height: 300px; width: 525px">
+                                            <template v-for="player in getFieldPlayers(currentMatch.clubHome)">
+                                                <div class="position-absolute border d-flex align-items-center justify-content-center text-center button button-right"
+                                                    :style="{ top: player.fieldLocalization.column * 60 + 15 + 'px', left: player.fieldLocalization.line * 45 + 'px', backgroundColor: player.club.colors.backgroundCustom, zIndex: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubHome ? 2 : 1, opacity: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubHome ? 1 : 0.5 }">
+                                                    {{ player.position.abbreviation }}
+                                                </div>
+                                            </template>
+                                            <template v-for="player in getFieldPlayers(currentMatch.clubAway)">
+                                                <div class="position-absolute border d-flex align-items-center justify-content-center text-center button button-left"
+                                                    :style="{ top: (4 - player.fieldLocalization.column) * 60 + 15 + 'px', left: (11 - player.fieldLocalization.line) * 45 + 'px', backgroundColor: player.club.colors.backgroundCustom, zIndex: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubAway ? 2 : 1, opacity: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubAway ? 1 : 0.5 }">
+                                                    {{ player.position.abbreviation }}
+                                                </div>
+                                            </template>
+                                            <div id="ball" v-if="currentMatch.matchSimulation"
+                                                class="ball position-absolute passing"
+                                                :style="this.getBallLocation()"
+                                                style="z-index: 2;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" v-if="currentMatch.matchSimulation">
+                                    <div class="col">
+                                        <div>
+                                            {{ `${currentMatch.matchSimulation.ballPossessor.club.name}: ${currentMatch.matchSimulation.previousBallPossessor.position.abbreviation} --> ${currentMatch.matchSimulation.ballPossessor.position.abbreviation}` }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col">
                         &nbsp;

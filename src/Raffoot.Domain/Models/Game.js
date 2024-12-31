@@ -38,14 +38,15 @@ class Game {
         this.matchSimulationStatistics = [];
 
         this.dataSource = dataSource;
-        this.isFantasyMode = this.mode !== 'Default' || year < 2005;
+        this.isFantasyMode = this.dataSource === 'FM' || firstYear < 2005;
+        this.isPaused = false;
         
         this.messages = [];
 
         this.config = {
             fullScreen: false,
             language: Config.language,
-            matchSpeed: Config.matchSpeedOptions.ultraFast,
+            matchSpeed: Config.matchSpeedOptions.verySlow,
             search: {
                 pageSize: Config.search.pageSize
             },
@@ -69,31 +70,29 @@ class Game {
     }
 
     advanceDate() {
-        if (this.currentSeason.currentSeasonDate.isTransferWindow) {
-            this.currentSeason.advanceDate();
+        const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
+        for (const match of matches) {
+            delete match.matchSimulation;
         }
-        else {
-            const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
-            for (const match of matches) {
-                delete match.matchSimulation;
-            }
 
-            this._qualifyWinnersToNextEliminationPhases();
+        this._qualifyWinnersToNextEliminationPhases();
+        this.currentSeason.advanceDate();
 
-            const previousDate = this.currentSeason.currentDate;
-            this.currentSeason.advanceDate();
-            const days = Date.daysDiff(previousDate, this.currentSeason.currentDate);
+        this.matchSimulations = [];
+        this.matchSimulationActions = [];
+        this.matchSimulationEvents = [];
 
+        const previousDate = this.currentSeason.currentDate;
+        const days = Date.daysDiff(previousDate, this.currentSeason.currentDate);
+
+        for (const club of this.clubs) {
+            club.rest(days);
+        }
+
+        if (this.currentSeason.currentDate.getMonth() > previousDate.getMonth()) {
             for (const club of this.clubs) {
-                club.rest(days);
-                if (this.currentSeason.currentDate.getMonth() > previousDate.getMonth()) {
-                    club.payWages();
-                }
+                club.payWages();
             }
-
-            this.matchSimulations = [];
-            this.matchSimulationActions = [];
-            this.matchSimulationEvents = [];
         }
     }
 
@@ -158,6 +157,14 @@ class Game {
         this._currentSeasonId = season.id;
     }
 
+    pause() {
+        this.isPaused = true;
+    }
+
+    resume() {
+        this.isPaused = false;
+    }
+
     play(speed, callback) {
         this.time = 0;
         const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
@@ -170,6 +177,10 @@ class Game {
 
         const interval = setInterval(() => {
             let t0 = performance.now();
+
+            if (this.isPaused) {
+                return;
+            }
 
             for (const matchSimulation of matchSimulations) {
                 matchSimulation.nextAction(this.time);

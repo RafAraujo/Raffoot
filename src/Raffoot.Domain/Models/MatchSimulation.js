@@ -3,6 +3,7 @@ class MatchSimulation {
         this._matchId = matchId;
         this.logActions = logActions;
 
+        this._previousBallPossessorId = null;
         this._ballPossessorId = null;
         this._matchSimulationActionIds = [];
     }
@@ -17,8 +18,24 @@ class MatchSimulation {
         return Context.game.matchSimulations[id - 1];
     }
 
-    get ballLocation() {
+    get ballFieldRegion() {
         return this.ballPossessor.fieldLocalization.position.fieldRegion;
+    }
+
+    get previousBallLocation() {
+        return this.previousBallPossessor.fieldLocalization;
+    }
+
+    get ballLocation() {
+        return this.ballPossessor.fieldLocalization;
+    }
+
+    get previousBallPossessor() {
+        return this.match.playersOnField.find(p => p.id === this._previousBallPossessorId);
+    }
+
+    set previousBallPossessor(player) {
+        this._previousBallPossessorId = player.id;
     }
 
     get ballPossessor() {
@@ -26,11 +43,12 @@ class MatchSimulation {
     }
 
     set ballPossessor(player) {
+        this._previousBallPossessorId = this._ballPossessorId;
         this._ballPossessorId = player.id;
     }
 
     get marker() {
-        return this.clubDefending.getPlayersAt(this.ballLocation.inverse).getRandom();
+        return this.clubDefending.getPlayersAt(this.ballFieldRegion.inverse).getRandom();
     }
 
     get clubAttacking() {
@@ -59,6 +77,13 @@ class MatchSimulation {
 
     addAction(matchSimulationAction) {
         this._matchSimulationActionIds.push(matchSimulationAction.id);
+    }
+
+    getLastMatchSimulationEvent(club) {
+        let events = this.matchSimulationActions.flatMap(a => a.matchSimulationEvents);
+        events = events.filter(e => e.player.club.id === club.id);
+        const event = events.last();
+        return event;
     }
 
     getMatchSimulationEvents(type, club) {
@@ -136,7 +161,7 @@ class MatchSimulation {
         let action = null;
         const fieldLocalization = this.ballPossessor.fieldLocalization;
 
-        if (this.previousAction?.isSuccessful && result < fieldLocalization.line * fieldLocalization.position.fieldRegion.id) {
+        if (result < fieldLocalization.line * fieldLocalization.position.fieldRegion.id) {
             action = MatchSimulationActionFinishing.create(this, time);
         }
         else {

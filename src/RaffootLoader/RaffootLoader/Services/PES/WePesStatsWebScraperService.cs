@@ -27,7 +27,6 @@ namespace RaffootLoader.Services.PES
 			await GetData().ConfigureAwait(false);
 
 			database.Year = settings.Year;
-			database.Leagues = leagues;
 			database.Clubs = clubs;
 			database.Players = players;
 			database.Countries = countries;
@@ -83,7 +82,7 @@ namespace RaffootLoader.Services.PES
 					leagues.Add(league);
 
 				if (!clubs.Any(c => c.Name == clubName))
-					clubs.Add(new Club { ExternalId = clubs.Count + 1, Name = clubName, LeagueId = league.ExternalId });
+					clubs.Add(new Club { ExternalId = clubs.Count + 1, Name = clubName, Country = league.Country });
 
 				var countryName = GetStandardizedCountryName(cells[GetIndex("Nationality")].InnerText);
 

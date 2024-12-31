@@ -25,10 +25,10 @@ namespace RaffootLoader.Services
 			var imagesInfos = GetImagesInfos(imageType);
 			imagesInfos = imagesInfos.Where(dto => !string.IsNullOrEmpty(dto.FilePath) && !File.Exists(dto.FilePath)).ToList();
 
-			var batchSize = 1000;
-			for (var i = 0; i < imagesInfos.Count; i += batchSize)
+			const int BatchSize = 5000;
+			for (var i = 0; i < imagesInfos.Count; i += BatchSize)
 			{
-				var currentBatch = imagesInfos.Skip(i).Take(batchSize);
+				var currentBatch = imagesInfos.Skip(i).Take(BatchSize);
 				var batchTasks = currentBatch.Select(dto =>
 				{
 					var batchTask = DownloadFile(dto.Url, dto.FilePath);
@@ -63,7 +63,7 @@ namespace RaffootLoader.Services
 			};
 		}
 
-		private async Task DownloadFile(string url, string filePath)
+		private async Task DownloadFile(string url, string filePath, bool writeLog = false)
 		{
 			try
 			{
@@ -75,7 +75,8 @@ namespace RaffootLoader.Services
 			catch (Exception ex)
 			{
 				var message = string.Format("{0}: {1}", Path.GetFileNameWithoutExtension(filePath), ex.Message);
-				ConsoleUtils.WriteError(message);
+				if (writeLog)
+					ConsoleUtils.WriteError(message);
 				throw;
 			}
 

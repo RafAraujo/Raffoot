@@ -25,7 +25,6 @@ namespace RaffootLoader.Services.PES
 			countries = [.. countries.OrderBy(c => c.Name)];
 
 			database.Year = settings.Year;
-			database.Leagues = leagues;
 			database.Clubs = clubs;
 			database.Players = players;
 			database.Countries = countries;
@@ -72,9 +71,9 @@ namespace RaffootLoader.Services.PES
 
 				var club = new Club
 				{
-					LeagueId = league.ExternalId,
 					ExternalId = int.Parse(link.GetAttributeValue("href", default(string)).Split("/")[4]),
 					Name = GetStandardizedClubName(clubName),
+					Country = league.Country,
 				};
 
 				clubs.Add(club);

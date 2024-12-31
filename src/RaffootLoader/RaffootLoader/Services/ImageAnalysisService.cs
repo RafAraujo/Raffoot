@@ -18,7 +18,6 @@ namespace RaffootLoader.Services
 					return;
 				}
 
-				var leagues = context.Leagues;
 				var clubs = context.Clubs;
 
 				Console.WriteLine("Updating clubs colors...");
@@ -49,7 +48,7 @@ namespace RaffootLoader.Services
 				foreach (var club in clubs)
 				{
 					repository.Update(club);
-					ConsoleUtils.ShowProgress(++current, clubs.Count(), "Updating database: ");
+					ConsoleUtils.ShowProgress(++current, clubs.Count, "Updating database: ");
 				}
 				Console.WriteLine();
 			}
