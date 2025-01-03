@@ -8,28 +8,26 @@ class SimulationSectionViewModel {
         const previousBallPossessor = this.currentMatch.matchSimulation.previousBallPossessor;
         const currentBallPossessor = this.currentMatch.matchSimulation.ballPossessor;
 
-        const previousBallPossessorClubIsHome = this.currentMatch.matchSimulation.previousBallPossessor.club.id === this.currentMatch.clubHome.id;
-        const currentBallPossessorClubIsHome = this.currentMatch.matchSimulation.ballPossessor.club.id === this.currentMatch.clubHome.id;
-
-        const isSuccessful = this.currentMatch.matchSimulation.currentAction.isSuccessful;
+        const previousBallPossessorClubIsAway = this.currentMatch.matchSimulation.previousBallPossessor.club.id === this.currentMatch.clubAway.id;
+        const currentBallPossessorClubIsAway = this.currentMatch.matchSimulation.ballPossessor.club.id === this.currentMatch.clubAway.id;
 
         const origin = { column: previousBallPossessor.fieldLocalization.column, line: previousBallPossessor.fieldLocalization.line };
         const destination = { column: currentBallPossessor.fieldLocalization.column, line: currentBallPossessor.fieldLocalization.line };
 
-        if (!currentBallPossessorClubIsHome) {
-            destination.line = 11 - destination.line;
-            destination.column = 4 - destination.column;
-        }
-
-        if ((!currentBallPossessorClubIsHome && isSuccessful) || (currentBallPossessorClubIsHome && !isSuccessful)) {
-            origin.line = 11 - origin.line;
-            origin.column = 4 - origin.column;
-        }
+        if (previousBallPossessorClubIsAway)
+            reverse(origin);
+        if (currentBallPossessorClubIsAway)
+            reverse(destination);
 
         const trajectory = [
-            { top: `${origin.column * 60 + 25}px`, left: `${origin.line * 45 + (previousBallPossessorClubIsHome ? 20 : 0)}px` },
-            { top: `${destination.column * 60 + 25}px`, left: `${destination.line * 45 + (currentBallPossessorClubIsHome ? 20 : 0)}px` },
+            { top: `${origin.column * 20}%`, left: `${origin.line * 8.333}%` },
+            { top: `${destination.column * 20}%`, left: `${destination.line * 8.333}%` },
         ];
+
+        function reverse(point) {
+            point.line = 11 - point.line;
+            point.column = 4 - point.column;
+        }
 
         return trajectory;
     }
@@ -106,11 +104,11 @@ class SimulationSectionViewModel {
         const keyframes = this.getBallTrajectory();
 
         const options = {
-            duration: this.game.config.matchSpeed - 500,
+            duration: this.game.config.matchSpeed * 0.8,
             iterations: 1,
         };
 
-        const ball = document.querySelector("#ball");
+        const ball = document.querySelector(".ball-container");
         if (ball)
             ball.animate(keyframes, options);
     }

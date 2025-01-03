@@ -46,7 +46,7 @@ class Game {
         this.config = {
             fullScreen: false,
             language: Config.language,
-            matchSpeed: Config.matchSpeedOptions.verySlow,
+            matchSpeed: Config.matchSpeedOptions.fast,
             search: {
                 pageSize: Config.search.pageSize
             },
