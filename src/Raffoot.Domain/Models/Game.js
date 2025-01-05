@@ -178,26 +178,22 @@ class Game {
         const interval = setInterval(() => {
             let t0 = performance.now();
 
-            if (this.isPaused) {
+            if (this.isPaused)
                 return;
-            }
 
-            for (const matchSimulation of matchSimulations) {
+            for (const matchSimulation of matchSimulations)
                 matchSimulation.nextAction(this.time);
-            }
 
             console.log(`matchSimulation.nextAction() ${index++} took ${(performance.now() - t0)} milliseconds.`);
 
             if (++this.time === 90) {
                 clearInterval(interval);
 
-                for (const match of matches) {
+                for (const match of matches)
                     match.finish();
-                }
 
-                if (callback) {
+                if (callback)
                     callback();
-                }
             }
         }, speed);
     }

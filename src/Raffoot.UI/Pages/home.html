@@ -8,6 +8,7 @@
     <title>Raffoot</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/animate.css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome/css/solid.min.css">
@@ -100,72 +101,91 @@
                         </div>
                     </div>
                 </template>
-                <div class="row" v-if="currentMatch">
-                    <div class="col">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <div class="lineup lineup-horizontal">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="field position-relative">
-                                            <div class="center-line position-absolute"></div>
-                                            <div class="center-circle position-absolute"></div>
-                                            
-                                            <div class="penalty-area penalty-area-left position-absolute"></div>
-                                            <div class="penalty-area-semi-circle penalty-area-semi-circle-left position-absolute"></div>
+            </div>
+            <div class="row" v-if="currentMatch">
+                <div class="col">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="lineup lineup-horizontal">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="field position-relative">
+                                        <div class="center-line position-absolute"></div>
+                                        <div class="center-circle position-absolute"></div>
 
-                                            <div class="penalty-area penalty-area-right position-absolute"></div>
-                                            <div class="penalty-area-semi-circle penalty-area-semi-circle-right position-absolute"></div>
-                                            
-                                            <template v-for="player in getFieldPlayers(currentMatch.clubHome)">
-                                                <div class="button-container position-absolute d-flex align-items-center justify-content-start"
-                                                    :style="{ top: player.fieldLocalization.column * 20 + '%', left: player.fieldLocalization.line * 8.3333 + '%', zIndex: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubHome ? 2 : 1, opacity: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubHome ? 1 : 0.5 }">
-                                                    <div class="button button-right d-flex align-items-center justify-content-center border small"
-                                                        :style="{ backgroundColor: player.club.colors.backgroundCustom }">
-                                                        {{ translator.get(player.fieldLocalization.position.abbreviation) }}
-                                                    </div>
+                                        <div class="penalty-area penalty-area-left position-absolute"></div>
+                                        <div class="semi-circle semi-circle-left position-absolute"></div>
+
+                                        <div class="penalty-area penalty-area-right position-absolute"></div>
+                                        <div class="semi-circle semi-circle-right position-absolute"></div>
+
+                                        <template v-for="player in getFieldPlayers(currentMatch.clubHome)">
+                                            <div class="player-button-container position-absolute d-flex align-items-center justify-content-start"
+                                                :style="{ top: player.fieldLocalization.column * 20 + '%', left: player.fieldLocalization.line * 8.3333 + '%', zIndex: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubHome ? 2 : 1, opacity: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubHome ? 1 : 0.5 }">
+                                                <div class="player-button player-button-home d-flex align-items-center justify-content-center border"
+                                                    :style="{ backgroundColor: player.club.colors.backgroundCustom }">
+                                                    <span class="d-none d-sm-block small"
+                                                        :style="{ color: player.club.colors.foregroundCustom }">
+                                                        {{
+                                                        translator.get(player.fieldLocalization.position.abbreviation)
+                                                        }}
+                                                    </span>
                                                 </div>
-                                            </template>
-                                            <template v-for="player in getFieldPlayers(currentMatch.clubAway)">
-                                                <div class="button-container position-absolute d-flex align-items-center justify-content-end"
-                                                    :style="{ top: (4 - player.fieldLocalization.column) * 20 + '%', left: (11 - player.fieldLocalization.line) * 8.3333 + '%', zIndex: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubAway ? 2 : 1, opacity: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubAway ? 1 : 0.5 }">
-                                                    <div class="button button-left  d-flex align-items-center justify-content-center border small"
-                                                        :style="{ backgroundColor: player.club.colors.backgroundCustom }">
-                                                        {{ translator.get(player.fieldLocalization.position.abbreviation) }}
-                                                    </div>
+                                            </div>
+                                        </template>
+                                        <template v-for="player in getFieldPlayers(currentMatch.clubAway)">
+                                            <div class="player-button-container position-absolute d-flex align-items-center justify-content-end"
+                                                :style="{ top: (4 - player.fieldLocalization.column) * 20 + '%', left: (11 - player.fieldLocalization.line) * 8.3333 + '%', zIndex: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubAway ? 2 : 1, opacity: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubAway ? 1 : 0.5 }">
+                                                <div class="player-button player-button-away d-flex align-items-center justify-content-center border"
+                                                    :style="{ backgroundColor: player.club.colors.backgroundCustom }">
+                                                    <span class="d-none d-sm-block small"
+                                                        :style="{ color: player.club.colors.foregroundCustom }">
+                                                        {{
+                                                        translator.get(player.fieldLocalization.position.abbreviation)
+                                                        }}
+                                                    </span>
                                                 </div>
-                                            </template>
-                                            <div v-if="currentMatch.matchSimulation"
-                                                class="ball-container position-absolute d-flex align-items-center justify-content-center"
-                                                :style="this.getBallLocation()">
-                                                <div class="ball"></div>
+                                            </div>
+                                        </template>
+                                        <div v-if="currentMatch.matchSimulation"
+                                            class="ball-container position-absolute d-flex align-items-center justify-content-center"
+                                            :style="this.getBallLocation()">
+                                            <div class="ball"></div>
+                                        </div>
+
+                                        <div v-if="getCurrentEvent()?.type === 'goal'"
+                                            class="goal-banner position-absolute text-center d-flex align-items-center justify-content-center flex-column animate__animated animate__heartBeat"
+                                            :style="{ backgroundColor: currentMatch.matchSimulation.previousBallPossessor.club.colors.backgroundCustom, color: currentMatch.matchSimulation.previousBallPossessor.club.colors.foregroundCustom }">
+                                            <div class="fs-1 text-uppercase">{{ translator.get("Goal") }}</div>
+                                            <div class="fs-6 fw-bold">
+                                                {{ currentMatch.matchSimulation.previousBallPossessor.name }}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" v-if="currentMatch.matchSimulation">
-                                    <div class="col">
-                                        <div>
-                                            {{ `${currentMatch.matchSimulation.ballPossessor.club.name}:
-                                            ${currentMatch.matchSimulation.previousBallPossessor.position.abbreviation}
-                                            --> ${currentMatch.matchSimulation.ballPossessor.position.abbreviation}` }}
-                                        </div>
+                            </div>
+                            <div class="row" v-if="currentMatch.matchSimulation">
+                                <div class="col">
+                                    <div>
+                                        {{ `${currentMatch.matchSimulation.ballPossessor.club.name}:
+                                        ${currentMatch.matchSimulation.previousBallPossessor.position.abbreviation}
+                                        --> ${currentMatch.matchSimulation.ballPossessor.position.abbreviation}` }}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        &nbsp;
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    &nbsp;
                 </div>
             </div>
             <template v-for="championshipEdition in getCurrentChampionshipEditions()">
                 <div class="row">
                     <div class="col">
                         <div class="table-responsive">
-                            <table class="table caption-top small border">
+                            <table class="table caption-top border">
                                 <caption class="text-light">
                                     {{ getCurrentStageMessage(championshipEdition) }}
                                 </caption>
@@ -221,7 +241,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="table-responsive">
-                                    <table class="table table-borderless caption-top small">
+                                    <table class="table table-borderless caption-top">
                                         <caption class="text-light">
                                             {{ getCurrentStageMessage(championshipEdition) }}
                                         </caption>
@@ -603,11 +623,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 mb-2">
-                                    <div class="field position-relative" style="height: 450px">
+                                    <div class="field position-relative" style="height: 420px">
                                         <template v-for="item in getLineup().filter(i => i.player.isOnField)">
                                             <div class="player position-absolute text-center"
                                                 @click.stop="changePlayers(item.player)"
-                                                :style="{ top: (10 - item.player.fieldLocalization.line) * 8.4 + '%', left: (item.player.fieldLocalization.column) * 20 + '%' }"
+                                                :style="{ top: (10 - item.player.fieldLocalization.line) * 8.25 + '%', left: (item.player.fieldLocalization.column) * 20 + '%' }"
                                                 :class="{ 'blink' : item.player === selectedPlayer, 'injured' : item.player.isInjured }">
                                                 <div class="overall position-absolute">
                                                     <i v-if="item.player.isInjured"

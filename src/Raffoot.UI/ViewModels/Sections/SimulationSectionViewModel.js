@@ -2,45 +2,22 @@ class SimulationSectionViewModel {
     constructor(game, translator) {
         this.game = game;
         this.translator = translator;
-    }
-
-    getBallTrajectory() {
-        const previousBallPossessor = this.currentMatch.matchSimulation.previousBallPossessor;
-        const currentBallPossessor = this.currentMatch.matchSimulation.ballPossessor;
-
-        const previousBallPossessorClubIsAway = this.currentMatch.matchSimulation.previousBallPossessor.club.id === this.currentMatch.clubAway.id;
-        const currentBallPossessorClubIsAway = this.currentMatch.matchSimulation.ballPossessor.club.id === this.currentMatch.clubAway.id;
-
-        const origin = { column: previousBallPossessor.fieldLocalization.column, line: previousBallPossessor.fieldLocalization.line };
-        const destination = { column: currentBallPossessor.fieldLocalization.column, line: currentBallPossessor.fieldLocalization.line };
-
-        if (previousBallPossessorClubIsAway)
-            reverse(origin);
-        if (currentBallPossessorClubIsAway)
-            reverse(destination);
-
-        const trajectory = [
-            { top: `${origin.column * 20}%`, left: `${origin.line * 8.333}%` },
-            { top: `${destination.column * 20}%`, left: `${destination.line * 8.333}%` },
-        ];
-
-        function reverse(point) {
-            point.line = 11 - point.line;
-            point.column = 4 - point.column;
-        }
-
-        return trajectory;
+        this.isGoal = false;
     }
 
     getBallLocation() {
-        const trajectory = this.getBallTrajectory();
-        return trajectory[1];
+        return this._getBallDestination();
     }
 
     getCurrentChampionshipName() {
         const championship = this.currentMatch.championshipEdition.championship;
         const name = this.translator.getChampionshipName(championship);
         return name;
+    }
+
+    getCurrentEvent() {
+        const events =  this.currentMatch.matchSimulation?.currentAction.matchSimulationEvents ?? [];
+        return events.length > 0 ? events.last() : null;
     }
 
     getCurrentMatches(championshipEdition) {
@@ -72,12 +49,10 @@ class SimulationSectionViewModel {
         let championshipEditions = this.game.currentSeason.getCurrentChampionshipEditions();
 
         let confederation = null;
-        if (championshipEditions.flatMap(ce => ce.championship).some(c => c.confederation.id === clubConfederation.id)) {
+        if (championshipEditions.flatMap(ce => ce.championship).some(c => c.confederation.id === clubConfederation.id))
             confederation = clubConfederation;
-        }
-        else {
+        else
             confederation = championshipEditions.flatMap(ce => ce.championship.confederation).distinct().getRandom();
-        }
 
         championshipEditions = championshipEditions.filter(ce => ce.championship.confederation.id === confederation?.id);
         return championshipEditions;
@@ -101,15 +76,55 @@ class SimulationSectionViewModel {
         if (!this.currentMatch?.matchSimulation)
             return;
 
-        const keyframes = this.getBallTrajectory();
+        const keyframes = this._getBallTrajectory();
 
         const options = {
-            duration: this.game.config.matchSpeed * 0.8,
-            iterations: 1,
+            duration: this.game.config.matchSpeed * 0.8
         };
 
         const ball = document.querySelector(".ball-container");
         if (ball)
             ball.animate(keyframes, options);
+
+        const isGoal = this.getCurrentEvent()?.type === 'goal';
+        if (isGoal) {
+            this.game.pause();
+            setTimeout(() => this.game.resume(), 2000);
+        }
+    }
+
+    _getBallOrigin() {
+        const location = this._getBallLocation(this.currentMatch.matchSimulation.previousBallPossessor);
+        return location;
+    }
+
+    _getBallDestination() {
+        const location = this._getBallLocation(this.currentMatch.matchSimulation.ballPossessor);
+        return location;
+    }
+
+    _getBallLocation(player) {
+        const point = { column: player.fieldLocalization.column, line: player.fieldLocalization.line };
+        if (player.club.id === this.currentMatch.clubAway.id)
+            reverse(point);
+
+        const isGoal = this.getCurrentEvent()?.type === 'goal';
+        if (isGoal)
+            point.line = point.line + (player.club.id === this.currentMatch.clubAway.id ? 0.5 : -0.5);
+
+        const location = { top: `${point.column * 20}%`, left: `${point.line * 8.333}%` };
+        return location;
+
+        function reverse(point) {
+            point.line = 11 - point.line;
+            point.column = 4 - point.column;
+        }
+    }
+
+    _getBallTrajectory() {
+        const origin = this._getBallOrigin();
+        const destination = this._getBallDestination();
+        const trajectory = [origin, destination];
+        return trajectory;
     }
 }
