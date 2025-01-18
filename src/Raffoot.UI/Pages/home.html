@@ -81,17 +81,15 @@
                                         </tr>
                                         <tr v-if="currentMatch.hasGoals">
                                             <td class="text-end">
-                                                <div
-                                                    v-for="event in currentMatch.matchSimulation?.getMatchSimulationEvents('goal', currentMatch.clubHome)">
-                                                    {{ `${event.player.name} ${event.time}'` }}
+                                                <div v-if="lastEventClubHome">
+                                                    {{ `${lastEventClubHome.player.name} ${lastEventClubHome.time}'` }}
                                                 </div>
                                             </td>
                                             <td class="text-center" colspan="2">
                                                 <i class="fa-regular fa-futbol"></i>
                                             <td>
-                                                <div
-                                                    v-for="event in currentMatch.matchSimulation?.getMatchSimulationEvents('goal', currentMatch.clubAway)">
-                                                    {{ `${event.player.name} ${event.time}'` }}
+                                                <div v-if="lastEventClubAway">
+                                                    {{ `${lastEventClubAway.player.name} ${lastEventClubAway.time}'` }}
                                                 </div>
                                             </td>
                                         </tr>
@@ -120,7 +118,7 @@
 
                                         <template v-for="player in getFieldPlayers(currentMatch.clubHome)">
                                             <div class="player-button-container position-absolute d-flex align-items-center justify-content-start"
-                                                :style="{ top: player.fieldLocalization.column * 20 + '%', left: player.fieldLocalization.line * 8.3333 + '%', zIndex: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubHome ? 2 : 1, opacity: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubHome ? 1 : 0.5 }">
+                                                :style="{ top: player.fieldLocalization.column * 20 + '%', left: player.fieldLocalization.line * 9.09 + '%', zIndex: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubHome ? 2 : 1, opacity: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubHome ? 1 : 0.5 }">
                                                 <div class="player-button player-button-home d-flex align-items-center justify-content-center border"
                                                     :style="{ backgroundColor: player.club.colors.backgroundCustom }">
                                                     <span class="d-none d-sm-block small"
@@ -134,7 +132,7 @@
                                         </template>
                                         <template v-for="player in getFieldPlayers(currentMatch.clubAway)">
                                             <div class="player-button-container position-absolute d-flex align-items-center justify-content-end"
-                                                :style="{ top: (4 - player.fieldLocalization.column) * 20 + '%', left: (11 - player.fieldLocalization.line) * 8.3333 + '%', zIndex: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubAway ? 2 : 1, opacity: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubAway ? 1 : 0.5 }">
+                                                :style="{ top: (4 - player.fieldLocalization.column) * 20 + '%', left: (10 - player.fieldLocalization.line) * 9.09 + '%', zIndex: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubAway ? 2 : 1, opacity: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubAway ? 1 : 0.5 }">
                                                 <div class="player-button player-button-away d-flex align-items-center justify-content-center border"
                                                     :style="{ backgroundColor: player.club.colors.backgroundCustom }">
                                                     <span class="d-none d-sm-block small"
@@ -238,37 +236,36 @@
             <div class="row">
                 <div class="col-md-5">
                     <div v-for="championshipEdition in getCurrentChampionshipEditions()">
-                        <div class="row">
-                            <div class="col">
-                                <div class="table-responsive">
-                                    <table class="table table-borderless caption-top">
-                                        <caption class="text-light">
-                                            {{ getCurrentStageMessage(championshipEdition) }}
-                                        </caption>
-                                        <tbody>
-                                            <tr v-for="match in getCurrentMatches(championshipEdition)"
-                                                @click.stop="selectMatch(match.id)"
-                                                :class="{ 'selected' : selectedMatch?.id === match.id }">
-                                                <td class="text-end p-0 text-break" style="width: 44%; height: 40px;">
-                                                    {{ match.clubHome.shortName }}
-                                                    <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
-                                                        :alt="match.clubHome.name" :title="match.clubHome.name">
-                                                </td>
-                                                <td class="text-center p-0">
-                                                    {{ match.score }}
-                                                </td>
-                                                <td class="text-start p-0" style="width: 44%;">
-                                                    <img class="club-logo ms-1 me-1" :src="match.clubAway.getLogoURL()"
-                                                        :alt="match.clubAway.name" :title="match.clubAway.name">
-                                                    {{ match.clubAway.shortName }}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                        <div class="table-responsive">
+                            <table class="table table-borderless caption-top">
+                                <caption class="text-light">
+                                    {{ getCurrentStageMessage(championshipEdition) }}
+                                </caption>
+                                <tbody>
+                                    <tr v-for="match in getCurrentMatches(championshipEdition)"
+                                        @click.stop="selectMatch(match.id)"
+                                        :class="{ 'selected' : selectedMatch?.id === match.id }">
+                                        <td class="text-end p-0 text-break" style="width: 44%; height: 40px;">
+                                            {{ match.clubHome.shortName }}
+                                            <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
+                                                :alt="match.clubHome.name" :title="match.clubHome.name">
+                                        </td>
+                                        <td class="text-center p-0">
+                                            {{ match.score }}
+                                        </td>
+                                        <td class="text-start p-0" style="width: 44%;">
+                                            <img class="club-logo ms-1 me-1" :src="match.clubAway.getLogoURL()"
+                                                :alt="match.clubAway.name" :title="match.clubAway.name">
+                                            {{ match.clubAway.shortName }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-7">
+
                 </div>
             </div>
             <div class="row" style="margin-top: 65px;"></div>
@@ -475,7 +472,7 @@
                 </div>
                 <div class="row small">
                     <div class="col">
-                        <div class="m-0 text-end">
+                        <div id="current-date" class="m-0 text-end">
                             <i class="fa-solid fa-clock fa-fw me-1"></i>
                             <span>{{ game.currentSeason.currentDate.toLocaleDateString() }}</span>
                         </div>
@@ -565,7 +562,7 @@
                             <span class="spinner-border spinner-border-sm me-1" aria-hidden="true"
                                 v-show="loading"></span>
                             <i class="fa-solid fa-right-long me-1" v-show="!loading"></i>
-                            {{ translator.get("Advance") }}
+                            {{ loading ? `${translator.get("Loading")}...` : translator.get("Advance") }}
                         </button>
                     </div>
                 </div>
@@ -627,7 +624,7 @@
                                         <template v-for="item in getLineup().filter(i => i.player.isOnField)">
                                             <div class="player position-absolute text-center"
                                                 @click.stop="changePlayers(item.player)"
-                                                :style="{ top: (10 - item.player.fieldLocalization.line) * 8.25 + '%', left: (item.player.fieldLocalization.column) * 20 + '%' }"
+                                                :style="{ top: (9 - item.player.fieldLocalization.line) * 9.2 + '%', left: (item.player.fieldLocalization.column) * 20 + '%' }"
                                                 :class="{ 'blink' : item.player === selectedPlayer, 'injured' : item.player.isInjured }">
                                                 <div class="overall position-absolute">
                                                     <i v-if="item.player.isInjured"
@@ -681,7 +678,7 @@
                                         <template v-for="fieldLocalization in getEmptyFieldLocalizations()">
                                             <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
                                                 @click.stop="movePlayerToField(fieldLocalization.id)"
-                                                :style="{ top: (11 - fieldLocalization.line) * 7.7 + '%', left: (fieldLocalization.column) * 20 + '%' }">
+                                                :style="{ top: (9 - fieldLocalization.line) * 9.2 + '%', left: (fieldLocalization.column) * 20 + '%' }">
                                                 <img :src="game.club.getKitsURLs()[0].url"
                                                     :alt="translator.get(fieldLocalization.position.name)"
                                                     :title="translator.get(fieldLocalization.position.name)"
@@ -1740,6 +1737,20 @@
                         <i class="fa-solid fa-share"></i>
                         {{ translator.get("Send") }}
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-colors" class="modal fade" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 id="modal-title" class="modal-title fs-5">{{ translator.get("Colors") }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        :aria-label="translator.get('Close')"></button>
+                </div>
+                <div class="modal-body">
                 </div>
             </div>
         </div>

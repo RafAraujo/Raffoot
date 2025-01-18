@@ -43,6 +43,10 @@ class Season {
         return this.seasonDates[this._currentSeasonDateIndex];
     }
 
+    get previousDate() {
+        return this.previousSeasonDate.date;
+    }
+
     get previousSeasonDate() {
         return this.seasonDates[this._currentSeasonDateIndex - 1];
     }

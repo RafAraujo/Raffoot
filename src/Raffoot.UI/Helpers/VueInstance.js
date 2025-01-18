@@ -23,7 +23,7 @@ class VueInstance {
     }
 
     computed() {
-        return {
+        let computed = {
             currentMatch() {
                 return this.game.getCurrentMatch();
             },
@@ -31,6 +31,11 @@ class VueInstance {
                 return this.currentMatch?.getOpponent(this.game.club);
             }
         };
+
+        if (this.viewModel.computed)
+            computed = Object.assign(computed, this.viewModel.computed());
+
+        return computed;
     }
 
     createObject() {

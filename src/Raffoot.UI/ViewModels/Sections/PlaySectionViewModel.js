@@ -8,10 +8,13 @@ class PlaySectionViewModel {
         this.automaticSelection = true;
         this.selectedPlayer = null;
         this.loading = false;
+        this._dateHasChanged = false;
     }
 
     async advanceDate() {
         this.loading = true;
+
+        this._dateHasChanged = true;
         if (this.game.currentSeason.currentSeasonDate.matches.length === 0) {
             this.game.advanceDate();
             this.loading = false;
@@ -50,12 +53,13 @@ class PlaySectionViewModel {
     }
 
     dragStart(event, playerId) {
+        console.info('playerid', playerId);
         event.dataTransfer.setData('playerId', playerId);
     }
 
     drop(event) {
         const data = event.dataTransfer.getData('playerId');
-        playerId = parseInt(data);
+        const playerId = parseInt(data);
         this.selectedPlayer = Player.getById(playerId);
     }
 
@@ -144,5 +148,20 @@ class PlaySectionViewModel {
 
     unselectPlayer() {
         this.selectedPlayer = null;
+    }
+
+    updated() {
+        if (this._dateHasChanged)
+            this._animateDate();
+
+        this._dateHasChanged = false;
+    }
+
+    _animateDate() {
+        const element = document.querySelector('#current-date');
+        element.classList.add('animate__animated', 'animate__backInRight');
+        element.addEventListener('animationend', () => {
+            element.classList.remove('animate__animated', 'animate__backInRight');
+        });
     }
 }

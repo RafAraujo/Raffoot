@@ -82,7 +82,7 @@ class Game {
         this.matchSimulationActions = [];
         this.matchSimulationEvents = [];
 
-        const previousDate = this.currentSeason.currentDate;
+        const previousDate = this.currentSeason.previousDate;
         const days = Date.daysDiff(previousDate, this.currentSeason.currentDate);
 
         for (const club of this.clubs) {

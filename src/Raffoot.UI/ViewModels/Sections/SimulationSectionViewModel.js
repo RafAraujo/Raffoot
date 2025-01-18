@@ -3,6 +3,8 @@ class SimulationSectionViewModel {
         this.game = game;
         this.translator = translator;
         this.isGoal = false;
+        this.lastEventClubHome = null;
+        this.lastEventClubAway = null;
     }
 
     getBallLocation() {
@@ -76,6 +78,18 @@ class SimulationSectionViewModel {
         if (!this.currentMatch?.matchSimulation)
             return;
 
+        this._animateBallTrajectory();
+        
+        this.lastEventClubHome = this.getLastMatchSimulationEvent(this.currentMatch.clubHome);
+        this.lastEventClubAway = this.getLastMatchSimulationEvent(this.currentMatch.clubAway);
+
+        if (this.isGoal) {
+            this.game.pause();
+            setTimeout(() => this.game.resume(), 2000);
+        }
+    }
+
+    _animateBallTrajectory() {
         const keyframes = this._getBallTrajectory();
 
         const options = {
@@ -85,12 +99,6 @@ class SimulationSectionViewModel {
         const ball = document.querySelector(".ball-container");
         if (ball)
             ball.animate(keyframes, options);
-
-        const isGoal = this.getCurrentEvent()?.type === 'goal';
-        if (isGoal) {
-            this.game.pause();
-            setTimeout(() => this.game.resume(), 2000);
-        }
     }
 
     _getBallOrigin() {
@@ -108,15 +116,15 @@ class SimulationSectionViewModel {
         if (player.club.id === this.currentMatch.clubAway.id)
             reverse(point);
 
-        const isGoal = this.getCurrentEvent()?.type === 'goal';
-        if (isGoal)
+        this.isGoal = this.getCurrentEvent()?.type === 'goal';
+        if (this.isGoal)
             point.line = point.line + (player.club.id === this.currentMatch.clubAway.id ? 0.5 : -0.5);
 
-        const location = { top: `${point.column * 20}%`, left: `${point.line * 8.333}%` };
+        const location = { top: `${point.column * 20}%`, left: `${point.line * 9.09}%` };
         return location;
 
         function reverse(point) {
-            point.line = 11 - point.line;
+            point.line = 10 - point.line;
             point.column = 4 - point.column;
         }
     }

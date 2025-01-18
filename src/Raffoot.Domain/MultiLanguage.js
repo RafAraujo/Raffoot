@@ -273,6 +273,7 @@ const MultiLanguage =
     "Load": "Carregar",
     "Load game": "Carregar jogo",
     "Load more": "Carregue mais",
+    "Loading": "Carregando",
     "Loading game...": "Carregando o jogo...",
     "Logo": "Logotipo",
     "Loss": "Derrota",
