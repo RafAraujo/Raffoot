@@ -29,7 +29,7 @@ class StandingsSectionViewModel {
         return confederations;
     }
 
-    getCssClassForPosition(position) {
+    getClassForPosition(position) {
         const ce = this.selectedChampionshipEdition;
         
         if (ce.getContinentalCupClassificationZonePositions(1).includes(position)) {

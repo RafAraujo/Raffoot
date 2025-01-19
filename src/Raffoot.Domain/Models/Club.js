@@ -138,7 +138,10 @@ class Club {
     }
 
     getLineup(championshipEdition) {
-        return this.players.map(p => ({ player: p, championshipEditionPlayer: championshipEdition?.championshipEditionPlayers.find(cep => cep.player.id === p.id) }));
+        return this.players.map(p => ({
+            player: p,
+            championshipEditionPlayer: championshipEdition?.championshipEditionPlayers.find(cep => cep.player.id === p.id)
+        }));
     }
 
     getRegionOverall(fieldRegion) {

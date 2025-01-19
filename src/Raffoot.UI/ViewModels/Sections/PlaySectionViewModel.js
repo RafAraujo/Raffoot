@@ -119,6 +119,14 @@ class PlaySectionViewModel {
         return message;
     }
 
+    getStyleForFieldLocalization(fieldLocalization) {
+        const style = {
+            top: (9 - fieldLocalization.line) * 9.2 + '%',
+            left: fieldLocalization.column * 20 + '%'
+        };
+        return style;
+    }
+
     loadDefaultPlayerPhoto = Common.loadDefaultPlayerPhoto;
 
     movePlayerToBench() {

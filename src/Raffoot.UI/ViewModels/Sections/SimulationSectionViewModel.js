@@ -18,7 +18,7 @@ class SimulationSectionViewModel {
     }
 
     getCurrentEvent() {
-        const events =  this.currentMatch.matchSimulation?.currentAction.matchSimulationEvents ?? [];
+        const events = this.currentMatch.matchSimulation?.currentAction.matchSimulationEvents ?? [];
         return events.length > 0 ? events.last() : null;
     }
 
@@ -60,8 +60,39 @@ class SimulationSectionViewModel {
         return championshipEditions;
     }
 
-    getFieldPlayers(club) {
-        return club.players.filter(p => p.isOnField)
+    getFieldPlayers() {
+        if (!this.currentMatch)
+            return [];
+
+        const ballPossessor = this.currentMatch.matchSimulation?.ballPossessor;
+        const players = this.currentMatch.clubs.flatMap(c => c.players).filter(p => p.isOnField);
+
+        const linePercentage = this._getFieldLocalizationLLinePercentage();
+        const columnPercentage = this._getFieldLocalizationColumnPercentage();
+
+        const items = players.map(p => ({
+            player: p,
+            html: {
+                playerButtonContainer: {
+                    class: p.club.id === this.currentMatch.clubHome.id ? ['justify-content-start'] : ['justify-content-end'],
+                    style: {
+                        top: (p.club.id === this.currentMatch.clubHome.id ? p.fieldLocalization.column : 4 - p.fieldLocalization.column) * columnPercentage + '%',
+                        left: (p.club.id === this.currentMatch.clubHome.id ? p.fieldLocalization.line : 10 - p.fieldLocalization.line) * linePercentage + '%',
+                        zIndex: p.club.id === ballPossessor?.club.id ? 2 : 1,
+                        opacity: p.club.id === ballPossessor?.club.id ? 1 : 0.5,
+                    },
+                },
+                playerButton: {
+                    class: p.club.id === this.currentMatch.clubHome.id ? ['player-button-home'] : ['player-button-away'],
+                    style: {
+                        backgroundColor: p.club.colors.backgroundCustom,
+                        color: p.club.colors.foregroundCustom,
+                    },
+                },
+            },
+        }));
+
+        return items;
     }
 
     getLastMatchSimulationEvent(club) {
@@ -79,7 +110,7 @@ class SimulationSectionViewModel {
             return;
 
         this._animateBallTrajectory();
-        
+
         this.lastEventClubHome = this.getLastMatchSimulationEvent(this.currentMatch.clubHome);
         this.lastEventClubAway = this.getLastMatchSimulationEvent(this.currentMatch.clubAway);
 
@@ -120,7 +151,10 @@ class SimulationSectionViewModel {
         if (this.isGoal)
             point.line = point.line + (player.club.id === this.currentMatch.clubAway.id ? 0.5 : -0.5);
 
-        const location = { top: `${point.column * 20}%`, left: `${point.line * 9.09}%` };
+        const linePercentage = this._getFieldLocalizationLLinePercentage();
+        const columnPercentage = this._getFieldLocalizationColumnPercentage();
+
+        const location = { top: `${point.column * columnPercentage}%`, left: `${point.line * linePercentage}%` };
         return location;
 
         function reverse(point) {
@@ -134,5 +168,19 @@ class SimulationSectionViewModel {
         const destination = this._getBallDestination();
         const trajectory = [origin, destination];
         return trajectory;
+    }
+
+    _getFieldLocalizationLLinePercentage() {
+        const fieldLocalizations = FieldLocalization.all();
+        const maxLine = fieldLocalizations.map(fl => fl.line).max()
+        const linePercentage = 100 / (maxLine + 2);
+        return linePercentage;
+    }
+
+    _getFieldLocalizationColumnPercentage() {
+        const fieldLocalizations = FieldLocalization.all();
+        const maxColumn = fieldLocalizations.map(fl => fl.column).max();
+        const columnPercentage = 100 / (maxColumn + 1);
+        return columnPercentage;
     }
 }

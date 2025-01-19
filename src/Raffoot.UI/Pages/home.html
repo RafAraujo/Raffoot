@@ -116,29 +116,16 @@
                                         <div class="penalty-area penalty-area-right position-absolute"></div>
                                         <div class="semi-circle semi-circle-right position-absolute"></div>
 
-                                        <template v-for="player in getFieldPlayers(currentMatch.clubHome)">
-                                            <div class="player-button-container position-absolute d-flex align-items-center justify-content-start"
-                                                :style="{ top: player.fieldLocalization.column * 20 + '%', left: player.fieldLocalization.line * 9.09 + '%', zIndex: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubHome ? 2 : 1, opacity: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubHome ? 1 : 0.5 }">
-                                                <div class="player-button player-button-home d-flex align-items-center justify-content-center border"
-                                                    :style="{ backgroundColor: player.club.colors.backgroundCustom }">
-                                                    <span class="d-none d-sm-block small"
-                                                        :style="{ color: player.club.colors.foregroundCustom }">
+                                        <template v-for="item in getFieldPlayers()">
+                                            <div class="player-button-container position-absolute d-flex align-items-center"
+                                                :class="item.html.playerButtonContainer.class"
+                                                :style="item.html.playerButtonContainer.style">
+                                                <div class="player-button d-flex align-items-center justify-content-center border"
+                                                    :class="item.html.playerButton.class"
+                                                    :style="item.html.playerButton.style">
+                                                    <span class="d-none d-sm-block small">
                                                         {{
-                                                        translator.get(player.fieldLocalization.position.abbreviation)
-                                                        }}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </template>
-                                        <template v-for="player in getFieldPlayers(currentMatch.clubAway)">
-                                            <div class="player-button-container position-absolute d-flex align-items-center justify-content-end"
-                                                :style="{ top: (4 - player.fieldLocalization.column) * 20 + '%', left: (10 - player.fieldLocalization.line) * 9.09 + '%', zIndex: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubAway ? 2 : 1, opacity: currentMatch.matchSimulation?.ballPossessor.club === currentMatch.clubAway ? 1 : 0.5 }">
-                                                <div class="player-button player-button-away d-flex align-items-center justify-content-center border"
-                                                    :style="{ backgroundColor: player.club.colors.backgroundCustom }">
-                                                    <span class="d-none d-sm-block small"
-                                                        :style="{ color: player.club.colors.foregroundCustom }">
-                                                        {{
-                                                        translator.get(player.fieldLocalization.position.abbreviation)
+                                                        translator.get(item.player.fieldLocalization.position.abbreviation)
                                                         }}
                                                     </span>
                                                 </div>
@@ -624,7 +611,7 @@
                                         <template v-for="item in getLineup().filter(i => i.player.isOnField)">
                                             <div class="player position-absolute text-center"
                                                 @click.stop="changePlayers(item.player)"
-                                                :style="{ top: (9 - item.player.fieldLocalization.line) * 9.2 + '%', left: (item.player.fieldLocalization.column) * 20 + '%' }"
+                                                :style="getStyleForFieldLocalization(item.player.fieldLocalization)"
                                                 :class="{ 'blink' : item.player === selectedPlayer, 'injured' : item.player.isInjured }">
                                                 <div class="overall position-absolute">
                                                     <i v-if="item.player.isInjured"
@@ -678,7 +665,7 @@
                                         <template v-for="fieldLocalization in getEmptyFieldLocalizations()">
                                             <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
                                                 @click.stop="movePlayerToField(fieldLocalization.id)"
-                                                :style="{ top: (9 - fieldLocalization.line) * 9.2 + '%', left: (fieldLocalization.column) * 20 + '%' }">
+                                                :style="getStyleForFieldLocalization(fieldLocalization)">
                                                 <img :src="game.club.getKitsURLs()[0].url"
                                                     :alt="translator.get(fieldLocalization.position.name)"
                                                     :title="translator.get(fieldLocalization.position.name)"
@@ -1041,7 +1028,7 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(championshipEditionClub, index) in getTable()">
-                                            <td class="text-center" :class="getCssClassForPosition(index + 1)">
+                                            <td class="text-center" :class="getClassForPosition(index + 1)">
                                                 {{ index + 1 }}
                                             </td>
                                             <td class="text-center p-0">

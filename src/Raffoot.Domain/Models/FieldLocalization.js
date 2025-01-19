@@ -16,6 +16,10 @@ class FieldLocalization {
 		return fieldLocalization;
 	}
 
+	static all() {
+		return Context.game.fieldLocalizations;
+	}
+
 	static getById(id) {
 		return Context.game.fieldLocalizations[id - 1];
 	}
