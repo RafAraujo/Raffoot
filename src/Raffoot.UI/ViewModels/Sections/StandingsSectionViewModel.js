@@ -32,18 +32,10 @@ class StandingsSectionViewModel {
     getClassForPosition(position) {
         const ce = this.selectedChampionshipEdition;
         
-        if (ce.getContinentalCupClassificationZonePositions(1).includes(position)) {
-            return 'main-continental-cup';
-        }
-        else if (ce.getContinentalCupClassificationZonePositions(2).includes(position)) {
-            return 'secondary-continental-cup';
-        }
-        else if (ce.getPromotionZonePositions().includes(position)) {
-            return 'promotion';
-        }
-        else if (ce.getRelegationZonePositions().includes(position)) {
-            return 'relegation';
-        }
+        if (ce.getContinentalCupClassificationZonePositions(1).includes(position)) return 'main-continental-cup';
+        else if (ce.getContinentalCupClassificationZonePositions(2).includes(position)) return 'secondary-continental-cup';
+        else if (ce.getPromotionZonePositions().includes(position)) return 'promotion';
+        else if (ce.getRelegationZonePositions().includes(position)) return 'relegation';
     }
 
     getInternationalChampionshipEditions() {

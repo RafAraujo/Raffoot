@@ -144,6 +144,10 @@ class Player {
         }
     }
 
+    get lastName() {
+        return this.name.split(' ').last();
+    }
+
     get wage() {
         return Player._getBaseWage(this.overall);
     }

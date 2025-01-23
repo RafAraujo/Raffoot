@@ -79,7 +79,7 @@
                                                 <span>{{ currentMatch.clubAway.name }}</span>
                                             </td>
                                         </tr>
-                                        <tr v-if="currentMatch.hasGoals">
+                                        <tr>
                                             <td class="text-end">
                                                 <div v-if="lastEventClubHome">
                                                     {{ `${lastEventClubHome.player.name} ${lastEventClubHome.time}'` }}
@@ -120,13 +120,11 @@
                                             <div class="player-button-container position-absolute d-flex align-items-center"
                                                 :class="item.html.playerButtonContainer.class"
                                                 :style="item.html.playerButtonContainer.style">
-                                                <div class="player-button d-flex align-items-center justify-content-center border"
+                                                <div class="player-button d-flex align-items-center justify-content-center text-center border"
                                                     :class="item.html.playerButton.class"
                                                     :style="item.html.playerButton.style">
-                                                    <span class="d-none d-sm-block small">
-                                                        {{
-                                                        translator.get(item.player.fieldLocalization.position.abbreviation)
-                                                        }}
+                                                    <span class="d-none d-sm-block small text-uppercase">
+                                                        {{ item.player.lastName }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -469,7 +467,7 @@
                     <div class="col">
                         <div class="m-0 text-end">
                             <i class="fa-solid fa-dollar-sign fa-fw"></i>
-                            <span :title="game.club.money.formatCurrency()">
+                            <span id="club-money" :title="game.club.money.formatCurrency()">
                                 {{ game.club.money.formatAbbreviated() }}
                             </span>
                         </div>

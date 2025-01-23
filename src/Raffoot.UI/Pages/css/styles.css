@@ -243,6 +243,12 @@ div.lineup.lineup-horizontal {
         .player-button-away {
             border-radius: 50% 10% 10% 50%;
         }
+
+        .energy {
+            height: 0.25rem;
+            width: 65%;
+            transform: rotate(-90deg);
+        }
     
         .ball-container {
             height: 20%;

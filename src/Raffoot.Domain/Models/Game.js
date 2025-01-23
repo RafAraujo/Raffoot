@@ -91,7 +91,8 @@ class Game {
 
         if (this.currentSeason.currentDate.getMonth() > previousDate.getMonth()) {
             for (const club of this.clubs) {
-                club.payWages();
+                const notify = this.club.id === club.id;
+                club.payWages(notify);
             }
         }
     }

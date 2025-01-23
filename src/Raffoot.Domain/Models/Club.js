@@ -89,10 +89,6 @@ class Club {
         return this.players.filter(p => p.isOnField);
     }
 
-    get playerWages() {
-        return this.players.map(p => p.wage).sum();
-    }
-
     get shortName() {
         return this._shortName ?? this.name;
     }
@@ -142,6 +138,10 @@ class Club {
             player: p,
             championshipEditionPlayer: championshipEdition?.championshipEditionPlayers.find(cep => cep.player.id === p.id)
         }));
+    }
+
+    getPlayerWages() {
+        return this.players.map(p => p.wage).sum();
     }
 
     getRegionOverall(fieldRegion) {
@@ -267,20 +267,32 @@ class Club {
         }
     }
 
-    pay(amount) {
+    pay(amount, notify = false) {
+        if (notify)
+            dispatchEvent(this._createEventMoneyChange(this.money, this.money - amount));
         this.money -= amount;
     }
 
-    payWages() {
-        this.pay(this.playerWages);
+    payWages(notify) {
+        const wages = this.getPlayerWages();
+        this.pay(wages, notify);
     }
 
-    receive(amount) {
+    receive(amount, notify = false) {
+        if (notify)
+            dispatchEvent(this._createEventMoneyChange(this.money, this.money + amount));
         this.money += amount;
     }
 
     resetColors() {
         this.colors.backgroundCustom = this.colors.background;
         this.colors.foregroundCustom = this.colors.foreground;
+    }
+
+    _createEventMoneyChange(previousValue, value) {
+        const moneyChangeEvent = new CustomEvent('moneychange', {
+            detail: { previousValue: previousValue, value: value }
+        });
+        return moneyChangeEvent;
     }
 }

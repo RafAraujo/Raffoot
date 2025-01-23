@@ -1,4 +1,6 @@
 class PlaySectionViewModel {
+    static _callbacks = [];
+
     constructor(game, translator) {
         this.game = game;
         this.translator = translator;
@@ -9,6 +11,10 @@ class PlaySectionViewModel {
         this.selectedPlayer = null;
         this.loading = false;
         this._dateHasChanged = false;
+
+        addEventListener('moneychange', event => {
+            PlaySectionViewModel._callbacks.push(this._animateMoney.bind(this, event.detail.previousValue, event.detail.value, 1000));
+        });
     }
 
     async advanceDate() {
@@ -162,6 +168,11 @@ class PlaySectionViewModel {
         if (this._dateHasChanged)
             this._animateDate();
 
+        for (const callback of PlaySectionViewModel._callbacks) {
+            callback();
+            PlaySectionViewModel._callbacks.remove(callback);
+        }
+
         this._dateHasChanged = false;
     }
 
@@ -171,5 +182,21 @@ class PlaySectionViewModel {
         element.addEventListener('animationend', () => {
             element.classList.remove('animate__animated', 'animate__backInRight');
         });
+    }
+
+    _animateMoney(start, end, duration) {
+        const obj = document.querySelector("#club-money");
+        let startTime = null;
+
+        const step = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            obj.innerText = Math.floor(progress * (end - start) + start).formatAbbreviated();
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+
+        window.requestAnimationFrame(step);
     }
 }
