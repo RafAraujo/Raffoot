@@ -17,12 +17,12 @@ class ColorsModalViewModel {
     }
 
     setBackground(color) {
-        this.game.club.colors.backgroundCustom = this.colors.background;
+        this.game.club.colors.backgroundCustom = color;
         document.body.style.backgroundColor = color;
     }
 
     setForeground(color) {
-        this.game.club.colors.foregroundCustom = this.colors.foreground;
+        this.game.club.colors.foregroundCustom = color;
         document.body.style.color = color;
     }
 

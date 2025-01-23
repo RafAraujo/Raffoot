@@ -1615,7 +1615,7 @@
                                 <label for="background-color" class="form-label">
                                     {{ translator.get('Background color') }}</label>
                                 <input id="background-color" type="color" class="form-control form-control-color"
-                                    @change="setBackground($event.target.value)"
+                                    @input="setBackground($event.target.value)"
                                     :value="game.club.colors.backgroundCustom ?? '#FFFFFF'">
                             </div>
                             <div class="col-6">
@@ -1623,7 +1623,7 @@
                                     {{ translator.get('Text color') }}
                                 </label>
                                 <input id="foreground-color" type="color" class="form-control form-control-color"
-                                    @change="setForeground($event.target.value)"
+                                    @input="setForeground($event.target.value)"
                                     :value="game.club.colors.foregroundCustom ?? '#000000'">
                             </div>
                         </div>
