@@ -90,7 +90,8 @@ class GameFactory {
 		const clubs = Context.game.clubs.filter(c => c.isPlayable);
 		for (const club of clubs) {
 			club.arrangePlayers();
-			club.receive(club.playerWages * 18);
+			const playerWages = club.getPlayerWages();
+			club.receive(playerWages * 18);
 		}
 	}
 }

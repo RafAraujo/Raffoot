@@ -39,14 +39,19 @@ class VueInstance {
     }
 
     createObject() {
-        const clone = { ...this.viewModel };
         const methods = {};
 
-        for (const method of Object.getOwnPropertyNames(Object.getPrototypeOf(this.viewModel))) {
-            if (method === 'constructor')
-                continue;
-            methods[method] = this.viewModel[method];
+        let obj = this.viewModel;
+
+        while (obj && obj !== Object.prototype) {
+            let props = Object.getOwnPropertyNames(obj);
+            for (const prop of props)
+                if (typeof obj[prop] === 'function' && prop !== 'constructor')
+                    methods[prop] = this.viewModel[prop];
+            obj = Object.getPrototypeOf(obj);
         }
+
+        const clone = { ...this.viewModel };
 
         const object = {
             data() {

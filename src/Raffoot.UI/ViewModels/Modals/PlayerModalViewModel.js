@@ -33,7 +33,9 @@ class PlayerModalViewModel {
         return this.getErrorMessage() === '';
     }
 
-    loadDefaultPlayerPhoto = Common.loadDefaultPlayerPhoto;
+    loadDefaultPlayerPhoto(event) {
+        Common.loadDefaultPlayerPhoto(event);
+    }
 
     selectPlayer(player) {
         this.unselectPlayer();

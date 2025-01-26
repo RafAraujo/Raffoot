@@ -5,6 +5,7 @@ class SimulationSectionViewModel {
         this.isGoal = false;
         this.lastEventClubHome = null;
         this.lastEventClubAway = null;
+        this.lineup = new TeamLineupViewModel(game, translator);
     }
 
     getBallLocation() {
@@ -60,7 +61,7 @@ class SimulationSectionViewModel {
         return championshipEditions;
     }
 
-    getFieldPlayers() {
+    getPlayersOnField() {
         if (!this.currentMatch)
             return [];
 

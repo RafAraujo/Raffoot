@@ -258,8 +258,8 @@
                     reader.readAsText(this.file);
                 }
                 catch (error) {
-                    console.error(error);
                     this.message = { text: error, type: 'danger' };
+                    console.error(error);
                 }
             },
             loadGame() {

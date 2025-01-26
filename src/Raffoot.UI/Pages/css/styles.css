@@ -116,20 +116,28 @@ div.lineup {
         border: 1px solid gray;
     }
 
+    .bench.selected-player:hover:not(:has(.player:hover)) {
+        cursor: pointer;
+        border: 1px solid gold;
+    }
+
     .field-localization,
     .player {
         width: 20%;
         max-width: 20%;
+        border-radius: 20%;
     }
 
-    .field-localization,
-    .player:hover {
+    .field-localization.selected-player:hover:not(.blink),
+    .player.my-club.selected-player:hover:not(.blink) {
+        border: 1px solid gold;
+    }
+    
+    .player.my-club:hover {
         cursor: pointer;
     }
 
     .player {
-        border-radius: 20%;
-
         div.cards {
             top: 0px;
         }

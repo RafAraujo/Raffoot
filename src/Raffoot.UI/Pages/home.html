@@ -103,7 +103,7 @@
             <div class="row" v-if="currentMatch">
                 <div class="col">
                     <div class="d-flex align-items-center justify-content-center">
-                        <div class="lineup lineup-horizontal">
+                        <div class="lineup lineup-horizontal" data-bs-toggle="modal" data-bs-target="#modal-team">
                             <div class="row">
                                 <div class="col">
                                     <div class="field position-relative">
@@ -116,19 +116,18 @@
                                         <div class="penalty-area penalty-area-right position-absolute"></div>
                                         <div class="semi-circle semi-circle-right position-absolute"></div>
 
-                                        <template v-for="item in getFieldPlayers()">
-                                            <div class="player-button-container position-absolute d-flex align-items-center"
-                                                :class="item.html.playerButtonContainer.class"
-                                                :style="item.html.playerButtonContainer.style">
-                                                <div class="player-button d-flex align-items-center justify-content-center text-center border"
-                                                    :class="item.html.playerButton.class"
-                                                    :style="item.html.playerButton.style">
-                                                    <span class="d-none d-sm-block small text-uppercase">
-                                                        {{ item.player.lastName }}
-                                                    </span>
-                                                </div>
+                                        <div v-for="item in getPlayersOnField()"
+                                            class="player-button-container position-absolute d-flex align-items-center"
+                                            :class="item.html.playerButtonContainer.class"
+                                            :style="item.html.playerButtonContainer.style">
+                                            <div class="player-button d-flex align-items-center justify-content-center text-center border"
+                                                :class="item.html.playerButton.class"
+                                                :style="item.html.playerButton.style">
+                                                <span class="d-none d-sm-block small text-uppercase">
+                                                    {{ item.player.lastName }}
+                                                </span>
                                             </div>
-                                        </template>
+                                        </div>
                                         <div v-if="currentMatch.matchSimulation"
                                             class="ball-container position-absolute d-flex align-items-center justify-content-center"
                                             :style="this.getBallLocation()">
@@ -164,47 +163,228 @@
                     &nbsp;
                 </div>
             </div>
-            <template v-for="championshipEdition in getCurrentChampionshipEditions()">
-                <div class="row">
-                    <div class="col">
-                        <div class="table-responsive">
-                            <table class="table caption-top border">
-                                <caption class="text-light">
-                                    {{ getCurrentStageMessage(championshipEdition) }}
-                                </caption>
-                                <tbody>
-                                    <tr v-for="match in getCurrentMatches(championshipEdition)">
-                                        <td class="text-end p-0"
-                                            :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
-                                            <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
-                                                :alt="match.clubHome.name" :title="match.clubHome.name">
-                                        </td>
-                                        <td class="text-start p-0 text-break" style="width: 34%; height: 40px;"
-                                            :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
-                                            {{ match.clubHome.shortName }}
-                                        </td>
-                                        <td class="text-center p-0 border score">
-                                            {{ match.goalsHome }}
-                                        </td>
-                                        <td class="text-center p-0 border score">
-                                            {{ match.goalsAway }}
-                                        </td>
-                                        <td class="text-end p-0 text-break"
-                                            :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
-                                            <img class="club-logo ms-1 me-1" :src="match.clubAway.getLogoURL()"
-                                                :alt="match.clubAway.name" :title="match.clubAway.name">
-                                        </td>
-                                        <td class="text-start p-0" style="width: 34%;"
-                                            :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
-                                            {{ match.clubAway.shortName }}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+            <div class="row" v-for="championshipEdition in getCurrentChampionshipEditions()">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table caption-top border">
+                            <caption class="text-light">
+                                {{ getCurrentStageMessage(championshipEdition) }}
+                            </caption>
+                            <tbody>
+                                <tr v-for="match in getCurrentMatches(championshipEdition)">
+                                    <td class="text-end p-0"
+                                        :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
+                                        <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
+                                            :alt="match.clubHome.name" :title="match.clubHome.name">
+                                    </td>
+                                    <td class="text-start p-0 text-break" style="width: 34%; height: 40px;"
+                                        :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
+                                        {{ match.clubHome.shortName }}
+                                    </td>
+                                    <td class="text-center p-0 border score">
+                                        {{ match.goalsHome }}
+                                    </td>
+                                    <td class="text-center p-0 border score">
+                                        {{ match.goalsAway }}
+                                    </td>
+                                    <td class="text-end p-0 text-break"
+                                        :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
+                                        <img class="club-logo ms-1 me-1" :src="match.clubAway.getLogoURL()"
+                                            :alt="match.clubAway.name" :title="match.clubAway.name">
+                                    </td>
+                                    <td class="text-start p-0" style="width: 34%;"
+                                        :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
+                                        {{ match.clubAway.shortName }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal-team" class="modal modal-xl fade" tabindex="-1" aria-labelledby="modal-title"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 id="modal-title" class="modal-title fs-5">{{ translator.get("Language") }}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                :aria-label="translator.get('Close')"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <ul v-if="currentOpponent" class="nav nav-tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link color-inherit text-decoration-underline"
+                                                :class="{ 'active' : lineup.selectedClub === game.club }"
+                                                @click="lineup.selectClub(game.club)" aria-current="page" href="#">
+                                                {{ game.club.name }}
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link color-inherit text-decoration-underline"
+                                                :class="{ 'active' : lineup.selectedClub === currentOpponent }" href="#"
+                                                @click="lineup.selectClub(currentOpponent)">
+                                                {{ currentOpponent.name }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="lineup p-1">
+                                        <div class="row mt-2 mb-1 align-items-center">
+                                            <div class="col-auto">
+                                                <label for="select-formation" class="col-form-label">
+                                                    {{ translator.get("Formation") }}
+                                                </label>
+                                            </div>
+                                            <div class="col-auto" v-once>
+                                                <select id="select-formation" class="form-select" required
+                                                    :disabled="lineup.selectedClub !== game.club"
+                                                    @change="lineup.changeFormation($event.target.value)">
+                                                    <option></option>
+                                                    <template v-for="baseFormation in lineup.getBaseFormations()">
+                                                        <optgroup :label="baseFormation">
+                                                            <option
+                                                                v-for="formation in lineup.getFormations(baseFormation)"
+                                                                :key="formation.id" :value="formation.id"
+                                                                :selected="lineup.selectedClub.formation?.id == formation?.id">
+                                                                {{ formation.name }}
+                                                            </option>
+                                                        </optgroup>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-2">
+                                                <div class="field position-relative" style="height: 420px">
+                                                    <div v-for="item in lineup.getPlayersOnField()"
+                                                        class="player position-absolute text-center"
+                                                        @click.stop="lineup.changePlayers(item.player)"
+                                                        :class="item.html.player.class"
+                                                        :style="lineup.getStyleForFieldLocalization(item.player.fieldLocalization)">
+                                                        <div class="overall position-absolute">
+                                                            <i v-if="item.player.isInjured"
+                                                                class="fa-solid fa-plus fa-lg text-danger"
+                                                                :title="lineup.getInjuryMessage(item.player)">
+                                                            </i>
+                                                            <span v-else>
+                                                                {{ item.player.currentOverall }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="position position-absolute"
+                                                            :class="{ 'improvised' : item.player.isImprovised }"
+                                                            :title="translator.get(item.player.fieldLocalization.position.name)">
+                                                            {{
+                                                            translator.get(item.player.fieldLocalization.position.abbreviation)
+                                                            }}
+                                                        </div>
+                                                        <img class="position-relative"
+                                                            :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
+                                                            :src="item.player.getPhotoURL()" :alt="item.player.name"
+                                                            :title="item.player.name"
+                                                            @error="lineup.loadDefaultPlayerPhoto($event)"
+                                                            draggable="true"
+                                                            @dragstart="lineup.dragStart($event, item.player.id)"
+                                                            @dragover.prevent
+                                                            @drop="lineup.drop($event); lineup.changePlayers(item.player)">
+                                                        <div class="cards position-absolute w-100 text-end">
+                                                            <i v-if="item.championshipEditionPlayer?.redCard"
+                                                                class="fa-solid fa-square fa-lg text-danger me-1"
+                                                                :title="translator.get('Suspended')">
+                                                            </i>
+                                                            <i v-else
+                                                                v-for="index in item.championshipEditionPlayer?.yellowCards"
+                                                                class="fa-solid fa-square fa-lg text-warning me-1"
+                                                                :title="translator.get('Suspended')">
+                                                            </i>
+                                                        </div>
+                                                        <div class="energy progress position-relative"
+                                                            :title="`${translator.get('Energy')} ${item.player.energy}%`">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                                :aria-valuenow="item.player.energy" aria-valuemin="0"
+                                                                aria-valuemax="100"
+                                                                :style="{ width: item.player.energy + '%' }">
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            :dir="item.player.fieldLocalization.column < 3 ? 'ltr' : 'rtl'">
+                                                            <span class="d-inline-block position-relative text-nowrap">
+                                                                {{ item.player.surname }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="bench pb-5" @click.stop="movePlayerToBench()"
+                                                    @drop="lineup.drop($event); lineup.movePlayerToBench()"
+                                                    @dragover.prevent>
+                                                    <div v-for="item in lineup.getPlayersOnBench()"
+                                                        class="player d-inline-block position-relative text-center"
+                                                        @click.stop="lineup.changePlayers(item.player)"
+                                                        :class="item.html.player.class">
+                                                        <div class="overall position-absolute">
+                                                            <template v-if="item.player.isInjured">
+                                                                <i class="fa-solid fa-plus fa-lg text-danger"
+                                                                    :title="getInjuryMessage(item.player)"></i>
+                                                            </template>
+                                                            <template v-else>
+                                                                {{ item.player.overall }}
+                                                            </template>
+                                                        </div>
+                                                        <div class="position position-absolute"
+                                                            :title="translator.get(item.player.position.name)">
+                                                            {{
+                                                            translator.get(item.player.position.abbreviation)
+                                                            }}
+                                                        </div>
+                                                        <div class="cards position-absolute w-100 text-end">
+                                                            <i v-if="item.championshipEditionPlayer?.redCard"
+                                                                class="fa-solid fa-square fa-lg text-danger me-1"
+                                                                :title="translator.get('Suspended')">
+                                                            </i>
+                                                            <i v-else
+                                                                v-for="index in item.championshipEditionPlayer?.yellowCards"
+                                                                class="fa-solid fa-square fa-lg text-warning me-1"
+                                                                :title="translator.get('Suspended')">
+                                                            </i>
+                                                        </div>
+                                                        <img :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
+                                                            :src="item.player.getPhotoURL()" :alt="item.player.name"
+                                                            :title="item.player.name"
+                                                            @error="lineup.loadDefaultPlayerPhoto($event)"
+                                                            draggable="true"
+                                                            @dragstart="lineup.dragStart($event, item.player.id)"
+                                                            @drop="lineup.drop($event); lineup.changePlayers(item.player)"
+                                                            @dragover.prevent>
+                                                        <div class="energy progress position-relative"
+                                                            :title="`${translator.get('Energy')} ${item.player.energy}%`">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                                :aria-valuenow="item.player.energy" aria-valuemin="0"
+                                                                aria-valuemax="100"
+                                                                :style="{ width: item.player.energy + '%' }">
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-inline-block position-relative text-nowrap">
+                                                                {{ item.player.surname }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </template>
+            </div>
         </section>
         <section id="summary" class="container" v-cloak>
             <div class="row">
@@ -267,21 +447,19 @@
     <div id="management">
         <header>
             <div id="loading" class="container" v-cloak>
-                <template v-if="!gameLoaded">
-                    <div class="row">
-                        <div class="col">
-                            <div class="alert alert-dismissible fade show mt-3" :class="`alert-${message.type}`"
-                                role="alert">
-                                {{ message.text }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    :aria-label=translator.get('Close')></button>
-                            </div>
+                <div v-if="!gameLoaded" class="row">
+                    <div class="col">
+                        <div class="alert alert-dismissible fade show mt-3" :class="`alert-${message.type}`"
+                            role="alert">
+                            {{ message.text }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                :aria-label=translator.get('Close')></button>
                         </div>
-                        <a href="index.html" v-show="message.type === 'danger'">
-                            {{ translator.get("Back") }}
-                        </a>
                     </div>
-                </template>
+                    <a href="index.html" v-show="message.type === 'danger'">
+                        {{ translator.get("Back") }}
+                    </a>
+                </div>
             </div>
             <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" v-cloak>
                 <div class="container-fluid">
@@ -556,15 +734,15 @@
                         <ul v-if="currentOpponent" class="nav nav-tabs">
                             <li class="nav-item">
                                 <a class="nav-link color-inherit text-decoration-underline"
-                                    :class="{ 'active' : selectedClub === game.club }" @click="selectClub(game.club)"
-                                    aria-current="page" href="#">
+                                    :class="{ 'active' : lineup.selectedClub === game.club }"
+                                    @click="lineup.selectClub(game.club)" aria-current="page" href="#">
                                     {{ game.club.name }}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link color-inherit text-decoration-underline"
-                                    :class="{ 'active' : selectedClub === currentOpponent }" href="#"
-                                    @click="selectClub(currentOpponent)">
+                                    :class="{ 'active' : lineup.selectedClub === currentOpponent }" href="#"
+                                    @click="lineup.selectClub(currentOpponent)">
                                     {{ currentOpponent.name }}
                                 </a>
                             </li>
@@ -576,16 +754,16 @@
                                         {{ translator.get("Formation") }}
                                     </label>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-auto" v-once>
                                     <select id="select-formation" class="form-select" required
-                                        :disabled="selectedClub !== game.club"
-                                        @change="changeFormation($event.target.value)">
+                                        :disabled="lineup.selectedClub !== game.club"
+                                        @change="lineup.changeFormation($event.target.value)">
                                         <option></option>
-                                        <template v-for="baseFormation in getBaseFormations()">
+                                        <template v-for="baseFormation in lineup.getBaseFormations()">
                                             <optgroup :label="baseFormation">
-                                                <option v-for="formation in getFormations(baseFormation)"
+                                                <option v-for="formation in lineup.getFormations(baseFormation)"
                                                     :key="formation.id" :value="formation.id"
-                                                    :selected="selectedClub.formation?.id == formation?.id">
+                                                    :selected="lineup.selectedClub.formation?.id == formation?.id">
                                                     {{ formation.name }}
                                                 </option>
                                             </optgroup>
@@ -593,10 +771,10 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <div :class="{ 'invisible' : selectedClub !== game.club }"
+                                    <div :class="{ 'invisible' : lineup.selectedClub !== game.club }"
                                         class="form-check form-check-inline form-check-reverse form-switch mt-1">
                                         <input id="automatic-selection" class="form-check-input" type="checkbox"
-                                            v-model.lazy="automaticSelection">
+                                            v-model.lazy="lineup.automaticSelection">
                                         <label for="automatic-selection" class="form-check-label">
                                             {{ translator.get("Automatic selection") }}
                                         </label>
@@ -606,134 +784,133 @@
                             <div class="row">
                                 <div class="col-lg-6 mb-2">
                                     <div class="field position-relative" style="height: 420px">
-                                        <template v-for="item in getLineup().filter(i => i.player.isOnField)">
-                                            <div class="player position-absolute text-center"
-                                                @click.stop="changePlayers(item.player)"
-                                                :style="getStyleForFieldLocalization(item.player.fieldLocalization)"
-                                                :class="{ 'blink' : item.player === selectedPlayer, 'injured' : item.player.isInjured }">
-                                                <div class="overall position-absolute">
-                                                    <i v-if="item.player.isInjured"
-                                                        class="fa-solid fa-plus fa-lg text-danger"
-                                                        :title="getInjuryMessage(item.player)">
-                                                    </i>
-                                                    <span v-else>
-                                                        {{ item.player.currentOverall }}
-                                                    </span>
-                                                </div>
-                                                <div class="position position-absolute"
-                                                    :class="{ 'improvised' : item.player.isImprovised }"
-                                                    :title="translator.get(item.player.fieldLocalization.position.name)">
-                                                    {{
-                                                    translator.get(item.player.fieldLocalization.position.abbreviation)
-                                                    }}
-                                                </div>
-                                                <img class="position-relative"
-                                                    :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
-                                                    :src="item.player.getPhotoURL()" :alt="item.player.name"
-                                                    :title="item.player.name" @error="loadDefaultPlayerPhoto($event)"
-                                                    draggable="true" @dragstart="dragStart($event, item.player.id)"
-                                                    @dragover.prevent @drop="drop($event); changePlayers(item.player)">
-                                                <div class="cards position-absolute w-100 text-end">
-                                                    <i v-if="item.championshipEditionPlayer?.redCard"
-                                                        class="fa-solid fa-square fa-lg text-danger me-1"
-                                                        :title="translator.get('Suspended')">
-                                                    </i>
-                                                    <i v-else
-                                                        v-for="index in item.championshipEditionPlayer?.yellowCards"
-                                                        class="fa-solid fa-square fa-lg text-warning me-1"
-                                                        :title="translator.get('Suspended')">
-                                                    </i>
-                                                </div>
-                                                <div class="energy progress position-relative"
-                                                    :title="`${translator.get('Energy')} ${item.player.energy}%`">
-                                                    <div class="progress-bar" role="progressbar"
-                                                        :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
-                                                        :aria-valuenow="item.player.energy" aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                        :style="{ width: item.player.energy + '%' }">
-                                                    </div>
-                                                </div>
-                                                <div :dir="item.player.fieldLocalization.column < 3 ? 'ltr' : 'rtl'">
-                                                    <span class="d-inline-block position-relative text-nowrap">
-                                                        {{ item.player.surname }}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </template>
-                                        <template v-for="fieldLocalization in getEmptyFieldLocalizations()">
-                                            <div class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
-                                                @click.stop="movePlayerToField(fieldLocalization.id)"
-                                                :style="getStyleForFieldLocalization(fieldLocalization)">
-                                                <img :src="game.club.getKitsURLs()[0].url"
-                                                    :alt="translator.get(fieldLocalization.position.name)"
-                                                    :title="translator.get(fieldLocalization.position.name)"
-                                                    @error="loadDefaultPlayerPhoto($event)"
-                                                    @dragstart="$event.dataTransfer.effectAllowed = 'none'"
-                                                    @dragover.prevent
-                                                    @drop="drop($event); movePlayerToField(fieldLocalization.id)">
-                                                <span class="fw-bold">
-                                                    {{
-                                                    translator.get(fieldLocalization.position.abbreviation)
-                                                    }}
+                                        <div v-for="item in lineup.getPlayersOnField()"
+                                            class="player position-absolute text-center"
+                                            @click.stop="lineup.changePlayers(item.player)"
+                                            :class="item.html.player.class"
+                                            :style="lineup.getStyleForFieldLocalization(item.player.fieldLocalization)">
+                                            <div class="overall position-absolute">
+                                                <i v-if="item.player.isInjured"
+                                                    class="fa-solid fa-plus fa-lg text-danger"
+                                                    :title="lineup.getInjuryMessage(item.player)">
+                                                </i>
+                                                <span v-else>
+                                                    {{ item.player.currentOverall }}
                                                 </span>
                                             </div>
-                                        </template>
+                                            <div class="position position-absolute"
+                                                :class="{ 'improvised' : item.player.isImprovised }"
+                                                :title="translator.get(item.player.fieldLocalization.position.name)">
+                                                {{
+                                                translator.get(item.player.fieldLocalization.position.abbreviation)
+                                                }}
+                                            </div>
+                                            <img class="position-relative"
+                                                :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
+                                                :src="item.player.getPhotoURL()" :alt="item.player.name"
+                                                :title="item.player.name" @error="lineup.loadDefaultPlayerPhoto($event)"
+                                                draggable="true" @dragstart="lineup.dragStart($event, item.player.id)"
+                                                @dragover.prevent
+                                                @drop="lineup.drop($event); lineup.changePlayers(item.player)">
+                                            <div class="cards position-absolute w-100 text-end">
+                                                <i v-if="item.championshipEditionPlayer?.redCard"
+                                                    class="fa-solid fa-square fa-lg text-danger me-1"
+                                                    :title="translator.get('Suspended')">
+                                                </i>
+                                                <i v-else v-for="index in item.championshipEditionPlayer?.yellowCards"
+                                                    class="fa-solid fa-square fa-lg text-warning me-1"
+                                                    :title="translator.get('Suspended')">
+                                                </i>
+                                            </div>
+                                            <div class="energy progress position-relative"
+                                                :title="`${translator.get('Energy')} ${item.player.energy}%`">
+                                                <div class="progress-bar" role="progressbar"
+                                                    :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                    :aria-valuenow="item.player.energy" aria-valuemin="0"
+                                                    aria-valuemax="100" :style="{ width: item.player.energy + '%' }">
+                                                </div>
+                                            </div>
+                                            <div :dir="item.player.fieldLocalization.column < 3 ? 'ltr' : 'rtl'">
+                                                <span class="d-inline-block position-relative text-nowrap">
+                                                    {{ item.player.surname }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div v-for="fieldLocalization in lineup.getEmptyFieldLocalizations()"
+                                            class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
+                                            :class="{ 'selected-player' : lineup.selectedPlayer }"
+                                            @click.stop=" lineup.movePlayerToField(fieldLocalization.id)"
+                                            :style="lineup.getStyleForFieldLocalization(fieldLocalization)">
+                                            <img :src="game.club.getKitsURLs()[0].url"
+                                                :alt="translator.get(fieldLocalization.position.name)"
+                                                :title="translator.get(fieldLocalization.position.name)"
+                                                @error="lineup.loadDefaultPlayerPhoto($event)"
+                                                @dragstart="$event.dataTransfer.effectAllowed = 'none'"
+                                                @dragover.prevent
+                                                @drop="lineup.drop($event); lineup.movePlayerToField(fieldLocalization.id)">
+                                            <span class="fw-bold">
+                                                {{
+                                                translator.get(fieldLocalization.position.abbreviation)
+                                                }}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="bench pb-5" @click.stop="movePlayerToBench()"
-                                        @drop="drop($event); movePlayerToBench()" @dragover.prevent>
-                                        <template v-for="item in getBench()">
-                                            <div class="player d-inline-block position-relative text-center"
-                                                @click.stop="changePlayers(item.player)"
-                                                :class="{ 'blink' : item.player === selectedPlayer, 'injured' : item.player.isInjured }">
-                                                <div class="overall position-absolute">
-                                                    <template v-if="item.player.isInjured">
-                                                        <i class="fa-solid fa-plus fa-lg text-danger"
-                                                            :title="getInjuryMessage(item.player)"></i>
-                                                    </template>
-                                                    <template v-else>
-                                                        {{ item.player.overall }}
-                                                    </template>
-                                                </div>
-                                                <div class="position position-absolute"
-                                                    :title="translator.get(item.player.position.name)">
-                                                    {{
-                                                    translator.get(item.player.position.abbreviation)
-                                                    }}
-                                                </div>
-                                                <div class="cards position-absolute w-100 text-end">
-                                                    <i v-if="item.championshipEditionPlayer?.redCard"
-                                                        class="fa-solid fa-square fa-lg text-danger me-1"
-                                                        :title="translator.get('Suspended')">
-                                                    </i>
-                                                    <i v-else
-                                                        v-for="index in item.championshipEditionPlayer?.yellowCards"
-                                                        class="fa-solid fa-square fa-lg text-warning me-1"
-                                                        :title="translator.get('Suspended')">
-                                                    </i>
-                                                </div>
-                                                <img :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
-                                                    :src="item.player.getPhotoURL()" :alt="item.player.name"
-                                                    :title="item.player.name" @error="loadDefaultPlayerPhoto($event)"
-                                                    draggable="true" @dragstart="dragStart($event, item.player.id)"
-                                                    @drop="drop($event); changePlayers(item.player)" @dragover.prevent>
-                                                <div class="energy progress position-relative"
-                                                    :title="`${translator.get('Energy')} ${item.player.energy}%`">
-                                                    <div class="progress-bar" role="progressbar"
-                                                        :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
-                                                        :aria-valuenow="item.player.energy" aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                        :style="{ width: item.player.energy + '%' }">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <span class="d-inline-block position-relative text-nowrap">
-                                                        {{ item.player.surname }}
-                                                    </span>
+                                    <div v-for="substituteType in lineup.substituteTypes" class="bench"
+                                        :class="{ 'selected-player' : lineup.selectedPlayer, 'pb-5' : substituteType === 'Unlisted players' }"
+                                        @click.stop="lineup.movePlayerTo(substituteType)"
+                                        @drop="lineup.drop($event); lineup.movePlayerTo(substituteType)"
+                                        @dragover.prevent :title="translator.get(substituteType)">
+                                        <div v-for="item in lineup.getSubstitutePlayers(substituteType)"
+                                            class="player d-inline-block position-relative text-center"
+                                            @click.stop="lineup.changePlayers(item.player)"
+                                            :class="item.html.player.class">
+                                            <div class="overall position-absolute">
+                                                <template v-if="item.player.isInjured">
+                                                    <i class="fa-solid fa-plus fa-lg text-danger"
+                                                        :title="getInjuryMessage(item.player)"></i>
+                                                </template>
+                                                <template v-else>
+                                                    {{ item.player.overall }}
+                                                </template>
+                                            </div>
+                                            <div class="position position-absolute"
+                                                :title="translator.get(item.player.position.name)">
+                                                {{
+                                                translator.get(item.player.position.abbreviation)
+                                                }}
+                                            </div>
+                                            <div class="cards position-absolute w-100 text-end">
+                                                <i v-if="item.championshipEditionPlayer?.redCard"
+                                                    class="fa-solid fa-square fa-lg text-danger me-1"
+                                                    :title="translator.get('Suspended')">
+                                                </i>
+                                                <i v-else v-for="index in item.championshipEditionPlayer?.yellowCards"
+                                                    class="fa-solid fa-square fa-lg text-warning me-1"
+                                                    :title="translator.get('Suspended')">
+                                                </i>
+                                            </div>
+                                            <img :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
+                                                :src="item.player.getPhotoURL()" :alt="item.player.name"
+                                                :title="item.player.name" @error="lineup.loadDefaultPlayerPhoto($event)"
+                                                draggable="true" @dragstart="lineup.dragStart($event, item.player.id)"
+                                                @drop="lineup.drop($event); lineup.changePlayers(item.player)"
+                                                @dragover.prevent>
+                                            <div class="energy progress position-relative"
+                                                :title="`${translator.get('Energy')} ${item.player.energy}%`">
+                                                <div class="progress-bar" role="progressbar"
+                                                    :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                    :aria-valuenow="item.player.energy" aria-valuemin="0"
+                                                    aria-valuemax="100" :style="{ width: item.player.energy + '%' }">
                                                 </div>
                                             </div>
-                                        </template>
+                                            <div>
+                                                <span class="d-inline-block position-relative text-nowrap">
+                                                    {{ item.player.surname }}
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1287,7 +1464,7 @@
             <section id="players" v-cloak>
                 <fieldset>
                     <legend>{{ translator.get("Search players") }}</legend>
-                    <div class="row mb-3">
+                    <div class="row mb-3" v-once>
                         <div class="col-6">
                             <label for="name" class="form-label">{{ translator.get("Name") }}</label>
                             <input id="name" type="text" class="form-control" autocomplete="off"
@@ -1305,7 +1482,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row mb-3" v-once>
                         <div class="col-6">
                             <label for="field-region" class="form-label">
                                 {{ translator.get("Sector") }}</label>
@@ -1332,7 +1509,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row mb-3" v-once>
                         <div class="col-3">
                             <label for="minimum-age" class="form-label">
                                 {{ `${translator.get("Age")} (${translator.get("Minimum").toLowerCase()})` }}
@@ -1524,6 +1701,17 @@
                 </template>
             </section>
         </main>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    :aria-label="translator.get('Close')"></button>
+            </div>
+        </div>
     </div>
 
     <!-- Modal -->
@@ -1727,20 +1915,6 @@
         </div>
     </div>
 
-    <div id="modal-colors" class="modal fade" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 id="modal-title" class="modal-title fs-5">{{ translator.get("Colors") }}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        :aria-label="translator.get('Close')"></button>
-                </div>
-                <div class="modal-body">
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/lz-string/lz-string.min.js"></script>
 
     <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/ArrayExtensions.js"></script>
@@ -1815,6 +1989,7 @@
     <script src="../ViewModels/MenuViewModel.js"></script>
     <script src="../ViewModels/PlayerFilterViewModel.js"></script>
     <script src="../ViewModels/PlayerOrderViewModel.js"></script>
+    <script src="../ViewModels/TeamLineupViewModel.js"></script>
 
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="js/vue/vue.global.js"></script>
@@ -1868,26 +2043,27 @@
         },
 
         async created() {
-            //try {
-            this.message = { text: translator.get('Processing...'), type: 'primary' };
-            await this.loadGame();
-            this.gameLoaded = true;
+            try {
+                this.message = { text: translator.get('Processing...'), type: 'primary' };
+                await this.loadGame();
+                this.gameLoaded = true;
 
-            Router.goTo('play');
+                Router.goTo('play');
 
-            document.documentElement.addEventListener('click', () => {
-                Router.get('play').unselectPlayer();
-                Common.hideMessage();
-            });
+                document.documentElement.addEventListener('click', () => {
+                    Router.get('play').lineup.unselectPlayer();
+                    Common.hideMessage();
+                });
 
-            Router.get('standings').selectNationalChampionship();
+                Router.get('standings').selectNationalChampionship();
 
-            Router.get('modal-colors').setTheme(game.config.theme);
-            Router.get('modal-colors').setColors();
-            //}
-            //catch (error) {
-            //    this.message = { text: error, type: 'danger' };
-            //}
+                Router.get('modal-colors').setTheme(game.config.theme);
+                Router.get('modal-colors').setColors();
+            }
+            catch (error) {
+                this.message = { text: error, type: 'danger' };
+                throw error;
+            }
         },
     };
 

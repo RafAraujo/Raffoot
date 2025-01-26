@@ -117,6 +117,10 @@ Array.prototype.shuffle = function () {
     return this;
 }
 
+Array.prototype.skip = function (count) {
+    return this.slice(count);
+}
+
 Array.prototype.sum = function () {
     return this.reduce((acc, currentValue) => acc + currentValue);
 }

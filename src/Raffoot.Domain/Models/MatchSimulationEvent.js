@@ -50,14 +50,9 @@ class MatchSimulationEvent {
         }
     }
 
-    _goal() {
-        this.player = this.matchSimulation.ballPossessor;
-        this.matchSimulation.match.addGoal(this.player.club.id);
-        this._addGoal(this.player);
-        const previousAction = this.matchSimulation.previousAction;
-        if (previousAction?.player.club.id === this.player.club.id && previousAction.type === 'passing') {
-            this._addAssist(this.matchSimulation.previousAction.player);
-        }
+    _addAssist(player) {
+        const championshipEditionPlayer = this._getChampionshipEditionPlayer(player);
+        championshipEditionPlayer.assists++;
     }
 
     _addGoal(player) {
@@ -65,13 +60,10 @@ class MatchSimulationEvent {
         championshipEditionPlayer.goals++;
     }
 
-    _addAssist(player) {
+    _addRedCard(player) {
         const championshipEditionPlayer = this._getChampionshipEditionPlayer(player);
-        championshipEditionPlayer.assists++;
-    }
-
-    _foul() {
-        this.player = this.matchSimulation.marker;
+        championshipEditionPlayer.redCard = true;
+        player.club.movePlayerToUnlisted(player);
     }
 
     _addYellowCard(player) {
@@ -83,13 +75,21 @@ class MatchSimulationEvent {
         }
     }
 
-    _addRedCard(player) {
-        const championshipEditionPlayer = this._getChampionshipEditionPlayer(player);
-        championshipEditionPlayer.redCard = true;
-        player.fieldLocalization = null;
+    _foul() {
+        this.player = this.matchSimulation.marker;
     }
 
     _getChampionshipEditionPlayer(player) {
         return this.matchSimulation.match.championshipEdition.championshipEditionPlayers.find(cep => cep.player.id === player.id);
+    }
+
+    _goal() {
+        this.player = this.matchSimulation.ballPossessor;
+        this.matchSimulation.match.addGoal(this.player.club.id);
+        this._addGoal(this.player);
+        const previousAction = this.matchSimulation.previousAction;
+        if (previousAction?.player.club.id === this.player.club.id && previousAction.type === 'passing') {
+            this._addAssist(this.matchSimulation.previousAction.player);
+        }
     }
 }

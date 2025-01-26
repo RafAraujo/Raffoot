@@ -34,7 +34,10 @@ const Config = (function () {
             defaultPlayerPhoto: `${ResourcesFolder}/image/data sources/Fifa/players/0.svg`,
         },
         indexedDbName: 'Raffoot',
-        mockScript: '../../Raffoot.Infrastructure/Raffoot.Data/Mock.js',
+        match: {
+            benchSize: 12,
+            maxSubstitutions: 5,
+        },
         matchSpeedOptions: {
             ultraSlow: 10000,
             verySlow: 5000,
@@ -44,6 +47,7 @@ const Config = (function () {
             veryFast: 250,
             ultraFast: 125,
         },
+        mockScript: '../../Raffoot.Infrastructure/Raffoot.Data/Mock.js',
         nationalCup: {
             maxClubCount: 64,
         },

@@ -97,6 +97,10 @@ class Club {
         return Context.game.championshipEditions.filterByIds(this._trophies);
     }
 
+    get unlistedPlayers() {
+        return this.players.filter(p => !p.fieldLocalization);
+    }
+
     addPlayer(player) {
         this._playerIds.push(player.id);
     }
@@ -111,13 +115,12 @@ class Club {
     }
 
     changeFormation(formation, automaticLineup = false) {
-        for (const player of this.players) {
-            player.fieldLocalization = null;
-        }
+        for (const player of this.players)
+            this.movePlayerToUnlisted(player);
+
         this.formation = formation;
-        if (formation && automaticLineup) {
+        if (formation && automaticLineup)
             this.setAutomaticLineUp();
-        }
     }
 
     clearFormation() {
@@ -131,13 +134,6 @@ class Club {
 
     getEmptyFieldLocalizations() {
         return this._formationId ? this.formation.fieldLocalizations.filter(fl => !this.getPlayerByFieldLocalization(fl)) : null;
-    }
-
-    getLineup(championshipEdition) {
-        return this.players.map(p => ({
-            player: p,
-            championshipEditionPlayer: championshipEdition?.championshipEditionPlayers.find(cep => cep.player.id === p.id)
-        }));
     }
 
     getPlayerWages() {
@@ -154,12 +150,6 @@ class Club {
 
     getPlayerByFieldLocalization(fieldLocalization) {
         return this.playersOnField.find(sp => sp.fieldLocalization.id === fieldLocalization.id);
-    }
-
-    getBestAvailablePlayerForFieldLocalization(fieldLocalization) {
-        const players = this.playersOnBench.filter(p => p.position.id === fieldLocalization.position.id && !p.isInjured);
-        const player = players.length > 0 ? players.orderBy('-overall', '-energy', 'age')[0] : null;
-        return player;
     }
 
     getBestPlayers(count) {
@@ -184,10 +174,6 @@ class Club {
         return url;
     }
 
-    getBestPlayersWithoutGoalkeeper(count) {
-        return this.players.filter(p => !p.position.isGoalkeeper).orderBy('-overall', 'age').take(count);
-    }
-
     getRecommendedFormation() {
         const ranking = [];
 
@@ -198,57 +184,49 @@ class Club {
             ranking.push({
                 formation: formation,
                 overall: players.map(p => p.overall).sum(),
+                age: players.map(p => p.age).sum(),
             });
         }
 
-        return ranking.orderBy('-overall')[0].formation;
+        return ranking.orderBy('-overall', '-age')[0].formation;
     }
 
     movePlayerToBench(player) {
-        player.fieldLocalization = null;
+        player.fieldLocalization = FieldLocalization.getByName('SUB');
         player.order = this.players.map(p => p.order).max() + 1;
+        this._reorder();
     }
 
     movePlayerToField(player, fieldLocalization) {
         player.fieldLocalization = fieldLocalization;
     }
 
+    movePlayerToUnlisted(player) {
+        player.fieldLocalization = null;
+        player.order = this.players.map(p => p.order).max() + 1;
+        this._reorder();
+    }
+
     setAutomaticLineUp() {
-        for (const fieldLocalization of this.formation.fieldLocalizations.reverse()) {
-            const ranking = [];
-            let chosenPlayer = this.getBestAvailablePlayerForFieldLocalization(fieldLocalization);
-
-            if (chosenPlayer === null) {
-                let availablePlayers = this.playersOnBench.filter(p => !p.isInjured);
-                let players = availablePlayers.filter(p => p.position.fieldRegion === fieldLocalization.position.fieldRegion);
-
-                if (players.length === 0) {
-                    players = availablePlayers;
-                }
-
-                for (const player of players) {
-                    ranking.push({
-                        player: player,
-                        overall: player.calculateOverallAt(fieldLocalization)
-                    });
-                }
-
-                chosenPlayer = ranking.orderBy('-overall', '-player.energy', 'player.age')[0].player;
+        let fieldLocalizations = this.formation.fieldLocalizations.slice();
+        for (let i = 0; i < 2; i++) {
+            if (i === 1)
+                fieldLocalizations.unshift(FieldLocalization.getByName('GK'));
+            
+            for (const fieldLocalization of fieldLocalizations) {
+                let chosenPlayer = this._getBestAvailablePlayerForFieldLocalization(fieldLocalization);
+                if (chosenPlayer)
+                    chosenPlayer.fieldLocalization = i === 0 ? fieldLocalization : FieldLocalization.getByName('SUB');
             }
-
-            if (chosenPlayer)
-                chosenPlayer.fieldLocalization = fieldLocalization;
         }
     }
 
     setSquadOrder() {
+        const lists = [this.playersOnField, this.playersOnBench.orderBy('position.id', '-overall'), this.unlistedPlayers.orderBy('position.id', '-overall')];
+        const players = lists.flatMap(p => p);
         let order = 0;
-        for (const player of this.playersOnField) {
+        for (const player of players)
             player.order = ++order;
-        }
-        for (const player of this.playersOnBench.orderBy('order', 'position.id', '-overall')) {
-            player.order = ++order;
-        }
     }
 
     swapPlayerRoles(player1, player2) {
@@ -262,9 +240,8 @@ class Club {
     }
 
     rest(days) {
-        for (const player of this.players) {
+        for (const player of this.players)
             player.rest(days);
-        }
     }
 
     pay(amount, notify = false) {
@@ -289,10 +266,45 @@ class Club {
         this.colors.foregroundCustom = this.colors.foreground;
     }
 
+    _getBestAvailablePlayerForFieldLocalization(fieldLocalization) {
+        let bestPlayer = null;
+
+        const availablePlayers = this.players.filter(p => !p.fieldLocalization && !p.isInjured);
+        let players = availablePlayers.filter(p => p.position.id === fieldLocalization.position.id && !p.isInjured);
+
+        if (players.length > 0) {
+            bestPlayer = players.orderBy('-overall', '-energy', 'age')[0];
+        }
+        else {
+            players = availablePlayers.filter(p => p.position.fieldRegion === fieldLocalization.position.fieldRegion);
+
+            if (players.length === 0)
+                players = availablePlayers;
+
+            const ranking = [];
+            for (const player of players) {
+                ranking.push({
+                    player: player,
+                    overall: player.calculateOverallAt(fieldLocalization)
+                });
+
+                bestPlayer = ranking.orderBy('-overall', '-player.energy', 'player.age')[0].player;
+            }
+        }
+
+        return bestPlayer;
+    }
+
     _createEventMoneyChange(previousValue, value) {
         const moneyChangeEvent = new CustomEvent('moneychange', {
             detail: { previousValue: previousValue, value: value }
         });
         return moneyChangeEvent;
+    }
+
+    _reorder() {
+        let order = 0;
+        for (const player of this.players.orderBy('order'))
+            player.order = ++order;
     }
 }

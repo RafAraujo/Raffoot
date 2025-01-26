@@ -57,11 +57,6 @@ class FieldLocalization {
 		FieldLocalization.create('ST', 'ST', 9, 2);
 		FieldLocalization.create('RS', 'ST', 9, 3);
 		FieldLocalization.create('SUB', null, null, null);
-		FieldLocalization.create('RES', null, null, null);
-	}
-
-	static isGoalkeeper() {
-		return _fieldLocalizations[0];
 	}
 
 	get isOffTheField() {

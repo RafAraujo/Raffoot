@@ -71,12 +71,10 @@ class Player {
     }
 
     set fieldLocalization(value) {
-        if (value) {
+        if (value)
             this._fieldLocalizationId = value.id;
-        }
-        else {
+        else
             delete this._fieldLocalizationId;
-        }
     }
 
     get club() {
@@ -113,11 +111,15 @@ class Player {
     }
 
     get isOnBench() {
-        return !this.fieldLocalization;
+        return this.fieldLocalization?.name === 'SUB';
     }
 
     get isOnField() {
-        return this.fieldLocalization ? true : false;
+        return this.fieldLocalization?.position ? true : false;
+    }
+
+    get isUnlisted() {
+        return !this.fieldLocalization;
     }
 
     get marketValue() {

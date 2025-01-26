@@ -294,8 +294,8 @@
                     this.redirect(`home.html?id=${id}`);
                 }
                 catch (error) {
-                    console.error(error);
                     this.message = { text: error, type: 'danger' };
+                    throw error;
                 };
             },
             redirect: url => location.href = url,

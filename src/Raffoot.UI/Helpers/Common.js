@@ -1,4 +1,6 @@
 class Common {
+    static toast = null;
+
     static getQueryString(parameter) {
         const urlParams = new URLSearchParams(location.search);
         const id = urlParams.get(parameter);
@@ -34,5 +36,16 @@ class Common {
     static hideMessage() {
         const element = document.getElementById('message');
         element.classList.add('d-none');
+    }
+
+    static showToast(text, type) {
+        const element = document.getElementById('toast');
+        element.classList.remove(...element.classList);
+        element.classList.add('toast', 'align-items-center', `text-bg-${type}`, 'border-0');
+        const body = element.querySelector('.toast-body');
+        body.innerText = text;
+        if (!Common.toast)
+            Common.toast = new bootstrap.Toast(element);
+        Common.toast.show();
     }
 }
