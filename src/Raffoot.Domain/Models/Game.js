@@ -45,6 +45,7 @@ class Game {
         this.messages = [];
 
         this.config = {
+            autoSave: false,
             fullScreen: false,
             language: Config.language,
             matchSpeed: Config.matchSpeedOptions['Super fast'],
