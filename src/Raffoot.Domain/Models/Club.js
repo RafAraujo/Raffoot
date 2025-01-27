@@ -2,9 +2,8 @@ class Club {
     constructor(name, countryId, colors, shortName) {
         this.name = name;
         this._countryId = countryId;
-        if (shortName) {
+        if (shortName)
             this._shortName = shortName;
-        }
         this._playerIds = [];
         this.money = 0;
         this.colors = colors;
@@ -98,7 +97,7 @@ class Club {
     }
 
     get unlistedPlayers() {
-        return this.players.filter(p => !p.fieldLocalization);
+        return this.players.filter(p => p.isUnlisted);
     }
 
     addPlayer(player) {
@@ -115,12 +114,15 @@ class Club {
     }
 
     changeFormation(formation, automaticLineup = false) {
-        for (const player of this.players)
-            this.movePlayerToUnlisted(player);
-
         this.formation = formation;
-        if (formation && automaticLineup)
+        if (formation && automaticLineup) {
             this.setAutomaticLineUp();
+        }
+        else {
+            const players = this.players.orderBy('-overall');
+            for (const [index, player] of players.entries())
+                player.FieldLocalization = index <= Config.match.maxBenchSize ? FieldLocalization.getByName('SUB') : null;
+        }
     }
 
     clearFormation() {
@@ -162,7 +164,7 @@ class Club {
         const game = Context.game;
         for (let i = 1; i <= 4; i++) {
             const url = `${Config.resourcesFolder}/image/data sources/${game.dataSource}/kits/${game.firstYear}/${this.country.name}/${this.name.replace('/', '-')}/${i}.png`;
-            urlList.push({ url: url, description: descriptions[i - 1]});
+            urlList.push({ url: url, description: descriptions[i - 1] });
         }
         return urlList;
     }
@@ -194,7 +196,7 @@ class Club {
     movePlayerToBench(player) {
         player.fieldLocalization = FieldLocalization.getByName('SUB');
         player.order = this.players.map(p => p.order).max() + 1;
-        this._reorder();
+        this.reorderPlayers();
     }
 
     movePlayerToField(player, fieldLocalization) {
@@ -204,15 +206,26 @@ class Club {
     movePlayerToUnlisted(player) {
         player.fieldLocalization = null;
         player.order = this.players.map(p => p.order).max() + 1;
-        this._reorder();
+        this.reorderPlayers();
+    }
+
+    reorderPlayers() {
+        let order = 0;
+        const lists = [this.playersOnField.orderBy('fieldLocalization.id'), this.playersOnBench.orderBy('position.id'), this.unlistedPlayers.orderBy('order')];
+        const players = lists.flatMap(p => p);
+        for (const player of players)
+            player.order = ++order;
     }
 
     setAutomaticLineUp() {
+        for (const player of this.players)
+            player.fieldLocalization = null;
+
         let fieldLocalizations = this.formation.fieldLocalizations.slice();
         for (let i = 0; i < 2; i++) {
             if (i === 1)
                 fieldLocalizations.unshift(FieldLocalization.getByName('GK'));
-            
+
             for (const fieldLocalization of fieldLocalizations) {
                 let chosenPlayer = this._getBestAvailablePlayerForFieldLocalization(fieldLocalization);
                 if (chosenPlayer)
@@ -300,11 +313,5 @@ class Club {
             detail: { previousValue: previousValue, value: value }
         });
         return moneyChangeEvent;
-    }
-
-    _reorder() {
-        let order = 0;
-        for (const player of this.players.orderBy('order'))
-            player.order = ++order;
     }
 }

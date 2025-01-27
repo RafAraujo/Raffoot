@@ -443,6 +443,7 @@ const MultiLanguage =
     "Starting game...": "Começando o jogo...",
     "Statistics": "Estatisticas",
     "Striker": "Atacante",
+    "Substitution limit reached": "Limite de substituições atingido",
     "Sudan": "Sudão",
     "Supercup": "Supertaça",
     "Supporters": "Torcedores",

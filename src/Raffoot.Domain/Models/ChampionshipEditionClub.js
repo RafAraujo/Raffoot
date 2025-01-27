@@ -22,7 +22,7 @@ class ChampionshipEditionClub {
         if (championshipEdition.championship.championshipType.id === nationalLeague.id) {
             championshipEditionClub.club.division = championshipEdition.championship.division;
         }
-
+                
         return championshipEditionClub;
     }
 

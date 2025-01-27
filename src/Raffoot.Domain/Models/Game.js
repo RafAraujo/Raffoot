@@ -71,9 +71,8 @@ class Game {
 
     advanceDate() {
         const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
-        for (const match of matches) {
+        for (const match of matches)
             delete match.matchSimulation;
-        }
 
         this._qualifyWinnersToNextEliminationPhases();
         this.currentSeason.advanceDate();
@@ -85,9 +84,8 @@ class Game {
         const previousDate = this.currentSeason.previousDate;
         const days = Date.daysDiff(previousDate, this.currentSeason.currentDate);
 
-        for (const club of this.clubs) {
+        for (const club of this.clubs)
             club.rest(days);
-        }
 
         if (this.currentSeason.currentDate.getMonth() > previousDate.getMonth()) {
             for (const club of this.clubs) {

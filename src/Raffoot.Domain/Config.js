@@ -35,7 +35,7 @@ const Config = (function () {
         },
         indexedDbName: 'Raffoot',
         match: {
-            benchSize: 12,
+            maxBenchSize: 12,
             maxSubstitutions: 5,
         },
         matchSpeedOptions: {

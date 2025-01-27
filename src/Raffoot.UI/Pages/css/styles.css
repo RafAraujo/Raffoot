@@ -130,9 +130,10 @@ div.lineup {
 
     .field-localization.selected-player:hover:not(.blink),
     .player.my-club.selected-player:hover:not(.blink) {
+        cursor: pointer;
         border: 1px solid gold;
     }
-    
+
     .player.my-club:hover {
         cursor: pointer;
     }

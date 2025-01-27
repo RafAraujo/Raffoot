@@ -1,10 +1,27 @@
 class Common {
     static toast = null;
 
+    static cloneElement(sourceElementSelector, destinationElementSelector) {
+        const sourceElement = document.querySelector(sourceElementSelector);
+        const clone = sourceElement.cloneNode(true);
+        const destinationElement = document.querySelector(destinationElementSelector);
+        destinationElement.appendChild(clone);
+    }
+
     static getQueryString(parameter) {
         const urlParams = new URLSearchParams(location.search);
         const id = urlParams.get(parameter);
         return id;
+    }
+
+    static hideElement(selector) {
+        const element = document.querySelector(selector);
+        element.classList.add('d-none');
+    }
+
+    static hideMessage() {
+        const element = document.getElementById('message');
+        element.classList.add('d-none');
     }
 
     static loadDefaultPlayerPhoto(event) {
@@ -20,22 +37,12 @@ class Common {
         element.classList.remove('d-none');
     }
 
-    static hideElement(selector) {
-        const element = document.querySelector(selector);
-        element.classList.add('d-none');
-    }
-
     static showMessage(text, type) {
         const element = document.getElementById('message');
         element.classList.remove(...element.classList);
         element.classList.add('alert', 'alert-dismissible', 'fade', 'show', `alert-${type}`);
         const span = element.querySelector('span');
         span.innerText = text;
-    }
-
-    static hideMessage() {
-        const element = document.getElementById('message');
-        element.classList.add('d-none');
     }
 
     static showToast(text, type) {
