@@ -201,14 +201,14 @@
                 </div>
             </div>
 
-            <div id="modal-team" class="modal modal-xl fade" tabindex="-1" aria-labelledby="modal-title"
+            <div id="modal-team" class="modal modal-xl fade" tabindex="-1" aria-labelledby="modal-team-title"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 id="modal-title" class="modal-title fs-5">{{ currentMatch?.description }}</h1>
+                            <h1 id="modal-team-title" class="modal-title fs-5">{{ currentMatch?.description }}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                :aria-label="translator.get('Close')"></button>
+                                :title="translator.get('Close')" :aria-label="translator.get('Close')"></button>
                         </div>
                         <div class="modal-body">
                         </div>
@@ -219,7 +219,7 @@
         <section id="summary" class="container" v-cloak>
             <div class="row">
                 <div class="col col-md-5">
-                    <select id="summary-confederation" class="form-select mt-4"
+                    <select id="summary-confederation" class="form-select mt-4" :title="translator.get('Confederation')"
                         @change="selectConfederation($event.target.value)">
                         <option v-for="confederation in getConfederations()" :key="confederation.id"
                             :value="confederation.id" :selected="selectedConfederation.id === confederation.id">
@@ -409,6 +409,13 @@
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#modal-preferences" @click.prevent="toggleCollapse()">
+                                            <i class="fa-solid fa-gear fa-fw"></i>
+                                            {{ translator.get("Preferences") }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                             data-bs-target="#modal-language" @click.prevent="toggleCollapse()">
                                             <i class="fa-solid fa-language fa-fw"></i>
                                             {{ translator.get("Language") }}
@@ -573,13 +580,13 @@
                         <div class="lineup p-1">
                             <div class="row mt-2 mb-1 align-items-center">
                                 <div class="col-auto">
-                                    <label :for="`${lineup.options.idPrefix}select-formation`" class="col-form-label">
+                                    <label for="select-formation" class="col-form-label">
                                         {{ translator.get("Formation") }}
                                     </label>
                                 </div>
                                 <div class="col-auto" v-once>
-                                    <select :id="`${lineup.options.idPrefix}select-formation`" class="form-select" required
-                                        :disabled="lineup.selectedClub !== game.club"
+                                    <select id="select-formation" class="form-select" required
+                                        :disabled="lineup.selectedClub !== game.club" name="select-formation"
                                         @change="lineup.changeFormation($event.target.value)">
                                         <option></option>
                                         <template v-for="baseFormation in lineup.getBaseFormations()">
@@ -596,9 +603,9 @@
                                 <div v-if="lineup.options.showAutomaticSelection">
                                     <div :class="{ 'invisible' : lineup.selectedClub !== game.club }"
                                         class="form-check form-check-inline form-check-reverse form-switch mt-1">
-                                        <input type="checkbox" :id="`${lineup.options.idPrefix}automatic-selection`" class="form-check-input"
+                                        <input type="checkbox" id="automatic-selection" class="form-check-input"
                                             v-model.lazy="lineup.automaticSelection">
-                                        <label :for="`${lineup.options.idPrefix}automatic-selection`" class="form-check-label">
+                                        <label for="automatic-selection" class="form-check-label">
                                             {{ translator.get("Automatic selection") }}
                                         </label>
                                     </div>
@@ -640,7 +647,8 @@
                                                     class="fa-solid fa-square fa-lg text-danger me-1"
                                                     :title="translator.get('Suspended')">
                                                 </i>
-                                                <i v-else v-for="index in item.championshipEditionPlayer?.yellowCards ?? []"
+                                                <i v-else
+                                                    v-for="index in item.championshipEditionPlayer?.yellowCards ?? []"
                                                     class="fa-solid fa-square fa-lg text-warning me-1"
                                                     :title="translator.get('Suspended')">
                                                 </i>
@@ -709,7 +717,8 @@
                                                     class="fa-solid fa-square fa-lg text-danger me-1"
                                                     :title="translator.get('Suspended')">
                                                 </i>
-                                                <i v-else v-for="index in item.championshipEditionPlayer?.yellowCards ?? []"
+                                                <i v-else
+                                                    v-for="index in item.championshipEditionPlayer?.yellowCards ?? []"
                                                     class="fa-solid fa-square fa-lg text-warning me-1"
                                                     :title="translator.get('Suspended')">
                                                 </i>
@@ -1532,31 +1541,38 @@
             <div class="d-flex">
                 <div class="toast-body"></div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                    :aria-label="translator.get('Close')"></button>
+                    :title="translator.get('Close')" :aria-label="translator.get('Close')"></button>
             </div>
         </div>
     </div>
 
     <!-- Modal -->
 
-    <div id="modal-language" class="modal fade" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div id="modal-preferences" class="modal fade" tabindex="-1" aria-labelledby="modal-preferences-title"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 id="modal-title" class="modal-title fs-5">{{ translator.get("Language") }}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    <h1 id="modal-preferences-title" class="modal-title fs-5">{{ translator.get("Preferences") }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" :title="translator.get('Close')"
                         :aria-label="translator.get('Close')"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-check">
-                        <input type="radio" id="language-english" name="language" class="form-check-input"
-                            :checked="translator.language.startsWith('en')" @click="setLanguage('en')">
-                        <label for="language-english" class="form-check-label">English</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" id="language-portuguese" name="language" class="form-check-input"
-                            :checked="translator.language.startsWith('pt')" @click="setLanguage('pt-BR')">
-                        <label for="language-portuguese" class="form-check-label" >Português</label>
+                    <div class="row mb-3">
+                        <div class="col-auto">
+                            <label for="select-match-speed" class="col-form-label">
+                                {{ translator.get("Match speed") }}
+                            </label>
+                        </div>
+                        <div class="col-auto" v-once>
+                            <select id="select-match-speed" class="form-select" required name="select-match-speed"
+                                @change="changeMatchSpeed($event.target.value)">
+                                <option v-for="matchSpeed in getMatchSpeedOptions()" :key="matchSpeed.value"
+                                    :value="matchSpeed.value" :selected="game.config.matchSpeed == matchSpeed.value">
+                                    {{ matchSpeed.name }}
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -1569,12 +1585,42 @@
         </div>
     </div>
 
-    <div id="modal-colors" class="modal fade" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div id="modal-language" class="modal fade" tabindex="-1" aria-labelledby="modal-language-title" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 id="modal-title" class="modal-title fs-5">{{ translator.get("Colors") }}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    <h1 id="modal-language-title" class="modal-title fs-5">{{ translator.get("Language") }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" :title="translator.get('Close')"
+                        :aria-label="translator.get('Close')"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-check">
+                        <input type="radio" id="language-english" name="language" class="form-check-input"
+                            :checked="translator.language.startsWith('en')" @click="setLanguage('en')">
+                        <label for="language-english" class="form-check-label">English</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" id="language-portuguese" name="language" class="form-check-input"
+                            :checked="translator.language.startsWith('pt')" @click="setLanguage('pt-BR')">
+                        <label for="language-portuguese" class="form-check-label">Português</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-xmark"></i>
+                        {{ translator.get("Close") }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-colors" class="modal fade" tabindex="-1" aria-labelledby="modal-colors-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 id="modal-colors-title" class="modal-title fs-5">{{ translator.get("Colors") }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" :title="translator.get('Close')"
                         :aria-label="translator.get('Close')"></button>
                 </div>
                 <div class="modal-body">
@@ -1612,7 +1658,7 @@
                     <div class="row mb-3">
                         <div class="col">
                             <div class="form-check form-switch">
-                                <input  type="checkbox" id="use-club-colors"class="form-check-input" role="switch"
+                                <input type="checkbox" id="use-club-colors" class="form-check-input" role="switch"
                                     v-model.lazy="game.config.useClubColors" @change="setColors()">
                                 <label for="use-club-colors" class="form-check-label">
                                     {{ translator.get("Use club colors") }}
@@ -1658,12 +1704,12 @@
         </div>
     </div>
 
-    <div id="modal-player" class="modal fade" tabindex="-2" aria-labelledby="modal-title" aria-hidden="true">
+    <div id="modal-player" class="modal fade" tabindex="-2" aria-labelledby="modal-player-title" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" v-if="player">
                 <div class="modal-header">
-                    <h1 id="modal-title" class="modal-title fs-5">{{ translator.get("Make an offer")}}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    <h1 id="modal-player-title" class="modal-title fs-5">{{ translator.get("Make an offer")}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" :title="translator.get('Close')"
                         :aria-label="translator.get('Close')"></button>
                 </div>
                 <div class="modal-body">
@@ -1797,6 +1843,7 @@
     <script src="../ViewModels/Modals/ColorsModalViewModel.js"></script>
     <script src="../ViewModels/Modals/LanguageModalViewModel.js"></script>
     <script src="../ViewModels/Modals/PlayerModalViewModel.js"></script>
+    <script src="../ViewModels/Modals/PreferencesModalViewModel.js"></script>
 
     <script src="../ViewModels/Sections/CalendarSectionViewModel.js"></script>
     <script src="../ViewModels/Sections/ClubsSectionViewModel.js"></script>
@@ -1847,11 +1894,12 @@
 
                 translator.setLanguage(game.config.language);
 
-                //Common.cloneElement('.lineup-container', '#modal-team .modal-body');
+                Common.cloneElement('.lineup-container', '#modal-team .modal-body', ['select-formation'], 'modal-team-');
 
                 Router.addView('#management', new VueInstance('#modal-colors', new ColorsModalViewModel(game, translator)).createApp().mount(), true);
                 Router.addView('#management', new VueInstance('#modal-language', new LanguageModalViewModel(game, translator)).createApp().mount(), true);
                 Router.addView('#management', new VueInstance('#modal-player', new PlayerModalViewModel(game, translator)).createApp().mount(), true);
+                Router.addView('#management', new VueInstance('#modal-preferences', new PreferencesModalViewModel(game, translator)).createApp().mount(), true);
 
                 Router.addView('#management', new VueInstance('#menu', new MenuViewModel(game, translator)).createApp().mount(), true);
                 Router.addView('#management', new VueInstance('#general', new GeneralViewModel(game, translator)).createApp().mount(), true);

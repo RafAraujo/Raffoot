@@ -1,9 +1,10 @@
 class Common {
     static toast = null;
 
-    static cloneElement(sourceElementSelector, destinationElementSelector) {
+    static cloneElement(sourceElementSelector, destinationElementSelector, arrayIdToChange, idPrefixToInclude) {
         const sourceElement = document.querySelector(sourceElementSelector);
         const clone = sourceElement.cloneNode(true);
+        Common.includePrefixInIds(clone, arrayIdToChange, idPrefixToInclude);
         const destinationElement = document.querySelector(destinationElementSelector);
         destinationElement.appendChild(clone);
     }
@@ -22,6 +23,13 @@ class Common {
     static hideMessage() {
         const element = document.getElementById('message');
         element.classList.add('d-none');
+    }
+
+    static includePrefixInIds(element, arrayId, idPrefix) {
+        for (const id of arrayId) {
+            const child = element.querySelector(`#${id}`);
+            child.id = idPrefix.concat(child.id);
+        }
     }
 
     static loadDefaultPlayerPhoto(event) {

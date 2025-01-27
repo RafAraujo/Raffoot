@@ -8,7 +8,6 @@ class PlaySectionViewModel {
         this._dateHasChanged = false;
 
         const lineupOptions = {
-            idPrefix: '',
             showAutomaticSelection: true,
             showUnlistedPlayers: true,
         };

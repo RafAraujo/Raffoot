@@ -7,7 +7,6 @@ class SimulationSectionViewModel {
         this.lastEventClubAway = null;
 
         const lineupOptions = {
-            idPrefix: 'modal-team-',
             showAutomaticSelection: false,
             showUnlistedPlayers: false,
         };
