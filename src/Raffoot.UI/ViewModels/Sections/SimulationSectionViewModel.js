@@ -25,7 +25,7 @@ class SimulationSectionViewModel {
     }
 
     getCurrentEvent() {
-        const events = this.currentMatch.matchSimulation?.currentAction.matchSimulationEvents ?? [];
+        const events = this.currentMatch.matchSimulation?.currentAction?.matchSimulationEvents ?? [];
         return events.length > 0 ? events.last() : null;
     }
 
@@ -120,14 +120,15 @@ class SimulationSectionViewModel {
         if (!this.currentMatch?.matchSimulation)
             return;
 
-        this._animateBallTrajectory();
+        if (this.game.time > 0)
+            this._animateBallTrajectory();
 
         this.lastEventClubHome = this.getLastMatchSimulationEvent(this.currentMatch.clubHome);
         this.lastEventClubAway = this.getLastMatchSimulationEvent(this.currentMatch.clubAway);
 
         if (this.isGoal) {
             this.game.pause();
-            setTimeout(() => this.game.resume(), 2000);
+            setTimeout(() => this.game.resume(), 1000);
         }
     }
 

@@ -46,7 +46,7 @@ class Game {
         this.config = {
             fullScreen: false,
             language: Config.language,
-            matchSpeed: Config.matchSpeedOptions.fast,
+            matchSpeed: Config.matchSpeedOptions.ultraFast,
             search: {
                 pageSize: Config.search.pageSize
             },
@@ -69,7 +69,7 @@ class Game {
         return Season.getById(this._currentSeasonId);
     }
 
-    advanceDate() {
+    async advanceDate() {
         const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
         for (const match of matches)
             delete match.matchSimulation;
@@ -182,8 +182,6 @@ class Game {
 
             for (const matchSimulation of matchSimulations)
                 matchSimulation.nextAction(this.time);
-
-            console.log(`matchSimulation.nextAction() ${index++} took ${(performance.now() - t0)} milliseconds.`);
 
             if (++this.time === 90) {
                 clearInterval(interval);

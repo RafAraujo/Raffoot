@@ -180,6 +180,7 @@ class Club {
         return this.players.map(p => ({
             playerId: p.id,
             fieldLocalizationId: p.fieldLocalization?.id ?? null,
+            order: p.order,
         }));
     }
 
@@ -294,6 +295,7 @@ class Club {
             const player = Player.getById(item.playerId);
             const fieldLocalization = item.fieldLocalizationId ? FieldLocalization.getById(item.fieldLocalizationId) : null;
             player.fieldLocalization = fieldLocalization;
+            player.order = item.order;
         }
     }
 

@@ -640,7 +640,7 @@
                                                     class="fa-solid fa-square fa-lg text-danger me-1"
                                                     :title="translator.get('Suspended')">
                                                 </i>
-                                                <i v-else v-for="index in item.championshipEditionPlayer?.yellowCards"
+                                                <i v-else v-for="index in item.championshipEditionPlayer?.yellowCards ?? []"
                                                     class="fa-solid fa-square fa-lg text-warning me-1"
                                                     :title="translator.get('Suspended')">
                                                 </i>
@@ -709,7 +709,7 @@
                                                     class="fa-solid fa-square fa-lg text-danger me-1"
                                                     :title="translator.get('Suspended')">
                                                 </i>
-                                                <i v-else v-for="index in item.championshipEditionPlayer?.yellowCards"
+                                                <i v-else v-for="index in item.championshipEditionPlayer?.yellowCards ?? []"
                                                     class="fa-solid fa-square fa-lg text-warning me-1"
                                                     :title="translator.get('Suspended')">
                                                 </i>
