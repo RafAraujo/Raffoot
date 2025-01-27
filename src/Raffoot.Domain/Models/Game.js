@@ -36,6 +36,7 @@ class Game {
         this.matchSimulationActions = [];
         this.matchSimulationEvents = [];
         this.matchSimulationStatistics = [];
+        this.playerSubstitutions = [];
 
         this.dataSource = dataSource;
         this.isFantasyMode = this.dataSource === 'FM' || firstYear < 2005;

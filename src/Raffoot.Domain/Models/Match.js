@@ -3,6 +3,7 @@ class Match {
         this._championshipEditionId = championshipEditionId;
         this._seasonDateId = seasonDateId;
         this._clubIds = [];
+        this._playerSubstitutionIds = [];
         this.isFinished = false;
     }
 
@@ -72,6 +73,10 @@ class Match {
         return this.clubs.flatMap(c => c.playersOnField);
     }
 
+    get playerSubstitutions() {
+        return Context.game.playerSubstitutions.filterByIds(this._playerSubstitutionIds);
+    }
+
     get score() {
         return this.goals ? `${this.goals[0]} × ${this.goals[1]}` : null;
     }
@@ -81,17 +86,19 @@ class Match {
     }
 
     addClub(club, situation) {
-        if (this._clubIds.length === 1 && situation === 'home') {
+        if (this._clubIds.length === 1 && situation === 'home')
             this._clubIds.unshift(club.id);
-        }
-        else {
+        else
             this._clubIds.push(club.id);
-        }
     }
 
     addGoal(clubId) {
         const index = this._clubIds[0] === clubId ? 0 : 1;
         this.goals[index]++;
+    }
+
+    addPlayerSubstitution(playerSubstitution) {
+        this._playerSubstitutionIds.push(playerSubstitution.id);
     }
 
     getClubsAnalysis() {
@@ -128,10 +135,15 @@ class Match {
     }
 
     getOpponent(club) {
-        if (this._clubIds.includes(club.id)) {
+        if (this._clubIds.includes(club.id))
             return club.id === this._clubIds[0] ? this.clubAway : this.clubHome;
-        }
         throw new Error();
+    }
+
+    getPlayerSubstitutionsLeft(club) {
+        const substitutions = this.playerSubstitutions.filter(ps => ps.club.id === club.id);
+        const substitutionsLeft = Config.match.maxPlayerSubstitutions - substitutions.length;
+        return substitutionsLeft;
     }
 
     getWinner() {
@@ -146,6 +158,14 @@ class Match {
         const club2Goals = this.getGoals(club2);
 
         return club1Goals === club2Goals ? null : (club1Goals > club2Goals ? club1 : club2);
+    }
+
+    makePlayerSubstitution(time, club, playerOut, playerIn) {
+        if (!this.matchSimulation)
+            throw new Error();
+
+        PlayerSubstitution.create(this, time, club, playerOut, playerIn);
+        club.swapPlayerRoles(playerOut, playerIn);
     }
 
     prepare() {

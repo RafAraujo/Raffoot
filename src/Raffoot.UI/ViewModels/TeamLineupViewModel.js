@@ -1,10 +1,11 @@
 class TeamLineupViewModel {
     static _callbacks = [];
 
-    constructor(game, translator, options = {}) {
+    constructor(game, translator, matchInProgress, options = {}) {
         this.game = game;
         this.translator = translator;
         this.gameService = new GameService();
+        this.matchInProgress = matchInProgress;
         this.options = options;
 
         this.selectedClub = game.club;
@@ -12,9 +13,8 @@ class TeamLineupViewModel {
         this.selectedPlayer = null;
 
         this.substituteTypes = ['Bench'];
-        if (!this.options.hideUnlistedPlayers)
+        if (this.options.showUnlistedPlayers)
             this.substituteTypes.push('Unlisted players');
-        this.substitutionsLeft = Config.match.maxSubstitutions;
     }
 
     changeFormation(formationId) {
@@ -23,31 +23,37 @@ class TeamLineupViewModel {
         this.game.club.reorderPlayers();
     }
 
-    changePlayers(player1, player2) {
-        const substitutionFromBench = [player1, player2].some(p => p.isOnBench);
+    changePlayers(player1, player2, match) {
+        if (this.matchInProgress) {
+            const playerFromField = [player1, player2].find(p => p.isOnField);
+            const playerFromBench = [player1, player2].find(p => p.isOnBench);
+            const substitutionsLeft = match.getPlayerSubstitutionsLeft(this.game.club);
 
-        if (substitutionFromBench && !this.substitutionsLeft) {
-            const message = this.translator.get('Substitution limit reached');
-            Common.showToast(message, 'warning');
-            this.unselectPlayer();
-            return;
+            if (playerFromField && playerFromBench) {
+                if (substitutionsLeft === 0) {
+                    const message = this.translator.get('Substitution limit reached');
+                    Common.showToast(message, 'warning');
+                    this.unselectPlayer();
+                    return;
+                }
+
+                match.makePlayerSubstitution(this.game.time, this.game.club, playerFromField, playerFromBench);
+            }
         }
-
-        this.game.club.swapPlayerRoles(player1, player2);
-        if (substitutionFromBench && this.options.matchInProgress) {
-            this.substitutionsLeft--;
-            [player1, player2].find(p => p.isOnBench).fieldLocalization = null;
+        else {
+            this.game.club.swapPlayerRoles(player1, player2);
         }
 
         this.unselectPlayer();
     }
 
-    clickPlayer(player) {
+
+    clickPlayer(player, match) {
         if (player.club.id !== this.game.club.id)
             return;
 
         if (this.selectedPlayer)
-            this.changePlayers(this.selectedPlayer, player);
+            this.changePlayers(this.selectedPlayer, player, match);
         else
             this.selectPlayer(player);
     }
@@ -193,7 +199,6 @@ class TeamLineupViewModel {
     }
 
     reset() {
-        this.substitutionsLeft = Config.match.maxSubstitutions;
     }
 
     _convertToPlayerModel(player, championshipEdition) {

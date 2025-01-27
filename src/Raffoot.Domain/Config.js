@@ -36,7 +36,7 @@ const Config = (function () {
         indexedDbName: 'Raffoot',
         match: {
             maxBenchSize: 12,
-            maxSubstitutions: 5,
+            maxPlayerSubstitutions: 5,
         },
         matchSpeedOptions: {
             ultraSlow: 9600,

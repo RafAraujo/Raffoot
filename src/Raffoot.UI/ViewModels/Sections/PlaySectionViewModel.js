@@ -7,7 +7,12 @@ class PlaySectionViewModel {
         this.loading = false;
         this._dateHasChanged = false;
 
-        this.lineup = new TeamLineupViewModel(game, translator);
+        const lineupOptions = {
+            idPrefix: '',
+            showAutomaticSelection: true,
+            showUnlistedPlayers: true,
+        };
+        this.lineup = new TeamLineupViewModel(game, translator, false, lineupOptions);
 
         addEventListener('moneychange', event => {
             PlaySectionViewModel._callbacks.push(this._animateMoney.bind(this, event.detail.previousValue, event.detail.value, 1000));

@@ -7,10 +7,11 @@ class SimulationSectionViewModel {
         this.lastEventClubAway = null;
 
         const lineupOptions = {
-            hideUnlistedPlayers: true,
-            matchInProgress: true,
+            idPrefix: 'modal-team-',
+            showAutomaticSelection: false,
+            showUnlistedPlayers: false,
         };
-        this.lineup = new TeamLineupViewModel(game, translator, lineupOptions);
+        this.lineup = new TeamLineupViewModel(game, translator, true, lineupOptions);
         this.watch = { currentMatch: this.lineup.reset.bind(this.lineup) };
     }
 
@@ -120,7 +121,7 @@ class SimulationSectionViewModel {
         if (!this.currentMatch?.matchSimulation)
             return;
 
-        if (this.game.time > 0)
+        if (!this.game.isPaused && this.game.time > 0)
             this._animateBallTrajectory();
 
         this.lastEventClubHome = this.getLastMatchSimulationEvent(this.currentMatch.clubHome);

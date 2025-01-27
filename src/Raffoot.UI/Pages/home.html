@@ -148,7 +148,7 @@
                             <div class="row" v-if="currentMatch.matchSimulation">
                                 <div class="col">
                                     <div>
-                                        {{ lineup.substitutionsLeft }}
+                                        {{ currentMatch.getPlayerSubstitutionsLeft(game.club) }}
                                     </div>
                                 </div>
                             </div>
@@ -573,12 +573,12 @@
                         <div class="lineup p-1">
                             <div class="row mt-2 mb-1 align-items-center">
                                 <div class="col-auto">
-                                    <label for="select-formation" class="col-form-label">
+                                    <label :for="`${lineup.options.idPrefix}select-formation`" class="col-form-label">
                                         {{ translator.get("Formation") }}
                                     </label>
                                 </div>
                                 <div class="col-auto" v-once>
-                                    <select id="select-formation" class="form-select" required
+                                    <select :id="`${lineup.options.idPrefix}select-formation`" class="form-select" required
                                         :disabled="lineup.selectedClub !== game.club"
                                         @change="lineup.changeFormation($event.target.value)">
                                         <option></option>
@@ -593,12 +593,12 @@
                                         </template>
                                     </select>
                                 </div>
-                                <div>
+                                <div v-if="lineup.options.showAutomaticSelection">
                                     <div :class="{ 'invisible' : lineup.selectedClub !== game.club }"
                                         class="form-check form-check-inline form-check-reverse form-switch mt-1">
-                                        <input id="automatic-selection" class="form-check-input" type="checkbox"
+                                        <input type="checkbox" :id="`${lineup.options.idPrefix}automatic-selection`" class="form-check-input"
                                             v-model.lazy="lineup.automaticSelection">
-                                        <label for="automatic-selection" class="form-check-label">
+                                        <label :for="`${lineup.options.idPrefix}automatic-selection`" class="form-check-label">
                                             {{ translator.get("Automatic selection") }}
                                         </label>
                                     </div>
@@ -609,7 +609,7 @@
                                     <div class="field position-relative" style="height: 420px">
                                         <div v-for="item in lineup.getPlayersOnField()"
                                             class="player position-absolute text-center"
-                                            @click.stop="lineup.clickPlayer(item.player)"
+                                            @click.stop="lineup.clickPlayer(item.player, currentMatch)"
                                             :class="item.html.player.class"
                                             :style="lineup.getStyleForFieldLocalization(item.player.fieldLocalization)">
                                             <div class="overall position-absolute">
@@ -634,7 +634,7 @@
                                                 :title="item.player.name" @error="lineup.loadDefaultPlayerPhoto($event)"
                                                 draggable="true" @dragstart="lineup.dragStart($event, item.player.id)"
                                                 @dragover.prevent
-                                                @drop="lineup.drop($event); lineup.changePlayers(item.player)">
+                                                @drop="lineup.drop($event); lineup.clickPlayer(item.player)">
                                             <div class="cards position-absolute w-100 text-end">
                                                 <i v-if="item.championshipEditionPlayer?.redCard"
                                                     class="fa-solid fa-square fa-lg text-danger me-1"
@@ -718,7 +718,7 @@
                                                 :src="item.player.getPhotoURL()" :alt="item.player.name"
                                                 :title="item.player.name" @error="lineup.loadDefaultPlayerPhoto($event)"
                                                 draggable="true" @dragstart="lineup.dragStart($event, item.player.id)"
-                                                @drop="lineup.drop($event); lineup.changePlayers(item.player)"
+                                                @drop="lineup.drop($event); lineup.clickPlayer(item.player, currentMatch)"
                                                 @dragover.prevent>
                                             <div class="energy progress position-relative"
                                                 :title="`${translator.get('Energy')} ${item.player.energy}%`">
@@ -893,7 +893,7 @@
             <section id="standings" v-cloak>
                 <div class="row mb-2">
                     <div class="col">
-                        <input id="championship-national" type="radio" class="btn-check" name="championship-type"
+                        <input type="radio" id="championship-national" name="championship-type" class="btn-check"
                             autocomplete="off" checked>
                         <label for="championship-national" class="btn btn-light border me-2"
                             @click="selectNationalChampionship(currentMatch)">
@@ -901,7 +901,7 @@
                             {{ translator.get("National") }}
                         </label>
 
-                        <input id="championship-international" type="radio" class="btn-check" name="championship-type"
+                        <input type="radio" id="championship-international" name="championship-type" class="btn-check"
                             autocomplete="off">
                         <label for="championship-international" class="btn btn-light border me-2"
                             @click="selectInternationalChampionship()">
@@ -1290,7 +1290,7 @@
                     <div class="row mb-3" v-once>
                         <div class="col-6">
                             <label for="name" class="form-label">{{ translator.get("Name") }}</label>
-                            <input id="name" type="text" class="form-control" autocomplete="off"
+                            <input type="text" id="name" class="form-control" autocomplete="off"
                                 v-model.lazy="playerFilter.name">
                         </div>
                         <div class="col-6">
@@ -1337,14 +1337,14 @@
                             <label for="minimum-age" class="form-label">
                                 {{ `${translator.get("Age")} (${translator.get("Minimum").toLowerCase()})` }}
                             </label>
-                            <input id="minimum-age" type="number" class="form-control" :min="config.player.minAge"
+                            <input type="number" id="minimum-age" class="form-control" :min="config.player.minAge"
                                 :max="config.player.maxAge" v-model.lazy="playerFilter.age.minimum">
                         </div>
                         <div class="col-3">
                             <label for="maximum-age" class="form-label">
                                 {{ `${translator.get("Age")} (${translator.get("Maximum").toLowerCase()})` }}
                             </label>
-                            <input id="maximum-age" type="number" class="form-control" :min="config.player.minAge"
+                            <input type="number" id="maximum-age" class="form-control" :min="config.player.minAge"
                                 :max="config.player.maxAge" v-model.lazy="playerFilter.age.maximum">
                         </div>
                         <div class="col-3">
@@ -1352,7 +1352,7 @@
                                 {{ `${translator.get("Overall")} (${translator.get("Minimum").toLowerCase()})`
                                 }}
                             </label>
-                            <input id="minimum-overall" type="number" class="form-control"
+                            <input type="number" id="minimum-overall" class="form-control"
                                 :min="config.player.minOverall" :max="config.player.maxOverall"
                                 v-model.lazy="playerFilter.overall.minimum">
                         </div>
@@ -1361,7 +1361,7 @@
                                 {{ `${translator.get("Overall")} (${translator.get("Maximum").toLowerCase()})`
                                 }}
                             </label>
-                            <input id="maximum-overall" type="number" class="form-control"
+                            <input type="number" id="maximum-overall" class="form-control"
                                 :min="config.player.minOverall" :max="config.player.maxOverall"
                                 v-model.lazy="playerFilter.overall.maximum">
                         </div>
@@ -1372,7 +1372,7 @@
                                 {{ `${translator.get("Market Value")}
                                 (${translator.get("Maximum").toLowerCase()})` }}
                             </label>
-                            <input id="market-value" type="range" class="form-range" min="0"
+                            <input type="range" id="market-value" class="form-range" min="0"
                                 :max="playerFilter.marketValue.maximum" :step="playerFilter.marketValue.step"
                                 :data-unit="playerFilter.marketValue.unit"
                                 v-model.lazy="playerFilter.marketValue.currentValue"
@@ -1382,7 +1382,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-check form-switch">
-                                <input id="for-sale" type="checkbox" class="form-check-input"
+                                <input type="checkbox" id="for-sale" class="form-check-input"
                                     v-model.lazy="playerFilter.forSale">
                                 <label for="for-sale" class="form-check-label">
                                     {{ translator.get("For Sale") }}
@@ -1549,14 +1549,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="language" id="language-english"
+                        <input type="radio" id="language-english" name="language" class="form-check-input"
                             :checked="translator.language.startsWith('en')" @click="setLanguage('en')">
-                        <label class="form-check-label" for="language-english">English</label>
+                        <label for="language-english" class="form-check-label">English</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="language" id="language-portuguese"
+                        <input type="radio" id="language-portuguese" name="language" class="form-check-input"
                             :checked="translator.language.startsWith('pt')" @click="setLanguage('pt-BR')">
-                        <label class="form-check-label" for="language-portuguese">Português</label>
+                        <label for="language-portuguese" class="form-check-label" >Português</label>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -1580,14 +1580,14 @@
                 <div class="modal-body">
                     <div class="row mb-3">
                         <div class="col">
-                            <label class="form-label">
+                            <span class="d-inline-block mb-2">
                                 {{ translator.get("Theme") }}
-                            </label>
+                            </span>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
                                 <div class="form-check">
-                                    <input id="theme-light" class="form-check-input" type="radio" name="theme"
+                                    <input type="radio" id="theme-light" class="form-check-input" name="theme"
                                         value="light" :checked="game.config.theme === 'light'"
                                         @click="setTheme('light', true)">
                                     <label for="theme-light" class="form-check-label">
@@ -1598,7 +1598,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-check">
-                                    <input id="theme-dark" class="form-check-input" type="radio" name="theme"
+                                    <input type="radio" id="theme-dark" class="form-check-input" name="theme"
                                         value="dark" :checked="game.config.theme === 'dark'"
                                         @click="setTheme('dark', true)">
                                     <label for="theme-dark" class="form-check-label">
@@ -1612,9 +1612,9 @@
                     <div class="row mb-3">
                         <div class="col">
                             <div class="form-check form-switch">
-                                <input id="useClubColors" type="checkbox" class="form-check-input" role="switch"
+                                <input  type="checkbox" id="use-club-colors"class="form-check-input" role="switch"
                                     v-model.lazy="game.config.useClubColors" @change="setColors()">
-                                <label class="form-check-label" for="useClubColors">
+                                <label for="use-club-colors" class="form-check-label">
                                     {{ translator.get("Use club colors") }}
                                 </label>
                             </div>
@@ -1625,7 +1625,7 @@
                             <div class="col-6">
                                 <label for="background-color" class="form-label">
                                     {{ translator.get('Background color') }}</label>
-                                <input id="background-color" type="color" class="form-control form-control-color"
+                                <input type="color" id="background-color" class="form-control form-control-color"
                                     @input="setBackground($event.target.value)"
                                     :value="game.club.colors.backgroundCustom ?? '#FFFFFF'">
                             </div>
@@ -1633,7 +1633,7 @@
                                 <label for="foreground-color" class="form-label">
                                     {{ translator.get('Text color') }}
                                 </label>
-                                <input id="foreground-color" type="color" class="form-control form-control-color"
+                                <input type="color" id="foreground-color" class="form-control form-control-color"
                                     @input="setForeground($event.target.value)"
                                     :value="game.club.colors.foregroundCustom ?? '#000000'">
                             </div>
@@ -1713,7 +1713,7 @@
                                 <label for="offer" class="form-label">
                                     {{ translator.get(`Offer (thousands of $)`) }}:
                                 </label>
-                                <input id="offer" type="number" min="0" max="99999999999" step="1" maxlength="12"
+                                <input type="number" id="offer" min="0" max="99999999999" step="1" maxlength="12"
                                     class="form-control" v-model.lazy="offerInput"
                                     oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)"
                                     @keyup="updateOffer($event.target.value)" required autofocus>
@@ -1777,6 +1777,7 @@
     <script src="../../Raffoot.Domain/Models/MatchSimulationEvent.js"></script>
     <script src="../../Raffoot.Domain/Models/MatchSimulationStatistics.js"></script>
     <script src="../../Raffoot.Domain/Models/Player.js"></script>
+    <script src="../../Raffoot.Domain/Models/PlayerSubstitution.js"></script>
     <script src="../../Raffoot.Domain/Models/Position.js"></script>
     <script src="../../Raffoot.Domain/Models/Season.js"></script>
     <script src="../../Raffoot.Domain/Models/SeasonDate.js"></script>
@@ -1846,7 +1847,7 @@
 
                 translator.setLanguage(game.config.language);
 
-                Common.cloneElement('.lineup-container', '#modal-team .modal-body');
+                //Common.cloneElement('.lineup-container', '#modal-team .modal-body');
 
                 Router.addView('#management', new VueInstance('#modal-colors', new ColorsModalViewModel(game, translator)).createApp().mount(), true);
                 Router.addView('#management', new VueInstance('#modal-language', new LanguageModalViewModel(game, translator)).createApp().mount(), true);
