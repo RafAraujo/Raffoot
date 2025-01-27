@@ -176,6 +176,13 @@ class Club {
         return url;
     }
 
+    getPlayersFieldLocalizations() {
+        return this.players.map(p => ({
+            playerId: p.id,
+            fieldLocalizationId: p.fieldLocalization?.id ?? null,
+        }));
+    }
+
     getRecommendedFormation() {
         const ranking = [];
 
@@ -277,6 +284,17 @@ class Club {
     resetColors() {
         this.colors.backgroundCustom = this.colors.background;
         this.colors.foregroundCustom = this.colors.foreground;
+    }
+
+    setPlayersFieldLocalizations(playersFieldLocalizations) {
+        if (!playersFieldLocalizations)
+            return;
+
+        for (const item of playersFieldLocalizations) {
+            const player = Player.getById(item.playerId);
+            const fieldLocalization = item.fieldLocalizationId ? FieldLocalization.getById(item.fieldLocalizationId) : null;
+            player.fieldLocalization = fieldLocalization;
+        }
     }
 
     _getBestAvailablePlayerForFieldLocalization(fieldLocalization) {

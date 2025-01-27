@@ -14,10 +14,11 @@ class PlaySectionViewModel {
         });
     }
 
-    async advanceDate() {
+    advanceDate() {
         this.loading = true;
-
         this._dateHasChanged = true;
+        this.game.club.playersFieldLocalizationsForLastMatch = this.game.club.getPlayersFieldLocalizations();
+
         if (this.game.currentSeason.currentSeasonDate.matches.length === 0) {
             this.game.advanceDate();
             this.loading = false;

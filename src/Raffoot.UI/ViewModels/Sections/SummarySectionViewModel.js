@@ -8,6 +8,7 @@ class SummarySectionViewModel {
     }
 
     advanceDate() {
+        this.game.club.setPlayersFieldLocalizations(this.game.club.playersFieldLocalizationsForLastMatch);
         this.game.advanceDate();
         Router.goTo('play');
     }
