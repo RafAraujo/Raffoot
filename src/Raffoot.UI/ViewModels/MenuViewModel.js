@@ -4,19 +4,70 @@ class MenuViewModel {
         this.translator = translator;
         this.generalViewModel = generalViewModel;
         this.gameService = new GameService();
-
         this.activeSection = 'play';
     }
 
+    exitGame() {
+        location.href = 'index.html';
+    }
+
     exportGame() {
-        const compressed = gameService.compress(game);
+        const compressed = this.gameService.compress(this.game);
         const blob = new Blob([compressed], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
 
         const link = document.createElement('a');
         link.setAttribute('href', url);
-        link.setAttribute('download', game.name + ".raffoot");
+        link.setAttribute('download', this.game.name + ".raffoot");
         link.click();
+    }
+
+    getMenu() {
+        const menu = {
+            'Play': { section: 'play', icon: 'play' },
+            'Squad': { section: 'squad', icon: 'people-group' },
+            'Calendar': { section: 'calendar', icon: 'calendar' },
+            'Standings': {section: 'standings', icon: 'table-list' },
+            'Finances': { section: 'finances', icon: 'sack-dollar' },
+            'Clubs': { section: 'clubs', icon: 'shield-halved' },
+            'Players': { section: 'players', icon: 'user' },
+            'History': {
+                icon: 'book',
+                subItems: [
+                    {'Champions': { section: 'champions', icon: 'trophy' } },
+                    {'Top scorers': { section: 'top-scorers', icon: 'futbol' } },
+                    {'Classification': { section: 'classification', icon: 'ranking-star', separator: true } },
+                ]
+            },
+            'Options': {
+                icon: 'gear',
+                subItems: [
+                    {'Save game': { icon: 'floppy-disk', action: this.saveAsync.bind(this) } },
+                    {'Export game': { icon: 'file-export', action: this.exportGame.bind(this) } },
+                    {'Preferences': { icon: 'sliders', modal: 'modal-preferences', separator: true } },
+                    {'Language': { icon: 'language', modal: 'modal-language' } },
+                    {'Colors': { icon: 'palette', modal: 'modal-colors' } },
+                    {'Fullscreen': { icon: 'up-right-and-down-left-from-center', action: this.toggleFullscreen } },
+                    {'Exit game': { icon: 'power-off', separator: true, action: this.exitGame } },
+                ]
+            },
+        }
+
+        const items = Object.entries(menu).map(([key, value]) => ({
+            name: key,
+            section: value.section,
+            icon: value.icon,
+            subItems: (value.subItems ?? []).flatMap(subItem => Object.entries(subItem).map(([subItemKey, subItemValue]) => ({
+                name: subItemKey,
+                section: subItemValue.section,
+                icon: subItemValue.icon,
+                modal: subItemValue.modal,
+                action: subItemValue.action ?? (() => {}),
+                separator: subItemValue.separator,
+            })))
+        }));
+
+        return items;
     }
 
     goToSection(section) {
@@ -33,12 +84,10 @@ class MenuViewModel {
     }
 
     toggleFullscreen() {
-        if (document.fullscreenElement) {
+        if (document.fullscreenElement)
             document.exitFullscreen();
-        }
-        else {
+        else
             document.documentElement.requestFullscreen();
-        }
     }
     
     toggleCollapse() {

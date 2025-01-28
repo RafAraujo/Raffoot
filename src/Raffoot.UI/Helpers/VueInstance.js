@@ -9,6 +9,8 @@ class VueInstance {
         this.mounted = null;
     }
 
+    static writeLog = false;
+
     get name() {
         return this.selector.substring(1);
     }
@@ -81,8 +83,8 @@ class VueInstance {
 
         const time = performance.now() - this._t0;
         const message = `[${this.name}] Update took ${time} milliseconds.`;
-        console.log(message);
-        if (location.search.includes('mock'))
-            alert(message);
+
+        if (VueInstance.writeLog)
+            console.log(message);
     }
 }

@@ -291,7 +291,7 @@
                     </a>
                 </div>
             </div>
-            <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" v-cloak>
+            <nav id="menu" class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" v-once v-cloak>
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#" @click.prevent="goToSection('play')">Raffoot</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -301,146 +301,31 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbar-content">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" :class="{ 'active' : activeSection === 'play' }" href="#play"
-                                    @click.prevent="goToSection('play')">
-                                    <i class="fa-solid fa-play fa-fw"></i>
-                                    {{ translator.get("Play") }}
+                            <li v-for="item in getMenu()" class="nav-item" :class="{ 'dropdown' : item.subItems.length }">
+                                <a v-if="item.subItems.length === 0" class="nav-link"
+                                    :class="{ 'active' : activeSection === item.section }" :href="`#${item.section}`"
+                                    @click.prevent="goToSection(item.section)">
+                                    <i class="fa-solid fa-fw" :class="`fa-${item.icon}`"></i>
+                                    {{ translator.get(item.name) }}
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" :class="{ 'active' : activeSection === 'squad' }" href="#squad"
-                                    @click.prevent="goToSection('squad')">
-                                    <i class="fa-solid fa-people-group fa-fw"></i>
-                                    {{ translator.get("Squad") }}
+                                <a v-else class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"
+                                    :class="{ 'active' : item.subItems.map(si => si.section).includes(activeSection) }">
+                                    <i class="fa-solid fa-fw" :class="`fa-${item.icon}`"></i>
+                                    {{ translator.get(item.name) }}
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" :class="{ 'active' : activeSection === 'calendar' }"
-                                    href="#calendar" @click.prevent="goToSection('calendar')">
-                                    <i class="fa-solid fa-calendar-days fa-fw"></i>
-                                    {{ translator.get("Calendar") }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" :class="{ 'active' : activeSection === 'standings' }"
-                                    href="#standings" @click.prevent="goToSection('standings')">
-                                    <i class="fa-solid fa-table-list fa-fw"></i>
-                                    {{ translator.get("Standings") }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" :class="{ 'active' : activeSection === 'finances' }"
-                                    href="#finances" @click.prevent="goToSection('finances')">
-                                    <i class="fa-solid fa-sack-dollar fa-fw"></i>
-                                    {{ translator.get("Finances") }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" :class="{ 'active' : activeSection === 'clubs' }" href="#clubs"
-                                    @click.prevent="goToSection('clubs')">
-                                    <i class="fa-solid fa-shield-halved fa-fw"></i>
-                                    {{ translator.get("Clubs") }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" :class="{ 'active' : activeSection === 'players' }" href="#players"
-                                    @click.prevent="goToSection('players')">
-                                    <i class="fa-solid fa-user fa-fw"></i>
-                                    {{ translator.get("Players") }}
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle"
-                                    :class="{ 'active' : ['champions', 'top-scorers', 'ranking'].includes(activeSection) }"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-book fa-fw"></i>
-                                    {{ translator.get("History") }}
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#champions"
-                                            @click.prevent="goToSection('champions')">
-                                            <i class="fa-solid fa-trophy fa-fw"></i>
-                                            {{ translator.get("Champions") }}
+                                <ul v-if="item.subItems" class="dropdown-menu">
+                                    <li v-for="subItem in item.subItems">
+                                        <a v-if="subItem.separator">
+                                            <hr class="dropdown-divider">
                                         </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#top-scorers"
-                                            @click.prevent="goToSection('top-scorers')">
-                                            <i class="fa-solid fa-futbol fa-fw"></i>
-                                            {{ translator.get("Top Scorers") }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#ranking"
-                                            @click.prevent="goToSection('ranking')">
-                                            <i class="fa-solid fa-ranking-star fa-fw"></i>
-                                            {{ translator.get("Ranking") }}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear fa-fw"></i>
-                                    {{ translator.get("Options") }}
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#" @click="saveAsync()">
-                                            <i class="fa-solid fa-floppy-disk fa-fw"></i>
-                                            {{ translator.get("Save game") }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"
-                                            @click.prevent="exportGame(); toggleCollapse()">
-                                            <i class="fa-solid fa-file-export fa-fw"></i>
-                                            {{ translator.get("Export game") }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#modal-preferences" @click.prevent="toggleCollapse()">
-                                            <i class="fa-solid fa-sliders fa-fw"></i>
-                                            {{ translator.get("Preferences") }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#modal-language" @click.prevent="toggleCollapse()">
-                                            <i class="fa-solid fa-language fa-fw"></i>
-                                            {{ translator.get("Language") }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#modal-colors" @click.prevent="toggleCollapse()">
-                                            <i class="fa-solid fa-palette fa-fw"></i>
-                                            {{ translator.get("Colors") }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#" @click="toggleFullscreen(); toggleCollapse()">
-                                            <i class="fa-solid fa-up-right-and-down-left-from-center fa-fw"></i>
-                                            {{ translator.get("Full screen") }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="index.html">
-                                            <i class="fa-solid fa-power-off fa-fw"></i>
-                                            {{ translator.get("Exit game") }}
+                                        <a class="dropdown-item" :data-bs-toggle="subItem.modal ? 'modal' : null"
+                                            :data-bs-target="subItem.modal ? `#${subItem.modal}` : null"
+                                            :class="{ 'active' : activeSection === subItem.section }"
+                                            :href="`#${subItem.section ? subItem.section : ''}`"
+                                            @click.prevent="toggleCollapse(); subItem.action();">
+                                            <i class="fa-solid fa-fw" :class="`fa-${subItem.icon}`"></i>
+                                            {{ translator.get(subItem.name) }}
                                         </a>
                                     </li>
                                 </ul>
