@@ -1,17 +1,15 @@
-class PlaySectionViewModel {
+class PlaySectionViewModel extends TeamLineupViewModel {
     static _callbacks = [];
 
     constructor(game, translator) {
-        this.game = game;
-        this.translator = translator;
-        this.loading = false;
-        this._dateHasChanged = false;
-
         const lineupOptions = {
             showAutomaticSelection: true,
             showUnlistedPlayers: true,
         };
-        this.lineup = new TeamLineupViewModel(game, translator, false, lineupOptions);
+        super(game, translator, false, lineupOptions);
+
+        this.loading = false;
+        this._dateHasChanged = false;
 
         addEventListener('moneychange', event => {
             PlaySectionViewModel._callbacks.push(this._animateMoney.bind(this, event.detail.previousValue, event.detail.value, 1000));

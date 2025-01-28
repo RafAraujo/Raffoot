@@ -116,7 +116,7 @@
                                         <div class="penalty-area penalty-area-right position-absolute"></div>
                                         <div class="semi-circle semi-circle-right position-absolute"></div>
 
-                                        <div v-for="item in getPlayersOnField()"
+                                        <div v-for="item in getPlayersButtons()"
                                             class="player-button-container position-absolute d-flex align-items-center"
                                             :class="item.html.playerButtonContainer.class"
                                             :style="item.html.playerButtonContainer.style">
@@ -450,8 +450,8 @@
                         <ul v-if="currentMatch" class="nav nav-tabs">
                             <li class="nav-item" v-for="club in currentMatch.clubs">
                                 <a class="nav-link color-inherit text-decoration-underline"
-                                    :class="{ 'active' : lineup.selectedClub === club }"
-                                    @click="lineup.selectClub(club)" aria-current="page" href="#">
+                                    :class="{ 'active' : selectedClub === club }"
+                                    @click="selectClub(club)" aria-current="page" href="#">
                                     {{ club.name }}
                                 </a>
                             </li>
@@ -465,25 +465,25 @@
                                 </div>
                                 <div class="col-auto" v-once>
                                     <select id="select-formation" class="form-select" required
-                                        :disabled="lineup.selectedClub !== game.club" name="select-formation"
-                                        @change="lineup.changeFormation($event.target.value)">
+                                        :disabled="selectedClub !== game.club" name="select-formation"
+                                        @change="changeFormation($event.target.value)">
                                         <option></option>
-                                        <template v-for="baseFormation in lineup.getBaseFormations()">
+                                        <template v-for="baseFormation in getBaseFormations()">
                                             <optgroup :label="baseFormation">
-                                                <option v-for="formation in lineup.getFormations(baseFormation)"
+                                                <option v-for="formation in getFormations(baseFormation)"
                                                     :key="formation.id" :value="formation.id"
-                                                    :selected="lineup.selectedClub.formation?.id == formation?.id">
+                                                    :selected="selectedClub.formation?.id == formation?.id">
                                                     {{ formation.name }}
                                                 </option>
                                             </optgroup>
                                         </template>
                                     </select>
                                 </div>
-                                <div v-if="lineup.options.showAutomaticSelection">
-                                    <div :class="{ 'invisible' : lineup.selectedClub !== game.club }"
+                                <div v-if="options.showAutomaticSelection">
+                                    <div :class="{ 'invisible' : selectedClub !== game.club }"
                                         class="form-check form-check-inline form-check-reverse form-switch mt-1">
                                         <input type="checkbox" id="automatic-selection" class="form-check-input"
-                                            v-model.lazy="lineup.automaticSelection">
+                                            v-model.lazy="automaticSelection">
                                         <label for="automatic-selection" class="form-check-label">
                                             {{ translator.get("Automatic selection") }}
                                         </label>
@@ -493,11 +493,11 @@
                             <div class="row mb-2">
                                 <div class="col-lg-6">
                                     <div class="field position-relative" style="height: 420px">
-                                        <div v-for="item in lineup.getPlayersOnField()"
+                                        <div v-for="item in getPlayersOnField()"
                                             class="player position-absolute text-center"
-                                            @click.stop="lineup.clickPlayer(item.player, currentMatch)"
+                                            @click.stop="clickPlayer(item.player)"
                                             :class="item.html.player.class"
-                                            :style="lineup.getStyleForFieldLocalization(item.player.fieldLocalization)">
+                                            :style="getStyleForFieldLocalization(item.player.fieldLocalization)">
                                             <div class="overall position-absolute">
                                                 <i v-if="item.player.isInjured"
                                                     class="fa-solid fa-plus fa-lg text-danger"
@@ -517,10 +517,10 @@
                                             <img class="position-relative"
                                                 :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
                                                 :src="item.player.getPhotoURL()" :alt="item.player.name"
-                                                :title="item.player.name" @error="lineup.loadDefaultPlayerPhoto($event)"
-                                                draggable="true" @dragstart="lineup.dragStart($event, item.player.id)"
+                                                :title="item.player.name" @error="loadDefaultPlayerPhoto($event)"
+                                                draggable="true" @dragstart="dragStart($event, item.player.id)"
                                                 @dragover.prevent
-                                                @drop="lineup.drop($event); lineup.clickPlayer(item.player)">
+                                                @drop="drop($event); clickPlayer(item.player)">
                                             <div class="cards position-absolute w-100 text-end">
                                                 <i v-if="item.championshipEditionPlayer?.redCard"
                                                     class="fa-solid fa-square fa-lg text-danger me-1"
@@ -535,7 +535,7 @@
                                             <div class="energy progress position-relative"
                                                 :title="`${translator.get('Energy')} ${item.player.energy}%`">
                                                 <div class="progress-bar" role="progressbar"
-                                                    :class="lineup.getClassForEnergy(item.player)"
+                                                    :class="getClassForEnergy(item.player)"
                                                     :aria-valuenow="item.player.energy" aria-valuemin="0"
                                                     aria-valuemax="100" :style="{ width: item.player.energy + '%' }">
                                                 </div>
@@ -546,18 +546,18 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div v-for="fieldLocalization in lineup.getEmptyFieldLocalizations()"
+                                        <div v-for="fieldLocalization in getEmptyFieldLocalizations()"
                                             class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
-                                            :class="{ 'selected-player' : lineup.selectedPlayer }"
-                                            @click.stop=" lineup.movePlayerToField(fieldLocalization.id)"
-                                            :style="lineup.getStyleForFieldLocalization(fieldLocalization)">
+                                            :class="{ 'selected-player' : selectedPlayer }"
+                                            @click.stop=" movePlayerToField(fieldLocalization.id)"
+                                            :style="getStyleForFieldLocalization(fieldLocalization)">
                                             <img :src="game.club.getKitsURLs()[0].url"
                                                 :alt="translator.get(fieldLocalization.position.name)"
                                                 :title="translator.get(fieldLocalization.position.name)"
-                                                @error="lineup.loadDefaultPlayerPhoto($event)"
+                                                @error="loadDefaultPlayerPhoto($event)"
                                                 @dragstart="$event.dataTransfer.effectAllowed = 'none'"
                                                 @dragover.prevent
-                                                @drop="lineup.drop($event); lineup.movePlayerToField(fieldLocalization.id)">
+                                                @drop="drop($event); movePlayerToField(fieldLocalization.id)">
                                             <span class="fw-bold">
                                                 {{
                                                 translator.get(fieldLocalization.position.abbreviation)
@@ -567,14 +567,14 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div v-for="substituteType in lineup.substituteTypes" class="bench"
-                                        :class="{ 'selected-player' : lineup.selectedPlayer, 'pb-5' : lineup.getSize(substituteType) % 5 === 0 }"
-                                        @click.stop="lineup.movePlayerTo(substituteType)"
-                                        @drop="lineup.drop($event); lineup.movePlayerTo(substituteType)"
+                                    <div v-for="substituteType in substituteTypes" class="bench"
+                                        :class="{ 'selected-player' : selectedPlayer, 'pb-5' : getSize(substituteType) % 5 === 0 }"
+                                        @click.stop="movePlayerTo(substituteType)"
+                                        @drop="drop($event); movePlayerTo(substituteType)"
                                         @dragover.prevent :title="translator.get(substituteType)">
-                                        <div v-for="item in lineup.getSubstitutePlayers(substituteType)"
+                                        <div v-for="item in getSubstitutePlayers(substituteType)"
                                             class="player d-inline-block position-relative text-center"
-                                            @click.stop="lineup.clickPlayer(item.player)"
+                                            @click.stop="clickPlayer(item.player)"
                                             :class="item.html.player.class">
                                             <div class="overall position-absolute">
                                                 <i v-if="item.player.isInjured"
@@ -602,14 +602,14 @@
                                             </div>
                                             <img :class="{ 'opacity-25' : !(item.championshipEditionPlayer?.isAvailable ?? true) }"
                                                 :src="item.player.getPhotoURL()" :alt="item.player.name"
-                                                :title="item.player.name" @error="lineup.loadDefaultPlayerPhoto($event)"
-                                                draggable="true" @dragstart="lineup.dragStart($event, item.player.id)"
-                                                @drop="lineup.drop($event); lineup.clickPlayer(item.player, currentMatch)"
+                                                :title="item.player.name" @error="loadDefaultPlayerPhoto($event)"
+                                                draggable="true" @dragstart="dragStart($event, item.player.id)"
+                                                @drop="drop($event); clickPlayer(item.player)"
                                                 @dragover.prevent>
                                             <div class="energy progress position-relative"
                                                 :title="`${translator.get('Energy')} ${item.player.energy}%`">
                                                 <div class="progress-bar" role="progressbar"
-                                                    :class="lineup.getClassForEnergy(item.player)"
+                                                    :class="getClassForEnergy(item.player)"
                                                     :aria-valuenow="item.player.energy" aria-valuemin="0"
                                                     aria-valuemax="100" :style="{ width: item.player.energy + '%' }">
                                                 </div>
@@ -1734,6 +1734,12 @@
     <script src="../Helpers/Router.js"></script>
     <script src="../Helpers/VueInstance.js"></script>
 
+    <script src="../ViewModels/GeneralViewModel.js"></script>
+    <script src="../ViewModels/MenuViewModel.js"></script>
+    <script src="../ViewModels/PlayerFilterViewModel.js"></script>
+    <script src="../ViewModels/PlayerOrderViewModel.js"></script>
+    <script src="../ViewModels/TeamLineupViewModel.js"></script>
+
     <script src="../ViewModels/Modals/ColorsModalViewModel.js"></script>
     <script src="../ViewModels/Modals/LanguageModalViewModel.js"></script>
     <script src="../ViewModels/Modals/PlayerModalViewModel.js"></script>
@@ -1749,12 +1755,6 @@
 
     <script src="../ViewModels/Sections/SimulationSectionViewModel.js"></script>
     <script src="../ViewModels/Sections/SummarySectionViewModel.js"></script>
-
-    <script src="../ViewModels/GeneralViewModel.js"></script>
-    <script src="../ViewModels/MenuViewModel.js"></script>
-    <script src="../ViewModels/PlayerFilterViewModel.js"></script>
-    <script src="../ViewModels/PlayerOrderViewModel.js"></script>
-    <script src="../ViewModels/TeamLineupViewModel.js"></script>
 
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="js/vue/vue.global.js"></script>
@@ -1819,7 +1819,7 @@
                 Router.goTo('play');
 
                 document.documentElement.addEventListener('click', () => {
-                    Router.get('play').lineup.unselectPlayer();
+                    Router.get('play').unselectPlayer();
                     Common.hideMessage();
                 });
 

@@ -1,16 +1,14 @@
-class SimulationSectionViewModel {
+class SimulationSectionViewModel extends TeamLineupViewModel {
     constructor(game, translator) {
-        this.game = game;
-        this.translator = translator;
-        this.isGoal = false;
-        this.lastEventClubHome = null;
-        this.lastEventClubAway = null;
-
         const lineupOptions = {
             showAutomaticSelection: false,
             showUnlistedPlayers: false,
         };
-        this.lineup = new TeamLineupViewModel(game, translator, true, lineupOptions);
+        super(game, translator, true, lineupOptions);
+
+        this.isGoal = false;
+        this.lastEventClubHome = null;
+        this.lastEventClubAway = null;
     }
 
     getBallLocation() {
@@ -66,7 +64,7 @@ class SimulationSectionViewModel {
         return championshipEditions;
     }
 
-    getPlayersOnField() {
+    getPlayersButtons() {
         if (!this.currentMatch)
             return [];
 
