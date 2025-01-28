@@ -117,7 +117,6 @@
                                         <div class="semi-circle semi-circle-right position-absolute"></div>
 
                                         <div v-for="item in getPlayersButtons()"
-                                        <div v-for="item in getPlayersButtons()"
                                             class="player-button-container position-absolute d-flex align-items-center"
                                             :class="item.html.playerButtonContainer.class"
                                             :style="item.html.playerButtonContainer.style">
@@ -494,7 +493,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-6">
                                     <div class="field position-relative" style="height: 420px">
-                                        <div v-for="item in getPlayersOnField()"
+                                        <div v-for="item in lineup.getPlayersOnField(currentMatch?.championshipEdition)"
                                             class="player position-absolute text-center"
                                             @click.stop="clickPlayer(item.player)"
                                             :class="item.html.player.class"
@@ -573,7 +572,7 @@
                                         @click.stop="movePlayerTo(substituteType)"
                                         @drop="drop($event); movePlayerTo(substituteType)"
                                         @dragover.prevent :title="translator.get(substituteType)">
-                                        <div v-for="item in getSubstitutePlayers(substituteType)"
+                                        <div v-for="item in lineup.getSubstitutePlayers(substituteType, currentMatch?.championshipEdition)"
                                             class="player d-inline-block position-relative text-center"
                                             @click.stop="clickPlayer(item.player)"
                                             :class="item.html.player.class">
