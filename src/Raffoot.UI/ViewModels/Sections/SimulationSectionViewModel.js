@@ -66,7 +66,7 @@ class SimulationSectionViewModel {
         return championshipEditions;
     }
 
-    getPlayersOnField() {
+    getPlayersButtons() {
         if (!this.currentMatch)
             return [];
 

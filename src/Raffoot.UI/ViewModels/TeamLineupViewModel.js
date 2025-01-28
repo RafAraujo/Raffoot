@@ -1,10 +1,7 @@
 class TeamLineupViewModel {
-    static _callbacks = [];
-
     constructor(game, translator, matchInProgress, options = {}) {
         this.game = game;
         this.translator = translator;
-        this.gameService = new GameService();
         this.matchInProgress = matchInProgress;
         this.options = options;
 
@@ -93,15 +90,15 @@ class TeamLineupViewModel {
         return formations;
     }
 
-    getPlayersOnField() {
+    getPlayersOnField(championshipEdition) {
         const players = this.selectedClub.playersOnField;
-        const models = players.map(p => this._convertToPlayerModel(p, this.currentMatch?.championshipEdition));
+        const models = players.map(p => this._convertToPlayerModel(p, championshipEdition));
         return models;
     }
 
-    getPlayersOnBench() {
+    getPlayersOnBench(championshipEdition) {
         const players = this.selectedClub.playersOnBench.orderBy('order', 'position.id', '-overall');
-        const models = players.map(p => this._convertToPlayerModel(p, this.currentMatch?.championshipEdition));
+        const models = players.map(p => this._convertToPlayerModel(p, championshipEdition));
         return models;
     }
 
@@ -131,16 +128,16 @@ class TeamLineupViewModel {
         return style;
     }
 
-    getSubstitutePlayers(substituteType) {
+    getSubstitutePlayers(substituteType, championshipEdition) {
         if (substituteType === 'Bench')
-            return this.getPlayersOnBench();
+            return this.getPlayersOnBench(championshipEdition);
         else if (substituteType === 'Unlisted players')
-            return this.getUnlistedPlayers();
+            return this.getUnlistedPlayers(championshipEdition);
     }
 
-    getUnlistedPlayers() {
+    getUnlistedPlayers(championshipEdition) {
         const players = this.selectedClub.unlistedPlayers.orderBy('order', 'position.id', '-overall');
-        const models = players.map(p => this._convertToPlayerModel(p, this.currentMatch?.championshipEdition));
+        const models = players.map(p => this._convertToPlayerModel(p, championshipEdition));
         return models;
     }
 
