@@ -20,11 +20,11 @@ class TeamLineupViewModel {
         this.game.club.reorderPlayers();
     }
 
-    changePlayers(player1, player2, match) {
+    changePlayers(player1, player2) {
         if (this.matchInProgress) {
             const playerFromField = [player1, player2].find(p => p.isOnField);
             const playerFromBench = [player1, player2].find(p => p.isOnBench);
-            const substitutionsLeft = match.getPlayerSubstitutionsLeft(this.game.club);
+            const substitutionsLeft = this.currentMatch.getPlayerSubstitutionsLeft(this.game.club);
 
             if (playerFromField && playerFromBench) {
                 if (substitutionsLeft === 0) {
@@ -34,7 +34,7 @@ class TeamLineupViewModel {
                     return;
                 }
 
-                match.makePlayerSubstitution(this.game.time, this.game.club, playerFromField, playerFromBench);
+                this.currentMatch.makePlayerSubstitution(this.game.time, this.game.club, playerFromField, playerFromBench);
             }
         }
         else {
@@ -45,12 +45,12 @@ class TeamLineupViewModel {
     }
 
 
-    clickPlayer(player, match) {
+    clickPlayer(player) {
         if (player.club.id !== this.game.club.id)
             return;
 
         if (this.selectedPlayer)
-            this.changePlayers(this.selectedPlayer, player, match);
+            this.changePlayers(this.selectedPlayer, player);
         else
             this.selectPlayer(player);
     }
@@ -225,7 +225,7 @@ class TeamLineupViewModel {
                 }
             }
         };
-
+        
         return model;
     }
 }
