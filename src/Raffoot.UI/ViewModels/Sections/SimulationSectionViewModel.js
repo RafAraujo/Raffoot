@@ -1,14 +1,17 @@
-class SimulationSectionViewModel extends TeamLineupViewModel {
+class SimulationSectionViewModel {
     constructor(game, translator) {
+        this.game = game;
+        this.translator = translator;
+        this.isGoal = false;
+        this.lastEventClubHome = null;
+        this.lastEventClubAway = null;
+
         const lineupOptions = {
             showAutomaticSelection: false,
             showUnlistedPlayers: false,
         };
-        super(game, translator, true, lineupOptions);
 
-        this.isGoal = false;
-        this.lastEventClubHome = null;
-        this.lastEventClubAway = null;
+        this.lineup = new TeamLineupViewModel(game, translator, false, lineupOptions);
     }
 
     getBallLocation() {
