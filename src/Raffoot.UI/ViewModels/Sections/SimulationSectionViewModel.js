@@ -11,7 +11,6 @@ class SimulationSectionViewModel {
             showUnlistedPlayers: false,
         };
         this.lineup = new TeamLineupViewModel(game, translator, true, lineupOptions);
-        this.watch = { currentMatch: this.lineup.reset.bind(this.lineup) };
     }
 
     getBallLocation() {
@@ -113,7 +112,7 @@ class SimulationSectionViewModel {
     }
 
     updated() {
-        const modalTeam = document.getElementById('modal-team');
+        const modalTeam = document.getElementById('modal-match');
         modalTeam.addEventListener('show.bs.modal', () => { this.game.pause(); });
         modalTeam.addEventListener('hidden.bs.modal', () => { this.game.resume(); });
 
@@ -128,7 +127,7 @@ class SimulationSectionViewModel {
 
         if (this.isGoal) {
             this.game.pause();
-            setTimeout(() => this.game.resume(), 1000);
+            setTimeout(() => this.game.resume(), 500);
         }
     }
 

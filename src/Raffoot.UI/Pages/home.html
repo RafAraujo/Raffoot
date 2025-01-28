@@ -22,9 +22,9 @@
                 <div style="height: 10px;">&nbsp;</div>
                 <div class="row mb-2">
                     <div class="col">
-                        <div class="progress bg-lightgray border" role="progressbar"
+                        <div class="progress bg-lightgray rounded-0 border" role="progressbar"
                             :aria-label="translator.get('Time')" :aria-valuenow="game.time" aria-valuemin="0"
-                            aria-valuemax="100" style="border-radius: 0; height: 1.75rem;">
+                            aria-valuemax="100" style="height: 1.75rem;">
                             <div class="progress-bar bg-success border fw-bold"
                                 :class="{ 'progress-bar-striped progress-bar-animated' : !currentMatch?.isFinished }"
                                 style="font-size: 14px;" :style="{ width: (game.time / 90) * 100 + '%' }">
@@ -103,7 +103,7 @@
             <div class="row" v-if="currentMatch">
                 <div class="col">
                     <div class="d-flex align-items-center justify-content-center">
-                        <div class="lineup lineup-horizontal" data-bs-toggle="modal" data-bs-target="#modal-team">
+                        <div class="lineup lineup-horizontal" data-bs-toggle="modal" data-bs-target="#modal-match">
                             <div class="row">
                                 <div class="col">
                                     <div class="field position-relative">
@@ -201,12 +201,12 @@
                 </div>
             </div>
 
-            <div id="modal-team" class="modal modal-xl fade" tabindex="-1" aria-labelledby="modal-team-title"
+            <div id="modal-match" class="modal modal-xl fade" tabindex="-1" aria-labelledby="modal-match-title"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 id="modal-team-title" class="modal-title fs-5">{{ currentMatch?.description }}</h1>
+                            <h1 id="modal-match-title" class="modal-title fs-5">{{ currentMatch?.description }}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 :title="translator.get('Close')" :aria-label="translator.get('Close')"></button>
                         </div>
@@ -218,7 +218,7 @@
         </section>
         <section id="summary" class="container" v-cloak>
             <div class="row">
-                <div class="col col-md-5">
+                <div class="col-md-6">
                     <select id="summary-confederation" class="form-select mt-4" :title="translator.get('Confederation')"
                         @change="selectConfederation($event.target.value)">
                         <option v-for="confederation in getConfederations()" :key="confederation.id"
@@ -229,38 +229,33 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5">
-                    <div v-for="championshipEdition in getCurrentChampionshipEditions()">
-                        <div class="table-responsive">
-                            <table class="table table-borderless caption-top">
-                                <caption class="text-light">
-                                    {{ getCurrentStageMessage(championshipEdition) }}
-                                </caption>
-                                <tbody>
-                                    <tr v-for="match in getCurrentMatches(championshipEdition)"
-                                        @click.stop="selectMatch(match.id)"
-                                        :class="{ 'selected' : selectedMatch?.id === match.id }">
-                                        <td class="text-end p-0 text-break" style="width: 44%; height: 40px;">
-                                            {{ match.clubHome.shortName }}
-                                            <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
-                                                :alt="match.clubHome.name" :title="match.clubHome.name">
-                                        </td>
-                                        <td class="text-center p-0">
-                                            {{ match.score }}
-                                        </td>
-                                        <td class="text-start p-0" style="width: 44%;">
-                                            <img class="club-logo ms-1 me-1" :src="match.clubAway.getLogoURL()"
-                                                :alt="match.clubAway.name" :title="match.clubAway.name">
-                                            {{ match.clubAway.shortName }}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                <div v-for="championshipEdition in getCurrentChampionshipEditions()" class="col-md-6">
+                    <div class="table-responsive">
+                        <table class="table table-borderless caption-top">
+                            <caption class="text-light">
+                                {{ getCurrentStageMessage(championshipEdition) }}
+                            </caption>
+                            <tbody>
+                                <tr v-for="match in getCurrentMatches(championshipEdition)"
+                                    @click.stop="selectMatch(match.id)"
+                                    :class="{ 'selected' : selectedMatch?.id === match.id }">
+                                    <td class="text-end p-0 text-break" style="width: 44%; height: 40px;">
+                                        {{ match.clubHome.shortName }}
+                                        <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
+                                            :alt="match.clubHome.name" :title="match.clubHome.name">
+                                    </td>
+                                    <td class="text-center p-0">
+                                        {{ match.score }}
+                                    </td>
+                                    <td class="text-start p-0" style="width: 44%;">
+                                        <img class="club-logo ms-1 me-1" :src="match.clubAway.getLogoURL()"
+                                            :alt="match.clubAway.name" :title="match.clubAway.name">
+                                        {{ match.clubAway.shortName }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                <div class="col-md-7">
-
                 </div>
             </div>
             <div class="row" style="margin-top: 65px;"></div>
@@ -301,7 +296,8 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbar-content">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li v-for="item in getMenu()" class="nav-item" :class="{ 'dropdown' : item.subItems.length }">
+                            <li v-for="item in getMenu()" class="nav-item"
+                                :class="{ 'dropdown' : item.subItems.length }">
                                 <a v-if="item.subItems.length === 0" class="nav-link"
                                     :class="{ 'active' : activeSection === item.section }" :href="`#${item.section}`"
                                     @click.prevent="goToSection(item.section)">
@@ -377,49 +373,47 @@
             <section id="play" v-cloak>
                 <div class="row small">
                     <div class="col">
-                        <p class="m-0">
-                            <a href="#" class="text-decoration-none color-inherit fw-bold"
-                                :title="translator.get('Messages')">
-                                <i class="fa-solid fa-envelope fa-fw me-2"></i>
-                                {{ game.messages.length }}
-                            </a>
-                        </p>
-                        <p class="m-0">
-                            <i class="fa-solid fa-flag fa-fw me-2"></i>
-                            <span>
-                                {{ getNationalLeaguePosition() }}
-                            </span>
-                        </p>
-                        <div class="row">
-                            <div class="col-6 col-md-3">
-                                <span>
-                                    {{
-                                    `${translator.get("Trust")} - ${translator.get("Board of Directors")}:`
-                                    }}
-                                </span>
-                                <div class="progress bg-lightgray border"
-                                    :title="`${translator.get('Trust')} - ${translator.get('Board of Directors')}: ${game.club.trust.boardOfDirectors}%`">
-                                    <div class="progress-bar bg-dark" role="progressbar"
-                                        :aria-valuenow="game.club.trust.boardOfDirectors" aria-valuemin="0"
-                                        aria-valuemax="100" :style="{ width: game.club.trust.boardOfDirectors + '%' }">
-                                        {{ `${game.club.trust.boardOfDirectors}%` }}
-                                    </div>
-                                </div>
+                        <a href="#" class="text-decoration-none color-inherit fw-bold"
+                            :title="translator.get('Messages')">
+                            <i class="fa-solid fa-envelope fa-fw me-2"></i>
+                            {{ game.messages.length }}
+                        </a>
+                    </div>
+                </div>
+                <div class="row small">
+                    <div class="col">
+                        <i class="fa-solid fa-flag fa-fw me-2"></i>
+                        {{ getNationalLeaguePosition() }}
+                    </div>
+                </div>
+                <div class="row small">
+                    <div class="col-6 col-md-3">
+                        <span>
+                            {{
+                            `${translator.get("Trust")} - ${translator.get("Board of Directors")}:`
+                            }}
+                        </span>
+                        <div class="progress bg-lightgray border border-secondary"
+                            :title="`${translator.get('Trust')} - ${translator.get('Board of Directors')}: ${game.club.trust.boardOfDirectors}%`">
+                            <div class="progress-bar bg-dark" role="progressbar"
+                                :aria-valuenow="game.club.trust.boardOfDirectors" aria-valuemin="0" aria-valuemax="100"
+                                :style="{ width: game.club.trust.boardOfDirectors + '%' }">
+                                {{ `${game.club.trust.boardOfDirectors}%` }}
                             </div>
-                            <div class="col-6 col-md-3">
-                                <span>
-                                    {{
-                                    `${translator.get("Trust")} - ${translator.get("Supporters")}:`
-                                    }}
-                                </span>
-                                <div class="progress bg-lightgray border"
-                                    :title="`${translator.get('Trust')} - ${translator.get('Supporters')}: ${game.club.trust.supporters}%`">
-                                    <div class="progress-bar bg-dark" role="progressbar"
-                                        :aria-valuenow="game.club.trust.supporters" aria-valuemin="0"
-                                        aria-valuemax="100" :style="{ width: game.club.trust.supporters + '%' }">
-                                        {{ `${game.club.trust.supporters}%` }}
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <span>
+                            {{
+                            `${translator.get("Trust")} - ${translator.get("Supporters")}:`
+                            }}
+                        </span>
+                        <div class="progress bg-lightgray border border-secondary"
+                            :title="`${translator.get('Trust')} - ${translator.get('Supporters')}: ${game.club.trust.supporters}%`">
+                            <div class="progress-bar bg-dark" role="progressbar"
+                                :aria-valuenow="game.club.trust.supporters" aria-valuemin="0" aria-valuemax="100"
+                                :style="{ width: game.club.trust.supporters + '%' }">
+                                {{ `${game.club.trust.supporters}%` }}
                             </div>
                         </div>
                     </div>
@@ -496,8 +490,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6 mb-2">
+                            <div class="row mb-2">
+                                <div class="col-lg-6">
                                     <div class="field position-relative" style="height: 420px">
                                         <div v-for="item in lineup.getPlayersOnField()"
                                             class="player position-absolute text-center"
@@ -507,7 +501,7 @@
                                             <div class="overall position-absolute">
                                                 <i v-if="item.player.isInjured"
                                                     class="fa-solid fa-plus fa-lg text-danger"
-                                                    :title="lineup.getInjuryMessage(item.player)">
+                                                    :title="'{0} - {1} {2}'.format(translator.get('Injured'), translator.get('Out until'), item.player.recoveryDate.toLocaleDateString())">
                                                 </i>
                                                 <span v-else>
                                                     {{ item.player.currentOverall }}
@@ -541,7 +535,7 @@
                                             <div class="energy progress position-relative"
                                                 :title="`${translator.get('Energy')} ${item.player.energy}%`">
                                                 <div class="progress-bar" role="progressbar"
-                                                    :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                    :class="lineup.getClassForEnergy(item.player)"
                                                     :aria-valuenow="item.player.energy" aria-valuemin="0"
                                                     aria-valuemax="100" :style="{ width: item.player.energy + '%' }">
                                                 </div>
@@ -583,13 +577,11 @@
                                             @click.stop="lineup.clickPlayer(item.player)"
                                             :class="item.html.player.class">
                                             <div class="overall position-absolute">
-                                                <template v-if="item.player.isInjured">
-                                                    <i class="fa-solid fa-plus fa-lg text-danger"
-                                                        :title="getInjuryMessage(item.player)"></i>
-                                                </template>
-                                                <template v-else>
-                                                    {{ item.player.overall }}
-                                                </template>
+                                                <i v-if="item.player.isInjured"
+                                                    class="fa-solid fa-plus fa-lg text-danger"
+                                                    :title="'{0} - {1} {2}'.format(translator.get('Injured'), translator.get('Out until'), item.player.recoveryDate.toLocaleDateString())">
+                                                </i>
+                                                <span v-else>{{ item.player.overall }}</span>
                                             </div>
                                             <div class="position position-absolute"
                                                 :title="translator.get(item.player.position.name)">
@@ -617,7 +609,7 @@
                                             <div class="energy progress position-relative"
                                                 :title="`${translator.get('Energy')} ${item.player.energy}%`">
                                                 <div class="progress-bar" role="progressbar"
-                                                    :class="item.player.energy > 75 ? 'bg-success' : item.player.energy > 50 ? 'bg-warning' : 'bg-danger'"
+                                                    :class="lineup.getClassForEnergy(item.player)"
                                                     :aria-valuenow="item.player.energy" aria-valuemin="0"
                                                     aria-valuemax="100" :style="{ width: item.player.energy + '%' }">
                                                 </div>
@@ -685,10 +677,10 @@
                                         </td>
                                         <td>
                                             <span>{{ player.name }}</span>
-                                            <template v-if="player.isInjured">
-                                                <i class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
-                                                    :title="playSection.getInjuryMessage(player)"></i>
-                                            </template>
+                                            <i v-if="player.isInjured"
+                                                class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
+                                                :title="'{0} - {1} {2}'.format(translator.get('Injured'), translator.get('Out until'), player.recoveryDate.toLocaleDateString())">
+                                            </i>
                                         </td>
                                         <td class="text-center pt-0 pb-0">
                                             <span class="overall" :class="player.category">
@@ -1145,10 +1137,10 @@
                                             </td>
                                             <td>
                                                 <span>{{ player.name }}</span>
-                                                <template v-if="player.isInjured">
-                                                    <i class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
-                                                        :title="playSection.getInjuryMessage(player)"></i>
-                                                </template>
+                                                <i v-if="player.isInjured"
+                                                    class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
+                                                    :title="'{0} - {1} {2}'.format(translator.get('Injured'), translator.get('Out until'), player.recoveryDate.toLocaleDateString())">
+                                                </i>
                                             </td>
                                             <td class="text-center pt-0 pb-0">
                                                 <span class="overall" :class="player.category">
@@ -1360,10 +1352,10 @@
                                             </td>
                                             <td>
                                                 <span>{{ player.name }}</span>
-                                                <template v-if="player.isInjured">
-                                                    <i class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
-                                                        :title="playSection.getInjuryMessage(player)"></i>
-                                                </template>
+                                                <i v-if="player.isInjured"
+                                                    class="fa-solid fa-truck-medical fa-lg text-danger ms-3"
+                                                    :title="'{0} - {1} {2}'.format(translator.get('Injured'), translator.get('Out until'), player.recoveryDate.toLocaleDateString())">
+                                                </i>
                                             </td>
                                             <td class="text-center pt-0 pb-0 p-0">
                                                 <span class="overall" :class="player.category">
@@ -1401,27 +1393,27 @@
                             </button>
                         </div>
                     </div>
-                    <div v-show="selectedPlayer">
-                        <div class="row" style="margin-top: 65px;"></div>
-                        <div class="row fixed-bottom p-2 bg-dark border-top">
-                            <div class="d-grid col-6 col-md-2 offset-md-4">
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                    :disabled="canMakeOffer()" data-bs-target="#modal-player"
-                                    @click="modal.selectPlayer(selectedPlayer)">
-                                    <i class="fa-solid fa-handshake me-1"></i>
-                                    {{ translator.get("Make an offer") }}
-                                </button>
-                            </div>
-                            <div class="d-grid col-6 col-md-2">
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal" :disabled="!canBuy()"
-                                    data-bs-target="#modal-player" @click="modal.selectPlayer(selectedPlayer)">
-                                    <i class="fa-solid fa-basket-shopping me-1"></i>
-                                    {{ translator.get("Buy") }}
-                                </button>
-                            </div>
+                </template>
+                <div v-show="selectedPlayer">
+                    <div class="row" style="margin-top: 65px;"></div>
+                    <div class="row fixed-bottom p-2 bg-dark border-top">
+                        <div class="d-grid col-6 col-md-2 offset-md-4">
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                :disabled="canMakeOffer()" data-bs-target="#modal-player"
+                                @click="modal.selectPlayer(selectedPlayer)">
+                                <i class="fa-solid fa-handshake me-1"></i>
+                                {{ translator.get("Make an offer") }}
+                            </button>
+                        </div>
+                        <div class="d-grid col-6 col-md-2">
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal" :disabled="!canBuy()"
+                                data-bs-target="#modal-player" @click="modal.selectPlayer(selectedPlayer)">
+                                <i class="fa-solid fa-basket-shopping me-1"></i>
+                                {{ translator.get("Buy") }}
+                            </button>
                         </div>
                     </div>
-                </template>
+                </div>
             </section>
         </main>
     </div>
@@ -1796,7 +1788,7 @@
 
                 translator.setLanguage(game.config.language);
 
-                Common.cloneElement('.lineup-container', '#modal-team .modal-body', ['select-formation'], 'modal-team-');
+                Common.cloneElement('.lineup-container', '#modal-match .modal-body', ['select-formation'], 'modal-match-');
 
                 Router.addView('#management', new VueInstance('#modal-colors', new ColorsModalViewModel(game, translator)).createApp().mount(), true);
                 Router.addView('#management', new VueInstance('#modal-language', new LanguageModalViewModel(game, translator)).createApp().mount(), true);

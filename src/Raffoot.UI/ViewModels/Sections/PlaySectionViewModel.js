@@ -19,6 +19,9 @@ class PlaySectionViewModel {
     }
 
     advanceDate() {
+        if (this.currentMatch && !this.lineup.isValidLineup())
+            return;
+
         this.loading = true;
         this._dateHasChanged = true;
         this.game.club.playersFieldLocalizationsForLastMatch = this.game.club.getPlayersFieldLocalizations();

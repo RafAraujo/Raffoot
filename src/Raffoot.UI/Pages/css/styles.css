@@ -288,10 +288,10 @@ div.lineup.lineup-horizontal {
 
 span.overall {
     display: inline-block;
-    padding: 5px 7px;
+    padding: 5px 0px;
     text-align: center;
     border: 1px solid;
-    width: 2rem;
+    width: 2.2rem;
 }
 
 span.overall.gold {
@@ -357,10 +357,6 @@ table.sortable th {
 
 .bg-lightgray {
     background-color: lightgray;
-}
-
-.bg-inherit {
-    background-color: inherit;
 }
 
 .blink {

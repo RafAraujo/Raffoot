@@ -72,6 +72,13 @@ class TeamLineupViewModel {
     getBaseFormations() {
         return this.game.formations.map(f => f.baseFormation).distinct().sort();
     }
+    
+    getClassForEnergy(player) {
+        if (player.isInjured)
+            return 'bg-danger';
+
+        return player.energy > 75 ? 'bg-success' : player.energy > 50 ? 'bg-warning' : 'bg-danger';
+    }
 
     getEmptyFieldLocalizations() {
         return this.game.club.getEmptyFieldLocalizations();
@@ -84,11 +91,6 @@ class TeamLineupViewModel {
             .orderBy('name');
 
         return formations;
-    }
-
-    getInjuryMessage(player) {
-        const message = '{0} - {1} {2}'.format(this.translator.get('Injured player'), this.translator.get('Out until'), player.recoveryDate.toLocaleDateString());
-        return message;
     }
 
     getPlayersOnField() {
@@ -140,6 +142,24 @@ class TeamLineupViewModel {
         const players = this.selectedClub.unlistedPlayers.orderBy('order', 'position.id', '-overall');
         const models = players.map(p => this._convertToPlayerModel(p, this.currentMatch?.championshipEdition));
         return models;
+    }
+
+    isValidLineup() {
+        let error = null;
+
+        const playersOnField = this.getPlayersOnField();
+
+        if (playersOnField.length !== 11)
+            error = 'The starting lineup must have 11 players';
+        else if (playersOnField.some(i => i.player.isInjured))
+            error = 'Please replace the injured players';
+        else if (playersOnField.some(i => i.championshipEditionPlayer?.isSuspended))
+            error = 'Please replace the suspended players';
+
+        if (error)
+            Common.showToast(this.translator.get(error), 'warning');
+
+        return error === null;
     }
 
     loadDefaultPlayerPhoto(event) {
@@ -196,9 +216,6 @@ class TeamLineupViewModel {
 
     unselectPlayer() {
         this.selectedPlayer = null;
-    }
-
-    reset() {
     }
 
     _convertToPlayerModel(player, championshipEdition) {
