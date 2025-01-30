@@ -106,7 +106,7 @@
                         <div class="lineup lineup-horizontal" data-bs-toggle="modal" data-bs-target="#modal-match">
                             <div class="row">
                                 <div class="col">
-                                    <div class="field position-relative">
+                                    <div class="field position-relative d-flex align-items-center justify-content-center">
                                         <div class="center-line position-absolute"></div>
                                         <div class="center-circle position-absolute"></div>
 
@@ -134,9 +134,9 @@
                                             <div class="ball"></div>
                                         </div>
 
-                                        <div v-if="getCurrentEvent()?.type === 'goal'"
-                                            class="goal-banner position-absolute text-center d-flex align-items-center justify-content-center flex-column animate__animated animate__heartBeat"
-                                            :style="{ backgroundColor: currentMatch.matchSimulation.previousBallPossessor.club.colors.backgroundCustom, color: currentMatch.matchSimulation.previousBallPossessor.club.colors.foregroundCustom }">
+                                        <div v-if="currentEvent?.type === 'goal'"
+                                            class="goal-banner text-center d-flex align-self-cemter align-items-center justify-content-center flex-column animate__animated animate__heartBeat"
+                                            :style="{ backgroundColor: currentEvent.player.club.colors.backgroundCustom, color: currentEvent.player.club.colors.foregroundCustom }">
                                             <div class="fs-1 text-uppercase">{{ translator.get("Goal") }}</div>
                                             <div class="fs-6 fw-bold">
                                                 {{ currentMatch.matchSimulation.previousBallPossessor.name }}
@@ -300,7 +300,7 @@
                                 :class="{ 'dropdown' : item.subItems.length }">
                                 <a v-if="item.subItems.length === 0" class="nav-link"
                                     :class="{ 'active' : activeSection === item.section }" :href="`#${item.section}`"
-                                    @click.prevent="goToSection(item.section)">
+                                    @click.prevent="item.action()">
                                     <i class="fa-solid fa-fw" :class="`fa-${item.icon}`"></i>
                                     {{ translator.get(item.name) }}
                                 </a>

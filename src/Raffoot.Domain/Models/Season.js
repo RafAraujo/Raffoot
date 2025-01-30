@@ -55,25 +55,6 @@ class Season {
         this._currentSeasonDateIndex++;
     }
 
-    getCalendarByClub(club) {
-        const items = [];
-        for (const seasonDate of this.seasonDates) {
-            const match = seasonDate.matches.find(m => m.clubs?.map(c => c.id).includes(club.id)) ?? null;
-
-            if (match || seasonDate.isTransferWindow) {
-                const item = {
-                    date: seasonDate.date,
-                    match: match,
-                    isTransferWindow: seasonDate.isTransferWindow,
-                };
-
-                items.push(item);
-            }
-        }
-
-        return items;
-    }
-
     getChampionshipEditionsByConfederation(confederationId) {
         const championshipEditions = this.getNationalChampionshipEditions();
         return championshipEditions.filter(ce => ce.championship.confederation.id === confederationId);

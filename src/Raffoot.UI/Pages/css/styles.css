@@ -207,6 +207,7 @@ div.lineup.lineup-horizontal {
         }
 
         .penalty-area-left {
+            left: 0;
             border-left: none;
         }
 
@@ -275,10 +276,12 @@ div.lineup.lineup-horizontal {
         }
 
         .goal-banner {
-            height: 30%;
-            width: 15%;
-            top: 35%;
-            left: 42.5%;
+            height: 8rem;
+            width: 8rem;
+            min-height: 30%;
+            min-width: 15%;
+            max-height: 100%;
+            max-width: 50%;
             border-radius: 100%;
             border: solid 2px white;
             z-index: 3;

@@ -3,6 +3,7 @@ class SimulationSectionViewModel {
         this.game = game;
         this.translator = translator;
         this.isGoal = false;
+        this.currentEvent = null;
         this.lastEventClubHome = null;
         this.lastEventClubAway = null;
 
@@ -10,7 +11,6 @@ class SimulationSectionViewModel {
             showAutomaticSelection: false,
             showUnlistedPlayers: false,
         };
-
         this.lineup = new TeamLineupViewModel(game, translator, false, lineupOptions);
     }
 
@@ -113,9 +113,9 @@ class SimulationSectionViewModel {
     }
 
     updated() {
-        const modalTeam = document.getElementById('modal-match');
-        modalTeam.addEventListener('show.bs.modal', () => { this.game.pause(); });
-        modalTeam.addEventListener('hidden.bs.modal', () => { this.game.resume(); });
+        const modal = document.getElementById('modal-match');
+        modal.addEventListener('show.bs.modal', () => { this.game.pause(); });
+        modal.addEventListener('hidden.bs.modal', () => { this.game.resume(); });
 
         if (!this.currentMatch?.matchSimulation)
             return;
@@ -159,7 +159,8 @@ class SimulationSectionViewModel {
         if (player.club.id === this.currentMatch.clubAway.id)
             reverse(point);
 
-        this.isGoal = this.getCurrentEvent()?.type === 'goal';
+        this.currentEvent = this.getCurrentEvent();
+        this.isGoal = this.currentEvent?.type === 'goal';
         if (this.isGoal)
             point.line = point.line + (player.club.id === this.currentMatch.clubAway.id ? 0.5 : -0.5);
 

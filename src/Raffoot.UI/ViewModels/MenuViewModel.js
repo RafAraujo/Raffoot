@@ -26,7 +26,7 @@ class MenuViewModel {
         const menu = {
             'Play': { section: 'play', icon: 'play' },
             'Squad': { section: 'squad', icon: 'people-group' },
-            'Calendar': { section: 'calendar', icon: 'calendar' },
+            'Calendar': { section: 'calendar', icon: 'calendar', forceUpdate: true },
             'Standings': {section: 'standings', icon: 'table-list' },
             'Finances': { section: 'finances', icon: 'sack-dollar' },
             'Clubs': { section: 'clubs', icon: 'shield-halved' },
@@ -57,6 +57,9 @@ class MenuViewModel {
             name: key,
             section: value.section,
             icon: value.icon,
+            action: () => {
+                this.goToSection(value.section, value.forceUpdate);
+            },
             subItems: (value.subItems ?? []).flatMap(subItem => Object.entries(subItem).map(([subItemKey, subItemValue]) => ({
                 name: subItemKey,
                 section: subItemValue.section,
@@ -70,12 +73,12 @@ class MenuViewModel {
         return items;
     }
 
-    goToSection(section) {
+    goToSection(section, forceUpdate) {
         this.activeSection = section;
         for (const element of document.getElementsByClassName('nav-link dropdown-toggle show'))
             element.click();
         this.toggleCollapse();
-        Router.goTo(section);
+        Router.goTo(section, forceUpdate                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               );
     }
 
     async saveAsync() {
