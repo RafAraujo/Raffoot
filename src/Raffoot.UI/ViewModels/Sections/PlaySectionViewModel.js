@@ -36,7 +36,6 @@ class PlaySectionViewModel {
                 Router.goTo('simulation');
                 this.game.play(this.game.config.matchSpeed, () => setTimeout(() => {
                     Router.goTo('summary', true);
-                    this.game.time = 0;
                     this.loading = false;
                 }, Config.delayBeforeSummary));
             }

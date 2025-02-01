@@ -375,6 +375,7 @@ const MultiLanguage =
     "Puerto Rico": "Porto Rico",
     "Qatar": "Catar",
     "Quarter-finals": "Quartas de final",
+    "Quick simulation": "Simulação rápida",
     "Ranking": "Classificação",
     "RB": "LD",
     "Red card": "Cartão vermelho",

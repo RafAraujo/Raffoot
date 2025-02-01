@@ -106,7 +106,8 @@
                         <div class="lineup lineup-horizontal" data-bs-toggle="modal" data-bs-target="#modal-match">
                             <div class="row">
                                 <div class="col">
-                                    <div class="field position-relative d-flex align-items-center justify-content-center">
+                                    <div
+                                        class="field position-relative d-flex align-items-center justify-content-center">
                                         <div class="center-line position-absolute"></div>
                                         <div class="center-circle position-absolute"></div>
 
@@ -436,14 +437,31 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col">
-                        <button type="button" class="btn btn-light border" @click="advanceDate()" :disabled="loading">
-                            <span class="spinner-border spinner-border-sm me-1" aria-hidden="true"
-                                v-show="loading"></span>
-                            <i class="fa-solid fa-right-long me-1" v-show="!loading"></i>
-                            {{ loading ? `${translator.get("Loading")}...` : translator.get("Advance") }}
-                        </button>
-                    </div>
+                    <template v-if="currentMatch">
+                        <div class="col-6 col-lg-3 d-grid gap-2">
+                            <button type="button" class="btn btn-light border" @click="advanceDate()">
+                                <i class="fa-solid fa-play me-1" v-show="!loading"></i>
+                                {{ translator.get("Play") }}
+                            </button>
+                        </div>
+                        <div class="col-6 col-lg-3 d-grid gap-2">
+                            <button type="button" class="btn btn-light border" @click="advanceDate()">
+                                <i class="fa-solid fa-bolt-lightning me-1" v-show="!loading"></i>
+                                {{ translator.get("Quick simulation") }}
+                            </button>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="col-6 col-lg-3 d-grid gap-2">
+                            <button type="button" class="btn btn-light border" @click="advanceDate()"
+                                :disabled="loading">
+                                <span class="spinner-border spinner-border-sm me-1" aria-hidden="true"
+                                    v-show="loading"></span>
+                                <i class="fa-solid fa-right-long me-1" v-show="!loading"></i>
+                                {{ loading ? translator.get("Loading") : translator.get("Advance") }}
+                            </button>
+                        </div>
+                    </template>
                 </div>
                 <div class="row lineup-container mb-3">
                     <div class="col">
@@ -567,7 +585,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div v-for="substituteType in lineup.substituteTypes" class="bench"
+                                    <div v-for="substituteType in lineup.substituteTypes" class="bench mb-1"
                                         :class="{ 'selected-player' : lineup.selectedPlayer, 'pb-5' : lineup.getSize(substituteType) % 5 === 0 }"
                                         @click.stop="lineup.movePlayerTo(substituteType)"
                                         @drop="lineup.drop($event); lineup.movePlayerTo(substituteType)"

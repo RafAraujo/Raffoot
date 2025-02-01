@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-9 d-grid mx-auto">
+                <div class="col-md-9 col-lg-6 d-grid mx-auto">
                     <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`"
                         @click="redirect('new-game.html')">
                         <i class="fa-solid fa-file"></i>
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-9 d-grid mx-auto">
+                <div class="col-md-9 col-lg-6 d-grid mx-auto">
                     <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`" data-bs-toggle="modal"
                         data-bs-target="#modal-games" @click="clearMessage()">
                         <i class="fa-solid fa-folder-open"></i>
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-9 d-grid mx-auto">
+                <div class="col-md-9 col-lg-6 d-grid mx-auto">
                     <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`" data-bs-toggle="modal"
                         data-bs-target="#modal-import" @click="clearMessage()">
                         <i class="fa-solid fa-file-import"></i>
@@ -103,18 +103,28 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-bs-dismiss="modal">
-                                <i class="fa-solid fa-xmark"></i>
-                                {{ translator.get("Cancel") }}
-                            </button>
-                            <button class="btn btn-danger" :disabled="!selectedGame" @click="deleteGame()">
-                                <i class="fa-solid fa-trash-can"></i>
-                                {{ translator.get("Delete") }}
-                            </button>
-                            <button class="btn btn-primary" :disabled="!selectedGame" @click="loadGame()">
-                                <i class="fa-solid fa-folder-open"></i>
-                                {{ translator.get("Load") }}
-                            </button>
+                            <div class="container-fluid">
+                                <div class="row justify-content-end row-gap-3">
+                                    <div class="col-md-4 d-grid">
+                                        <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                            <i class="fa-solid fa-xmark me-1"></i>
+                                            {{ translator.get("Cancel") }}
+                                        </button>
+                                    </div>
+                                    <div class="col-md-4 d-grid">
+                                        <button class="btn btn-danger" :disabled="!selectedGame" @click="deleteGame()">
+                                            <i class="fa-solid fa-trash-can me-1"></i>
+                                            {{ translator.get("Delete") }}
+                                        </button>
+                                    </div>
+                                    <div class="col-md-4 d-grid">
+                                        <button class="btn btn-primary" :disabled="!selectedGame" @click="loadGame()">
+                                            <i class="fa-solid fa-folder-open me-1"></i>
+                                            {{ translator.get("Load") }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,14 +158,22 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-bs-dismiss="modal">
-                                <i class="fa-solid fa-xmark"></i>
-                                {{ translator.get("Cancel") }}
-                            </button>
-                            <button class="btn btn-primary" :disabled="file == null" @click="importGame()">
-                                <i class="fa-solid fa-file-import"></i>
-                                {{ translator.get("Import") }}
-                            </button>
+                            <div class="container-fluid">
+                                <div class="row justify-content-end row-gap-3">
+                                    <div class="col-md-4 d-grid">
+                                        <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                            <i class="fa-solid fa-xmark"></i>
+                                            {{ translator.get("Cancel") }}
+                                        </button>
+                                    </div>
+                                    <div class="col-md-4 d-grid">
+                                        <button class="btn btn-primary" :disabled="file == null" @click="importGame()">
+                                            <i class="fa-solid fa-file-import"></i>
+                                            {{ translator.get("Import") }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -180,7 +198,7 @@
     <script src="../../Raffoot.Domain/MultiLanguage.js"></script>
 
     <script src="../../Raffoot.Application/GameFactory.js"></script>
-    
+
     <script src="../../Raffoot.Application/Services/GameService.js"></script>
     <script src="../../Raffoot.Application/Services/TranslatorService.js"></script>
 

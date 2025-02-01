@@ -41,7 +41,7 @@ class Game {
         this.dataSource = dataSource;
         this.isFantasyMode = this.dataSource === 'FM' || firstYear < 2005;
         this.isPaused = false;
-        
+
         this.messages = [];
 
         this.config = {
@@ -146,12 +146,10 @@ class Game {
         const isFirstSeason = this.seasons.length === 0;
         let championshipTypes = this.championshipTypes;
 
-        if (isFirstSeason) {
+        if (isFirstSeason)
             championshipTypes = championshipTypes.filter(ct => ct.scope === 'national' && ct.format != 'supercup');
-        }
-        else {
+        else
             year = this.seasons.last().year + 1;
-        }
 
         const season = Season.create(year, isFirstSeason, championshipTypes);
         season.schedule();
@@ -169,16 +167,12 @@ class Game {
     play(speed, callback) {
         this.time = 0;
         const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
-        for (const match of matches) {
+        for (const match of matches)
             match.prepare();
-        }
+
         const matchSimulations = matches.map(m => m.matchSimulation);
 
-        let index = 0;
-
         const interval = setInterval(() => {
-            let t0 = performance.now();
-
             if (this.isPaused)
                 return;
 

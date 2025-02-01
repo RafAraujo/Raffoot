@@ -68,32 +68,37 @@ class SimulationSectionViewModel {
     }
 
     getPlayersButtons() {
-        if (!this.currentMatch)
+        const currentMatch = this.currentMatch;
+
+        if (!currentMatch)
             return [];
 
-        const ballPossessor = this.currentMatch.matchSimulation?.ballPossessor;
-        const players = this.currentMatch.clubs.flatMap(c => c.players).filter(p => p.isOnField);
+        const ballPossessor = currentMatch.matchSimulation?.ballPossessor;
 
         const linePercentage = this._getFieldLocalizationLLinePercentage();
         const columnPercentage = this._getFieldLocalizationColumnPercentage();
+
+        const colorsAreSimilar = ColorHelper.areSimilar(currentMatch.clubs[0].colors.backgroundCustom, currentMatch.clubs[1].colors.backgroundCustom);
+
+        const players = currentMatch.clubs.flatMap(c => c.players).filter(p => p.isOnField);
 
         const items = players.map(p => ({
             player: p,
             html: {
                 playerButtonContainer: {
-                    class: p.club.id === this.currentMatch.clubHome.id ? ['justify-content-start'] : ['justify-content-end'],
+                    class: p.club.id === currentMatch.clubHome.id ? ['justify-content-start'] : ['justify-content-end'],
                     style: {
-                        top: (p.club.id === this.currentMatch.clubHome.id ? p.fieldLocalization.column : 4 - p.fieldLocalization.column) * columnPercentage + '%',
-                        left: (p.club.id === this.currentMatch.clubHome.id ? p.fieldLocalization.line : 10 - p.fieldLocalization.line) * linePercentage + '%',
+                        top: (p.club.id === currentMatch.clubHome.id ? p.fieldLocalization.column : 4 - p.fieldLocalization.column) * columnPercentage + '%',
+                        left: (p.club.id === currentMatch.clubHome.id ? p.fieldLocalization.line : 10 - p.fieldLocalization.line) * linePercentage + '%',
                         zIndex: p.club.id === ballPossessor?.club.id ? 2 : 1,
                         opacity: p.club.id === ballPossessor?.club.id ? 1 : 0.5,
                     },
                 },
                 playerButton: {
-                    class: p.club.id === this.currentMatch.clubHome.id ? ['player-button-home'] : ['player-button-away'],
+                    class: p.club.id === currentMatch.clubHome.id ? ['player-button-home'] : ['player-button-away'],
                     style: {
-                        backgroundColor: p.club.colors.backgroundCustom,
-                        color: p.club.colors.foregroundCustom,
+                        backgroundColor: colorsAreSimilar && p.club.id === currentMatch.clubAway.id ? currentMatch.clubHome.colors.foregroundCustom : p.club.colors.backgroundCustom,
+                        color: colorsAreSimilar && p.club.id === currentMatch.clubAway.id ? currentMatch.clubHome.colors.backgroundCustom : p.club.colors.foregroundCustom,
                     },
                 },
             },
