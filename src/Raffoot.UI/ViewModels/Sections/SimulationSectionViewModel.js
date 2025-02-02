@@ -121,6 +121,19 @@ class SimulationSectionViewModel {
         return event;
     }
 
+    hideModal() {
+        this.game.resume();
+        new bootstrap.Modal('#modal-match').hide();
+    }
+
+    showModal(match, club) {
+        this.selectMatch(match);
+        this.lineup.selectClub(club);
+
+        this.game.pause();
+        new bootstrap.Modal('#modal-match').show();
+    }
+
     selectMatch(match) {
         this.selectedMatch = match;
     }
@@ -130,9 +143,7 @@ class SimulationSectionViewModel {
     }
 
     updated() {
-        const modal = document.getElementById('modal-match');
-        modal.addEventListener('show.bs.modal', () => { this.game.pause(); });
-        modal.addEventListener('hidden.bs.modal', () => { this.game.resume(); });
+        document.getElementById('modal-match').addEventListener('hidden.bs.modal', () => { this.game.resume(); });
 
         if (!this.currentMatch?.matchSimulation)
             return;

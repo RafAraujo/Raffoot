@@ -103,8 +103,7 @@
             <div class="row" v-if="currentMatch">
                 <div class="col">
                     <div class="d-flex align-items-center justify-content-center">
-                        <div class="lineup lineup-horizontal" data-bs-toggle="modal" data-bs-target="#modal-match"
-                            @click.prevent="selectMatch(currentMatch); lineup.selectClub(game.club)">
+                        <div class="lineup lineup-horizontal" @click.prevent="showModal(currentMatch, game.club)">
                             <div class="row">
                                 <div class="col">
                                     <div
@@ -171,9 +170,8 @@
                                 {{ getCurrentStageMessage(championshipEdition) }}
                             </caption>
                             <tbody>
-                                <tr v-for="match in getCurrentMatches(championshipEdition)" data-bs-toggle="modal"
-                                    data-bs-target="#modal-match"
-                                    @click.prevent="selectMatch(match); lineup.selectClub(match.clubHome)">
+                                <tr v-for="match in getCurrentMatches(championshipEdition)"
+                                    @click.prevent="showModal(match, match.clubHome)">
                                     <td class="text-end p-0"
                                         :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
                                         <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
@@ -195,7 +193,7 @@
                                             :alt="match.clubAway.name" :title="match.clubAway.name">
                                     </td>
                                     <td class="text-start p-0" style="width: 34%;"
-                                        @click.prevent.stop="selectMatch(match); lineup.selectClub(match.clubAway)"
+                                        @click.prevent.stop="showModal(match, match.clubAway)"
                                         :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
                                         {{ match.clubAway.shortName }}
                                     </td>
