@@ -20,7 +20,7 @@ class VueInstance {
         this.object.computed = this.computed();
         this.object.beforeUpdate = this._beforeUpdate;
         this.object.updated = this._updated;
-        if (this.viewModel.watch)
+        if (this.viewModel.__watch)
             this.object.watch = this.viewModel.__watch;
         this.app = Vue.createApp(this.object);
         return this;

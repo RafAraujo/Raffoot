@@ -54,11 +54,13 @@ class Championship {
         if (isFantasyMode)
             return;
 
-        const continents = Context.game.continents.filter(con => con.clubs.length > 16);
+        const continents = Continent.all().filter(con => con.clubs.length > 16);
 
         for (const continent of continents) {
             for (let division = 1; division <= 2; division++) {
-                Championship.create(continent.getContinentalCupName(division), continentalCup, continent.id, null, division, continent.getContinentalCupSpots(division));
+                const name = continent.getContinentalCupName(division);
+                const spots = continent.getContinentalCupSpots(division);
+                Championship.create(name, continentalCup, continent.id, null, division, spots);
             }
             Championship.create(`${continent.name} Supercup`, continentalSupercup, continent.id, null, 1, 2);
         }

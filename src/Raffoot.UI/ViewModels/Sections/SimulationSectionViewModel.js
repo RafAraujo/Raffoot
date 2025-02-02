@@ -7,9 +7,8 @@ class SimulationSectionViewModel {
         this.lastEventClubHome = null;
         this.lastEventClubAway = null;
 
-        this.i = 0;
+        this.modal = null;
         this.selectedMatch = null;
-
         this.selectedTab = 'lineups';
 
         const lineupOptions = {
@@ -36,7 +35,10 @@ class SimulationSectionViewModel {
 
         if (this.isGoal) {
             this.game.pause();
-            setTimeout(() => this.game.resume(), 1000);
+            setTimeout(() => {
+                if (!this.modal._isShown)
+                    this.game.resume()
+            }, 1000);
         }
     }
 
@@ -140,18 +142,18 @@ class SimulationSectionViewModel {
 
     hideModal() {
         this.game.resume();
-        new bootstrap.Modal('#modal-match').hide();
+        this.modal.hide();
     }
 
     showModal(match, club) {
         if (this.game.time >= 90)
             return;
-        
+
         this.selectMatch(match);
         this.lineup.selectClub(club);
 
         this.game.pause();
-        new bootstrap.Modal('#modal-match').show();
+        this.modal.show();
     }
 
     selectMatch(match) {
@@ -163,6 +165,7 @@ class SimulationSectionViewModel {
     }
 
     watchCurrentMatch(newValue) {
+        debugger;
         if (!this.selectedMatch)
             this.selectedMatch = newValue;
     }

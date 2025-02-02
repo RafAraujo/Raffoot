@@ -18,10 +18,6 @@ class PlaySectionViewModel {
         addEventListener('moneychange', event => {
             PlaySectionViewModel._callbacks.push(this._animateMoney.bind(this, event.detail.previousValue, event.detail.value, 1000));
         });
-
-        this.__watch = {
-            currentMatch: this.watchCurrentMatch
-        };
     }
 
     __beforeUpdate() {
@@ -84,6 +80,7 @@ class PlaySectionViewModel {
     }
 
     watchCurrentMatch(newValue) {
+        console.log('WATCH', newValue);
         if (!this.selectedMatch)
             this.selectedMatch = newValue;
     }

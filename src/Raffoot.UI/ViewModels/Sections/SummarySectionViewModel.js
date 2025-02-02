@@ -3,8 +3,12 @@ class SummarySectionViewModel {
         this.game = game;
         this.translator = translator;
 
-        this.selectedConfederation = this._getDefaultConfederation();
+        this.selectedChampionship = null;
         this.selectedMatch = null;
+
+        this.__watch = {
+            currentMatch: this.watchCurrentMatch
+        };
     }
 
     advanceDate() {
@@ -16,20 +20,36 @@ class SummarySectionViewModel {
     getCurrentChampionshipEditions() {
         const championshipEditions = this.game.currentSeason
             .getCurrentChampionshipEditions()
-            .filter(ce => ce.championship.confederation.id == this.selectedConfederation.id);
+            .filter(ce => ce.championship.id == this.selectedChampionship.id);
 
         return championshipEditions;
     }
 
-    getConfederations() {
-        const confederations = this.game.currentSeason
-            .getCurrentChampionshipEditions()
-            .map(ce => ce.championship.confederation)
-            .distinct()
-            .map(c => ({ id: c.id, name: this.translator.get(c.name) }))
-            .orderBy('name');
+    getChampionships() {
+        const championships = this.game.currentSeason.
+            getCurrentChampionshipEditions()
+            .map(ce => ce.championship)
+            .filter(c => c.division === 1)
+            .map(c => ({ id: c.id, name: this.translator.getChampionshipName(c, false) }))
+            .orderBy('-importance', 'name');
+        
+        return championships;
+    }
 
-        return confederations;
+    getCurrentChampionshipEditions() {
+        let championshipEditions = this.game.currentSeason.getCurrentChampionshipEditions();
+
+        if (this.selectedChampionship?.isNationalLeague)
+            championshipEditions = championshipEditions.filter(ce => ce.championship.confederation.id === this.selectedChampionship.confederation.id);
+        else
+            championshipEditions = championshipEditions.filter(ce => ce.championship.id === this.selectedChampionship?.id);
+
+        return championshipEditions;
+    }
+
+    getCurrentMatches(championshipEdition) {
+        const matches = this.game.currentSeason.getCurrentMatchesByChampionshipEdition(championshipEdition);
+        return matches;
     }
 
     getCurrentStageMessage(championshipEdition) {
@@ -50,38 +70,24 @@ class SummarySectionViewModel {
         return message;
     }
 
-    getCurrentMatches(championshipEdition) {
-        const matches = this.game.currentSeason.getCurrentMatchesByChampionshipEdition(championshipEdition);
-        return matches;
-    }
-
-    selectConfederation(id) {
-        this.selectedConfederation = Confederation.getById(parseInt(id));
+    selectChampionship(id) {
+        this.selectedChampionship = Championship.getById(parseInt(id));
     }
 
     selectMatch(id) {
         this.selectedMatch = Match.getById(parseInt(id));
     }
 
-    _getDefaultConfederation() {
-        const countryId = this.game.club?.country.id;
-        let confederation = this.game.confederations.find(conf => conf.countries.map(c => c.id).includes(countryId));
-        return confederation;
+    watchCurrentMatch(newValue) {
+        this.selectedChampionship = newValue?.championshipEdition.championship ?? this._getDefaultChampionship();
     }
 
-    getCurrentChampionshipEditions() {
-        const clubConfederation = this.game.confederations.find(conf => conf.countries.map(c => c.id).includes(this.game.club?.country.id));
-        let championshipEditions = this.game.currentSeason.getCurrentChampionshipEditions();
+    _getDefaultChampionship() {
+        const championshipEdition = this.game
+            .currentSeason
+            .getCurrentChampionshipEditions()
+            .orderBy('-importance', '-clubs.length')[0];
         
-        let confederation = null;
-        if (championshipEditions.flatMap(ce => ce.championship).some(c => c.confederation.id === clubConfederation.id)) {
-            confederation = clubConfederation;
-        }
-        else {
-            confederation = championshipEditions.flatMap(ce => ce.championship.confederation).distinct().getRandom();
-        }
-        
-        championshipEditions = championshipEditions.filter(ce => ce.championship.confederation.id === confederation?.id);
-        return championshipEditions;
+        return championshipEdition;
     }
 }

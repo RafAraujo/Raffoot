@@ -5,6 +5,10 @@ class Continent {
         this._confederationIds = [];
     }
 
+    static all() {
+        return Context.game.continents;
+    }
+
     static create(name, cupNames) {
         const continent = new Continent(name, cupNames);
         continent.id = Context.game.continents.push(continent);

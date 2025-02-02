@@ -273,6 +273,7 @@ div.lineup.lineup-horizontal {
             width: 1vw;
             background-color: white;
             border-radius: 100%;
+            border: 1px solid black;
         }
 
         .goal-banner {
@@ -283,7 +284,7 @@ div.lineup.lineup-horizontal {
             max-height: 100%;
             max-width: 50%;
             border-radius: 100%;
-            border: solid 2px white;
+            border: 2px solid white;
             z-index: 3;
         }
     }

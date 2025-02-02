@@ -267,13 +267,14 @@
             </div>
         </section>
         <section id="summary" class="container" v-cloak>
-            <div class="row">
-                <div class="col-md-6">
-                    <select id="summary-confederation" class="form-select mt-4" :title="translator.get('Confederation')"
-                        @change="selectConfederation($event.target.value)">
-                        <option v-for="confederation in getConfederations()" :key="confederation.id"
-                            :value="confederation.id" :selected="selectedConfederation.id === confederation.id">
-                            {{ confederation.name }}
+            <div class="row mb-3">
+                <div class="col-md-6 mt-4">
+                    <label for="summary-championship" class="form-label">{{ translator.get("Championship") }}</label>
+                    <select id="summary-championship" class="form-select" :title="translator.get('Championship')"
+                        @change="selectChampionship($event.target.value)">
+                        <option v-for="championship in getChampionships()" :key="championship.id"
+                            :value="championship.id" :selected="selectedChampionship?.id === championship.id">
+                            {{ championship.name }}
                         </option>
                     </select>
                 </div>
@@ -281,7 +282,7 @@
             <div class="row">
                 <div v-for="championshipEdition in getCurrentChampionshipEditions()" class="col-md-6">
                     <div class="table-responsive">
-                        <table class="table table-borderless caption-top">
+                        <table class="table table-hover table-borderless caption-top">
                             <caption class="text-light">
                                 {{ getCurrentStageMessage(championshipEdition) }}
                             </caption>
@@ -496,7 +497,7 @@
                         <div class="col-6 col-lg-3 d-grid gap-2">
                             <button type="button" class="btn btn-light border" @click="advanceDate()">
                                 <i class="fa-solid fa-fast-forward me-1" v-show="!loading"></i>
-                                {{ translator.get("Simulate") }}
+                                {{ translator.get("Simulate match") }}
                             </button>
                         </div>
                     </template>
@@ -1871,6 +1872,7 @@
                 Router.addView('#matches', new VueInstance('#simulation', new SimulationSectionViewModel(game, translator)).createApp().mount());
                 Router.addView('#matches', new VueInstance('#summary', new SummarySectionViewModel(game, translator)).createApp().mount());
 
+                Router.get('simulation').modal = new bootstrap.Modal('#modal-match');
                 document.getElementById('modal-match').addEventListener('hidden.bs.modal', () => { game.resume(); });
             },
         },
