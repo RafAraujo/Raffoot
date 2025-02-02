@@ -5,6 +5,7 @@ class PlaySectionViewModel {
         this.game = game;
         this.translator = translator;
         
+        this.selectedMatch = null;
         this.loading = false;
         this._dateHasChanged = false;
 
@@ -17,6 +18,10 @@ class PlaySectionViewModel {
         addEventListener('moneychange', event => {
             PlaySectionViewModel._callbacks.push(this._animateMoney.bind(this, event.detail.previousValue, event.detail.value, 1000));
         });
+
+        this.watch = {
+            currentMatch: this.watchCurrentMatch
+        };
     }
 
     advanceDate() {
@@ -75,6 +80,11 @@ class PlaySectionViewModel {
         }
 
         this._dateHasChanged = false;
+    }
+
+    watchCurrentMatch(newValue, oldValue) {
+        if (!this.selectedMatch)
+            this.selectedMatch = newValue;
     }
 
     _animateDate() {

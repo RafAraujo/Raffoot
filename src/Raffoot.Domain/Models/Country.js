@@ -10,6 +10,10 @@ class Country {
         return country;
     }
 
+    static all() {
+        return Context.game.countries;
+    }
+
     static getById(id) {
         return Context.game.countries[id - 1];
     }

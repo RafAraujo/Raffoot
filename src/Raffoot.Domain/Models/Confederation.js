@@ -30,7 +30,7 @@ class Confederation {
         const europe = Continent.getByName('Europe');
 
         if (isFantasyMode) {
-            Confederation.create(america, 'Fantasy', Context.game.countries.map(c => c.name), [0, 0]);
+            Confederation.create(america, 'Fantasy', Country.all().map(c => c.name), [0, 0]);
             return;
         }
 

@@ -1,5 +1,5 @@
 @media (max-width: 576px) {
-    table {
+    table:not(.modal table) {
         font-size: small;
     }
 

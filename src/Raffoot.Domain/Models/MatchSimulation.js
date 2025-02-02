@@ -6,6 +6,7 @@ class MatchSimulation {
         this._previousBallPossessorId = null;
         this._ballPossessorId = null;
         this._matchSimulationActionIds = [];
+        this._matchSimulationStatisticsId = null;
     }
 
     static create(match) {
@@ -71,12 +72,23 @@ class MatchSimulation {
         return Context.game.matchSimulationActions.filterByIds(this._matchSimulationActionIds);
     }
 
+    get matchSimulationStatistics() {
+        return MatchSimulationStatistics.getById(this._matchSimulationStatisticsId);
+    }
+
     get previousAction() {
         return this.matchSimulationActions.length > 1 ? this.matchSimulationActions[this.matchSimulationActions.length - 2] : null;
     }
 
     addAction(matchSimulationAction) {
         this._matchSimulationActionIds.push(matchSimulationAction.id);
+    }
+
+    generateStatistics() {
+        if (!this._matchSimulationStatisticsId) {
+            const matchSimulationStatistics = MatchSimulationStatistics.create(this);
+            this._matchSimulationStatisticsId = matchSimulationStatistics.id;
+        }
     }
 
     getLastMatchSimulationEvent(club) {
@@ -86,18 +98,18 @@ class MatchSimulation {
         return event;
     }
 
-    getMatchSimulationEvents(type, club) {
-        let events = this.matchSimulationActions.flatMap(a => a.matchSimulationEvents);
-        events = events.filter(e => e.type === type && e.player.club.id === club.id);
-        return events;
-    }
-
-    getActions(type, club, onlySuccessful) {
+    getMatchSimulationActions(type, club, onlySuccessful) {
         let actions = this.matchSimulationActions.filter(a => a.type === type && a.club.id === club.id);
         if (onlySuccessful) {
             actions = actions.filter(a => a.isSuccessful)
         }
         return actions;
+    }
+
+    getMatchSimulationEvents(type, club) {
+        let events = this.matchSimulationActions.flatMap(a => a.matchSimulationEvents);
+        events = events.filter(e => e.type === type && e.player.club.id === club.id);
+        return events;
     }
 
     nextAction(time) {

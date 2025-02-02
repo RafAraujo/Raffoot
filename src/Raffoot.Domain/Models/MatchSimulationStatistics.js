@@ -22,22 +22,22 @@ class MatchSimulationStatistics {
         const clubAwayStats = this._getClubStats(this.matchSimulation.match.clubAway);
 
         const stats = {
-            finishing: [clubHomeStats.finishing, clubAwayStats.finishing],
-            ballPossession: [Math.round(clubHomeStats.ballPossession), Math.round(clubAwayStats.ballPossession)],
-            passing: [clubHomeStats.passing, clubAwayStats.passing],
-            passingSuccessful: [clubHomeStats.passingSuccessful, clubAwayStats.passingSuccessful],
-            fouls: [clubHomeStats.fouls, clubAwayStats.fouls],
+            'Shots': [clubHomeStats.finishing, clubAwayStats.finishing],
+            'Ball possession': [clubHomeStats.ballPossession, clubAwayStats.ballPossession],
+            'Passes': [clubHomeStats.passing, clubAwayStats.passing],
+            'Accurate passes': [clubHomeStats.passingSuccessful, clubAwayStats.passingSuccessful],
+            'Fouls': [clubHomeStats.fouls, clubAwayStats.fouls],
         };
 
         return stats;
     }
 
     _getClubStats(club) {
-        const finishing = this.matchSimulation.getActions('finishing', club, false).length;
-        const ballPossession = (this.matchSimulation.matchSimulationActions.filter(a => a.player.club == club).length / this.matchSimulation.matchSimulationActions.length) * 100;
-        const passing = this.matchSimulation.getActions('passing', club, false).length;
-        const passingSuccessful = this.matchSimulation.getActions('passing', club, true).length;
-        const fouls = this.matchSimulation.getActions('foul', club).length;
+        const finishing = this.matchSimulation.getMatchSimulationActions('finishing', club, false).length;
+        const ballPossession = (this.matchSimulation.matchSimulationActions.filter(a => a.player.club == club).length / this.matchSimulation.matchSimulationActions.length);
+        const passing = this.matchSimulation.getMatchSimulationActions('passing', club, false).length;
+        const passingSuccessful = this.matchSimulation.getMatchSimulationActions('passing', club, true).length;
+        const fouls = this.matchSimulation.getMatchSimulationActions('foul', club).length;
 
         const stats = {
             finishing,

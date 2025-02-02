@@ -61,7 +61,7 @@
                                                         :alt="currentMatch.clubHome.name"
                                                         :title="currentMatch.clubHome.name" style="max-height: 4rem;">
                                                 </div>
-                                                <span>{{ currentMatch.clubHome.name }}</span>
+                                                {{ currentMatch.clubHome.name }}
                                             </td>
                                             <td class="text-center p-0 border display-6 score">
                                                 {{ currentMatch.goalsHome }}
@@ -76,7 +76,7 @@
                                                         :alt="currentMatch.clubAway.name"
                                                         :title="currentMatch.clubAway.name" style="max-height: 4rem;">
                                                 </div>
-                                                <span>{{ currentMatch.clubAway.name }}</span>
+                                                {{ currentMatch.clubAway.name }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -103,7 +103,8 @@
             <div class="row" v-if="currentMatch">
                 <div class="col">
                     <div class="d-flex align-items-center justify-content-center">
-                        <div class="lineup lineup-horizontal" data-bs-toggle="modal" data-bs-target="#modal-match">
+                        <div class="lineup lineup-horizontal" data-bs-toggle="modal" data-bs-target="#modal-match"
+                            @click.prevent="selectMatch(currentMatch); lineup.selectClub(game.club)">
                             <div class="row">
                                 <div class="col">
                                     <div
@@ -170,7 +171,9 @@
                                 {{ getCurrentStageMessage(championshipEdition) }}
                             </caption>
                             <tbody>
-                                <tr v-for="match in getCurrentMatches(championshipEdition)">
+                                <tr v-for="match in getCurrentMatches(championshipEdition)" data-bs-toggle="modal"
+                                    data-bs-target="#modal-match"
+                                    @click.prevent="selectMatch(match); lineup.selectClub(match.clubHome)">
                                     <td class="text-end p-0"
                                         :style="{ backgroundColor: match.clubHome.colors.backgroundCustom, color: match.clubHome.colors.foregroundCustom }">
                                         <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
@@ -192,6 +195,7 @@
                                             :alt="match.clubAway.name" :title="match.clubAway.name">
                                     </td>
                                     <td class="text-start p-0" style="width: 34%;"
+                                        @click.prevent.stop="selectMatch(match); lineup.selectClub(match.clubAway)"
                                         :style="{ backgroundColor: match.clubAway.colors.backgroundCustom, color: match.clubAway.colors.foregroundCustom }">
                                         {{ match.clubAway.shortName }}
                                     </td>
@@ -207,11 +211,58 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 id="modal-match-title" class="modal-title fs-5">{{ currentMatch?.description }}</h1>
+                            <h1 id="modal-match-title" class="modal-title fs-5">{{ selectedMatch?.description }}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 :title="translator.get('Close')" :aria-label="translator.get('Close')"></button>
                         </div>
                         <div class="modal-body">
+                            <div class="mb-2">
+                                <a class="btn btn-light border me-2" :class="{ 'active' : selectedTab === 'lineups' }"
+                                    @click.prevent="selectTab('lineups')" aria-current="page" href="#">
+                                    <i class="fa-solid fa-users-gear me-1"></i>
+                                    {{ translator.get("Lineups") }}
+                                </a>
+                                <a class="btn btn-light border me-2"
+                                    :class="{ 'active' : selectedTab === 'statistics' }"
+                                    @click.prevent="selectTab('statistics')" aria-current="page" href="#">
+                                    <i class="fa-solid fa-chart-simple me-1"></i>
+                                    {{ translator.get("Statistics") }}
+                                </a>
+                            </div>
+                            <div class="lineups" v-show="selectedTab === 'lineups'"></div>
+                            <div class="statistics" v-show="selectedTab === 'statistics'">
+                                <div v-if="selectedMatch" class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>
+                                                    <img class="club-logo ms-1 me-1"
+                                                        :src="selectedMatch.clubHome.getLogoURL()"
+                                                        :alt="selectedMatch.clubHome.name"
+                                                        :title="selectedMatch.clubHome.name" style="max-height: 4rem;">
+                                                </th>
+                                                <th>
+                                                    {{ translator.get("Team statistics") }}
+                                                </th>
+                                                <th>
+                                                    <img class="club-logo ms-1 me-1"
+                                                        :src="selectedMatch.clubAway.getLogoURL()"
+                                                        :alt="selectedMatch.clubAway.name"
+                                                        :title="selectedMatch.clubAway.name" style="max-height: 4rem;">
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-center"
+                                                v-for="stat in statistics.getStatistics(selectedMatch)">
+                                                <td>{{ stat.values[0] }}</td>
+                                                <td>{{ stat.name }}</td>
+                                                <td>{{ stat.values[1] }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -465,11 +516,11 @@
                 </div>
                 <div class="row lineup-container mb-3">
                     <div class="col">
-                        <ul v-if="currentMatch" class="nav nav-tabs">
-                            <li class="nav-item" v-for="club in currentMatch.clubs">
+                        <ul v-if="selectedMatch" class="nav nav-tabs">
+                            <li class="nav-item" v-for="club in selectedMatch.clubs">
                                 <a class="nav-link color-inherit text-decoration-underline"
                                     :class="{ 'active' : lineup.selectedClub === club }"
-                                    @click="lineup.selectClub(club)" aria-current="page" href="#">
+                                    @click.prevent="lineup.selectClub(club)" aria-current="page" href="#">
                                     {{ club.name }}
                                 </a>
                             </li>
@@ -510,10 +561,10 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col-lg-6">
-                                    <div class="field position-relative" style="height: 420px">
-                                        <div v-for="item in lineup.getPlayersOnField(currentMatch?.championshipEdition)"
+                                    <div class="field position-relative mb-1" style="height: 420px">
+                                        <div v-for="item in lineup.getPlayersOnField(selectedMatch?.championshipEdition)"
                                             class="player position-absolute text-center"
-                                            @click.stop="lineup.clickPlayer(item.player, currentMatch)"
+                                            @click.stop="lineup.clickPlayer(item.player, selectedMatch)"
                                             :class="item.html.player.class"
                                             :style="lineup.getStyleForFieldLocalization(item.player.fieldLocalization)">
                                             <div class="overall position-absolute">
@@ -538,7 +589,7 @@
                                                 :title="item.player.name" @error="lineup.loadDefaultPlayerPhoto($event)"
                                                 draggable="true" @dragstart="lineup.dragStart($event, item.player.id)"
                                                 @dragover.prevent
-                                                @drop="lineup.drop($event); lineup.clickPlayer(item.player, currentMatch)">
+                                                @drop="lineup.drop($event); lineup.clickPlayer(item.player, selectedMatch)">
                                             <div class="cards position-absolute w-100 text-end">
                                                 <i v-if="item.championshipEditionPlayer?.redCard"
                                                     class="fa-solid fa-square fa-lg text-danger me-1"
@@ -551,7 +602,7 @@
                                                 </i>
                                             </div>
                                             <div class="energy progress position-relative"
-                                                :title="`${translator.get('Energy')} ${item.player.energy}%`">
+                                                :title="`${translator.get('Energy')} ${Math.round(item.player.energy)}%`">
                                                 <div class="progress-bar" role="progressbar"
                                                     :class="lineup.getClassForEnergy(item.player)"
                                                     :aria-valuenow="item.player.energy" aria-valuemin="0"
@@ -590,9 +641,9 @@
                                         @click.stop="lineup.movePlayerTo(substituteType)"
                                         @drop="lineup.drop($event); lineup.movePlayerTo(substituteType)"
                                         @dragover.prevent :title="translator.get(substituteType)">
-                                        <div v-for="item in lineup.getSubstitutePlayers(substituteType, currentMatch?.championshipEdition)"
+                                        <div v-for="item in lineup.getSubstitutePlayers(substituteType, selectedMatch?.championshipEdition)"
                                             class="player d-inline-block position-relative text-center"
-                                            @click.stop="lineup.clickPlayer(item.player, currentMatch)"
+                                            @click.stop="lineup.clickPlayer(item.player, selectedMatch)"
                                             :class="item.html.player.class">
                                             <div class="overall position-absolute">
                                                 <i v-if="item.player.isInjured"
@@ -622,10 +673,10 @@
                                                 :src="item.player.getPhotoURL()" :alt="item.player.name"
                                                 :title="item.player.name" @error="lineup.loadDefaultPlayerPhoto($event)"
                                                 draggable="true" @dragstart="lineup.dragStart($event, item.player.id)"
-                                                @drop="lineup.drop($event); lineup.clickPlayer(item.player, currentMatch)"
+                                                @drop="lineup.drop($event); lineup.clickPlayer(item.player, selectedMatch)"
                                                 @dragover.prevent>
                                             <div class="energy progress position-relative"
-                                                :title="`${translator.get('Energy')} ${item.player.energy}%`">
+                                                :title="`${translator.get('Energy')} ${Math.round(item.player.energy)}%`">
                                                 <div class="progress-bar" role="progressbar"
                                                     :class="lineup.getClassForEnergy(item.player)"
                                                     :aria-valuenow="item.player.energy" aria-valuemin="0"
@@ -797,21 +848,16 @@
             <section id="standings" v-cloak>
                 <div class="row mb-2">
                     <div class="col">
-                        <input type="radio" id="championship-national" name="championship-type" class="btn-check"
-                            autocomplete="off" checked>
-                        <label for="championship-national" class="btn btn-light border me-2"
+                        <a class="btn btn-light border me-2" :class="{ 'active' : isNationalChampionshipsSelected }"
                             @click="selectNationalChampionship(currentMatch)">
-                            <i class="fa-solid fa-flag"></i>
+                            <i class="fa-solid fa-flag me-1"></i>
                             {{ translator.get("National") }}
-                        </label>
-
-                        <input type="radio" id="championship-international" name="championship-type" class="btn-check"
-                            autocomplete="off">
-                        <label for="championship-international" class="btn btn-light border me-2"
+                        </a>
+                        <a class="btn btn-light border me-2" :class="{ 'active' : !isNationalChampionshipsSelected }"
                             @click="selectInternationalChampionship()">
-                            <i class="fa-solid fa-earth-americas"></i>
+                            <i class="fa-solid fa-earth-americas me-1"></i>
                             {{ translator.get("International") }}
-                        </label>
+                        </a>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -1489,7 +1535,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-xmark"></i>
+                        <i class="fa-solid fa-xmark me-1"></i>
                         {{ translator.get("Close") }}
                     </button>
                 </div>
@@ -1519,7 +1565,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-xmark"></i>
+                        <i class="fa-solid fa-xmark me-1"></i>
                         {{ translator.get("Close") }}
                     </button>
                 </div>
@@ -1608,7 +1654,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-xmark"></i>
+                        <i class="fa-solid fa-xmark me-1"></i>
                         {{ translator.get("Close") }}
                     </button>
                 </div>
@@ -1684,7 +1730,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-xmark"></i>
+                        <i class="fa-solid fa-xmark me-1"></i>
                         {{ translator.get("Cancel") }}
                     </button>
                     <button type="button" class="btn btn-primary" :disabled="!offerIsValid()">
@@ -1769,6 +1815,7 @@
     <script src="../ViewModels/Sections/SummarySectionViewModel.js"></script>
 
     <script src="../ViewModels/GeneralViewModel.js"></script>
+    <script src="../ViewModels/MatchStatisticsViewModel.js"></script>
     <script src="../ViewModels/MenuViewModel.js"></script>
     <script src="../ViewModels/PlayerFilterViewModel.js"></script>
     <script src="../ViewModels/PlayerOrderViewModel.js"></script>
@@ -1806,7 +1853,7 @@
 
                 translator.setLanguage(game.config.language);
 
-                Common.cloneElement('.lineup-container', '#modal-match .modal-body', ['select-formation'], 'modal-match-');
+                Common.cloneElement('.lineup-container', '#modal-match .lineups', ['select-formation'], 'modal-match-');
 
                 Router.addView('#management', new VueInstance('#modal-colors', new ColorsModalViewModel(game, translator)).createApp().mount(), true);
                 Router.addView('#management', new VueInstance('#modal-language', new LanguageModalViewModel(game, translator)).createApp().mount(), true);
@@ -1838,6 +1885,7 @@
 
                 document.documentElement.addEventListener('click', () => {
                     Router.get('play').lineup.unselectPlayer();
+                    Router.get('simulation').lineup.unselectPlayer();
                     Common.hideMessage();
                 });
 

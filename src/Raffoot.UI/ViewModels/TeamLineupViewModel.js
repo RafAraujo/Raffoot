@@ -20,37 +20,13 @@ class TeamLineupViewModel {
         this.game.club.reorderPlayers();
     }
 
-    changePlayers(player1, player2, match) {
-        if (this.matchInProgress) {
-            const playerFromField = [player1, player2].find(p => p.isOnField);
-            const playerFromBench = [player1, player2].find(p => p.isOnBench);
-            const substitutionsLeft = match.getPlayerSubstitutionsLeft(this.game.club);
-
-            if (playerFromField && playerFromBench) {
-                if (substitutionsLeft === 0) {
-                    const message = this.translator.get('Substitution limit reached');
-                    Common.showToast(message, 'warning');
-                    this.unselectPlayer();
-                    return;
-                }
-
-                match.makePlayerSubstitution(this.game.time, this.game.club, playerFromField, playerFromBench);
-            }
-        }
-        else {
-            this.game.club.swapPlayerRoles(player1, player2);
-        }
-
-        this.unselectPlayer();
-    }
-
 
     clickPlayer(player, match) {
         if (player.club.id !== this.game.club.id)
             return;
 
         if (this.selectedPlayer)
-            this.changePlayers(this.selectedPlayer, player, match);
+            this._changePlayers(this.selectedPlayer, player, match);
         else
             this.selectPlayer(player);
     }
@@ -213,6 +189,30 @@ class TeamLineupViewModel {
 
     unselectPlayer() {
         this.selectedPlayer = null;
+    }
+
+    _changePlayers(player1, player2, match) {
+        if (this.matchInProgress) {
+            const playerFromField = [player1, player2].find(p => p.isOnField);
+            const playerFromBench = [player1, player2].find(p => p.isOnBench);
+            const substitutionsLeft = match.getPlayerSubstitutionsLeft(this.game.club);
+
+            if (playerFromField && playerFromBench) {
+                if (substitutionsLeft === 0) {
+                    const message = this.translator.get('Substitution limit reached');
+                    Common.showToast(message, 'warning');
+                    this.unselectPlayer();
+                    return;
+                }
+
+                match.makePlayerSubstitution(this.game.time, this.game.club, playerFromField, playerFromBench);
+            }
+        }
+        else {
+            this.game.club.swapPlayerRoles(player1, player2);
+        }
+
+        this.unselectPlayer();
     }
 
     _convertToPlayerModel(player, championshipEdition) {

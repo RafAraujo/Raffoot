@@ -7,11 +7,20 @@ class SimulationSectionViewModel {
         this.lastEventClubHome = null;
         this.lastEventClubAway = null;
 
+        this.selectedMatch = null;
+
+        this.selectedTab = 'lineups';
+
         const lineupOptions = {
             showAutomaticSelection: false,
             showUnlistedPlayers: false,
         };
         this.lineup = new TeamLineupViewModel(game, translator, false, lineupOptions);
+        this.statistics = new MatchStatisticsViewModel(game, translator);
+
+        this.watch = {
+            currentMatch: this.watchCurrentMatch
+        };
     }
 
     getBallLocation() {
@@ -112,9 +121,12 @@ class SimulationSectionViewModel {
         return event;
     }
 
-    getLineup() {
-        const lineup = this.game.club.getLineup(this.currentMatch?.championshipEdition);
-        return lineup;
+    selectMatch(match) {
+        this.selectedMatch = match;
+    }
+
+    selectTab(tab) {
+        this.selectedTab = tab;
     }
 
     updated() {
@@ -135,6 +147,11 @@ class SimulationSectionViewModel {
             this.game.pause();
             setTimeout(() => this.game.resume(), 500);
         }
+    }
+
+    watchCurrentMatch(newValue, oldValue) {
+        if (!this.selectedMatch)
+            this.selectedMatch = newValue;
     }
 
     _animateBallTrajectory() {
