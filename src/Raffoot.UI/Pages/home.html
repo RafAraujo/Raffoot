@@ -490,13 +490,13 @@
                         <div class="col-6 col-lg-3 d-grid gap-2">
                             <button type="button" class="btn btn-light border" @click="advanceDate()">
                                 <i class="fa-solid fa-play me-1" v-show="!loading"></i>
-                                {{ translator.get("Play") }}
+                                {{ translator.get("Start match") }}
                             </button>
                         </div>
                         <div class="col-6 col-lg-3 d-grid gap-2">
                             <button type="button" class="btn btn-light border" @click="advanceDate()">
-                                <i class="fa-solid fa-bolt-lightning me-1" v-show="!loading"></i>
-                                {{ translator.get("Quick simulation") }}
+                                <i class="fa-solid fa-fast-forward me-1" v-show="!loading"></i>
+                                {{ translator.get("Simulate") }}
                             </button>
                         </div>
                     </template>
