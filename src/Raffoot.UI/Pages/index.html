@@ -103,75 +103,65 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <div class="container-fluid">
-                                <div class="row justify-content-end row-gap-3">
-                                    <div class="col-md-4 d-grid">
-                                        <button class="btn btn-secondary" data-bs-dismiss="modal">
-                                            <i class="fa-solid fa-xmark me-1"></i>
-                                            {{ translator.get("Cancel") }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 d-grid">
-                                        <button class="btn btn-danger" :disabled="!selectedGame" @click="deleteGame()">
-                                            <i class="fa-solid fa-trash-can me-1"></i>
-                                            {{ translator.get("Delete") }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 d-grid">
-                                        <button class="btn btn-primary" :disabled="!selectedGame" @click="loadGame()">
-                                            <i class="fa-solid fa-folder-open me-1"></i>
-                                            {{ translator.get("Load") }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="fa-solid fa-xmark me-1"></i>
+                                {{ translator.get("Cancel") }}
+                            </button>
+                            <button class="btn btn-danger" :disabled="!selectedGame" @click="deleteGame()">
+                                <i class="fa-solid fa-trash-can me-1"></i>
+                                {{ translator.get("Delete") }}
+                            </button>
+                            <button class="btn btn-primary" :disabled="!selectedGame" @click="loadGame()">
+                                <i class="fa-solid fa-folder-open me-1"></i>
+                                {{ translator.get("Load") }}
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div id="modal-import" class="modal fade" tabindex="-1" aria-labelledby="modal-import-title"
-                aria-hidden="true" @hidden.bs.modal="alert('teste')">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 id="modal-import-title" class="modal-title fs-5">{{ translator.get("Import game") }}
-                            </h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <input type="file" id="file" class="form-control" @change="onChangeFile($event)"
-                                        accept=".raffoot">
-                                </div>
-                            </div>
-                            <div class="row" :class="{ 'd-none' : !message.text }">
-                                <div class="col">
-                                    <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`"
-                                        role="alert">
-                                        {{ message.text }}
-                                        <button type="button" class="btn-close" @click="clearMessage()"
-                                            aria-label="Close"></button>
-                                    </div>
-                                </div>
+        <div id="modal-import" class="modal fade" tabindex="-1" aria-labelledby="modal-import-title" aria-hidden="true"
+            @hidden.bs.modal="alert('teste')">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 id="modal-import-title" class="modal-title fs-5">{{ translator.get("Import game") }}
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input type="file" id="file" class="form-control" @change="onChangeFile($event)"
+                                    accept=".raffoot">
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <div class="container-fluid">
-                                <div class="row justify-content-end row-gap-3">
-                                    <div class="col-md-4 d-grid">
-                                        <button class="btn btn-secondary" data-bs-dismiss="modal">
-                                            <i class="fa-solid fa-xmark"></i>
-                                            {{ translator.get("Cancel") }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 d-grid">
-                                        <button class="btn btn-primary" :disabled="file == null" @click="importGame()">
-                                            <i class="fa-solid fa-file-import"></i>
-                                            {{ translator.get("Import") }}
-                                        </button>
-                                    </div>
+                        <div class="row" :class="{ 'd-none' : !message.text }">
+                            <div class="col">
+                                <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`"
+                                    role="alert">
+                                    {{ message.text }}
+                                    <button type="button" class="btn-close" @click="clearMessage()"
+                                        aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="container-fluid">
+                            <div class="row justify-content-end row-gap-3">
+                                <div class="col-md-4 d-grid">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                        <i class="fa-solid fa-xmark"></i>
+                                        {{ translator.get("Cancel") }}
+                                    </button>
+                                </div>
+                                <div class="col-md-4 d-grid">
+                                    <button class="btn btn-primary" :disabled="file == null" @click="importGame()">
+                                        <i class="fa-solid fa-file-import"></i>
+                                        {{ translator.get("Import") }}
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -179,6 +169,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/lz-string/lz-string.min.js"></script>

@@ -24,27 +24,37 @@ class MatchSimulationStatistics {
         const stats = {
             'Shots': [clubHomeStats.finishing, clubAwayStats.finishing],
             'Ball possession': [clubHomeStats.ballPossession, clubAwayStats.ballPossession],
-            'Passes': [clubHomeStats.passing, clubAwayStats.passing],
-            'Accurate passes': [clubHomeStats.passingSuccessful, clubAwayStats.passingSuccessful],
+            'Pass accuracy': [clubHomeStats.passAccuracy, clubAwayStats.passAccuracy],
             'Fouls': [clubHomeStats.fouls, clubAwayStats.fouls],
+            'Yellow cards': [clubHomeStats.yellowCards, clubAwayStats.yellowCards],
+            'Red cards': [clubHomeStats.redCards, clubAwayStats.redCards],
         };
 
         return stats;
     }
 
     _getClubStats(club) {
-        const finishing = this.matchSimulation.getMatchSimulationActions('finishing', club, false).length;
-        const ballPossession = (this.matchSimulation.matchSimulationActions.filter(a => a.player.club == club).length / this.matchSimulation.matchSimulationActions.length);
-        const passing = this.matchSimulation.getMatchSimulationActions('passing', club, false).length;
-        const passingSuccessful = this.matchSimulation.getMatchSimulationActions('passing', club, true).length;
-        const fouls = this.matchSimulation.getMatchSimulationActions('foul', club).length;
+        const ms = this.matchSimulation;
+        const actions = ms.matchSimulationActions;
+
+        const finishing = ms.getMatchSimulationActions('finishing', club, false).length;
+        const ballPossession = actions.filter(a => a.player.club == club).length / actions.length;
+        const passing = ms.getMatchSimulationActions('passing', club, false).length;
+        const passingSuccessful = ms.getMatchSimulationActions('passing', club, true).length;
+        const passAccuracy = passingSuccessful / passing;
+        const fouls = ms.getMatchSimulationActions('foul', club).length;
+        const yellowCards = ms.getMatchSimulationEvents('yellow card', club).length;
+        const redCards = ms.getMatchSimulationEvents('red card', club).length;
 
         const stats = {
             finishing,
             ballPossession,
             passing,
             passingSuccessful,
-            fouls
+            passAccuracy,
+            fouls,
+            yellowCards,
+            redCards,
         };
 
         return stats;

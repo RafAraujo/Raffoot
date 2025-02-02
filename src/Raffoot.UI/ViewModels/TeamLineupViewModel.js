@@ -20,7 +20,6 @@ class TeamLineupViewModel {
         this.game.club.reorderPlayers();
     }
 
-
     clickPlayer(player, match) {
         if (player.club.id !== this.game.club.id)
             return;
@@ -66,15 +65,9 @@ class TeamLineupViewModel {
         return formations;
     }
 
-    getPlayersOnField(championshipEdition) {
+    getPlayersOnField(match = null) {
         const players = this.selectedClub.playersOnField;
-        const models = players.map(p => this._convertToPlayerModel(p, championshipEdition));
-        return models;
-    }
-
-    getPlayersOnBench(championshipEdition) {
-        const players = this.selectedClub.playersOnBench.orderBy('order', 'position.id', '-overall');
-        const models = players.map(p => this._convertToPlayerModel(p, championshipEdition));
+        const models = players.map(p => this._convertToPlayerModel(p, match));
         return models;
     }
 
@@ -104,17 +97,11 @@ class TeamLineupViewModel {
         return style;
     }
 
-    getSubstitutePlayers(substituteType, championshipEdition) {
+    getSubstitutePlayers(substituteType, match) {
         if (substituteType === 'Bench')
-            return this.getPlayersOnBench(championshipEdition);
+            return this._getPlayersOnBench(match);
         else if (substituteType === 'Unlisted players')
-            return this.getUnlistedPlayers(championshipEdition);
-    }
-
-    getUnlistedPlayers(championshipEdition) {
-        const players = this.selectedClub.unlistedPlayers.orderBy('order', 'position.id', '-overall');
-        const models = players.map(p => this._convertToPlayerModel(p, championshipEdition));
-        return models;
+            return this._getUnlistedPlayers(match);
     }
 
     isValidLineup() {
@@ -191,6 +178,18 @@ class TeamLineupViewModel {
         this.selectedPlayer = null;
     }
 
+    _getPlayersOnBench(match = null) {
+        const players = this.selectedClub.playersOnBench.orderBy('order', 'position.id', '-overall');
+        const models = players.map(p => this._convertToPlayerModel(p, match));
+        return models;
+    }
+
+    _getUnlistedPlayers(championshipEdition) {
+        const players = this.selectedClub.unlistedPlayers.orderBy('order', 'position.id', '-overall');
+        const models = players.map(p => this._convertToPlayerModel(p, championshipEdition));
+        return models;
+    }
+
     _changePlayers(player1, player2, match) {
         if (this.matchInProgress) {
             const playerFromField = [player1, player2].find(p => p.isOnField);
@@ -215,10 +214,10 @@ class TeamLineupViewModel {
         this.unselectPlayer();
     }
 
-    _convertToPlayerModel(player, championshipEdition) {
+    _convertToPlayerModel(player, match) {
         const model = {
             player: player,
-            championshipEditionPlayer: championshipEdition?.championshipEditionPlayers.find(cep => cep.player.id === player.id),
+            championshipEditionPlayer: match?.championshipEdition?.championshipEditionPlayers.find(cep => cep.player.id === player.id),
             html: {
                 player: {
                     class: [(player === this.selectedPlayer ? 'blink' : ''), (player.isInjured ? 'injured' : ''), (player.club.id === game.club.id ? 'my-club' : ''), (this.selectedPlayer ? 'selected-player' : '')],

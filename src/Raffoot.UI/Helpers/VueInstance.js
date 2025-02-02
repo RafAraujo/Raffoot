@@ -21,7 +21,7 @@ class VueInstance {
         this.object.beforeUpdate = this._beforeUpdate;
         this.object.updated = this._updated;
         if (this.viewModel.watch)
-            this.object.watch = this.viewModel.watch;
+            this.object.watch = this.viewModel.__watch;
         this.app = Vue.createApp(this.object);
         return this;
     }
@@ -75,11 +75,14 @@ class VueInstance {
 
     _beforeUpdate() {
         this._t0 = performance.now();
+
+        if (this.__beforeUpdate)
+            this.__beforeUpdate();
     }
 
     _updated() {
-        if (this.updated)
-            this.updated();
+        if (this.__updated)
+            this.__updated();
 
         const time = performance.now() - this._t0;
         const message = `[${this.name}] Update took ${time} milliseconds.`;

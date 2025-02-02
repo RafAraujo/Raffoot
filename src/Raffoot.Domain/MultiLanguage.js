@@ -1,6 +1,7 @@
 const MultiLanguage = 
 {
   "pt-BR": {
+    "Accurate passes": "Passes corretos",
     "Advance": "Avançar",
     "Afghanistan": "Afeganistão",
     "Africa": "África",
@@ -351,6 +352,7 @@ const MultiLanguage =
     "Panama": "Panamá",
     "Papua New Guinea": "Papua Nova Guiné",
     "Paraguay": "Paraguai",
+    "Pass accuracy": "Precisão de passe",
     "Passes": "Passes",
     "Penalty": "Pênalti",
     "Penalty Taker": "Marcador de pênaltis",
@@ -380,6 +382,7 @@ const MultiLanguage =
     "Ranking": "Classificação",
     "RB": "LD",
     "Red card": "Cartão vermelho",
+    "Red cards": "Cartões vermelhos",
     "Referee": "Árbitro",
     "Republic of Ireland": "República da Irlanda",
     "Reset": "Reset",
@@ -515,8 +518,8 @@ const MultiLanguage =
     "World": "Mundo",
     "World Cup": "Copa do Mundo",
     "Year": "Ano",
-    "Yellow Card": "Cartão amarelo",
-    "Yellow Cards": "Cartões amarelos",
+    "Yellow card": "Cartão amarelo",
+    "Yellow cards": "Cartões amarelos",
     "Yemen": "Iêmen",
     "Yes": "Sim",
     "Zambia": "Zâmbia",

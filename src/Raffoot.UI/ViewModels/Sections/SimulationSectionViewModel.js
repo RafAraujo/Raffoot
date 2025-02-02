@@ -7,6 +7,7 @@ class SimulationSectionViewModel {
         this.lastEventClubHome = null;
         this.lastEventClubAway = null;
 
+        this.i = 0;
         this.selectedMatch = null;
 
         this.selectedTab = 'lineups';
@@ -21,6 +22,22 @@ class SimulationSectionViewModel {
         this.watch = {
             currentMatch: this.watchCurrentMatch
         };
+    }
+
+    __beforeUpdate() {
+        if (!this.currentMatch?.matchSimulation)
+            return;
+
+        if (!this.game.isPaused && this.game.time > 0)
+            this._animateBallTrajectory();
+
+        this.lastEventClubHome = this.getLastMatchSimulationEvent(this.currentMatch.clubHome);
+        this.lastEventClubAway = this.getLastMatchSimulationEvent(this.currentMatch.clubAway);
+
+        if (this.isGoal) {
+            this.game.pause();
+            setTimeout(() => this.game.resume(), 1000);
+        }
     }
 
     getBallLocation() {
@@ -127,6 +144,9 @@ class SimulationSectionViewModel {
     }
 
     showModal(match, club) {
+        if (this.game.time >= 90)
+            return;
+        
         this.selectMatch(match);
         this.lineup.selectClub(club);
 
@@ -142,25 +162,7 @@ class SimulationSectionViewModel {
         this.selectedTab = tab;
     }
 
-    updated() {
-        document.getElementById('modal-match').addEventListener('hidden.bs.modal', () => { this.game.resume(); });
-
-        if (!this.currentMatch?.matchSimulation)
-            return;
-
-        if (!this.game.isPaused && this.game.time > 0)
-            this._animateBallTrajectory();
-
-        this.lastEventClubHome = this.getLastMatchSimulationEvent(this.currentMatch.clubHome);
-        this.lastEventClubAway = this.getLastMatchSimulationEvent(this.currentMatch.clubAway);
-
-        if (this.isGoal) {
-            this.game.pause();
-            setTimeout(() => this.game.resume(), 500);
-        }
-    }
-
-    watchCurrentMatch(newValue, oldValue) {
+    watchCurrentMatch(newValue) {
         if (!this.selectedMatch)
             this.selectedMatch = newValue;
     }

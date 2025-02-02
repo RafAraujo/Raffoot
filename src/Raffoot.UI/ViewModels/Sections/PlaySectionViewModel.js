@@ -19,9 +19,21 @@ class PlaySectionViewModel {
             PlaySectionViewModel._callbacks.push(this._animateMoney.bind(this, event.detail.previousValue, event.detail.value, 1000));
         });
 
-        this.watch = {
+        this.__watch = {
             currentMatch: this.watchCurrentMatch
         };
+    }
+
+    __beforeUpdate() {
+        if (this._dateHasChanged)
+            this._animateDate();
+
+        for (const callback of PlaySectionViewModel._callbacks) {
+            callback();
+            PlaySectionViewModel._callbacks.remove(callback);
+        }
+
+        this._dateHasChanged = false;
     }
 
     advanceDate() {
@@ -40,6 +52,7 @@ class PlaySectionViewModel {
             if (this.currentMatch) {
                 Router.goTo('simulation');
                 this.game.play(this.game.config.matchSpeed, () => setTimeout(() => {
+                    Router.get('simulation').hideModal();
                     Router.goTo('summary', true);
                     this.loading = false;
                 }, Config.delayBeforeSummary));
@@ -70,19 +83,7 @@ class PlaySectionViewModel {
         location.href = url
     }
 
-    updated() {
-        if (this._dateHasChanged)
-            this._animateDate();
-
-        for (const callback of PlaySectionViewModel._callbacks) {
-            callback();
-            PlaySectionViewModel._callbacks.remove(callback);
-        }
-
-        this._dateHasChanged = false;
-    }
-
-    watchCurrentMatch(newValue, oldValue) {
+    watchCurrentMatch(newValue) {
         if (!this.selectedMatch)
             this.selectedMatch = newValue;
     }

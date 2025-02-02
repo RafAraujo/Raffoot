@@ -560,7 +560,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-6">
                                     <div class="field position-relative mb-1" style="height: 420px">
-                                        <div v-for="item in lineup.getPlayersOnField(selectedMatch?.championshipEdition)"
+                                        <div v-for="item in lineup.getPlayersOnField(selectedMatch)"
                                             class="player position-absolute text-center"
                                             @click.stop="lineup.clickPlayer(item.player, selectedMatch)"
                                             :class="item.html.player.class"
@@ -639,7 +639,7 @@
                                         @click.stop="lineup.movePlayerTo(substituteType)"
                                         @drop="lineup.drop($event); lineup.movePlayerTo(substituteType)"
                                         @dragover.prevent :title="translator.get(substituteType)">
-                                        <div v-for="item in lineup.getSubstitutePlayers(substituteType, selectedMatch?.championshipEdition)"
+                                        <div v-for="item in lineup.getSubstitutePlayers(substituteType, selectedMatch)"
                                             class="player d-inline-block position-relative text-center"
                                             @click.stop="lineup.clickPlayer(item.player, selectedMatch)"
                                             :class="item.html.player.class">
@@ -1870,6 +1870,8 @@
 
                 Router.addView('#matches', new VueInstance('#simulation', new SimulationSectionViewModel(game, translator)).createApp().mount());
                 Router.addView('#matches', new VueInstance('#summary', new SummarySectionViewModel(game, translator)).createApp().mount());
+
+                document.getElementById('modal-match').addEventListener('hidden.bs.modal', () => { game.resume(); });
             },
         },
 
