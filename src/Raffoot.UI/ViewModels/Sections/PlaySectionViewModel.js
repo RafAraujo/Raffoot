@@ -84,8 +84,7 @@ class PlaySectionViewModel {
     }
 
     watchCurrentMatch(newValue) {
-        if (!this.selectedMatch)
-            this.selectedMatch = newValue;
+        this.selectedMatch = newValue;
     }
 
     _animateDate() {

@@ -15,7 +15,7 @@ class SimulationSectionViewModel {
             showAutomaticSelection: false,
             showUnlistedPlayers: false,
         };
-        this.lineup = new TeamLineupViewModel(game, translator, false, lineupOptions);
+        this.lineup = new TeamLineupViewModel(game, translator, true, lineupOptions);
         this.statistics = new MatchStatisticsViewModel(game, translator);
 
         this.watch = {
@@ -165,8 +165,7 @@ class SimulationSectionViewModel {
     }
 
     watchCurrentMatch(newValue) {
-        if (!this.selectedMatch)
-            this.selectedMatch = newValue;
+        this.selectedMatch = newValue;
     }
 
     _animateBallTrajectory() {
