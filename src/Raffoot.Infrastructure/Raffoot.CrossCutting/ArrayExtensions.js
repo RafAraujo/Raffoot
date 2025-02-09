@@ -32,13 +32,12 @@ Array.prototype.getRandomItems = function (count) {
 }
 
 Array.prototype.groupBy = function (key) {
-    return this.reduce((acc, currentValue) => {
+    return this.reduce((accumulator, currentValue) => {
         const groupKey = getValue(currentValue, key);
-        if (!acc[groupKey]) {
-            acc[groupKey] = [];
-        }
-        acc[groupKey].push(currentValue);
-        return acc;
+        if (!accumulator[groupKey])
+            accumulator[groupKey] = [];
+        accumulator[groupKey].push(currentValue);
+        return accumulator;
     }, {});
 };
 
@@ -51,11 +50,11 @@ Array.prototype.lastItems = function (count) {
 }
 
 Array.prototype.min = function () {
-    return this.reduce((acc, currentValue) => Math.min(acc, currentValue));
+    return this.reduce((accumulator, currentValue) => Math.min(accumulator, currentValue));
 }
 
 Array.prototype.max = function () {
-    return this.reduce((acc, currentValue) => Math.max(acc, currentValue));
+    return this.reduce((accumulator, currentValue) => Math.max(accumulator, currentValue));
 }
 
 Array.prototype.orderBy = function (...properties) {

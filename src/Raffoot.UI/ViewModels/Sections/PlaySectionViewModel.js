@@ -15,6 +15,10 @@ class PlaySectionViewModel {
         };
         this.lineup = new TeamLineupViewModel(game, translator, false, lineupOptions);
 
+        this.__watch = {
+            currentMatch: this.watchCurrentMatch
+        };
+
         addEventListener('moneychange', event => {
             PlaySectionViewModel._callbacks.push(this._animateMoney.bind(this, event.detail.previousValue, event.detail.value, 1000));
         });
@@ -80,7 +84,6 @@ class PlaySectionViewModel {
     }
 
     watchCurrentMatch(newValue) {
-        console.log('WATCH', newValue);
         if (!this.selectedMatch)
             this.selectedMatch = newValue;
     }

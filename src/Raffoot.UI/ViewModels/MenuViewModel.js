@@ -35,7 +35,7 @@ class MenuViewModel {
                 icon: 'book',
                 subItems: [
                     {'Champions': { section: 'champions', icon: 'trophy' } },
-                    {'Top scorers': { section: 'top-scorers', icon: 'futbol' } },
+                    {'Top scorers': { section: 'top-scorers', icon: 'futbol', action: this.goToSection.bind(this, 'top-scorers', true) } },
                     {'Classification': { section: 'classification', icon: 'ranking-star', separator: true } },
                 ]
             },
@@ -78,7 +78,7 @@ class MenuViewModel {
         for (const element of document.getElementsByClassName('nav-link dropdown-toggle show'))
             element.click();
         this.toggleCollapse();
-        Router.goTo(section, forceUpdate                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               );
+        Router.goTo(section, forceUpdate);
     }
 
     async saveAsync() {

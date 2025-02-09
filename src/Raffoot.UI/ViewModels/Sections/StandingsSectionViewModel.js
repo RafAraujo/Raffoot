@@ -6,6 +6,7 @@ class StandingsSectionViewModel {
         this.activeTab = 'classification';
         this.isNationalChampionshipsSelected = true;
         this.selectedChampionshipEdition = null;
+        this.topScorersViewModel = new TopScorersViewModel(game, translator);
     }
 
     getChampionshipEditionsByConfederation(confederationId) {
@@ -68,12 +69,13 @@ class StandingsSectionViewModel {
         return response;
     }
 
-    getTable() {
-        return this.selectedChampionshipEdition?.getTable()
+    getLeagueTable() {
+        const table = this.selectedChampionshipEdition?.getLeagueTable();
+        return table;
     }
 
     getTopScorers() {
-        const topScorers = this.selectedChampionshipEdition?.getTopScorers().take(20);
+        const topScorers = this.topScorersViewModel.getTopScorers(this.selectedChampionshipEdition);
         return topScorers;
     }
 

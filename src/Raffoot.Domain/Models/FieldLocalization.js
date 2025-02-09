@@ -78,9 +78,8 @@ class FieldLocalization {
 
 	// https://stackoverflow.com/questions/20916953/get-distance-between-two-points-in-canvas
 	calculateDistanceTo(fieldLocalization) {
-		if (this.isOffTheField) {
+		if (this.isOffTheField)
 			return Number.MAX_VALUE;
-		}
 
 		let x = this.line - fieldLocalization.line;
 		let y = this.column - fieldLocalization.column;

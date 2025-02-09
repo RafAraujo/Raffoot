@@ -15,11 +15,9 @@ class GameService {
         const object = JSON.parse(decompressed);
         const game = Object.assign(new Game(), object);
 
-        for (const seasonDate of game.seasonDates) {
-            if (!(seasonDate instanceof Date)) {
+        for (const seasonDate of game.seasonDates)
+            if (!(seasonDate instanceof Date))
                 seasonDate.date = new Date(seasonDate.date);
-            }
-        }
 
         return game;
     }
@@ -107,7 +105,7 @@ class GameService {
         game.positions = game.positions.map(o => Object.assign(new Position(), o));
         game.seasons = game.seasons.map(o => Object.assign(new Season(), o));
         game.seasonDates = game.seasonDates.map(o => Object.assign(new SeasonDate(), o));
-        game.playerTransfers = game.transfers.map(o => Object.assign(new PlayerTransfer(), o));
+        game.playerTransfers = game.playerTransfers.map(o => Object.assign(new PlayerTransfer(), o));
 
         return game;
     }

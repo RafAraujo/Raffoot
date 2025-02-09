@@ -235,7 +235,7 @@ class Club {
                 fieldLocalizations.unshift(FieldLocalization.getByName('GK'));
 
             for (const fieldLocalization of fieldLocalizations) {
-                let chosenPlayer = this._getBestAvailablePlayerForFieldLocalization(fieldLocalization);
+                let chosenPlayer = this._getBestAvailablePlayerForFieldLocalization(fieldLocalization, i === 0, true);
                 if (chosenPlayer)
                     chosenPlayer.fieldLocalization = i === 0 ? fieldLocalization : FieldLocalization.getByName('SUB');
             }
@@ -299,17 +299,21 @@ class Club {
         }
     }
 
-    _getBestAvailablePlayerForFieldLocalization(fieldLocalization) {
+    _getBestAvailablePlayerForFieldLocalization(fieldLocalization, positionPriority, fieldRegionPriority) {
         let bestPlayer = null;
 
         const availablePlayers = this.players.filter(p => !p.fieldLocalization && !p.isInjured);
-        let players = availablePlayers.filter(p => p.position.id === fieldLocalization.position.id && !p.isInjured);
+        let players = [];
+
+        if (positionPriority)
+            players = availablePlayers.filter(p => p.position.id === fieldLocalization.position.id && !p.isInjured);
 
         if (players.length > 0) {
             bestPlayer = players.orderBy('-overall', '-energy', 'age')[0];
         }
         else {
-            players = availablePlayers.filter(p => p.position.fieldRegion === fieldLocalization.position.fieldRegion);
+            if (fieldRegionPriority)
+                players = availablePlayers.filter(p => p.position.fieldRegion === fieldLocalization.position.fieldRegion);
 
             if (players.length === 0)
                 players = availablePlayers;

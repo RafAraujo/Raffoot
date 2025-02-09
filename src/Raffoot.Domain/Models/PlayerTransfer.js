@@ -1,4 +1,4 @@
-class Transfer {
+class PlayerTransfer {
     constructor(playerId, originClubId, destinationClubId, seasonDateId, value) {
         this._playerId = playerId;
         this._originClubId = originClubId;

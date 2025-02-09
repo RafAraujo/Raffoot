@@ -29,7 +29,7 @@ body {
 html[data-bs-theme="dark"] {
     table.table {
 
-        tbody.championship-two-legged-tie tr:nth-child(even) td,
+        tbody.championship-two-legged-tie tr:nth-child(odd) td,
         tr.selected {
             border-color: white;
         }
@@ -240,7 +240,7 @@ div.lineup.lineup-horizontal {
             height: 20%;
             width: 9.09%;
         }
-    
+
         .player-button {
             height: 50%;
             width: 65%;
@@ -249,7 +249,7 @@ div.lineup.lineup-horizontal {
         .player-button-home {
             border-radius: 10% 50% 50% 10%;
         }
-    
+
         .player-button-away {
             border-radius: 50% 10% 10% 50%;
         }
@@ -259,13 +259,13 @@ div.lineup.lineup-horizontal {
             width: 65%;
             transform: rotate(-90deg);
         }
-    
+
         .ball-container {
             height: 20%;
             width: 8.333%;
             z-index: 2;
         }
-    
+
         .ball {
             min-height: 10px;
             min-width: 10px;
@@ -317,8 +317,8 @@ span.overall.bronze {
 }
 
 table.table {
-    tbody.championship-two-legged-tie tr:nth-child(even) td {
-        border-bottom: 2px solid black;
+    tbody.championship-two-legged-tie tr:nth-child(odd) td {
+        border-top: 2px solid black;
     }
 
     tr.selected {

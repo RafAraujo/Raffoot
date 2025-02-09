@@ -1,7 +1,7 @@
 class Common {
     static toast = null;
 
-    static cloneElement(sourceElementSelector, destinationElementSelector, arrayIdToChange, idPrefixToInclude) {
+    static cloneElement(sourceElementSelector, destinationElementSelector, arrayIdToChange = [], idPrefixToInclude = null) {
         const sourceElement = document.querySelector(sourceElementSelector);
         const clone = sourceElement.cloneNode(true);
         Common.includePrefixInIds(clone, arrayIdToChange, idPrefixToInclude);

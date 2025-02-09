@@ -415,6 +415,7 @@ const MultiLanguage =
     "Scandinavia Cup": "Copa da Escandinávia",
     "Scandinavia League": "Liga da Escandinávia",
     "Scandinavia Supercup": "Supercopa da Escandinávia",
+    "Scores": "Resultados",
     "Scotland": "Escócia",
     "Search": "Procurar",
     "Search players": "Pesquisar jogadores",

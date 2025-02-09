@@ -165,7 +165,6 @@ class SimulationSectionViewModel {
     }
 
     watchCurrentMatch(newValue) {
-        debugger;
         if (!this.selectedMatch)
             this.selectedMatch = newValue;
     }

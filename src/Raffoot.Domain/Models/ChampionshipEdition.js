@@ -55,6 +55,10 @@ class ChampionshipEdition {
         return this.championshipEditionClubs.map(cec => cec.club);
     }
 
+    get isFinished() {
+        return this.matches.every(m => m.isFinished);
+    }
+
     get matches() {
         return Context.game.matches.filterByIds(this._matchIds);
     }
@@ -85,6 +89,15 @@ class ChampionshipEdition {
 
     addSeasonDates(seasonDates) {
         this._seasonDateIds = seasonDates.map(sd => sd.id);
+    }
+
+    getChampion() {
+        if (!this.isFinished)
+            return null;
+
+        if (this.championship.championshipType.regulation === 'round-robin') {
+            return this.getLeagueTable()[0];
+        }
     }
 
     getContinentalCupClassificationZonePositions(continentalCupDivision) {
@@ -147,13 +160,11 @@ class ChampionshipEdition {
         return this.table.lastItems(positions.length);
     }
 
-    getTable() {
-        if (this.championship.championshipType.format === 'league') {
+    getLeagueTable() {
+        if (this.championship.championshipType.format === 'league')
             return this.championshipEditionClubs.orderBy('-points', '-won', '-goalsDifference', '-goalsFor', 'club.name');
-        }
-        else {
-            return this.championshipEditionEliminationPhases;
-        }
+        else
+            return null;
     }
 
     getTopScorers() {
@@ -287,11 +298,9 @@ class ChampionshipEdition {
         const positions = [];
         const spots = this.championship.country.continentalCupSpots;
 
-        if (this.championship.championshipType.format === 'league' && this.championship.division === 1) {
-            for (const position = (spots * (continentalCupDivision - 1)) + 1; position <= spots * continentalCupDivision; position++) {
+        if (this.championship.championshipType.format === 'league' && this.championship.division === 1)
+            for (const position = (spots * (continentalCupDivision - 1)) + 1; position <= spots * continentalCupDivision; position++)
                 positions.push(position);
-            }
-        }
 
         return positions;
     }

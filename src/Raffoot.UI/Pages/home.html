@@ -17,7 +17,7 @@
 
 <body>
     <div id="matches" class="container-fluid d-none">
-        <section id="simulation" class="container" v-cloak>
+        <section id="simulation" class="container text-light" v-cloak>
             <div class="sticky-top">
                 <div style="height: 10px;">&nbsp;</div>
                 <div class="row mb-2">
@@ -27,7 +27,7 @@
                             aria-valuemax="100" style="height: 1.75rem;">
                             <div class="progress-bar bg-success border fw-bold"
                                 :class="{ 'progress-bar-striped progress-bar-animated' : !currentMatch?.isFinished }"
-                                style="font-size: 14px;" :style="{ width: (game.time / 90) * 100 + '%' }">
+                                style="font-size: 1.1rem;" :style="{ width: (game.time / 90) * 100 + '%' }">
                                 {{ `${game.time}'` }}
                             </div>
                         </div>
@@ -43,9 +43,7 @@
                     </div>
                     <div class="row mb-1">
                         <div class="col text-center">
-                            <span class="text-light">
-                                {{ getCurrentStageMessage(currentMatch.championshipEdition) }}
-                            </span>
+                            {{ getCurrentStageMessage(currentMatch.championshipEdition) }}
                         </div>
                     </div>
                     <div class="row">
@@ -166,7 +164,7 @@
                 <div class="col">
                     <div class="table-responsive">
                         <table class="table caption-top border">
-                            <caption class="text-light">
+                            <caption>
                                 {{ getCurrentStageMessage(championshipEdition) }}
                             </caption>
                             <tbody>
@@ -266,9 +264,15 @@
                 </div>
             </div>
         </section>
-        <section id="summary" class="container" v-cloak>
+        <section id="summary" class="container text-light" v-cloak>
             <div class="row mb-3">
-                <div class="col-md-6 mt-4">
+                <div class="col mt-4">
+                    <h1 class="fs-5 text-center">{{ `${translator.get("Scores")} -
+                        ${game.currentSeason.currentDate.toLocaleDateString()}` }}</h1>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
                     <label for="summary-championship" class="form-label">{{ translator.get("Championship") }}</label>
                     <select id="summary-championship" class="form-select" :title="translator.get('Championship')"
                         @change="selectChampionship($event.target.value)">
@@ -283,7 +287,7 @@
                 <div v-for="championshipEdition in getCurrentChampionshipEditions()" class="col-md-6">
                     <div class="table-responsive">
                         <table class="table table-hover table-borderless caption-top">
-                            <caption class="text-light">
+                            <caption>
                                 {{ getCurrentStageMessage(championshipEdition) }}
                             </caption>
                             <tbody>
@@ -350,7 +354,7 @@
                             <li v-for="item in getMenu()" class="nav-item"
                                 :class="{ 'dropdown' : item.subItems.length }">
                                 <a v-if="item.subItems.length === 0" class="nav-link"
-                                    :class="{ 'active' : activeSection === item.section }" :href="`#${item.section}`"
+                                    :class="{ 'active' : activeSection === item.section }" href="#"
                                     @click.prevent="item.action()">
                                     <i class="fa-solid fa-fw" :class="`fa-${item.icon}`"></i>
                                     {{ translator.get(item.name) }}
@@ -368,9 +372,8 @@
                                         </a>
                                         <a class="dropdown-item" :data-bs-toggle="subItem.modal ? 'modal' : null"
                                             :data-bs-target="subItem.modal ? `#${subItem.modal}` : null"
-                                            :class="{ 'active' : activeSection === subItem.section }"
-                                            :href="`#${subItem.section ? subItem.section : ''}`"
-                                            @click.prevent="toggleCollapse(); subItem.action();">
+                                            :class="{ 'active' : activeSection === subItem.section }" href="#"
+                                            @click.prevent="subItem.action()">
                                             <i class="fa-solid fa-fw" :class="`fa-${subItem.icon}`"></i>
                                             {{ translator.get(subItem.name) }}
                                         </a>
@@ -698,7 +701,7 @@
             <section id="squad" v-cloak>
                 <div class="row mb-2">
                     <div class="col">
-                        <h2 class="fs-5">{{ translator.get("Squad") }}</h2>
+                        <h1 class="fs-5">{{ translator.get("Squad") }}</h1>
                     </div>
                 </div>
                 <div class="row">
@@ -786,7 +789,7 @@
             <section id="calendar" v-cloak>
                 <div class="row mb-2">
                     <div class="col">
-                        <h2 class="fs-5">{{ translator.get("Calendar") }} {{ game.year }}</h2>
+                        <h1 class="fs-5">{{ translator.get("Calendar") }} {{ game.year }}</h1>
                     </div>
                 </div>
                 <div class="row">
@@ -860,7 +863,7 @@
                     </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col">
+                    <div class="col-md-6">
                         <label for="select-championship" class="form-label">
                             {{ translator.get("Championship") }}
                         </label>
@@ -895,129 +898,125 @@
                             <li class="nav-item">
                                 <a class="nav-link color-inherit text-decoration-underline" aria-current="page" href="#"
                                     :class="{ 'active' : activeTab === 'classification' }"
-                                    @click="activeTab = 'classification'">
+                                    @click.prevent="activeTab = 'classification'">
                                     {{ translator.get("Classification") }}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link color-inherit text-decoration-underline" href="#"
                                     :class="{ 'active' : activeTab === 'top-scorers' }"
-                                    @click="activeTab = 'top-scorers'">
+                                    @click.prevent="activeTab = 'top-scorers'">
                                     {{ translator.get("Top Scorers") }}
                                 </a>
                             </li>
                         </ul>
                         <div class="table-responsive" v-show="activeTab === 'classification'">
-                            <template v-if="selectedChampionshipEdition.championship.championshipType.format === 'cup'">
-                                <table class="table table-hover table-borderless"
-                                    v-for="phase in selectedChampionshipEdition.championshipEditionEliminationPhases">
-                                    <thead class="table-light">
-                                        <th class="text-center border-bottom" colspan="5">
-                                            {{ translator.get(phase.name) }}
-                                        </th>
-                                    </thead>
-                                    <tbody
-                                        :class="{ 'championship-two-legged-tie' : selectedChampionshipEdition.championship.isTwoLeggedTie }">
-                                        <template v-for="duel in phase.championshipEditionEliminationPhaseDuels">
-                                            <tr v-for="match in duel.matches">
-                                                <td class="text-end"
-                                                    :class="{ 'fw-bold' : match.clubHome === duel.getWinner() }">
-                                                    {{ match.clubHome.name }}
-                                                </td>
-                                                <td class="text-end">
-                                                    <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
-                                                        :alt="match.clubHome.name" :title="match.clubHome.name">
-                                                </td>
-                                                <td class="text-center">
-                                                    {{ match.score }}
-                                                </td>
-                                                <td class="text-start">
-                                                    <img class="club-logo ms-1 me-1" :src="match.clubAway.getLogoURL()"
-                                                        :alt="match.clubAway.name" :title="match.clubAway.name">
-                                                </td>
-                                                <td class="text-start"
-                                                    :class="{ 'fw-bold' : match.clubAway === duel.getWinner() }">
-                                                    {{ match.clubAway.name }}
-                                                </td>
-                                            </tr>
-                                        </template>
-                                    </tbody>
-                                </table>
-                            </template>
-                            <template
-                                v-else-if="selectedChampionshipEdition.championship.championshipType.format === 'league'">
-                                <table class="table table-hover">
-                                    <thead class="table-light">
-                                        <th class="text-center">#</th>
-                                        <th class="text-center w-2rem"></th>
-                                        <th class="text-start">{{ translator.get("Club") }}</th>
-                                        <th class="text-center" :title="translator.get('Points')">
-                                            {{ translator.getAbbreviation("Points") }}
-                                        </th>
-                                        <th class="text-center" :title="translator.get('Matches')">
-                                            {{ translator.getAbbreviation("Matches") }}
-                                        </th>
-                                        <th class="text-center" :title="translator.get('Wins')">
-                                            {{ translator.getAbbreviation("Wins") }}
-                                        </th>
-                                        <th class="text-center" :title="translator.get('Draws')">
-                                            {{ translator.getAbbreviation("Draws") }}
-                                        </th>
-                                        <th class="text-center" :title="translator.get('Losses')">
-                                            {{ translator.getAbbreviation("Losses") }}
-                                        </th>
-                                        <th class="text-center" :title="translator.get('Goals')">
-                                            {{ translator.getAbbreviation("Goals") }}
-                                        </th>
-                                        <th>
-                                            {{ translator.get("Last 5") }}
-                                        </th>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="(championshipEditionClub, index) in getTable()">
-                                            <td class="text-center" :class="getClassForPosition(index + 1)">
-                                                {{ index + 1 }}
+                            <table class="table table-hover table-borderless"
+                                v-if="selectedChampionshipEdition.championship.championshipType.format === 'cup'"
+                                v-for="phase in selectedChampionshipEdition.championshipEditionEliminationPhases">
+                                <thead class="table-light">
+                                    <th class="text-center border-bottom" colspan="5">
+                                        {{ translator.get(phase.name) }}
+                                    </th>
+                                </thead>
+                                <tbody
+                                    :class="{ 'championship-two-legged-tie' : selectedChampionshipEdition.championship.isTwoLeggedTie }">
+                                    <template v-for="duel in phase.championshipEditionEliminationPhaseDuels">
+                                        <tr v-for="match in duel.matches">
+                                            <td class="text-end"
+                                                :class="{ 'fw-bold' : match.clubHome === duel.getWinner() }">
+                                                {{ match.clubHome.name }}
                                             </td>
-                                            <td class="text-center p-0">
-                                                <img class="club-logo me-1"
-                                                    :src="championshipEditionClub.club.getLogoURL()"
-                                                    :alt="championshipEditionClub.club.name"
-                                                    :title="championshipEditionClub.club.name">
-                                            </td>
-                                            <td>
-                                                {{ championshipEditionClub.club.name }}
-                                            </td>
-                                            <td class="text-center fw-bold">
-                                                {{ championshipEditionClub.points }}
+                                            <td class="text-end">
+                                                <img class="club-logo ms-1 me-1" :src="match.clubHome.getLogoURL()"
+                                                    :alt="match.clubHome.name" :title="match.clubHome.name">
                                             </td>
                                             <td class="text-center">
-                                                {{ championshipEditionClub.matches }}
+                                                {{ match.score }}
                                             </td>
-                                            <td class="text-center">
-                                                {{ championshipEditionClub.won }}
+                                            <td class="text-start">
+                                                <img class="club-logo ms-1 me-1" :src="match.clubAway.getLogoURL()"
+                                                    :alt="match.clubAway.name" :title="match.clubAway.name">
                                             </td>
-                                            <td class="text-center">
-                                                {{ championshipEditionClub.drawn }}
-                                            </td>
-                                            <td class="text-center">
-                                                {{ championshipEditionClub.lost }}
-                                            </td>
-                                            <td class="text-center">
-                                                {{
-                                                `${championshipEditionClub.goalsFor}:${championshipEditionClub.goalsAgainst}`
-                                                }}
-                                            </td>
-                                            <td>
-                                                <i v-for="item in getLast5Results(championshipEditionClub)"
-                                                    class="fa-solid me-1" :class="item.icon, item.color"
-                                                    :title="item.description"></i>
+                                            <td class="text-start"
+                                                :class="{ 'fw-bold' : match.clubAway === duel.getWinner() }">
+                                                {{ match.clubAway.name }}
                                             </td>
                                         </tr>
-                                    </tbody>
-                                </table>
-                            </template>
+                                    </template>
+                                </tbody>
+                            </table>
+                            <table class="table table-hover"
+                                v-else-if="selectedChampionshipEdition.championship.championshipType.format === 'league'">
+                                <thead class="table-light">
+                                    <th class="text-center">#</th>
+                                    <th class="text-center w-2rem"></th>
+                                    <th class="text-start">{{ translator.get("Club") }}</th>
+                                    <th class="text-center" :title="translator.get('Points')">
+                                        {{ translator.getAbbreviation("Points") }}
+                                    </th>
+                                    <th class="text-center" :title="translator.get('Matches')">
+                                        {{ translator.getAbbreviation("Matches") }}
+                                    </th>
+                                    <th class="text-center" :title="translator.get('Wins')">
+                                        {{ translator.getAbbreviation("Wins") }}
+                                    </th>
+                                    <th class="text-center" :title="translator.get('Draws')">
+                                        {{ translator.getAbbreviation("Draws") }}
+                                    </th>
+                                    <th class="text-center" :title="translator.get('Losses')">
+                                        {{ translator.getAbbreviation("Losses") }}
+                                    </th>
+                                    <th class="text-center" :title="translator.get('Goals')">
+                                        {{ translator.getAbbreviation("Goals") }}
+                                    </th>
+                                    <th>
+                                        {{ translator.get("Last 5") }}
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(championshipEditionClub, index) in getLeagueTable()">
+                                        <td class="text-center" :class="getClassForPosition(index + 1)">
+                                            {{ index + 1 }}
+                                        </td>
+                                        <td class="text-center p-0">
+                                            <img class="club-logo me-1" :src="championshipEditionClub.club.getLogoURL()"
+                                                :alt="championshipEditionClub.club.name"
+                                                :title="championshipEditionClub.club.name">
+                                        </td>
+                                        <td>
+                                            {{ championshipEditionClub.club.name }}
+                                        </td>
+                                        <td class="text-center fw-bold">
+                                            {{ championshipEditionClub.points }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ championshipEditionClub.matches }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ championshipEditionClub.won }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ championshipEditionClub.drawn }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ championshipEditionClub.lost }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{
+                                            `${championshipEditionClub.goalsFor}:${championshipEditionClub.goalsAgainst}`
+                                            }}
+                                        </td>
+                                        <td>
+                                            <i v-for="item in getLast5Results(championshipEditionClub)"
+                                                class="fa-solid me-1" :class="item.icon, item.color"
+                                                :title="item.description"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="table-responsive" v-show="activeTab === 'top-scorers'">
+                        <div class="table-responsive top-scorers" v-show="activeTab === 'top-scorers'">
                             <table class="table table-hover">
                                 <thead class="table-light">
                                     <th class="text-center">#</th>
@@ -1040,41 +1039,35 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(championshipEditionPlayer, index) in getTopScorers()">
+                                    <tr v-for="item in getTopScorers()">
                                         <td class="text-center">
-                                            {{ index + 1 }}
+                                            {{ item.rank }}
                                         </td>
                                         <td class="p-0">
-                                            <img class="player me-1"
-                                                :src="championshipEditionPlayer.player.getPhotoURL()"
-                                                :alt="championshipEditionPlayer.player.name"
-                                                :title="championshipEditionPlayer.player.name"
+                                            <img class="player me-1" :src="item.player.getPhotoURL()"
+                                                :alt="item.player.name" :title="item.player.name"
                                                 @error="loadDefaultPlayerPhoto($event)">
                                         </td>
                                         <td>
-                                            {{ championshipEditionPlayer.player.name }}
+                                            {{ item.player.name }}
                                         </td>
                                         <td class="text-center">
-                                            {{ championshipEditionPlayer.goals }}
+                                            {{ item.goals }}
                                         </td>
                                         <td class="text-center">
-                                            {{ championshipEditionPlayer.matches }}
+                                            {{ item.matches }}
                                         </td>
                                         <td class="p-0">
-                                            <img class="club-logo me-1"
-                                                :src="championshipEditionPlayer.player.club.getLogoURL()"
-                                                :alt="championshipEditionPlayer.player.club.name"
-                                                :title="championshipEditionPlayer.player.club.name">
+                                            <img class="club-logo me-1" :src="item.player.club.getLogoURL()"
+                                                :alt="item.player.club.name" :title="item.player.club.name">
                                         </td>
                                         <td>
-                                            {{ championshipEditionPlayer.player.club.name }}
+                                            {{ item.player.club.name }}
                                         </td>
                                         <td class="text-center fw-bold"
-                                            :class="`text-${championshipEditionPlayer.player.position.fieldRegion.colorClass}`"
-                                            :title="translator.get(championshipEditionPlayer.player.position.name)">
-                                            {{
-                                            translator.get(championshipEditionPlayer.player.position.abbreviation)
-                                            }}
+                                            :class="`text-${item.player.position.fieldRegion.colorClass}`"
+                                            :title="translator.get(item.player.position.name)">
+                                            {{ translator.get(item.player.position.abbreviation) }}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1086,7 +1079,7 @@
             <section id="finances" v-cloak>
                 <div class="row mb-2">
                     <div class="col">
-                        <h2 class="fs-5">{{ translator.get("Finances") }}</h2>
+                        <h1 class="fs-5">{{ translator.get("Finances") }}</h1>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -1478,6 +1471,16 @@
                     </div>
                 </div>
             </section>
+            <section id="top-scorers" v-cloak>
+                <div class="row mb-2">
+                    <div class="col">
+                        <h1 class="fs-5">{{ translator.get("Top scorers") }}</h1>
+                    </div>
+                </div>
+                <div class="table-responsive">
+
+                </div>
+            </section>
         </main>
     </div>
 
@@ -1819,6 +1822,7 @@
     <script src="../ViewModels/PlayerFilterViewModel.js"></script>
     <script src="../ViewModels/PlayerOrderViewModel.js"></script>
     <script src="../ViewModels/TeamLineupViewModel.js"></script>
+    <script src="../ViewModels/TopScorersViewModel.js"></script>
 
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="js/vue/vue.global.js"></script>
@@ -1853,6 +1857,7 @@
                 translator.setLanguage(game.config.language);
 
                 Common.cloneElement('.lineup-container', '#modal-match .lineups', ['select-formation'], 'modal-match-');
+                Common.cloneElement('.top-scorers table', '#top-scorers .table-responsive');
 
                 Router.addView('#management', new VueInstance('#modal-colors', new ColorsModalViewModel(game, translator)).createApp().mount(), true);
                 Router.addView('#management', new VueInstance('#modal-language', new LanguageModalViewModel(game, translator)).createApp().mount(), true);
@@ -1868,6 +1873,7 @@
                 Router.addView('#management', new VueInstance('#finances', new FinancesSectionViewModel(game, translator)).createApp().mount());
                 Router.addView('#management', new VueInstance('#clubs', new ClubsSectionViewModel(game, translator)).createApp().mount());
                 Router.addView('#management', new VueInstance('#players', new PlayersSectionViewModel(game, translator)).createApp().mount());
+                Router.addView('#management', new VueInstance('#top-scorers', new TopScorersViewModel(game, translator)).createApp().mount());
 
                 Router.addView('#matches', new VueInstance('#simulation', new SimulationSectionViewModel(game, translator)).createApp().mount());
                 Router.addView('#matches', new VueInstance('#summary', new SummarySectionViewModel(game, translator)).createApp().mount());

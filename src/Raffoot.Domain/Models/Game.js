@@ -27,10 +27,10 @@ class Game {
         this.formations = [];
         this.matches = [];
         this.players = [];
+        this.playerTransfers = [];
         this.positions = [];
         this.seasons = [];
         this.seasonDates = [];
-        this.transfers = [];
 
         this.matchSimulations = [];
         this.matchSimulationActions = [];
@@ -129,7 +129,7 @@ class Game {
 
     getPositionInTheNationalLeagueByClub(club) {
         const nationalLeague = this.getNationalLeagueByClub(club);
-        const table = nationalLeague.getTable();
+        const table = nationalLeague.getLeagueTable();
         const position = table.map(cec => cec.club.id).indexOf(club.id) + 1;
         return position;
     }
