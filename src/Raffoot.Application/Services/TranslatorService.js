@@ -17,12 +17,12 @@ class TranslatorService {
     }
 
     get(text) {
-        if (this.language === 'en') {
+        if (this.language === 'en')
             return text;
-        }
 
         const translations = MultiLanguage[this.language];
         const translation = translations[text] ?? translations[text.withOnlyFirstLetterUpperCase()];
+        
         if (translation) {
             return translation;
         }
@@ -37,11 +37,9 @@ class TranslatorService {
         const translation = this.get(text);
         const array = translation.split(' ');
 
-        for (const word of array) {
-            if (word.length > 2) {
+        for (const word of array)
+            if (word.length > 2)
                 abbreviation += word[0].toUpperCase();
-            }
-        }
 
         return abbreviation;
     }

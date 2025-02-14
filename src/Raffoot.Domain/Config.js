@@ -21,12 +21,12 @@ const Config = (function () {
             white: { hex: '#f8f9fa', class: 'light' },
             yellow: { hex: '#ffc107', class: 'warning' },
         },
-        cup: {
-            groupClubCount: 4,
-            groupQualifiedClubCount: 2
-        },
         continentalCup: {
             maxClubCount: 32,
+        },
+        cup: {
+            groupClubCount: 4,
+            groupQualifiedClubCount: 2,
         },
         dataSources: ['Fifa', 'FM'],
         delayBeforeSummary: 1500,

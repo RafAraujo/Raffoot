@@ -102,7 +102,7 @@ class PlaySectionViewModel {
         const step = (timestamp) => {
             if (!startTime) startTime = timestamp;
             const progress = Math.min((timestamp - startTime) / duration, 1);
-            obj.innerText = Math.floor(progress * (end - start) + start).formatAbbreviated();
+            obj.innerText = Math.floor(progress * (end - start) + start).formatAbbreviated(this.translator.language);
             if (progress < 1) {
                 window.requestAnimationFrame(step);
             }

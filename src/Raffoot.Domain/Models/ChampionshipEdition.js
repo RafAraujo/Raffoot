@@ -95,7 +95,7 @@ class ChampionshipEdition {
         if (!this.isFinished)
             return null;
 
-        if (this.championship.championshipType.regulation === 'round-robin') {
+        if (this.championship.regulation === 'round-robin') {
             return this.getLeagueTable()[0];
         }
     }
@@ -182,7 +182,7 @@ class ChampionshipEdition {
     }
 
     scheduleMatches() {
-        switch (this.championship.championshipType.regulation) {
+        switch (this.championship.regulation) {
             case 'elimination':
                 this._defineChampionshipEditionEliminationPhases();
                 this._scheduleMatchesElimination();
@@ -192,6 +192,9 @@ class ChampionshipEdition {
                 this._defineChampionshipEditionEliminationPhases();
                 this._scheduleMatchesChampionshipEditionGroups();
                 break;
+            case 'league then elimination':
+                this._defineChampionshipEditionFixtures();
+                break;
             case 'round-robin':
                 this._defineChampionshipEditionFixtures();
                 this._scheduleMatchesRoundRobin();
@@ -200,7 +203,7 @@ class ChampionshipEdition {
     }
 
     _defineChampionshipEditionEliminationPhases() {
-        let clubCount = this.championship.championshipType.regulation === 'groups' ?
+        let clubCount = this.championship.regulation === 'groups' ?
             this.championship.groupCount * this.championship.qualifiedClubsByGroupCount :
             this.championship.clubCount;
         
@@ -240,9 +243,8 @@ class ChampionshipEdition {
     }
 
     _scheduleMatchesChampionshipEditionGroups() {
-        for (const championshipEditionGroup of this.championshipEditionGroups) {
+        for (const championshipEditionGroup of this.championshipEditionGroups)
             ChampionshipEdition._genericRoundRobin(this, this.groupDates, championshipEditionGroup.clubs, championshipEditionGroup.championshipEditionFixtures);
-        }
     }
 
     _scheduleMatchesElimination() {
@@ -255,7 +257,7 @@ class ChampionshipEdition {
             }
         }
 
-        if (this.championship.championshipType.regulation === 'elimination') {
+        if (this.championship.regulation === 'elimination') {
             this.championshipEditionEliminationPhases[0].qualify(this.championshipEditionClubs);
         }
     }

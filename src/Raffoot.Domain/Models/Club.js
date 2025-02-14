@@ -73,7 +73,7 @@ class Club {
     }
 
     get overall() {
-        return this.players.map(p => p.overall).average();
+        return this.players.orderBy('-overall').take(22).map(p => p.overall).average();
     }
 
     get players() {

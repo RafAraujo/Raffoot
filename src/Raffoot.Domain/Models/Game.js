@@ -97,21 +97,63 @@ class Game {
         }
     }
 
-    _qualifyWinnersToNextEliminationPhases() {
-        const championshipEditionEliminationPhases = this.championshipEditionEliminationPhases
-            .filter(ceep => ceep.lastDate === this.currentSeason.currentDate);
-
-        for (const eliminationPhase of championshipEditionEliminationPhases) {
-            const championshipEdition = eliminationPhase.championshipEdition;
-            const championshipEditionClubs = [];
-            for (const duel of eliminationPhase.championshipEditionEliminationPhaseDuels) {
-                const winner = duel.getWinner();
-                const championshipEditionClub = championshipEdition.championshipEditionClubs.find(cec => cec.club.id === winner.id);
-                championshipEditionClubs.push(championshipEditionClub);
-            }
-            const nextEliminationPhase = this.currentSeason.getChampionshipEditionNextEliminationPhase(championshipEdition);
-            nextEliminationPhase.qualify(championshipEditionClubs);
+    arrangeSquads() {
+        const clubs = this.clubs.filter(c => c.isPlayable);
+        for (const club of clubs) {
+            club.arrangePlayers();
+            const playerWages = club.getPlayerWages();
+            club.receive(playerWages * 18);
         }
+    }
+
+    definePromotionAndRelegation() {
+        const allNationalLeagues = this.championships.filter(c => c.isNationalLeague);
+        const confederations = this.confederations.filter(c => c.isPlayable);
+
+        for (const confederation of confederations) {
+            const nationalLeagues = allNationalLeagues.filter(c => c.confederation.id === confederation.id);
+
+            const clubsWithoutDivisionCount = confederation.clubs.length - nationalLeagues.flatMap(c => c.clubCount).sum();
+            const lastDivision = nationalLeagues.length;
+
+            let division = 1;
+            while (division <= lastDivision) {
+                const nationalLeague = nationalLeagues.find(c => c.division === division);
+                nationalLeague.promotionClubCount = division === 1 ? 0 : nationalLeague.maxClubCountForPromotion;
+                division++;
+            }
+
+            division = lastDivision;
+            while (division >= 1) {
+                const nationalLeague = nationalLeagues.find(c => c.division === division);
+                const lowerDivision = nationalLeagues.find(c => c.division === division + 1);
+                nationalLeague.relegationClubCount = division === lastDivision ? Math.min(clubsWithoutDivisionCount, nationalLeague.maxClubCountForRelegation) : lowerDivision.promotionClubCount;
+                division--;
+            }
+        }
+    }
+
+    distributeContinentalSpots() {
+        const continentalCup = ChampionshipType.find('continental', 'cup');
+        const continentalCups = this.championships.filter(c => c.championshipType.id === continentalCup.id && c.division === 1);
+
+        for (const continentalCup of continentalCups) {
+            let allocatedSpots = 0;
+            const confederations = this.confederations.filter(c => c.continent.id === continentalCup.continent.id && c.isPlayable);
+
+            while (allocatedSpots < continentalCup.clubCount) {
+                for (const confederation of confederations) {
+                    confederation.addContinentalCupSpot(continentalCup.division);
+                    allocatedSpots++;
+
+                    if (allocatedSpots == continentalCup.clubCount)
+                        break;
+                }
+            }
+        }
+
+        for (const confederation of this.confederations)
+            confederation.setContinentalCupSpots(confederation.getContinentalCupSpots(1), 2);
     }
 
     getCurrentMatch() {
@@ -189,5 +231,22 @@ class Game {
                     callback();
             }
         }, speed);
+    }
+
+    _qualifyWinnersToNextEliminationPhases() {
+        const championshipEditionEliminationPhases = this.championshipEditionEliminationPhases
+            .filter(ceep => ceep.lastDate === this.currentSeason.currentDate);
+
+        for (const eliminationPhase of championshipEditionEliminationPhases) {
+            const championshipEdition = eliminationPhase.championshipEdition;
+            const championshipEditionClubs = [];
+            for (const duel of eliminationPhase.championshipEditionEliminationPhaseDuels) {
+                const winner = duel.getWinner();
+                const championshipEditionClub = championshipEdition.championshipEditionClubs.find(cec => cec.club.id === winner.id);
+                championshipEditionClubs.push(championshipEditionClub);
+            }
+            const nextEliminationPhase = this.currentSeason.getChampionshipEditionNextEliminationPhase(championshipEdition);
+            nextEliminationPhase.qualify(championshipEditionClubs);
+        }
     }
 }

@@ -205,6 +205,7 @@ class TeamLineupViewModel {
                 }
 
                 match.makePlayerSubstitution(this.game.time, this.game.club, playerFromField, playerFromBench);
+                this.movePlayerToUnlisted(playerFromField);
             }
         }
         else {
@@ -215,12 +216,22 @@ class TeamLineupViewModel {
     }
 
     _convertToPlayerModel(player, match) {
+        const classes = [];
+        if (player === this.selectedPlayer)
+            classes.push('blink');
+        if (player.isInjured)
+            classes.push('injured');
+        if (player.club.id === this.game.club.id)
+            classes.push('my-club');
+        if (this.selectedPlayer)
+            classes.push('any-selected-player');
+
         const model = {
             player: player,
             championshipEditionPlayer: match?.championshipEdition?.championshipEditionPlayers.find(cep => cep.player.id === player.id),
             html: {
                 player: {
-                    class: [(player === this.selectedPlayer ? 'blink' : ''), (player.isInjured ? 'injured' : ''), (player.club.id === game.club.id ? 'my-club' : ''), (this.selectedPlayer ? 'selected-player' : '')],
+                    class: classes,
                 }
             }
         };

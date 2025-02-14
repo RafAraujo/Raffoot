@@ -12,7 +12,7 @@ class CalendarSectionViewModel {
     _getCalendar(club) {
         const items = [];
         for (const seasonDate of this.game.currentSeason.seasonDates) {
-            const match = seasonDate.matches.find(m => m.clubs?.map(c => c.id).includes(club.id)) ?? null;
+            const match = seasonDate.matches.find(m => m.clubs?.map(c => c.id).includes(club.id));
 
             if (match || seasonDate.isTransferWindow) {
                 const item = {

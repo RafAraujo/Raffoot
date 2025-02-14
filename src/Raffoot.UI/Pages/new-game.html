@@ -37,70 +37,104 @@
                     <h1 class="text-center">Raffoot</h1>
                 </div>
             </div>
-            <form id="form" action="home.html" @submit.prevent="startGame()">
-                <fieldset>
-                    <legend>{{ translator.get("Choose your club") }}</legend>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="data-source" class="form-label">{{ translator.get("Data Source") }}</label>
-                            <select id="data-source" class="form-control" required autocomplete="off"
-                                v-model.lazy="selectedDataSource" @change="loadYears()">
-                                <option v-for="(dataSource, index) in dataSources" :key="dataSource" :value="dataSource">
-                                    {{ dataSource }}
-                                </option>
-                            </select>
+            <form id="form" action="home.html" @submit.prevent="startGame()" novalidate>
+                <div class="accordion mb-3">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#game-settings" aria-controls="game-settings">
+                                {{ translator.get("Game settings") }}
+                            </button>
+                        </h2>
+                        <div id="game-settings" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div class="row row-gap-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label for="data-source" class="form-label">{{ translator.get("Data Source")
+                                            }}</label>
+                                        <select id="data-source" class="form-select" required autocomplete="off"
+                                            v-model.lazy="selectedDataSource" @change="loadYears()">
+                                            <option v-for="(dataSource, index) in dataSources" :key="dataSource"
+                                                :value="dataSource">
+                                                {{ dataSource }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="year" class="form-label">{{ translator.get("Year") }}</label>
+                                        <select id="year" class="form-select" required autocomplete="off"
+                                            v-model.lazy="selectedYear" @change="createGame()">
+                                            <option></option>
+                                            <option v-for="(year, index) in years" :key="year" :value="year">
+                                                {{ year }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-check form-switch">
+                                            <input type="checkbox" id="combine-countries" class="form-check-input"
+                                                role="switch" checked v-model.lazy="combineCountries" @change="createGame()">
+                                            <label for="combine-countries" class="form-check-label">
+                                                {{ translator.get("Combine countries") }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="year" class="form-label">{{ translator.get("Year") }}</label>
-                            <select id="year" class="form-control" required autocomplete="off"
-                                v-model.lazy="selectedYear" @change="createGame()">
-                                <option></option>
-                                <option v-for="(year, index) in years" :key="year" :value="year">
-                                    {{ year }}
-                                </option>
-                            </select>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#choose-your-club" aria-expanded="true" aria-controls="choose-your-club">
+                                {{ translator.get("Choose your club") }}
+                            </button>
+                        </h2>
+                        <div id="choose-your-club" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                <div class="row row-gap-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label for="country" class="form-label">{{ translator.get("Country") }}</label>
+                                        <select id="country" class="form-select" required autocomplete="off"
+                                            @change="setCountry($event.target.value)">
+                                            <option></option>
+                                            <option v-for="country in getPlayableCountries()" :key="country.id"
+                                                :value="country.id">
+                                                {{ country.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="club" class="form-label">{{ translator.get("Club") }}</label>
+                                        <select id="club" class="form-select" required autocomplete="off"
+                                            @change="setClub($event.target.value)">
+                                            <option></option>
+                                            <template v-if="game?.country"
+                                                v-for="championshipEdition in game?.currentSeason.getNationalLeaguesByCountry(game.country)">
+                                                <optgroup
+                                                    :label="translator.getChampionshipName(championshipEdition.championship)">
+                                                    <option v-for="club in championshipEdition.clubs.orderBy('name')"
+                                                        :key="club.id" :value="club.id">
+                                                        {{ club.name }}
+                                                    </option>
+                                                </optgroup>
+                                            </template>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="name" class="form-label">{{ translator.get("Name") }}</label>
+                                        <input type="text" id="name" class="form-control" required autocomplete="off"
+                                            v-model.lazy="gameName">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="country" class="form-label">{{ translator.get("Country") }}</label>
-                            <select id="country" class="form-select" required autocomplete="off"
-                                @change="setCountry($event.target.value)">
-                                <option></option>
-                                <option v-for="country in getPlayableCountries()" :key="country.id" :value="country.id">
-                                    {{ country.name }}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="club" class="form-label">{{ translator.get("Club") }}</label>
-                            <select id="club" class="form-control" required autocomplete="off"
-                                @change="setClub($event.target.value)">
-                                <option></option>
-                                <template v-if="game?.country"
-                                    v-for="championshipEdition in game?.currentSeason.getNationalLeaguesByCountry(game.country)">
-                                    <optgroup :label="translator.getChampionshipName(championshipEdition.championship)">
-                                        <option v-for="club in championshipEdition.clubs.orderBy('name')" :key="club.id"
-                                            :value="club.id">
-                                            {{ club.name }}
-                                        </option>
-                                    </optgroup>
-                                </template>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="name" class="form-label">{{ translator.get("Name") }}</label>
-                            <input type="text" id="name" class="form-control" required autocomplete="off"
-                                v-model.lazy="gameName">
-                        </div>
-                    </div>
-                </fieldset>
+                </div>
 
                 <div class="row">
                     <div class="col-6 col-sm-3 d-grid">
@@ -206,6 +240,7 @@
             return {
                 game: null,
                 gameName: '',
+                combineCountries: true,
                 isCreatingGame: false,
                 message: { text: '', type: 'primary' },
                 dataSources: Config.dataSources,
@@ -226,7 +261,7 @@
                         return;
 
                     this.isCreatingGame = true;
-                    this.game = gameService.create(this.selectedDataSource, this.selectedYear, '');
+                    this.game = gameService.create(this.selectedDataSource, this.selectedYear, '', this.combineCountries);
                     this.game.config.theme = this.theme;
                     this.isCreatingGame = false;
                 }
@@ -235,15 +270,13 @@
                     throw error;
                 }
             },
-            serviceExists(year) {
-                try {
-                    const name = `${this.selectedDataSource}${year.toString().substring(2)}Service`;
-                    eval(name);
-                    return true;
-                }
-                catch {
-                    return false;
-                }
+            formIsValid() {
+                const accordionButton = document.querySelector('[data-bs-target="#choose-your-club"]');
+                if (accordionButton.getAttribute('aria-expanded') === 'false')
+                    accordionButton.click();
+
+                const form = document.querySelector('form');
+                return form.reportValidity();
             },
             getContinents() {
                 return this.game?.continents.map(c => ({ id: c.id, name: this.translator.get(c.name) }));
@@ -271,6 +304,16 @@
 
                 this.years = years;
             },
+            serviceExists(year) {
+                try {
+                    const name = `${this.selectedDataSource}${year.toString().substring(2)}Service`;
+                    eval(name);
+                    return true;
+                }
+                catch {
+                    return false;
+                }
+            },
             setCountry(id) {
                 if (!this.game)
                     return;
@@ -287,6 +330,9 @@
             },
             async startGame() {
                 try {
+                    if (!this.formIsValid())
+                        return;
+
                     this.game.name = this.gameName;
                     this.game.club.setSquadOrder();
                     //this.game.club.clearFormation();
@@ -319,7 +365,7 @@
             this.clearMessage();
         },
         beforeUpdate: () => t0 = performance.now(),
-        updated: () => console.log(`Update took ${(performance.now() - t0)} milliseconds.`),
+        updated: () => console.log(`Update took ${performance.now() - t0} milliseconds.`),
     };
 
     Vue.createApp(RaffootApp).mount('#app');

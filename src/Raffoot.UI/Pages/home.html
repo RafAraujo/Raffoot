@@ -20,7 +20,7 @@
         <section id="simulation" class="container text-light" v-cloak>
             <div class="sticky-top">
                 <div style="height: 10px;">&nbsp;</div>
-                <div class="row mb-2">
+                <div class="row mb-3">
                     <div class="col">
                         <div class="progress bg-lightgray rounded-0 border" role="progressbar"
                             :aria-label="translator.get('Time')" :aria-valuenow="game.time" aria-valuemin="0"
@@ -144,13 +144,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" v-if="currentMatch.matchSimulation">
-                                <div class="col">
-                                    <div>
-                                        {{ currentMatch.getPlayerSubstitutionsLeft(game.club) }}
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -212,7 +205,7 @@
                                 :title="translator.get('Close')" :aria-label="translator.get('Close')"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="mb-2">
+                            <div class="mb-3">
                                 <a class="btn btn-light border me-2" :class="{ 'active' : selectedTab === 'lineups' }"
                                     @click.prevent="selectTab('lineups')" aria-current="page" href="#">
                                     <i class="fa-solid fa-users-gear me-1"></i>
@@ -350,7 +343,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbar-content">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <ul class="navbar-nav me-auto mb-3 mb-lg-0">
                             <li v-for="item in getMenu()" class="nav-item"
                                 :class="{ 'dropdown' : item.subItems.length }">
                                 <a v-if="item.subItems.length === 0" class="nav-link"
@@ -418,7 +411,7 @@
                         <div class="m-0 text-end">
                             <i class="fa-solid fa-dollar-sign fa-fw"></i>
                             <span id="club-money" :title="game.club.money.formatCurrency()">
-                                {{ game.club.money.formatAbbreviated() }}
+                                {{ game.club.money.formatAbbreviated(translator.language) }}
                             </span>
                         </div>
                     </div>
@@ -561,7 +554,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-2">
+                            <div class="row mb-3">
                                 <div class="col-lg-6">
                                     <div class="field position-relative mb-1" style="height: 420px">
                                         <div v-for="item in lineup.getPlayersOnField(selectedMatch)"
@@ -619,7 +612,7 @@
                                         </div>
                                         <div v-for="fieldLocalization in lineup.getEmptyFieldLocalizations()"
                                             class="field-localization position-absolute d-flex flex-column justify-content-center align-items-center"
-                                            :class="{ 'selected-player' : lineup.selectedPlayer }"
+                                            :class="{ 'any-selected-player' : lineup.selectedPlayer }"
                                             @click.stop=" lineup.movePlayerToField(fieldLocalization.id)"
                                             :style="lineup.getStyleForFieldLocalization(fieldLocalization)">
                                             <img :src="game.club.getKitsURLs()[0].url"
@@ -639,7 +632,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div v-for="substituteType in lineup.substituteTypes" class="bench mb-1"
-                                        :class="{ 'selected-player' : lineup.selectedPlayer, 'pb-5' : lineup.getSize(substituteType) % 5 === 0 }"
+                                        :class="{ 'pb-5' : lineup.getSize(substituteType) % 5 === 0 }"
                                         @click.stop="lineup.movePlayerTo(substituteType)"
                                         @drop="lineup.drop($event); lineup.movePlayerTo(substituteType)"
                                         @dragover.prevent :title="translator.get(substituteType)">
@@ -774,10 +767,10 @@
                                             </div>
                                         </td>
                                         <td class="text-end" :title="player.marketValue.formatCurrency()">
-                                            {{ player.marketValue.formatAbbreviated() }}
+                                            {{ player.marketValue.formatAbbreviated(translator.language) }}
                                         </td>
                                         <td class="text-end" :title="player.wage.formatCurrency()">
-                                            {{ player.wage.formatAbbreviated() }}
+                                            {{ player.wage.formatAbbreviated(translator.language) }}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -848,7 +841,7 @@
                 </div>
             </section>
             <section id="standings" v-cloak>
-                <div class="row mb-2">
+                <div class="row mb-3">
                     <div class="col">
                         <a class="btn btn-light border me-2" :class="{ 'active' : isNationalChampionshipsSelected }"
                             @click="selectNationalChampionship(currentMatch)">
@@ -862,7 +855,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="row mb-2">
+                <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="select-championship" class="form-label">
                             {{ translator.get("Championship") }}
@@ -870,17 +863,16 @@
                         <select id="select-championship" class="form-select"
                             @change="selectChampionshipEdition($event.target.value)">
                             <option></option>
-                            <template v-if="isNationalChampionshipsSelected">
-                                <template v-for="confederation in getConfederations()">
-                                    <optgroup :label="confederation.name">
-                                        <option
-                                            v-for="championshipEdition in getChampionshipEditionsByConfederation(confederation.id)"
-                                            :key="championshipEdition.id" :value="championshipEdition.id"
-                                            :selected="selectedChampionshipEdition?.id === championshipEdition.id">
-                                            {{ championshipEdition.name }}
-                                        </option>
-                                    </optgroup>
-                                </template>
+                            <template v-if="isNationalChampionshipsSelected"
+                                v-for="confederation in getConfederations()">
+                                <optgroup :label="confederation.name">
+                                    <option
+                                        v-for="championshipEdition in getChampionshipEditionsByConfederation(confederation.id)"
+                                        :key="championshipEdition.id" :value="championshipEdition.id"
+                                        :selected="selectedChampionshipEdition?.id === championshipEdition.id">
+                                        {{ championshipEdition.name }}
+                                    </option>
+                                </optgroup>
                             </template>
                             <template v-else>
                                 <option v-for="championshipEdition in getInternationalChampionshipEditions()"
@@ -1082,7 +1074,7 @@
                         <h1 class="fs-5">{{ translator.get("Finances") }}</h1>
                     </div>
                 </div>
-                <div class="row mb-2">
+                <div class="row mb-3">
                     <div class="col text-center">
                         <span class="fs-1" style="font-family: monospace;">{{ game.club.money.formatCurrency() }}</span>
                     </div>
@@ -1090,8 +1082,8 @@
                 </div>
             </section>
             <section id="clubs" v-cloak>
-                <div class="row mb-2">
-                    <div class="col-md-6 mb-2">
+                <div class="row row-gap-3 mb-3">
+                    <div class="col-md-6">
                         <label for="select-country" class="form-label">
                             {{ translator.get("Country") }}
                         </label>
@@ -1117,7 +1109,7 @@
                     </div>
                 </div>
                 <div v-if="selectedClub">
-                    <div class="row mb-2">
+                    <div class="row mb-3">
                         <div class="col text-center">
                             <figure class="figure">
                                 <img class="figure-img img-fluid" :src="selectedClub.getLogoURL()"
@@ -1127,12 +1119,12 @@
                             </figure>
                         </div>
                     </div>
-                    <div class="row-mb-2">
+                    <div class="row-mb-3">
                         <div class="col text-center">
                             <div class="row">
                                 <div v-for="(kit, index) in getKitsURLs()" class="col-6 col-sm-3">
                                     <figure class="figure">
-                                        <img class="figure-img img-fluid" :src="kit.url"
+                                        <img class="figure-img img-fluid mb-0" :src="kit.url"
                                             :alt="translator.get('Uniform')" :title="translator.get('Uniform')"
                                             onload="this.parentElement.classList.remove('d-none')"
                                             onerror="this.parentElement.classList.add('d-none')">
@@ -1150,7 +1142,7 @@
                                 <table class="table table-hover table-borderless sortable caption-top">
                                     <caption class="color-inherit">
                                         {{ `${translator.get("Market Value")}:
-                                        ${selectedClub.marketValue.formatAbbreviated()}` }}
+                                        ${selectedClub.marketValue.formatAbbreviated(translator.language)}` }}
                                     </caption>
                                     <thead class="table-light">
                                         <th class="text-center" :title="translator.get('Position')"
@@ -1219,10 +1211,10 @@
                                                 </div>
                                             </td>
                                             <td class="text-end" :title="player.marketValue.formatCurrency()">
-                                                {{ player.marketValue.formatAbbreviated() }}
+                                                {{ player.marketValue.formatAbbreviated(translator.language) }}
                                             </td>
                                             <td class="text-end" :title="player.wage.formatCurrency()">
-                                                {{ player.wage.formatAbbreviated() }}
+                                                {{ player.wage.formatAbbreviated(translator.language) }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1324,9 +1316,9 @@
                                 :max="playerFilter.marketValue.maximum" :step="playerFilter.marketValue.step"
                                 :data-unit="playerFilter.marketValue.unit"
                                 v-model.lazy="playerFilter.marketValue.currentValue"
-                                oninput="this.nextElementSibling.value = parseInt(this.value * this.getAttribute('data-unit')).formatAbbreviated()">
+                                oninput="this.nextElementSibling.value = parseInt(this.value * this.getAttribute('data-unit')).formatAbbreviated(translator.language)">
                             <output class="d-block" style="margin-top: -12px;"
-                                :value="parseInt(playerFilter.marketValue.currentValue * playerFilter.marketValue.unit).formatAbbreviated()"></output>
+                                :value="parseInt(playerFilter.marketValue.currentValue * playerFilter.marketValue.unit).formatAbbreviated(translator.language)"></output>
                         </div>
                         <div class="col-6">
                             <div class="form-check form-switch">
@@ -1423,10 +1415,10 @@
                                                 {{ player.age }}
                                             </td>
                                             <td class="text-end" :title="player.marketValue.formatCurrency()">
-                                                {{ player.marketValue.formatAbbreviated() }}
+                                                {{ player.marketValue.formatAbbreviated(translator.language) }}
                                             </td>
                                             <td class="text-end" :title="player.wage.formatCurrency()">
-                                                {{ player.wage.formatAbbreviated() }}
+                                                {{ player.wage.formatAbbreviated(translator.language) }}
                                             </td>
                                             <td>{{ player.club.name }}</td>
                                             <td class="text-center">
@@ -1439,7 +1431,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-2">
+                    <div class="row mb-3 pb-3">
                         <div class="col">
                             <button type="button" class="btn btn-primary btn-sm border"
                                 @click="pageSize += game.config.search.pageSize"
@@ -1472,7 +1464,7 @@
                 </div>
             </section>
             <section id="top-scorers" v-cloak>
-                <div class="row mb-2">
+                <div class="row mb-3">
                     <div class="col">
                         <h1 class="fs-5">{{ translator.get("Top scorers") }}</h1>
                     </div>
@@ -1709,11 +1701,11 @@
                             </div>
                             <div class="mt-3">
                                 <span>{{ translator.get("Market Value") }}: </span>
-                                <span>$ {{ player.marketValue.formatAbbreviated() }}</span>
+                                <span>$ {{ player.marketValue.formatAbbreviated(translator.language) }}</span>
                             </div>
                             <div class="mb-3">
                                 <span>{{ translator.get("Wage") }}: </span>
-                                <span>$ {{ player.wage.formatAbbreviated() }}</span>
+                                <span>$ {{ player.wage.formatAbbreviated(translator.language) }}</span>
                             </div>
                             <div>
                                 <label for="offer" class="form-label">

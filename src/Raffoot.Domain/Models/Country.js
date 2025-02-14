@@ -4,14 +4,14 @@ class Country {
         this._continentId = continentId;
     }
 
+    static all() {
+        return Context.game.countries;
+    }
+
     static create(name, continentId) {
         const country = new Country(name, continentId);
         country.id = Context.game.countries.push(country);        
         return country;
-    }
-
-    static all() {
-        return Context.game.countries;
     }
 
     static getById(id) {
@@ -30,8 +30,8 @@ class Country {
         return Context.game.clubs.filter(c => c.country.id === this.id);
     }
 
-    get hasClubs() {
-        return this.clubs.length > 0;
+    get isPlayable() {
+        return this.clubs.length >= Config.nationalLeague.minClubCount;
     }
 
     getFlagURL() {

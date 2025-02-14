@@ -1,15 +1,14 @@
 class ChampionshipType {
-    constructor(scope, format, regulation, isTwoLeggedTie, order) {
+    constructor(scope, format, isTwoLeggedTie, order) {
         this.scope = scope;
         this.format = format;
-        this.regulation = regulation;
         this.isTwoLeggedTie = isTwoLeggedTie;
         this.order = order;
         this._championshipIds = [];
     }
 
-    static create(scope, format, regulation, isTwoLeggedTie) {
-        const championshipType = new ChampionshipType(scope, format, regulation, isTwoLeggedTie);
+    static create(scope, format, isTwoLeggedTie) {
+        const championshipType = new ChampionshipType(scope, format, isTwoLeggedTie);
         championshipType.id = Context.game.championshipTypes.push(championshipType);
         return championshipType;
     }
@@ -19,12 +18,12 @@ class ChampionshipType {
     }
 
     static seed() {
-        ChampionshipType.create('national', 'league', 'round-robin', true, 3);
-		ChampionshipType.create('national', 'cup', 'elimination', true, 4);
-		ChampionshipType.create('national', 'supercup', 'elimination', false, 1);
-		ChampionshipType.create('continental', 'cup', 'groups', true, 5);
-		ChampionshipType.create('continental', 'supercup', 'elimination', false, 2);
-		ChampionshipType.create('world', 'cup', 'elimination', false, 6);
+        ChampionshipType.create('national', 'league', true, 3);
+		ChampionshipType.create('national', 'cup', true, 4);
+		ChampionshipType.create('national', 'supercup', false, 1);
+		ChampionshipType.create('continental', 'cup', true, 5);
+		ChampionshipType.create('continental', 'supercup', false, 2);
+		ChampionshipType.create('world', 'cup', false, 6);
 	}
 
     static find(scope, format) {

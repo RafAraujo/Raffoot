@@ -1,6 +1,6 @@
 class GameService {
-    create(dataSource, year, name) {
-        const game = GameFactory.create(dataSource, year, name);
+    create(dataSource, year, name, combineCountries) {
+        const game = GameFactory.create(dataSource, year, name, combineCountries);
         return game;
     }
 

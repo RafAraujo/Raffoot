@@ -6,26 +6,22 @@ const _currencyFormatter = new Intl.NumberFormat(undefined, {
     roundingIncrement: 5,
 });
 
+const _abbreviatedNumberFormatters = {}
+
 Number.prototype.formatCurrency = function () {
     return _currencyFormatter.format(this);
 }
 
-Number.prototype.formatAbbreviated = function () {
-    const numericClasses = [
-        { value: Math.pow(1000, 3), suffix: 'B', maximumFractionDigits: 1 },
-        { value: Math.pow(1000, 2), suffix: 'M', maximumFractionDigits: 1 },
-        { value: Math.pow(1000, 1), suffix: 'K', maximumFractionDigits: 0 },
-    ];
+Number.prototype.formatAbbreviated = function(language) {
+    if (!_abbreviatedNumberFormatters[language])
+        _abbreviatedNumberFormatters[language] = new Intl.NumberFormat(language, {
+            notation: 'compact',
+            compactDisplay: 'short',
+            maximumFractionDigits: this > 1000000 ? 1 : 0,
+        });
 
-    for (const numericClass of numericClasses) {
-        if (this >= numericClass.value) {
-            let value = this / numericClass.value;
-            value = new Intl.NumberFormat(undefined, { maximumFractionDigits: numericClass.maximumFractionDigits }).format(value);
-            return `${value}${numericClass.suffix}`;
-        }
-    }
-
-    return this;
+    const formatter = _abbreviatedNumberFormatters[language];
+    return formatter.format(this);
 }
 
 Number.prototype.formatInWords = function () {

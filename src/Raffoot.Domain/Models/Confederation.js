@@ -1,17 +1,17 @@
 class Confederation {
-    constructor(name, continentId, countryIds, continentalCupSpots) {
+    constructor(name, continentId, countryIds) {
         this.name = name;
         this._continentId = continentId;
         this._countryIds = countryIds;
-        this.continentalCupSpots = continentalCupSpots;
+        this.continentalCupSpots = [0, 0];
     }
 
-    static create(continent, name, countryNames, continentalCupSpots) {
+    static create(continent, name, countryNames) {
         const countryIds = countryNames.map(cn => Country.getByName(cn)).filter(c => c).map(c => c.id);
-        const confederation = new Confederation(name, continent.id, countryIds, continentalCupSpots);
+        const confederation = new Confederation(name, continent?.id ?? null, countryIds);
         confederation.id = Context.game.confederations.push(confederation);
 
-        continent.addConfederation(confederation);
+        continent?.addConfederation(confederation);
 
         return confederation;
     }
@@ -24,38 +24,28 @@ class Confederation {
         return Context.game.confederations.find(c => c.name === name);
     }
 
-    static seed(isFantasyMode) {
-        const america = Continent.getByName('America');
-        const asia = Continent.getByName('Asia');
-        const europe = Continent.getByName('Europe');
+    static seed(combineCountries) {
+        const continents = Continent.all();
+        const countries = Country.all().filter(c => c.isPlayable && c.continent);
 
-        if (isFantasyMode) {
-            Confederation.create(america, 'Fantasy', Country.all().map(c => c.name), [0, 0]);
-            return;
+        if (combineCountries) {
+            for (const continent of continents)
+                for (const subdivision of continent.subdivisions)
+                    Confederation.create(continent, subdivision.name, subdivision.countryNames);
+            
+            const subdivisionsCountryNames = continents.flatMap(c => c.subdivisions).flatMap(s => s.countryNames);
+            const singleCountries = countries.filter(c => !subdivisionsCountryNames.includes(c.name));
+            for (const country of singleCountries)
+                Confederation.create(country.continent, country.name, [country.name]);
         }
+        else {
+            for (const country of countries)
+                Confederation.create(country.continent, country.name, [country.name]);
+        }
+    }
 
-        Confederation.create(america, 'Argentina', ['Argentina'], [4, 3]);
-        Confederation.create(america, 'Brazil', ['Brazil'], [4, 3]);
-        Confederation.create(america, 'North America', ['Canada', 'Mexico', 'United States'], [4, 3]);
-        Confederation.create(america, 'South America', ['Bolivia', 'Colombia', 'Ecuador', 'Paraguay', 'Peru', 'Uruguay', 'Venezuela'], [4, 3]);
-
-        Confederation.create(asia, 'Australia', ['Australia', 'South Africa', 'United Arab Emirates'], [4, 3]);
-        Confederation.create(asia, 'Korea-Japan', ['Japan', 'Korea Republic'], [4, 3]);
-        Confederation.create(asia, 'Indochina', ['China PR', 'India'], [4, 3]);
-        Confederation.create(asia, 'Saudi Arabia', ['Saudi Arabia'], [4, 3]);
-
-        Confederation.create(europe, 'England', ['England'], [4, 1]);
-        Confederation.create(europe, 'France', ['France'], [3, 2]);
-        Confederation.create(europe, 'Germany', ['Germany'], [4, 1]);
-        Confederation.create(europe, 'Italy', ['Italy'], [4, 1]);
-        Confederation.create(europe, 'Portugal', ['Portugal'], [3, 2]);
-        Confederation.create(europe, 'Spain', ['Spain'], [4, 1]);
-        Confederation.create(europe, 'Benelux', ['Belgium', 'Netherlands', 'Luxembourg'], [3, 2]);
-        Confederation.create(europe, 'British Isles', ['Republic of Ireland', 'Scotland'], [1, 2]);
-        Confederation.create(europe, 'Centre Europe', ['Austria', 'Czechia', 'Switzerland'], [1, 2]);
-        Confederation.create(europe, 'Eastern Europe', ['Croatia', 'Poland', 'Romania', 'Ukraine'], [1, 2]);
-        Confederation.create(europe, 'Eurasia', ['Cyprus', 'Greece', 'Russia', 'Türkiye'], [2, 2]);
-        Confederation.create(europe, 'Scandinavia', ['Denmark', 'Finland', 'Norway', 'Sweden'], [2, 2]);
+    static seedForFantasyMode() {
+        Confederation.create(null, 'Fantasy', Country.all().map(c => c.name));
     }
 
     get continent() {
@@ -73,8 +63,20 @@ class Confederation {
     get isPlayable() {
         return this.clubs.length > Config.nationalLeague.minClubCount;
     }
-    
+
+    get overall() {
+        return this.clubs.take(Config.nationalLeague.maxClubCount).flatMap(c => c.players).map(p => p.overall).average();
+    }
+
+    addContinentalCupSpot(continentalCupDivision) {
+        this.continentalCupSpots[continentalCupDivision - 1]++;
+    }
+
     getContinentalCupSpots(continentalCupDivision) {
         return this.continentalCupSpots[continentalCupDivision - 1];
+    }
+
+    setContinentalCupSpots(value, continentalCupDivision) {
+        this.continentalCupSpots[continentalCupDivision - 1] = value;
     }
 }
