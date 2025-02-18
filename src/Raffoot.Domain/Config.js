@@ -54,7 +54,6 @@ const Config = (function () {
         nationalLeague: {
             maxClubCount: 18,
             minClubCount: 8,
-            maxDivisionCount: 4,
             promotionAndRelegationPercentage: 0.2,
         },
         search: {

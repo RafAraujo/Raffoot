@@ -107,6 +107,7 @@ const MultiLanguage =
     "Coach": "Treinador",
     "Colombia": "Colômbia",
     "Colors": "Cores",
+    "Combine countries": "Combinar países",
     "Comoros": "Comores",
     "CON": "CON",
     "Confederation": "Confederação",

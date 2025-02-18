@@ -6,21 +6,27 @@ const _currencyFormatter = new Intl.NumberFormat(undefined, {
     roundingIncrement: 5,
 });
 
-const _abbreviatedNumberFormatters = {}
-
 Number.prototype.formatCurrency = function () {
     return _currencyFormatter.format(this);
 }
 
+const _abbreviatedNumberFormatters = {
+    large: {},
+    small: {},
+};
+
 Number.prototype.formatAbbreviated = function(language) {
-    if (!_abbreviatedNumberFormatters[language])
-        _abbreviatedNumberFormatters[language] = new Intl.NumberFormat(language, {
+    const isLargeNumber = this > 1000000;
+    const formatterType = isLargeNumber ? 'large' : 'small'
+
+    if (!_abbreviatedNumberFormatters[formatterType][language])
+        _abbreviatedNumberFormatters[formatterType][language] = new Intl.NumberFormat(language, {
             notation: 'compact',
             compactDisplay: 'short',
             maximumFractionDigits: this > 1000000 ? 1 : 0,
         });
 
-    const formatter = _abbreviatedNumberFormatters[language];
+    const formatter = _abbreviatedNumberFormatters[formatterType][language];
     return formatter.format(this);
 }
 

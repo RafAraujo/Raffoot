@@ -3,7 +3,7 @@ class Confederation {
         this.name = name;
         this._continentId = continentId;
         this._countryIds = countryIds;
-        this.continentalCupSpots = [0, 0];
+        this.continentalCupSlots = [0, 0];
     }
 
     static create(continent, name, countryNames) {
@@ -68,15 +68,15 @@ class Confederation {
         return this.clubs.take(Config.nationalLeague.maxClubCount).flatMap(c => c.players).map(p => p.overall).average();
     }
 
-    addContinentalCupSpot(continentalCupDivision) {
-        this.continentalCupSpots[continentalCupDivision - 1]++;
+    addContinentalCupSlot(continentalCupDivision) {
+        this.continentalCupSlots[continentalCupDivision - 1]++;
     }
 
-    getContinentalCupSpots(continentalCupDivision) {
-        return this.continentalCupSpots[continentalCupDivision - 1];
+    getContinentalCupSlots(continentalCupDivision) {
+        return this.continentalCupSlots[continentalCupDivision - 1];
     }
 
-    setContinentalCupSpots(value, continentalCupDivision) {
-        this.continentalCupSpots[continentalCupDivision - 1] = value;
+    setContinentalCupSlots(value, continentalCupDivision) {
+        this.continentalCupSlots[continentalCupDivision - 1] = value;
     }
 }

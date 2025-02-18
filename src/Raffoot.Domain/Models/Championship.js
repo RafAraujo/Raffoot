@@ -111,9 +111,12 @@ class Championship {
             case 'world':
                 return 12;
             case 'continental':
-                return this.division === 1 ? 16 : 8;
+                return this.division === 1 ? 16 : 6;
             case 'national':
-                return this.championshipType.format === 'cup' ? 5 : 6 - this.division;
+                if (this.championshipType.format === 'cup')
+                    return 8;
+
+                return this.division === 1 ? 10 : 6 - this.division;
             default:
                 return 0;
         }

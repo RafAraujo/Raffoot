@@ -1,8 +1,8 @@
 class Continent {
-    constructor(name) {
+    constructor(name, cupConfig, subdivisions) {
         this.name = name;
-        this.cupConfig = this.getCupConfig();
-        this.subdivisions = this.getSubdivisions();
+        this.cupConfig = cupConfig;
+        this.subdivisions = subdivisions;
         this._confederationIds = [];
     }
 
@@ -11,7 +11,9 @@ class Continent {
     }
 
     static create(name) {
-        const continent = new Continent(name);
+        const cupConfig = Continent._getCupConfig(name);
+        const subdivisions = Continent._getSubdivisions(name);
+        const continent = new Continent(name, cupConfig, subdivisions);
         continent.id = Context.game.continents.push(continent);
         return continent;
     }
@@ -31,24 +33,8 @@ class Continent {
 		Continent.create('Europe');
 	}
 
-    get confederations() {
-        return Context.game.confederations.filterByIds(this._confederationIds);
-    }
-
-    get countries() {
-        return this.confederations.flatMap(c => c.countries);
-    }
-
-    get clubs() {
-        return this.countries.flatMap(c => c.clubs);
-    }
-
-    addConfederation(confederation) {
-        this._confederationIds.push(confederation.id);
-    }
-
-    getCupConfig() {
-        switch (this.name) {
+    static _getCupConfig(continentName) {
+        switch (continentName) {
             case 'Africa':
                 return [{ name: 'Africa Champions Cup', division: 1, regulation: 'groups' }, { name: 'Africa Conference Cup', division: 2, regulation: 'groups' }];
             case 'America':
@@ -60,16 +46,8 @@ class Continent {
         };
     }
 
-    getCupName(continentalCupDivision) {
-        return this.cupConfig.find(c => c.division === continentalCupDivision).name;
-    }
-
-    getCupRegulation(continentalCupDivision) {
-        return this.cupConfig.find(c => c.division === continentalCupDivision).regulation;
-    }
-
-    getSubdivisions() {
-        switch (this.name) {
+    static _getSubdivisions(continentName) {
+        switch (continentName) {
             case 'Africa':
                 return [];
             case 'America':
@@ -93,5 +71,29 @@ class Continent {
                     { name: 'Scandinavia', countryNames: ['Denmark', 'Finland', 'Norway', 'Sweden'] },
                 ];
         }
+    }
+
+    get confederations() {
+        return Context.game.confederations.filterByIds(this._confederationIds);
+    }
+
+    get countries() {
+        return this.confederations.flatMap(c => c.countries);
+    }
+
+    get clubs() {
+        return this.countries.flatMap(c => c.clubs);
+    }
+
+    addConfederation(confederation) {
+        this._confederationIds.push(confederation.id);
+    }
+
+    getCupName(continentalCupDivision) {
+        return this.cupConfig.find(c => c.division === continentalCupDivision).name;
+    }
+
+    getCupRegulation(continentalCupDivision) {
+        return this.cupConfig.find(c => c.division === continentalCupDivision).regulation;
     }
 }

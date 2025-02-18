@@ -19,9 +19,8 @@ class ChampionshipEditionClub {
 
         championshipEdition.addChampionshipEditionClub(championshipEditionClub);
         const nationalLeague = ChampionshipType.find('national', 'league');
-        if (championshipEdition.championship.championshipType.id === nationalLeague.id) {
+        if (championshipEdition.championship.championshipType.id === nationalLeague.id)
             championshipEditionClub.club.division = championshipEdition.championship.division;
-        }
                 
         return championshipEditionClub;
     }

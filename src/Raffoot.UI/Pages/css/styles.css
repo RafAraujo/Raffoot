@@ -350,7 +350,7 @@ table.table {
 }
 
 table.sortable th {
-    cursor: pointer
+    cursor: pointer;
 }
 
 .bg-lightgray {

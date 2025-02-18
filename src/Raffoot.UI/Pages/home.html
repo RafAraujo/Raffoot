@@ -632,7 +632,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div v-for="substituteType in lineup.substituteTypes" class="bench mb-1"
-                                        :class="{ 'pb-5' : lineup.getSize(substituteType) % 5 === 0 }"
+                                        :class="{ 'any-selected-player' : lineup.selectedPlayer, 'pb-5' : lineup.getSize(substituteType) % 5 === 0 }"
                                         @click.stop="lineup.movePlayerTo(substituteType)"
                                         @drop="lineup.drop($event); lineup.movePlayerTo(substituteType)"
                                         @dragover.prevent :title="translator.get(substituteType)">

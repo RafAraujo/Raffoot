@@ -105,11 +105,10 @@ class ChampionshipEdition {
 
         if (this.championship.division === 1) {
             if (this.championship.isNationalLeague) {
-                const start = continentalCupDivision === 1 ? 1 : this.championship.confederation.getContinentalCupSpots(1) + 1;
-                const cupSpots = this.championship.confederation.getContinentalCupSpots(continentalCupDivision);
-                for (let position = start; position < start + cupSpots; position++) {
+                const start = continentalCupDivision === 1 ? 1 : this.championship.confederation.getContinentalCupSlots(1) + 1;
+                const cupSlots = this.championship.confederation.getContinentalCupSlots(continentalCupDivision);
+                for (let position = start; position < start + cupSlots; position++)
                     positions.push(position);
-                }
             }
             else if (this.championship.isNationalCup && continentalCupDivision === 2) {
                 positions.push(1);
@@ -298,10 +297,10 @@ class ChampionshipEdition {
 
     continentalCupClassificationZonePositions(continentalCupDivision) {
         const positions = [];
-        const spots = this.championship.country.continentalCupSpots;
+        const slots = this.championship.country.continentalCupSlots;
 
         if (this.championship.championshipType.format === 'league' && this.championship.division === 1)
-            for (const position = (spots * (continentalCupDivision - 1)) + 1; position <= spots * continentalCupDivision; position++)
+            for (const position = (slots * (continentalCupDivision - 1)) + 1; position <= slots * continentalCupDivision; position++)
                 positions.push(position);
 
         return positions;

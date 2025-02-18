@@ -99,11 +99,17 @@ class Game {
 
     arrangeSquads() {
         const clubs = this.clubs.filter(c => c.isPlayable);
-        for (const club of clubs) {
+        for (const club of clubs)
             club.arrangePlayers();
+    }
+
+    receveInitialMoney() {
+        const clubs = this.clubs.filter(c => c.isPlayable);
+
+        for (const club of clubs) {
             const playerWages = club.getPlayerWages();
             club.receive(playerWages * 18);
-        }
+        } 
     }
 
     definePromotionAndRelegation() {
@@ -133,27 +139,38 @@ class Game {
         }
     }
 
-    distributeContinentalSpots() {
+    distributeContinentalSlots() {
         const continentalCup = ChampionshipType.find('continental', 'cup');
-        const continentalCups = this.championships.filter(c => c.championshipType.id === continentalCup.id && c.division === 1);
+        const continentalCups = this.championships.filter(c => c.championshipType.id === continentalCup.id);
 
         for (const continentalCup of continentalCups) {
-            let allocatedSpots = 0;
-            const confederations = this.confederations.filter(c => c.continent.id === continentalCup.continent.id && c.isPlayable);
+            const weight = 1;
+            const orderBy = continentalCup.division === 1 ? 'overall' : '-overall';
+            const confederations = continentalCup.continent.confederations.filter(c => c.isPlayable).orderBy(orderBy);
 
-            while (allocatedSpots < continentalCup.clubCount) {
-                for (const confederation of confederations) {
-                    confederation.addContinentalCupSpot(continentalCup.division);
-                    allocatedSpots++;
+            const confederationWeights = confederations.map((c, index) => ({
+                confederation: c,
+                weight: weight + index / 10
+            }));
 
-                    if (allocatedSpots == continentalCup.clubCount)
-                        break;
-                }
+            const totalWeight = confederationWeights.map(c => c.weight).sum();
+            const totalSlots = continentalCup.clubCount;
+            let distributedSlots = 0;
+
+            for (const confederationWeight of confederationWeights) {
+                const slots = Math.round((confederationWeight.weight / totalWeight) * totalSlots);
+                confederationWeight.confederation.setContinentalCupSlots(slots, continentalCup.division);
+                distributedSlots += slots;
             }
-        }
 
-        for (const confederation of this.confederations)
-            confederation.setContinentalCupSpots(confederation.getContinentalCupSpots(1), 2);
+            if (distributedSlots < totalSlots) {
+                confederations.last().addContinentalCupSlot(continentalCup.division);
+                distributedSlots++;
+            }
+
+            if (distributedSlots != totalSlots)
+                throw new Error();
+        }
     }
 
     getCurrentMatch() {

@@ -12,10 +12,11 @@ class Club {
             supporters: 80
         };
         this.division = null;
-        this.lastYearPositionInTheNationalLeague = null;
+        this.lastSeasonLeaguePosition = null;
         this._trophies = [];
 
         this._formationId = null;
+        this._overall = 0;
     }
 
     static minimumPlayersInSquad = 16;
@@ -73,7 +74,7 @@ class Club {
     }
 
     get overall() {
-        return this.players.orderBy('-overall').take(22).map(p => p.overall).average();
+        return this._overall / this._playerIds.length; 
     }
 
     get players() {
@@ -102,6 +103,7 @@ class Club {
 
     addPlayer(player) {
         this._playerIds.push(player.id);
+        this._overall += player.overall;
     }
 
     addTrophy(championshipEdition) {
@@ -121,7 +123,7 @@ class Club {
         else {
             const players = this.players.orderBy('-overall');
             for (const [index, player] of players.entries())
-                player.FieldLocalization = index <= Config.match.maxBenchSize ? FieldLocalization.getByName('SUB') : null;
+                player.fieldLocalization = index <= Config.match.maxBenchSize ? FieldLocalization.getByName('SUB') : null;
         }
     }
 
@@ -154,10 +156,6 @@ class Club {
         return this.playersOnField.find(sp => sp.fieldLocalization.id === fieldLocalization.id);
     }
 
-    getBestPlayers(count) {
-        return this.players.orderBy('-overall', 'age').take(count);
-    }
-
     getKitsURLs() {
         const urlList = [];
         const descriptions = ['Home', 'Away', 'Goalkeeper', 'Alternative'];
@@ -186,19 +184,39 @@ class Club {
 
     getRecommendedFormation() {
         const ranking = [];
-
-        for (const formation of Context.game.formations) {
-            const positionIds = formation.positions.map(p => p.id);
-            const players = this.players.filter(p => positionIds.includes(p.position.id));
-
-            ranking.push({
-                formation: formation,
-                overall: players.map(p => p.overall).sum(),
-                age: players.map(p => p.age).sum(),
-            });
+        const formations = Formation.all();
+        const playerMap = new Map();
+    
+        for (const player of this.players) {
+            if (!playerMap.has(player.position.id)) {
+                playerMap.set(player.position.id, []);
+            }
+            playerMap.get(player.position.id).push(player);
         }
 
-        return ranking.orderBy('-overall', '-age')[0].formation;
+        for (const formation of formations) {
+            const positionIds = formation.positions.map(p => p.id);
+            let overallSum = 0;
+            let ageSum = 0;
+    
+            for (const id of positionIds) {
+                if (playerMap.has(id)) {
+                    const players = playerMap.get(id);
+                    for (const player of players) {
+                        overallSum += player.overall;
+                        ageSum += player.age;
+                    }
+                }
+            }
+    
+            ranking.push({
+                formation: formation,
+                overall: overallSum,
+                age: ageSum
+            });
+        }
+    
+        return ranking.sort((a, b) => b.overall - a.overall || b.age - a.age)[0].formation;
     }
 
     movePlayerToBench(player) {
@@ -228,16 +246,20 @@ class Club {
     setAutomaticLineUp() {
         for (const player of this.players)
             player.fieldLocalization = null;
-
-        let fieldLocalizations = this.formation.fieldLocalizations.slice();
+    
+        let fieldLocalizations = [...this.formation.fieldLocalizations];
+        const gkFieldLocalization = FieldLocalization.getByName('GK');
+        const subFieldLocalization = FieldLocalization.getByName('SUB');
+    
         for (let i = 0; i < 2; i++) {
             if (i === 1)
-                fieldLocalizations.unshift(FieldLocalization.getByName('GK'));
-
+                fieldLocalizations.unshift(gkFieldLocalization);
+    
             for (const fieldLocalization of fieldLocalizations) {
-                let chosenPlayer = this._getBestAvailablePlayerForFieldLocalization(fieldLocalization, i === 0, true);
-                if (chosenPlayer)
-                    chosenPlayer.fieldLocalization = i === 0 ? fieldLocalization : FieldLocalization.getByName('SUB');
+                const chosenPlayer = this._getBestAvailablePlayerForFieldLocalization(fieldLocalization, i === 0, true);
+                if (chosenPlayer) {
+                    chosenPlayer.fieldLocalization = i === 0 ? fieldLocalization : subFieldLocalization;
+                }
             }
         }
     }
@@ -301,34 +323,34 @@ class Club {
 
     _getBestAvailablePlayerForFieldLocalization(fieldLocalization, positionPriority, fieldRegionPriority) {
         let bestPlayer = null;
-
+    
         const availablePlayers = this.players.filter(p => !p.fieldLocalization && !p.isInjured);
         let players = [];
-
-        if (positionPriority)
-            players = availablePlayers.filter(p => p.position.id === fieldLocalization.position.id && !p.isInjured);
-
+    
+        if (positionPriority) {
+            players = availablePlayers.filter(p => p.position.id === fieldLocalization.position.id);
+        }
+    
         if (players.length > 0) {
-            bestPlayer = players.orderBy('-overall', '-energy', 'age')[0];
+            bestPlayer = players.sort((a, b) => b.overall - a.overall || b.energy - a.energy || a.age - b.age)[0];
         }
         else {
             if (fieldRegionPriority)
                 players = availablePlayers.filter(p => p.position.fieldRegion === fieldLocalization.position.fieldRegion);
-
+            
             if (players.length === 0)
                 players = availablePlayers;
-
-            const ranking = [];
-            for (const player of players) {
-                ranking.push({
-                    player: player,
-                    overall: player.calculateOverallAt(fieldLocalization)
-                });
-
-                bestPlayer = ranking.orderBy('-overall', '-player.energy', 'player.age')[0].player;
-            }
+    
+            bestPlayer = players.reduce((best, player) => {
+                const overall = player.calculateOverallAt(fieldLocalization);
+                if (!best || overall > best.overall || (overall === best.overall && player.energy > best.energy) || 
+                    (overall === best.overall && player.energy === best.energy && player.age < best.age)) {
+                    best = player;
+                }
+                return best;
+            }, null);
         }
-
+    
         return bestPlayer;
     }
 
