@@ -59,7 +59,7 @@ class Continent {
                 return [
                     { name: 'Australia', countryNames: ['Australia', 'South Africa', 'United Arab Emirates'] },
                     { name: 'Korea-Japan', countryNames: ['Japan', 'Korea Republic'] },
-                    { name: 'Indochina', countryNames: ['China PR', 'India'] },
+                    { name: 'China-India', countryNames: ['China PR', 'India'] },
                 ];
             case 'Europe':
                 return [

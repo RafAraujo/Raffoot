@@ -4,6 +4,7 @@ class Confederation {
         this._continentId = continentId;
         this._countryIds = countryIds;
         this.continentalCupSlots = [0, 0];
+        this.isPlayable = true;
     }
 
     static create(continent, name, countryNames) {
@@ -26,12 +27,17 @@ class Confederation {
 
     static seed(combineCountries) {
         const continents = Continent.all();
-        const countries = Country.all().filter(c => c.isPlayable && c.continent);
+        const countries = Country.all().filter(c => c.isPlayable);
 
         if (combineCountries) {
-            for (const continent of continents)
-                for (const subdivision of continent.subdivisions)
-                    Confederation.create(continent, subdivision.name, subdivision.countryNames);
+            for (const continent of continents) {
+                for (const subdivision of continent.subdivisions) {
+                    const countries = subdivision.countryNames.map(n => Country.getByName(n));
+                    const clubs = countries.flatMap(c => c.clubs);
+                    if (clubs.length >= Config.nationalLeague.minClubCount)
+                        Confederation.create(continent, subdivision.name, subdivision.countryNames);
+                }
+            }
             
             const subdivisionsCountryNames = continents.flatMap(c => c.subdivisions).flatMap(s => s.countryNames);
             const singleCountries = countries.filter(c => !subdivisionsCountryNames.includes(c.name));
@@ -45,7 +51,9 @@ class Confederation {
     }
 
     static seedForFantasyMode() {
-        Confederation.create(null, 'Fantasy', Country.all().map(c => c.name));
+        const countryNames = Country.all().filter(c => c.isPlayable).map(c => c.name);
+        const name = countryNames.length === 1 ? countryNames[0] : 'World';
+        Confederation.create(null, name, countryNames);
     }
 
     get continent() {
@@ -60,12 +68,8 @@ class Confederation {
         return this.countries.flatMap(c => c.clubs);
     }
 
-    get isPlayable() {
-        return this.clubs.length > Config.nationalLeague.minClubCount;
-    }
-
     get overall() {
-        return this.clubs.take(Config.nationalLeague.maxClubCount).flatMap(c => c.players).map(p => p.overall).average();
+        return this.clubs.take(Config.nationalLeague.maxClubCount).flatMap(c => c.overall).average();
     }
 
     addContinentalCupSlot(continentalCupDivision) {

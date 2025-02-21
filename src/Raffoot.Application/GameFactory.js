@@ -5,7 +5,7 @@ class GameFactory {
 		const isFantasyMode = Context.game.isFantasyMode;
 
 		let elapsedTime = 0;
-		const limit = 1;
+		const limit = 5;
 
 		let tTotal = performance.now();
 
@@ -38,6 +38,10 @@ class GameFactory {
 		console.log((elapsedTime = performance.now() - t0) > limit ? `	service.seedClubs() took ${performance.now() - t0} milliseconds.` : '');
 
 		t0 = performance.now();
+		Context.game.distributeInitialMoneyForClubs();
+		console.log((elapsedTime = performance.now() - t0) > limit ? `	game.receiveInitialMoney() took ${performance.now() - t0} milliseconds.` : '');
+
+		t0 = performance.now();
 		isFantasyMode ? Confederation.seedForFantasyMode() : Confederation.seed(combineCountries);
 		console.log((elapsedTime = performance.now() - t0) > limit ? `	Confederation.seed() took ${performance.now() - t0} milliseconds.` : '');
 
@@ -50,14 +54,6 @@ class GameFactory {
 		console.log((elapsedTime = performance.now() - t0) > limit ? `	Championship.seed() took ${performance.now() - t0} milliseconds.` : '');
 
 		t0 = performance.now();
-		Context.game.arrangeSquads();
-		console.log((elapsedTime = performance.now() - t0) > limit ? `	game.arrangeSquads() took ${performance.now() - t0} milliseconds.` : '');
-
-		t0 = performance.now();
-		Context.game.receveInitialMoney();
-		console.log((elapsedTime = performance.now() - t0) > limit ? `	game.receiveInitialMoney() took ${performance.now() - t0} milliseconds.` : '');
-
-		t0 = performance.now();
 		Context.game.definePromotionAndRelegation();
 		console.log((elapsedTime = performance.now() - t0) > limit ? `	game.definePromotionAndRelegation() took ${performance.now() - t0} milliseconds.` : '');
 
@@ -68,6 +64,10 @@ class GameFactory {
 		t0 = performance.now();
 		Context.game.newSeason();
 		console.log((elapsedTime = performance.now() - t0) > limit ? `	game.newSeason() took ${performance.now() - t0} milliseconds.` : '');
+
+		t0 = performance.now();
+		Context.game.arrangeSquads();
+		console.log((elapsedTime = performance.now() - t0) > limit ? `	game.arrangeSquads() took ${performance.now() - t0} milliseconds.` : '');
 
 		console.log(`GameFactory.create() took ${performance.now() - tTotal} milliseconds.`);
 		console.log('');

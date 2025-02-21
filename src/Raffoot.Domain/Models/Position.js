@@ -6,6 +6,10 @@ class Position {
         this._fieldLocalizationIds = [];
     }
 
+    static all() {
+        return Context.game.positions;
+    }
+
     static create(name, abbreviation, fieldRegion) {
         const position = new Position(name, abbreviation, fieldRegion.id);
         position.id = Context.game.positions.push(position);
@@ -53,6 +57,10 @@ class Position {
 
     get fieldLocalizations() {
         return Context.game.fieldLocalizations.filterByIds(this._fieldLocalizationIds);
+    }
+
+    get idealFormations() {
+        return Formation.all().filter(f => f.positions.map(p => p.id).includes(this.id));
     }
 
     get isGoalkeeper() {

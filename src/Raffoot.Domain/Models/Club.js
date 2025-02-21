@@ -21,6 +21,10 @@ class Club {
 
     static minimumPlayersInSquad = 16;
 
+    static all() {
+        return Context.game.clubs;
+    }
+
     static create(name, countryId, backgroundColor, shortName = null) {
         const colors = Club._getColors(backgroundColor);
         const club = new Club(name, countryId, colors, shortName);
@@ -74,7 +78,7 @@ class Club {
     }
 
     get overall() {
-        return this._overall / this._playerIds.length; 
+        return this._overall / this._playerIds.length;
     }
 
     get players() {
@@ -110,8 +114,8 @@ class Club {
         this._trophies.push(championshipEdition.id);
     }
 
-    arrangePlayers() {
-        const formation = this.getRecommendedFormation();
+    arrangePlayers(positionFormationsMap) {
+        const formation = this.getRecommendedFormation(positionFormationsMap);
         this.changeFormation(formation, true);
     }
 
@@ -182,41 +186,34 @@ class Club {
         }));
     }
 
-    getRecommendedFormation() {
-        const ranking = [];
-        const formations = Formation.all();
-        const playerMap = new Map();
-    
+    getRecommendedFormation(positionFormationsMap) {
+        const formationStats = new Map();
+
         for (const player of this.players) {
-            if (!playerMap.has(player.position.id)) {
-                playerMap.set(player.position.id, []);
+            const formations = positionFormationsMap.get(player.position.id);
+            for (const formation of formations) {
+                if (!formationStats.has(formation.id))
+                    formationStats.set(formation.id, { overallSum: 0, ageSum: 0 });
+
+                const stats = formationStats.get(formation.id);
+                stats.overallSum += player.overall;
+                stats.ageSum += player.age;
             }
-            playerMap.get(player.position.id).push(player);
         }
 
-        for (const formation of formations) {
-            const positionIds = formation.positions.map(p => p.id);
-            let overallSum = 0;
-            let ageSum = 0;
-    
-            for (const id of positionIds) {
-                if (playerMap.has(id)) {
-                    const players = playerMap.get(id);
-                    for (const player of players) {
-                        overallSum += player.overall;
-                        ageSum += player.age;
-                    }
-                }
+        let bestFormationId = null;
+        let bestOverall = -Infinity;
+        let bestAge = Infinity;
+
+        for (const [formationId, stats] of formationStats) {
+            if (stats.overallSum > bestOverall || (stats.overallSum === bestOverall && stats.ageSum < bestAge)) {
+                bestFormationId = formationId;
+                bestOverall = stats.overallSum;
+                bestAge = stats.ageSum;
             }
-    
-            ranking.push({
-                formation: formation,
-                overall: overallSum,
-                age: ageSum
-            });
         }
-    
-        return ranking.sort((a, b) => b.overall - a.overall || b.age - a.age)[0].formation;
+
+        return Formation.getById(bestFormationId);
     }
 
     movePlayerToBench(player) {
@@ -246,15 +243,15 @@ class Club {
     setAutomaticLineUp() {
         for (const player of this.players)
             player.fieldLocalization = null;
-    
+
         let fieldLocalizations = [...this.formation.fieldLocalizations];
         const gkFieldLocalization = FieldLocalization.getByName('GK');
         const subFieldLocalization = FieldLocalization.getByName('SUB');
-    
+
         for (let i = 0; i < 2; i++) {
             if (i === 1)
                 fieldLocalizations.unshift(gkFieldLocalization);
-    
+
             for (const fieldLocalization of fieldLocalizations) {
                 const chosenPlayer = this._getBestAvailablePlayerForFieldLocalization(fieldLocalization, i === 0, true);
                 if (chosenPlayer) {
@@ -322,35 +319,40 @@ class Club {
     }
 
     _getBestAvailablePlayerForFieldLocalization(fieldLocalization, positionPriority, fieldRegionPriority) {
-        let bestPlayer = null;
-    
         const availablePlayers = this.players.filter(p => !p.fieldLocalization && !p.isInjured);
         let players = [];
-    
-        if (positionPriority) {
+
+        if (positionPriority)
             players = availablePlayers.filter(p => p.position.id === fieldLocalization.position.id);
-        }
-    
-        if (players.length > 0) {
-            bestPlayer = players.sort((a, b) => b.overall - a.overall || b.energy - a.energy || a.age - b.age)[0];
-        }
-        else {
-            if (fieldRegionPriority)
-                players = availablePlayers.filter(p => p.position.fieldRegion === fieldLocalization.position.fieldRegion);
-            
-            if (players.length === 0)
-                players = availablePlayers;
-    
-            bestPlayer = players.reduce((best, player) => {
-                const overall = player.calculateOverallAt(fieldLocalization);
-                if (!best || overall > best.overall || (overall === best.overall && player.energy > best.energy) || 
-                    (overall === best.overall && player.energy === best.energy && player.age < best.age)) {
-                    best = player;
-                }
-                return best;
-            }, null);
-        }
-    
+
+        if (players.length === 0 && fieldRegionPriority)
+            players = availablePlayers.filter(p => p.position.fieldRegion.id === fieldLocalization.position.fieldRegion.id);
+
+        if (players.length === 0)
+            players = availablePlayers;
+
+        const bestPlayer = players.reduce((best, player) => {
+            if (!best)
+                return player;
+
+            const isBetterOverall = player.overall > best.overall;
+            const isEqualOverall = player.overall === best.overall;
+            const isBetterEnergy = player.energy > best.energy;
+            const isEqualEnergy = player.energy === best.energy;
+            const isYounger = player.age < best.age;
+
+            if (
+                isBetterOverall ||
+                (isEqualOverall && isBetterEnergy) ||
+                (isEqualOverall && isEqualEnergy && isYounger)
+            ) {
+                return player;
+            }
+
+            return best;
+        }, null);
+
+
         return bestPlayer;
     }
 

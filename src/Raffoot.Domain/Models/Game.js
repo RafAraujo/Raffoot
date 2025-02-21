@@ -98,18 +98,24 @@ class Game {
     }
 
     arrangeSquads() {
+        const positionFormationsMap = new Map();
+        for (const position of this.positions)
+            if (!positionFormationsMap.has(position.id))
+                positionFormationsMap.set(position.id, position.idealFormations);
+
         const clubs = this.clubs.filter(c => c.isPlayable);
         for (const club of clubs)
-            club.arrangePlayers();
+            club.arrangePlayers(positionFormationsMap);
     }
 
-    receveInitialMoney() {
+    distributeInitialMoneyForClubs() {
         const clubs = this.clubs.filter(c => c.isPlayable);
 
         for (const club of clubs) {
+            club.money = 0;
             const playerWages = club.getPlayerWages();
             club.receive(playerWages * 18);
-        } 
+        }
     }
 
     definePromotionAndRelegation() {

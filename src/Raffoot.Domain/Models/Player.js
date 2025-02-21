@@ -12,7 +12,7 @@ class Player {
 
     static create(name, countryId, positionId, age, overall, club = null) {
         if (!club)
-            club = Context.game.clubs.last();
+            club = Club.all().last();
 
         const energy = 100;
         const player = new Player(name, countryId, positionId, age, overall, club.id, energy);
@@ -99,7 +99,7 @@ class Player {
     }
 
     get idealFormations() {
-        return Context.game.formations.filter(f => f.fieldLocalizations)
+        return this.position.idealFormations;
     }
 
     get isImprovised() {
@@ -173,6 +173,20 @@ class Player {
             const overall = this.overall - (distance * factor);
             return Math.round(overall);
         }
+    }
+
+    getNearestFieldLocalization(fieldLocalization) {
+        if (this._positionId === fieldLocalization.position.id)
+            return fieldLocalization;
+    
+        const results = this.idealFieldLocalizations
+            .map(idealFieldLocalization => ({
+                fieldLocalization: idealFieldLocalization,
+                distance: idealFieldLocalization.calculateDistanceTo(fieldLocalization)
+            }))
+            .sort((a, b) => a.distance - b.distance);
+        
+        return results[0].fieldLocalization;
     }
 
     getNearestFieldLocalization(fieldLocalization) {

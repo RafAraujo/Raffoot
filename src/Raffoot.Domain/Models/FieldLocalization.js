@@ -7,7 +7,7 @@ class FieldLocalization {
 	}
 
 	static create(name, positionAbbreviation, line, column) {
-		const position = Context.game.positions.find(p => p.abbreviation === positionAbbreviation);
+		const position = Position.all().find(p => p.abbreviation === positionAbbreviation);
 		const fieldLocalization = new FieldLocalization(name, position == null ? null : position.id, line, column);
 		fieldLocalization.id = Context.game.fieldLocalizations.push(fieldLocalization);
 		if (position != null) {
