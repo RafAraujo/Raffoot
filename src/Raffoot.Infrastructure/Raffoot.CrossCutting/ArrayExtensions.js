@@ -50,11 +50,11 @@ Array.prototype.lastItems = function (count) {
 }
 
 Array.prototype.min = function () {
-    return this.reduce((accumulator, currentValue) => Math.min(accumulator, currentValue));
+    return Math.min(...this);
 }
 
 Array.prototype.max = function () {
-    return this.reduce((accumulator, currentValue) => Math.max(accumulator, currentValue));
+    return Math.max(...this);
 }
 
 Array.prototype.orderBy = function (...properties) {

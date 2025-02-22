@@ -244,21 +244,8 @@ class Club {
         for (const player of this.players)
             player.fieldLocalization = null;
 
-        let fieldLocalizations = [...this.formation.fieldLocalizations];
-        const gkFieldLocalization = FieldLocalization.getByName('GK');
-        const subFieldLocalization = FieldLocalization.getByName('SUB');
-
-        for (let i = 0; i < 2; i++) {
-            if (i === 1)
-                fieldLocalizations.unshift(gkFieldLocalization);
-
-            for (const fieldLocalization of fieldLocalizations) {
-                const chosenPlayer = this._getBestAvailablePlayerForFieldLocalization(fieldLocalization, i === 0, true);
-                if (chosenPlayer) {
-                    chosenPlayer.fieldLocalization = i === 0 ? fieldLocalization : subFieldLocalization;
-                }
-            }
-        }
+        this._setPlayersOnField();
+        this._setPlayersOnBench();
     }
 
     setSquadOrder() {
@@ -317,6 +304,7 @@ class Club {
             player.order = item.order;
         }
     }
+    
 
     _getBestAvailablePlayerForFieldLocalization(fieldLocalization, positionPriority, fieldRegionPriority) {
         const availablePlayers = this.players.filter(p => !p.fieldLocalization && !p.isInjured);
@@ -331,29 +319,62 @@ class Club {
         if (players.length === 0)
             players = availablePlayers;
 
-        const bestPlayer = players.reduce((best, player) => {
-            if (!best)
-                return player;
+        if (players.length === 0)
+            return;
 
-            const isBetterOverall = player.overall > best.overall;
-            const isEqualOverall = player.overall === best.overall;
-            const isBetterEnergy = player.energy > best.energy;
-            const isEqualEnergy = player.energy === best.energy;
-            const isYounger = player.age < best.age;
+        const chosen = players.reduce((best, player) => {
+            const overallAtFieldLocalization = player.calculateOverallAt(fieldLocalization);
+
+            if (!best)
+                return { player, overallAtFieldLocalization };
+
+            const isBetterOverall = overallAtFieldLocalization > best.overallAtFieldLocalization;
+            const isEqualOverall = overallAtFieldLocalization === best.overallAtFieldLocalization;
+            const isBetterEnergy = player.energy > best.player.energy;
+            const isEqualEnergy = player.energy === best.player.energy;
+            const isYounger = player.age < best.player.age;
 
             if (
                 isBetterOverall ||
                 (isEqualOverall && isBetterEnergy) ||
                 (isEqualOverall && isEqualEnergy && isYounger)
             ) {
-                return player;
+                return { player, overallAtFieldLocalization };
             }
 
             return best;
         }, null);
 
+        return chosen.player;
+    }
 
-        return bestPlayer;
+    _setPlayersOnField() {
+        let fieldLocalizations = this.formation.fieldLocalizations;
+        for (const fieldLocalization of fieldLocalizations) {
+            const chosenPlayer = this._getBestAvailablePlayerForFieldLocalization(fieldLocalization, true, true);
+            if (chosenPlayer)
+                chosenPlayer.fieldLocalization = fieldLocalization;
+        }
+    }
+
+    _setPlayersOnBench() {
+        const benchSize = Config.match.maxBenchSize;
+        const subFieldLocalization = FieldLocalization.getByName('SUB');
+
+        const availablePlayers = this.players.filter(p => !p.fieldLocalization && !p.isInjured);
+        let benchPlayers = [];
+
+        if (availablePlayers.length <= benchSize) {
+            benchPlayers = availablePlayers;
+        }
+        else {
+            const goalkeepers = availablePlayers.filter(p => p.position.isGoalkeeper).sort((a, b) => b.overall - a.overall || a.age - b.age).take(2);
+            const outfieldPlayers = availablePlayers.filter(p => !p.position.isGoalkeeper).sort((a, b) => b.overall - a.overall || a.age - b.age).take(benchSize - goalkeepers.length);
+            benchPlayers = goalkeepers.concat(outfieldPlayers);
+        }
+
+        for (const player of benchPlayers)
+            player.fieldLocalization = subFieldLocalization;
     }
 
     _createEventMoneyChange(previousValue, value) {

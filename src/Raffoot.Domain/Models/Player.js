@@ -167,11 +167,14 @@ class Player {
             return Math.round(overall);
         }
         else {
-            const playerNearestFieldLocalization = this.getNearestFieldLocalization(fieldLocalization);
-            const distance = playerNearestFieldLocalization.calculateDistanceTo(fieldLocalization);
-            const factor = playerNearestFieldLocalization.position.fieldRegion.id === fieldLocalization.position.fieldRegion.id ? 3 : 4;
-            const overall = this.overall - (distance * factor);
-            return Math.round(overall);
+            const nearestFieldLocalization = this.getNearestFieldLocalization(fieldLocalization);
+            const distance = nearestFieldLocalization.calculateDistanceTo(fieldLocalization);
+            const factor = nearestFieldLocalization.position.fieldRegion.id === fieldLocalization.position.fieldRegion.id ? 3 : 4;
+            let overall = this.overall - distance * factor;
+            if (fieldLocalization.position.isGoalkeeper)
+                overall -= 20;
+            overall = Math.round(overall);
+            return Math.max(overall, 1);
         }
     }
 
