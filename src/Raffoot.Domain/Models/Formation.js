@@ -22,6 +22,10 @@ class Formation {
         return Context.game.formations[id - 1];
     }
 
+	static getBaseFormations() {
+		return Formation.all().map(f => f.baseFormation).distinct();
+	}
+
 	//https://www.fifplay.com/fifa-23/formations/
     static seed() {
 		Formation.create('3-1-4-2',          ['GK', 'LCB', 'CB ', 'RCB', 'CDM', 'LCM', 'RCM', 'LM ', 'RM ', 'LS ', 'RS']);
@@ -35,7 +39,7 @@ class Formation {
 		
 		Formation.create('4-1-2-1-2 Narrow', ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'CDM', 'LCM', 'RCM', 'CAM', 'LS ', 'RS']);
 		Formation.create('4-1-2-1-2 Wide',   ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'CDM', 'LM ', 'RM ', 'CAM', 'LS ', 'RS']);
-		Formation.create('4-1-4-1',          ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'CDM', 'LCM', 'RCM', 'LW ', 'RW ', 'ST']);
+		Formation.create('4-1-4-1',          ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'CDM', 'LCM', 'RCM', 'LM ', 'RM ', 'ST']);
 		Formation.create('4-2-2-2',          ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'LDM', 'RDM', 'LAM', 'RAM', 'LS ', 'RS']);
 
 		Formation.create('4-2-3-1 Narrow',   ['GK', 'LCB', 'RCB', 'LB ', 'RB ', 'LDM', 'RDM', 'LAM', 'CAM', 'RAM', 'ST']);
@@ -89,5 +93,15 @@ class Formation {
 
 	getFieldRegionOccurrences(fieldRegion) {
 		return this.positions.filter(p => p.fieldRegion.id === fieldRegion.id).length;
+	}
+
+	static getPositionsMap() {
+		if (!Formation._positionsMap)
+			Formation._positionsMap = new Map();
+            const formations = Formation.all();
+			for (const formation of formations)
+				if (!Formation._positionsMap.has(formation))
+					Formation._positionsMap.set(formation, formation.positions);
+        return Formation._positionsMap;
 	}
 }

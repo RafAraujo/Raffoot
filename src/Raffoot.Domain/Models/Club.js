@@ -114,8 +114,8 @@ class Club {
         this._trophies.push(championshipEdition.id);
     }
 
-    arrangePlayers(positionFormationsMap) {
-        const formation = this.getRecommendedFormation(positionFormationsMap);
+    arrangePlayers() {
+        const formation = this.getRecommendedFormation();
         this.changeFormation(formation, true);
     }
 
@@ -186,34 +186,43 @@ class Club {
         }));
     }
 
-    getRecommendedFormation(positionFormationsMap) {
+    getRecommendedFormation() {
         const formationStats = new Map();
 
-        for (const player of this.players) {
-            const formations = positionFormationsMap.get(player.position.id);
-            for (const formation of formations) {
-                if (!formationStats.has(formation.id))
-                    formationStats.set(formation.id, { overallSum: 0, ageSum: 0 });
-
-                const stats = formationStats.get(formation.id);
-                stats.overallSum += player.overall;
-                stats.ageSum += player.age;
+        const formationPositionsMap = Formation.getPositionsMap();
+        const bestPlayers = this.players.sort((a, b) => b.overall - a.overall || a.age - b.age).take(16);
+    
+        for (const [formation, positions] of formationPositionsMap) {
+            const players = bestPlayers.slice();
+            const stats = { overallSum: 0, ageSum: 0 };
+    
+            for (const position of positions) {
+                const playerIndex = players.findIndex(p => p.position.id === position.id);
+                if (playerIndex !== -1) {
+                    const player = players.splice(playerIndex, 1)[0];
+                    stats.overallSum += player.overall;
+                    stats.ageSum += player.age;
+                }
             }
+    
+            formationStats.set(formation, stats);
         }
 
-        let bestFormationId = null;
+        console.log(formationStats);
+
+        let bestFormation = null;
         let bestOverall = -Infinity;
         let bestAge = Infinity;
 
-        for (const [formationId, stats] of formationStats) {
+        for (const [formation, stats] of formationStats) {
             if (stats.overallSum > bestOverall || (stats.overallSum === bestOverall && stats.ageSum < bestAge)) {
-                bestFormationId = formationId;
+                bestFormation = formation;
                 bestOverall = stats.overallSum;
                 bestAge = stats.ageSum;
             }
         }
-
-        return Formation.getById(bestFormationId);
+    
+        return bestFormation;
     }
 
     movePlayerToBench(player) {
@@ -241,9 +250,7 @@ class Club {
     }
 
     setAutomaticLineUp() {
-        for (const player of this.players)
-            player.fieldLocalization = null;
-
+        this._clearLineup();
         this._setPlayersOnField();
         this._setPlayersOnBench();
     }
@@ -303,6 +310,11 @@ class Club {
             player.fieldLocalization = fieldLocalization;
             player.order = item.order;
         }
+    }
+
+    _clearLineup() {
+        for (const player of this.players)
+            player.fieldLocalization = null;
     }
     
 

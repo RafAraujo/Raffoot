@@ -6,7 +6,7 @@ class PlaySectionViewModel {
         this.translator = translator;
         
         this.selectedMatch = null;
-        this.loading = false;
+        this.isLoading = false;
         this._dateHasChanged = false;
 
         const lineupOptions = {
@@ -37,33 +37,15 @@ class PlaySectionViewModel {
     }
 
     advanceDate() {
-        if (this.currentMatch && !this.lineup.isValidLineup())
-            return;
-
-        this.loading = true;
+        this.isLoading = true;
         this._dateHasChanged = true;
         this.game.club.playersFieldLocalizationsForLastMatch = this.game.club.getPlayersFieldLocalizations();
 
-        if (this.game.currentSeason.currentSeasonDate.matches.length === 0) {
+        Vue.toRaw(this.game).play(1, () => {
             this.game.advanceDate();
-            this.loading = false;
-        }
-        else {
-            if (this.currentMatch) {
-                Router.goTo('simulation');
-                this.game.play(this.game.config.matchSpeed, () => setTimeout(() => {
-                    Router.get('simulation').hideModal();
-                    Router.goTo('summary', true);
-                    this.loading = false;
-                }, Config.delayBeforeSummary));
-            }
-            else {
-                this.game.play(1, () => {
-                    this.game.advanceDate();
-                    this.loading = false;
-                });
-            }
-        }
+        });
+
+        this.isLoading = false;
     }
 
     getCurrentChampionshipName() {
@@ -83,12 +65,29 @@ class PlaySectionViewModel {
         location.href = url
     }
 
+    simulateMatch() {
+        Vue.toRaw(this.game).play(1, () => {
+            this.game.advanceDate();
+        });
+    }
+
+    startMatch() {
+        if (!this.lineup.isValidLineup())
+            return;
+
+        Router.goTo('simulation');
+        this.game.play(this.game.config.matchSpeed, () => setTimeout(() => {
+            Router.get('simulation').hideModal();
+            Router.goTo('summary', true);
+        }, Config.delayBeforeSummary));
+    }
+
     watchCurrentMatch(newValue) {
         this.selectedMatch = newValue;
     }
 
     _animateDate() {
-        const element = document.querySelector('#current-date');
+        const element = document.getElementById('current-date');
         element.classList.add('animate__animated', 'animate__backInRight');
         element.addEventListener('animationend', () => {
             element.classList.remove('animate__animated', 'animate__backInRight');
@@ -96,7 +95,7 @@ class PlaySectionViewModel {
     }
 
     _animateMoney(start, end, duration) {
-        const obj = document.querySelector("#club-money");
+        const obj = document.getElementById('club-money');
         let startTime = null;
 
         const step = (timestamp) => {

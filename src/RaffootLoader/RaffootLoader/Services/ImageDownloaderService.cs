@@ -25,7 +25,7 @@ namespace RaffootLoader.Services
 			var imagesInfos = GetImagesInfos(imageType);
 			imagesInfos = imagesInfos.Where(dto => !string.IsNullOrEmpty(dto.FilePath) && !File.Exists(dto.FilePath)).ToList();
 
-			const int BatchSize = 5000;
+			const int BatchSize = 1000;
 			for (var i = 0; i < imagesInfos.Count; i += BatchSize)
 			{
 				var currentBatch = imagesInfos.Skip(i).Take(BatchSize);

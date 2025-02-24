@@ -72,7 +72,7 @@ class Game {
     }
 
     async advanceDate() {
-        const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
+        const matches = this.currentSeason.currentSeasonDate.matches;
         for (const match of matches)
             delete match.matchSimulation;
 
@@ -91,21 +91,21 @@ class Game {
 
         if (this.currentSeason.currentDate.getMonth() > previousDate.getMonth()) {
             for (const club of this.clubs) {
-                const notify = this.club.id === club.id;
+                const notify = this._clubId === club.id;
                 club.payWages(notify);
             }
         }
     }
 
     arrangeSquads() {
-        const positionFormationsMap = new Map();
-        for (const position of this.positions)
-            if (!positionFormationsMap.has(position.id))
-                positionFormationsMap.set(position.id, position.idealFormations);
+        const t0 = performance.now();
 
-        const clubs = this.clubs.filter(c => c.isPlayable);
+        const clubs = this.clubs;
+        
         for (const club of clubs)
-            club.arrangePlayers(positionFormationsMap);
+            club.arrangePlayers();
+
+        console.log(`game.arrangeSquads() took ${performance.now() - t0} milliseconds.`);
     }
 
     distributeInitialMoneyForClubs() {
@@ -231,7 +231,13 @@ class Game {
 
     play(speed, callback) {
         this.time = 0;
-        const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
+        const matches = this.currentSeason.currentSeasonDate.matches;
+
+        if (matches.length === 0) {
+            callback();
+            return;
+        }
+
         for (const match of matches)
             match.prepare();
 

@@ -45,11 +45,6 @@ namespace RaffootLoader.Services
                 }
             }
 
-            if (total == 0)
-            {
-
-            }
-
             r /= total;
             g /= total;
             b /= total;
@@ -57,9 +52,40 @@ namespace RaffootLoader.Services
             return Color.FromArgb(r, g, b);
         }
 
-        // https://stackoverflow.com/questions/2241447/make-foregroundcolor-black-or-white-depending-on-background
-        // https://www.nbdtech.com/Blog/archive/2008/04/27/Calculating-the-Perceived-Brightness-of-a-Color.aspx
-        public static int PerceivedBrightness(Color c)
+		public static Color GetMostFrequentColor(IEnumerable<Bitmap> bitmaps)
+		{
+			var colorCount = new Dictionary<Color, int>();
+
+			foreach (var bitmap in bitmaps)
+			{
+				for (var i = 0; i < bitmap.Width; i++)
+				{
+					for (var j = 0; j < bitmap.Height; j++)
+					{
+						var color = bitmap.GetPixel(i, j);
+
+						if (color.A == 0 || new[] { color.R, color.G, color.B }.All(x => x == 0) || new[] { color.R, color.G, color.B }.All(x => x == 255))
+							continue;
+
+						if (colorCount.TryGetValue(color, out int value))
+						{
+							colorCount[color] = ++value;
+						}
+						else
+						{
+							colorCount[color] = 1;
+						}
+					}
+				}
+			}
+
+            var result = colorCount.OrderByDescending(c => c.Value).First().Key;
+            return result;
+		}
+
+		// https://stackoverflow.com/questions/2241447/make-foregroundcolor-black-or-white-depending-on-background
+		// https://www.nbdtech.com/Blog/archive/2008/04/27/Calculating-the-Perceived-Brightness-of-a-Color.aspx
+		public static int PerceivedBrightness(Color c)
         {
             return (int)Math.Sqrt(c.R * c.R * .241 + c.G * c.G * .691 + c.B * c.B * .068);
         }

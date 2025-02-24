@@ -26,7 +26,7 @@ class MenuViewModel {
         const menu = {
             'Play': { section: 'play', icon: 'play' },
             'Squad': { section: 'squad', icon: 'people-group' },
-            'Calendar': { section: 'calendar', icon: 'calendar', forceUpdate: true },
+            'Calendar': { section: 'calendar', icon: 'calendar', action: () => { Router.get('calendar').reset() }, forceUpdate: true },
             'Standings': {section: 'standings', icon: 'table-list' },
             'Finances': { section: 'finances', icon: 'sack-dollar' },
             'Clubs': { section: 'clubs', icon: 'shield-halved' },
@@ -58,6 +58,8 @@ class MenuViewModel {
             section: value.section,
             icon: value.icon,
             action: () => {
+                if (value.action)
+                    value.action();
                 this.goToSection(value.section, value.forceUpdate);
             },
             subItems: (value.subItems ?? []).flatMap(subItem => Object.entries(subItem).map(([subItemKey, subItemValue]) => ({

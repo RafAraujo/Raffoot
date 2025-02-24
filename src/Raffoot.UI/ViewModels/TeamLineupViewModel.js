@@ -42,7 +42,7 @@ class TeamLineupViewModel {
     }
 
     getBaseFormations() {
-        return this.game.formations.map(f => f.baseFormation).distinct().sort();
+        return Formation.getBaseFormations().sort();
     }
     
     getClassForEnergy(player) {
@@ -53,7 +53,7 @@ class TeamLineupViewModel {
     }
 
     getEmptyFieldLocalizations() {
-        return this.game.club.getEmptyFieldLocalizations();
+        return this.selectedClub.getEmptyFieldLocalizations();
     }
 
     getFormations(baseFormation) {

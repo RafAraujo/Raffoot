@@ -466,52 +466,51 @@
                     </div>
                 </div>
                 <hr>
-                <div v-if="currentMatch" class="row mb-3">
-                    <div class="col">
-                        <div class="d-inline-block me-3">
-                            <img :src="currentOpponent.getLogoURL()" :alt="currentOpponent.name"
-                                :title="currentOpponent.name" style="max-height: 3rem;">
-                        </div>
-                        <div class="d-inline-block align-middle">
-                            <p class="m-0 fw-bold">
-                                {{ currentMatch.description }}
-                            </p>
-                            <p class="m-0">
-                                {{ getCurrentChampionshipName() }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div v-else class="mb-3" style="min-height: 3rem;">
-
-                </div>
-                <div class="row mb-3">
-                    <template v-if="currentMatch">
-                        <div class="col-6 col-lg-3 d-grid gap-2">
-                            <button type="button" class="btn btn-light border" @click="advanceDate()">
-                                <i class="fa-solid fa-play me-1" v-show="!loading"></i>
+                <template v-if="currentMatch">
+                    <div class="row mb-3">
+                        <div class="col-6 col-lg-3 d-grid">
+                            <button type="button" class="btn btn-light border" @click="startMatch()">
+                                <i class="fa-solid fa-play me-1" v-show="!isLoading"></i>
                                 {{ translator.get("Start match") }}
                             </button>
                         </div>
-                        <div class="col-6 col-lg-3 d-grid gap-2">
-                            <button type="button" class="btn btn-light border" @click="advanceDate()">
-                                <i class="fa-solid fa-fast-forward me-1" v-show="!loading"></i>
+                        <div class="col-6 col-lg-3 d-grid">
+                            <button type="button" class="btn btn-light border" @click="simulateMatch()">
+                                <i class="fa-solid fa-fast-forward me-1" v-show="!isLoading"></i>
                                 {{ translator.get("Simulate match") }}
                             </button>
                         </div>
-                    </template>
-                    <template v-else>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="d-inline-block me-3">
+                                <img :src="currentOpponent.getLogoURL()" :alt="currentOpponent.name"
+                                    :title="currentOpponent.name" style="max-height: 3rem;">
+                            </div>
+                            <div class="d-inline-block align-middle">
+                                <p class="m-0 fw-bold">
+                                    {{ currentMatch.description }}
+                                </p>
+                                <p class="m-0">
+                                    {{ getCurrentChampionshipName() }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+                <template v-else>
+                    <div class="row mb-3">
                         <div class="col-6 col-lg-3 d-grid gap-2">
                             <button type="button" class="btn btn-light border" @click="advanceDate()"
-                                :disabled="loading">
+                                :disabled="isLoading">
                                 <span class="spinner-border spinner-border-sm me-1" aria-hidden="true"
-                                    v-show="loading"></span>
-                                <i class="fa-solid fa-right-long me-1" v-show="!loading"></i>
-                                {{ loading ? translator.get("Loading") : translator.get("Advance") }}
+                                    v-show="isLoading"></span>
+                                <i class="fa-solid fa-right-long me-1" v-show="!isLoading"></i>
+                                {{ isLoading ? translator.get("Loading") : translator.get("Advance") }}
                             </button>
                         </div>
-                    </template>
-                </div>
+                    </div>
+                </template>
                 <div class="row lineup-container mb-3">
                     <div class="col">
                         <ul v-if="selectedMatch" class="nav nav-tabs">
@@ -788,6 +787,32 @@
                         <h1 class="fs-5">{{ translator.get("Calendar") }} {{ game.year }}</h1>
                     </div>
                 </div>
+                <div class="row row-gap-3 mb-3">
+                    <div class="col-md-6">
+                        <label for="select-country" class="form-label">
+                            {{ translator.get("Country") }}
+                        </label>
+                        <select id="select-country" class="form-select" @change="selectCountry($event.target.value)">
+                            <option></option>
+                            <option v-for="country in getCountries()" :key="country.id" :value="country.id"
+                                :value="country.id" :selected="selectedCountry?.id === country.id">
+                                {{ country.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="select-club" class="form-label">
+                            {{ translator.get("Club") }}
+                        </label>
+                        <select id="select-club" class="form-select" @change="selectClub($event.target.value)">
+                            <option></option>
+                            <option v-for="club in getClubs()" :key="club.id" :value="club.id"
+                                :selected="selectedClub?.id === club.id">
+                                {{ club.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col">
                         <div class="table-responsive">
@@ -799,7 +824,7 @@
                                     <th class="text-center">{{ translator.get("Income") }}</th>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="item in getClubCalendar()">
+                                    <tr v-for="item in getCalendar()">
                                         <td class="text-center">
                                             {{
                                             item.date
@@ -1122,21 +1147,16 @@
                             </figure>
                         </div>
                     </div>
-                    <div class="row-mb-3">
-                        <div class="col text-center">
-                            <div class="row">
-                                <div v-for="(kit, index) in getKitsURLs()" class="col-6 col-sm-3">
-                                    <figure class="figure">
-                                        <img class="figure-img img-fluid mb-0" :src="kit.url"
-                                            :alt="translator.get('Uniform')" :title="translator.get('Uniform')"
-                                            onload="this.parentElement.classList.remove('d-none')"
-                                            onerror="this.parentElement.classList.add('d-none')">
-                                        <figcaption class="figure-caption color-inherit">
-                                            {{ translator.get(kit.description) }}
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
+                    <div class="row text-center justify-content-center mb-3">
+                        <div v-for="(kit, index) in getKitsURLs()" class="col-6 col-sm-3 uniform">
+                            <figure class="figure">
+                                <img class="figure-img img-fluid mb-0" :src="kit.url" :alt="translator.get('Uniform')"
+                                    :title="translator.get('Uniform')"
+                                    onerror="this.closest('div.uniform').remove()">
+                                <figcaption class="figure-caption color-inherit">
+                                    {{ translator.get(kit.description) }}
+                                </figcaption>
+                            </figure>
                         </div>
                     </div>
                     <div class="row">

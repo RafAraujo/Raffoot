@@ -9,7 +9,7 @@ class VueInstance {
         this.mounted = null;
     }
 
-    static writeLog = false;
+    static writeLog = true;
 
     get name() {
         return this.selector.substring(1);

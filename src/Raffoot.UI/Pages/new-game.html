@@ -19,7 +19,7 @@
         <header>
             <div class="sticky-top d-flex justify-content-end m-2">
                 <a href="#" :title="translator.get(themeInverse)" class="link-body-emphasis">
-                    <i class="fa-solid" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'" @click="setTheme()"></i>
+                    <i class="fa-solid fa-fw" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'" @click="setTheme()"></i>
                 </a>
             </div>
         </header>
@@ -182,13 +182,13 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-6 col-sm-3 d-grid">
+                    <div class="col-6 col-lg-3 d-grid">
                         <a href="index.html" class="btn btn-secondary">
                             <i class="fa-solid fa-arrow-left"></i>
                             {{ translator.get("Back") }}
                         </a>
                     </div>
-                    <div class="col-6 col-sm-3 d-grid">
+                    <div class="col-6 col-lg-3 d-grid">
                         <button type="submit" class="btn btn-primary">
                             <i class="fa-solid fa-play"></i>
                             {{ translator.get("Start game") }}
@@ -400,10 +400,11 @@
                     if (!this.gameIsValid())
                         return;
 
-                    this.game.name = this.gameName;
-                    this.game.club.setSquadOrder();
-                    //this.game.club.clearFormation();
-                    const id = await gameService.insertAsync(Vue.toRaw(this.game));
+                    const game = Vue.toRaw(this.game);
+                    game.name = this.gameName;
+                    game.arrangeSquads();
+                    game.club.setSquadOrder();
+                    const id = await gameService.insertAsync(game);
                     this.redirect(`home.html?id=${id}`);
                 }
                 catch (error) {

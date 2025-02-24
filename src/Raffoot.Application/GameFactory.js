@@ -65,10 +65,6 @@ class GameFactory {
 		Context.game.newSeason();
 		console.log((elapsedTime = performance.now() - t0) > limit ? `	game.newSeason() took ${performance.now() - t0} milliseconds.` : '');
 
-		t0 = performance.now();
-		Context.game.arrangeSquads();
-		console.log((elapsedTime = performance.now() - t0) > limit ? `	game.arrangeSquads() took ${performance.now() - t0} milliseconds.` : '');
-
 		console.log(`GameFactory.create() took ${performance.now() - tTotal} milliseconds.`);
 		console.log('');
 

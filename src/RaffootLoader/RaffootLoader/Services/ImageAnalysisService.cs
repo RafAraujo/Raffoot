@@ -23,7 +23,7 @@ namespace RaffootLoader.Services
 				Console.WriteLine("Updating clubs colors...");
 
 				var sb = new StringBuilder();
-				_ = Parallel.ForEach(clubs, club =>
+				foreach (var club in clubs)
 				{
 					var logo = imageService.GetLogo(club);
 					var kits = imageService.GetKits(club);
@@ -41,7 +41,7 @@ namespace RaffootLoader.Services
 						club.BackgroundColor = backgroundColor.ToHexString();
 						club.ForegroundColor = foregroundColor.ToHexString();
 					}
-				});
+				};
 
 				Console.WriteLine();
 				var current = 0;
