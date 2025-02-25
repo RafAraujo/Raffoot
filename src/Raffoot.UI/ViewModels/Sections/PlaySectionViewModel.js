@@ -44,7 +44,6 @@ class PlaySectionViewModel {
         Vue.toRaw(this.game).play(1, () => {
             this.game.advanceDate();
         });
-
         this.isLoading = false;
     }
 

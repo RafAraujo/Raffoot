@@ -73,35 +73,22 @@ class Game {
 
     async advanceDate() {
         const matches = this.currentSeason.currentSeasonDate.matches;
-        for (const match of matches)
-            delete match.matchSimulation;
 
-        this._qualifyWinnersToNextEliminationPhases();
-        this.currentSeason.advanceDate();
-
-        this.matchSimulations = [];
-        this.matchSimulationActions = [];
-        this.matchSimulationEvents = [];
-
-        const previousDate = this.currentSeason.previousDate;
-        const days = Date.daysDiff(previousDate, this.currentSeason.currentDate);
-
-        for (const club of this.clubs)
-            club.rest(days);
-
-        if (this.currentSeason.currentDate.getMonth() > previousDate.getMonth()) {
-            for (const club of this.clubs) {
-                const notify = this._clubId === club.id;
-                club.payWages(notify);
-            }
+        if (matches.length > 0) {
+            this._qualifyWinnersToNextEliminationPhases();
+            this._clearMatchSimulations();
         }
+
+        this.currentSeason.advanceDate();
+        this._payWages();
+        this._rest();
     }
 
     arrangeSquads() {
         const t0 = performance.now();
 
         const clubs = this.clubs;
-        
+
         for (const club of clubs)
             club.arrangePlayers();
 
@@ -231,7 +218,7 @@ class Game {
 
     play(speed, callback) {
         this.time = 0;
-        const matches = this.currentSeason.currentSeasonDate.matches;
+        const matches = this.currentSeason.currentSeasonDate.matches.map(m => Vue.toRaw(m));
 
         if (matches.length === 0) {
             callback();
@@ -262,6 +249,24 @@ class Game {
         }, speed);
     }
 
+    _clearMatchSimulations() {
+        for (const match of matches)
+            delete match.matchSimulation;
+
+        this.matchSimulations = [];
+        this.matchSimulationActions = [];
+        this.matchSimulationEvents = [];
+    }
+
+    _payWages() {
+        if (this.currentSeason.currentDate.getMonth() > this.currentSeason.previousDate.getMonth()) {
+            for (const club of this.clubs) {
+                const notify = this._clubId === club.id;
+                club.payWages(notify);
+            }
+        }
+    }
+
     _qualifyWinnersToNextEliminationPhases() {
         const championshipEditionEliminationPhases = this.championshipEditionEliminationPhases
             .filter(ceep => ceep.lastDate === this.currentSeason.currentDate);
@@ -277,5 +282,11 @@ class Game {
             const nextEliminationPhase = this.currentSeason.getChampionshipEditionNextEliminationPhase(championshipEdition);
             nextEliminationPhase.qualify(championshipEditionClubs);
         }
+    }
+
+    _rest() {
+        const days = Date.daysDiff(this.currentSeason.previousDate, this.currentSeason.currentDate);
+        for (const club of this.clubs)
+            club.rest(days);
     }
 }

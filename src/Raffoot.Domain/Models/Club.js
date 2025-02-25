@@ -208,8 +208,6 @@ class Club {
             formationStats.set(formation, stats);
         }
 
-        console.log(formationStats);
-
         let bestFormation = null;
         let bestOverall = -Infinity;
         let bestAge = Infinity;
