@@ -205,7 +205,6 @@ class TeamLineupViewModel {
                 }
 
                 match.makePlayerSubstitution(this.game.time, this.game.club, playerFromField, playerFromBench);
-                this.movePlayerToUnlisted(playerFromField);
             }
         }
         else {

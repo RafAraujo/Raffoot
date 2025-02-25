@@ -7,18 +7,9 @@ class SimulationSectionViewModel {
         this.lastEventClubHome = null;
         this.lastEventClubAway = null;
 
-        this.modal = null;
         this.selectedMatch = null;
-        this.selectedTab = 'lineups';
 
-        const lineupOptions = {
-            showAutomaticSelection: false,
-            showUnlistedPlayers: false,
-        };
-        this.lineup = new TeamLineupViewModel(game, translator, true, lineupOptions);
-        this.statistics = new MatchStatisticsViewModel(game, translator);
-
-        this.watch = {
+        this.__watch = {
             currentMatch: this.watchCurrentMatch
         };
     }
@@ -36,7 +27,7 @@ class SimulationSectionViewModel {
         if (this.isGoal) {
             this.game.pause();
             setTimeout(() => {
-                if (!this.modal._isShown)
+                if (!Router.get('modal-match').modalIsShown())
                     this.game.resume()
             }, 1000);
         }
@@ -140,28 +131,15 @@ class SimulationSectionViewModel {
         return event;
     }
 
-    hideModal() {
-        this.game.resume();
-        this.modal.hide();
+    selectMatch(match) {
+        this.selectedMatch = match;
     }
 
     showModal(match, club) {
         if (this.game.time >= 90)
             return;
 
-        this.selectMatch(match);
-        this.lineup.selectClub(club);
-
-        this.game.pause();
-        this.modal.show();
-    }
-
-    selectMatch(match) {
-        this.selectedMatch = match;
-    }
-
-    selectTab(tab) {
-        this.selectedTab = tab;
+        Router.get('modal-match').showModal(match, club);
     }
 
     watchCurrentMatch(newValue) {

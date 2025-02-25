@@ -165,7 +165,9 @@ class Match {
             throw new Error();
 
         PlayerSubstitution.create(this, time, club, playerOut, playerIn);
+
         club.swapPlayerRoles(playerOut, playerIn);
+        club.movePlayerToUnlisted(playerOut);
     }
 
     prepare() {

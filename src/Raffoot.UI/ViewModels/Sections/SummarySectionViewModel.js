@@ -78,6 +78,10 @@ class SummarySectionViewModel {
         this.selectedMatch = Match.getById(parseInt(id));
     }
 
+    showModal() {
+        Router.get('modal-match').showModal(this.selectedMatch, this.selectedMatch.clubHome);
+    }
+
     watchCurrentMatch(newValue) {
         this.selectedChampionship = newValue?.championshipEdition.championship ?? this._getDefaultChampionship();
     }

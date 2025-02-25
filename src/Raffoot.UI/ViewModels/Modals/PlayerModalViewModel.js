@@ -26,7 +26,8 @@ class PlayerModalViewModel {
             return error;
         }
 
-        return this.translator.getNumberInWords(this.offer.formatInWords());
+        const description = this.translator.getNumberInWords(this.offer.formatInWords());
+        return description;
     }
 
     offerIsValid() {

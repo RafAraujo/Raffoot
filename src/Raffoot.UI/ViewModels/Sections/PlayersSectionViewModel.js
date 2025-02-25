@@ -2,7 +2,6 @@ class PlayersSectionViewModel {
     constructor(game, translator) {
         this.game = game;
         this.translator = translator;
-        this.modal = Router.get('modal-player');
 
         this.config = Config;
         this.playerFilter = new PlayerFilterViewModel();

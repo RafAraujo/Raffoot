@@ -194,68 +194,6 @@
                     </div>
                 </div>
             </div>
-
-            <div id="modal-match" class="modal modal-xl fade" tabindex="-1" aria-labelledby="modal-match-title"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 id="modal-match-title" class="modal-title fs-5">{{ selectedMatch?.description }}</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                :title="translator.get('Close')" :aria-label="translator.get('Close')"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <a class="btn btn-light border me-2" :class="{ 'active' : selectedTab === 'lineups' }"
-                                    @click.prevent="selectTab('lineups')" aria-current="page" href="#">
-                                    <i class="fa-solid fa-users-gear me-1"></i>
-                                    {{ translator.get("Lineups") }}
-                                </a>
-                                <a class="btn btn-light border me-2"
-                                    :class="{ 'active' : selectedTab === 'statistics' }"
-                                    @click.prevent="selectTab('statistics')" aria-current="page" href="#">
-                                    <i class="fa-solid fa-chart-simple me-1"></i>
-                                    {{ translator.get("Statistics") }}
-                                </a>
-                            </div>
-                            <div class="lineups" v-show="selectedTab === 'lineups'"></div>
-                            <div class="statistics" v-show="selectedTab === 'statistics'">
-                                <div v-if="selectedMatch" class="table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr class="text-center">
-                                                <th>
-                                                    <img class="club-logo ms-1 me-1"
-                                                        :src="selectedMatch.clubHome.getLogoURL()"
-                                                        :alt="selectedMatch.clubHome.name"
-                                                        :title="selectedMatch.clubHome.name" style="max-height: 4rem;">
-                                                </th>
-                                                <th>
-                                                    {{ translator.get("Team statistics") }}
-                                                </th>
-                                                <th>
-                                                    <img class="club-logo ms-1 me-1"
-                                                        :src="selectedMatch.clubAway.getLogoURL()"
-                                                        :alt="selectedMatch.clubAway.name"
-                                                        :title="selectedMatch.clubAway.name" style="max-height: 4rem;">
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="text-center"
-                                                v-for="stat in statistics.getStatistics(selectedMatch)">
-                                                <td>{{ stat.values[0] }}</td>
-                                                <td>{{ stat.name }}</td>
-                                                <td>{{ stat.values[1] }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
         <section id="summary" class="container text-light" v-cloak>
             <div class="row mb-3">
@@ -285,7 +223,7 @@
                             </caption>
                             <tbody>
                                 <tr v-for="match in getCurrentMatches(championshipEdition)"
-                                    @click.stop="selectMatch(match.id)"
+                                    @click.stop="selectMatch(match.id); showModal()"
                                     :class="{ 'selected' : selectedMatch?.id === match.id }">
                                     <td class="text-end p-0 text-break" style="width: 44%; height: 40px;">
                                         {{ match.clubHome.shortName }}
@@ -789,10 +727,10 @@
                 </div>
                 <div class="row row-gap-3 mb-3">
                     <div class="col-md-6">
-                        <label for="select-country" class="form-label">
+                        <label for="select-country-calendar" class="form-label">
                             {{ translator.get("Country") }}
                         </label>
-                        <select id="select-country" class="form-select" @change="selectCountry($event.target.value)">
+                        <select id="select-country-calendar" class="form-select" @change="selectCountry($event.target.value)">
                             <option></option>
                             <option v-for="country in getCountries()" :key="country.id" :value="country.id"
                                 :value="country.id" :selected="selectedCountry?.id === country.id">
@@ -801,10 +739,10 @@
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label for="select-club" class="form-label">
+                        <label for="select-club-calendar" class="form-label">
                             {{ translator.get("Club") }}
                         </label>
-                        <select id="select-club" class="form-select" @change="selectClub($event.target.value)">
+                        <select id="select-club-calendar" class="form-select" @change="selectClub($event.target.value)">
                             <option></option>
                             <option v-for="club in getClubs()" :key="club.id" :value="club.id"
                                 :selected="selectedClub?.id === club.id">
@@ -1151,8 +1089,7 @@
                         <div v-for="(kit, index) in getKitsURLs()" class="col-6 col-sm-3 uniform">
                             <figure class="figure">
                                 <img class="figure-img img-fluid mb-0" :src="kit.url" :alt="translator.get('Uniform')"
-                                    :title="translator.get('Uniform')"
-                                    onerror="this.closest('div.uniform').remove()">
+                                    :title="translator.get('Uniform')" onerror="this.closest('div.uniform').remove()">
                                 <figcaption class="figure-caption color-inherit">
                                     {{ translator.get(kit.description) }}
                                 </figcaption>
@@ -1679,6 +1616,64 @@
         </div>
     </div>
 
+    <div id="modal-match" class="modal modal-xl fade" tabindex="-1" aria-labelledby="modal-match-title"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 id="modal-match-title" class="modal-title fs-5">{{ selectedMatch?.fullDescription }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" :title="translator.get('Close')"
+                        :aria-label="translator.get('Close')"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <a class="btn btn-light border me-2" :class="{ 'active' : selectedTab === 'lineups' }"
+                            @click.prevent="selectTab('lineups')" aria-current="page" href="#">
+                            <i class="fa-solid fa-users-gear me-1"></i>
+                            {{ translator.get("Lineups") }}
+                        </a>
+                        <a class="btn btn-light border me-2" :class="{ 'active' : selectedTab === 'statistics' }"
+                            @click.prevent="selectTab('statistics')" aria-current="page" href="#">
+                            <i class="fa-solid fa-chart-simple me-1"></i>
+                            {{ translator.get("Statistics") }}
+                        </a>
+                    </div>
+                    <div class="lineups" v-show="selectedTab === 'lineups'"></div>
+                    <div class="statistics" v-show="selectedTab === 'statistics'">
+                        <div v-if="selectedMatch" class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>
+                                            <img class="club-logo ms-1 me-1" :src="selectedMatch.clubHome.getLogoURL()"
+                                                :alt="selectedMatch.clubHome.name" :title="selectedMatch.clubHome.name"
+                                                style="max-height: 4rem;">
+                                        </th>
+                                        <th>
+                                            {{ translator.get("Team statistics") }}
+                                        </th>
+                                        <th>
+                                            <img class="club-logo ms-1 me-1" :src="selectedMatch.clubAway.getLogoURL()"
+                                                :alt="selectedMatch.clubAway.name" :title="selectedMatch.clubAway.name"
+                                                style="max-height: 4rem;">
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-center" v-for="stat in statistics.getStatistics(selectedMatch)">
+                                        <td>{{ stat.values[0] }}</td>
+                                        <td>{{ stat.name }}</td>
+                                        <td>{{ stat.values[1] }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="modal-player" class="modal fade" tabindex="-2" aria-labelledby="modal-player-title" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" v-if="player">
@@ -1817,6 +1812,7 @@
 
     <script src="../ViewModels/Modals/ColorsModalViewModel.js"></script>
     <script src="../ViewModels/Modals/LanguageModalViewModel.js"></script>
+    <script src="../ViewModels/Modals/MatchModalViewModel.js"></script>
     <script src="../ViewModels/Modals/PlayerModalViewModel.js"></script>
     <script src="../ViewModels/Modals/PreferencesModalViewModel.js"></script>
 
@@ -1876,6 +1872,7 @@
 
                 Router.addView('#management', new VueInstance('#modal-colors', new ColorsModalViewModel(game, translator)).createApp().mount(), true);
                 Router.addView('#management', new VueInstance('#modal-language', new LanguageModalViewModel(game, translator)).createApp().mount(), true);
+                Router.addView('#management', new VueInstance('#modal-match', new MatchModalViewModel(game, translator)).createApp().mount(), true);
                 Router.addView('#management', new VueInstance('#modal-player', new PlayerModalViewModel(game, translator)).createApp().mount(), true);
                 Router.addView('#management', new VueInstance('#modal-preferences', new PreferencesModalViewModel(game, translator)).createApp().mount(), true);
 
@@ -1893,7 +1890,6 @@
                 Router.addView('#matches', new VueInstance('#simulation', new SimulationSectionViewModel(game, translator)).createApp().mount());
                 Router.addView('#matches', new VueInstance('#summary', new SummarySectionViewModel(game, translator)).createApp().mount());
 
-                Router.get('simulation').modal = new bootstrap.Modal('#modal-match');
                 document.getElementById('modal-match').addEventListener('hidden.bs.modal', () => { game.resume(); });
             },
         },
@@ -1908,7 +1904,7 @@
 
                 document.documentElement.addEventListener('click', () => {
                     Router.get('play').lineup.unselectPlayer();
-                    Router.get('simulation').lineup.unselectPlayer();
+                    Router.get('modal-match').lineup.unselectPlayer();
                     Common.hideMessage();
                 });
 

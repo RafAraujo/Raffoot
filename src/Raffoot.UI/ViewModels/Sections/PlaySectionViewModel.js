@@ -67,7 +67,7 @@ class PlaySectionViewModel {
 
     simulateMatch() {
         Vue.toRaw(this.game).play(1, () => {
-            this.game.advanceDate();
+            Router.get('modal-match').showModal(this.currentMatch, this.game.club);
         });
     }
 
@@ -77,7 +77,7 @@ class PlaySectionViewModel {
 
         Router.goTo('simulation');
         this.game.play(this.game.config.matchSpeed, () => setTimeout(() => {
-            Router.get('simulation').hideModal();
+            Router.get('modal-match').hideModal();
             Router.goTo('summary', true);
         }, Config.delayBeforeSummary));
     }
