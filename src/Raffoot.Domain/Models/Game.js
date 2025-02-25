@@ -76,7 +76,7 @@ class Game {
 
         if (matches.length > 0) {
             this._qualifyWinnersToNextEliminationPhases();
-            this._clearMatchSimulations();
+            this._clearMatchSimulations(matches);
         }
 
         this.currentSeason.advanceDate();
@@ -249,7 +249,7 @@ class Game {
         }, speed);
     }
 
-    _clearMatchSimulations() {
+    _clearMatchSimulations(matches) {
         for (const match of matches)
             delete match.matchSimulation;
 
