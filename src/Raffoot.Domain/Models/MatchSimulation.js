@@ -32,7 +32,7 @@ class MatchSimulation {
     }
 
     get previousBallPossessor() {
-        return this.match.playersOnField.find(p => p.id === this._previousBallPossessorId);
+        return Player.getById(this._previousBallPossessorId);
     }
 
     set previousBallPossessor(player) {
@@ -40,7 +40,7 @@ class MatchSimulation {
     }
 
     get ballPossessor() {
-        return this.match.playersOnField.find(p => p.id === this._ballPossessorId);
+        return Player.getById(this._ballPossessorId);
     }
 
     set ballPossessor(player) {
