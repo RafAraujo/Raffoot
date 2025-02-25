@@ -39,13 +39,13 @@ const Config = (function () {
             maxPlayerSubstitutions: 5,
         },
         matchSpeedOptions: {
-            'Super slow': 1500,
-            'Very slow': 1000,
-            'Slow': 750,
+            'Super slow': 800,
+            'Very slow': 700,
+            'Slow': 600,
             'Normal': 500,
             'Fast': 400,
-            'Very fast': 250,
-            'Super fast': 150,
+            'Very fast': 300,
+            'Super fast': 200,
         },
         mockScript: '../../Raffoot.Infrastructure/Raffoot.Data/Mock.js',
         nationalCup: {
