@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffoot</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/animate.css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <header>
+            <div class="sticky-top d-flex justify-content-end m-2">
+                <a href="#" :title="translator.get(themeInverse)" class="link-body-emphasis">
+                    <i class="fa-solid fa-fw" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'" @click="setTheme()"></i>
+                </a>
+            </div>
+        </header>
+        <div class="container">
+            <div class="row mt-3 mb-3">
+                <div class="col">
+                    <h1 class="text-center animate__animated animate__backInDown">Raffoot</h1>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-9 col-lg-6 d-grid mx-auto">
+                    <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`"
+                        @click="redirect('new-game.html')">
+                        <i class="fa-solid fa-file"></i>
+                        {{ translator.get("New Game") }}
+                    </button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-9 col-lg-6 d-grid mx-auto">
+                    <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`" data-bs-toggle="modal"
+                        data-bs-target="#modal-games" @click="clearMessage()">
+                        <i class="fa-solid fa-folder-open"></i>
+                        {{ translator.get("Load game") }}
+                    </button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-9 col-lg-6 d-grid mx-auto">
+                    <button class="btn btn-lg" :class="`btn-outline-${themeInverse}`" data-bs-toggle="modal"
+                        data-bs-target="#modal-import" @click="clearMessage()">
+                        <i class="fa-solid fa-file-import"></i>
+                        {{ translator.get("Import game") }}
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div id="modal-games" class="modal fade" tabindex="-1" aria-labelledby="modal-games-title"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 id="modal-games-title" class="modal-title fs-5">{{ translator.get("Load game") }}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="games" class="form-label">{{ translator.get("Game") }}</label>
+                                    <select id="games" class="form-select" @change="selectGame($event)">
+                                        <option></option>
+                                        <option v-for="game in savedGames" :key="game.key" :value="game.key">
+                                            {{ game.value.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <span class="form-label me-2 fw-bold">{{ `${translator.get("Club")}:` }}</span>
+                                    <span>{{ selectedGame?.value.clubName }}</span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="form-label me-2 fw-bold">{{ `${translator.get("Year")}:` }}</span>
+                                    <span>{{ selectedGame?.value.year }}</span>
+                                </div>
+                            </div>
+                            <div class="row" :class="{ 'd-none' : !message.text }">
+                                <div class="col">
+                                    <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`"
+                                        role="alert">
+                                        {{ message.text }}
+                                        <button type="button" class="btn-close" @click="clearMessage()"
+                                            aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="fa-solid fa-xmark me-1"></i>
+                                {{ translator.get("Cancel") }}
+                            </button>
+                            <button class="btn btn-danger" :disabled="!selectedGame" @click="deleteGame()">
+                                <i class="fa-solid fa-trash-can me-1"></i>
+                                {{ translator.get("Delete") }}
+                            </button>
+                            <button class="btn btn-primary" :disabled="!selectedGame" @click="loadGame()">
+                                <i class="fa-solid fa-folder-open me-1"></i>
+                                {{ translator.get("Load") }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-import" class="modal fade" tabindex="-1" aria-labelledby="modal-import-title" aria-hidden="true"
+            @hidden.bs.modal="alert('teste')">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 id="modal-import-title" class="modal-title fs-5">{{ translator.get("Import game") }}
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input type="file" id="file" class="form-control" @change="onChangeFile($event)"
+                                    accept=".raffoot">
+                            </div>
+                        </div>
+                        <div class="row" :class="{ 'd-none' : !message.text }">
+                            <div class="col">
+                                <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`"
+                                    role="alert">
+                                    {{ message.text }}
+                                    <button type="button" class="btn-close" @click="clearMessage()"
+                                        aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="container-fluid">
+                            <div class="row justify-content-end row-gap-3">
+                                <div class="col-md-4 d-grid">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                        <i class="fa-solid fa-xmark"></i>
+                                        {{ translator.get("Cancel") }}
+                                    </button>
+                                </div>
+                                <div class="col-md-4 d-grid">
+                                    <button class="btn btn-primary" :disabled="file == null" @click="importGame()">
+                                        <i class="fa-solid fa-file-import"></i>
+                                        {{ translator.get("Import") }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/lz-string/lz-string.min.js"></script>
+
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/ArrayExtensions.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/DateExtensions.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/NumberExtensions.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/Random.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/StringExtensions.js"></script>
+
+    <script src="../../Raffoot.Infrastructure/Raffoot.Data/ConnectionFactory.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.Data/GenericDAO.js"></script>
+
+    <script src="../../Raffoot.Domain/Models/Game.js"></script>
+    <script src="../../Raffoot.Domain/Config.js"></script>
+    <script src="../../Raffoot.Domain/Context.js"></script>
+    <script src="../../Raffoot.Domain/MultiLanguage.js"></script>
+
+    <script src="../../Raffoot.Application/GameFactory.js"></script>
+
+    <script src="../../Raffoot.Application/Services/GameService.js"></script>
+    <script src="../../Raffoot.Application/Services/TranslatorService.js"></script>
+
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/vue/vue.global.js"></script>
+</body>
+
+</html>
+
+<script>
+    "use strict";
+
+    const gameService = new GameService();
+    let t0 = performance.now();
+
+    const RaffootApp = {
+        data() {
+            return {
+                file: null,
+                message: { text: '', type: 'primary' },
+                savedGames: [],
+                selectedGame: null,
+                theme: Config.theme,
+                translator: new TranslatorService(),
+            }
+        },
+        methods: {
+            clearMessage() {
+                this.message = { text: '', type: 'primary' };
+            },
+            async deleteGame() {
+                try {
+                    this.message = { text: this.translator.get('Processing...'), type: 'primary' };
+                    await gameService.delete(this.selectedGame.key);
+                    this.selectedGame = null;
+                    await this.getSavedGames();
+                    this.message = { text: this.translator.get('Game deleted successfully'), type: 'success' };
+                }
+                catch (error) {
+                    console.error(error);
+                    this.message = { text: error, type: 'danger' };
+                }
+            },
+            async getSavedGames() {
+                this.savedGames = await gameService.getAllAsync();
+            },
+            importGame() {
+                const reader = new FileReader();
+                const self = this;
+                reader.onload = async function (event) {
+                    try {
+                        const game = gameService.decompress(reader.result);
+                        if (!game?.name || !game?.firstYear) {
+                            self.message = { text: self.translator.get('Invalid file'), type: 'warning' };
+                            return;
+                        }
+
+                        await gameService.insertAsync(game);
+                        this.file = null;
+                        file.value = null;
+                        self.message = { text: self.translator.get('Game imported successfully'), type: 'success' };
+                        await self.getSavedGames();
+                    }
+                    catch (error) {
+                        console.error(error);
+                        self.message = { text: error, type: 'danger' };
+                    }
+                };
+                reader.onerror = function (event) {
+                    console.log(event);
+                    self.message = { text: reader.error, type: 'danger' };
+                };
+
+                try {
+                    reader.readAsText(this.file);
+                }
+                catch (error) {
+                    this.message = { text: error, type: 'danger' };
+                    console.error(error);
+                }
+            },
+            loadGame() {
+                if (!this.selectedGame)
+                    return;
+
+                const url = `home.html?id=${this.selectedGame.key}`;
+                this.redirect(url);
+            },
+            onChangeFile(event) {
+                this.message = { text: '', type: 'primary' };
+                const files = event.target.files;
+                this.file = files.length === 0 ? null : files[0];
+            },
+            redirect: url => location.href = url,
+            selectGame(event) {
+                this.message.text = '';
+                this.selectedGame = null;
+                const id = event.target.value;
+                const game = id ? this.savedGames.find(g => g.key == id) : null;
+                this.selectedGame = game;
+            },
+            setTheme() {
+                this.theme = this.themeInverse;
+                localStorage.setItem('theme', this.theme)
+            },
+        },
+        computed: {
+            themeInverse() {
+                return this.theme === 'dark' ? 'light' : 'dark';
+            }
+        },
+        watch: {
+            theme(newTheme, oldTheme) {
+                document.documentElement.setAttribute('data-bs-theme', newTheme);
+            },
+        },
+        async created() {
+            document.documentElement.setAttribute('data-bs-theme', this.theme);
+            await this.getSavedGames();
+        },
+        beforeUpdate: () => t0 = performance.now(),
+        updated: () => console.log(`Update took ${(performance.now() - t0)} milliseconds.`),
+    };
+
+    Vue.createApp(RaffootApp).mount('#app');
+</script>

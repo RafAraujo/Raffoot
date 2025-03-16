@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffoot</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <header>
+            <div class="sticky-top d-flex justify-content-end m-2">
+                <a href="#" :title="translator.get(themeInverse)" class="link-body-emphasis">
+                    <i class="fa-solid fa-fw" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'" @click="setTheme()"></i>
+                </a>
+            </div>
+        </header>
+        <div class="container">
+            <div class="row mb-3" :class="{ 'd-none' : !message.text }">
+                <div class="col">
+                    <div class="alert alert-dismissible fade show" :class="`alert-${message.type}`" role="alert">
+                        {{ message.text }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <div class="col text-center">
+                    <h1 class="text-center">Raffoot</h1>
+                </div>
+            </div>
+            <form id="form" action="home.html" @submit.prevent="startGame()" novalidate>
+                <div class="accordion mb-3">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#game-settings" aria-controls="game-settings">
+                                {{ translator.get("Game settings") }}
+                            </button>
+                        </h2>
+                        <div id="game-settings" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div class="row row-gap-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label for="data-source" class="form-label">
+                                            {{ translator.get("Data Source") }}
+                                        </label>
+                                        <select id="data-source" class="form-select" required autocomplete="off"
+                                            v-model.lazy="selectedDataSource" @change="loadYears()">
+                                            <option v-for="(dataSource, index) in dataSources" :key="dataSource"
+                                                :value="dataSource">
+                                                {{ dataSource }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="year" class="form-label">{{ translator.get("Year") }}</label>
+                                        <select id="year" class="form-select" required autocomplete="off"
+                                            v-model.lazy="selectedYear" @change="createGame()">
+                                            <option></option>
+                                            <option v-for="(year, index) in years" :key="year" :value="year">
+                                                {{ year }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="form-check form-switch">
+                                            <input type="checkbox" id="choose-national-leagues" class="form-check-input"
+                                                role="switch" checked v-model.lazy="chooseNationalLeagues"
+                                                @change="changeChooseNationalLeagues()">
+                                            <label for="choose-national-leagues" class="form-check-label">
+                                                {{ translator.get("Choose national leagues") }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <fieldset class="border pt-2 ps-2" v-if="chooseNationalLeagues">
+                                    <legend class="w-auto float-none fs-5 ps-1 pe-1">{{ translator.get("Leagues") }}
+                                    </legend>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <div class="form-check form-switch">
+                                                <input type="checkbox" id="combine-countries" class="form-check-input"
+                                                    role="switch" checked v-model.lazy="combineCountries"
+                                                    @change="reconfigureConfederations()">
+                                                <label for="combine-countries" class="form-check-label">
+                                                    {{ translator.get("Combine countries") }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <ul class="list-group list-group-flush ps-1">
+                                            <li v-for="confederation in getConfederations()"
+                                                class="list-group-item d-flex justify-content-between align-items-center list-group-item-action"
+                                                :style="{ minHeight: combineCountries ? '4rem' : null }"
+                                                @click="confederation.isPlayable = !confederation.isPlayable">
+                                                <div class="me-auto">
+                                                    <input type="checkbox" :id="confederation.id"
+                                                        class="form-check-input me-1"
+                                                        v-model.lazy="confederation.isPlayable" required>
+                                                    <label :for="confederation.id" class="form-check-label"
+                                                        :class="{ 'fw-medium' : combineCountries }" @click.stop>
+                                                        {{ translator.get(confederation.name) }}
+                                                    </label>
+                                                    <div v-if="confederation.countries.length > 1" class="small">
+                                                        {{ getConfederationCountries(confederation) }}
+                                                    </div>
+                                                </div>
+                                                <span class="badge text-bg-primary rounded-pill"
+                                                    :title="getConfederationClubs(confederation)">
+                                                    {{ '{0} {1}'.format(confederation.clubs.length,
+                                                    translator.get("Clubs").toLowerCase()) }}
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#choose-your-club" aria-expanded="true"
+                                aria-controls="choose-your-club">
+                                {{ translator.get("Choose your club") }}
+                            </button>
+                        </h2>
+                        <div id="choose-your-club" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                <div class="row row-gap-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label for="country" class="form-label">{{ translator.get("Country") }}</label>
+                                        <select id="country" class="form-select" required autocomplete="off"
+                                            @change="setCountry($event.target.value)">
+                                            <option></option>
+                                            <option v-for="country in getPlayableCountries()" :key="country.id"
+                                                :value="country.id">
+                                                {{ country.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="club" class="form-label">{{ translator.get("Club") }}</label>
+                                        <select id="club" class="form-select" required autocomplete="off"
+                                            @change="setClub($event.target.value)">
+                                            <option></option>
+                                            <template v-if="game?.country"
+                                                v-for="championshipEdition in game?.currentSeason.getNationalLeaguesByCountry(game.country)">
+                                                <optgroup
+                                                    :label="translator.getChampionshipName(championshipEdition.championship)">
+                                                    <option v-for="club in championshipEdition.clubs.orderBy('name')"
+                                                        :key="club.id" :value="club.id">
+                                                        {{ club.name }}
+                                                    </option>
+                                                </optgroup>
+                                            </template>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="name" class="form-label">{{ translator.get("Name") }}</label>
+                                        <input type="text" id="name" class="form-control" required autocomplete="off"
+                                            v-model.lazy="gameName">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 col-lg-3 d-grid">
+                        <a href="index.html" class="btn btn-secondary">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            {{ translator.get("Back") }}
+                        </a>
+                    </div>
+                    <div class="col-6 col-lg-3 d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-play"></i>
+                            {{ translator.get("Start game") }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/ArrayExtensions.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/ColorHelper.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/DateExtensions.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/NumberExtensions.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/Random.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.CrossCutting/StringExtensions.js"></script>
+
+    <script src="../../Raffoot.Infrastructure/Raffoot.Data/ConnectionFactory.js"></script>
+    <script src="../../Raffoot.Infrastructure/Raffoot.Data/GenericDAO.js"></script>
+
+    <script src="../../Raffoot.Domain/Config.js"></script>
+    <script src="../../Raffoot.Domain/Models/Championship.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEdition.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEditionClub.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEditionEliminationPhase.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEditionEliminationPhaseDuel.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEditionFixture.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEditionGroup.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipEditionPlayer.js"></script>
+    <script src="../../Raffoot.Domain/Models/ChampionshipType.js"></script>
+    <script src="../../Raffoot.Domain/Models/Club.js"></script>
+    <script src="../../Raffoot.Domain/Models/Confederation.js"></script>
+    <script src="../../Raffoot.Domain/Models/Continent.js"></script>
+    <script src="../../Raffoot.Domain/Models/Country.js"></script>
+    <script src="../../Raffoot.Domain/Models/FieldLocalization.js"></script>
+    <script src="../../Raffoot.Domain/Models/FieldRegion.js"></script>
+    <script src="../../Raffoot.Domain/Models/Formation.js"></script>
+    <script src="../../Raffoot.Domain/Models/Game.js"></script>
+    <script src="../../Raffoot.Domain/Models/Match.js"></script>
+    <script src="../../Raffoot.Domain/Models/Player.js"></script>
+    <script src="../../Raffoot.Domain/Models/Position.js"></script>
+    <script src="../../Raffoot.Domain/Models/Season.js"></script>
+    <script src="../../Raffoot.Domain/Models/SeasonDate.js"></script>
+    <script src="../../Raffoot.Domain/Context.js"></script>
+    <script src="../../Raffoot.Domain/MultiLanguage.js"></script>
+
+    <script src="../../Raffoot.Application/GameFactory.js"></script>
+
+    <script src="../../Raffoot.Application/Services/GameService.js"></script>
+    <script src="../../Raffoot.Application/Services/SeedService.js"></script>
+
+    <script src="../../Raffoot.Application/Services/Fifa03Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa04Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa05Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa06Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa07Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa08Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa09Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa10Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa11Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa12Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa13Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa14Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa15Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa16Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa17Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa18Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa19Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa20Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa21Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa22Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa23Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa24Service.js"></script>
+    <script src="../../Raffoot.Application/Services/Fifa25Service.js"></script>
+
+    <script src="../../Raffoot.Application/Services/FM24Service.js"></script>
+
+    <script src="../../Raffoot.Application/Services/TranslatorService.js"></script>
+
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/vue/vue.global.js"></script>
+</body>
+
+</html>
+
+<script>
+    "use strict";
+
+    const gameService = new GameService();
+    const translator = new TranslatorService();
+    let t0 = performance.now();
+
+    const RaffootApp = {
+        data() {
+            return {
+                game: null,
+                gameName: '',
+                chooseNationalLeagues: false,
+                combineCountries: true,
+                message: { text: '', type: 'primary' },
+                dataSources: Config.dataSources,
+                selectedDataSource: Config.dataSources[0],
+                selectedYear: null,
+                theme: Config.theme,
+                translator: translator,
+                years: [],
+            }
+        },
+        methods: {
+            clearMessage() {
+                this.message = { text: '', type: 'primary' };
+            },
+            createGame() {
+                try {
+                    if (!this.selectedYear)
+                        return;
+
+                    this.game = gameService.create(this.selectedDataSource, this.selectedYear, '', this.combineCountries);
+                    this.game.config.theme = this.theme;
+                }
+                catch (error) {
+                    this.message = { text: error, type: 'danger' };
+                    throw error;
+                }
+            },
+            gameIsValid() {
+                let accordionButton = document.querySelector('[data-bs-target="#game-settings"]');
+                if (this.game.confederations.every(c => !c.isPlayable)) {
+                    if (accordionButton.getAttribute('aria-expanded') === 'false')
+                        accordionButton.click();
+                    alert('Selecione ao menos uma liga');
+                    return false;
+                }
+
+                accordionButton = document.querySelector('[data-bs-target="#choose-your-club"]');
+                if (accordionButton.getAttribute('aria-expanded') === 'false')
+                    accordionButton.click();
+
+                const form = document.querySelector('form');
+                return form.reportValidity();
+            },
+            getConfederations() {
+                const confederations = this.game?.confederations.sort((a, b) => translator.get(a.name).localeCompare(translator.get(b.name)));
+                return confederations;
+            },
+            getConfederationCountries(confederation) {
+                return confederation.countries.map(c => translator.get(c.name)).sort((a, b) => a.localeCompare(b)).join(', ');
+            },
+            getConfederationClubs(confederation) {
+                return confederation.clubs.map(c => c.name).join(', ');
+            },
+            getPlayableCountries() {
+                let countries = this.game?.getPlayableCountries();
+                countries = countries?.map(c => ({ id: c.id, name: this.translator.get(c.name) })).orderBy('name');
+                return countries;
+            },
+            loadYears() {
+                const maxYear = Config.years.max;
+                const minYear = Config.years.min;
+
+                this.selectedYear = null;
+
+                const years = [];
+                for (let year = maxYear; year >= minYear; year--)
+                    if (this.serviceExists(year)) {
+                        years.push(year);
+                        if (!this.selectedYear) {
+                            this.selectedYear = year;
+                            this.createGame();
+                        }
+                    }
+
+                this.years = years;
+            },
+            changeChooseNationalLeagues() {
+                if (!this.chooseNationalLeagues) {
+                    this.combineCountries = true;
+                    for (const confederation of this.game.confederations)
+                        confederation.isPlayable = true;
+                    this.createGame();
+                }
+            },
+            serviceExists(year) {
+                try {
+                    const name = `${this.selectedDataSource}${year.toString().substring(2)}Service`;
+                    eval(name);
+                    return true;
+                }
+                catch {
+                    return false;
+                }
+            },
+            setCountry(id) {
+                if (!this.game)
+                    return;
+                this.game.country = this.game.countries.find(c => c.id === parseInt(id));
+            },
+            setClub(id) {
+                if (!this.game)
+                    return;
+                this.game.club = this.game.clubs.find(c => c.id === parseInt(id));
+            },
+            setTheme() {
+                this.theme = this.themeInverse;
+                localStorage.setItem('theme', this.theme);
+            },
+            async startGame() {
+                try {
+                    if (!this.gameIsValid())
+                        return;
+
+                    const game = Vue.toRaw(this.game);
+                    game.name = this.gameName;
+                    game.arrangeSquads();
+                    game.club.setSquadOrder();
+                    const id = await gameService.insertAsync(game);
+                    this.redirect(`home.html?id=${id}`);
+                }
+                catch (error) {
+                    this.message = { text: error, type: 'danger' };
+                    throw error;
+                };
+            },
+            redirect: url => location.href = url,
+        },
+        computed: {
+            themeInverse() {
+                return this.theme === 'dark' ? 'light' : 'dark';
+            }
+        },
+        watch: {
+            theme(newTheme, oldTheme) {
+                document.documentElement.setAttribute('data-bs-theme', newTheme);
+            },
+        },
+        async created() {
+            document.documentElement.setAttribute('data-bs-theme', this.theme);
+            this.message = { text: this.translator.get('Processing...'), type: 'primary' };
+        },
+        async mounted() {
+            this.loadYears();
+            this.clearMessage();
+        },
+        beforeUpdate: () => t0 = performance.now(),
+        updated: () => console.log(`Update took ${performance.now() - t0} milliseconds.`),
+    };
+
+    Vue.createApp(RaffootApp).mount('#app');
+</script>

@@ -1,0 +1,390 @@
+﻿using RaffootLoader.Domain.Enums;
+using RaffootLoader.Domain.Models;
+
+namespace RaffootLoader.Application.Services.Abstract
+{
+    public abstract class FifaService
+    {
+        protected static readonly int RestOfWorldLeagueId = 76;
+
+        protected static List<League> GetLeagues()
+        {
+            var leagues = new League[]
+            {
+                new(347, "South Africa", 1, Continent.Africa),
+
+                new(353, "Argentina", 1, Continent.America),
+                new(2017, "Bolivia", 1, Continent.America),
+                new(7, "Brazil", 1, Continent.America),
+                new(335, "Chile", 1, Continent.America),
+                new(336, "Colombia", 1, Continent.America),
+                new(2018, "Ecuador", 1, Continent.America),
+                new(39, "United States", 1, Continent.America),
+                new(338, "Uruguay", 1, Continent.America),
+                new(2019, "Venezuela", 1, Continent.America),
+                new(341, "Mexico", 1, Continent.America),
+                new(337, "Paraguay", 1, Continent.America),
+                new(2020, "Peru", 1, Continent.America),
+
+                new(351, "Australia", 1, Continent.Asia),
+				new(313, "Azerbaijan", 1, Continent.Asia),
+                new(2012, "China PR", 1, Continent.Asia),
+                new(2149, "India", 1, Continent.Asia),
+                new(349, "Japan", 1, Continent.Asia),
+                new(83, "Korea Republic", 1, Continent.Asia),
+                new(350, "Saudi Arabia", 1, Continent.Asia),
+                new(2013, "United Arab Emirates", 1, Continent.Asia),
+
+                new(80, "Austria", 1, Continent.Europe),
+                new(4, "Belgium", 1, Continent.Europe),
+                new(317, "Croatia", 1, Continent.Europe),
+                new(318, "Cyprus", 1, Continent.Europe),
+                new(319, "Czechia", 1, Continent.Europe),
+                new(1, "Denmark", 1, Continent.Europe),
+                new(13, "England", 1, Continent.Europe),
+                new(14, "England", 2, Continent.Europe),
+                new(60, "England", 3, Continent.Europe),
+                new(61, "England", 4, Continent.Europe),
+                new(62, "England", 5, Continent.Europe),
+                new(322, "Finland", 1, Continent.Europe),
+                new(16, "France", 1, Continent.Europe),
+                new(17, "France", 2, Continent.Europe),
+                new(19, "Germany", 1, Continent.Europe),
+                new(20, "Germany", 2, Continent.Europe),
+                new(2076, "Germany", 3, Continent.Europe),
+                new(63, "Greece", 1, Continent.Europe),
+                new(64, "Hungary", 1, Continent.Europe),
+                new(31, "Italy", 1, Continent.Europe),
+                new(32, "Italy", 2, Continent.Europe),
+                new(10, "Netherlands", 1, Continent.Europe),
+                new(41, "Norway", 1, Continent.Europe),
+                new(66, "Poland", 1, Continent.Europe),
+                new(308, "Portugal", 1, Continent.Europe),
+                new(65, "Republic of Ireland", 1, Continent.Europe),
+                new(330, "Romania", 1, Continent.Europe),
+                new(67, "Russia", 1, Continent.Europe),
+                new(50, "Scotland", 1, Continent.Europe),
+                new(53, "Spain", 1, Continent.Europe),
+                new(54, "Spain", 2, Continent.Europe),
+                new(56, "Sweden", 1, Continent.Europe),
+                new(189, "Switzerland", 1, Continent.Europe),
+                new(68, "Türkiye", 1, Continent.Europe),
+                new(332, "Ukraine", 1, Continent.Europe),
+
+                new(76, "Rest of World", 1, null),
+            };
+
+            foreach (var group in leagues.GroupBy(l => l.ExternalId))
+                if (group.Count() > 1)
+                    throw new Exception();
+
+            return [.. leagues];
+        }
+
+        protected static string GetCountryForRestOfWorldClub(string clubName)
+        {
+            var tuples = new List<Tuple<string, string>>
+            {
+                new("Argentina", "Boca Juniors"),
+                new("Argentina", "River Plate"),
+
+                new("Czechia", "Sparta Praha"),
+                new("Czechia", "Sigma Olomouc"),
+
+                new("Greece", "Olympiakos Piraeus"),
+                new("Greece", "Panathinaikos"),
+                new("Greece", "Paniliakos"),
+                new("Greece", "PAOK"),
+
+                new("Poland", "Legia Warszawa"),
+                new("Poland", "Polonia Warszawa"),
+                new("Poland", "Wisla Krakow"),
+
+                new("South Africa", "Kaizer Chiefs"),
+                new("South Africa", "Orlando Pirates"),
+
+                new("Türkiye", "Fenerbahçe"),
+                new("Türkiye", "Galatasaray"),
+
+                new("Ukraine", "Shakhtar Donetsk"),
+            };
+
+            var tuple = tuples.Single(t => t.Item2 == clubName);
+            return tuple.Item1;
+        }
+
+        protected static string GetStandardizedClubName(string club) => club switch
+        {
+			"FC Wacker Tirol" => "Wacker Innsbruck",
+			"FK Austria Magna" => "Austria Wien",
+			"Herold Admira" or "Nordea Admira" => "Nordea Admira",
+			"Liebherr GAK" => "Grazer AK",
+			"SV Josko Fenster Ried" => "Ried",
+			"SK Puntigamer Sturm Graz" => "Sturm Graz",
+            "SK Rapid Wien" => "Rapid Wien",
+			"SV Salzburg" or "Red Bull Salzburg" => "Salzburg",
+			"SV Mattersburg" => "Mattersburg",
+
+			"Club Brugge Kv" => "Club Brugge",
+			"FC Molenb. Brussels Strombeek" => "RWDM",
+			"Germinal Beerschot" => "Beerschot",
+			"Ksv Cercle Brugge" => "Cercle Brugge",
+			"KAA Gent" => "Gent",
+			"KRC Genk" => "Genk",
+			"KSC Lokeren" => "Lokeren",
+			"KSV Roeselare" => "SV Roeselare",
+			"KVC Westerlo" => "Westerlo",
+			"Lierse SK" => "Lierse",
+			"Raa Louviéroise" => "RAAL La Louvière",
+			"Royal Charleroi SC" => "Sporting Charleroi",
+			"Rsc Anderlecht" => "Anderlecht",
+			"SK Beveren" => "Beveren",
+			"St.-Truidense VV" => "Sint-Truiden",
+			"Standard de Liège" => "Standard Liège",
+			"Sv Zulte-Waregem" => "Zulte-Waregem",
+
+			"Atletico Mineiro" => "Atlético Mineiro",
+			"Atletico Paranaense" => "Atlético Paranaense",
+            "Esporte Clube Bahia" => "Bahia",
+            "Gremio" => "Grêmio",
+            "Vasco Da Gama" => "Vasco da Gama",
+            "Vitoria" or "Esporte Club Vitoria" => "Vitória",
+
+			"AC Sparta Prague" or "AC Sparta Praha" => "Sparta Praha",
+
+			"Aalborg Boldklub" => "AaB",
+			"Aarhus Gymnastik Forening" => "AGF",
+			"Brøndby Idrætsforening" => "Brøndby",
+			"Esbjerg forenede Boldklubber" => "Esbjerg",
+			"Football Club Nordsjælland" => "Nordsjælland",
+			"Football Club København" => "København",
+			"Football Club Midtjylland" => "Midtjylland",
+            "AC Horsens" => "Horsens",
+			"Odense Boldklub" => "OB",
+			"Viborg Fodsports Forening" => "Viborg",
+
+            "Boston" => "Boston United",
+			"Bournemouth" => "AFC Bournemouth",
+			"Brighton Hove Albion" => "Brighton & Hove Albion",
+            "Chester" => "Chester City",
+			"Crewe" => "Crewe Alexandra",
+            "Darlington" => "Darlington 1883",
+            "Doncaster" => "Doncaster Rovers",
+			"Kidderminster Town" => "Kidderminster Harriers",
+			"Macclesfield" => "Macclesfield Town",
+			"Milton Keynes" or "MK Dons" => "Milton Keynes Dons",
+			"Nottm Forest" => "Nottingham Forest",
+			"Reading FC" => "Reading",
+			"Rochdale Afc" => "Rochdale",
+			"Rotherham" => "Rotherham United",
+			"Rushden + Diamonds" => "Rushden & Diamonds",
+			"Shrewsbury" => "Shrewsbury Town",
+			"West Bromwich" => "West Bromwich Albion",
+			"Wolverhampton" => "Wolverhampton Wanderers",
+            "Wycombe" => "Wycombe Wanderers",
+			"Yeovil" => "Yeovil Town",
+
+			"AC Ajaccio" => "Ajaccio",
+			"AJ Auxerre" => "Auxerre",
+			"Amiens SCF" => "Amiens SC",
+			"AS Monaco" => "Monaco",
+			"AS Nancy-Lorraine" => "Nancy",
+            "AS Saint-Etienne" => "Saint-Étienne",
+			"Clermont Foot" => "Clermont",
+			"Cs Sedan-Ardennes" => "Sedan",
+			"Dijon Football Côte-d'Or" => "Dijon",
+			"En Avant Guingamp" => "Guingamp",
+			"ES Troyes AC" => "Troyes",
+			"FC Metz" => "Metz",
+			"FC Nantes" => "Nantes",
+			"FC Sete" => "Sète",
+			"Le Havre AC" => "Le Havre",
+			"Le Mans UC 72" => "Le Mans",
+			"Lille Osc" => "LOSC Lille",
+			"Marseille" => "Olympique de Marseille",
+			"Montpellier HSC" => "Montpellier",
+			"OGC Nice" => "Nice",
+			"Paris Saint-Germain" => "Paris Saint Germain",
+			"RC Lens" => "Lens",
+			"RC Strasburg" => "Strasbourg",
+			"SC Bastia" => "Bastia",
+			"SCO Angers" => "Angers",
+			"SM Caen" => "Caen",
+			"Stade Lavallois Mfc" => "Laval",
+			"Valenciennes FC" => "Valenciennes",
+
+			"1.FC Saarbrucken" or "1. FC Saarbrücken" => "Saarbrücken",
+			"Arminia Bielefeld" => "DSC Arminia Bielefeld",
+            "Bayer Leverkusen" => "Bayer 04 Leverkusen",
+			"Bayern Munich" => "FC Bayern München",
+			"Eintr. Braunschweig" => "Eintracht Braunschweig",
+			"FC Cologne" => "FC Köln",
+			"FC Energie Cottbus" => "Energie Cottbus",
+			"FC Erzgebirge Aue" => "Erzgebirge Aue",
+			"FC Hansa Rostock" => "Hansa Rostock",
+			"FC Kaiserslautern" => "Kaiserslautern",
+			"FC Nürnberg" => "Nürnberg",
+			"FC Schalke 04" => "Schalke 04",
+			"Hamburger Sport Verein" => "Hamburger SV",
+			"Hertha BSC Berlin" => "Hertha BSC",
+			"LR Ahlen" => "Rot Weiss Ahlen",
+			"Mainz" => "FSV Mainz 05",
+			"Monchengladbach" => "Borussia Mönchengladbach",
+			"Rot-Weiss Erfurt" => "Rot-Weiß Erfurt",
+			"SC Paderborn 07" => "Paderborn",
+			"Spvgg Unterhaching" => "Unterhaching",
+			"SV Wacker Burghausen" => "Wacker Burghausen",
+			"SV Werder Bremen" => "Werder Bremen",
+            "Trier" => "Eintracht Trier",
+			"TSV 1860 Munich" => "1860 München",
+			"VfL Bochum" => "VfL Bochum 1848",
+
+			"Olympiakos" => "Olympiakos Piraeus",
+			"Paok" or "Thessaloniki" => "PAOK",
+
+			"AC Milan" => "Milan",
+            "AS Roma" => "Roma",
+            "Atalanta BC" => "Atalanta",
+            "Bari" => "Bari 1908",
+            "Chievo Verona" => "Chievo",
+            "Doria" => "Sampdoria",
+            "Firenze" => "Fiorentina",
+            "Inter Milan" => "Inter",
+            "Messina" => "ACR Messina",
+            "Reggina Calcio" => "Reggina",
+
+			"Busan Icons" => "Busan I'Park",
+			"Chunnam Dragons" => "Jeonnam Dragons",
+			"Chonbuk Motors" => "Jeonbuk Motors",
+			"Daegu FC" => "Daegu",
+			"Daejon Citizen" => "Daejeon Citizen",
+			"FC Seoul" => "Seoul",
+			"Gwangju Sangmu" => "Gimcheon Sangmu",
+			"Seongnam Ilhwa Chunma" or "Songnam Ilhwa Chunma" => "Seongnam",
+			"Ulsan Horang-I" => "Ulsan",
+
+			"Tecos UAG" => "Tecos",
+			"Tigres" => "Tigres UANL",
+			"U.N.A.M." => "Pumas UNAM",
+
+			"N.E.C. Nijmegen" => "NEC",
+			"PSV Eindhoven" => "PSV",
+			"Roda JC" => "Roda JC Kerkrade",
+			"Vitesse Arnhem" => "Vitesse",
+
+			"Aalesunds FK" => "Aalesund",
+			"FC Lyn Oslo" => "Lyn",
+			"FK Bodø/Glimt" => "Bodø / Glimt",
+			"Fredrikstad FK" => "Fredrikstad",
+			"Hamarkameratene" => "HamKam",
+			"IK Start" => "Start",
+			"Lillestrøm SK" => "Lillestrøm",
+            "Molde FK" => "Molde",
+			"Odd Grenland" => "Odd",
+			"Rosenborg BK" => "Rosenborg",
+			"Sogndal IL" => "Sogndal",
+			"Stabæk Fotball" => "Stabæk",
+			"SK Brann" => "Brann",
+			"Tromsø IL" => "Tromsø",
+			"Vålerenga Fotball" => "Vålerenga",
+			"Viking FK" => "Viking",
+
+            "C. Krakow" => "Cracovia Kraków",
+			"Grodzisk Wielkopolski" => "Dyskobolia Grodzisk Wielkopolski",
+            "Kielce" => "Korona Kielce",
+			"Legia Warsaw" => "Legia Warszawa",
+			"Odra Wodzislaw" => "Odra Wodzislaw Slaski",
+
+            "Coimbra" => "Académica",
+			"Estoril Praia" => "Estoril",
+            "FC Porto" or "F.C. Porto" => "Porto",
+			"F.C. Penafiel" => "Penafiel",
+            "Naval" => "Naval 1º de Maio",
+			"SC Beira-Mar" => "Beira-Mar",
+			"Sporting Lisbon" => "Sporting CP",
+            "União Leiria" => "União de Leiria",
+            "Vitória Futebol Clube" => "Vitória FC",
+
+			"Heart Of Midlothian" => "Hearts",
+
+            "Athletic de Bilbao" => "Athletic Club",
+			"Atético de Madrid" => "Atlético Madrid",
+			"Ciudad de Murcia" or "Ciudad Murcia" => "CAP Ciudad de Murcia",
+			"Deport. Alavés" => "Deportivo Alavés",
+			"Deportiva Eibar" or "Deportivo Eibar" => "SD Eibar",
+            "Ejido" => "CP Ejido",
+			"Lorca Deportiva" => "Lorca",
+			"Málaga CF" => "Málaga",
+            "Racing de Santander" => "Racing Santander",
+            "Real Madrid B" => "Real Madrid II",
+            "Recreativo de Huelva" => "Recreativo Huelva",
+			"RC Deportivo La Coruna" => "Deportivo La Coruña",
+            "RC Celta Vigo" => "Celta de Vigo",
+            "RCD Espanyol" => "Espanyol",
+            "RCD Mallorca" => "Mallorca",
+			"Tarragona" => "Gimnàstic Tarragona",
+
+			"AIK Solna" => "AIK",
+			"BK Hacken" => "Häcken",
+			"Djurgårdens IF" => "Djurgården",
+			"Elfsborg IF" => "Elfsborg",
+			"Gefle IF" => "Gefle",
+			"Halmstads BK" => "Halmstad",
+			"Hammarby IF" => "Hammarby",
+			"Helsingborgs IF" => "Helsingborg",
+			"Landskrona Bois" => "Landskrona BoIS",
+			"Örebro SK FK" => "Örebro",
+			"Örgryte IS" => "Örgryte",
+			"Trelleborgs" => "Trelleborg",
+
+			"BSC Young Boys" => "Young Boys",
+			"FC Aarau" => "Aarau",
+			"FC Basel 1893" => "Basel",
+            "FC Thun" => "Thun",
+			"FC Zürich" => "Zürich",
+			"Grasshoppers Zürich" => "Grasshopper",
+			"Servette FC" => "Servette",
+			"Schaffhausen" => "Schaffhausen",
+			"St.Gallen" => "St. Gallen",
+
+			"Galatasaray SK" => "Galatasaray",
+            "Fenerbahçe SK" => "Fenerbahçe",
+
+			"Dallas Burn" or "FC Dallas" => "Dallas",
+			"D.C. United" => "DC United",
+			"Los Angeles Galaxy" => "LA Galaxy",
+
+            _ => club,
+        };
+
+        protected static string GetStandardizedCountryName(string country) => country switch
+        {
+            "Bosnia & Herzegovina" => "Bosnia and Herzegovina",
+            "Cape Verde" => "Cabo Verde",
+            "Czech Republic" => "Czechia",
+            "Central African Rep." => "Central African Republic",
+            "DR Congo" => "Congo DR",
+            "Guinea Bissau" => "Guinea-Bissau",
+            "Ivory Coast" => "Côte d'Ivoire",
+            "São Tomé & Príncipe" => "São Tomé and Príncipe",
+            "St Kitts Nevis" => "Saint Kitts and Nevis",
+            "St Vincent Grenadine" => "Saint Vincent and the Grenadines",
+            "Trinidad & Tobago" => "Trinidad and Tobago",
+            "Turkey" => "Türkiye",
+            _ => country,
+        };
+
+        protected static string GetStandardizedPositionAbbreviation(string position) => position switch
+        {
+            "LCB" or "RCB" or "SW" => "CB",
+            "LDM" or "LCDM" or "RDM" or "RCDM" => "CDM",
+            "LCM" or "RCM" => "CM",
+            "LAM" or "LCAM" or "RAM" or "RCAM" => "CAM",
+            "LWM" => "LW",
+            "RWM" => "RW",
+            "LS" or "RS" => "ST",
+            "LF" or "RF" => "CF",
+            _ => position,
+        };
+    }
+}
