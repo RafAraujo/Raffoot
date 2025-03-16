@@ -1,7 +1,7 @@
 class Player {
     static conditions = Object.keys(Config.player.conditions);
 
-    constructor(name, countryId, positionId, age, overall, clubId, energy, externalId) {
+    constructor(name, countryId, positionId, age, overall, clubId, energy) {
         this.name = name;
         this._countryId = countryId;
         this._positionId = positionId;
@@ -9,15 +9,14 @@ class Player {
         this.overall = overall;
         this._clubId = clubId;
         this.energy = energy;
-        this.externalId = externalId;
     }
 
-    static create(name, countryId, positionId, age, overall, externalId, club = null) {
+    static create(name, countryId, positionId, age, overall, club = null) {
         if (!club)
             club = Club.all().last();
 
         const energy = 100;
-        const player = new Player(name, countryId, positionId, age, overall, club.id, energy, externalId);
+        const player = new Player(name, countryId, positionId, age, overall, club.id, energy);
         player.id = Context.game.players.push(player);
 
         club.addPlayer(player);

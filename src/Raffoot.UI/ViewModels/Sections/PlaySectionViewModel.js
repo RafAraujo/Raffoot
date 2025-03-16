@@ -15,6 +15,12 @@ class PlaySectionViewModel {
         };
         this.lineup = new TeamLineupViewModel(game, translator, false, lineupOptions);
 
+        this.__computed = {
+            matchMode() {
+                return this.game.config.matchMode;
+            }
+        };
+
         this.__watch = {
             currentMatch: this.watchCurrentMatch
         };
@@ -47,6 +53,10 @@ class PlaySectionViewModel {
         this.isLoading = false;
     }
 
+    changeMatchMode() {
+        this.game.config.matchMode = this.game.config.matchMode === 'Start match' ? 'Simulate match' : 'Start match';
+    }
+
     getCurrentChampionshipName() {
         const championship = this.currentMatch.championshipEdition.championship;
         const name = this.translator.getChampionshipName(championship, false);
@@ -65,7 +75,10 @@ class PlaySectionViewModel {
     }
 
     simulateMatch() {
-        Vue.toRaw(this.game).play(1, () => {
+        if (!this.lineup.isValidLineup())
+            return;
+
+        this.game.play(1, () => {
             Router.goTo('summary', true);
             Router.get('modal-match').showModal(this.currentMatch, this.game.club, 'statistics');
         });

@@ -408,9 +408,9 @@
                     <div class="row mb-3">
                         <div class="col-6 col-lg-3 d-grid">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-light">
+                                <button type="button" class="btn btn-light" @click="matchMode === 'Start match' ? startMatch() : simulateMatch()">
                                     <i class="fa-solid fa-play me-1"></i>
-                                    {{ translator.get("Start match") }}
+                                    {{ translator.get(matchMode) }}
                                 </button>
                                 <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
                                     data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 2rem;">
@@ -418,25 +418,13 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="#" @click="changeMatchMode()">
                                             <i class="fa-solid fa-fast-forward me-1"></i>
-                                            {{ translator.get("Simulate match") }}
+                                            {{ translator.get(matchMode === "Start match" ? "Simulate match" : "Start match") }}
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="col-6 col-lg-3 d-grid">
-                            <button type="button" class="btn btn-light border" @click="startMatch()">
-                                <i class="fa-solid fa-play me-1"></i>
-                                {{ translator.get("Start match") }}
-                            </button>
-                        </div>
-                        <div class="col-6 col-lg-3 d-grid">
-                            <button type="button" class="btn btn-light border" @click="simulateMatch()">
-                                <i class="fa-solid fa-fast-forward me-1"></i>
-                                {{ translator.get("Simulate match") }}
-                            </button>
                         </div>
                     </div>
                     <div class="row mb-3">

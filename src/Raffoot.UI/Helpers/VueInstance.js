@@ -36,8 +36,8 @@ class VueInstance {
             }
         };
 
-        if (this.viewModel.computed)
-            computed = Object.assign(computed, this.viewModel.computed());
+        if (this.viewModel.__computed)
+            computed = Object.assign(computed, this.viewModel.__computed);
 
         return computed;
     }

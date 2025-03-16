@@ -48,7 +48,7 @@ class Game {
             autoSave: false,
             fullScreen: false,
             language: Config.language,
-            matchMode: 'start',
+            matchMode: 'Start match',
             matchSpeed: Config.match.speedOptions['Super fast'],
             search: {
                 pageSize: Config.search.pageSize
