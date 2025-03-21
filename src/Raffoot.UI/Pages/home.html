@@ -408,17 +408,17 @@
                     <div class="row mb-3">
                         <div class="col-6 col-lg-3 d-grid">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-light" @click="matchMode === 'Start match' ? startMatch() : simulateMatch()">
+                                <button id="play-match" type="button" class="btn btn-light" @click="play()" :disabled="isLoading">
                                     <i class="fa-solid fa-play me-1"></i>
                                     {{ translator.get(matchMode) }}
                                 </button>
                                 <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
-                                    data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 2rem;">
+                                    data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 1.75rem;">
                                     <span class="visually-hidden">{{ translator.get("Options") }}</span>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" href="#" @click="changeMatchMode()">
+                                        <a class="dropdown-item" href="#" @click.prevent="changeMatchMode()">
                                             <i class="fa-solid fa-fast-forward me-1"></i>
                                             {{ translator.get(matchMode === "Start match" ? "Simulate match" : "Start match") }}
                                         </a>

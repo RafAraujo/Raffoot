@@ -1,4 +1,5 @@
-﻿using RaffootLoader.Application.Interfaces.Services;
+﻿using NUglify;
+using RaffootLoader.Application.Interfaces.Services;
 using RaffootLoader.Domain.Enums;
 using RaffootLoader.Domain.Interfaces;
 using RaffootLoader.Infrastructure.CrossCutting.Utils;
@@ -8,7 +9,7 @@ namespace RaffootLoader.Application.Services
 {
 	public class JavaScriptFileGeneratorService(ISettings settings, IContext context) : IJavaScriptFileGeneratorService
 	{
-		public void GenerateFifaServiceFile()
+		public void GenerateFifaServiceFile(bool minify = false)
 		{
 			try
 			{
@@ -81,7 +82,11 @@ namespace RaffootLoader.Application.Services
 				sb.AppendLine("\t}").AppendLine();
 				sb.Append('}');
 
-				File.WriteAllText(filePath, sb.ToString());
+				var js = sb.ToString();
+				if (minify)
+					js = Uglify.Js(js).Code;
+
+				File.WriteAllText(filePath, js);
 			}
 			catch (Exception ex)
 			{

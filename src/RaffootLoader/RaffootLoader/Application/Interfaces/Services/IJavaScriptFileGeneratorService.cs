@@ -2,6 +2,6 @@
 {
     public interface IJavaScriptFileGeneratorService
     {
-        void GenerateFifaServiceFile();
+        void GenerateFifaServiceFile(bool minify = false);
     }
 }

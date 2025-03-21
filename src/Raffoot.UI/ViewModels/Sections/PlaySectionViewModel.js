@@ -70,6 +70,15 @@ class PlaySectionViewModel {
         return message;
     }
 
+    play() {
+        this.isLoading = true;
+        if (this.game.config.matchMode === 'Start match')
+            this.startMatch();
+        else
+            this.simulateMatch();
+        this.isLoading = false;
+    }
+
     redirect(url) {
         location.href = url
     }
